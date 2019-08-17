@@ -1,15 +1,27 @@
 from thonny import get_workbench, get_shell
 import tkinter as tk
+import tkinter.font as font
 from tkinter import ttk
+
 
 #postit is  a frame with button and label
 class Postit(tk.Frame):
     def __init__(self, *args, **kwargs):
-        tk.Frame.__init__(self, *args, **kwargs)
-        self.postit_button = tk.Button(self,  text='***' , command=self.post)
+        ttk.Frame.__init__(self, *args, **kwargs)
+
+        bold = font.Font(size=10, weight=font.BOLD)
+        #bold = font.Font(size=12)
+        self.postit_button = tk.Button(self,  
+                                        text='***' , 
+                                        command=self.post, 
+                                        fg='white', 
+                                        bg='#4a6cd4',
+                                        justify='left',
+                                        font=bold,
+                                        )
         self.postit_button.pack(side=tk.LEFT, anchor='w')
 
-        self.help_label = tk.Label(self, text='...' )
+        self.help_label = ttk.Label(self, text='' )
         self.help_label.pack(side=tk.LEFT, anchor='w')
 
         #right click menu
@@ -17,8 +29,18 @@ class Postit(tk.Frame):
         self.popup_menu.add_command(label="修改", command=self.modify)
         self.postit_button.bind("<Button-3>", self.popup)
 
-    def set_content(self, text, help_text):
+    def set_content(self, text):
+        
+        #lines = text.split('\n')
+        #max_width = 0
+        #for line in lines:
+        #    max_width = len(line) if len(line) > max_width else  max_width
+        #width = int(max_width*1.2)
+
         self.postit_button.config(text=text)
+        
+
+    def set_help_label(self, help_text):
         self.help_label.config(text=help_text)
 
     def popup(self, event):
@@ -45,9 +67,19 @@ class Postit(tk.Frame):
             #replace selection 
             text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
             text.direct_insert("insert", self.postit_button['text']) 
+
+
         else:
             #just insert
-            text.direct_insert("insert", self.postit_button['text'])
+            #text.direct_insert("insert", self.postit_button['text'])
+            lines = self.postit_button['text'].split('\n\t')
+            for line in lines:
+                text.direct_insert("insert",line)
+                text.event_generate("<Return>")
+
+            # text.direct_insert("insert",'abc:')
+            # text.event_generate("<Return>")
+            # text.direct_insert("insert",'def')
 
 
 
@@ -55,10 +87,15 @@ class PostitView(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         p = Postit(self)
-        p.set_content('物理舞台', ' ... stage')
+        p.set_content('物理舞台.新增隨機方塊(\n\tx=7, \n\ty=5, \n\tposition_x=13, \n\tdensity=13,\n\t)')
+        p.set_help_label(' ... stage')
         p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        Postit(self).pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        p = Postit(self)
+        p.set_content('物理舞台.新增隨機方塊(x=7, y=5, position_x=13)')
+        p.set_help_label(' ... stage')
+        p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+
 
 
     #     tk.Frame.__init__(self, master)
