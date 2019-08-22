@@ -73,9 +73,32 @@ class Postit(tk.Frame):
             #just insert
             #text.direct_insert("insert", self.postit_button['text'])
             lines = self.postit_button['text'].split('\n\t')
-            for line in lines:
-                text.direct_insert("insert",line)
-                text.event_generate("<Return>")
+            ###print(lines)
+            if len(lines) == 1:
+                #one line
+                text.direct_insert("insert",lines[0])
+            else:
+                #multi lines
+
+                #handle last )
+                is_parentheses_last = False
+                temp_last = lines[-1]
+                if temp_last[-2:] == '\n)':
+                    is_parentheses_last = True
+                    ###print('parentheses_last')
+                    #remove \n) on last element
+                    lines[-1] = temp_last[:-2]
+
+                print(lines)
+                for line in lines:
+                    text.direct_insert("insert",line)
+                    text.event_generate("<Return>")
+                
+                #print last ) if needed
+                if is_parentheses_last:
+                    text.event_generate("<BackSpace>")
+                    text.direct_insert('insert', ')' )
+                    text.event_generate("<Return>")
 
             # text.direct_insert("insert",'abc:')
             # text.event_generate("<Return>")
@@ -87,7 +110,7 @@ class PostitView(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
         p = Postit(self)
-        p.set_content('物理舞台.新增隨機方塊(\n\tx=7, \n\ty=5, \n\tposition_x=13, \n\tdensity=13,\n\t)')
+        p.set_content('物理舞台.新增隨機方塊(\n\t位置x=7, \n\t位置y=5, \n\t密度=13,\n)')
         p.set_help_label(' ... stage')
         p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
