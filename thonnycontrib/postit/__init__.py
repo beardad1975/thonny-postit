@@ -1,4 +1,5 @@
 from thonny import get_workbench, get_shell
+from thonny.codeview import CodeViewText
 import tkinter as tk
 import tkinter.font as font
 from tkinter import ttk
@@ -28,6 +29,40 @@ class Postit(tk.Frame):
         self.popup_menu = tk.Menu(self, tearoff=0)
         self.popup_menu.add_command(label="修改", command=self.modify)
         self.postit_button.bind("<Button-3>", self.popup)
+
+        #dnd
+        self.postit_button.bind("<ButtonPress-1>", self.on_dnd_start)
+        self.postit_button.bind("<B1-Motion>", self.on_dnd_drag)
+        self.postit_button.bind("<ButtonRelease-1>", self.on_dnd_drop)
+        self.postit_button.configure(cursor="arrow")
+
+    def on_dnd_start(self, event):
+        ###print('dnd start')
+
+        pass
+
+    def on_dnd_drag(self, event):
+        ###print('drag ...')
+        self.postit_button.configure(cursor="hand2")
+        #change insert cursor in text
+        x,y = event.widget.winfo_pointerxy()
+        target = event.widget.winfo_containing(x,y)
+        
+        
+        if isinstance(target, CodeViewText):
+            target.focus_set()
+            rel_x = event.x_root - target.winfo_rootx()
+            rel_y = event.y_root - target.winfo_rooty()
+            ###print(rel_x ,rel_y )
+            target.mark_set('insert', f"@{rel_x},{rel_y}")
+            ###print(index)
+
+    def on_dnd_drop(self, event):
+        ###print('dnd drop')
+        self.postit_button.configure(cursor="arrow")
+        #x, y = event.widget.winfo_pointerxy()
+        #target = event.widget.winfo_containing(x,y)
+        self.post()
 
     def set_content(self, text):
         
@@ -89,7 +124,7 @@ class Postit(tk.Frame):
                     #remove \n) on last element
                     lines[-1] = temp_last[:-2]
 
-                print(lines)
+                ###print(lines)
                 for line in lines:
                     text.direct_insert("insert",line)
                     text.event_generate("<Return>")
