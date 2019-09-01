@@ -24,7 +24,7 @@ class PostitView(tk.Frame):
         p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
         pp = PropertyPostit(self)
-        pp.set_content('物理舞台.重力')
+        #pp.set_content('物理舞台.重力')
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
