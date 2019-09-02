@@ -157,13 +157,14 @@ class CallerPostit(Postit):
 class PropertyPostit(Postit):
     def __init__(self, master):
         super().__init__(master)
-        self.object_name = 'stage'
-        self.property_name = '預設彈性'
+        self.object_name = SuggestVars.physical_stage
+        self.property_list = ('重力x','重力y', '預設彈性')
+        self.property_name = self.property_list[1]
         self.property_value = '10'
         self.assign_flag = True
-        self.property_list = ('重力x','重力y', '預設彈性')
+        
 
-        self.assemble_content()
+        self.set_content(self.assemble_content())
 
     def on_modify(self):
         self.modify_popup = PropertyModifyPopup(self)
@@ -177,15 +178,31 @@ class PropertyPostit(Postit):
             t = f'{self.object_name}.{self.property_name} = {self.property_value} '
         else:
             t = f'{self.object_name}.{self.property_name} '
-        self.postit_button.config(text=t)
-
+        
+        #self.postit_button.config(text=t)
+        return t
         
 
 class PropertyModifyPopup(tk.Toplevel):
-    def __init__(self,parent,  *args, **kwargs):
+    def __init__(self, postit,  *args, **kwargs):
         tk.Toplevel.__init__(self, *args, **kwargs)
         self.title("修改 -- ")
-        self.postit = parent
+        self.postit = postit
+
+        self.pady = 10
+
+        #copy data from postit
+        # self.var_object_name = tk.StringVar()
+        # self.var_object_name.set(self.postit.object_name + '.')
+
+        # self.var_property_name = tk.StringVar()
+        # self.var_property_name.set(self.postit.property_name)
+
+        self.var_property_value = tk.StringVar()
+        self.var_property_value.set(self.postit.property_value)
+
+        self.var_assign_flag = tk.BooleanVar()
+        self.var_assign_flag.set(self.postit.assign_flag)
 
         #self.geometry('500x300')
         self.transient()
@@ -193,34 +210,47 @@ class PropertyModifyPopup(tk.Toplevel):
 
         #mode frame (assign or get)
         self.mode_frame = ttk.Frame(self)
-        self.mode_frame.pack(pady=20)
+        self.mode_frame.pack(pady=self.pady)
 
-        self.assign_mode = tk.BooleanVar()
-        self.assign_mode.set(self.postit.assign_flag)
-
-        ttk.Radiobutton(self.mode_frame, text='設定值', variable=self.assign_mode, \
+        ttk.Radiobutton(self.mode_frame, text='設定值', variable=self.var_assign_flag, \
             value=True).pack(side='left')
-        ttk.Radiobutton(self.mode_frame, text='取出值', variable=self.assign_mode, \
+        ttk.Radiobutton(self.mode_frame, text='取出值', variable=self.var_assign_flag, \
             value=False).pack(side='left')
 
-        #select frame
+        #select and input data frame
         self.select_frame = ttk.Frame(self)
-        self.select_frame.pack()
+        self.select_frame.pack(pady=self.pady)
 
-        ttk.Button(self.select_frame, text='here').pack()
+        self.object_name_label = ttk.Label(self.select_frame, text=self.postit.object_name+'.')
+        self.object_name_label.pack(side='left')
+
+        self.property_name_combo = ttk.Combobox(self.select_frame, width=10, \
+                                                values=self.postit.property_list)
+        i = self.postit.property_list.index(self.postit.property_name)
+        self.property_name_combo.current(i)
+        self.property_name_combo.pack(side='left')
+        self.property_name_combo.bind("<<ComboboxSelected>>", lambda e:self.update_literal())
+
+
+        self.assign_label = ttk.Label(self.select_frame, text=' = ')
+        self.assign_label.pack(side='left')
+
+        self.property_value_entry = ttk.Entry(self.select_frame, width=10, textvariable=self.var_property_value)
+        self.property_value_entry.pack(side='left')
 
 
         #literal frame
         self.literal_frame = ttk.LabelFrame(self, text='程式的寫法')
-        self.literal_frame.pack(side='top')
+        self.literal_frame.pack(side='top',pady=self.pady)
 
-        self.literal_label = ttk.Label(self.literal_frame, text='a = 5')
+        
+        self.literal_label = ttk.Label(self.literal_frame, text='...')
         self.literal_label.pack()
-
+        self.update_literal()
 
         #bottom frame ( buttons )
         self.bottom_frame = ttk.Frame(self)
-        self.bottom_frame.pack(side='bottom')
+        self.bottom_frame.pack(side='bottom',pady=self.pady)
         ttk.Button(self.bottom_frame, text="確定修改", ).pack(side='right')
         ttk.Button(self.bottom_frame, text="取消", command=lambda:self.destroy()).pack(side='right')
         #ttk.Button(self.bottom_frame, text="預設值", ).pack(side='right')
@@ -233,3 +263,20 @@ class PropertyModifyPopup(tk.Toplevel):
         position_right = int(self.winfo_screenwidth()/2 - popup_width/2)
         position_down = int(self.winfo_screenheight()/2 - popup_height/2)
         self.geometry(f'+{position_right}+{position_down}')
+
+
+    def update_literal(self):
+        t = self.assemble_literal_content()
+        self.literal_label.config(text=t)
+
+    def assemble_literal_content(self):
+        object_name = self.postit.object_name
+        property_name = self.property_name_combo.get()
+        property_value = self.var_property_value.get()
+
+        if self.var_assign_flag.get():            
+            t = f'{object_name}.{property_name} = {property_value} '
+        else:
+            t = f'{object_name}.{property_name} '
+        
+        return t
