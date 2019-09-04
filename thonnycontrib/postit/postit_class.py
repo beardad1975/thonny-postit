@@ -22,7 +22,7 @@ class Postit(ttk.Frame):
         #bold = font.Font(size=12)
         self.postit_button = tk.Button(self,  
                                         text='***' , 
-                                        command=self.post, 
+                                        #command=self.post, 
                                         fg='white', 
                                         bg='#4a6cd4',
                                         justify='left',
@@ -40,8 +40,8 @@ class Postit(ttk.Frame):
 
         #dnd
         #self.postit_button.bind("<ButtonPress-1>", self.on_dnd_start)
-        self.postit_button.bind("<B1-Motion>", self.on_dnd_drag)
-        self.postit_button.bind("<ButtonRelease-1>", self.on_dnd_drop)
+        self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
+        self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
         self.postit_button.configure(cursor="arrow")
 
     # def on_dnd_start(self, event):
@@ -49,7 +49,7 @@ class Postit(ttk.Frame):
 
     #     pass
 
-    def on_dnd_drag(self, event):
+    def on_mouse_drag(self, event):
         ###print('drag ...')
         self.postit_button.configure(cursor="hand2")
         #change insert cursor in text
@@ -69,12 +69,14 @@ class Postit(ttk.Frame):
             target.mark_set('insert', f"@{rel_x},{rel_y}")
             ###print(index)
 
-    def on_dnd_drop(self, event):
+    def on_mouse_release(self, event):
         ###print('dnd drop')
         self.postit_button.configure(cursor="arrow")
-        #x, y = event.widget.winfo_pointerxy()
-        #target = event.widget.winfo_containing(x,y)
-        self.post()
+
+        x, y = event.widget.winfo_pointerxy()
+        target = event.widget.winfo_containing(x,y)
+        if target is self.postit_button or isinstance(target, CodeViewText):
+            self.post()
 
     def set_content(self, text):
         
@@ -83,7 +85,7 @@ class Postit(ttk.Frame):
         #for line in lines:
         #    max_width = len(line) if len(line) > max_width else  max_width
         #width = int(max_width*1.2)
-
+        ###print("set_context: ", text)
         self.postit_button.config(text=text)
         
 
@@ -114,13 +116,11 @@ class Postit(ttk.Frame):
             #replace selection 
             text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
             text.direct_insert("insert", self.postit_button['text']) 
-
-
         else:
             #just insert
             #text.direct_insert("insert", self.postit_button['text'])
             lines = self.postit_button['text'].split('\n\t')
-            ###print(lines)
+            ###print(self.postit_button['text'])
             if len(lines) == 1:
                 #one line
                 text.direct_insert("insert",lines[0])
@@ -155,16 +155,17 @@ class CallerPostit(Postit):
     pass
 
 class PropertyPostit(Postit):
-    def __init__(self, master):
+    def __init__(self, master, object_name, property_list, 
+                    property_name, property_value, assign_flag):
         super().__init__(master)
-        self.object_name = SuggestVars.physical_stage
-        self.property_list = ('重力x','重力y', '預設彈性')
-        self.property_name = self.property_list[1]
-        self.property_value = '10'
-        self.assign_flag = True
+        self.object_name = object_name
+        self.property_list = property_list
+        self.property_name = property_name
+        self.property_value = property_value
+        self.assign_flag = assign_flag
         
-
         self.set_content(self.assemble_content())
+        ###print(self.assemble_content())
 
     def on_modify(self):
         self.modify_popup = PropertyModifyPopup(self)
@@ -190,19 +191,24 @@ class PropertyModifyPopup(tk.Toplevel):
         self.postit = postit
 
         self.pady = 10
+        self.padx = 20
 
         #copy data from postit
         # self.var_object_name = tk.StringVar()
         # self.var_object_name.set(self.postit.object_name + '.')
 
-        # self.var_property_name = tk.StringVar()
-        # self.var_property_name.set(self.postit.property_name)
+        self.var_property_name = tk.StringVar()
+        self.var_property_name.set(self.postit.property_name)
+        self.var_property_name.trace('w', lambda *args:self.update_literal())
 
         self.var_property_value = tk.StringVar()
         self.var_property_value.set(self.postit.property_value)
+        self.var_property_value.trace('w', lambda *args:self.update_literal())
 
         self.var_assign_flag = tk.BooleanVar()
         self.var_assign_flag.set(self.postit.assign_flag)
+        self.var_assign_flag.trace('w', lambda *args: self.update_assign_and_literal())
+        
 
         #self.geometry('500x300')
         self.transient()
@@ -225,45 +231,70 @@ class PropertyModifyPopup(tk.Toplevel):
         self.object_name_label.pack(side='left')
 
         self.property_name_combo = ttk.Combobox(self.select_frame, width=10, \
+                                                textvariable=self.var_property_name,
                                                 values=self.postit.property_list)
-        i = self.postit.property_list.index(self.postit.property_name)
-        self.property_name_combo.current(i)
+        #i = self.postit.property_list.index(self.postit.property_name)
+        #self.property_name_combo.current(i)
         self.property_name_combo.pack(side='left')
-        self.property_name_combo.bind("<<ComboboxSelected>>", lambda e:self.update_literal())
+        #self.property_name_combo.bind("<<ComboboxSelected>>", lambda e:self.update_literal())
 
 
         self.assign_label = ttk.Label(self.select_frame, text=' = ')
-        self.assign_label.pack(side='left')
+        #self.assign_label.pack(side='left')
 
-        self.property_value_entry = ttk.Entry(self.select_frame, width=10, textvariable=self.var_property_value)
-        self.property_value_entry.pack(side='left')
+        self.property_value_entry = ttk.Entry(self.select_frame, width=15, textvariable=self.var_property_value)
+        #self.property_value_entry.pack(side='left')
 
 
         #literal frame
         self.literal_frame = ttk.LabelFrame(self, text='程式的寫法')
-        self.literal_frame.pack(side='top',pady=self.pady)
+        self.literal_frame.pack(side='top',pady=self.pady, padx=self.padx, fill='both')
 
         
-        self.literal_label = ttk.Label(self.literal_frame, text='...')
-        self.literal_label.pack()
-        self.update_literal()
+        self.literal_label = ttk.Label(self.literal_frame, text='')
+        self.literal_label.pack(pady=self.pady, padx=self.padx)
+
+        self.update_assign_and_literal() # also do update_literal
 
         #bottom frame ( buttons )
         self.bottom_frame = ttk.Frame(self)
-        self.bottom_frame.pack(side='bottom',pady=self.pady)
-        ttk.Button(self.bottom_frame, text="確定修改", ).pack(side='right')
-        ttk.Button(self.bottom_frame, text="取消", command=lambda:self.destroy()).pack(side='right')
+        self.bottom_frame.pack(side='bottom', pady=self.pady, anchor='e')
+
+        ttk.Button(self.bottom_frame, width=10, text="取消", \
+                    command=lambda:self.destroy()).pack(side='right', padx=5)
+
+        ttk.Button(self.bottom_frame, width=10, text="確定修改", 
+                command=lambda : self.update_postit(),
+                ).pack(side='right', padx=5)
+
+
         #ttk.Button(self.bottom_frame, text="預設值", ).pack(side='right')
         
         
 
         #center popup  on screen
-        popup_width = self.winfo_reqwidth()
-        popup_height = self.winfo_reqheight()
-        position_right = int(self.winfo_screenwidth()/2 - popup_width/2)
-        position_down = int(self.winfo_screenheight()/2 - popup_height/2)
-        self.geometry(f'+{position_right}+{position_down}')
+        # popup_width = self.winfo_reqwidth()
+        # popup_height = self.winfo_reqheight()
+        # position_right = int(self.winfo_screenwidth()/2 - popup_width/2)
+        # position_down = int(self.winfo_screenheight()/2 - popup_height/2)
+        popup_width = int(self.winfo_screenwidth()/3)
+        popup_height = int(self.winfo_screenheight()/3)
+        position_right =  int(self.winfo_screenwidth()*0.3)
+        position_down = int(self.winfo_screenheight()*0.3) 
 
+        self.geometry(f'{popup_width}x{popup_height}+{position_right}+{position_down}')
+
+
+    def update_assign_and_literal(self):
+        flag = self.var_assign_flag.get()
+        if flag:
+            self.assign_label.pack(side='left')
+            self.property_value_entry.pack(side='left')
+        else:
+            self.assign_label.pack_forget()
+            self.property_value_entry.pack_forget()
+
+        self.update_literal()
 
     def update_literal(self):
         t = self.assemble_literal_content()
@@ -271,7 +302,7 @@ class PropertyModifyPopup(tk.Toplevel):
 
     def assemble_literal_content(self):
         object_name = self.postit.object_name
-        property_name = self.property_name_combo.get()
+        property_name = self.var_property_name.get()
         property_value = self.var_property_value.get()
 
         if self.var_assign_flag.get():            
@@ -280,3 +311,18 @@ class PropertyModifyPopup(tk.Toplevel):
             t = f'{object_name}.{property_name} '
         
         return t
+
+    def update_postit(self):
+        self.postit.property_name = self.var_property_name.get()
+        self.postit.assign_flag = self.var_assign_flag.get()
+        if self.postit.assign_flag:
+            self.postit.property_value = self.var_property_value.get()
+
+        self.postit.set_content(self.postit.assemble_content())
+        self.destroy()
+
+        
+
+
+
+        

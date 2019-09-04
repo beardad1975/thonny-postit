@@ -5,7 +5,7 @@ from tkinter import ttk
 from thonny import get_workbench, get_shell
 from thonny.codeview import CodeViewText
 
-from .postit_class import Postit, PropertyPostit
+from .postit_class import Postit, PropertyPostit, SuggestVars
 
 
 
@@ -23,11 +23,23 @@ class PostitView(tk.Frame):
         p.set_help_label(' ... stage')
         p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        pp = PropertyPostit(self)
-        #pp.set_content('物理舞台.重力')
+        pp = PropertyPostit(self, 
+                            object_name=SuggestVars.physical_stage,
+                            property_list=('重力x','重力y', '預設彈性'),
+                            property_name='重力x',
+                            property_value='10',
+                            assign_flag=True,
+                            )
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-
+        pp = PropertyPostit(self, 
+                            object_name='abc',
+                            property_list=('num','長度', '數量'),
+                            property_name='重力x',
+                            property_value='xyz',
+                            assign_flag=False,
+                            )
+        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
     #     tk.Frame.__init__(self, master)
