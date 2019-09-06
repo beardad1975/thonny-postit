@@ -13,33 +13,27 @@ from .postit_class import Postit, PropertyPostit, SuggestVars
 class PostitView(tk.Frame):
     def __init__(self, master):
         tk.Frame.__init__(self, master)
-        p = Postit(self)
-        p.set_content('物理舞台.新增隨機方塊(\n\t位置x=7, \n\t位置y=5, \n\t密度=13,\n)')
-        p.set_help_label(' ... stage')
-        p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        # p = Postit(self)
+        # p.set_content('物理舞台.新增隨機方塊(\n\t位置x=7, \n\t位置y=5, \n\t密度=13,\n)')
+        # p.set_help_label(' ... stage')
+        # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        p = Postit(self)
-        p.set_content('物理舞台.新增隨機方塊(x=7, y=5, position_x=13)')
-        p.set_help_label(' ... stage')
-        p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        # p = Postit(self)
+        # p.set_content('物理舞台.新增隨機方塊(x=7, y=5, position_x=13)')
+        # p.set_help_label(' ... stage')
+        # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        pp = PropertyPostit(self, 
-                            object_name=SuggestVars.physical_stage,
-                            property_list=('重力x','重力y', '預設彈性'),
-                            property_name='重力x',
-                            property_value='10',
-                            assign_flag=True,
-                            )
-        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        for number in range(25):
+            pp = PropertyPostit(self, 
+                                object_name=SuggestVars.physical_stage,
+                                property_list=('重力x','重力y', '預設彈性'),
+                                property_name='重力x',
+                                property_value=str(number),
+                                assign_flag=True,
+                                )
+            pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        pp = PropertyPostit(self, 
-                            object_name='abc',
-                            property_list=('num','長度', '數量'),
-                            property_name='重力x',
-                            property_value='xyz',
-                            assign_flag=False,
-                            )
-        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+
 
 
     #     tk.Frame.__init__(self, master)

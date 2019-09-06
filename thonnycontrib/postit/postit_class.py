@@ -164,6 +164,13 @@ class PropertyPostit(Postit):
         self.property_value = property_value
         self.assign_flag = assign_flag
         
+        #record default value
+        self.default_object_name = object_name
+        self.default_property_list = property_list
+        self.default_property_name = property_name
+        self.default_property_value = property_value
+        self.default_assign_flag = assign_flag
+
         self.set_content(self.assemble_content())
         ###print(self.assemble_content())
 
@@ -258,12 +265,15 @@ class PropertyModifyPopup(tk.Toplevel):
 
         #bottom frame ( buttons )
         self.bottom_frame = ttk.Frame(self)
-        self.bottom_frame.pack(side='bottom', pady=self.pady, anchor='e')
+        self.bottom_frame.pack(side='bottom', pady=self.pady, anchor='e', fill='x')
+
+        ttk.Button(self.bottom_frame, width=12, text="回復預設值", \
+                    command=lambda: self.load_default()).pack(side='left', padx=5)
 
         ttk.Button(self.bottom_frame, width=10, text="取消", \
                     command=lambda:self.destroy()).pack(side='right', padx=5)
 
-        ttk.Button(self.bottom_frame, width=10, text="確定修改", 
+        ttk.Button(self.bottom_frame, width=10, text="套用修改", 
                 command=lambda : self.update_postit(),
                 ).pack(side='right', padx=5)
 
@@ -320,6 +330,12 @@ class PropertyModifyPopup(tk.Toplevel):
 
         self.postit.set_content(self.postit.assemble_content())
         self.destroy()
+
+    def load_default(self):
+        self.var_property_name.set(self.postit.default_property_name)
+        self.var_property_value.set(self.postit.default_property_value)
+        self.var_assign_flag.set(self.postit.default_assign_flag)
+        self.update_assign_and_literal()
 
         
 
