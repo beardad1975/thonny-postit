@@ -4,15 +4,30 @@ from tkinter import ttk
 
 from thonny import get_workbench, get_shell
 from thonny.codeview import CodeViewText
+from thonny.ui_utils import VerticallyScrollableFrame
 
-from .postit_class import Postit, PropertyPostit, SuggestVars
+from .property_postit import  PropertyPostit
 
 
-
-
-class PostitView(tk.Frame):
+class Pie4tView(VerticallyScrollableFrame):
     def __init__(self, master):
-        tk.Frame.__init__(self, master)
+        super().__init__(master)
+
+        for number in range(25):
+            pp = PropertyPostit(self.interior, 
+                                object_name='物理舞台',
+                                property_list=('重力x','重力y', '預設彈性'),
+                                property_name='重力x',
+                                property_value=str(number),
+                                assign_flag=True,
+                                )
+            pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+
+
+class PythonView(VerticallyScrollableFrame):
+    def __init__(self, master):
+        super().__init__(master)
+
         # p = Postit(self)
         # p.set_content('物理舞台.新增隨機方塊(\n\t位置x=7, \n\t位置y=5, \n\t密度=13,\n)')
         # p.set_help_label(' ... stage')
@@ -23,9 +38,9 @@ class PostitView(tk.Frame):
         # p.set_help_label(' ... stage')
         # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        for number in range(25):
-            pp = PropertyPostit(self, 
-                                object_name=SuggestVars.physical_stage,
+        for number in range(4):
+            pp = PropertyPostit(self.interior, 
+                                object_name='物理舞台',
                                 property_list=('重力x','重力y', '預設彈性'),
                                 property_name='重力x',
                                 property_value=str(number),
@@ -116,4 +131,5 @@ class PostitView(tk.Frame):
         #text.direct_insert("insert wordend", self.ent2.get())
 
 def load_plugin():
-    get_workbench().add_view(PostitView, '程式便利貼', 'ne')
+    get_workbench().add_view(PythonView, 'python便貼', 'ne')
+    get_workbench().add_view(Pie4tView, 'pie4t便貼', 'se')
