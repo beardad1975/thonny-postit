@@ -30,10 +30,10 @@ class Postit(ttk.Frame):
                                         )
         self.postit_button.pack(side=tk.LEFT, anchor='w')
 
-        self.help_label = ttk.Label(self, text='' )
-        self.help_label.pack(side=tk.LEFT, anchor='w')
+        self.note_label = ttk.Label(self, text='' )
+        self.note_label.pack(side=tk.LEFT, anchor='w')
 
-        self.code_text = ''   # real text on post
+        self.code = ''   # real code text on post
 
     # def on_dnd_start(self, event):
     #     ###print('dnd start')
@@ -69,7 +69,7 @@ class Postit(ttk.Frame):
         if target is self.postit_button or isinstance(target, CodeViewText):
             self.post()
 
-    def set_button_content(self, text):
+    def set_code_display(self, text):
         
         #lines = text.split('\n')
         #max_width = 0
@@ -77,13 +77,14 @@ class Postit(ttk.Frame):
         #    max_width = len(line) if len(line) > max_width else  max_width
         #width = int(max_width*1.2)
         ###print("set_context: ", text)
-        self.code_text = text
         self.postit_button.config(text=text)
 
-        
+    def set_code(self, text):
+        self.code = text
 
-    def set_help_label(self, help_text):
-        self.help_label.config(text=help_text)
+
+    def set_note(self, help_text):
+        self.note_label.config(text=help_text)
 
     def popup(self, event):
         try:
@@ -108,11 +109,11 @@ class Postit(ttk.Frame):
         if len(text.tag_ranges('sel')):
             #replace selection 
             text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-            text.direct_insert("insert", self.code_text) 
+            text.direct_insert("insert", self.code) 
         else:
             #just insert
             #text.direct_insert("insert", self.postit_button['text'])
-            lines = self.code_text.split('\n')
+            lines = self.code.split('\n')
             ###print(self.postit_button['text'])
             if len(lines) == 1:
                 #one line

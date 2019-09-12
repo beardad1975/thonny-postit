@@ -8,20 +8,27 @@ from thonny.ui_utils import VerticallyScrollableFrame
 
 from .property_postit import  PropertyPostit
 
+### unicode return symbol \u23ce
+
 
 class Pie4tView(VerticallyScrollableFrame):
     def __init__(self, master):
         super().__init__(master)
 
-        for number in range(25):
-            pp = PropertyPostit(self.interior, 
-                                object_name='物理舞台',
-                                property_list=('重力x','重力y', '預設彈性'),
-                                property_name='重力x',
-                                property_value=str(number),
-                                assign_flag=True,
-                                )
-            pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        pp = PropertyPostit(self.interior, 
+                            object_name='物理舞台',
+                            property_list=('重力x','重力y', '預設彈性'),
+                            property_name='重力x',
+                            property_value='20',
+                            assign_flag=True,
+                            postfix_newline=False,
+                            )
+        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+
+
+class SymbolView(VerticallyScrollableFrame):
+    def __init__(self, master):
+        super().__init__(master)   
 
 
 class PythonView(VerticallyScrollableFrame):
@@ -38,15 +45,15 @@ class PythonView(VerticallyScrollableFrame):
         # p.set_help_label(' ... stage')
         # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        for number in range(4):
-            pp = PropertyPostit(self.interior, 
-                                object_name='物理舞台',
-                                property_list=('重力x','重力y', '預設彈性'),
-                                property_name='重力x',
-                                property_value=str(number),
-                                assign_flag=True,
-                                )
-            pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        pp = PropertyPostit(self.interior, 
+                            object_name='物理舞台',
+                            property_list=('重力x','重力y', '預設彈性'),
+                            property_name='重力x',
+                            property_value='10',
+                            assign_flag=True,
+                            postfix_newline=True,
+                            )
+        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
 
@@ -131,5 +138,6 @@ class PythonView(VerticallyScrollableFrame):
         #text.direct_insert("insert wordend", self.ent2.get())
 
 def load_plugin():
-    get_workbench().add_view(PythonView, 'python便貼', 'ne')
-    get_workbench().add_view(Pie4tView, 'pie4t便貼', 'se')
+    get_workbench().add_view(PythonView, '便利貼python', 'ne')
+    get_workbench().add_view(SymbolView, '便利貼符號', 'ne')
+    get_workbench().add_view(Pie4tView, '便利貼pie4t', 'se')

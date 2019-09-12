@@ -3,26 +3,41 @@ from tkinter import ttk
 
 from .postit import Postit
 
+from .common import ENTER
 
 class PropertyPostit(Postit):
     def __init__(self, master, object_name, property_list, 
-                    property_name, property_value, assign_flag):
+                    property_name, property_value, assign_flag=False,
+                    postfix_newline=False):
         super().__init__(master)
-        self.data_object_name = object_name
-        self.data_property_list = property_list
-        self.data_property_name = property_name
-        self.data_property_value = property_value
-        self.data_assign_flag = assign_flag
-        
-        #record default value
-        self.default_object_name = object_name
-        self.default_property_list = property_list
-        self.default_property_name = property_name
-        self.default_property_value = property_value
-        self.default_assign_flag = assign_flag
 
-        self.set_button_content(self.assemble_content())
-        ###print(self.assemble_content())
+        self.code_elements = {}   # code_elements: dict data of code elements
+        self.code_elements["object_name"] = object_name #str
+        self.code_elements["property_list"] = property_list  # list
+        self.code_elements["property_name"] = property_name #str
+        self.code_elements["property_value"] = property_value #str
+        self.code_elements["assign_flag"] = assign_flag  #boolean
+        self.code_elements["postfix_newline"] = postfix_newline #boolean
+        
+        # self.data_object_name = object_name
+        # self.data_property_list = property_list
+        # self.data_property_name = property_name
+        # self.data_property_value = property_value
+        # self.data_assign_flag = assign_flag
+        # self.data_postfix_newline = postfix_newline
+
+        #keep default value
+        self.default_code_elements = self.code_elements.copy()
+
+        # self.default_object_name = object_name
+        # self.default_property_list = property_list
+        # self.default_property_name = property_name
+        # self.default_property_value = property_value
+        # self.default_assign_flag = assign_flag
+        # self.default_postfix_newline = postfix_newline
+
+        self.update()
+
 
         #right click menu
         self.popup_menu = tk.Menu(self, tearoff=0)
@@ -36,6 +51,8 @@ class PropertyPostit(Postit):
         self.postit_button.configure(cursor="arrow")
 
 
+
+
     def on_edit(self):
         self.modify_popup = PropertyModifyEdit(self)
         
@@ -43,15 +60,32 @@ class PropertyPostit(Postit):
         #self.popup_win.deiconify()
         #self.popup_win.grab_set()
 
-    def assemble_content(self):
-        if self.data_assign_flag:
-            t = f'{self.data_object_name}.{self.data_property_name} = {self.data_property_value} '
+    def assemble_code_display(self, code_dict):
+        
+        if code_dict["assign_flag"]:
+            t = f'{code_dict["object_name"]}.{code_dict["property_name"]} = {code_dict["property_value"]} '
         else:
-            t = f'{self.data_object_name}.{self.data_property_name} '
+            t = f'{code_dict["object_name"]}.{code_dict["property_name"]} '
         
-        #self.postit_button.config(text=t)
+        if code_dict["postfix_newline"]:
+            t += ENTER
+
         return t
+
+    def assemble_code(self, code_dict):
+        if code_dict["assign_flag"]:
+            t = f'{code_dict["object_name"]}.{code_dict["property_name"]} = {code_dict["property_value"]} '
+        else:
+            t = f'{code_dict["object_name"]}.{code_dict["property_name"]} '
         
+        if code_dict["postfix_newline"]:
+            t += '\n'
+        
+        return t
+
+    def update(self):   # update both code and code display
+        self.set_code_display(self.assemble_code_display(self.code_elements))
+        self.set_code(self.assemble_code(self.code_elements))
 
 class PropertyModifyEdit(tk.Toplevel):
     def __init__(self, postit,  *args, **kwargs):
@@ -66,18 +100,22 @@ class PropertyModifyEdit(tk.Toplevel):
         # self.var_object_name = tk.StringVar()
         # self.var_object_name.set(self.postit.object_name + '.')
 
+
         self.var_property_name = tk.StringVar()
-        self.var_property_name.set(self.postit.data_property_name)
-        self.var_property_name.trace('w', lambda *args:self.update_literal())
+        self.var_property_name.set(self.postit.code_elements["property_name"])
+        self.var_property_name.trace('w', lambda *args:self.update_code_preview())
 
         self.var_property_value = tk.StringVar()
-        self.var_property_value.set(self.postit.data_property_value)
-        self.var_property_value.trace('w', lambda *args:self.update_literal())
+        self.var_property_value.set(self.postit.code_elements['property_value'])
+        self.var_property_value.trace('w', lambda *args:self.update_code_preview())
 
         self.var_assign_flag = tk.BooleanVar()
-        self.var_assign_flag.set(self.postit.data_assign_flag)
-        self.var_assign_flag.trace('w', lambda *args: self.update_assign_and_literal())
+        self.var_assign_flag.set(self.postit.code_elements["assign_flag"])
+        self.var_assign_flag.trace('w', lambda *args: self.update_assign_and_preview())
         
+        self.var_postfix_newline = tk.BooleanVar()
+        self.var_postfix_newline.set(self.postit.code_elements["postfix_newline"])
+        self.var_postfix_newline.trace('w', lambda *args:self.update_code_preview())
 
         #self.geometry('500x300')
         self.transient()
@@ -96,12 +134,13 @@ class PropertyModifyEdit(tk.Toplevel):
         self.select_frame = ttk.Frame(self)
         self.select_frame.pack(pady=self.pady)
 
-        self.object_name_label = ttk.Label(self.select_frame, text=self.postit.data_object_name+'.')
+        t = self.postit.code_elements["object_name"]+'.'
+        self.object_name_label = ttk.Label(self.select_frame, text=t)
         self.object_name_label.pack(side='left')
 
         self.property_name_combo = ttk.Combobox(self.select_frame, width=10, \
                                                 textvariable=self.var_property_name,
-                                                values=self.postit.data_property_list)
+                                                values=self.postit.code_elements["property_list"])
         #i = self.postit.property_list.index(self.postit.property_name)
         #self.property_name_combo.current(i)
         self.property_name_combo.pack(side='left')
@@ -111,25 +150,37 @@ class PropertyModifyEdit(tk.Toplevel):
         self.assign_label = ttk.Label(self.select_frame, text=' = ')
         #self.assign_label.pack(side='left')
 
-        self.property_value_entry = ttk.Entry(self.select_frame, width=15, textvariable=self.var_property_value)
+        self.property_value_entry = ttk.Entry(self.select_frame, width=15, 
+                textvariable=self.var_property_value)
         #self.property_value_entry.pack(side='left')
 
+        #postfix newline frame
+        self.newline_frame = ttk.Frame(self)
+        self.newline_frame.pack(pady=self.pady, fill='y', anchor='e')
 
-        #literal frame
-        self.literal_frame = ttk.LabelFrame(self, text='程式的寫法')
-        self.literal_frame.pack(side='top',pady=self.pady, padx=self.padx, fill='both')
+        #ttk.Label(self.newline_frame, text='在最後加上換行(Enter)').pack(side='right', 
+        #                                anchor='e')
+
+        self.postfix_newline_checkbutton = ttk.Checkbutton(self.newline_frame, 
+                 text= '在最後加上換行(Enter)', variable=self.var_postfix_newline,
+                 onvalue=True, offvalue=False)
+        self.postfix_newline_checkbutton.pack(side='right',  anchor='e', padx=0, ipadx=0 )
+
+        #code  preview frame
+        self.code_preview_frame = ttk.LabelFrame(self, text='程式的寫法')
+        self.code_preview_frame.pack(side='top',pady=self.pady, padx=self.padx, fill='both')
 
         
-        self.literal_label = ttk.Label(self.literal_frame, text='')
-        self.literal_label.pack(pady=self.pady, padx=self.padx)
+        self.code_preview_label = ttk.Label(self.code_preview_frame, text='')
+        self.code_preview_label.pack(pady=self.pady, padx=self.padx)
 
-        self.update_assign_and_literal() # also do update_literal
+        self.update_assign_and_preview() 
 
         #bottom frame ( buttons )
         self.bottom_frame = ttk.Frame(self)
         self.bottom_frame.pack(side='bottom', pady=self.pady, anchor='e', fill='x')
 
-        ttk.Button(self.bottom_frame, width=12, text="回復預設值", \
+        ttk.Button(self.bottom_frame, width=12, text="讀取預設值", \
                     command=lambda: self.load_default()).pack(side='left', padx=5)
 
         ttk.Button(self.bottom_frame, width=10, text="取消", \
@@ -156,8 +207,22 @@ class PropertyModifyEdit(tk.Toplevel):
 
         self.geometry(f'{popup_width}x{popup_height}+{position_right}+{position_down}')
 
+    def variable_to_dict(self) -> dict :   # let tkinter variable transform to dict
+        dict_ = {}
+        #origin data
+        dict_["object_name"] = self.postit.code_elements["object_name"] #str
+        dict_["property_list"] = self.postit.code_elements["property_list"]  # list
 
-    def update_assign_and_literal(self):
+        #tk variables
+        dict_["property_name"] = self.var_property_name.get() #str
+        dict_["property_value"] = self.var_property_value.get() #str
+        dict_["assign_flag"] = self.var_assign_flag.get()  #boolean
+        dict_["postfix_newline"] = self.var_postfix_newline.get() #boolean  
+
+        return dict_     
+
+
+    def update_assign_and_preview(self):
         flag = self.var_assign_flag.get()
         if flag:
             self.assign_label.pack(side='left')
@@ -166,37 +231,49 @@ class PropertyModifyEdit(tk.Toplevel):
             self.assign_label.pack_forget()
             self.property_value_entry.pack_forget()
 
-        self.update_literal()
+        self.update_code_preview()
 
-    def update_literal(self):
-        t = self.assemble_literal_content()
-        self.literal_label.config(text=t)
+    def update_code_preview(self):
+        d = self.variable_to_dict()
+        t = self.postit.assemble_code_display(d)
+        self.code_preview_label.config(text=t)
 
-    def assemble_literal_content(self):
-        object_name = self.postit.data_object_name
-        property_name = self.var_property_name.get()
-        property_value = self.var_property_value.get()
 
-        if self.var_assign_flag.get():            
-            t = f'{object_name}.{property_name} = {property_value} '
-        else:
-            t = f'{object_name}.{property_name} '
+
+
+    # def assemble_code_preview(self):
+    #     object_name = self.postit.data_object_name
+    #     property_name = self.var_property_name.get()
+    #     property_value = self.var_property_value.get()
+
+    #     if self.var_assign_flag.get():            
+    #         t = f'{object_name}.{property_name} = {property_value} '
+    #     else:
+    #         t = f'{object_name}.{property_name} '
+
+    #     if self.var_postfix_newline.get():
+    #         t = t + ENTER
         
-        return t
+    #     return t
 
     def update_postit(self):
-        self.postit.data_property_name = self.var_property_name.get()
-        self.postit.data_assign_flag = self.var_assign_flag.get()
-        if self.postit.data_assign_flag:
-            self.postit.data_property_value = self.var_property_value.get()
+        self.postit.code_elements["property_name"] = self.var_property_name.get()
+        self.postit.code_elements["assign_flag"] = self.var_assign_flag.get()
+        if self.postit.code_elements["assign_flag"]:
+            self.postit.code_elements["property_value"] = self.var_property_value.get()
+        
+        self.postit.code_elements["postfix_newline"] = self.var_postfix_newline.get()
 
-        self.postit.set_button_content(self.postit.assemble_content())
+        self.postit.update()
+
         self.destroy()
 
     def load_default(self):
-        self.var_property_name.set(self.postit.default_property_name)
-        self.var_property_value.set(self.postit.default_property_value)
-        self.var_assign_flag.set(self.postit.default_assign_flag)
-        self.update_assign_and_literal()
+        
+        self.var_property_name.set(self.postit.default_code_elements["property_name"])
+        self.var_property_value.set(self.postit.default_code_elements["property_value"])
+        self.var_assign_flag.set(self.postit.default_code_elements["assign_flag"])
+        self.var_postfix_newline.set(self.postit.default_code_elements["postfix_newline"])
+        self.update_assign_and_preview()
 
         
