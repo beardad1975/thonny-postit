@@ -4,6 +4,7 @@ import tkinter.font as font
 from tkinter import ttk
 
 from thonny.codeview import CodeViewText
+from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
 
@@ -59,6 +60,10 @@ class Postit(ttk.Frame):
             ###print(rel_x ,rel_y )
             target.mark_set('insert', f"@{rel_x},{rel_y}")
             ###print(index)
+        elif isinstance(target, ShellText):
+            shell = get_shell()
+            shell.focus_set()
+
 
     def on_mouse_release(self, event):
         ###print('dnd drop')
@@ -66,7 +71,8 @@ class Postit(ttk.Frame):
 
         x, y = event.widget.winfo_pointerxy()
         target = event.widget.winfo_containing(x,y)
-        if target is self.postit_button or isinstance(target, CodeViewText):
+        if target is self.postit_button or isinstance(target, CodeViewText) \
+                or isinstance(target, ShellText):
             self.post()
 
     def set_code_display(self, text):
@@ -97,24 +103,31 @@ class Postit(ttk.Frame):
     #     print('modify')
 
     def post(self):
+        
         #shell = get_shell()
         #shell.submit_python_code(self.ent.get()+ '\n') 
         #shell.focus_set()
-        editor = get_workbench().get_editor_notebook().get_current_editor()
-        text = editor.get_text_widget()
-        
-        text.see('insert')
-        #check selection
 
-        if len(text.tag_ranges('sel')):
-            #replace selection 
-            text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-            text.direct_insert("insert", self.code) 
-        else:
+        workbench = get_workbench()
+
+        focus_widget = workbench.focus_get()
+        if isinstance(focus_widget, CodeViewText):
+            #in code view
+            editor = get_workbench().get_editor_notebook().get_current_editor()
+            text = editor.get_text_widget()
+
+            text.see('insert')
+            
+            #check selection
+            if len(text.tag_ranges('sel')):
+                #replace selection 
+                text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
+                #text.direct_insert("insert", self.code) 
+        
             #just insert
             #text.direct_insert("insert", self.postit_button['text'])
-            lines = self.code.split('\n')
-            ###print(self.postit_button['text'])
+            
+            lines = self.code.split('\n')            
             if len(lines) == 1:
                 #one line
                 text.direct_insert("insert",lines[0])
@@ -122,28 +135,51 @@ class Postit(ttk.Frame):
                 #multi lines
 
                 #handle last )
-                is_parentheses_last = False
-                temp_last = lines[-1]
-                if temp_last[-2:] == '\n)':
-                    is_parentheses_last = True
-                    ###print('parentheses_last')
-                    #remove \n) on last element
-                    lines[-1] = temp_last[:-2]
+                # is_parentheses_last = False
+                #temp_last = lines[-1]
+                # if temp_last[-2:] == '\n)':
+                #     is_parentheses_last = True
+                #     ###print('parentheses_last')
+                #     #remove \n) on last element
+                #     lines[-1] = temp_last[:-2]
+
+                
 
                 ###print(lines)
-                for line in lines:
+                line_count = len(lines)
+                for i, line in enumerate(lines):
+
                     text.direct_insert("insert",line)
-                    text.event_generate("<Return>")
+
+                    #  generate enter if not last item
+                    if i < line_count - 1 :
+                        text.event_generate("<Return>")
                 
                 #print last ) if needed
-                if is_parentheses_last:
-                    text.event_generate("<BackSpace>")
-                    text.direct_insert('insert', ')' )
-                    text.event_generate("<Return>")
+                # if is_parentheses_last:
+                #     text.event_generate("<BackSpace>")
+                #     text.direct_insert('insert', ')' )
+                #     text.event_generate("<Return>")
 
             # text.direct_insert("insert",'abc:')
             # text.event_generate("<Return>")
             # text.direct_insert("insert",'def')
+            
+        elif isinstance(focus_widget, ShellText):
+            #in shell
+            shell = get_shell()
+            shell.submit_python_code(self.code) 
+        else:
+            # not in code view and not in shell
+            pass
+
+
+        
+        
+        
+
+
+
 
 
 
