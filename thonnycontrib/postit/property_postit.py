@@ -19,29 +19,19 @@ class PropertyPostit(Postit):
         self.code_elements["assign_flag"] = assign_flag  #boolean
         self.code_elements["postfix_newline"] = postfix_newline #boolean
         
-        # self.data_object_name = object_name
-        # self.data_property_list = property_list
-        # self.data_property_name = property_name
-        # self.data_property_value = property_value
-        # self.data_assign_flag = assign_flag
-        # self.data_postfix_newline = postfix_newline
-
         #keep default value
         self.default_code_elements = self.code_elements.copy()
-
-        # self.default_object_name = object_name
-        # self.default_property_list = property_list
-        # self.default_property_name = property_name
-        # self.default_property_value = property_value
-        # self.default_assign_flag = assign_flag
-        # self.default_postfix_newline = postfix_newline
 
         self.update()
 
 
         #right click menu
         self.popup_menu = tk.Menu(self, tearoff=0)
-        self.popup_menu.add_command(label="編輯", command=self.on_edit)
+        self.popup_menu.add_command(label="貼上",command=self.post)
+        self.popup_menu.add_command(label="貼上(至編輯器)",command=self.post_to_editor)
+        self.popup_menu.add_command(label="貼上(至互動環境Shell)",command=self.post_to_shell)
+        self.popup_menu.add_separator()
+        self.popup_menu.add_command(label="編輯便利貼", command=self.on_edit)
         self.postit_button.bind("<Button-3>", self.popup)
 
         #dnd
@@ -54,7 +44,7 @@ class PropertyPostit(Postit):
 
 
     def on_edit(self):
-        self.modify_popup = PropertyModifyEdit(self)
+        self.modify_popup = PropertyEditWindow(self)
         
         #self.popup_win.attributes('-toolwindow', 'true')
         #self.popup_win.deiconify()
@@ -87,7 +77,7 @@ class PropertyPostit(Postit):
         self.set_code_display(self.assemble_code_display(self.code_elements))
         self.set_code(self.assemble_code(self.code_elements))
 
-class PropertyModifyEdit(tk.Toplevel):
+class PropertyEditWindow(tk.Toplevel):
     def __init__(self, postit,  *args, **kwargs):
         tk.Toplevel.__init__(self, *args, **kwargs)
         self.title("修改 -- ")
