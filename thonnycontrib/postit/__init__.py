@@ -7,7 +7,7 @@ from thonny.codeview import CodeViewText
 from thonny.ui_utils import VerticallyScrollableFrame
 
 from .property_postit import  PropertyPostit
-
+from .symbol_postit import SymbolPostit
 ### unicode return symbol \u23ce
 
 
@@ -21,15 +21,32 @@ class Pie4tView(VerticallyScrollableFrame):
                             property_name='重力x',
                             property_value='20',
                             assign_flag=True,
-                            postfix_newline=False,
+                            #postfix_newline=False,
                             )
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
 class SymbolView(VerticallyScrollableFrame):
     def __init__(self, master):
-        super().__init__(master)   
+        super().__init__(master)
 
+        sp  = SymbolPostit(self.interior, '+')   
+        sp.grid(row=0, column=0,  padx=5, pady=5)
+
+        sp  = SymbolPostit(self.interior, '-')   
+        sp.grid(row=0, column=1,  padx=5, pady=5)
+
+        sp  = SymbolPostit(self.interior, '*')   
+        sp.grid(row=0, column=2,  padx=5, pady=5)
+
+        sp  = SymbolPostit(self.interior, '/')   
+        sp.grid(row=1, column=0,  padx=5, pady=5)
+
+        sp  = SymbolPostit(self.interior, ',')   
+        sp.grid(row=1, column=1,  padx=5, pady=5)
+
+        sp  = SymbolPostit(self.interior, '=')   
+        sp.grid(row=1, column=2,  padx=5, pady=5)
 
 class PythonView(VerticallyScrollableFrame):
     def __init__(self, master):
@@ -51,7 +68,7 @@ class PythonView(VerticallyScrollableFrame):
                             property_name='重力x',
                             property_value='10',
                             assign_flag=True,
-                            postfix_newline=True,
+                            #postfix_newline=True,
                             )
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 

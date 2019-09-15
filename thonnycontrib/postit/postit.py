@@ -36,6 +36,11 @@ class Postit(ttk.Frame):
 
         self.code = ''   # real code text on post
 
+        #support drag 
+        self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
+        self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
+        self.postit_button.configure(cursor="arrow")
+
     # def on_dnd_start(self, event):
     #     ###print('dnd start')
 
@@ -102,53 +107,71 @@ class Postit(ttk.Frame):
     # def on_modify(self):
     #     print('modify')
 
-    def post(self):
+    def post(self, space_surround_inline=False, postfix_newline=False):
     
         workbench = get_workbench()
         focus_widget = workbench.focus_get()
 
         if isinstance(focus_widget, CodeViewText):
             #in code view
-            self.post_to_editor()
+            #self.post_to_editor(space_surround_inline, postfix_newline)
+            editor = get_workbench().get_editor_notebook().get_current_editor()
+            text = editor.get_text_widget()
+
+            text.see('insert')
             
+            #check selection
+            if len(text.tag_ranges('sel')):
+                #replace selection 
+                text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
+            
+            lines = self.code.split('\n')            
+            if len(lines) == 1:
+                #one line
+                if space_surround_inline:
+                    text.direct_insert("insert", " "+lines[0]+" ")
+                else:
+                    text.direct_insert("insert",lines[0])
+            else:
+                #multi lines
+                line_count = len(lines)
+                for i, line in enumerate(lines):
+
+                    text.direct_insert("insert",line)
+
+                    #  generate enter if not last item
+                    if i < line_count - 1 :
+                        text.event_generate("<Return>")
+
+            if postfix_newline:
+                text.event_generate("<Return>")
+
+
         elif isinstance(focus_widget, ShellText):
             #in shell
-            self.post_to_shell()
-        else:
-            # not in code view and not in shell
-            pass
+            #self.post_to_shell(space_surround_inline, postfix_newline)
+            shell = get_shell()
+            origin_text = shell.text.get('input_start','end-1c')
+            #print('---', origin_text, '---')
+            
+            #need to test multiline in shell
+            if space_surround_inline:
+                shell.submit_python_code( origin_text + " " + self.code + " ") 
+            else:
+                if postfix_newline:
+                    shell.submit_python_code( origin_text + self.code + '\n')
+                else:
+                    shell.submit_python_code( origin_text + self.code)
 
-    def post_to_editor(self):
-        editor = get_workbench().get_editor_notebook().get_current_editor()
-        text = editor.get_text_widget()
+            
 
-        text.see('insert')
+    #def post_to_editor(self, space_surround_inline=False):
+
         
-        #check selection
-        if len(text.tag_ranges('sel')):
-            #replace selection 
-            text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
+    #def post_to_shell(self, space_surround_inline=False):        
          
-        lines = self.code.split('\n')            
-        if len(lines) == 1:
-            #one line
-            text.direct_insert("insert",lines[0])
-        else:
-            #multi lines
-            line_count = len(lines)
-            for i, line in enumerate(lines):
 
-                text.direct_insert("insert",line)
 
-                #  generate enter if not last item
-                if i < line_count - 1 :
-                    text.event_generate("<Return>")
-        
-    def post_to_shell(self):        
-        shell = get_shell()
-        #origin_text = shell.text.get('input_start','end-1c')
-        #print('---', origin_text, '---')
-        shell.submit_python_code( origin_text + self.code)         
 
 
 

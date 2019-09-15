@@ -17,7 +17,7 @@ class PropertyPostit(Postit):
         self.code_elements["property_name"] = property_name #str
         self.code_elements["property_value"] = property_value #str
         self.code_elements["assign_flag"] = assign_flag  #boolean
-        self.code_elements["postfix_newline"] = postfix_newline #boolean
+        #self.code_elements["postfix_newline"] = postfix_newline #boolean
         
         #keep default value
         self.default_code_elements = self.code_elements.copy()
@@ -28,27 +28,20 @@ class PropertyPostit(Postit):
         #right click menu
         self.popup_menu = tk.Menu(self, tearoff=0)
         self.popup_menu.add_command(label="貼上",command=self.post)
-        self.popup_menu.add_command(label="貼上(至編輯器)",command=self.post_to_editor)
-        self.popup_menu.add_command(label="貼上(至互動環境Shell)",command=self.post_to_shell)
+        self.popup_menu.add_command(label="貼上並且換行(Enter)",
+                                    command=lambda:self.post(postfix_newline=True))
+        #self.popup_menu.add_command(label="貼上(至互動環境Shell)",command=self.post_to_shell)
         self.popup_menu.add_separator()
         self.popup_menu.add_command(label="編輯便利貼", command=self.on_edit)
         self.postit_button.bind("<Button-3>", self.popup)
 
         #dnd
         #self.postit_button.bind("<ButtonPress-1>", self.on_dnd_start)
-        self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
-        self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
-        self.postit_button.configure(cursor="arrow")
-
-
-
 
     def on_edit(self):
-        self.modify_popup = PropertyEditWindow(self)
+        self.edit_popup = PropertyEditWindow(self)
         
-        #self.popup_win.attributes('-toolwindow', 'true')
-        #self.popup_win.deiconify()
-        #self.popup_win.grab_set()
+
 
     def assemble_code_display(self, code_dict):
         
@@ -57,8 +50,8 @@ class PropertyPostit(Postit):
         else:
             t = f'{code_dict["object_name"]}.{code_dict["property_name"]} '
         
-        if code_dict["postfix_newline"]:
-            t += ENTER
+        #if code_dict["postfix_newline"]:
+        #    t += ENTER
 
         return t
 
@@ -68,8 +61,8 @@ class PropertyPostit(Postit):
         else:
             t = f'{code_dict["object_name"]}.{code_dict["property_name"]} '
         
-        if code_dict["postfix_newline"]:
-            t += '\n'
+        #if code_dict["postfix_newline"]:
+        #    t += '\n'
         
         return t
 
@@ -80,7 +73,7 @@ class PropertyPostit(Postit):
 class PropertyEditWindow(tk.Toplevel):
     def __init__(self, postit,  *args, **kwargs):
         tk.Toplevel.__init__(self, *args, **kwargs)
-        self.title("修改 -- ")
+        self.title("編輯便利貼 - 屬性 ")
         self.postit = postit
 
         self.pady = 10
@@ -103,9 +96,9 @@ class PropertyEditWindow(tk.Toplevel):
         self.var_assign_flag.set(self.postit.code_elements["assign_flag"])
         self.var_assign_flag.trace('w', lambda *args: self.update_assign_and_preview())
         
-        self.var_postfix_newline = tk.BooleanVar()
-        self.var_postfix_newline.set(self.postit.code_elements["postfix_newline"])
-        self.var_postfix_newline.trace('w', lambda *args:self.update_code_preview())
+        # self.var_postfix_newline = tk.BooleanVar()
+        # self.var_postfix_newline.set(self.postit.code_elements["postfix_newline"])
+        # self.var_postfix_newline.trace('w', lambda *args:self.update_code_preview())
 
         #self.geometry('500x300')
         self.transient()
@@ -145,16 +138,16 @@ class PropertyEditWindow(tk.Toplevel):
         #self.property_value_entry.pack(side='left')
 
         #postfix newline frame
-        self.newline_frame = ttk.Frame(self)
-        self.newline_frame.pack(pady=self.pady, fill='y', anchor='e')
+        #self.newline_frame = ttk.Frame(self)
+        #self.newline_frame.pack(pady=self.pady, fill='y', anchor='e')
 
         #ttk.Label(self.newline_frame, text='在最後加上換行(Enter)').pack(side='right', 
         #                                anchor='e')
 
-        self.postfix_newline_checkbutton = ttk.Checkbutton(self.newline_frame, 
-                 text= '在最後加上換行(Enter)', variable=self.var_postfix_newline,
-                 onvalue=True, offvalue=False)
-        self.postfix_newline_checkbutton.pack(side='right',  anchor='e', padx=0, ipadx=0 )
+        #self.postfix_newline_checkbutton = ttk.Checkbutton(self.newline_frame, 
+        #         text= '在最後加上換行(Enter)', variable=self.var_postfix_newline,
+        #         onvalue=True, offvalue=False)
+        #self.postfix_newline_checkbutton.pack(side='right',  anchor='e', padx=0, ipadx=0 )
 
         #code  preview frame
         self.code_preview_frame = ttk.LabelFrame(self, text='程式的寫法')
@@ -177,7 +170,7 @@ class PropertyEditWindow(tk.Toplevel):
                     command=lambda:self.destroy()).pack(side='right', padx=5)
 
         ttk.Button(self.bottom_frame, width=10, text="修改", 
-                command=lambda : self.update_postit(),
+                command=lambda : self.update_postit_and_exit(),
                 ).pack(side='right', padx=5)
 
 
@@ -207,7 +200,7 @@ class PropertyEditWindow(tk.Toplevel):
         dict_["property_name"] = self.var_property_name.get() #str
         dict_["property_value"] = self.var_property_value.get() #str
         dict_["assign_flag"] = self.var_assign_flag.get()  #boolean
-        dict_["postfix_newline"] = self.var_postfix_newline.get() #boolean  
+        #dict_["postfix_newline"] = self.var_postfix_newline.get() #boolean  
 
         return dict_     
 
@@ -246,13 +239,13 @@ class PropertyEditWindow(tk.Toplevel):
         
     #     return t
 
-    def update_postit(self):
+    def update_postit_and_exit(self):
         self.postit.code_elements["property_name"] = self.var_property_name.get()
         self.postit.code_elements["assign_flag"] = self.var_assign_flag.get()
         if self.postit.code_elements["assign_flag"]:
             self.postit.code_elements["property_value"] = self.var_property_value.get()
         
-        self.postit.code_elements["postfix_newline"] = self.var_postfix_newline.get()
+        #self.postit.code_elements["postfix_newline"] = self.var_postfix_newline.get()
 
         self.postit.update()
 
@@ -263,7 +256,7 @@ class PropertyEditWindow(tk.Toplevel):
         self.var_property_name.set(self.postit.default_code_elements["property_name"])
         self.var_property_value.set(self.postit.default_code_elements["property_value"])
         self.var_assign_flag.set(self.postit.default_code_elements["assign_flag"])
-        self.var_postfix_newline.set(self.postit.default_code_elements["postfix_newline"])
+        #self.var_postfix_newline.set(self.postit.default_code_elements["postfix_newline"])
         self.update_assign_and_preview()
 
         
