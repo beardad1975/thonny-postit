@@ -8,6 +8,7 @@ from thonny.ui_utils import VerticallyScrollableFrame
 
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
+from .variable_postit import VariablePostit
 ### unicode return symbol \u23ce
 
 
@@ -70,6 +71,9 @@ class PythonView(VerticallyScrollableFrame):
                             assign_flag=True,
                             #postfix_newline=True,
                             )
+        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+
+        pp = VariablePostit(self.interior)
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
@@ -155,6 +159,6 @@ class PythonView(VerticallyScrollableFrame):
         #text.direct_insert("insert wordend", self.ent2.get())
 
 def load_plugin():
-    get_workbench().add_view(PythonView, '便利貼python', 'ne')
-    get_workbench().add_view(SymbolView, '便利貼符號', 'ne')
-    get_workbench().add_view(Pie4tView, '便利貼pie4t', 'se')
+    get_workbench().add_view(PythonView, '便貼python', 'ne')
+    get_workbench().add_view(SymbolView, '便貼符號', 'ne')
+    get_workbench().add_view(Pie4tView, '便貼pie4t', 'se')
