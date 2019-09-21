@@ -26,7 +26,8 @@ symbol_nt_dict['='] = Symbol('=', '指定', False)
 symbol_nt_dict['‧'] = Symbol('‧', '點', False)
 symbol_nt_dict[','] = Symbol(',', '逗號', False)
 
-class VariableNameError(Exception):pass
+class VariableNotValidError(Exception):pass
+class VariableShouldNotKeywordError(Exception):pass
 class VariableKeyError(Exception):pass
 
 class VariableSet():
@@ -81,14 +82,16 @@ class VariableSet():
         assert isinstance(name, str)
 
         if not name.isidentifier():
-            raise VariableNameError('Not a valid variable name!')
+            raise VariableNotValidError('Not a valid variable name!')
         
         if iskeyword(name):
-            raise VariableNameError('Name should not be keyword!')
+            raise VariableShouldNotKeywordError('Name should not be keyword!')
 
 common_variable_set = VariableSet()
-common_variable_set.add('變數x')
-common_variable_set.add('變數y')
+common_variable_set.add('x')
+common_variable_set.add('y')
+common_variable_set.add('變數i')
+common_variable_set.add('變數j')
 
         
 

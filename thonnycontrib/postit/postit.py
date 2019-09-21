@@ -31,6 +31,8 @@ class Postit(ttk.Frame):
         self.note_label.pack(side=tk.LEFT, anchor='w')
 
         #support drag 
+        self.mouse_dragging = False
+
         self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
         self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
         self.postit_button.configure(cursor="arrow")
@@ -44,7 +46,7 @@ class Postit(ttk.Frame):
         x,y = event.widget.winfo_pointerxy()
         ###print(x,y)
         target = event.widget.winfo_containing(x,y)
-        
+        self.mouse_dragging = True
         
         if isinstance(target, CodeViewText):
             target.focus_set()
@@ -68,6 +70,8 @@ class Postit(ttk.Frame):
         if target is self.postit_button or isinstance(target, CodeViewText) \
                 or isinstance(target, ShellText):
             self.post()
+
+        self.mouse_dragging = False
 
     def set_code_display(self, text):
         self.postit_button.config(text=text)
@@ -100,7 +104,7 @@ class Postit(ttk.Frame):
             text.see('insert')
             
             #check selection
-            if len(text.tag_ranges('sel')):
+            if len(text.tag_ranges('sel')) and not self.mouse_dragging:
                 #replace selection 
                 text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
             
@@ -162,7 +166,7 @@ class PostitWithCombobox(Postit):
                                         )
         self.postit_button.pack(side=tk.LEFT, anchor='w')
 
-        self.postit_combo = ttk.Combobox(self, width=10, values=sorted(common_variable_set))
+        self.postit_combo = ttk.Combobox(self, width=10,justify=tk.CENTER, values=sorted(common_variable_set))
         #i = self.postit.property_list.in   dex(self.postit.property_name)
         self.postit_combo.current(0)
         self.postit_combo.pack(side='left', padx=5)
