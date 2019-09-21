@@ -74,6 +74,7 @@ class PythonView(VerticallyScrollableFrame):
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
         pp = VariablePostit(self.interior)
+        
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 

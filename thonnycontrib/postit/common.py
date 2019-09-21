@@ -35,9 +35,9 @@ class VariableSet():
         self._runtime_and_custom_set = set()  
 
     def __repr__(self):
-        print("all  set: ",self._runtime_and_custom_set)
-        print("custom set: ", self._custom_set)
-
+        s = "runtime+custom : " + repr(self._runtime_and_custom_set) + '\n'
+        s = s +  "custom : " +  repr(self._custom_set)
+        return s
 
     def __iter__(self):
         return iter(self._runtime_and_custom_set)
@@ -50,12 +50,12 @@ class VariableSet():
 
 
     def add(self, var_name):
-        self.check_name()
+        self.check_name(var_name)
         self._runtime_and_custom_set.add(var_name)
         self._custom_set.add(var_name)
 
     def remove(self, var_name):
-        self.check_name()
+        self.check_name(var_name)
         if not var_name in self._runtime_and_custom_set:
             raise VariableKeyError('Variable is not a member!')
 
@@ -78,7 +78,7 @@ class VariableSet():
         
     def check_name(self, name):
         #raise exception if not a valid identifier
-        assert isinstance(name, str), raise TypeError('Not a string type!')
+        assert isinstance(name, str)
 
         if not name.isidentifier():
             raise VariableNameError('Not a valid variable name!')
@@ -86,7 +86,9 @@ class VariableSet():
         if iskeyword(name):
             raise VariableNameError('Name should not be keyword!')
 
-variable_set = VariableSet()
+common_variable_set = VariableSet()
+common_variable_set.add('變數x')
+common_variable_set.add('變數y')
 
         
 

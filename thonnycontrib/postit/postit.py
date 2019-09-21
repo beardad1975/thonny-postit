@@ -7,44 +7,35 @@ from thonny.codeview import CodeViewText
 from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
+from .common import common_variable_set
 
-#postit is  a frame with button and label
-# class Pie4tSuggestVars:
-#     physical_stage = '物理舞台'
-
-
-
+#postit is  a frame with button and label(note)
 class Postit(ttk.Frame):
     def __init__(self, master):
         ttk.Frame.__init__(self, master)
+        self.gui_init(master)
+        self.code = ''   # real code text on post
 
-
-        bold = font.Font(size=10, weight=font.BOLD)
-        #bold = font.Font(size=12)
+    def gui_init(self, master):
+        f = font.Font(size=12, weight=font.NORMAL)
         self.postit_button = tk.Button(self,  
                                         text='***' , 
-                                        #command=self.post, 
                                         fg='white', 
                                         bg='#4a6cd4',
                                         justify='left',
-                                        font=bold,
+                                        font=f,
                                         )
         self.postit_button.pack(side=tk.LEFT, anchor='w')
 
         self.note_label = ttk.Label(self, text='' )
         self.note_label.pack(side=tk.LEFT, anchor='w')
 
-        self.code = ''   # real code text on post
-
         #support drag 
         self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
         self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
         self.postit_button.configure(cursor="arrow")
+        
 
-    # def on_dnd_start(self, event):
-    #     ###print('dnd start')
-
-    #     pass
 
     def on_mouse_drag(self, event):
         ###print('drag ...')
@@ -57,8 +48,6 @@ class Postit(ttk.Frame):
         
         if isinstance(target, CodeViewText):
             target.focus_set()
-            #rel_x = event.x_root - target.winfo_rootx()
-            #rel_y = event.y_root - target.winfo_rooty()
             rel_x = x - target.winfo_rootx()
             rel_y = y - target.winfo_rooty()
 
@@ -81,13 +70,6 @@ class Postit(ttk.Frame):
             self.post()
 
     def set_code_display(self, text):
-        
-        #lines = text.split('\n')
-        #max_width = 0
-        #for line in lines:
-        #    max_width = len(line) if len(line) > max_width else  max_width
-        #width = int(max_width*1.2)
-        ###print("set_context: ", text)
         self.postit_button.config(text=text)
 
     def set_code(self, text):
@@ -103,9 +85,6 @@ class Postit(ttk.Frame):
         finally:
             self.popup_menu.grab_release()
     
-
-    # def on_modify(self):
-    #     print('modify')
 
     def post(self, space_surround_inline=False, postfix_newline=False):
     
@@ -163,13 +142,42 @@ class Postit(ttk.Frame):
                 else:
                     shell.submit_python_code( origin_text + self.code)
 
-            
-
-    #def post_to_editor(self, space_surround_inline=False):
-
-        
-    #def post_to_shell(self, space_surround_inline=False):        
          
+class PostitWithCombobox(Postit):
+
+    
+    def gui_init(self , master):
+        f = font.Font(size=10, weight=font.NORMAL)
+
+
+
+
+
+        self.postit_button = tk.Button(self,  
+                                        text='***' , 
+                                        fg='white', 
+                                        bg='#4a6cd4',
+                                        justify='left',
+                                        font=f,
+                                        )
+        self.postit_button.pack(side=tk.LEFT, anchor='w')
+
+        self.postit_combo = ttk.Combobox(self, width=10, values=sorted(common_variable_set))
+        #i = self.postit.property_list.in   dex(self.postit.property_name)
+        self.postit_combo.current(0)
+        self.postit_combo.pack(side='left', padx=5)
+
+
+        self.note_label = ttk.Label(self, text='' )
+        self.note_label.pack(side=tk.LEFT, anchor='w')
+
+        #support drag 
+        self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
+        self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
+        self.postit_button.configure(cursor="arrow")
+        
+
+
 
 
 
