@@ -93,5 +93,42 @@ common_variable_set.add('y')
 common_variable_set.add('變數i')
 common_variable_set.add('變數j')
 
+
+class IfStatement:
+    def __init__(self):
+        self._elif_num = 0
+        self._else_flag = False
+        self._if_clause = 'if _如果，條件成立_ :\n_執行這邊_\n'
+        self._elif_clause = 'elif _不然，條件成立_ :\n_執行這邊_\n'
+        self._else_clause = 'else:\n_否則執行這邊_\n'
+
+    def __repr__(self):
+        s = self._if_clause
+
+        for i in range(self._elif_num):
+            s = s + self._elif_clause
+
+        if self._else_flag:
+            s = s + self._else_clause
+
+        return s    
+
+    def add_elif(self):
+        self._elif_num += 1
+
+    def subtract_elif(self):
+        if self._elif_num > 0:
+            self._elif_num -= 1
+
+    @property
+    def else_flag(self):
+        return self._else_flag
+
+    @else_flag.setter    
+    def else_flag(self, status):
+        self._else_flag = bool(status)
+
+if_statement = IfStatement()
+
         
 

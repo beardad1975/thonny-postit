@@ -148,7 +148,8 @@ class Postit(ttk.Frame):
 
          
 class PostitWithCombobox(Postit):
-
+    def __init__(self, master):
+        super().__init__(master)
     
     def gui_init(self , master):
         f = font.Font(size=10, weight=font.NORMAL)

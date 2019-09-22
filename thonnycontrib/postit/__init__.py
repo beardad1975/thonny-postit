@@ -27,27 +27,31 @@ class Pie4tView(VerticallyScrollableFrame):
         pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
-class SymbolView(VerticallyScrollableFrame):
+class NameSymbolView(VerticallyScrollableFrame):
     def __init__(self, master):
         super().__init__(master)
 
         sp  = SymbolPostit(self.interior, '+')   
-        sp.grid(row=0, column=0,  padx=5, pady=5)
+        sp.grid(row=0, column=0, sticky=tk.W, padx=5, pady=5)
 
         sp  = SymbolPostit(self.interior, '-')   
-        sp.grid(row=0, column=1,  padx=5, pady=5)
+        sp.grid(row=0, column=1, sticky=tk.W, padx=5, pady=5)
 
         sp  = SymbolPostit(self.interior, '*')   
-        sp.grid(row=0, column=2,  padx=5, pady=5)
+        sp.grid(row=0, column=2, sticky=tk.W, padx=5, pady=5)
 
         sp  = SymbolPostit(self.interior, '/')   
-        sp.grid(row=1, column=0,  padx=5, pady=5)
+        sp.grid(row=1, column=0, sticky=tk.W, padx=5, pady=5)
 
         sp  = SymbolPostit(self.interior, ',')   
-        sp.grid(row=1, column=1,  padx=5, pady=5)
+        sp.grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
 
         sp  = SymbolPostit(self.interior, '=')   
-        sp.grid(row=1, column=2,  padx=5, pady=5)
+        sp.grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
+
+        vp = VariablePostit(self.interior)
+        vp.grid(row=2, columnspan=3, sticky=tk.W,  padx=5, pady=5)
+
 
 class PythonView(VerticallyScrollableFrame):
     def __init__(self, master):
@@ -63,19 +67,9 @@ class PythonView(VerticallyScrollableFrame):
         # p.set_help_label(' ... stage')
         # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        pp = PropertyPostit(self.interior, 
-                            object_name='物理舞台',
-                            property_list=('重力x','重力y', '預設彈性'),
-                            property_name='重力x',
-                            property_value='10',
-                            assign_flag=True,
-                            #postfix_newline=True,
-                            )
-        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        pp = VariablePostit(self.interior)
-        
-        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+
+
 
 
 
@@ -160,6 +154,6 @@ class PythonView(VerticallyScrollableFrame):
         #text.direct_insert("insert wordend", self.ent2.get())
 
 def load_plugin():
-    get_workbench().add_view(PythonView, '便貼python', 'ne')
-    get_workbench().add_view(SymbolView, '便貼符號', 'ne')
+    get_workbench().add_view(PythonView, '便貼python', 'se')
+    get_workbench().add_view(NameSymbolView, '便貼名稱符號', 'ne')
     get_workbench().add_view(Pie4tView, '便貼pie4t', 'se')
