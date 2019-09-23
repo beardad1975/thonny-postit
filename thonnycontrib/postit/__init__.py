@@ -10,6 +10,7 @@ from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
 from .if_postit import IfPostit
+from .while_postit import WhilePostit
 ### unicode return symbol \u23ce
 
 
@@ -65,7 +66,8 @@ class PythonView(VerticallyScrollableFrame):
 
         ip = IfPostit(self.interior)
         ip.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
-
+        wp = WhilePostit(self.interior)
+        wp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
 

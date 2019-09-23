@@ -26,6 +26,9 @@ symbol_nt_dict['='] = Symbol('=', '指定', False)
 symbol_nt_dict['‧'] = Symbol('‧', '點', False)
 symbol_nt_dict[','] = Symbol(',', '逗號', False)
 
+
+
+# variable set
 class VariableNotValidError(Exception):pass
 class VariableShouldNotKeywordError(Exception):pass
 class VariableKeyError(Exception):pass
@@ -94,6 +97,7 @@ common_variable_set.add('變數i')
 common_variable_set.add('變數j')
 
 
+#if statement
 class IfStatement:
     def __init__(self):
         self._elif_num = 0
@@ -135,5 +139,26 @@ class IfStatement:
 
 if_statement = IfStatement()
 
-        
 
+# while loop
+class WhileStatement():
+    def __init__(self):
+        self._break_flag = False
+
+    def __repr__(self):
+        s = "while _重複條件_ :\n_執行_\n"
+
+        if self._break_flag :
+            s = s + "if _離開條件_ :\nbreak\n"
+
+        return s
+        
+    @property
+    def break_flag(self):
+        return self._break_flag
+
+    @break_flag.setter    
+    def break_flag(self, status):
+        self._break_flag = bool(status)
+
+while_statement = WhileStatement()

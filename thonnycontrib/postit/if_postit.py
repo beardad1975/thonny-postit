@@ -10,6 +10,8 @@ class IfPostit(Postit):
 
         self.update()
 
+
+
         #right click menu
         self.popup_menu = tk.Menu(self, tearoff=0, postcommand=self.update_menu)
         #   entry 0
@@ -71,3 +73,5 @@ class IfPostit(Postit):
 
         self.set_code(text)
         self.set_code_display(display_text)
+        self.set_note('如果')
+        
