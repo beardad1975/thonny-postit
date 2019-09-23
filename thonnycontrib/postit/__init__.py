@@ -9,6 +9,7 @@ from thonny.ui_utils import VerticallyScrollableFrame
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
+from .if_postit import IfPostit
 ### unicode return symbol \u23ce
 
 
@@ -62,10 +63,8 @@ class PythonView(VerticallyScrollableFrame):
         # p.set_help_label(' ... stage')
         # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
-        # p = Postit(self)
-        # p.set_content('物理舞台.新增隨機方塊(x=7, y=5, position_x=13)')
-        # p.set_help_label(' ... stage')
-        # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        ip = IfPostit(self.interior)
+        ip.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
 
 

@@ -106,7 +106,8 @@ class Postit(ttk.Frame):
             #check selection
             if len(text.tag_ranges('sel')) and not self.mouse_dragging:
                 #replace selection 
-                text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
+                #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
+                text.event_generate("<BackSpace>")
             
             lines = self.code.split('\n')            
             if len(lines) == 1:
@@ -119,6 +120,10 @@ class Postit(ttk.Frame):
                 #multi lines
                 line_count = len(lines)
                 for i, line in enumerate(lines):
+
+                    #if else else , need to add a extra backspack
+                    if line[:4] == 'else' or line[:4] == 'elif' :
+                        text.event_generate("<BackSpace>")
 
                     text.direct_insert("insert",line)
 
