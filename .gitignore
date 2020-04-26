@@ -2,3 +2,5 @@ __pycache__
 build
 dist
 thonny_postit.egg-info
+.mypy*
+.vscode

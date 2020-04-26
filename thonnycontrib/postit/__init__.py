@@ -1,10 +1,13 @@
+import os 
+from pathlib import Path
 import tkinter as tk
-
 from tkinter import ttk
+from PIL import Image, ImageTk
 
-from thonny import get_workbench, get_shell
+from thonny import get_workbench, get_shell, get_runner
 from thonny.codeview import CodeViewText
 from thonny.ui_utils import VerticallyScrollableFrame
+from thonny.common import ToplevelCommand
 
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
@@ -13,6 +16,8 @@ from .if_postit import IfPostit
 from .while_postit import WhilePostit
 ### unicode return symbol \u23ce
 
+#for test
+from tkinter.messagebox import showinfo
 
 class Pie4tView(VerticallyScrollableFrame):
     def __init__(self, master):
@@ -69,9 +74,85 @@ class PythonView(VerticallyScrollableFrame):
         wp = WhilePostit(self.interior)
         wp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
+class PythonPostitView(VerticallyScrollableFrame):
+    def __init__(self, master):
+        super().__init__(master) 
+
+        self.init_notebook()
+        
+        # dict{str:dict}
+        self.basic_postit_tabs = {}
+        
+        #to do  :self.module_postit_tabs = {}
+
+        #self.add_basic_postit_tab('arithmetic', '運算', '#4c97ff', 'color_0_4c97ff.png')
+        
+        for i in range(20):
+            self.add_basic_postit_tab('arithmetic'+str(i), '運算'+str(i), '#4c97ff', 'color0.png')
+        
+        #self.add_basic_postit_tab('logic', '邏輯', '#008000', 'green_25.png')
+        #self.add_basic_postit_tab('text', '文字', '#008000', 'green_25.png')
+
+        #ip = IfPostit(self.basic_postit_tabs['logic']['frame'])
+        #ip.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+
+    def init_notebook(self):
+        style = ttk.Style(self.interior)
+        style.configure('lefttab.TNotebook', tabposition='wn')
+        self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
+        self.notebook.pack(fill="both", expand="true")
+
+    def add_basic_postit_tab(self, name, label, color, image_path):
+        postit_tab = {}
+        postit_tab['label'] = label
+        postit_tab['color'] = color
+
+        abs_image_path = Path(__file__).parent / 'images' / image_path
+        im = Image.open(abs_image_path)       
+        postit_tab['image'] = ImageTk.PhotoImage(im) 
+        postit_tab['frame'] = ttk.Frame()
+
+        
+        self.notebook.add(postit_tab['frame'],
+                          text = postit_tab['label'],
+                          image = postit_tab['image'],
+                          compound="top",
+                        )
+
+        postit_tab['index'] = self.notebook.index('end')
+
+        self.basic_postit_tabs[name] = postit_tab
+
+def try_thonny():
+    pass
+    
+    showinfo("my command", get_workbench()._menus)
+
+    # get_runner().send_command(
+    #     ToplevelCommand(
+    #         "execute_source", source='dir()', tty_mode=True
+    #     )
+    # )
+
+def load_plugin():
+    """postit plugin start point"""
+
+    #handle menu
+    #get_workbench().get_menu("postit", "abc")
 
 
+    #get_workbench().add_view(PythonView, '便貼python', 'se')
+    #get_workbench().add_view(NameSymbolView, '便貼名稱符號', 'ne')
+    #get_workbench().add_view(Pie4tView, '便貼pie4t', 'se')
+    get_workbench().add_view(PythonPostitView, 'Python便利貼', 'nw')
 
+    #for test
+    get_workbench().add_command(command_id="try_thonny",
+                                    menu_name="tools",
+                                    command_label="測試thonny",
+                                    handler=try_thonny,
+                                    default_sequence="<F2>"
+                                    )
 
 
 
@@ -154,7 +235,4 @@ class PythonView(VerticallyScrollableFrame):
         #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
         #text.direct_insert("insert wordend", self.ent2.get())
 
-def load_plugin():
-    get_workbench().add_view(PythonView, '便貼python', 'se')
-    get_workbench().add_view(NameSymbolView, '便貼名稱符號', 'ne')
-    get_workbench().add_view(Pie4tView, '便貼pie4t', 'se')
+
