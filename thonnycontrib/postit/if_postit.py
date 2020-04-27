@@ -5,8 +5,8 @@ from .common import if_statement
 
 
 class IfPostit(Postit):
-    def __init__(self, master):
-        super().__init__(master)
+    def __init__(self, tab_name):
+        super().__init__(tab_name)
 
         self.update()
 

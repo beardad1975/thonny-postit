@@ -10,11 +10,13 @@ from thonny.codeview import CodeViewText
 from thonny.ui_utils import VerticallyScrollableFrame
 from thonny.common import ToplevelCommand
 
+from .general_postit import GeneralPostit
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
 from .if_postit import IfPostit
 from .while_postit import WhilePostit
+from .common import common_postit_tabs
 
 ### unicode return symbol \u23ce
 
@@ -85,14 +87,14 @@ class PostitTab:
     """
 
     color_data = [
-        {"filename":'color0.png', 'fill_color':'#4c97ff', 'outline_color':'#2d5893'},
-        {"filename":'color1.png', 'fill_color':'#9966ff', 'outline_color':'#5b3e94'},    
-        {"filename":'color2.png', 'fill_color':'#d65cd6', 'outline_color':'#a83aa8'},
-        {"filename":'color3.png', 'fill_color':'#ffd500', 'outline_color':'#a78903'},
-        {"filename":'color4.png', 'fill_color':'#ffab19', 'outline_color':'#a67e37'},
-        {"filename":'color5.png', 'fill_color':'#4cbfe6', 'outline_color':'#266d85'},
-        {"filename":'color6.png', 'fill_color':'#40bf4a', 'outline_color':'#366c3b'},
-        {"filename":'color7.png', 'fill_color':'#ff6680', 'outline_color':'#c64359'},
+        {"filename":'color0.png', 'fill_color':'#4c97ff', 'font_color':'white'},
+        {"filename":'color1.png', 'fill_color':'#9966ff', 'font_color':'white'},    
+        {"filename":'color2.png', 'fill_color':'#d65cd6', 'font_color':'white'},
+        {"filename":'color3.png', 'fill_color':'#ffd500', 'font_color':'black'},
+        {"filename":'color4.png', 'fill_color':'#ffab19', 'font_color':'black'},
+        {"filename":'color5.png', 'fill_color':'#4cbfe6', 'font_color':'black'},
+        {"filename":'color6.png', 'fill_color':'#40bf4a', 'font_color':'white'},
+        {"filename":'color7.png', 'fill_color':'#ff6680', 'font_color':'black'},
     ]
     color_num = len(color_data)
     color_circular_index = 0  
@@ -105,7 +107,7 @@ class PostitTab:
         #pick a color
         color = self.pick_color()
         self.fill_color = color['fill_color']
-        self.outline_color = color['outline_color']
+        self.font_color = color['font_color']
         #load image
         abs_image_path = Path(__file__).parent / 'images' / color['filename']
         im = Image.open(abs_image_path)       
@@ -128,28 +130,41 @@ class PythonPostitView(VerticallyScrollableFrame):
         super().__init__(master) 
 
         self.init_notebook()
-
-        # dict{str:dict}
-        self.postit_tabs = {}
+        self.last_focus = None
         
         #to do  :self.module_postit_tabs = {}
 
         #add notebook tabs
+        self.add_tab('basic', '基本','basic')
         self.add_tab('arithmetic', '運算','basic')
         self.add_tab('text', '文字','basic')
         self.add_tab('logic', '邏輯','basic')
         self.add_tab('number', '數字','basic')
         self.add_tab('builtin', '內建\n函式','basic')
-        self.add_tab('6', ' 6','basic')
-        self.add_tab('7', ' 7','basic')
-        self.add_tab('8', ' 8','basic')
-        self.add_tab('9', ' 9','basic')
-        self.add_tab('10', '10','basic')
 
-        #add postit
 
-        ip = IfPostit(self.postit_tabs['logic'].frame)
-        ip.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        #basic postit
+        gp = GeneralPostit(tab_name='basic',
+                           code="dir()",
+                           code_display="dir( )",
+                           note="查詢",
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        gp = GeneralPostit(tab_name='arithmetic',
+                           code="1 + 3",
+                           code_display="1 + 3",
+                           note="",
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        #logic postit
+        ip = IfPostit(tab_name='logic')
+        ip.pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+
+        #notebook event
+        self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
+        self.notebook.bind('<Button-1>',self.on_tab_click)
+ 
 
     def init_notebook(self):
         style = ttk.Style(self.interior)
@@ -160,7 +175,7 @@ class PythonPostitView(VerticallyScrollableFrame):
     def add_tab(self, name, label, tab_type):
 
         tab = PostitTab(name, label, tab_type)
-        self.postit_tabs[name] = tab
+        common_postit_tabs[name] = tab
 
         tab.frame = ttk.Frame(self.notebook)        
         self.notebook.add(tab.frame,
@@ -172,6 +187,16 @@ class PythonPostitView(VerticallyScrollableFrame):
         tab.index = self.notebook.index('end')
         return tab
 
+    def on_tab_click(self, event):
+        """record focus widget"""
+        self.last_focus = get_workbench().focus_get()
+
+    def on_tab_changed(self, event):
+        """restore last focus widget"""
+        if self.last_focus:
+            self.last_focus.focus_set()
+            self.last_focus = None
+        
 
 def try_thonny():
     pass

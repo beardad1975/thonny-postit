@@ -4,8 +4,8 @@ from keyword import iskeyword
 
 
 
-
-
+# dict{str:dict}
+common_postit_tabs = {}
 
 
 
