@@ -1,7 +1,8 @@
 import os 
-from pathlib import Path
+
 import tkinter as tk
 from tkinter import ttk
+from pathlib import Path
 from PIL import Image, ImageTk
 
 from thonny import get_workbench, get_shell, get_runner
@@ -14,6 +15,7 @@ from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
 from .if_postit import IfPostit
 from .while_postit import WhilePostit
+
 ### unicode return symbol \u23ce
 
 #for test
@@ -74,27 +76,80 @@ class PythonView(VerticallyScrollableFrame):
         wp = WhilePostit(self.interior)
         wp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
+
+
+class PostitTab:
+    """postit tab info 
+        attributes: name label tab_type fill_color 
+                   outline_color image frame
+    """
+
+    color_data = [
+        {"filename":'color0.png', 'fill_color':'#4c97ff', 'outline_color':'#2d5893'},
+        {"filename":'color1.png', 'fill_color':'#9966ff', 'outline_color':'#5b3e94'},    
+        {"filename":'color2.png', 'fill_color':'#d65cd6', 'outline_color':'#a83aa8'},
+        {"filename":'color3.png', 'fill_color':'#ffd500', 'outline_color':'#a78903'},
+        {"filename":'color4.png', 'fill_color':'#ffab19', 'outline_color':'#a67e37'},
+        {"filename":'color5.png', 'fill_color':'#4cbfe6', 'outline_color':'#266d85'},
+        {"filename":'color6.png', 'fill_color':'#40bf4a', 'outline_color':'#366c3b'},
+        {"filename":'color7.png', 'fill_color':'#ff6680', 'outline_color':'#c64359'},
+    ]
+    color_num = len(color_data)
+    color_circular_index = 0  
+
+    def __init__(self, name, label, tab_type):
+        self.name = name
+        self.label = label
+        self.tab_type = tab_type
+        
+        #pick a color
+        color = self.pick_color()
+        self.fill_color = color['fill_color']
+        self.outline_color = color['outline_color']
+        #load image
+        abs_image_path = Path(__file__).parent / 'images' / color['filename']
+        im = Image.open(abs_image_path)       
+        self.image = ImageTk.PhotoImage(im) 
+                
+        
+    @classmethod
+    def pick_color(cls):
+        c = cls.color_data[cls.color_circular_index]
+        cls.color_circular_index += 1
+        if cls.color_circular_index >= cls.color_num:
+            cls.color_circular_index = 0
+        return c
+
+
+
+
 class PythonPostitView(VerticallyScrollableFrame):
     def __init__(self, master):
         super().__init__(master) 
 
         self.init_notebook()
-        
+
         # dict{str:dict}
-        self.basic_postit_tabs = {}
+        self.postit_tabs = {}
         
         #to do  :self.module_postit_tabs = {}
 
-        #self.add_basic_postit_tab('arithmetic', '運算', '#4c97ff', 'color_0_4c97ff.png')
-        
-        for i in range(20):
-            self.add_basic_postit_tab('arithmetic'+str(i), '運算'+str(i), '#4c97ff', 'color0.png')
-        
-        #self.add_basic_postit_tab('logic', '邏輯', '#008000', 'green_25.png')
-        #self.add_basic_postit_tab('text', '文字', '#008000', 'green_25.png')
+        #add notebook tabs
+        self.add_tab('arithmetic', '運算','basic')
+        self.add_tab('text', '文字','basic')
+        self.add_tab('logic', '邏輯','basic')
+        self.add_tab('number', '數字','basic')
+        self.add_tab('builtin', '內建\n函式','basic')
+        self.add_tab('6', ' 6','basic')
+        self.add_tab('7', ' 7','basic')
+        self.add_tab('8', ' 8','basic')
+        self.add_tab('9', ' 9','basic')
+        self.add_tab('10', '10','basic')
 
-        #ip = IfPostit(self.basic_postit_tabs['logic']['frame'])
-        #ip.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
+        #add postit
+
+        ip = IfPostit(self.postit_tabs['logic'].frame)
+        ip.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
 
     def init_notebook(self):
         style = ttk.Style(self.interior)
@@ -102,26 +157,21 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
         self.notebook.pack(fill="both", expand="true")
 
-    def add_basic_postit_tab(self, name, label, color, image_path):
-        postit_tab = {}
-        postit_tab['label'] = label
-        postit_tab['color'] = color
+    def add_tab(self, name, label, tab_type):
 
-        abs_image_path = Path(__file__).parent / 'images' / image_path
-        im = Image.open(abs_image_path)       
-        postit_tab['image'] = ImageTk.PhotoImage(im) 
-        postit_tab['frame'] = ttk.Frame()
+        tab = PostitTab(name, label, tab_type)
+        self.postit_tabs[name] = tab
 
-        
-        self.notebook.add(postit_tab['frame'],
-                          text = postit_tab['label'],
-                          image = postit_tab['image'],
+        tab.frame = ttk.Frame(self.notebook)        
+        self.notebook.add(tab.frame,
+                          text = tab.label,
+                          image = tab.image,
                           compound="top",
                         )
 
-        postit_tab['index'] = self.notebook.index('end')
+        tab.index = self.notebook.index('end')
+        return tab
 
-        self.basic_postit_tabs[name] = postit_tab
 
 def try_thonny():
     pass
