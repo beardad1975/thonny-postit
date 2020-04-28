@@ -2,15 +2,15 @@
 import tkinter as tk
 import tkinter.font as font
 from tkinter import ttk
-from pathlib import Path
-from PIL import Image, ImageTk
+#from pathlib import Path
+#from PIL import Image, ImageTk
 
 from thonny.codeview import CodeViewText
 from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
 from .common import common_variable_set
-from .common import common_postit_tabs
+from .common import common_postit_tabs, common_enter_image
 
 #postit is  a frame with button and label(note)
 class Postit(ttk.Frame):
@@ -19,8 +19,8 @@ class Postit(ttk.Frame):
         self.tab = common_postit_tabs[tab_name]
         self.var_postfix_newline = tk.BooleanVar()
         self.var_postfix_newline.set(False)
-        im = Image.open(Path(__file__).parent / 'images' / 'enter.png')       
-        self.enter_image = ImageTk.PhotoImage(im)
+        #im = Image.open(Path(__file__).parent / 'images' / 'enter.png')       
+        self.enter_image = common_enter_image
         self.drag_window = None 
 
         ttk.Frame.__init__(self, self.tab.frame)
@@ -117,7 +117,7 @@ class Postit(ttk.Frame):
             else:
                 final_index += input_start_column
 
-            print(mouse_index, input_start_index, final_index)
+            #print(mouse_index, input_start_index, final_index)
             #print(rel_x, rel_y, target.index('input_start'), target.index(f"@{rel_x},{rel_y}")    )
             target.mark_set('insert', final_index)
             
@@ -267,9 +267,38 @@ class Postit(ttk.Frame):
             s += '\n'
         shell.submit_python_code(s)            
 
-
+    #may be static method
     def press_postit(self):
-        pass
+        workbench = get_workbench()
+        focus_widget = workbench.focus_get()
+
+        if isinstance(focus_widget, CodeViewText):
+            #in code view
+            #self.post_to_editor(space_surround_inline, postfix_newline)
+            editor = get_workbench().get_editor_notebook().get_current_editor()
+            text = editor.get_text_widget()
+            text.see('insert')
+            
+            #check selection and  delete selection
+            if len(text.tag_ranges('sel')) :
+                #replace selection 
+                #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
+                text.event_generate("<BackSpace>")
+            
+            self.insert_into_editor(self.code)
+
+
+        elif isinstance(focus_widget, ShellText):
+            # in shell view
+            text = focus_widget
+            #check selection and  delete selection
+            if len(text.tag_ranges('sel')) :
+                #replace selection 
+                #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
+                text.event_generate("<BackSpace>")
+
+            self.insert_into_shell(self.code)
+
 
     def drag_to_editor(self):
         self.insert_into_editor(self.code)

@@ -5,7 +5,7 @@ from .postit import Postit
 
 
 class GeneralPostit(Postit):
-    def __init__(self, tab_name, code, code_display, note=None):
+    def __init__(self, tab_name, code, code_display=None, note=None):
         super().__init__(tab_name)
 
         self.code = code

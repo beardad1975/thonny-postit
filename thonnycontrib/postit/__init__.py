@@ -10,13 +10,14 @@ from thonny.codeview import CodeViewText
 from thonny.ui_utils import VerticallyScrollableFrame
 from thonny.common import ToplevelCommand
 
+from .base_postit import BasePostit
 from .general_postit import GeneralPostit
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
 from .if_postit import IfPostit
 from .while_postit import WhilePostit
-from .common import common_postit_tabs
+from .common import common_postit_tabs, common_enter_image
 
 ### unicode return symbol \u23ce
 
@@ -128,7 +129,7 @@ class PostitTab:
 class PythonPostitView(VerticallyScrollableFrame):
     def __init__(self, master):
         super().__init__(master) 
-
+        self.init_toolbar()
         self.init_notebook()
         self.last_focus = None
         
@@ -144,16 +145,36 @@ class PythonPostitView(VerticallyScrollableFrame):
 
 
         #basic postit
-        gp = GeneralPostit(tab_name='basic',
+        BasePostit(tab_name='basic',
                            code="dir()",
                            code_display="dir( )",
                            note="查詢",
+                           postfix_enter=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        gp = GeneralPostit(tab_name='arithmetic',
-                           code="1 + 3",
-                           code_display="1 + 3",
-                           note="",
+        #arithmetic postit
+        BasePostit(tab_name='arithmetic',
+                           code=" + ",
+                           code_display=" + ",
+                           note="(數學) 加",
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='arithmetic',
+                           code=" - ",
+                           code_display=" - ",
+                           note="(數學) 減",
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='arithmetic',
+                           code=" * ",
+                           code_display=" * ",
+                           note="(數學) 乘",
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='arithmetic',
+                           code=" / ",
+                           code_display=" / ",
+                           note="(數學) 除",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         #logic postit
@@ -165,6 +186,12 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
         self.notebook.bind('<Button-1>',self.on_tab_click)
  
+    def init_toolbar(self):
+        self.toolbar = tk.PanedWindow(self.interior, orient='horizontal')
+        self.toolbar.pack()
+        btn = tk.Button(self.toolbar, relief='groove', image=common_enter_image )
+        self.toolbar.add(btn)
+
 
     def init_notebook(self):
         style = ttk.Style(self.interior)

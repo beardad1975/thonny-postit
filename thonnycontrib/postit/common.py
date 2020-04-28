@@ -1,4 +1,8 @@
 from typing import NamedTuple
+from pathlib import Path
+from PIL import Image, ImageTk
+
+
 from keyword import iskeyword
 
 
@@ -8,6 +12,9 @@ from keyword import iskeyword
 common_postit_tabs = {}
 
 
+# image
+_im = Image.open(Path(__file__).parent / 'images' / 'enter.png')       
+common_enter_image = ImageTk.PhotoImage(_im)
 
 
 ENTER = '\u23ce'
