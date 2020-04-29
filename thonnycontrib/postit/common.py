@@ -12,9 +12,10 @@ from keyword import iskeyword
 common_postit_tabs = {}
 
 
-# image
+# image dict
+common_images = {}
 _im = Image.open(Path(__file__).parent / 'images' / 'enter.png')       
-common_enter_image = ImageTk.PhotoImage(_im)
+common_images['enter'] = ImageTk.PhotoImage(_im)
 
 
 ENTER = '\u23ce'

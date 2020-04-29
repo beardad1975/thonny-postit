@@ -10,7 +10,7 @@ from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
 from .common import common_variable_set
-from .common import common_postit_tabs, common_enter_image
+from .common import common_postit_tabs, common_images
 
 #postit is  a frame with button and label(note)
 class Postit(ttk.Frame):
@@ -20,7 +20,7 @@ class Postit(ttk.Frame):
         self.var_postfix_newline = tk.BooleanVar()
         self.var_postfix_newline.set(False)
         #im = Image.open(Path(__file__).parent / 'images' / 'enter.png')       
-        self.enter_image = common_enter_image
+        self.enter_image = common_images['enter']
         self.drag_window = None 
 
         ttk.Frame.__init__(self, self.tab.frame)

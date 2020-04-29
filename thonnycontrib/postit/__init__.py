@@ -11,13 +11,14 @@ from thonny.ui_utils import VerticallyScrollableFrame
 from thonny.common import ToplevelCommand
 
 from .base_postit import BasePostit
+from .tool_postit import ToolPostit
 from .general_postit import GeneralPostit
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
 from .if_postit import IfPostit
 from .while_postit import WhilePostit
-from .common import common_postit_tabs, common_enter_image
+from .common import common_postit_tabs
 
 ### unicode return symbol \u23ce
 
@@ -187,17 +188,17 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.notebook.bind('<Button-1>',self.on_tab_click)
  
     def init_toolbar(self):
-        self.toolbar = tk.PanedWindow(self.interior, orient='horizontal')
-        self.toolbar.pack()
-        btn = tk.Button(self.toolbar, relief='groove', image=common_enter_image )
-        self.toolbar.add(btn)
+        self.toolbar = ttk.Frame(self.interior, )
+        self.toolbar.pack(side=tk.TOP, fill=tk.X)
+        ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT)
+        
 
 
     def init_notebook(self):
         style = ttk.Style(self.interior)
         style.configure('lefttab.TNotebook', tabposition='wn')
         self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
-        self.notebook.pack(fill="both", expand="true")
+        self.notebook.pack(side='top',fill="both", expand="true")
 
     def add_tab(self, name, label, tab_type):
 

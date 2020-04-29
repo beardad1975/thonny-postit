@@ -9,20 +9,17 @@ from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
 from .common import common_variable_set
-from .common import common_postit_tabs, common_enter_image
+from .common import common_postit_tabs, common_images
 
 class BaseWidget(ttk.Frame):
-    def widget_data_init(self, tab_name):
+
+    def widget_init(self, tab_name):
         # store tab
         self.tab_name = tab_name
         self.tab = common_postit_tabs[tab_name]
-
-
-
         # image
-        self.enter_image = common_enter_image
+        self.enter_image = common_images['enter']
 
-    def widget_gui_init(self):
         ttk.Frame.__init__(self, self.tab.frame)
         f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
         self.postit_button = tk.Button(self,  
@@ -101,13 +98,18 @@ class BasePost:
     def on_mouse_drag(self, event):
         ###print('drag ...')
         #create drag window
-        if not self.drag_window:
-            #self.mouse_dragging = True
+        if not self.drag_window: 
             self.drag_window = tk.Toplevel()
+            # clone postit_button in drag window
+            image = self.postit_button.cget('image')
+            compound = self.postit_button.cget('compound')
+            font = self.postit_button.cget('font')
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
             text = self.postit_button.cget('text')
-            tk.Label(self.drag_window, text=text, bg=bg, fg=fg).pack()
+            tk.Button(self.drag_window, text=text, bg=bg, fg=fg,
+                        font=font, compound=compound, image=image,
+                        ).pack()
             self.drag_window.overrideredirect(True)
             self.drag_window.attributes('-topmost', 'true')
 
@@ -153,7 +155,9 @@ class BasePost:
         # find out post type and target   
         x, y = event.x_root, event.y_root
         target = event.widget.winfo_containing(x,y)
+        self.determine_post_target_and_type(target)
 
+    def determine_post_target_and_type(self, target):        
         if target is self.postit_button: 
             # postit button pressed
             workbench = get_workbench()
@@ -230,10 +234,21 @@ class BasePost:
     def insert_into_shell(self, content):
         
         shell = get_shell()
-        before_insert_text = shell.text.get('input_start','insert')
-        after_insert_text = shell.text.get('insert','end-1c')
+        s = ''
+            
+        #check insert after input_start
+        input_start_index = shell.text.index('input_start')
+        insert_index = shell.text.index('insert')
+ 
+        if shell.text.compare(insert_index, '>=' , input_start_index): 
+            # insert after input_start
+            before_insert_text = shell.text.get('input_start','insert')
+            after_insert_text = shell.text.get('insert','end-1c')
+            s = before_insert_text + content + after_insert_text
+        else: # insert before input_start
+            print(' In shell : insert before input_start')
+            s = shell.text.get('input_start','end-1c') + content
 
-        s = before_insert_text + content + after_insert_text
         if self.var_postfix_enter.get():
             s += '\n'
         shell.submit_python_code(s)            
@@ -262,10 +277,9 @@ class BasePopup:
 
 
 class BasePostit(BaseWidget, BaseCode, BasePost, BasePopup):
-    """ composite and mixin approach postit"""
+    """ composite and mixin approach base function postit"""
     def __init__(self,  tab_name, code, code_display=None, note=None, postfix_enter=False):
-        self.widget_data_init(tab_name)
-        self.widget_gui_init()
+        self.widget_init(tab_name)
         self.code_init(code, code_display, note, postfix_enter)
         self.post_init()
         self.popup_init()
