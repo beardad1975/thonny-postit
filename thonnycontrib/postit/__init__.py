@@ -12,6 +12,7 @@ from thonny.common import ToplevelCommand
 
 from .base_postit import BasePostit
 from .tool_postit import ToolPostit
+from .pilcrow_postit import PilcrowPostit
 from .general_postit import GeneralPostit
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
@@ -197,8 +198,9 @@ class PythonPostitView(VerticallyScrollableFrame):
     def init_toolbar(self):
         self.toolbar = ttk.Frame(self.interior, )
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
-        ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT, pady=5)
-        ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT, pady=5)
+        ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
+        ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT,padx=3, pady=5)
+        PilcrowPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
 
 
     def init_notebook(self):
@@ -236,7 +238,33 @@ class PythonPostitView(VerticallyScrollableFrame):
 def try_thonny():
     pass
     
-    showinfo("my command", get_workbench()._menus)
+    editor = get_workbench().get_editor_notebook().get_current_editor()
+    text_widget = editor.get_text_widget()
+  
+    s = text_widget.get('1.0', 'end-1c')
+    s = s.replace('\n', '¶\n')
+    s = s.replace(' ', '·')
+    text_widget.delete('1.0', 'end-1c')
+    text_widget.insert('1.0', s)
+    text_widget.config(state=tk.DISABLED)
+
+    #showinfo("my command", get_workbench()._menus)
+    # def replace(char, subchar):
+    #     where = '1.0'; past_subchar = '1.0'
+    #     while where:
+    #         where = tainput.search(char, past_subchar, tk.END+'-1c')
+    #         past_subchar= '{}+{}c'.format(where, len(subchar));
+    #         past_char = '{}+{}c'.format(where, len(char));
+    #         if where:
+    #             tainput.delete(where, past_char)
+    #             tainput.insert(where, subchar)
+    #         else:
+    #             return False
+
+    #replace('\n', '¶\n')
+    #replace(' ', '·')
+
+    
 
     # get_runner().send_command(
     #     ToplevelCommand(

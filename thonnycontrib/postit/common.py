@@ -22,7 +22,7 @@ common_images = {}
 load_image('enter')
 load_image('enter_small')
 load_image('backspace')
-
+load_image('pilcrow')
 
 #
 

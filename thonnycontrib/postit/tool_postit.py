@@ -17,7 +17,7 @@ class ToolWidget(ttk.Frame):
 
         ttk.Frame.__init__(self, master)        
         self.postit_button = tk.Button(self,  
-                                        relief='flat',
+                                        relief='groove',
                                         borderwidth=0,
                                         
                                         #fg=self.tab.font_color, 
@@ -26,14 +26,14 @@ class ToolWidget(ttk.Frame):
                                         #font=f,
                                         compound='right',
                                         image=self.tool_image,
-                                        padx=5,
-                                        pady=5, 
+                                        padx=0,
+                                        pady=0, 
                                         )
         self.postit_button.pack(side=tk.LEFT, anchor='w')
         
 
-        self.note_label = ttk.Label(self, text='' )
-        self.note_label.pack(side=tk.LEFT, anchor='w',padx=5)
+        #self.note_label = ttk.Label(self, text='' )
+        #self.note_label.pack(side=tk.LEFT, anchor='w',padx=5)
 
 class ToolCodeMixin:
     def code_init(self):
