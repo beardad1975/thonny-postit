@@ -13,10 +13,18 @@ common_postit_tabs = {}
 
 
 # image dict
-common_images = {}
-_im = Image.open(Path(__file__).parent / 'images' / 'enter.png')       
-common_images['enter'] = ImageTk.PhotoImage(_im)
+def load_image(name):
+    global common_images
+    _im = Image.open(Path(__file__).parent / 'images' / (name + '.png'))       
+    common_images[name] = ImageTk.PhotoImage(_im)
 
+common_images = {}
+load_image('enter')
+load_image('enter_small')
+load_image('backspace')
+
+
+#
 
 ENTER = '\u23ce'
 

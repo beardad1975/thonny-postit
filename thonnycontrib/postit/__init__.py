@@ -153,6 +153,13 @@ class PythonPostitView(VerticallyScrollableFrame):
                            postfix_enter=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
+        BasePostit(tab_name='basic',
+                           code="if _con_ :\n_do_\n",
+                           code_display="if _con_ :\n\t_do_\n",
+                           note="if",
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
         #arithmetic postit
         BasePostit(tab_name='arithmetic',
                            code=" + ",
@@ -190,8 +197,8 @@ class PythonPostitView(VerticallyScrollableFrame):
     def init_toolbar(self):
         self.toolbar = ttk.Frame(self.interior, )
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
-        ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT)
-        
+        ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT, pady=5)
+        ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT, pady=5)
 
 
     def init_notebook(self):

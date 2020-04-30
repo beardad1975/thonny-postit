@@ -18,7 +18,7 @@ class BaseWidget(ttk.Frame):
         self.tab_name = tab_name
         self.tab = common_postit_tabs[tab_name]
         # image
-        self.enter_image = common_images['enter']
+        self.enter_image = common_images['enter_small']
 
         ttk.Frame.__init__(self, self.tab.frame)
         f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
@@ -99,6 +99,45 @@ class BasePost:
         ###print('drag ...')
         #create drag window
         if not self.drag_window: 
+            self.create_drag_window()
+
+        self.drag_window.geometry('+{}+{}'.format(event.x_root+10, event.y_root+10))
+
+        #change insert position in editor and shell
+        x, y = event.x_root, event.y_root
+        target = event.widget.winfo_containing(x, y)
+        
+        if isinstance(target, CodeViewText):
+            rel_x = x - target.winfo_rootx()
+            rel_y = y - target.winfo_rooty()
+            mouse_index = target.index(f"@{rel_x},{rel_y}")
+
+            target.focus_set()
+            target.mark_set(tk.INSERT, mouse_index)
+            ###print(index)
+        elif isinstance(target, ShellText):
+            rel_x = x - target.winfo_rootx()
+            rel_y = y - target.winfo_rooty()
+            target.focus_set()
+            mouse_index = target.index(f"@{rel_x},{rel_y}")
+            input_start_index = target.index('input_start')
+            if target.compare(mouse_index, '>=', input_start_index):
+                
+                target.mark_set(tk.INSERT, mouse_index)
+            # insert can't not over input_start
+            # final_index = input_start_index.split('.')[0] + '.'
+            # mouse_column = mouse_index.split('.')[1]
+            # input_start_column = input_start_index.split('.')[1]
+            # if int(mouse_column) >= int(input_start_column):
+            #     final_index += mouse_column
+            # else:
+            #     final_index += input_start_column
+
+            #print(mouse_index, input_start_index, final_index)
+            #print(rel_x, rel_y, target.index('input_start'), target.index(f"@{rel_x},{rel_y}")    )
+            #target.mark_set('insert', final_index)
+
+    def create_drag_window(self):
             self.drag_window = tk.Toplevel()
             # clone postit_button in drag window
             image = self.postit_button.cget('image')
@@ -113,39 +152,6 @@ class BasePost:
             self.drag_window.overrideredirect(True)
             self.drag_window.attributes('-topmost', 'true')
 
-        self.drag_window.geometry('+{}+{}'.format(event.x_root+10, event.y_root+10))
-
-        #change insert cursor in editor and shell
-        x, y = event.x_root, event.y_root
-        target = event.widget.winfo_containing(x, y)
-                
-        if isinstance(target, CodeViewText):
-            target.focus_set()
-            rel_x = x - target.winfo_rootx()
-            rel_y = y - target.winfo_rooty()
-            target.mark_set('insert', f"@{rel_x},{rel_y}")
-            ###print(index)
-        elif isinstance(target, ShellText):
-           
-            target.focus_set()
-            rel_x = x - target.winfo_rootx()
-            rel_y = y - target.winfo_rooty()
-            mouse_index = target.index(f"@{rel_x},{rel_y}")
-
-            input_start_index = target.index('input_start')
-            # insert can't not over input_start
-            final_index = input_start_index.split('.')[0] + '.'
-            mouse_column = mouse_index.split('.')[1]
-            input_start_column = input_start_index.split('.')[1]
-            if int(mouse_column) >= int(input_start_column):
-                final_index += mouse_column
-            else:
-                final_index += input_start_column
-
-            #print(mouse_index, input_start_index, final_index)
-            #print(rel_x, rel_y, target.index('input_start'), target.index(f"@{rel_x},{rel_y}")    )
-            target.mark_set('insert', final_index)
-            
     def on_mouse_release(self, event):
         #check and destroy drag window        
         if self.drag_window:
@@ -164,100 +170,163 @@ class BasePost:
             focus_widget = workbench.focus_get()
             if isinstance(focus_widget, CodeViewText):
                 #focus  inside code editor
-                editor = get_workbench().get_editor_notebook().get_current_editor()
-                text = editor.get_text_widget()
-                text.see('insert')
+                #editor = get_workbench().get_editor_notebook().get_current_editor()
+                #text = editor.get_text_widget()
+                #text.see('insert')
+                text_widget = focus_widget
             
                 #check selection and  delete selection
-                if len(text.tag_ranges('sel')) :
+                #print("targ ranges: ", text_widget.tag_ranges('sel'))
+                if len(text_widget.tag_ranges(tk.SEL))  :
                     #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
                     print("selection insert to editor")
-                    self.selection_insert('EDITOR',text)
+                    self.insert_into_editor(text_widget, 
+                                            selecting=True, dragging=False)
                 else:
                     print("inster to editor")
-                    self.insert_into_editor(self.code)
+                    self.insert_into_editor(text_widget, 
+                                            selecting=False, dragging=False)
             elif isinstance(focus_widget, ShellText):
                 # focus inside shell view
-                text = focus_widget
+                text_widget = focus_widget
                 #check selection and  delete selection
-                if len(text.tag_ranges('sel')) :
+                if len(text_widget.tag_ranges(tk.SEL)) :
                     #replace selection 
                     #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
                     print("selection insert to shell")
-                    self.selection_insert('SHELL',text)
+                    self.insert_into_shell(text_widget, 
+                                            selecting=True, dragging=False)
                 else:
                     print("insert to shell")
-                    self.insert_into_shell(self.code)
+                    self.insert_into_shell(text_widget, 
+                                            selecting=False, dragging=False)
                 #self.direct_post()
         elif isinstance(target, CodeViewText):
+            text_widget = target
             print("drag to editor")
-            self.drag_to_editor()
+            #self.drag_to_editor()
+            self.insert_into_editor(text_widget, 
+                                    selecting=False, dragging=True)
         elif isinstance(target, ShellText):
+            text_widget = target
             print("drag to shell")
-            self.drag_to_shell()
+            #self.drag_to_shell()
+            self.insert_into_shell(text_widget, 
+                                    selecting=False, dragging=True)
 
-    def selection_insert(self,target_type,  text):
-        text.event_generate("<BackSpace>")
-        if target_type == 'EDITOR':
-            self.insert_into_editor(self.code)
-        elif target_type == 'SHELL':
-            self.insert_into_shell(self.code)
+    #def selection_insert(self,target_type,  text_widget):
+    #    
+    #    if target_type == 'EDITOR':
+    #        self.insert_into_editor(self.code)
+    #    elif target_type == 'SHELL':
+    #        self.insert_into_shell(self.code)
 
 
-    def insert_into_editor(self, content):
-        editor = get_workbench().get_editor_notebook().get_current_editor()
-        text = editor.get_text_widget()
-        text.see('insert')
+    def insert_into_editor(self, text_widget, selecting, dragging):
+        content = self.code
+        if not content:
+            return 
 
-        lines = content.split('\n')            
-        if len(lines) == 1:
-            #one line
-                text.direct_insert("insert",lines[0])
-        else:
-            #multi lines
+        #editor = get_workbench().get_editor_notebook().get_current_editor()
+        #text_widget = editor.get_text_widget()
+        #text.see('insert')
+
+        if selecting:
+            # selecting default behavier : replace
+            text_widget.event_generate("<BackSpace>")
+
+
+        lines = content.split('\n')  
+        line_num = len(lines)          
+        if line_num == 1 :
+            # one line (no newline)
+                text_widget.insert(tk.INSERT,lines[0])
+        elif line_num > 1 :
+            #multi lines 
             line_count = len(lines)
             for i, line in enumerate(lines):
 
                 #if else else , need to add a extra backspack
                 if line[:4] == 'else' or line[:4] == 'elif' :
-                    text.event_generate("<BackSpace>")
+                    text_widget.event_generate("<BackSpace>")
 
-                text.direct_insert("insert",line)
+                text_widget.insert(tk.INSERT,line)
 
                 #  generate enter if not last item
                 if i < line_count - 1 :
-                    text.event_generate("<Return>")
+                    text_widget.event_generate("<Return>")
 
         if self.var_postfix_enter.get():
-            text.event_generate("<Return>")
+            text_widget.event_generate("<Return>")
 
-    def insert_into_shell(self, content):
-        
-        shell = get_shell()
-        s = ''
+    def insert_into_shell(self, text_widget, selecting, dragging):
+        content = self.code
+        if not content:
+            return
+
+        if selecting:
+            # selecting default behavier : replace
+            text_widget.event_generate("<BackSpace>")
+
+        #shell = get_shell()
+        #text_widget = shell.text
+        #s = ''
             
         #check insert after input_start
-        input_start_index = shell.text.index('input_start')
-        insert_index = shell.text.index('insert')
- 
-        if shell.text.compare(insert_index, '>=' , input_start_index): 
+        #input_start_index = text_widget.index('input_start')
+        #insert_index = text_widget.index(tk.INSERT)
+        final_index = None
+        if text_widget.compare(tk.INSERT, '>=' , 'input_start'): 
             # insert after input_start
-            before_insert_text = shell.text.get('input_start','insert')
-            after_insert_text = shell.text.get('insert','end-1c')
-            s = before_insert_text + content + after_insert_text
-        else: # insert before input_start
-            print(' In shell : insert before input_start')
-            s = shell.text.get('input_start','end-1c') + content
+            #before_insert_text = text_widget.get('input_start',tk.INSERT)
+            #after_insert_text = text_widget.get(tk.INSERT,'end-1c')
+            #s = before_insert_text + content + after_insert_text
+            final_index = tk.INSERT
+        else: # insert before input_start append at last position
+        #    print(' In shell : insert before input_start')
+        #    s = text_widget.get('input_start','end-1c') + content
+            final_index = 'end-1c'
+        
+        
+        #text_widget.insert('end-1c',content)
+           
+
+        lines = content.split('\n')  
+        line_num = len(lines)          
+        if line_num == 1 :
+            # one line (no newline)
+                text_widget.insert(final_index ,lines[0])
+        elif line_num > 1 :
+            #multi lines 
+            line_count = len(lines)
+            for i, line in enumerate(lines):
+
+                #if else else , need to add a extra backspack
+                if line[:4] == 'else' or line[:4] == 'elif' :
+                    text_widget.event_generate("<BackSpace>")
+
+                text_widget.insert(final_index ,line)
+
+                #  generate enter if not last item
+                if i < line_count - 1 :
+                    text_widget.event_generate("<Return>")
 
         if self.var_postfix_enter.get():
-            s += '\n'
-        shell.submit_python_code(s)            
+            text_widget.event_generate("<Return>")
 
-    def drag_to_editor(self):
-        self.insert_into_editor(self.code)
 
-    def drag_to_shell(self):
-        self.insert_into_shell(self.code)
+
+
+        #if self.var_postfix_enter.get():
+            #s += '\n'
+        #    text_widget.event_generate("<Return>")
+        #shell.submit_python_code(s)            
+
+    #def drag_to_editor(self):
+    #    self.insert_into_editor(self.code)
+
+    #def drag_to_shell(self):
+    #    self.insert_into_shell(self.code)
 
 
 class BasePopup:

@@ -11,8 +11,9 @@ from .common import common_images
 class ToolWidget(ttk.Frame):
 
     def widget_init(self, master, tool_name):
+        # don't need to handle tab
         self.tool_name = tool_name
-        self.tool_image = common_images['enter']
+        self.tool_image = common_images[tool_name]
 
         ttk.Frame.__init__(self, master)        
         self.postit_button = tk.Button(self,  
@@ -42,8 +43,7 @@ class ToolCodeMixin:
 
         self.code_display = '' 
         self.note = ''
-        if self.tool_name == 'enter':
-            self.code = '\n'
+        self.code = ''
             
             #self.update_postit_code()
 
@@ -53,23 +53,62 @@ class ToolCodeMixin:
 
 class ToolPostMixin:
 
-    def insert_into_editor(self, content):
-        editor = get_workbench().get_editor_notebook().get_current_editor()
-        text = editor.get_text_widget()
-        text.see('insert')
+    def insert_into_editor(self, text_widget, selecting, dragging):
+        if self.tool_name == 'backspace':
+            # backspace once no matter selecting or not
+            text_widget.event_generate("<BackSpace>")
+        elif selecting :
+            # need extro backspace on the others
+            text_widget.event_generate("<BackSpace>")
+            if self.tool_name == 'enter':
+                text_widget.event_generate("<Return>")
+        elif not selecting:
+            # not selecting
+            if self.tool_name == 'enter':
+                text_widget.event_generate("<Return>")
+        
 
-        if self.tool_name == 'enter':
-            text.event_generate("<Return>")
 
+    def insert_into_shell(self, text_widget, selecting, dragging):
+        if text_widget.compare(tk.INSERT, '>' , 'input_start'): 
+            # just bigger than, no equal than
+            if self.tool_name == 'backspace':
+            # backspace once no matter selecting or not
+                text_widget.event_generate("<BackSpace>")
+            elif selecting :
+                # need extro backspace on the others
+                text_widget.event_generate("<BackSpace>")
+                if self.tool_name == 'enter':
+                    text_widget.event_generate("<Return>")
+            elif not selecting:
+                # not selecting
+                if self.tool_name == 'enter':
+                    text_widget.event_generate("<Return>")
+        else: # insert befor input_start
+            if self.tool_name == 'enter':
+                text_widget.event_generate("<Return>")
+            elif self.tool_name == 'backspace':
+                # do no backspace for safety
+                pass
 
-    def insert_into_shell(self, content):
-        shell = get_shell()
-        s = ''
-        if self.tool_name == 'enter':
-            origin_text = shell.text.get('input_start','end-1c')
-            s = origin_text + '\n'
-
-        shell.submit_python_code(s)      
+        #shell = get_shell()
+        #s = ''
+        #if self.tool_name == 'enter':
+        #    origin_text = shell.text.get('input_start','end-1c')
+        #    s = origin_text + '\n'
+        #    shell.submit_python_code(s)
+        #elif self.tool_name == 'backspace':
+            # do nothing. Backspace already sent by upper level function
+        #    pass
+            #input_start_index = shell.text.index('input_start')
+            #insert_index = shell.text.index('insert')
+            #if shell.text.compare(insert_index, '>=' , input_start_index): 
+            #    shell.text.delete('insert-1c')
+                # insert after input_start
+                #before_insert_text = shell.text.get('input_start','insert')
+                #after_insert_text = shell.text.get('insert','end-1c')
+                #s = before_insert_text[:-1] + after_insert_text
+                #shell.submit_python_code(s)      
 
 
 
