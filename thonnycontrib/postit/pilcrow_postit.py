@@ -42,7 +42,7 @@ class PilcrowPostMixin:
             code_text_widget.config(cursor="left_side")
             #register event to failsafe back to read-write mode 
             code_text_widget.bind('<Button-1>', self.clickedWhenReadOnlyMode)
-            print("register failsafe event")
+            #print("register failsafe event")
 
 
         else: # turning off  show_pilcrow_mode
@@ -63,7 +63,7 @@ class PilcrowPostMixin:
             code_text_widget.config(cursor="xterm")
             #unregister failsafe event   
             code_text_widget.unbind('<Button-1>')
-            print("cancel failsafe event")
+            #print("cancel failsafe event")
 
     def insert_into_shell(self, text_widget, selecting, dragging):
         if not dragging:

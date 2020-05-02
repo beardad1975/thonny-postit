@@ -55,43 +55,67 @@ class ToolPostMixin:
 
     def insert_into_editor(self, text_widget, selecting, dragging):
         if self.tool_name == 'backspace':
-            text_widget.event_generate("<BackSpace>")
+            if not dragging:
+                text_widget.event_generate("<BackSpace>")
+            else: # dragging
+                if selecting:
+                    text_widget.event_generate("<BackSpace>")
+                else:
+                    text_widget.delete(tk.INSERT + '-1c')
+
         elif self.tool_name == 'undo':
             text_widget.edit_undo()
         elif self.tool_name == 'redo':
             text_widget.edit_redo()
         elif self.tool_name == 'enter':
-            if selecting :
-                text_widget.event_generate("<BackSpace>")
-                text_widget.event_generate("<Return>")
-            else : # not selecting
-                text_widget.event_generate("<Return>")
+            if not dragging:
+                if selecting :
+                    text_widget.event_generate("<BackSpace>")
+                    text_widget.event_generate("<Return>")
+                else : # not selecting
+                    text_widget.event_generate("<Return>")
+            else: # dragging
+                if selecting:
+                    text_widget.event_generate("<BackSpace>")
+                    text_widget.event_generate("<Return>")
+                else:
+                    text_widget.insert(tk.INSERT, '\n')
+                    #stored_index = text_widget.index(tk.INSERT)
+                    #text_widget.tag_remove(tk.SEL, '1.0')
+                    #text_widget.mark_set(tk.INSERT, stored_index)
+                    #text_widget.event_generate("<Return>")
         elif self.tool_name == 'indent':
-            text_widget.indent_region()
-            #else: # not selecting
-                # to first word of line
-                #text_widget.mark_set(tk.INSERT, tk.INSERT +' lineend')
-                #text_widget.event_generate("<Home>")
-                # do indent . keep cursor front
-                #text_widget.event_generate("<Tab>")
-            #    text_widget.indent_region()
+            if not dragging:
+                text_widget.indent_region()
+            else: # dragging
+                if selecting:
+                    text_widget.indent_region()
+                else:
+                    text_widget.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                    text_widget.indent_region()
+
         elif self.tool_name == 'dedent':
-            text_widget.dedent_region()
-            # if selecting:
-            #     text_widget.dedent_region()
-            # else: # not selecting    
-            #     origin_index = text_widget.index(tk.INSERT)
-            #     # do unindent
-            #     text_widget.event_generate("<Shift-Tab>")
-            #     # keep cursor front
-            #     text_widget.mark_set(tk.INSERT, origin_index +' lineend')
-            #     text_widget.event_generate("<Home>")
+            if not dragging:
+                text_widget.dedent_region()
+            else: # dragging
+                if selecting:
+                    text_widget.dedent_region()
+                else:
+                    text_widget.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                    text_widget.dedent_region()
+
 
     def insert_into_shell(self, text_widget, selecting, dragging):
         if text_widget.compare(tk.INSERT, '>=' , 'input_start'): 
             if self.tool_name == 'backspace' and text_widget.compare(tk.INSERT, '>' , 'input_start'):
                 # just bigger than, no equal than because of backspace del left char
-                text_widget.event_generate("<BackSpace>")
+                if not dragging:
+                    text_widget.event_generate("<BackSpace>")
+                else: # dragging
+                    if selecting:
+                        text_widget.event_generate("<BackSpace>")
+                    else:
+                        text_widget.delete(tk.INSERT + '-1c')                
             elif self.tool_name == 'undo':
                 text_widget.event_generate('<Up>')
             elif self.tool_name == 'redo':
@@ -102,6 +126,10 @@ class ToolPostMixin:
                     text_widget.event_generate("<Return>")
                 else:# not selecting
                     text_widget.event_generate("<Return>")
+
+
+
+
             elif self.tool_name == 'indent':
                 pass # when in shell
             elif self.tool_name == 'dedent':

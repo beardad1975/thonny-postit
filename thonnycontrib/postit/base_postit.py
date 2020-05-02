@@ -91,6 +91,8 @@ class BaseCode:
 class BasePost:
     def post_init(self):
         self.drag_window = None
+        self.drag_button = None
+        self.drag_hover_selection = False
         #self.mouse_dragging = False
         # drag and press event
         self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
@@ -115,6 +117,20 @@ class BasePost:
 
             target.focus_set()
             target.mark_set(tk.INSERT, mouse_index)
+
+            if target.tag_ranges(tk.SEL):
+                #check darg hover selection
+                if target.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                    target.compare(mouse_index, "<=", tk.SEL_LAST):
+                    self.drag_hover_selection = True
+                    #print('drag hover selection')
+                    self.drag_button.config(bd=3)
+                else:
+                    self.drag_hover_selection = False
+                    self.drag_button.config(bd=0)
+                    
+
+
             ###print(index)
         elif isinstance(target, ShellText):
             rel_x = x - target.winfo_rootx()
@@ -123,8 +139,18 @@ class BasePost:
             mouse_index = target.index(f"@{rel_x},{rel_y}")
             input_start_index = target.index('input_start')
             if target.compare(mouse_index, '>=', input_start_index):
-                
                 target.mark_set(tk.INSERT, mouse_index)
+
+                if target.tag_ranges(tk.SEL):
+                    #check darg hover selection
+                    if target.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                        target.compare(mouse_index, "<=", tk.SEL_LAST):
+                        self.drag_hover_selection = True
+                        #print('drag hover selection')
+                        self.drag_button.config(bd=3)
+                    else:
+                        self.drag_hover_selection = False
+                        self.drag_button.config(bd=0)
             # insert can't not over input_start
             # final_index = input_start_index.split('.')[0] + '.'
             # mouse_column = mouse_index.split('.')[1]
@@ -147,9 +173,11 @@ class BasePost:
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
             text = self.postit_button.cget('text')
-            tk.Button(self.drag_window, text=text, bg=bg, fg=fg,
-                        font=font, compound=compound, image=image,
-                        ).pack()
+            self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, fg=fg,
+                        font=font, compound=compound, image=image,relief='solid',
+                        bd=0,
+                        )
+            self.drag_button.pack()
             self.drag_window.overrideredirect(True)
             self.drag_window.attributes('-topmost', 'true')
 
@@ -158,6 +186,8 @@ class BasePost:
         if self.drag_window:
             self.drag_window.destroy()
             self.drag_window = None
+            
+        # restore mouse cursor 
 
         # find out post type and target   
         x, y = event.x_root, event.y_root
@@ -205,14 +235,23 @@ class BasePost:
         elif isinstance(target, CodeViewText):
             text_widget = target
             #print("drag to editor")
-            #self.drag_to_editor()
-            self.insert_into_editor(text_widget, 
+            if self.drag_hover_selection:
+                # selecting=True, dragging=True means drag_hover_selection
+                self.insert_into_editor(text_widget, 
+                                    selecting=True, dragging=True)
+                self.drag_hover_selection = False
+            else:
+                self.insert_into_editor(text_widget, 
                                     selecting=False, dragging=True)
         elif isinstance(target, ShellText):
             text_widget = target
             #print("drag to shell")
-            #self.drag_to_shell()
-            self.insert_into_shell(text_widget, 
+            if self.drag_hover_selection:
+                # selecting=True, dragging=True means drag_hover_selection
+                self.insert_into_shell(text_widget, 
+                                    selecting=True, dragging=True)
+            else:
+                self.insert_into_shell(text_widget, 
                                     selecting=False, dragging=True)
 
     #def selection_insert(self,target_type,  text_widget):

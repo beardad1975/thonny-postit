@@ -183,26 +183,35 @@ class PythonPostitView(VerticallyScrollableFrame):
         BasePostit(tab_name='arithmetic',
                            code=" + ",
                            code_display=" + ",
-                           note="(數學) 加",
+                           note="加",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='arithmetic',
                            code=" - ",
                            code_display=" - ",
-                           note="(數學) 減",
+                           note="減",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='arithmetic',
                            code=" * ",
                            code_display=" * ",
-                           note="(數學) 乘",
+                           note="乘",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='arithmetic',
                            code=" / ",
                            code_display=" / ",
-                           note="(數學) 除",
+                           note="除",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        EnclosedPostit(tab_name='arithmetic',
+                       enclosed_head='(', 
+                       enclosed_tail=')', 
+                       code_display=None,
+                       note='括號',
+                       postfix_enter=False
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
 
         #logic postit
         ip = IfPostit(tab_name='logic')
