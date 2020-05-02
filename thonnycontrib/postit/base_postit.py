@@ -22,7 +22,7 @@ class BaseWidget(ttk.Frame):
 
         ttk.Frame.__init__(self, self.tab.frame)
         #f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
-        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         self.postit_button = tk.Button(self,  
                                         relief='flat',
                                         borderwidth=0,

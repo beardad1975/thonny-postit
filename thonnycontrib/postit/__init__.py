@@ -13,6 +13,7 @@ from thonny.common import ToplevelCommand
 from .base_postit import BasePostit
 from .tool_postit import ToolPostit
 from .pilcrow_postit import PilcrowPostit
+from .enclosed_postit import EnclosedPostit
 from .general_postit import GeneralPostit
 from .property_postit import  PropertyPostit
 from .symbol_postit import SymbolPostit
@@ -160,6 +161,23 @@ class PythonPostitView(VerticallyScrollableFrame):
                            note="if",
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        EnclosedPostit(tab_name='basic',
+                       enclosed_head='dir(', 
+                       enclosed_tail=')', 
+                       code_display=None,
+                       note='enclosed',
+                       postfix_enter=False
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        EnclosedPostit(tab_name='basic',
+                       enclosed_head='print(', 
+                       enclosed_tail=')', 
+                       code_display=None,
+                       note='印出',
+                       postfix_enter=False
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
 
         #arithmetic postit
         BasePostit(tab_name='arithmetic',
