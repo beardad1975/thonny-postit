@@ -55,41 +55,68 @@ class ToolPostMixin:
 
     def insert_into_editor(self, text_widget, selecting, dragging):
         if self.tool_name == 'backspace':
-            # backspace once no matter selecting or not
             text_widget.event_generate("<BackSpace>")
-        elif selecting :
-            # need extro backspace on the others
-            text_widget.event_generate("<BackSpace>")
-            if self.tool_name == 'enter':
+        elif self.tool_name == 'undo':
+            text_widget.edit_undo()
+        elif self.tool_name == 'redo':
+            text_widget.edit_redo()
+        elif self.tool_name == 'enter':
+            if selecting :
+                text_widget.event_generate("<BackSpace>")
                 text_widget.event_generate("<Return>")
-        elif not selecting:
-            # not selecting
-            if self.tool_name == 'enter':
+            else : # not selecting
                 text_widget.event_generate("<Return>")
-        
-
+        elif self.tool_name == 'indent':
+            text_widget.indent_region()
+            #else: # not selecting
+                # to first word of line
+                #text_widget.mark_set(tk.INSERT, tk.INSERT +' lineend')
+                #text_widget.event_generate("<Home>")
+                # do indent . keep cursor front
+                #text_widget.event_generate("<Tab>")
+            #    text_widget.indent_region()
+        elif self.tool_name == 'dedent':
+            text_widget.dedent_region()
+            # if selecting:
+            #     text_widget.dedent_region()
+            # else: # not selecting    
+            #     origin_index = text_widget.index(tk.INSERT)
+            #     # do unindent
+            #     text_widget.event_generate("<Shift-Tab>")
+            #     # keep cursor front
+            #     text_widget.mark_set(tk.INSERT, origin_index +' lineend')
+            #     text_widget.event_generate("<Home>")
 
     def insert_into_shell(self, text_widget, selecting, dragging):
-        if text_widget.compare(tk.INSERT, '>' , 'input_start'): 
-            # just bigger than, no equal than
-            if self.tool_name == 'backspace':
-            # backspace once no matter selecting or not
+        if text_widget.compare(tk.INSERT, '>=' , 'input_start'): 
+            if self.tool_name == 'backspace' and text_widget.compare(tk.INSERT, '>' , 'input_start'):
+                # just bigger than, no equal than because of backspace del left char
                 text_widget.event_generate("<BackSpace>")
-            elif selecting :
-                # need extro backspace on the others
-                text_widget.event_generate("<BackSpace>")
-                if self.tool_name == 'enter':
+            elif self.tool_name == 'undo':
+                text_widget.event_generate('<Up>')
+            elif self.tool_name == 'redo':
+                text_widget.event_generate('<Down>')
+            elif self.tool_name == 'enter':
+                if selecting:
+                    text_widget.event_generate("<BackSpace>")
                     text_widget.event_generate("<Return>")
-            elif not selecting:
-                # not selecting
-                if self.tool_name == 'enter':
+                else:# not selecting
                     text_widget.event_generate("<Return>")
+            elif self.tool_name == 'indent':
+                pass # when in shell
+            elif self.tool_name == 'dedent':
+                pass # when in shell
+
         else: # insert befor input_start
             if self.tool_name == 'enter':
                 text_widget.event_generate("<Return>")
             elif self.tool_name == 'backspace':
                 # do no backspace for safety
                 pass
+            elif self.tool_name == 'undo':
+                text_widget.event_generate('<Up>')
+            elif self.tool_name == 'redo':
+                text_widget.event_generate('<Down>')
 
         #shell = get_shell()
         #s = ''

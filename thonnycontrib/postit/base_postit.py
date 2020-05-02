@@ -21,7 +21,8 @@ class BaseWidget(ttk.Frame):
         self.enter_image = common_images['enter_small']
 
         ttk.Frame.__init__(self, self.tab.frame)
-        f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
+        #f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
+        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         self.postit_button = tk.Button(self,  
                                         relief='flat',
                                         borderwidth=0,
@@ -179,11 +180,11 @@ class BasePost:
                 #print("targ ranges: ", text_widget.tag_ranges('sel'))
                 if len(text_widget.tag_ranges(tk.SEL))  :
                     #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-                    print("selection insert to editor")
+                    #print("selection insert to editor")
                     self.insert_into_editor(text_widget, 
                                             selecting=True, dragging=False)
                 else:
-                    print("inster to editor")
+                    #print("inster to editor")
                     self.insert_into_editor(text_widget, 
                                             selecting=False, dragging=False)
             elif isinstance(focus_widget, ShellText):
@@ -193,23 +194,23 @@ class BasePost:
                 if len(text_widget.tag_ranges(tk.SEL)) :
                     #replace selection 
                     #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-                    print("selection insert to shell")
+                    #print("selection insert to shell")
                     self.insert_into_shell(text_widget, 
                                             selecting=True, dragging=False)
                 else:
-                    print("insert to shell")
+                    #print("insert to shell")
                     self.insert_into_shell(text_widget, 
                                             selecting=False, dragging=False)
                 #self.direct_post()
         elif isinstance(target, CodeViewText):
             text_widget = target
-            print("drag to editor")
+            #print("drag to editor")
             #self.drag_to_editor()
             self.insert_into_editor(text_widget, 
                                     selecting=False, dragging=True)
         elif isinstance(target, ShellText):
             text_widget = target
-            print("drag to shell")
+            #print("drag to shell")
             #self.drag_to_shell()
             self.insert_into_shell(text_widget, 
                                     selecting=False, dragging=True)

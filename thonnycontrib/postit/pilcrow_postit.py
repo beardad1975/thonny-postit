@@ -36,8 +36,14 @@ class PilcrowPostMixin:
             code_text_widget.yview_moveto(y_scroll_pos)
             code_text_widget.xview_moveto(x_scroll_pos) 
             self.show_pilcrow_mode = True
-            self.postit_button.config(bg='yellow')
+            # highlight button
+            self.postit_button.config(bg='orange')
+            
             code_text_widget.config(cursor="left_side")
+            #register event to failsafe back to read-write mode 
+            code_text_widget.bind('<Button-1>', self.clickedWhenReadOnlyMode)
+            print("register failsafe event")
+
 
         else: # turning off  show_pilcrow_mode
             # unset read-only
@@ -51,13 +57,20 @@ class PilcrowPostMixin:
             code_text_widget.yview_moveto(y_scroll_pos)
             code_text_widget.xview_moveto(x_scroll_pos)
             self.show_pilcrow_mode = False
+            #restore button
             self.postit_button.config(bg='SystemButtonFace')
+            
             code_text_widget.config(cursor="xterm")
+            #unregister failsafe event   
+            code_text_widget.unbind('<Button-1>')
+            print("cancel failsafe event")
 
     def insert_into_shell(self, text_widget, selecting, dragging):
         if not dragging:
             self.insert_into_editor(text_widget, selecting, dragging)
 
+    def clickedWhenReadOnlyMode(self, event):
+        self.insert_into_editor(event.widget, selecting=False, dragging=False)
 
 
 class PilcrowPostit(ToolWidget, 

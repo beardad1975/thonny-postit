@@ -23,6 +23,10 @@ load_image('enter')
 load_image('enter_small')
 load_image('backspace')
 load_image('pilcrow')
+load_image('undo')
+load_image('redo')
+load_image('indent')
+load_image('dedent')
 
 #
 

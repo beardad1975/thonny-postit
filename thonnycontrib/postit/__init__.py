@@ -149,7 +149,7 @@ class PythonPostitView(VerticallyScrollableFrame):
         #basic postit
         BasePostit(tab_name='basic',
                            code="dir()",
-                           code_display="dir( )",
+                           code_display="dir()",
                            note="查詢",
                            postfix_enter=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
@@ -200,6 +200,10 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
         ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
         ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT,padx=3, pady=5)
+        ToolPostit(self.toolbar, tool_name='redo').pack(side=tk.RIGHT,padx=3, pady=5)
+        ToolPostit(self.toolbar, tool_name='undo').pack(side=tk.RIGHT,padx=3, pady=5)
+        ToolPostit(self.toolbar, tool_name='indent').pack(side=tk.RIGHT,padx=3, pady=5)
+        ToolPostit(self.toolbar, tool_name='dedent').pack(side=tk.RIGHT,padx=3, pady=5)
         PilcrowPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
 
 
