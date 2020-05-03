@@ -10,9 +10,13 @@ from thonny.codeview import CodeViewText
 from thonny.ui_utils import VerticallyScrollableFrame
 from thonny.common import ToplevelCommand
 
+from .tools.enter_tool_postit import EnterToolPostit
+from .tools.backspace_tool_postit import BackspaceToolPostit
+from .tools.undo_tool_postit import UndoToolPostit
+
 from .base_postit import BasePostit
-from .tool_postit import ToolPostit
-from .pilcrow_postit import PilcrowPostit
+#from .tool_postit import ToolPostit
+#from .pilcrow_postit import PilcrowPostit
 from .enclosed_postit import EnclosedPostit
 from .general_postit import GeneralPostit
 from .property_postit import  PropertyPostit
@@ -236,6 +240,9 @@ class PythonPostitView(VerticallyScrollableFrame):
     def init_toolbar(self):
         self.toolbar = ttk.Frame(self.interior, )
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
+        EnterToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        BackspaceToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        UndoToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='redo').pack(side=tk.RIGHT,padx=3, pady=5)

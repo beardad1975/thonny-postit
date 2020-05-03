@@ -5,8 +5,8 @@ from thonny.codeview import CodeViewText
 from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
-from .base_postit import BaseCode, BasePost, BasePopup
-from .common import common_images
+from ..base_postit import BaseCode, BasePost, BasePopup
+from ..common import common_images
 
 class ToolWidget(ttk.Frame):
 
