@@ -127,7 +127,7 @@ class BasePost:
                 if editor_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
                     editor_text.compare(mouse_index, "<=", tk.SEL_LAST):
                     self.drag_hover_selection = True
-                    self.drag_button.config(bd=3)
+                    self.drag_button.config(bd=2)
                 else:
                     self.drag_hover_selection = False
                     self.drag_button.config(bd=0)
@@ -135,8 +135,8 @@ class BasePost:
         elif isinstance(hover_widget, ShellText):
             # hover shell 
             shell_text = hover_widget
-            relative_x = x - shell_text.winfo_rootx()
-            relative_y = y - shell_text.winfo_rooty()
+            relative_x = x_root - shell_text.winfo_rootx()
+            relative_y = y_root - shell_text.winfo_rooty()
             # set cursor in shell
             shell_text.focus_set()
             mouse_index = shell_text.index(f"@{relative_x},{relative_y}")
@@ -263,10 +263,18 @@ class BasePost:
                 editor_text.event_generate("<Return>")
 
         elif dragging and not hovering:
-            editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+            # cancel selection
+ 
+            if editor_text.tag_ranges(tk.SEL):
+                ori_sel_first = editor_text.index(tk.SEL_FIRST)
+                ori_sel_last = editor_text.index(tk.SEL_LAST)
+                editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+            
             self.multi_line_insert(editor_text, self.code)
             if self.var_postfix_enter.get():
                 editor_text.event_generate("<Return>")
+
+
 
         elif dragging and hovering:
             editor_text.event_generate("<BackSpace>")
@@ -281,7 +289,7 @@ class BasePost:
         if line_num == 1 :
             # one line (no newline)
                 #print('co chi')
-                text_widget.direct_insert(tk.INSERT,lines[0])
+                text_widget.insert(tk.INSERT,lines[0])
         elif line_num > 1 :
             #multi lines 
             line_count = len(lines)
@@ -296,72 +304,65 @@ class BasePost:
                 #  generate enter if not last item
                 if i < line_count - 1 :
                     text_widget.event_generate("<Return>")
+                    
 
 
 
-    def insert_into_shell(self, text_widget, selecting, dragging, ):
-        content = self.code
-        if not content:
-            return
+    def insert_into_shell(self, shell_text, 
+                           pressing=False, dragging=False,
+                           selecting=False, hovering=False):
+        if pressing and not selecting:
+            if shell_text.compare(tk.INSERT, '>=', 'input_start'):
+                # cursor after input_start
+                self.multi_line_insert(shell_text, self.code)
+                if self.var_postfix_enter.get():
+                    shell_text.event_generate("<Return>")
+            else: # cursor before input_start
+                # append last line
+                shell_text.mark_set(tk.INSERT, 'end-1c')
+                self.multi_line_insert(shell_text, self.code)
+                if self.var_postfix_enter.get():
+                    shell_text.event_generate("<Return>")
+        elif pressing and selecting:
+            if shell_text.compare(tk.SEL_LAST, '>', 'input_start'):
+                if shell_text.compare(tk.SEL_FIRST, '>=', 'input_start'):
+                    shell_text.delete(tk.SEL_FIRST, tk.SEL_LAST)
+                    self.multi_line_insert(shell_text, self.code)
+                    if self.var_postfix_enter.get():
+                        shell_text.event_generate("<Return>")
+                else: # input_start among selection
+                    shell_text.delete('input_start', tk.SEL_LAST)
+                    shell_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                    self.multi_line_insert(shell_text, self.code)
+                    if self.var_postfix_enter.get():
+                        shell_text.event_generate("<Return>")
+                
+        elif dragging and not hovering:
+            if shell_text.tag_ranges(tk.SEL):
+                shell_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
 
-        #if selecting:
-            # selecting default behavier : replace
-        #    text_widget.event_generate("<BackSpace>")
-        # delete selection first
+            if shell_text.compare(tk.INSERT, '>=', 'input_start'):
+                # cursor after input_start
+                self.multi_line_insert(shell_text, self.code)
+                if self.var_postfix_enter.get():
+                    shell_text.event_generate("<Return>")
+
+        elif dragging and hovering:
+            if shell_text.compare(tk.SEL_LAST, '>', 'input_start'):
+                if shell_text.compare(tk.SEL_FIRST, '>=', 'input_start'):
+                    shell_text.delete(tk.SEL_FIRST, tk.SEL_LAST)
+                    self.multi_line_insert(shell_text, self.code)
+                    if self.var_postfix_enter.get():
+                        shell_text.event_generate("<Return>")
+                else: # input_start among selection
+                    shell_text.delete('input_start', tk.SEL_LAST)
+                    shell_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                    self.multi_line_insert(shell_text, self.code)
+                    if self.var_postfix_enter.get():
+                        shell_text.event_generate("<Return>")
+
         
-        #need_to_fix_below()
-        
-        final_index = None
-        # determine final_index
-        if text_widget.compare(tk.INSERT, '>=' , 'input_start'):
-            pass
-        else: # insert before input_start
-            pass
-        if not dragging:
-            if selecting:
-                if text_widget.compare(tk.SEL_FIRST, '>=', 'input_start'):
-                    text_widget.event_generate("<BackSpace>")
-                elif text_widget.compare(tk.SEL_LAST, '>', 'input_start'):
-                    print('fix here')
-                    text_widget.delete('input_start', tk.SEL_LAST)
-                    text_widget.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
-                    text_widget.mark_set(tk.INSERT, 'input_start')
 
-        else: # dragging
-            if selecting:
-                text_widget.event_generate("<BackSpace>")
-     
-        
-        if text_widget.compare(tk.INSERT, '>=' , 'input_start'): 
- 
-            final_index = tk.INSERT
-        else: # insert before input_start append at last position
-
-            final_index = 'end-1c'
-        
-
-        lines = content.split('\n')  
-        line_num = len(lines)          
-        if line_num == 1 :
-            # one line (no newline)
-                text_widget.insert(final_index ,lines[0])
-        elif line_num > 1 :
-            #multi lines 
-            line_count = len(lines)
-            for i, line in enumerate(lines):
-
-                #if else else , need to add a extra backspack
-                if line[:4] == 'else' or line[:4] == 'elif' :
-                    text_widget.event_generate("<BackSpace>")
-
-                text_widget.insert(final_index ,line)
-
-                #  generate enter if not last item
-                if i < line_count - 1 :
-                    text_widget.event_generate("<Return>")
-
-        if self.var_postfix_enter.get():
-            text_widget.event_generate("<Return>")
 
 class BasePopup:
     def popup_init(self):
