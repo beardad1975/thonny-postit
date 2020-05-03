@@ -110,16 +110,29 @@ class ToolPostMixin:
             if self.tool_name == 'backspace' and text_widget.compare(tk.INSERT, '>' , 'input_start'):
                 # just bigger than, no equal than because of backspace del left char
                 if not dragging:
-                    text_widget.event_generate("<BackSpace>")
+                    if selecting:
+                        if text_widget.compare(tk.SEL_FIRST, '>=', 'input_start'):
+                            text_widget.event_generate("<BackSpace>")
+                        elif text_widget.compare(tk.SEL_LAST, '>', 'input_start'):
+                            #print('so co')
+                            text_widget.delete('input_start', tk.SEL_LAST)
+                            text_widget.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                            text_widget.mark_set(tk.INSERT, 'input_start')
+                    else:
+                        text_widget.event_generate("<BackSpace>")
                 else: # dragging
                     if selecting:
                         text_widget.event_generate("<BackSpace>")
                     else:
                         text_widget.delete(tk.INSERT + '-1c')                
             elif self.tool_name == 'undo':
-                text_widget.event_generate('<Up>')
+                if text_widget.compare('input_start', '==','end-1c'):
+                    # empty line
+                    text_widget.event_generate("<Up>")
+                else: # not empty line
+                    text_widget.edit_undo()
             elif self.tool_name == 'redo':
-                text_widget.event_generate('<Down>')
+                text_widget.edit_redo()
             elif self.tool_name == 'enter':
                 if selecting:
                     text_widget.event_generate("<BackSpace>")
@@ -135,35 +148,20 @@ class ToolPostMixin:
             elif self.tool_name == 'dedent':
                 pass # when in shell
 
-        else: # insert befor input_start
+        else: # insert before input_start
             if self.tool_name == 'enter':
                 text_widget.event_generate("<Return>")
             elif self.tool_name == 'backspace':
-                # do no backspace for safety
-                pass
+                # check if any selecting after input_start
+                if text_widget.compare(tk.SEL_LAST, '>', 'input_start'):
+                    text_widget.delete('input_start', tk.SEL_LAST)
+                    text_widget.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                    text_widget.mark_set(tk.INSERT, 'input_start')
             elif self.tool_name == 'undo':
                 text_widget.event_generate('<Up>')
             elif self.tool_name == 'redo':
                 text_widget.event_generate('<Down>')
 
-        #shell = get_shell()
-        #s = ''
-        #if self.tool_name == 'enter':
-        #    origin_text = shell.text.get('input_start','end-1c')
-        #    s = origin_text + '\n'
-        #    shell.submit_python_code(s)
-        #elif self.tool_name == 'backspace':
-            # do nothing. Backspace already sent by upper level function
-        #    pass
-            #input_start_index = shell.text.index('input_start')
-            #insert_index = shell.text.index('insert')
-            #if shell.text.compare(insert_index, '>=' , input_start_index): 
-            #    shell.text.delete('insert-1c')
-                # insert after input_start
-                #before_insert_text = shell.text.get('input_start','insert')
-                #after_insert_text = shell.text.get('insert','end-1c')
-                #s = before_insert_text[:-1] + after_insert_text
-                #shell.submit_python_code(s)      
 
 
 

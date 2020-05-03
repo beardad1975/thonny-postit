@@ -21,7 +21,7 @@ class BaseWidget(ttk.Frame):
         self.enter_image = common_images['enter_small']
 
         ttk.Frame.__init__(self, self.tab.frame)
-        #f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
+        
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         self.postit_button = tk.Button(self,  
                                         relief='flat',
@@ -104,65 +104,55 @@ class BasePost:
         if not self.drag_window: 
             self.create_drag_window()
 
-        self.drag_window.geometry('+{}+{}'.format(event.x_root+10, event.y_root+10))
+        x_root, y_root = event.x_root, event.y_root
 
-        #change insert position in editor and shell
-        x, y = event.x_root, event.y_root
-        target = event.widget.winfo_containing(x, y)
+        self.drag_window.geometry('+{}+{}'.format(x_root+10, y_root+10))
+
+        #change insert over editor or shell (but not postit button)
         
-        if isinstance(target, CodeViewText):
-            rel_x = x - target.winfo_rootx()
-            rel_y = y - target.winfo_rooty()
-            mouse_index = target.index(f"@{rel_x},{rel_y}")
+        hover_widget = event.widget.winfo_containing(x_root, y_root)
+        
+        if isinstance(hover_widget, CodeViewText):
+            # hover editor
+            editor_text = hover_widget
+            relative_x = x_root - editor_text.winfo_rootx()
+            relative_y =  y_root - editor_text.winfo_rooty()
+            mouse_index = editor_text.index(f"@{relative_x},{relative_y}")
+            # set cursor in editor
+            editor_text.focus_set()
+            editor_text.mark_set(tk.INSERT, mouse_index)
 
-            target.focus_set()
-            target.mark_set(tk.INSERT, mouse_index)
-
-            if target.tag_ranges(tk.SEL):
+            if editor_text.tag_ranges(tk.SEL):
                 #check darg hover selection
-                if target.compare(tk.SEL_FIRST, "<=", mouse_index) and \
-                    target.compare(mouse_index, "<=", tk.SEL_LAST):
+                if editor_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                    editor_text.compare(mouse_index, "<=", tk.SEL_LAST):
                     self.drag_hover_selection = True
-                    #print('drag hover selection')
                     self.drag_button.config(bd=3)
                 else:
                     self.drag_hover_selection = False
                     self.drag_button.config(bd=0)
                     
+        elif isinstance(hover_widget, ShellText):
+            # hover shell 
+            shell_text = hover_widget
+            relative_x = x - shell_text.winfo_rootx()
+            relative_y = y - shell_text.winfo_rooty()
+            # set cursor in shell
+            shell_text.focus_set()
+            mouse_index = shell_text.index(f"@{relative_x},{relative_y}")
+            input_start_index = shell_text.index('input_start')
+            if shell_text.compare(mouse_index, '>=', input_start_index):
+                shell_text.mark_set(tk.INSERT, mouse_index)
 
-
-            ###print(index)
-        elif isinstance(target, ShellText):
-            rel_x = x - target.winfo_rootx()
-            rel_y = y - target.winfo_rooty()
-            target.focus_set()
-            mouse_index = target.index(f"@{rel_x},{rel_y}")
-            input_start_index = target.index('input_start')
-            if target.compare(mouse_index, '>=', input_start_index):
-                target.mark_set(tk.INSERT, mouse_index)
-
-                if target.tag_ranges(tk.SEL):
+                if shell_text.tag_ranges(tk.SEL):
                     #check darg hover selection
-                    if target.compare(tk.SEL_FIRST, "<=", mouse_index) and \
-                        target.compare(mouse_index, "<=", tk.SEL_LAST):
+                    if shell_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                        shell_text.compare(mouse_index, "<=", tk.SEL_LAST):
                         self.drag_hover_selection = True
-                        #print('drag hover selection')
                         self.drag_button.config(bd=3)
                     else:
                         self.drag_hover_selection = False
                         self.drag_button.config(bd=0)
-            # insert can't not over input_start
-            # final_index = input_start_index.split('.')[0] + '.'
-            # mouse_column = mouse_index.split('.')[1]
-            # input_start_column = input_start_index.split('.')[1]
-            # if int(mouse_column) >= int(input_start_column):
-            #     final_index += mouse_column
-            # else:
-            #     final_index += input_start_column
-
-            #print(mouse_index, input_start_index, final_index)
-            #print(rel_x, rel_y, target.index('input_start'), target.index(f"@{rel_x},{rel_y}")    )
-            #target.mark_set('insert', final_index)
 
     def create_drag_window(self):
             self.drag_window = tk.Toplevel()
@@ -173,10 +163,9 @@ class BasePost:
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
             text = self.postit_button.cget('text')
-            self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, fg=fg,
-                        font=font, compound=compound, image=image,relief='solid',
-                        bd=0,
-                        )
+            self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 
+                        fg=fg,font=font, compound=compound, image=image,
+                        relief='solid', bd=0 )
             self.drag_button.pack()
             self.drag_window.overrideredirect(True)
             self.drag_window.attributes('-topmost', 'true')
@@ -190,97 +179,109 @@ class BasePost:
         # restore mouse cursor 
 
         # find out post type and target   
-        x, y = event.x_root, event.y_root
-        target = event.widget.winfo_containing(x,y)
-        self.determine_post_target_and_type(target)
+        x_root, y_root = event.x_root, event.y_root
+        hover_widget = event.widget.winfo_containing(x_root,y_root)
+        self.determine_post_place_and_type(hover_widget)
+        #reset hover state 
+        self.drag_hover_selection = False
 
-    def determine_post_target_and_type(self, target):        
-        if target is self.postit_button: 
+    def determine_post_place_and_type(self, hover_widget):
+        """
+      post hover_widget:
+        (1)postit_button : press button
+        (2)editor_text : drag to editor
+        (3)shell_text  : drag to shell
+
+      post type:
+        (1)press postit insert (pressing=True, selecting=False)
+        (2)press postit insert with selection
+                                (pressing=True, selecting=True)
+        (3)drag postit insert (dragging=True, hovering=False)
+        (4)drag postit insert hovering over selection
+                                (dragging=True, hovering=True) 
+         """        
+        if hover_widget is self.postit_button: 
             # postit button pressed
             workbench = get_workbench()
             focus_widget = workbench.focus_get()
             if isinstance(focus_widget, CodeViewText):
-                #focus  inside code editor
-                #editor = get_workbench().get_editor_notebook().get_current_editor()
-                #text = editor.get_text_widget()
-                #text.see('insert')
-                text_widget = focus_widget
-            
-                #check selection and  delete selection
-                #print("targ ranges: ", text_widget.tag_ranges('sel'))
-                if len(text_widget.tag_ranges(tk.SEL))  :
-                    #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-                    #print("selection insert to editor")
-                    self.insert_into_editor(text_widget, 
-                                            selecting=True, dragging=False)
-                else:
-                    #print("inster to editor")
-                    self.insert_into_editor(text_widget, 
-                                            selecting=False, dragging=False)
+                # cursor in editor
+                editor_text = focus_widget 
+                if editor_text.tag_ranges(tk.SEL)  :
+                    # has selection
+                    self.insert_into_editor(editor_text, 
+                                            pressing=True, selecting=True)
+                else:# no selection
+                    self.insert_into_editor(editor_text, 
+                                            pressing=True, selecting=False)
             elif isinstance(focus_widget, ShellText):
-                # focus inside shell view
-                text_widget = focus_widget
-                #check selection and  delete selection
-                if len(text_widget.tag_ranges(tk.SEL)) :
-                    #replace selection 
-                    #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-                    #print("selection insert to shell")
-                    self.insert_into_shell(text_widget, 
-                                            selecting=True, dragging=False)
-                else:
-                    #print("insert to shell")
-                    self.insert_into_shell(text_widget, 
-                                            selecting=False, dragging=False)
-                #self.direct_post()
-        elif isinstance(target, CodeViewText):
-            text_widget = target
-            #print("drag to editor")
+                # cusor in shell
+                shell_text = focus_widget
+                if shell_text.tag_ranges(tk.SEL):
+                    # has selection
+                    self.insert_into_shell(shell_text, 
+                                           pressing=True, selecting=True)
+                else:# no selection
+                    self.insert_into_shell(shell_text, 
+                                           pressing=True, selecting=False)
+        elif isinstance(hover_widget, CodeViewText):
+            # drag to editor 
+            editor_text = hover_widget
+            
             if self.drag_hover_selection:
-                # selecting=True, dragging=True means drag_hover_selection
-                self.insert_into_editor(text_widget, 
-                                    selecting=True, dragging=True)
-                self.drag_hover_selection = False
-            else:
-                self.insert_into_editor(text_widget, 
-                                    selecting=False, dragging=True)
-        elif isinstance(target, ShellText):
-            text_widget = target
-            #print("drag to shell")
+                # drag_hover_selection
+                self.insert_into_editor(editor_text, 
+                                    dragging=True, hovering=True)
+                
+            else:# not drag_hover_selection
+                self.insert_into_editor(editor_text, 
+                                    dragging=True, hovering=False)
+        elif isinstance(hover_widget, ShellText):
+            # drag to shell
+            shell_text = hover_widget
+            
             if self.drag_hover_selection:
-                # selecting=True, dragging=True means drag_hover_selection
-                self.insert_into_shell(text_widget, 
-                                    selecting=True, dragging=True)
-            else:
-                self.insert_into_shell(text_widget, 
-                                    selecting=False, dragging=True)
+                # drag_hover_selection
+                self.insert_into_shell(shell_text, 
+                                    dragging=True, hovering=True)
+            else:# no drag_hover_selection
+                self.insert_into_shell(shell_text, 
+                                    dragging=True, hovering=False)
 
-    #def selection_insert(self,target_type,  text_widget):
-    #    
-    #    if target_type == 'EDITOR':
-    #        self.insert_into_editor(self.code)
-    #    elif target_type == 'SHELL':
-    #        self.insert_into_shell(self.code)
+    def insert_into_editor(self, editor_text, 
+                           pressing=False, dragging=False,
+                           selecting=False, hovering=False):
+        if pressing and not selecting:
+            self.multi_line_insert(editor_text, self.code)
+            if self.var_postfix_enter.get():
+                editor_text.event_generate("<Return>")
 
+        elif pressing and selecting:
+            editor_text.event_generate("<BackSpace>")
+            self.multi_line_insert(editor_text, self.code)
+            if self.var_postfix_enter.get():
+                editor_text.event_generate("<Return>")
 
-    def insert_into_editor(self, text_widget, selecting, dragging):
-        content = self.code
-        if not content:
-            return 
+        elif dragging and not hovering:
+            editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+            self.multi_line_insert(editor_text, self.code)
+            if self.var_postfix_enter.get():
+                editor_text.event_generate("<Return>")
 
-        #editor = get_workbench().get_editor_notebook().get_current_editor()
-        #text_widget = editor.get_text_widget()
-        #text.see('insert')
+        elif dragging and hovering:
+            editor_text.event_generate("<BackSpace>")
+            self.multi_line_insert(editor_text, self.code)
+            if self.var_postfix_enter.get():
+                editor_text.event_generate("<Return>")
 
-        if selecting:
-            # selecting default behavier : replace
-            text_widget.event_generate("<BackSpace>")
-
+    def multi_line_insert(self, text_widget, content):
 
         lines = content.split('\n')  
         line_num = len(lines)          
         if line_num == 1 :
             # one line (no newline)
-                text_widget.insert(tk.INSERT,lines[0])
+                #print('co chi')
+                text_widget.direct_insert(tk.INSERT,lines[0])
         elif line_num > 1 :
             #multi lines 
             line_count = len(lines)
@@ -296,40 +297,48 @@ class BasePost:
                 if i < line_count - 1 :
                     text_widget.event_generate("<Return>")
 
-        if self.var_postfix_enter.get():
-            text_widget.event_generate("<Return>")
 
-    def insert_into_shell(self, text_widget, selecting, dragging):
+
+    def insert_into_shell(self, text_widget, selecting, dragging, ):
         content = self.code
         if not content:
             return
 
-        if selecting:
+        #if selecting:
             # selecting default behavier : replace
-            text_widget.event_generate("<BackSpace>")
-
-        #shell = get_shell()
-        #text_widget = shell.text
-        #s = ''
-            
-        #check insert after input_start
-        #input_start_index = text_widget.index('input_start')
-        #insert_index = text_widget.index(tk.INSERT)
+        #    text_widget.event_generate("<BackSpace>")
+        # delete selection first
+        
+        #need_to_fix_below()
+        
         final_index = None
+        # determine final_index
+        if text_widget.compare(tk.INSERT, '>=' , 'input_start'):
+            pass
+        else: # insert before input_start
+            pass
+        if not dragging:
+            if selecting:
+                if text_widget.compare(tk.SEL_FIRST, '>=', 'input_start'):
+                    text_widget.event_generate("<BackSpace>")
+                elif text_widget.compare(tk.SEL_LAST, '>', 'input_start'):
+                    print('fix here')
+                    text_widget.delete('input_start', tk.SEL_LAST)
+                    text_widget.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                    text_widget.mark_set(tk.INSERT, 'input_start')
+
+        else: # dragging
+            if selecting:
+                text_widget.event_generate("<BackSpace>")
+     
+        
         if text_widget.compare(tk.INSERT, '>=' , 'input_start'): 
-            # insert after input_start
-            #before_insert_text = text_widget.get('input_start',tk.INSERT)
-            #after_insert_text = text_widget.get(tk.INSERT,'end-1c')
-            #s = before_insert_text + content + after_insert_text
+ 
             final_index = tk.INSERT
         else: # insert before input_start append at last position
-        #    print(' In shell : insert before input_start')
-        #    s = text_widget.get('input_start','end-1c') + content
+
             final_index = 'end-1c'
         
-        
-        #text_widget.insert('end-1c',content)
-           
 
         lines = content.split('\n')  
         line_num = len(lines)          
@@ -353,21 +362,6 @@ class BasePost:
 
         if self.var_postfix_enter.get():
             text_widget.event_generate("<Return>")
-
-
-
-
-        #if self.var_postfix_enter.get():
-            #s += '\n'
-        #    text_widget.event_generate("<Return>")
-        #shell.submit_python_code(s)            
-
-    #def drag_to_editor(self):
-    #    self.insert_into_editor(self.code)
-
-    #def drag_to_shell(self):
-    #    self.insert_into_shell(self.code)
-
 
 class BasePopup:
     def popup_init(self):

@@ -147,39 +147,50 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.add_tab('builtin', '內建\n函式','basic')
 
 
-        #basic postit
-        BasePostit(tab_name='basic',
-                           code="dir()",
-                           code_display="dir()",
-                           note="查詢",
-                           postfix_enter=True,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        ###basic postit
+        # EnclosedPostit(tab_name='basic',
+        #                enclosed_head='print(', 
+        #                enclosed_tail=')', 
+        #                code_display=None,
+        #                note='印出',
+        #                postfix_enter=False
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='basic',
-                           code="if _con_ :\n_do_\n",
-                           code_display="if _con_ :\n\t_do_\n",
-                           note="if",
+                           code='"Hello World!"',
+                           code_display='"Hello World!"',
+                           note="字串",
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        EnclosedPostit(tab_name='basic',
-                       enclosed_head='dir(', 
-                       enclosed_tail=')', 
-                       code_display=None,
-                       note='enclosed',
-                       postfix_enter=False
+        BasePostit(tab_name='basic',
+                           code='if _con__:\n_action_\nelse:\n_action_',
+                           code_display='if else',
+                           note="if else",
+                           postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        EnclosedPostit(tab_name='basic',
-                       enclosed_head='print(', 
-                       enclosed_tail=')', 
-                       code_display=None,
-                       note='印出',
-                       postfix_enter=False
+        BasePostit(tab_name='basic',
+                           code="dir()",
+                           code_display="dir()",
+                           note="查詢屬性",
+                           postfix_enter=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
+        # EnclosedPostit(tab_name='basic',
+        #                enclosed_head='help(', 
+        #                enclosed_tail=')', 
+        #                code_display=None,
+        #                note='說明',
+        #                postfix_enter=False
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        #arithmetic postit
+
+
+
+
+
+        ###arithmetic postit
         BasePostit(tab_name='arithmetic',
                            code=" + ",
                            code_display=" + ",
@@ -204,18 +215,18 @@ class PythonPostitView(VerticallyScrollableFrame):
                            note="除",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        EnclosedPostit(tab_name='arithmetic',
-                       enclosed_head='(', 
-                       enclosed_tail=')', 
-                       code_display=None,
-                       note='括號',
-                       postfix_enter=False
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # EnclosedPostit(tab_name='arithmetic',
+        #                enclosed_head='(', 
+        #                enclosed_tail=')', 
+        #                code_display=None,
+        #                note='括號',
+        #                postfix_enter=False
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
-        #logic postit
-        ip = IfPostit(tab_name='logic')
-        ip.pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        ###logic postit
+        # ip = IfPostit(tab_name='logic')
+        # ip.pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
         #notebook event
@@ -225,13 +236,13 @@ class PythonPostitView(VerticallyScrollableFrame):
     def init_toolbar(self):
         self.toolbar = ttk.Frame(self.interior, )
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
-        ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
-        ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT,padx=3, pady=5)
-        ToolPostit(self.toolbar, tool_name='redo').pack(side=tk.RIGHT,padx=3, pady=5)
-        ToolPostit(self.toolbar, tool_name='undo').pack(side=tk.RIGHT,padx=3, pady=5)
-        ToolPostit(self.toolbar, tool_name='indent').pack(side=tk.RIGHT,padx=3, pady=5)
-        ToolPostit(self.toolbar, tool_name='dedent').pack(side=tk.RIGHT,padx=3, pady=5)
-        PilcrowPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        # ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
+        # ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT,padx=3, pady=5)
+        # ToolPostit(self.toolbar, tool_name='redo').pack(side=tk.RIGHT,padx=3, pady=5)
+        # ToolPostit(self.toolbar, tool_name='undo').pack(side=tk.RIGHT,padx=3, pady=5)
+        # ToolPostit(self.toolbar, tool_name='indent').pack(side=tk.RIGHT,padx=3, pady=5)
+        # ToolPostit(self.toolbar, tool_name='dedent').pack(side=tk.RIGHT,padx=3, pady=5)
+        # PilcrowPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
 
 
     def init_notebook(self):
