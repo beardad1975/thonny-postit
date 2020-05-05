@@ -8,54 +8,75 @@ from thonny import get_workbench, get_shell
 from .tool_postit import ToolWidget, ToolCodeMixin
 from ..base_postit import BaseCode, BasePost, BasePopup
 
-
-class UndoToolPostMixin:
+class IndentToolPostMixin:
     def insert_into_editor(self, editor_text, 
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
-        
-        editor_text.edit_undo()
+        if pressing and not selecting:
+            editor_text.indent_region()
+
+        elif pressing and selecting:
+            editor_text.indent_region()
+
+        elif dragging and not hovering:
+            if editor_text.tag_ranges(tk.SEL):
+                editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+            editor_text.indent_region()
+            
+
+        elif dragging and hovering:
+            editor_text.indent_region()
 
     def insert_into_shell(self, shell_text, 
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
-        if shell_text.compare('input_start', '==','end-1c'):
-            # empty line
-            shell_text.event_generate("<Up>")
-        else: # not empty line
-            shell_text.edit_undo()
+            pass
 
-class RedoToolPostMixin:
+class DedentToolPostMixin:
     def insert_into_editor(self, editor_text, 
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
-        
-        editor_text.edit_redo()
+        if pressing and not selecting:
+            editor_text.dedent_region()
+
+        elif pressing and selecting:
+            editor_text.dedent_region()
+
+        elif dragging and not hovering:
+            if editor_text.tag_ranges(tk.SEL):
+                editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+            editor_text.dedent_region()
+            
+
+        elif dragging and hovering:
+            editor_text.dedent_region()
 
     def insert_into_shell(self, shell_text, 
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
-        shell_text.edit_redo()
+            pass
 
 
-class UndoToolPostit(ToolWidget, 
+
+class IndentToolPostit(ToolWidget, 
                  ToolCodeMixin, BaseCode,
-                 UndoToolPostMixin, BasePost, 
+                 IndentToolPostMixin, BasePost, 
                  BasePopup):
     """ composite and mixin approach postit"""
     def __init__(self, master):
-        self.widget_init(master, 'undo')
+        self.widget_init(master, 'indent')
         self.code_init()
         self.post_init()
         #self.popup_init()
 
-class RedoToolPostit(ToolWidget, 
+class DedentToolPostit(ToolWidget, 
                  ToolCodeMixin, BaseCode,
-                 RedoToolPostMixin, BasePost, 
+                 DedentToolPostMixin, BasePost, 
                  BasePopup):
     """ composite and mixin approach postit"""
     def __init__(self, master):
-        self.widget_init(master, 'redo')
+        self.widget_init(master, 'dedent')
         self.code_init()
         self.post_init()
         #self.popup_init()
+

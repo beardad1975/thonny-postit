@@ -5,14 +5,16 @@ from thonny.codeview import CodeViewText
 from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
-from .base_postit import BaseCode, BasePost, BasePopup
+from ..base_postit import BaseCode, BasePost, BasePopup
 from .tool_postit import ToolWidget, ToolCodeMixin
-from .common import common_images
+from ..common import common_images
 
 
 class PilcrowPostMixin:
 
-    def insert_into_editor(self, text_widget, selecting, dragging):
+    def insert_into_editor(self, editor_text, 
+                            pressing=False, dragging=False,
+                            selecting=False, hovering=False):
         # get text_widget again for sure
         editor = get_workbench().get_editor_notebook().get_current_editor()
         code_text_widget = editor.get_text_widget()
@@ -65,15 +67,17 @@ class PilcrowPostMixin:
             code_text_widget.unbind('<Button-1>')
             #print("cancel failsafe event")
 
-    def insert_into_shell(self, text_widget, selecting, dragging):
+    def insert_into_shell(self, shell_text, 
+                            pressing=False, dragging=False,
+                            selecting=False, hovering=False):
         if not dragging:
-            self.insert_into_editor(text_widget, selecting, dragging)
+            self.insert_into_editor(shell_text)
 
     def clickedWhenReadOnlyMode(self, event):
         self.insert_into_editor(event.widget, selecting=False, dragging=False)
 
 
-class PilcrowPostit(ToolWidget, 
+class PilcrowToolPostit(ToolWidget, 
                  ToolCodeMixin, BaseCode,
                  PilcrowPostMixin, BasePost, 
                  BasePopup):

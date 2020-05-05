@@ -12,11 +12,13 @@ from thonny.common import ToplevelCommand
 
 from .tools.enter_tool_postit import EnterToolPostit
 from .tools.backspace_tool_postit import BackspaceToolPostit
-from .tools.undo_tool_postit import UndoToolPostit
+from .tools.undo_tool_postit import UndoToolPostit, RedoToolPostit
+from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
+from .tools.pilcrow_tool_postit import PilcrowToolPostit
 
 from .base_postit import BasePostit
 #from .tool_postit import ToolPostit
-#from .pilcrow_postit import PilcrowPostit
+
 from .enclosed_postit import EnclosedPostit
 from .general_postit import GeneralPostit
 from .property_postit import  PropertyPostit
@@ -151,14 +153,14 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.add_tab('builtin', '內建\n函式','basic')
 
 
-        ###basic postit
-        # EnclosedPostit(tab_name='basic',
-        #                enclosed_head='print(', 
-        #                enclosed_tail=')', 
-        #                code_display=None,
-        #                note='印出',
-        #                postfix_enter=False
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        ##basic postit
+        EnclosedPostit(tab_name='basic',
+                       enclosed_head='print(', 
+                       enclosed_tail=')', 
+                       code_display=None,
+                       note='印出',
+                       postfix_enter=False
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='basic',
                            code='"Hello World!"',
@@ -181,13 +183,13 @@ class PythonPostitView(VerticallyScrollableFrame):
                            postfix_enter=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        # EnclosedPostit(tab_name='basic',
-        #                enclosed_head='help(', 
-        #                enclosed_tail=')', 
-        #                code_display=None,
-        #                note='說明',
-        #                postfix_enter=False
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        EnclosedPostit(tab_name='basic',
+                       enclosed_head='help(', 
+                       enclosed_tail=')', 
+                       code_display=None,
+                       note='說明',
+                       postfix_enter=False
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
 
@@ -242,14 +244,19 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.toolbar.pack(side=tk.TOP, fill=tk.X)
         EnterToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         BackspaceToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        RedoToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         UndoToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        IndentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        DedentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        PilcrowToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+
         # ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='redo').pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='undo').pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='indent').pack(side=tk.RIGHT,padx=3, pady=5)
         # ToolPostit(self.toolbar, tool_name='dedent').pack(side=tk.RIGHT,padx=3, pady=5)
-        # PilcrowPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+
 
 
     def init_notebook(self):

@@ -20,7 +20,8 @@ class EnclosedWidget(ttk.Frame):
 
         ttk.Frame.__init__(self, self.tab.frame)
         #f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
-        self.head_decoration_label = tk.Label(self, text='', bg=self.tab.fill_color)
+        self.head_decoration_label = tk.Label(self, text='', 
+                                        bg=self.tab.fill_color)
         self.head_decoration_label.pack(side=tk.LEFT, anchor='w',padx=2)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -38,7 +39,8 @@ class EnclosedWidget(ttk.Frame):
                                         )
         self.postit_button.pack(side=tk.LEFT, anchor='w')
         # a type label for distinguish
-        self.tail_decoration_label = tk.Label(self, text='', bg=self.tab.fill_color)
+        self.tail_decoration_label = tk.Label(self, text='', 
+                                            bg=self.tab.fill_color)
         self.tail_decoration_label.pack(side=tk.LEFT, anchor='w',padx=2)
 
         self.note_label = ttk.Label(self, text='' )
@@ -71,59 +73,156 @@ class EnclosedCodeMixin:
 
 
 class EnclosedPostMixin:
-    def insert_into_editor(self, text_widget, selecting, dragging):
-        if selecting:
+    def insert_into_editor(self, editor_text, 
+                           pressing=False, dragging=False,
+                           selecting=False, hovering=False):
+        if pressing and not selecting:
+            # insert enclosed and keep cursor between
+            editor_text.insert(tk.INSERT, self.enclosed_head)
+            stored_index = editor_text.index(tk.INSERT)
+            editor_text.insert(tk.INSERT, self.enclosed_tail)
+            #keep insert cursor in the stored_index 
+            editor_text.mark_set(tk.INSERT, stored_index)
+        elif pressing and selecting:
             # enclosed slection
-            text_widget.insert(tk.SEL_FIRST, self.enclosed_head)
-            stored_index = text_widget.index(tk.SEL_LAST)
-            text_widget.insert(tk.SEL_LAST, self.enclosed_tail)
+            editor_text.insert(tk.SEL_FIRST, self.enclosed_head)
+            stored_index = editor_text.index(tk.SEL_LAST)
+            editor_text.insert(tk.SEL_LAST, self.enclosed_tail)
             #keep insert cursor in the stored_index 
-            text_widget.mark_set(tk.INSERT, stored_index)
-            text_widget.tag_remove(tk.SEL,'0.0', tk.END)
-
-        else: # no selecting    
-            text_widget.insert(tk.INSERT, self.enclosed_head)
-            stored_index = text_widget.index(tk.INSERT)
-            text_widget.insert(tk.INSERT, self.enclosed_tail)
+            editor_text.mark_set(tk.INSERT, stored_index)
+            editor_text.tag_remove(tk.SEL,'0.0', tk.END)
+        elif dragging and not hovering:
+            # insert enclosed and keep cursor between
+            editor_text.insert(tk.INSERT, self.enclosed_head)
+            stored_index = editor_text.index(tk.INSERT)
+            editor_text.insert(tk.INSERT, self.enclosed_tail)
             #keep insert cursor in the stored_index 
-            text_widget.mark_set(tk.INSERT, stored_index)
+            editor_text.mark_set(tk.INSERT, stored_index)
+        elif dragging and hovering:
+            # enclosed slection
+            editor_text.insert(tk.SEL_FIRST, self.enclosed_head)
+            stored_index = editor_text.index(tk.SEL_LAST)
+            editor_text.insert(tk.SEL_LAST, self.enclosed_tail)
+            #keep insert cursor in the stored_index 
+            editor_text.mark_set(tk.INSERT, stored_index)
+            editor_text.tag_remove(tk.SEL,'0.0', tk.END)
 
         if self.var_postfix_enter.get():
             text_widget.event_generate("<Return>")
 
-    def insert_into_shell(self, text_widget, selecting, dragging):
-        if text_widget.compare(tk.INSERT, '>=' , 'input_start'):
-            if selecting:
-                # enclosed slection
-                text_widget.insert(tk.SEL_FIRST, self.enclosed_head)
-                stored_index = text_widget.index(tk.SEL_LAST)
-                text_widget.insert(tk.SEL_LAST, self.enclosed_tail)
-                #keep insert cursor in the stored_index 
-                text_widget.mark_set(tk.INSERT, stored_index)
-                text_widget.tag_remove(tk.SEL,'0.0', tk.END)
+        # if selecting:
+        #     # enclosed slection
+        #     text_widget.insert(tk.SEL_FIRST, self.enclosed_head)
+        #     stored_index = text_widget.index(tk.SEL_LAST)
+        #     text_widget.insert(tk.SEL_LAST, self.enclosed_tail)
+        #     #keep insert cursor in the stored_index 
+        #     text_widget.mark_set(tk.INSERT, stored_index)
+        #     text_widget.tag_remove(tk.SEL,'0.0', tk.END)
 
-            else: # no selecting    
-                text_widget.insert(tk.INSERT, self.enclosed_head)
-                stored_index = text_widget.index(tk.INSERT)
-                text_widget.insert(tk.INSERT, self.enclosed_tail)
-                #keep insert cursor in the stored_index 
-                text_widget.mark_set(tk.INSERT, stored_index)
-        else: # insert before input start
-            if selecting:
-                pass
-            else: # not selecting
-                text_widget.mark_set(tk.INSERT, 'end-1c')
+        # else: # no selecting    
+        #     text_widget.insert(tk.INSERT, self.enclosed_head)
+        #     stored_index = text_widget.index(tk.INSERT)
+        #     text_widget.insert(tk.INSERT, self.enclosed_tail)
+        #     #keep insert cursor in the stored_index 
+        #     text_widget.mark_set(tk.INSERT, stored_index)
 
-                text_widget.insert(tk.INSERT, self.enclosed_head)
-                stored_index = text_widget.index(tk.INSERT)
-                text_widget.insert(tk.INSERT, self.enclosed_tail)
-                #keep insert cursor in the stored_index 
-                text_widget.mark_set(tk.INSERT, stored_index)
+        # if self.var_postfix_enter.get():
+        #     text_widget.event_generate("<Return>")
 
+    def insert_into_shell(self, shell_text, 
+                           pressing=False, dragging=False,
+                           selecting=False, hovering=False):
 
+        if pressing and not selecting:
+            if shell_text.compare(tk.INSERT, '>=' , 'input_start'):
+                # just insert 
+                shell_text.insert(tk.INSERT, self.enclosed_head)
+                stored_index = shell_text.index(tk.INSERT)
+                #keep insert cursor in the middle
+                shell_text.insert(tk.INSERT, self.enclosed_tail)
+                shell_text.mark_set(tk.INSERT, stored_index)
 
+        elif pressing and selecting:
+            # check selection after input_start
+            if shell_text.compare(tk.SEL_LAST, '>', 'input_start'):
+                if shell_text.compare(tk.SEL_FIRST, '>=', 'input_start'):
+                    # enclosed selection(original )
+                    shell_text.insert(tk.SEL_FIRST, self.enclosed_head)
+                    stored_index = shell_text.index(tk.SEL_LAST)
+                    #keep insert cursor in the last of selection
+                    shell_text.insert(tk.SEL_LAST, self.enclosed_tail) 
+                    shell_text.mark_set(tk.INSERT, stored_index)
+                    shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)
+                else: # enclosed selection(truncated )
+                    shell_text.insert('input_start', self.enclosed_head)
+                    stored_index = shell_text.index(tk.SEL_LAST)
+                    #keep insert cursor in the last of selection
+                    shell_text.insert(tk.SEL_LAST, self.enclosed_tail) 
+                    shell_text.mark_set(tk.INSERT, stored_index)
+                    shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)                    
+
+        elif dragging and not hovering:
+            if shell_text.compare(tk.INSERT, '>=' , 'input_start'):
+                # just insert 
+                shell_text.insert(tk.INSERT, self.enclosed_head)
+                stored_index = shell_text.index(tk.INSERT)
+                #keep insert cursor in the middle
+                shell_text.insert(tk.INSERT, self.enclosed_tail)
+                shell_text.mark_set(tk.INSERT, stored_index)
+
+        elif dragging and hovering:
+            # check selection after input_start
+            if shell_text.compare(tk.SEL_LAST, '>', 'input_start'):
+                if shell_text.compare(tk.SEL_FIRST, '>=', 'input_start'):
+                    # enclosed selection(original )
+                    shell_text.insert(tk.SEL_FIRST, self.enclosed_head)
+                    stored_index = shell_text.index(tk.SEL_LAST)
+                    #keep insert cursor in the last of selection
+                    shell_text.insert(tk.SEL_LAST, self.enclosed_tail) 
+                    shell_text.mark_set(tk.INSERT, stored_index)
+                    shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)
+                else: # enclosed selection(truncated )
+                    shell_text.insert('input_start', self.enclosed_head)
+                    stored_index = shell_text.index(tk.SEL_LAST)
+                    #keep insert cursor in the last of selection
+                    shell_text.insert(tk.SEL_LAST, self.enclosed_tail) 
+                    shell_text.mark_set(tk.INSERT, stored_index)
+                    shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)           
+        
         if self.var_postfix_enter.get():
             text_widget.event_generate("<Return>")
+
+        # if shell_text.compare(tk.INSERT, '>=' , 'input_start'):
+        #     if selecting:
+        #         # enclosed slection
+        #         shell_text.insert(tk.SEL_FIRST, self.enclosed_head)
+        #         stored_index = shell_text.index(tk.SEL_LAST)
+        #         shell_text.insert(tk.SEL_LAST, self.enclosed_tail)
+        #         #keep insert cursor in the stored_index 
+        #         shell_text.mark_set(tk.INSERT, stored_index)
+        #         shell_text.tag_remove(tk.SEL,'0.0', tk.END)
+
+        #     else: # no selecting    
+        #         shell_text.insert(tk.INSERT, self.enclosed_head)
+        #         stored_index = shell_text.index(tk.INSERT)
+        #         shell_text.insert(tk.INSERT, self.enclosed_tail)
+        #         #keep insert cursor in the stored_index 
+        #         shell_text.mark_set(tk.INSERT, stored_index)
+        # else: # insert before input start
+        #     if selecting:
+        #         pass
+        #     else: # not selecting
+        #         shell_text.mark_set(tk.INSERT, 'end-1c')
+
+        #         shell_text.insert(tk.INSERT, self.enclosed_head)
+        #         stored_index = shell_text.index(tk.INSERT)
+        #         shell_text.insert(tk.INSERT, self.enclosed_tail)
+        #         #keep insert cursor in the stored_index 
+        #         shell_text.mark_set(tk.INSERT, stored_index)
+
+
+
+
 
 
 class EnclosedPostit(EnclosedWidget, 

@@ -97,12 +97,14 @@ class BasePost:
         # drag and press event
         self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
         self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
+        self.postit_button.config(cursor='arrow')
 
     def on_mouse_drag(self, event):
         ###print('drag ...')
         #create drag window
         if not self.drag_window: 
             self.create_drag_window()
+            self.postit_button.config(cursor='hand2')
 
         x_root, y_root = event.x_root, event.y_root
 
@@ -175,6 +177,7 @@ class BasePost:
         if self.drag_window:
             self.drag_window.destroy()
             self.drag_window = None
+            self.postit_button.config(cursor='arrow')
             
         # restore mouse cursor 
 
