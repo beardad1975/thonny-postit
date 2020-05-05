@@ -147,11 +147,13 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         #add notebook tabs
         self.add_tab('basic', '基本','basic')
-        self.add_tab('arithmetic', '運算','basic')
-        self.add_tab('text', '文字','basic')
-        self.add_tab('logic', '邏輯','basic')
+        self.add_tab('symbol', '符號','basic')
         self.add_tab('number', '數字','basic')
-        self.add_tab('builtin', '內建\n函式','basic')
+        self.add_tab('text', '文字','basic')
+        self.add_tab('flow', '流程','basic')
+        self.add_tab('pyautogui', '自動化\n模組','module')
+
+
 
 
         ##basic postit
@@ -197,32 +199,40 @@ class PythonPostitView(VerticallyScrollableFrame):
 
 
 
-        ###arithmetic postit
-        BasePostit(tab_name='arithmetic',
+        ###symbol postit
+        BasePostit(tab_name='symbol',
                            code=" + ",
-                           code_display=" + ",
+                           code_display="+",
                            note="加",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='arithmetic',
+        BasePostit(tab_name='symbol',
                            code=" - ",
-                           code_display=" - ",
+                           code_display="-",
                            note="減",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='arithmetic',
+        BasePostit(tab_name='symbol',
                            code=" * ",
-                           code_display=" * ",
+                           code_display="*",
                            note="乘",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='arithmetic',
+        BasePostit(tab_name='symbol',
                            code=" / ",
-                           code_display=" / ",
+                           code_display="/",
                            note="除",
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        # EnclosedPostit(tab_name='arithmetic',
+        BasePostit(tab_name='pyautogui',
+                           code="import pyautogui",
+                           code_display="import pyautogui",
+                           note="匯入模組功能",
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+
+
+        # EnclosedPostit(tab_name='symbol',
         #                enclosed_head='(', 
         #                enclosed_tail=')', 
         #                code_display=None,
