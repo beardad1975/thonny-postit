@@ -15,8 +15,16 @@ class CommentToolPostMixin:
     def insert_into_editor(self, editor_text, 
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
+
+        if pressing:
             _toggle_selection_comment(editor_text)
 
+        elif dragging and not hovering:
+            if editor_text.tag_ranges(tk.SEL):
+                editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+                _toggle_selection_comment(editor_text)
+            else: # while dragging , no selection area
+                _toggle_selection_comment(editor_text)
 
 
     def insert_into_shell(self, shell_text, 
@@ -25,7 +33,7 @@ class CommentToolPostMixin:
             pass
 
 
-class CommentToolPostit(ToolWidget, 
+class CommentToolPostit(ToolWidget,     
                  ToolCodeMixin, BaseCode,
                  CommentToolPostMixin, BasePost, 
                  BasePopup):
