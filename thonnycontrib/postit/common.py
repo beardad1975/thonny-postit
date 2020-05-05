@@ -27,6 +27,7 @@ load_image('undo')
 load_image('redo')
 load_image('indent')
 load_image('dedent')
+load_image('comment')
 
 #
 

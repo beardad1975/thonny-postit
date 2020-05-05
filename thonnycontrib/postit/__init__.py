@@ -14,6 +14,7 @@ from .tools.enter_tool_postit import EnterToolPostit
 from .tools.backspace_tool_postit import BackspaceToolPostit
 from .tools.undo_tool_postit import UndoToolPostit, RedoToolPostit
 from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
+from .tools.comment_tool_postit import CommentToolPostit
 from .tools.pilcrow_tool_postit import PilcrowToolPostit
 
 from .base_postit import BasePostit
@@ -248,6 +249,7 @@ class PythonPostitView(VerticallyScrollableFrame):
         UndoToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         IndentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         DedentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        CommentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         PilcrowToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
 
         # ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
