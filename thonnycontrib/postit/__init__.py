@@ -16,6 +16,7 @@ from .tools.undo_tool_postit import UndoToolPostit, RedoToolPostit
 from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
 from .tools.comment_tool_postit import CommentToolPostit
 from .tools.pilcrow_tool_postit import PilcrowToolPostit
+from .tools.variables_tool_postit import VariableMenuPostit
 
 from .base_postit import BasePostit
 #from .tool_postit import ToolPostit
@@ -27,7 +28,7 @@ from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
 from .if_postit import IfPostit
 from .while_postit import WhilePostit
-from .common import common_postit_tabs
+from .common import common_postit_tabs, common_vars_postit
 
 ### unicode return symbol \u23ce
 
@@ -251,23 +252,27 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.notebook.bind('<Button-1>',self.on_tab_click)
  
     def init_toolbar(self):
-        self.toolbar = ttk.Frame(self.interior, )
-        self.toolbar.pack(side=tk.TOP, fill=tk.X)
-        EnterToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        BackspaceToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        RedoToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        UndoToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        IndentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        DedentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        CommentToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        PilcrowToolPostit(self.toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        self.var_toolbar = ttk.Frame(self.interior)
+        self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
+        
+        # keep reference in common
+        common_vars_postit = VariableMenuPostit(self.var_toolbar)
+        common_vars_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
-        # ToolPostit(self.toolbar, tool_name='enter').pack(side=tk.RIGHT,padx=3, pady=5)
-        # ToolPostit(self.toolbar, tool_name='backspace').pack(side=tk.RIGHT,padx=3, pady=5)
-        # ToolPostit(self.toolbar, tool_name='redo').pack(side=tk.RIGHT,padx=3, pady=5)
-        # ToolPostit(self.toolbar, tool_name='undo').pack(side=tk.RIGHT,padx=3, pady=5)
-        # ToolPostit(self.toolbar, tool_name='indent').pack(side=tk.RIGHT,padx=3, pady=5)
-        # ToolPostit(self.toolbar, tool_name='dedent').pack(side=tk.RIGHT,padx=3, pady=5)
+
+        self.edit_toolbar = ttk.Frame(self.interior)
+        self.edit_toolbar.pack(side=tk.TOP, fill=tk.X)
+        
+        
+        EnterToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        RedoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        UndoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        IndentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        DedentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        CommentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        PilcrowToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+
 
 
 

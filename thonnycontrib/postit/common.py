@@ -36,6 +36,11 @@ load_image('variable_dot')
 load_image('variable_get')
 
 #  
+# setup vars counter and default
+common_vars_postit = None
+
+
+
 
 
 
