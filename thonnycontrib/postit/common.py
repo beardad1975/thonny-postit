@@ -5,6 +5,7 @@ from PIL import Image, ImageTk
 
 from keyword import iskeyword
 
+from collections import Counter
 
 
 
@@ -28,6 +29,17 @@ load_image('redo')
 load_image('indent')
 load_image('dedent')
 load_image('comment')
+load_image('variable_add')
+load_image('variable_assign')
+load_image('variable_comma')
+load_image('variable_dot')
+load_image('variable_get')
+
+#  
+
+
+
+
 
 #
 
