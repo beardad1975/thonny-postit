@@ -16,7 +16,9 @@ from .tools.undo_tool_postit import UndoToolPostit, RedoToolPostit
 from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
 from .tools.comment_tool_postit import CommentToolPostit
 from .tools.pilcrow_tool_postit import PilcrowToolPostit
-from .tools.variables_tool_postit import VariableMenuPostit
+from .tools.variables_tool_postit import ( VariableMenuPostit,
+        VariableAddToolPostit
+    )      
 
 from .base_postit import BasePostit
 #from .tool_postit import ToolPostit
@@ -256,8 +258,14 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
         
         # keep reference in common
+
+        VariableAddToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
+                padx=3, pady=5)
+
         common_vars_postit = VariableMenuPostit(self.var_toolbar)
         common_vars_postit.pack(side=tk.RIGHT,padx=3, pady=5)
+
+
 
 
         self.edit_toolbar = ttk.Frame(self.interior)

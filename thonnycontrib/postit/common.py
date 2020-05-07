@@ -39,7 +39,7 @@ load_image('variable_get')
 # setup vars counter and default
 common_vars_postit = None
 
-
+common_default_vars = ('變數x','變數y','名字','位置')
 
 
 
