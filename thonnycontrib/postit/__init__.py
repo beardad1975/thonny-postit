@@ -5,10 +5,15 @@ from tkinter import ttk
 from pathlib import Path
 from PIL import Image, ImageTk
 
+
 from thonny import get_workbench, get_shell, get_runner
-from thonny.codeview import CodeViewText
+
 from thonny.ui_utils import VerticallyScrollableFrame
 from thonny.common import ToplevelCommand
+
+#monkey patching (code view text)
+#from . import monkey_patch
+
 
 from .tools.enter_tool_postit import EnterToolPostit
 from .tools.backspace_tool_postit import BackspaceToolPostit
@@ -353,11 +358,18 @@ def try_thonny():
     #     )
     # )
 
+
+
+
+
+
 def load_plugin():
     """postit plugin start point"""
 
     #handle menu
     #get_workbench().get_menu("postit", "abc")
+    
+    
 
 
     #get_workbench().add_view(PythonView, '便貼python', 'se')
