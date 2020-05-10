@@ -37,11 +37,13 @@ load_image('variable_get')
 
 #  
 # setup vars counter and default
-common_vars_postit = None
+
 
 common_default_vars = ('變數x','變數y','名字','位置')
 
-
+# share postit . should be assign carefully
+# beacause create later. So do not use 'from common import share_vars_postit' 
+share_vars_postit = None
 
 
 

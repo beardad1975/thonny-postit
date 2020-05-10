@@ -255,13 +255,13 @@ class BasePost:
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
         if pressing and not selecting:
-            self.multi_line_insert(editor_text, self.code)
+            self.content_insert(editor_text, self.code)
             if self.var_postfix_enter.get():
                 editor_text.event_generate("<Return>")
 
         elif pressing and selecting:
             editor_text.event_generate("<BackSpace>")
-            self.multi_line_insert(editor_text, self.code)
+            self.content_insert(editor_text, self.code)
             if self.var_postfix_enter.get():
                 editor_text.event_generate("<Return>")
 
@@ -273,7 +273,7 @@ class BasePost:
                 ori_sel_last = editor_text.index(tk.SEL_LAST)
                 editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
             
-            self.multi_line_insert(editor_text, self.code)
+            self.content_insert(editor_text, self.code)
             if self.var_postfix_enter.get():
                 editor_text.event_generate("<Return>")
 
@@ -281,11 +281,11 @@ class BasePost:
 
         elif dragging and hovering:
             editor_text.event_generate("<BackSpace>")
-            self.multi_line_insert(editor_text, self.code)
+            self.content_insert(editor_text, self.code)
             if self.var_postfix_enter.get():
                 editor_text.event_generate("<Return>")
 
-    def multi_line_insert(self, text_widget, content):
+    def content_insert(self, text_widget, content):
 
         lines = content.split('\n')  
         line_num = len(lines)          
@@ -317,26 +317,26 @@ class BasePost:
         if pressing and not selecting:
             if shell_text.compare(tk.INSERT, '>=', 'input_start'):
                 # cursor after input_start
-                self.multi_line_insert(shell_text, self.code)
+                self.content_insert(shell_text, self.code)
                 if self.var_postfix_enter.get():
                     shell_text.event_generate("<Return>")
             else: # cursor before input_start
                 # append last line
                 shell_text.mark_set(tk.INSERT, 'end-1c')
-                self.multi_line_insert(shell_text, self.code)
+                self.content_insert(shell_text, self.code)
                 if self.var_postfix_enter.get():
                     shell_text.event_generate("<Return>")
         elif pressing and selecting:
             if shell_text.compare(tk.SEL_LAST, '>', 'input_start'):
                 if shell_text.compare(tk.SEL_FIRST, '>=', 'input_start'):
                     shell_text.delete(tk.SEL_FIRST, tk.SEL_LAST)
-                    self.multi_line_insert(shell_text, self.code)
+                    self.content_insert(shell_text, self.code)
                     if self.var_postfix_enter.get():
                         shell_text.event_generate("<Return>")
                 else: # input_start among selection
                     shell_text.delete('input_start', tk.SEL_LAST)
                     shell_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
-                    self.multi_line_insert(shell_text, self.code)
+                    self.content_insert(shell_text, self.code)
                     if self.var_postfix_enter.get():
                         shell_text.event_generate("<Return>")
                 
@@ -346,7 +346,7 @@ class BasePost:
 
             if shell_text.compare(tk.INSERT, '>=', 'input_start'):
                 # cursor after input_start
-                self.multi_line_insert(shell_text, self.code)
+                self.content_insert(shell_text, self.code)
                 if self.var_postfix_enter.get():
                     shell_text.event_generate("<Return>")
 
@@ -354,13 +354,13 @@ class BasePost:
             if shell_text.compare(tk.SEL_LAST, '>', 'input_start'):
                 if shell_text.compare(tk.SEL_FIRST, '>=', 'input_start'):
                     shell_text.delete(tk.SEL_FIRST, tk.SEL_LAST)
-                    self.multi_line_insert(shell_text, self.code)
+                    self.content_insert(shell_text, self.code)
                     if self.var_postfix_enter.get():
                         shell_text.event_generate("<Return>")
                 else: # input_start among selection
                     shell_text.delete('input_start', tk.SEL_LAST)
                     shell_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
-                    self.multi_line_insert(shell_text, self.code)
+                    self.content_insert(shell_text, self.code)
                     if self.var_postfix_enter.get():
                         shell_text.event_generate("<Return>")
 

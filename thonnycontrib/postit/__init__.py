@@ -22,7 +22,9 @@ from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
 from .tools.comment_tool_postit import CommentToolPostit
 from .tools.pilcrow_tool_postit import PilcrowToolPostit
 from .tools.variables_tool_postit import ( VariableMenuPostit,
-        VariableAddToolPostit
+        VariableAddToolPostit, VariableGetToolPostit,
+        VariableAssignToolPostit, VariableCommaToolPostit,
+        VariableDotToolPostit,
     )      
 
 from .base_postit import BasePostit
@@ -35,7 +37,8 @@ from .symbol_postit import SymbolPostit
 from .variable_postit import VariablePostit
 from .if_postit import IfPostit
 from .while_postit import WhilePostit
-from .common import common_postit_tabs, common_vars_postit
+from .common import common_postit_tabs
+from . import common
 
 ### unicode return symbol \u23ce
 
@@ -264,11 +267,23 @@ class PythonPostitView(VerticallyScrollableFrame):
         
         # keep reference in common
 
+        VariableGetToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
+                padx=3, pady=5)
+
+        VariableAssignToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
+                padx=3, pady=5)
+
+        VariableCommaToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
+                padx=3, pady=5)
+
+        VariableDotToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
+                padx=3, pady=5)
+
         VariableAddToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
                 padx=3, pady=5)
 
-        common_vars_postit = VariableMenuPostit(self.var_toolbar)
-        common_vars_postit.pack(side=tk.RIGHT,padx=3, pady=5)
+        common.share_vars_postit = VariableMenuPostit(self.var_toolbar)
+        common.share_vars_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
 
 
