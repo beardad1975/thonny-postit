@@ -39,11 +39,28 @@ load_image('variable_get')
 # setup vars counter and default
 
 
-common_default_vars = ('變數x','變數y','名字','位置')
+#common_default_vars = ('變數x','變數y','名字','位置')
+common_default_vars =()
 
 # share postit . should be assign carefully
 # beacause create later. So do not use 'from common import share_vars_postit' 
 share_vars_postit = None
+share_var_get_postit = None
+share_var_assign_postit = None
+share_var_comma_postit = None
+share_var_dot_postit = None
+
+def enable_var_buttons():
+    share_var_get_postit.postit_button.config(state='normal')
+    share_var_assign_postit.postit_button.config(state='normal')
+    share_var_comma_postit.postit_button.config(state='normal')
+    share_var_dot_postit.postit_button.config(state='normal')
+
+def disable_var_buttons():
+    share_var_get_postit.postit_button.config(state='disable')
+    share_var_assign_postit.postit_button.config(state='disable')
+    share_var_comma_postit.postit_button.config(state='disable')
+    share_var_dot_postit.postit_button.config(state='disable')
 
 
 

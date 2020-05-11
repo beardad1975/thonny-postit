@@ -37,7 +37,7 @@ class VariableMenuWidget(ttk.Frame):
 
         self.vars_combobox.pack(side=tk.LEFT, anchor='w')
 
-        self.vars_combobox.current(0)
+        #self.vars_combobox.current(0)
 
         self.vars_combobox.bind('<<ComboboxSelected>>', self.on_combo_select)
         #self.vars_combobox.bind('<<Selection>>', self.on_select)
@@ -49,14 +49,28 @@ class VariableMenuWidget(ttk.Frame):
 
     def restore_default_vars(self):
         if self.vars_counter:
-            del self.vars_counter   
-        self.vars_counter = Counter(common_default_vars)
-        self.update_vars_menu()
+            del self.vars_counter
+
+        if common_default_vars:   
+            self.vars_counter = Counter(common_default_vars)
+            self.update_vars_menu()
+        else:
+            self.vars_counter = Counter()
+            self.update_vars_menu()
 
     def update_vars_menu(self):
-        vars_list =[v for v,_ in self.vars_counter.most_common(self.vars_limit)]
-        self.vars_combobox.config(values=vars_list)
-        self.vars_combobox.current(0)
+        if len(self.vars_counter):
+            vars_list =[v for v,_ in self.vars_counter.most_common(self.vars_limit)]
+            self.vars_combobox.config(values=vars_list)
+            self.vars_combobox.current(0)
+            #
+            #print('here enable')
+            common.enable_var_buttons()
+        else:
+            self.vars_combobox.config(values='')
+            self.tk_var.set('')
+            #
+            common.disable_var_buttons()
 
 
 
@@ -82,8 +96,32 @@ class VariableMenuWidget(ttk.Frame):
                     self.vars_counter[key] = 1
             self.update_vars_menu()
 
+class VariableMenuPopup:
+    def popup_init(self):
+        self.popup_menu = tk.Menu(self, tearoff=0)
+        self.popup_menu.add_separator()
+        self.popup_menu.add_command(
+            label="刪除目前變數", 
+            command=self.delete_current)
+
+        self.vars_combobox.bind("<Button-3>", self.popup)
+
+    def popup(self, event):
+        try:
+            self.popup_menu.tk_popup(event.x_root, event.y_root)
+        finally:
+            self.popup_menu.grab_release()
+
+    def delete_current(self):
+        var = self.tk_var.get()
+        if var:
+            del self.vars_counter[var]
+            self.update_vars_menu()
+
+
+
 class VariableMenuPostit(VariableMenuWidget, 
-                    BasePopup
+                    VariableMenuPopup
                  ):
     """ composite and mixin approach postit"""
     def __init__(self, master):
@@ -92,7 +130,7 @@ class VariableMenuPostit(VariableMenuWidget,
         
         #self.code_init()
         #self.post_init()
-        #self.popup_init()
+        self.popup_init()
 
 
         
@@ -159,12 +197,34 @@ class VariableAddToolPostit(ttk.Frame):
 
 
 
-class VariableGetToolPostMixin:
+class VariableFetchToolPostMixin:
+    def on_mouse_drag(self, event):
+        if self.postit_button.cget('state') == 'normal':
+            BasePost.on_mouse_drag(self, event)
+        else: # state is disable . do nothing
+            pass
+
+    def on_mouse_release(self, event):
+        if self.postit_button.cget('state') == 'normal':
+            BasePost.on_mouse_release(self, event)
+        else: # state is disable . do nothing
+            pass
+
     def create_drag_window(self):
+        
         self.drag_window = tk.Toplevel()
         # get var text
         font = self.postit_button.cget('font')
-        text = common.share_vars_postit.tk_var.get() + ' '
+
+        if self.tool_name == 'variable_get':
+            text = common.share_vars_postit.tk_var.get() + ' '
+        elif self.tool_name == 'variable_assign':
+            text = common.share_vars_postit.tk_var.get() + ' = '
+        elif self.tool_name == 'variable_comma':
+            text = common.share_vars_postit.tk_var.get() + ', '
+        elif self.tool_name == 'variable_dot':
+            text = common.share_vars_postit.tk_var.get() + '.'
+            
         self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
                     font=font, fg='black', relief='solid', bd=0 )
         self.drag_button.pack()
@@ -175,6 +235,16 @@ class VariableGetToolPostMixin:
         vars_postit = common.share_vars_postit
         var = vars_postit.tk_var.get()
         var_content = var + ' '
+
+        if self.tool_name == 'variable_get':
+            var_content = var + ' '
+        elif self.tool_name == 'variable_assign':
+            var_content = var + ' = '
+        elif self.tool_name == 'variable_comma':
+            var_content = var + ', '
+        elif self.tool_name == 'variable_dot':
+            var_content = var + '.'
+
         text_widget.insert(tk.INSERT, var_content)
 
         # add counter and  update menu according to most common
@@ -184,123 +254,125 @@ class VariableGetToolPostMixin:
 
 
 
-class VariableGetToolPostit(ToolWidget, 
+class VariableFetchToolPostit(ToolWidget, 
                  ToolCodeMixin, BaseCode,
-                 VariableGetToolPostMixin, BasePost, 
+                 VariableFetchToolPostMixin, BasePost, 
                  BasePopup):
-    """ composite and mixin approach postit"""
-    def __init__(self, master):
-        self.widget_init(master, 'variable_get')
+    """  used by 4 tools.
+    variable_get, variable_assign, variable_comma, variable_dot"""
+
+    def __init__(self, master, tool_name):
+        self.widget_init(master, tool_name)
         self.code_init()
         self.post_init()
         #self.popup_init()
 
 
 
-class VariableAssignToolPostMixin:
-    def create_drag_window(self):
-        self.drag_window = tk.Toplevel()
-        # get var text
-        font = self.postit_button.cget('font')
-        text = common.share_vars_postit.tk_var.get() + ' = '
-        self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
-                    font=font, fg='black', relief='solid', bd=0 )
-        self.drag_button.pack()
-        self.drag_window.overrideredirect(True)
-        self.drag_window.attributes('-topmost', 'true')
+# class VariableAssignToolPostMixin:
+#     def create_drag_window(self):
+#         self.drag_window = tk.Toplevel()
+#         # get var text
+#         font = self.postit_button.cget('font')
+#         text = common.share_vars_postit.tk_var.get() + ' = '
+#         self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
+#                     font=font, fg='black', relief='solid', bd=0 )
+#         self.drag_button.pack()
+#         self.drag_window.overrideredirect(True)
+#         self.drag_window.attributes('-topmost', 'true')
 
-    def content_insert(self, text_widget, content):
-        vars_postit = common.share_vars_postit
-        var = vars_postit.tk_var.get()
-        var_content = var + ' = '
-        text_widget.insert(tk.INSERT, var_content)
+#     def content_insert(self, text_widget, content):
+#         vars_postit = common.share_vars_postit
+#         var = vars_postit.tk_var.get()
+#         var_content = var + ' = '
+#         text_widget.insert(tk.INSERT, var_content)
 
-        # add counter and  update menu according to most common
-        vars_postit.vars_counter[var] += 1
-        vars_postit.update_vars_menu()
-        vars_postit.tk_var.set(var)
-        #print(vars_postit.vars_counter)
-
-
-class VariableAssignToolPostit(ToolWidget, 
-                 ToolCodeMixin, BaseCode,
-                 VariableAssignToolPostMixin, BasePost, 
-                 BasePopup):
-    """ composite and mixin approach postit"""
-    def __init__(self, master):
-        self.widget_init(master, 'variable_assign')
-        self.code_init()
-        self.post_init()
-        #self.popup_init()
+#         # add counter and  update menu according to most common
+#         vars_postit.vars_counter[var] += 1
+#         vars_postit.update_vars_menu()
+#         vars_postit.tk_var.set(var)
+#         #print(vars_postit.vars_counter)
 
 
-class VariableCommaToolPostMixin:
-    def create_drag_window(self):
-        self.drag_window = tk.Toplevel()
-        # get var text
-        font = self.postit_button.cget('font')
-        text = common.share_vars_postit.tk_var.get() + ', '
-        self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
-                    font=font, fg='black', relief='solid', bd=0 )
-        self.drag_button.pack()
-        self.drag_window.overrideredirect(True)
-        self.drag_window.attributes('-topmost', 'true')
-
-    def content_insert(self, text_widget, content):
-        vars_postit = common.share_vars_postit
-        var = vars_postit.tk_var.get()
-        var_content = var + ', '
-        text_widget.insert(tk.INSERT, var_content)
-
-        # add counter and  update menu according to most common
-        vars_postit.vars_counter[var] += 1
-        vars_postit.update_vars_menu()
-        vars_postit.tk_var.set(var)
+# class VariableAssignToolPostit(ToolWidget, 
+#                  ToolCodeMixin, BaseCode,
+#                  VariableAssignToolPostMixin, BasePost, 
+#                  BasePopup):
+#     """ composite and mixin approach postit"""
+#     def __init__(self, master):
+#         self.widget_init(master, 'variable_assign')
+#         self.code_init()
+#         self.post_init()
+#         #self.popup_init()
 
 
-class VariableCommaToolPostit(ToolWidget, 
-                 ToolCodeMixin, BaseCode,
-                 VariableCommaToolPostMixin, BasePost, 
-                 BasePopup):
-    """ composite and mixin approach postit"""
-    def __init__(self, master):
-        self.widget_init(master, 'variable_comma')
-        self.code_init()
-        self.post_init()
-        #self.popup_init()
+# class VariableCommaToolPostMixin:
+#     def create_drag_window(self):
+#         self.drag_window = tk.Toplevel()
+#         # get var text
+#         font = self.postit_button.cget('font')
+#         text = common.share_vars_postit.tk_var.get() + ', '
+#         self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
+#                     font=font, fg='black', relief='solid', bd=0 )
+#         self.drag_button.pack()
+#         self.drag_window.overrideredirect(True)
+#         self.drag_window.attributes('-topmost', 'true')
+
+#     def content_insert(self, text_widget, content):
+#         vars_postit = common.share_vars_postit
+#         var = vars_postit.tk_var.get()
+#         var_content = var + ', '
+#         text_widget.insert(tk.INSERT, var_content)
+
+#         # add counter and  update menu according to most common
+#         vars_postit.vars_counter[var] += 1
+#         vars_postit.update_vars_menu()
+#         vars_postit.tk_var.set(var)
 
 
-class VariableDotToolPostMixin:
-    def create_drag_window(self):
-        self.drag_window = tk.Toplevel()
-        # get var text
-        font = self.postit_button.cget('font')
-        text = common.share_vars_postit.tk_var.get() + '.'
-        self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
-                    font=font, fg='black', relief='solid', bd=0 )
-        self.drag_button.pack()
-        self.drag_window.overrideredirect(True)
-        self.drag_window.attributes('-topmost', 'true')
-
-    def content_insert(self, text_widget, content):
-        vars_postit = common.share_vars_postit
-        var = vars_postit.tk_var.get()
-        var_content = var + '.'
-        text_widget.insert(tk.INSERT, var_content)
-
-        # add counter and  update menu according to most common
-        vars_postit.vars_counter[var] += 1
-        vars_postit.update_vars_menu()
-        vars_postit.tk_var.set(var)
+# class VariableCommaToolPostit(ToolWidget, 
+#                  ToolCodeMixin, BaseCode,
+#                  VariableCommaToolPostMixin, BasePost, 
+#                  BasePopup):
+#     """ composite and mixin approach postit"""
+#     def __init__(self, master):
+#         self.widget_init(master, 'variable_comma')
+#         self.code_init()
+#         self.post_init()
+#         #self.popup_init()
 
 
-class VariableDotToolPostit(ToolWidget, 
-                 ToolCodeMixin, BaseCode,
-                 VariableDotToolPostMixin, BasePost, 
-                 BasePopup):
-    """ composite and mixin approach postit"""
-    def __init__(self, master):
-        self.widget_init(master, 'variable_dot')
-        self.code_init()
-        self.post_init()
-        #self.popup_init()
+# class VariableDotToolPostMixin:
+#     def create_drag_window(self):
+#         self.drag_window = tk.Toplevel()
+#         # get var text
+#         font = self.postit_button.cget('font')
+#         text = common.share_vars_postit.tk_var.get() + '.'
+#         self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
+#                     font=font, fg='black', relief='solid', bd=0 )
+#         self.drag_button.pack()
+#         self.drag_window.overrideredirect(True)
+#         self.drag_window.attributes('-topmost', 'true')
+
+#     def content_insert(self, text_widget, content):
+#         vars_postit = common.share_vars_postit
+#         var = vars_postit.tk_var.get()
+#         var_content = var + '.'
+#         text_widget.insert(tk.INSERT, var_content)
+
+#         # add counter and  update menu according to most common
+#         vars_postit.vars_counter[var] += 1
+#         vars_postit.update_vars_menu()
+#         vars_postit.tk_var.set(var)
+
+
+# class VariableDotToolPostit(ToolWidget, 
+#                  ToolCodeMixin, BaseCode,
+#                  VariableDotToolPostMixin, BasePost, 
+#                  BasePopup):
+#     """ composite and mixin approach postit"""
+#     def __init__(self, master):
+#         self.widget_init(master, 'variable_dot')
+#         self.code_init()
+#         self.post_init()
+#         #self.popup_init()

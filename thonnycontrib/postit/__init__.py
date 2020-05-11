@@ -22,9 +22,9 @@ from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
 from .tools.comment_tool_postit import CommentToolPostit
 from .tools.pilcrow_tool_postit import PilcrowToolPostit
 from .tools.variables_tool_postit import ( VariableMenuPostit,
-        VariableAddToolPostit, VariableGetToolPostit,
-        VariableAssignToolPostit, VariableCommaToolPostit,
-        VariableDotToolPostit,
+        VariableAddToolPostit, VariableFetchToolPostit,
+        #VariableAssignToolPostit, VariableCommaToolPostit,
+        #VariableDotToolPostit,
     )      
 
 from .base_postit import BasePostit
@@ -267,17 +267,21 @@ class PythonPostitView(VerticallyScrollableFrame):
         
         # keep reference in common
 
-        VariableGetToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
-                padx=3, pady=5)
+        common.share_var_get_postit = VariableFetchToolPostit(
+                self.var_toolbar, tool_name='variable_get')
+        common.share_var_get_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
-        VariableAssignToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
-                padx=3, pady=5)
+        common.share_var_assign_postit = VariableFetchToolPostit(
+                self.var_toolbar, tool_name='variable_assign')
+        common.share_var_assign_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
-        VariableCommaToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
-                padx=3, pady=5)
+        common.share_var_dot_postit =VariableFetchToolPostit(
+                self.var_toolbar, tool_name='variable_dot')
+        common.share_var_dot_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
-        VariableDotToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
-                padx=3, pady=5)
+        common.share_var_comma_postit = VariableFetchToolPostit(
+                self.var_toolbar, tool_name='variable_comma')
+        common.share_var_comma_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
         VariableAddToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
                 padx=3, pady=5)
