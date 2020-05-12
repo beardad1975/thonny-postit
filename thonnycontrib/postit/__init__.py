@@ -157,18 +157,49 @@ class PythonPostitView(VerticallyScrollableFrame):
         #to do  :self.module_postit_tabs = {}
 
         #add notebook tabs
-        self.add_tab('basic', '基本','basic')
+        self.add_tab('common', '常用','basic')
         self.add_tab('symbol', '符號','basic')
-        self.add_tab('number', '數字','basic')
-        self.add_tab('text', '文字','basic')
+        self.add_tab('data', '資料\n類型','basic')
         self.add_tab('flow', '流程','basic')
-        self.add_tab('pyautogui', '自動化\n模組','module')
+        self.add_tab('function', '函式','basic')
+        self.add_tab('module', '模組','basic')
 
 
 
+        # flow tab
+        BasePostit(tab_name='flow',
+                           code='if 條件:\n___\nelse:\n___',
+                           code_display='if 條件:\n    ___\nelse:\n'
+                                        '    ___',
+                           note="如果…\n\n其他…",
+                           #long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        ##basic postit
-        EnclosedPostit(tab_name='basic',
+        BasePostit(tab_name='flow',
+                           code='if 條件 :\n__\nelif 條件:\n'
+                                '__\nelse :\n__',
+                           code_display='if 條件:\n    __\n'
+                                        'elif 條件:\n    __\n'
+                                        'else:\n    __',
+                           note="如果…\n\n不然如果…\n\n其他…",
+                           #long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='flow',
+                           code='while 條件:\n___',
+                           code_display='while 條件:\n    ___\n',
+                                        
+                           note="如果…\n重複執行",
+                           #long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+
+
+        ##common postit
+        EnclosedPostit(tab_name='common',
                        enclosed_head='print(', 
                        enclosed_tail=')', 
                        code_display=None,
@@ -176,34 +207,28 @@ class PythonPostitView(VerticallyScrollableFrame):
                        postfix_enter=False
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='basic',
+        BasePostit(tab_name='common',
                            code='"Hello World!"',
                            code_display='"Hello World!"',
-                           note="字串",
+                           note="你好世界(字串)",
                            postfix_enter=False,
+                           long_note=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='basic',
-                           code='if _con__:\n_action_\nelse:\n_action_',
-                           code_display='if else',
-                           note="if else",
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        BasePostit(tab_name='basic',
+        BasePostit(tab_name='common',
                            code="dir()",
                            code_display="dir()",
                            note="查詢屬性",
                            postfix_enter=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        EnclosedPostit(tab_name='basic',
-                       enclosed_head='help(', 
-                       enclosed_tail=')', 
-                       code_display=None,
-                       note='說明',
-                       postfix_enter=False
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # EnclosedPostit(tab_name='common',
+        #                enclosed_head='help(', 
+        #                enclosed_tail=')', 
+        #                code_display=None,
+        #                note='說明',
+        #                postfix_enter=False
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
 
@@ -211,35 +236,36 @@ class PythonPostitView(VerticallyScrollableFrame):
 
 
         ###symbol postit
-        BasePostit(tab_name='symbol',
-                           code=" + ",
-                           code_display="+",
-                           note="加",
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # BasePostit(tab_name='symbol',
+        #                    code=" + ",
+        #                    code_display="+",
+        #                    note="加",
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='symbol',
-                           code=" - ",
-                           code_display="-",
-                           note="減",
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # BasePostit(tab_name='symbol',
+        #                    code=" - ",
+        #                    code_display="-",
+        #                    note="減",
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='symbol',
-                           code=" * ",
-                           code_display="*",
-                           note="乘",
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # BasePostit(tab_name='symbol',
+        #                    code=" * ",
+        #                    code_display="*",
+        #                    note="乘",
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='symbol',
-                           code=" / ",
-                           code_display="/",
-                           note="除",
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # BasePostit(tab_name='symbol',
+        #                    code=" / ",
+        #                    code_display="/",
+        #                    note="除",
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        BasePostit(tab_name='pyautogui',
-                           code="import pyautogui",
-                           code_display="import pyautogui",
-                           note="匯入模組功能",
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # BasePostit(tab_name='pyautogui',
+        #                    code="import pyautogui",
+        #                    code_display="import pyautogui",
+        #                    note="匯入模組功能",
+        #                    long_note=True,
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
 

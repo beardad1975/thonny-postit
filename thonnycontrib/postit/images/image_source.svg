@@ -64,9 +64,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.24748738"
-     inkscape:cx="-8156.8609"
-     inkscape:cy="-1548.4196"
+     inkscape:zoom="0.35000001"
+     inkscape:cx="-3610.7864"
+     inkscape:cy="-1037.0797"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -877,25 +877,26 @@
        sodipodi:nodetypes="ssssssscss"
        inkscape:export-xdpi="14.43924"
        inkscape:export-ydpi="14.43924" />
-    <circle
-       style="opacity:0.98000004;fill:#575757;fill-opacity:0.98039216;stroke:none;stroke-width:12.50989914;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.94117647"
+    <ellipse
+       style="opacity:0.98000004;fill:#575757;fill-opacity:0.98039216;stroke:none;stroke-width:16.36714745;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.94117647"
        id="path869"
-       cx="-897.81226"
-       cy="639.76227"
-       r="7.7899561"
+       cx="-895.67407"
+       cy="642.43494"
        inkscape:export-xdpi="14.43924"
-       inkscape:export-ydpi="14.43924" />
+       inkscape:export-ydpi="14.43924"
+       rx="9.928112"
+       ry="10.462651" />
     <text
        id="text912"
-       y="639.03644"
-       x="-1010.2817"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:77.62619019px;line-height:1.25;font-family:DFYuanBold-B5;-inkscape-font-specification:'DFYuanBold-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#575757;fill-opacity:0.98039216;stroke:none;stroke-width:1.94065452"
+       y="645.24133"
+       x="-1020.4344"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:108.54065704px;line-height:1.25;font-family:DFYuanBold-B5;-inkscape-font-specification:'DFYuanBold-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#575757;fill-opacity:0.98039216;stroke:none;stroke-width:2.71351624"
        xml:space="preserve"
        inkscape:export-xdpi="14.43924"
        inkscape:export-ydpi="14.43924"><tspan
-         style="fill:#575757;fill-opacity:0.98039216;stroke-width:1.94065452"
-         y="639.03644"
-         x="-1010.2817"
+         style="fill:#575757;fill-opacity:0.98039216;stroke-width:2.71351624"
+         y="645.24133"
+         x="-1020.4344"
          id="tspan910"
          sodipodi:role="line">,</tspan></text>
     <text

@@ -103,6 +103,9 @@ class VariableMenuPopup:
         self.popup_menu.add_command(
             label="刪除目前變數", 
             command=self.delete_current)
+        self.popup_menu.add_command(
+            label="刪除所有變數(恢復預設)", 
+            command=self.delete_all_restore_default)
 
         self.vars_combobox.bind("<Button-3>", self.popup)
 
@@ -118,7 +121,15 @@ class VariableMenuPopup:
             del self.vars_counter[var]
             self.update_vars_menu()
 
-
+    def delete_all_restore_default(self):
+        if len(self.vars_counter):
+            ans = messagebox.askyesno('刪除變數','刪除所有變數，並恢復預設值嗎？')
+            #print(ans)
+            if ans:
+                #print('yes ')
+                self.restore_default_vars()
+            else: # no
+                return
 
 class VariableMenuPostit(VariableMenuWidget, 
                     VariableMenuPopup
@@ -199,15 +210,20 @@ class VariableAddToolPostit(ttk.Frame):
 
 class VariableFetchToolPostMixin:
     def on_mouse_drag(self, event):
-        if self.postit_button.cget('state') == 'normal':
+        state = self.postit_button.cget('state')
+        if  state in ('normal', 'active') :
             BasePost.on_mouse_drag(self, event)
         else: # state is disable . do nothing
             pass
 
     def on_mouse_release(self, event):
-        if self.postit_button.cget('state') == 'normal':
+        state = self.postit_button.cget('state')
+        if state in ('normal', 'active') :
             BasePost.on_mouse_release(self, event)
+            #print('here')
         else: # state is disable . do nothing
+            #print('else')
+            #print(self.postit_button.cget('state'))
             pass
 
     def create_drag_window(self):
@@ -235,7 +251,7 @@ class VariableFetchToolPostMixin:
         vars_postit = common.share_vars_postit
         var = vars_postit.tk_var.get()
         var_content = var + ' '
-
+        
         if self.tool_name == 'variable_get':
             var_content = var + ' '
         elif self.tool_name == 'variable_assign':

@@ -13,7 +13,7 @@ from .common import common_postit_tabs, common_images
 
 class BaseWidget(ttk.Frame):
 
-    def widget_init(self, tab_name):
+    def widget_init(self, tab_name, long_note=False):
         # store tab
         self.tab_name = tab_name
         self.tab = common_postit_tabs[tab_name]
@@ -35,13 +35,18 @@ class BaseWidget(ttk.Frame):
                                         #image=self.enter_image,
                                         padx=5,
                                         pady=5, 
+                                        state='normal',
                                         )
-        self.postit_button.pack(side=tk.LEFT, anchor='w')
-        
 
-        self.note_label = ttk.Label(self, text='' )
-        self.note_label.pack(side=tk.LEFT, anchor='w',padx=5)
-
+        self.note_label = ttk.Label(self, text='' ) 
+ 
+        if not long_note:
+            #note right
+            self.postit_button.pack(side=tk.LEFT, anchor='w')
+            self.note_label.pack(side=tk.LEFT, anchor='w',padx=5)
+        else: # long note next line
+            self.postit_button.pack(side=tk.TOP, anchor='w')
+            self.note_label.pack(side=tk.TOP, anchor='center',padx=5)
 
 
 
@@ -385,8 +390,9 @@ class BasePopup:
 
 class BasePostit(BaseWidget, BaseCode, BasePost, BasePopup):
     """ composite and mixin approach base function postit"""
-    def __init__(self,  tab_name, code, code_display=None, note=None, postfix_enter=False):
-        self.widget_init(tab_name)
+    def __init__(self,  tab_name, code, code_display=None, note=None, 
+                    postfix_enter=False, long_note=False):
+        self.widget_init(tab_name, long_note)
         self.code_init(code, code_display, note, postfix_enter)
         self.post_init()
         self.popup_init()

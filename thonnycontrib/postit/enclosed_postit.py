@@ -231,7 +231,8 @@ class EnclosedPostit(EnclosedWidget,
                      BasePopup):
     """  enclosed postit linke () [] '' "" {}  only for single line """
     def __init__(self, tab_name, enclosed_head, enclosed_tail,
-                    code_display=None, note=None, postfix_enter=False):
+                    code_display=None, note=None, postfix_enter=False,
+                    ):
         self.widget_init(tab_name)
         # remove newline
         enclosed_head = enclosed_head.replace('\n','')
