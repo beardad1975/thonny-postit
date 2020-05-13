@@ -153,7 +153,8 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.init_toolbar()
         self.init_notebook()
         self.last_focus = None
-        
+        self.symbol_row_index = 0
+
         #to do  :self.module_postit_tabs = {}
 
         #add notebook tabs
@@ -191,14 +192,31 @@ class PythonPostitView(VerticallyScrollableFrame):
                            code='while 條件:\n___',
                            code_display='while 條件:\n    ___\n',
                                         
-                           note="如果…\n重複執行",
+                           note="當…時重複",
+                           #long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='flow',
+                           code='for 數字 in range(10):\n___',
+                           code_display='for 數字 in range(10):\n    ___',
+                                        
+                           note="重複幾次",
+                           long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='flow',
+                           code='for 項目 in 清單:\n___',
+                           code_display='for 項目 in 清單:\n    ___',
+                                        
+                           note="取出項目",
                            #long_note=True,
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
-
-        ##common postit
+        ### common postit
         EnclosedPostit(tab_name='common',
                        enclosed_head='print(', 
                        enclosed_tail=')', 
@@ -222,43 +240,151 @@ class PythonPostitView(VerticallyScrollableFrame):
                            postfix_enter=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        # EnclosedPostit(tab_name='common',
-        #                enclosed_head='help(', 
-        #                enclosed_tail=')', 
-        #                code_display=None,
-        #                note='說明',
-        #                postfix_enter=False
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        ###symbol postit  (grid 2 columns)
+        
+        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【運算】')
+        self.tab_symbol_add_row(c1)
+
+        c1 = BasePostit(tab_name='symbol',
+                           code=" + ",
+                           code_display="+",
+                           note="加",
+        )
+
+        c2 = BasePostit(tab_name='symbol',
+                           code=" - ",
+                           code_display="-",
+                           note="減",
+        )
+
+        c3 = BasePostit(tab_name='symbol',
+                           code=" * ",
+                           code_display="*",
+                           note="乘",
+        )
+
+        self.tab_symbol_add_row(c1, c2, c3)
+
+        c1 = BasePostit(tab_name='symbol',
+                           code=" / ",
+                           code_display="/",
+                           note="除",
+        )
+
+        c2 = BasePostit(tab_name='symbol',
+                           code=" % ",
+                           code_display="%",
+                           note="相除\n餘數",
+        )
+
+        c3 = BasePostit(tab_name='symbol',
+                           code=" ** ",
+                           code_display="**",
+                           note="指數",
+        )
+
+        self.tab_symbol_add_row(c1, c2, c3 )
+
+        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【賦值(指定)】')
+        self.tab_symbol_add_row(c1)
+ 
+        c1 = BasePostit(tab_name='symbol',
+                           code=" += ",
+                           code_display="+=",
+                           note="加法\n賦值",
+        )   
+
+        c2 = BasePostit(tab_name='symbol',
+                           code=" -= ",
+                           code_display="-=",
+                           note="減法\n賦值",
+        )   
+
+        c3 = BasePostit(tab_name='symbol',
+                           code=" *= ",
+                           code_display="*=",
+                           note="乘法\n賦值",
+        )   
+        self.tab_symbol_add_row(c1, c2, c3 )
+
+        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【比較】')
+        self.tab_symbol_add_row(c1)
+
+        c1 = BasePostit(tab_name='symbol',
+                           code=" == ",
+                           code_display="==",
+                           note="等於",
+        )   
+
+        c2 = BasePostit(tab_name='symbol',
+                           code=" != ",
+                           code_display="!=",
+                           note="不等於",
+        )   
+
+        c3 = BasePostit(tab_name='symbol',
+                           code=" > ",
+                           code_display=">",
+                           note="大於",
+        )   
+        self.tab_symbol_add_row(c1, c2, c3 )
+
+        c1 = BasePostit(tab_name='symbol',
+                           code=" < ",
+                           code_display="<",
+                           note="小於",
+        )   
+
+        c2 = BasePostit(tab_name='symbol',
+                           code=" >= ",
+                           code_display=">=",
+                           note="大於\n等於",
+        )   
+
+        c3 = BasePostit(tab_name='symbol',
+                           code=" <= ",
+                           code_display="<=",
+                           note="小於\n等於",
+        )   
+        self.tab_symbol_add_row(c1, c2, c3 )
+
+        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【邏輯】')
+        self.tab_symbol_add_row(c1)
+
+        c1 = BasePostit(tab_name='symbol',
+                           code=" True ",
+                           code_display="True",
+                           note="真",
+        )   
+
+        c2 = BasePostit(tab_name='symbol',
+                           code=" False ",
+                           code_display="False",
+                           note="假",
+        )  
+        self.tab_symbol_add_row(c1, c2 )
+
+        c1 = BasePostit(tab_name='symbol',
+                           code=" and ",
+                           code_display="and",
+                           note="且",
+        )   
+
+        c2 = BasePostit(tab_name='symbol',
+                           code=" or ",
+                           code_display="or",
+                           note="或",
+        )   
+
+        c3 = BasePostit(tab_name='symbol',
+                           code=" not ",
+                           code_display="not",
+                           note="不是",
+        )   
+        self.tab_symbol_add_row(c1, c2, c3 )
 
 
 
-
-
-
-        ###symbol postit
-        # BasePostit(tab_name='symbol',
-        #                    code=" + ",
-        #                    code_display="+",
-        #                    note="加",
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        # BasePostit(tab_name='symbol',
-        #                    code=" - ",
-        #                    code_display="-",
-        #                    note="減",
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        # BasePostit(tab_name='symbol',
-        #                    code=" * ",
-        #                    code_display="*",
-        #                    note="乘",
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        # BasePostit(tab_name='symbol',
-        #                    code=" / ",
-        #                    code_display="/",
-        #                    note="除",
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         # BasePostit(tab_name='pyautogui',
         #                    code="import pyautogui",
@@ -286,7 +412,17 @@ class PythonPostitView(VerticallyScrollableFrame):
         #notebook event
         self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
         self.notebook.bind('<Button-1>',self.on_tab_click)
- 
+
+    def tab_symbol_add_row(self, col1, col2=None, col3=None, col4=None):
+        col1.grid(row=self.symbol_row_index, column=0, padx=5, pady=5)
+        if col2:
+            col2.grid(row=self.symbol_row_index, column=1, padx=5, pady=5)
+        if col3:
+            col3.grid(row=self.symbol_row_index, column=2, padx=5, pady=5)
+        if col4:
+            col4.grid(row=self.symbol_row_index, column=3, padx=5, pady=5)
+        self.symbol_row_index += 1
+
     def init_toolbar(self):
         self.var_toolbar = ttk.Frame(self.interior)
         self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
