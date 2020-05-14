@@ -163,7 +163,7 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.add_tab('data', '資料\n類型','basic')
         self.add_tab('flow', '流程','basic')
         self.add_tab('function', '函式','basic')
-        self.add_tab('module', '模組','basic')
+        self.add_tab('turtle4t', 'turtle\n  4t ','basic')
 
 
 
@@ -172,7 +172,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                            code='if 條件:\n___\nelse:\n___',
                            code_display='if 條件:\n    ___\nelse:\n'
                                         '    ___',
-                           note="如果…\n\n其他…",
+                           note="如果\n\n其他",
                            #long_note=True,
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
@@ -183,7 +183,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                            code_display='if 條件:\n    __\n'
                                         'elif 條件:\n    __\n'
                                         'else:\n    __',
-                           note="如果…\n\n不然如果…\n\n其他…",
+                           note="如果\n\n不然如果\n\n其他",
                            #long_note=True,
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
@@ -198,10 +198,10 @@ class PythonPostitView(VerticallyScrollableFrame):
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='flow',
-                           code='for 數字 in range(10):\n___',
-                           code_display='for 數字 in range(10):\n    ___',
+                           code='for i in range(10):\n___',
+                           code_display='for i in range(10):\n    ___',
                                         
-                           note="重複幾次",
+                           note="重複次數",
                            long_note=True,
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
@@ -211,7 +211,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                            code_display='for 項目 in 清單:\n    ___',
                                         
                            note="取出項目",
-                           #long_note=True,
+                           long_note=True,
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
@@ -404,9 +404,39 @@ class PythonPostitView(VerticallyScrollableFrame):
         # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
-        ###logic postit
-        # ip = IfPostit(tab_name='logic')
-        # ip.pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        ### turtle postit
+
+        BasePostit(tab_name='turtle4t',
+                           code='from turtle4t import *',
+                           code_display='from turtle4t import *',
+                           note="從turltle4t匯入全部",
+                           postfix_enter=False,
+                           long_note=True,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='turtle4t',
+                           code='向前(100)',
+                           code_display='向前(100)',
+                           note="forward",
+                           postfix_enter=False,
+                           long_note=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='turtle4t',
+                           code='右轉(90)',
+                           code_display='右轉(90)',
+                           note="right",
+                           postfix_enter=False,
+                           long_note=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        # EnclosedPostit(tab_name='turtle',
+        #                enclosed_head='forward(', 
+        #                enclosed_tail=')', 
+        #                code_display=None,
+        #                note='前進',
+        #                postfix_enter=False
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
         #notebook event
