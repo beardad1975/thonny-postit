@@ -159,11 +159,12 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         #add notebook tabs
         self.add_tab('common', '常用','basic')
+        self.add_tab('turtle4t', '海龜\n模組','basic')
         self.add_tab('symbol', '符號','basic')
         self.add_tab('data', '資料\n類型','basic')
         self.add_tab('flow', '流程','basic')
         self.add_tab('function', '函式','basic')
-        self.add_tab('turtle4t', 'turtle\n  4t ','basic')
+
 
 
 
@@ -236,9 +237,16 @@ class PythonPostitView(VerticallyScrollableFrame):
         BasePostit(tab_name='common',
                            code="dir()",
                            code_display="dir()",
-                           note="查詢屬性",
-                           postfix_enter=True,
+                           note="物件屬性",
+                           postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        # BasePostit(tab_name='common',
+        #                    code="help(物件名稱)",
+        #                    code_display="help(物件名稱)",
+        #                    note="物件說明",
+        #                    postfix_enter=False,
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         ###symbol postit  (grid 2 columns)
         
@@ -285,7 +293,7 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         self.tab_symbol_add_row(c1, c2, c3 )
 
-        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【賦值(指定)】')
+        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【設值(指定)】')
         self.tab_symbol_add_row(c1)
  
         c1 = BasePostit(tab_name='symbol',
@@ -407,17 +415,25 @@ class PythonPostitView(VerticallyScrollableFrame):
         ### turtle postit
 
         BasePostit(tab_name='turtle4t',
-                           code='from turtle4t import *',
-                           code_display='from turtle4t import *',
-                           note="從turltle4t匯入全部",
+                           code='from 海龜模組 import *',
+                           code_display='from 海龜模組 import *',
+                           note="從海龜模組匯入",
                            postfix_enter=False,
                            long_note=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='turtle4t',
-                           code='向前(100)',
-                           code_display='向前(100)',
+                           code='向前(50)',
+                           code_display='向前(50)',
                            note="forward",
+                           postfix_enter=False,
+                           long_note=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='turtle4t',
+                           code='向後(50)',
+                           code_display='向後(50)',
+                           note="back",
                            postfix_enter=False,
                            long_note=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
@@ -428,6 +444,22 @@ class PythonPostitView(VerticallyScrollableFrame):
                            note="right",
                            postfix_enter=False,
                            long_note=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='turtle4t',
+                           code='左轉(90)',
+                           code_display='左轉(90)',
+                           note="left",
+                           postfix_enter=False,
+                           long_note=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='turtle4t',
+                           code='位置()',
+                           code_display='位置()',
+                           note="position",
+                           postfix_enter=False,
+                           long_note=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         # EnclosedPostit(tab_name='turtle',
