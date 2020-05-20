@@ -25,7 +25,10 @@ from .tools.variables_tool_postit import ( VariableMenuPostit,
         VariableAddToolPostit, VariableFetchToolPostit,
         #VariableAssignToolPostit, VariableCommaToolPostit,
         #VariableDotToolPostit,
-    )      
+    )
+from .tools.copy_tool_postit import ( CopyToolPostit, PasteToolPostit,
+        CutToolPostit 
+    )     
 
 from .base_postit import BasePostit
 #from .tool_postit import ToolPostit
@@ -522,6 +525,9 @@ class PythonPostitView(VerticallyScrollableFrame):
         
         EnterToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         BackspaceToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        PasteToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        CopyToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        CutToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         RedoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         UndoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         IndentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)

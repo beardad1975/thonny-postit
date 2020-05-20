@@ -34,6 +34,9 @@ load_image('variable_assign')
 load_image('variable_comma')
 load_image('variable_dot')
 load_image('variable_get')
+load_image('copy')
+load_image('cut')
+load_image('paste')
 
 #  
 # setup vars counter and default
