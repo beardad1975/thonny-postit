@@ -39,6 +39,9 @@ load_image('variable_square')
 load_image('copy')
 load_image('cut')
 load_image('paste')
+load_image('symbol')
+load_image('keyword')
+
 
 #  
 # setup vars counter and default

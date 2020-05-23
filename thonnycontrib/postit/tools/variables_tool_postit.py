@@ -261,10 +261,10 @@ class VariableFetchToolPostMixin:
     def content_insert(self, text_widget, content):
         vars_postit = common.share_vars_postit
         var = vars_postit.tk_var.get()
-        var_content = var + ' '
+        #var_content = var + ' '
         
         if self.tool_name == 'variable_get':
-            var_content = var + ' '
+            var_content = var 
         elif self.tool_name == 'variable_assign':
             var_content = var + ' = '
         elif self.tool_name == 'variable_comma':
@@ -280,7 +280,9 @@ class VariableFetchToolPostMixin:
 
         text_widget.insert(tk.INSERT, var_content)
 
-        
+        # adjust insert index
+        if self.tool_name == 'variable_square':
+            text_widget.mark_set(tk.INSERT, 'insert -2c')
 
 
         # add counter and  update menu according to most common

@@ -29,6 +29,7 @@ from .tools.variables_tool_postit import ( VariableMenuPostit,
 from .tools.copy_tool_postit import ( CopyToolPostit, PasteToolPostit,
         CutToolPostit 
     )     
+from .tools.symbol_tool_postit import SymbolToolPostit
 
 from .base_postit import BasePostit
 #from .tool_postit import ToolPostit
@@ -163,7 +164,7 @@ class PythonPostitView(VerticallyScrollableFrame):
         #add notebook tabs
         self.add_tab('common', '常用','basic')
         self.add_tab('turtle4t', '海龜\n模組','basic')
-        self.add_tab('symbol', '符號','basic')
+        #self.add_tab('symbol', '符號','basic')
         self.add_tab('data', '資料\n類型','basic')
         self.add_tab('flow', '流程','basic')
         self.add_tab('function', '函式','basic')
@@ -253,146 +254,146 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         ###symbol postit  (grid 2 columns)
         
-        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【運算】')
-        self.tab_symbol_add_row(c1)
+        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【運算】')
+        # self.tab_symbol_add_row(c1)
 
-        c1 = BasePostit(tab_name='symbol',
-                           code=" + ",
-                           code_display="+",
-                           note="加",
-        )
+        # c1 = BasePostit(tab_name='symbol',
+        #                    code=" + ",
+        #                    code_display="+",
+        #                    note="加",
+        # )
 
-        c2 = BasePostit(tab_name='symbol',
-                           code=" - ",
-                           code_display="-",
-                           note="減",
-        )
+        # c2 = BasePostit(tab_name='symbol',
+        #                    code=" - ",
+        #                    code_display="-",
+        #                    note="減",
+        # )
 
-        c3 = BasePostit(tab_name='symbol',
-                           code=" * ",
-                           code_display="*",
-                           note="乘",
-        )
+        # c3 = BasePostit(tab_name='symbol',
+        #                    code=" * ",
+        #                    code_display="*",
+        #                    note="乘",
+        # )
 
-        self.tab_symbol_add_row(c1, c2, c3)
+        # self.tab_symbol_add_row(c1, c2, c3)
 
-        c1 = BasePostit(tab_name='symbol',
-                           code=" / ",
-                           code_display="/",
-                           note="除",
-        )
+        # c1 = BasePostit(tab_name='symbol',
+        #                    code=" / ",
+        #                    code_display="/",
+        #                    note="除",
+        # )
 
-        c2 = BasePostit(tab_name='symbol',
-                           code=" % ",
-                           code_display="%",
-                           note="相除\n餘數",
-        )
+        # c2 = BasePostit(tab_name='symbol',
+        #                    code=" % ",
+        #                    code_display="%",
+        #                    note="相除\n餘數",
+        # )
 
-        c3 = BasePostit(tab_name='symbol',
-                           code=" ** ",
-                           code_display="**",
-                           note="指數",
-        )
+        # c3 = BasePostit(tab_name='symbol',
+        #                    code=" ** ",
+        #                    code_display="**",
+        #                    note="指數",
+        # )
 
-        self.tab_symbol_add_row(c1, c2, c3 )
+        # self.tab_symbol_add_row(c1, c2, c3 )
 
-        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【設值(指定)】')
-        self.tab_symbol_add_row(c1)
+        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【設值(指定)】')
+        # self.tab_symbol_add_row(c1)
  
-        c1 = BasePostit(tab_name='symbol',
-                           code=" += ",
-                           code_display="+=",
-                           note="加法\n賦值",
-        )   
+        # c1 = BasePostit(tab_name='symbol',
+        #                    code=" += ",
+        #                    code_display="+=",
+        #                    note="加法\n賦值",
+        # )   
 
-        c2 = BasePostit(tab_name='symbol',
-                           code=" -= ",
-                           code_display="-=",
-                           note="減法\n賦值",
-        )   
+        # c2 = BasePostit(tab_name='symbol',
+        #                    code=" -= ",
+        #                    code_display="-=",
+        #                    note="減法\n賦值",
+        # )   
 
-        c3 = BasePostit(tab_name='symbol',
-                           code=" *= ",
-                           code_display="*=",
-                           note="乘法\n賦值",
-        )   
-        self.tab_symbol_add_row(c1, c2, c3 )
+        # c3 = BasePostit(tab_name='symbol',
+        #                    code=" *= ",
+        #                    code_display="*=",
+        #                    note="乘法\n賦值",
+        # )   
+        # self.tab_symbol_add_row(c1, c2, c3 )
 
-        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【比較】')
-        self.tab_symbol_add_row(c1)
+        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【比較】')
+        # self.tab_symbol_add_row(c1)
 
-        c1 = BasePostit(tab_name='symbol',
-                           code=" == ",
-                           code_display="==",
-                           note="等於",
-        )   
+        # c1 = BasePostit(tab_name='symbol',
+        #                    code=" == ",
+        #                    code_display="==",
+        #                    note="等於",
+        # )   
 
-        c2 = BasePostit(tab_name='symbol',
-                           code=" != ",
-                           code_display="!=",
-                           note="不等於",
-        )   
+        # c2 = BasePostit(tab_name='symbol',
+        #                    code=" != ",
+        #                    code_display="!=",
+        #                    note="不等於",
+        # )   
 
-        c3 = BasePostit(tab_name='symbol',
-                           code=" > ",
-                           code_display=">",
-                           note="大於",
-        )   
-        self.tab_symbol_add_row(c1, c2, c3 )
+        # c3 = BasePostit(tab_name='symbol',
+        #                    code=" > ",
+        #                    code_display=">",
+        #                    note="大於",
+        # )   
+        # self.tab_symbol_add_row(c1, c2, c3 )
 
-        c1 = BasePostit(tab_name='symbol',
-                           code=" < ",
-                           code_display="<",
-                           note="小於",
-        )   
+        # c1 = BasePostit(tab_name='symbol',
+        #                    code=" < ",
+        #                    code_display="<",
+        #                    note="小於",
+        # )   
 
-        c2 = BasePostit(tab_name='symbol',
-                           code=" >= ",
-                           code_display=">=",
-                           note="大於\n等於",
-        )   
+        # c2 = BasePostit(tab_name='symbol',
+        #                    code=" >= ",
+        #                    code_display=">=",
+        #                    note="大於\n等於",
+        # )   
 
-        c3 = BasePostit(tab_name='symbol',
-                           code=" <= ",
-                           code_display="<=",
-                           note="小於\n等於",
-        )   
-        self.tab_symbol_add_row(c1, c2, c3 )
+        # c3 = BasePostit(tab_name='symbol',
+        #                    code=" <= ",
+        #                    code_display="<=",
+        #                    note="小於\n等於",
+        # )   
+        # self.tab_symbol_add_row(c1, c2, c3 )
 
-        c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【邏輯】')
-        self.tab_symbol_add_row(c1)
+        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【邏輯】')
+        # self.tab_symbol_add_row(c1)
 
-        c1 = BasePostit(tab_name='symbol',
-                           code=" True ",
-                           code_display="True",
-                           note="真",
-        )   
+        # c1 = BasePostit(tab_name='symbol',
+        #                    code=" True ",
+        #                    code_display="True",
+        #                    note="真",
+        # )   
 
-        c2 = BasePostit(tab_name='symbol',
-                           code=" False ",
-                           code_display="False",
-                           note="假",
-        )  
-        self.tab_symbol_add_row(c1, c2 )
+        # c2 = BasePostit(tab_name='symbol',
+        #                    code=" False ",
+        #                    code_display="False",
+        #                    note="假",
+        # )  
+        # self.tab_symbol_add_row(c1, c2 )
 
-        c1 = BasePostit(tab_name='symbol',
-                           code=" and ",
-                           code_display="and",
-                           note="且",
-        )   
+        # c1 = BasePostit(tab_name='symbol',
+        #                    code=" and ",
+        #                    code_display="and",
+        #                    note="且",
+        # )   
 
-        c2 = BasePostit(tab_name='symbol',
-                           code=" or ",
-                           code_display="or",
-                           note="或",
-        )   
+        # c2 = BasePostit(tab_name='symbol',
+        #                    code=" or ",
+        #                    code_display="or",
+        #                    note="或",
+        # )   
 
-        c3 = BasePostit(tab_name='symbol',
-                           code=" not ",
-                           code_display="not",
-                           note="不是",
-        )   
-        self.tab_symbol_add_row(c1, c2, c3 )
+        # c3 = BasePostit(tab_name='symbol',
+        #                    code=" not ",
+        #                    code_display="not",
+        #                    note="不是",
+        # )   
+        # self.tab_symbol_add_row(c1, c2, c3 )
 
 
 
@@ -489,6 +490,8 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.symbol_row_index += 1
 
     def init_toolbar(self):
+
+        # var toolbar
         self.var_toolbar = ttk.Frame(self.interior)
         self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
         
@@ -496,11 +499,11 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         common.share_var_get_postit = VariableFetchToolPostit(
                 self.var_toolbar, tool_name='variable_get')
-        common.share_var_get_postit.pack(side=tk.RIGHT,padx=3, pady=5)
+        common.share_var_get_postit.pack(side=tk.RIGHT,padx=2, pady=5)
 
         common.share_var_assign_postit = VariableFetchToolPostit(
                 self.var_toolbar, tool_name='variable_assign')
-        common.share_var_assign_postit.pack(side=tk.RIGHT,padx=3, pady=5)
+        common.share_var_assign_postit.pack(side=tk.RIGHT,padx=2, pady=5)
 
 
 
@@ -508,26 +511,27 @@ class PythonPostitView(VerticallyScrollableFrame):
                 padx=3, pady=5)
 
         common.share_vars_postit = VariableMenuPostit(self.var_toolbar)
-        common.share_vars_postit.pack(side=tk.RIGHT,padx=3, pady=5)
+        common.share_vars_postit.pack(side=tk.RIGHT,padx=2, pady=5)
 
-        CommentToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        PilcrowToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        CommentToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        PilcrowToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        
 
-
+        # edit_toolbar
         self.edit_toolbar = ttk.Frame(self.interior)
         self.edit_toolbar.pack(side=tk.TOP, fill=tk.X)
+                
+        EnterToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        SymbolToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        PasteToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        CopyToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        CutToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        RedoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        UndoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        IndentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
+        DedentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=5)
         
-        
-        EnterToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        PasteToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        CopyToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        CutToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        RedoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        UndoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        IndentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        DedentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-
 
 
 
