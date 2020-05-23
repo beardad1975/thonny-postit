@@ -34,6 +34,8 @@ load_image('variable_assign')
 load_image('variable_comma')
 load_image('variable_dot')
 load_image('variable_get')
+load_image('variable_parentheses')
+load_image('variable_square')
 load_image('copy')
 load_image('cut')
 load_image('paste')
@@ -56,14 +58,14 @@ share_var_dot_postit = None
 def enable_var_buttons():
     share_var_get_postit.postit_button.config(state='normal')
     share_var_assign_postit.postit_button.config(state='normal')
-    share_var_comma_postit.postit_button.config(state='normal')
-    share_var_dot_postit.postit_button.config(state='normal')
+    #share_var_comma_postit.postit_button.config(state='normal')
+    #share_var_dot_postit.postit_button.config(state='normal')
 
 def disable_var_buttons():
     share_var_get_postit.postit_button.config(state='disable')
     share_var_assign_postit.postit_button.config(state='disable')
-    share_var_comma_postit.postit_button.config(state='disable')
-    share_var_dot_postit.postit_button.config(state='disable')
+    #share_var_comma_postit.postit_button.config(state='disable')
+    #share_var_dot_postit.postit_button.config(state='disable')
 
 
 

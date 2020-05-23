@@ -502,13 +502,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 self.var_toolbar, tool_name='variable_assign')
         common.share_var_assign_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
-        common.share_var_dot_postit =VariableFetchToolPostit(
-                self.var_toolbar, tool_name='variable_dot')
-        common.share_var_dot_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
-        common.share_var_comma_postit = VariableFetchToolPostit(
-                self.var_toolbar, tool_name='variable_comma')
-        common.share_var_comma_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
         VariableAddToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
                 padx=3, pady=5)
@@ -516,7 +510,8 @@ class PythonPostitView(VerticallyScrollableFrame):
         common.share_vars_postit = VariableMenuPostit(self.var_toolbar)
         common.share_vars_postit.pack(side=tk.RIGHT,padx=3, pady=5)
 
-
+        CommentToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+        PilcrowToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
 
 
         self.edit_toolbar = ttk.Frame(self.interior)
@@ -532,8 +527,7 @@ class PythonPostitView(VerticallyScrollableFrame):
         UndoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         IndentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
         DedentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        CommentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
-        PilcrowToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=5)
+
 
 
 

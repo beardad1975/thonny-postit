@@ -240,8 +240,19 @@ class VariableFetchToolPostMixin:
             text = common.share_vars_postit.tk_var.get() + ', '
         elif self.tool_name == 'variable_dot':
             text = common.share_vars_postit.tk_var.get() + '.'
-            
-        self.drag_button = tk.Button(self.drag_window, text=text, bg='#7af85a', 
+        elif self.tool_name == 'variable_parentheses':
+            text = common.share_vars_postit.tk_var.get() + '() '
+        elif self.tool_name == 'variable_square':
+            text = common.share_vars_postit.tk_var.get() + '[] '
+        else:
+            text = ''
+
+        if self.tool_name == 'variable_get':
+            color = '#7af85a'
+        else:
+            color = '#5acef8'
+
+        self.drag_button = tk.Button(self.drag_window, text=text, bg=color, 
                     font=font, fg='black', relief='solid', bd=0 )
         self.drag_button.pack()
         self.drag_window.overrideredirect(True)
@@ -260,8 +271,17 @@ class VariableFetchToolPostMixin:
             var_content = var + ', '
         elif self.tool_name == 'variable_dot':
             var_content = var + '.'
+        elif self.tool_name == 'variable_parentheses':
+            var_content = var  + '() '
+        elif self.tool_name == 'variable_square':
+            var_content = var + '[] '
+        else:
+            var_content = ''
 
         text_widget.insert(tk.INSERT, var_content)
+
+        
+
 
         # add counter and  update menu according to most common
         vars_postit.vars_counter[var] += 1
@@ -269,11 +289,42 @@ class VariableFetchToolPostMixin:
         vars_postit.tk_var.set(var)
 
 
+class VariableFetchToolPopup:
+    def popup_init(self):
+        self.popup_menu = tk.Menu(self, tearoff=0)
+        #self.popup_menu.add_command(label="V ",
+        #    command=lambda:self.switch_button('variable_get'))
+        self.popup_menu.add_command(label="V =  變數設值",
+            command=lambda:self.switch_button('variable_assign'))
+        self.popup_menu.add_command(label="V ,   變數逗號",
+            command=lambda:self.switch_button('variable_comma'))
+        self.popup_menu.add_command(label="V .   變數句點",
+            command=lambda:self.switch_button('variable_dot'))
+        self.popup_menu.add_command(label="V ( ) 變數圓括號",
+            command=lambda:self.switch_button('variable_parentheses'))
+        self.popup_menu.add_command(label="V [ ] 變數方括號",
+            command=lambda:self.switch_button('variable_square'))
+
+
+        self.postit_button.bind("<Button-3>", self.popup)
+
+    def popup(self, event):
+        if self.tool_name != 'variable_get':
+            self.popup_menu.tk_popup(event.x_root, event.y_root)
+        
+
+    def switch_button(self, tool_name):
+        self.tool_name = tool_name
+        self.tool_image = common_images[tool_name]
+        self.postit_button.config(image=self.tool_image)
+
+
+
 
 class VariableFetchToolPostit(ToolWidget, 
                  ToolCodeMixin, BaseCode,
                  VariableFetchToolPostMixin, BasePost, 
-                 BasePopup):
+                 VariableFetchToolPopup):
     """  used by 4 tools.
     variable_get, variable_assign, variable_comma, variable_dot"""
 
@@ -281,7 +332,7 @@ class VariableFetchToolPostit(ToolWidget,
         self.widget_init(master, tool_name)
         self.code_init()
         self.post_init()
-        #self.popup_init()
+        self.popup_init()
 
 
 
