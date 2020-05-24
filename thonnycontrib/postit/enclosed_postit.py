@@ -15,17 +15,28 @@ class EnclosedWidget(ttk.Frame):
         # store tab
         self.tab_name = tab_name
         self.tab = common_postit_tabs[tab_name]
+        
         # image
         self.enter_image = common_images['enter_small']
 
+        # frame init
         ttk.Frame.__init__(self, self.tab.frame)
+
+        # main and bottom sub-frame
+        self.main_frame = ttk.Frame(self)
+        self.main_frame.pack(side=tk.TOP)
+        self.bottom_frame = ttk.Frame(self)
+        self.bottom_frame.pack(side=tk.TOP)
+
         #f = font.Font(size=11, weight=font.NORMAL, family='Microsoft JhengHei')
-        self.head_decoration_label = tk.Label(self, text='', 
-                                        bg=self.tab.fill_color)
-        self.head_decoration_label.pack(side=tk.LEFT, anchor='w',padx=2)
+        self.enclosed_left_image = common_images['enclosed_left']
+        self.head_decoration_label = tk.Label(self.main_frame, text='',
+                                    image=self.enclosed_left_image,
+                                            )
+        self.head_decoration_label.pack(side=tk.LEFT, anchor='w',padx=0)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        self.postit_button = tk.Button(self,  
+        self.postit_button = tk.Button(self.main_frame,  
                                         relief='flat',
                                         borderwidth=0,
                                         text='***' , 
@@ -37,23 +48,29 @@ class EnclosedWidget(ttk.Frame):
                                         #image=self.enter_image,
 
                                         )
+        # 1st row sub-frame
         self.postit_button.pack(side=tk.LEFT, anchor='w')
-        # a type label for distinguish
-        self.tail_decoration_label = tk.Label(self, text='', 
-                                            bg=self.tab.fill_color)
-        self.tail_decoration_label.pack(side=tk.LEFT, anchor='w',padx=2)
+        
+        self.enclosed_right_image = common_images['enclosed_right']
+        self.tail_decoration_label = tk.Label(self.main_frame, text='', 
+                                            image= self.enclosed_right_image,)
+        self.tail_decoration_label.pack(side=tk.LEFT, anchor='w',padx=0)
 
-        self.note_label = ttk.Label(self, text='' )
-        self.note_label.pack(side=tk.LEFT, anchor='w',padx=5)
-
+        self.main_note_label = ttk.Label(self.main_frame, text='' )
+        self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=5)
+        # 2nd row sub-frame
+        self.bottom_note_label = ttk.Label(self.bottom_frame, text='')
+        self.bottom_note_label.pack(side=tk.TOP, anchor='center',padx=5)
 
 
 class EnclosedCodeMixin:
     def code_init(self, enclosed_head, enclosed_tail, 
-                        code_display, note, postfix_enter):
+                        code_display, note, postfix_enter, long_note=False):
         # tk var
         self.var_postfix_enter = tk.BooleanVar()
         self.var_postfix_enter.set(False)
+
+        self.long_note = long_note
 
         self.enclosed_head = enclosed_head
         self.enclosed_tail = enclosed_tail
@@ -232,13 +249,13 @@ class EnclosedPostit(EnclosedWidget,
     """  enclosed postit linke () [] '' "" {}  only for single line """
     def __init__(self, tab_name, enclosed_head, enclosed_tail,
                     code_display=None, note=None, postfix_enter=False,
-                    ):
+                    long_note=False):
         self.widget_init(tab_name)
         # remove newline
         enclosed_head = enclosed_head.replace('\n','')
         enclosed_tail = enclosed_tail.replace('\n','')
         self.code_init(enclosed_head, enclosed_tail, 
-                        code_display, note, postfix_enter)
+                        code_display, note, postfix_enter, long_note)
         self.post_init()
         self.popup_init()
 

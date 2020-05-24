@@ -12,7 +12,7 @@ from thonny.common import ToplevelCommand
 from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
-from .common import common_postit_tabs
+from .common import common_postit_tabs, CodeNTuple
 from . import common
 
 from .tools.enter_tool_postit import EnterToolPostit
@@ -82,8 +82,8 @@ class PostitTab:
 class PythonPostitView(VerticallyScrollableFrame):
     def __init__(self, master):
         super().__init__(master) 
-        self.init_toolbar()
-        self.init_notebook()
+        self.toolbar_init()
+        self.notebook_init()
         self.last_focus = None
         self.symbol_row_index = 0
 
@@ -97,66 +97,32 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.add_tab('flow', '流程','basic')
         self.add_tab('function', '函式','basic')
 
+        self.common_tab_init()
+        self.turtle4t_tab_init()
+        self.flow_tab_init()
 
+        #notebook event
+        self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
+        self.notebook.bind('<Button-1>',self.on_tab_click)
 
-
-        # flow tab
-        BasePostit(tab_name='flow',
-                           code='if 條件:\n___\nelse:\n___',
-                           code_display='if 條件:\n    ___\nelse:\n'
-                                        '    ___',
-                           note="如果\n\n其他",
-                           #long_note=True,
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        BasePostit(tab_name='flow',
-                           code='if 條件 :\n__\nelif 條件:\n'
-                                '__\nelse :\n__',
-                           code_display='if 條件:\n    __\n'
-                                        'elif 條件:\n    __\n'
-                                        'else:\n    __',
-                           note="如果\n\n不然如果\n\n其他",
-                           #long_note=True,
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        BasePostit(tab_name='flow',
-                           code='while 條件:\n___',
-                           code_display='while 條件:\n    ___\n',
-                                        
-                           note="當…時重複",
-                           #long_note=True,
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        BasePostit(tab_name='flow',
-                           code='for i in range(10):\n___',
-                           code_display='for i in range(10):\n    ___',
-                                        
-                           note="重複次數",
-                           long_note=True,
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        BasePostit(tab_name='flow',
-                           code='for 項目 in 清單:\n___',
-                           code_display='for 項目 in 清單:\n    ___',
-                                        
-                           note="取出項目",
-                           long_note=True,
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-
+    def common_tab_init(self):
         ### common postit
-        DropdownPostit(tab_name='common',
-                           code='"test dropdown!"',
-                           code_display='"test dropdown!"',
-                           note="(字串)",
-                           postfix_enter=False,
-                           long_note=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(code='111',
+                                        code_display='1111',
+                                        note='11111',
+                                        long_note=False))
+        temp_code_list.append(CodeNTuple(code='222',
+                                        code_display='2222',
+                                        note='22222',
+                                        long_note=True ))
+        temp_code_list.append(CodeNTuple(code='333',
+                                        code_display='3333',
+                                        note='33333',
+                                        long_note=False ))
+        DropdownPostit(tab_name='common', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
         EnclosedPostit(tab_name='common',
@@ -164,7 +130,8 @@ class PythonPostitView(VerticallyScrollableFrame):
                        enclosed_tail=')', 
                        code_display=None,
                        note='印出',
-                       postfix_enter=False
+                       postfix_enter=False,
+                       long_note=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         BasePostit(tab_name='common',
@@ -183,7 +150,8 @@ class PythonPostitView(VerticallyScrollableFrame):
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
-        ### turtle postit
+    def turtle4t_tab_init(self):
+                ### turtle 4 t postit
 
         BasePostit(tab_name='turtle4t',
                            code='from 海龜模組 import *',
@@ -233,18 +201,54 @@ class PythonPostitView(VerticallyScrollableFrame):
                            long_note=True,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        # EnclosedPostit(tab_name='turtle',
-        #                enclosed_head='forward(', 
-        #                enclosed_tail=')', 
-        #                code_display=None,
-        #                note='前進',
-        #                postfix_enter=False
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+    def flow_tab_init(self):
+                # flow tab
+        BasePostit(tab_name='flow',
+                           code='if 條件:\n___\nelse:\n___',
+                           code_display='if 條件:\n    ___\nelse:\n'
+                                        '    ___',
+                           note="如果\n\n其他",
+                           #long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
+        BasePostit(tab_name='flow',
+                           code='if 條件 :\n__\nelif 條件:\n'
+                                '__\nelse :\n__',
+                           code_display='if 條件:\n    __\n'
+                                        'elif 條件:\n    __\n'
+                                        'else:\n    __',
+                           note="如果\n\n不然如果\n\n其他",
+                           #long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        #notebook event
-        self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
-        self.notebook.bind('<Button-1>',self.on_tab_click)
+        BasePostit(tab_name='flow',
+                           code='while 條件:\n___',
+                           code_display='while 條件:\n    ___\n',
+                                        
+                           note="當…時重複",
+                           #long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='flow',
+                           code='for i in range(10):\n___',
+                           code_display='for i in range(10):\n    ___',
+                                        
+                           note="重複次數",
+                           long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        BasePostit(tab_name='flow',
+                           code='for 項目 in 清單:\n___',
+                           code_display='for 項目 in 清單:\n    ___',
+                                        
+                           note="取出項目",
+                           long_note=True,
+                           postfix_enter=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
     def tab_symbol_add_row(self, col1, col2=None, col3=None, col4=None):
         col1.grid(row=self.symbol_row_index, column=0, padx=5, pady=5)
@@ -256,7 +260,7 @@ class PythonPostitView(VerticallyScrollableFrame):
             col4.grid(row=self.symbol_row_index, column=3, padx=5, pady=5)
         self.symbol_row_index += 1
 
-    def init_toolbar(self):
+    def toolbar_init(self):
 
         # var toolbar
         self.var_toolbar = ttk.Frame(self.interior)
@@ -303,7 +307,7 @@ class PythonPostitView(VerticallyScrollableFrame):
 
 
 
-    def init_notebook(self):
+    def notebook_init(self):
         style = ttk.Style(self.interior)
         style.configure('lefttab.TNotebook', tabposition='wn')
         self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')

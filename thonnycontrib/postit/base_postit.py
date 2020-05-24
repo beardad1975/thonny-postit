@@ -13,17 +13,35 @@ from .common import common_postit_tabs, common_images
 
 class BaseWidget(ttk.Frame):
 
-    def widget_init(self, tab_name, long_note=False):
+    def widget_init(self, tab_name):
+        """ 
+            frame structure(2 row sub-frame)
+
+            main_frame (postit_button + main_note)
+            bottom_frame(bottom_note)
+
+            either main_note or bottom_note according to long_note flag  
+        """
         # store tab
         self.tab_name = tab_name
         self.tab = common_postit_tabs[tab_name]
+        
+
         # image
         self.enter_image = common_images['enter_small']
 
+        # frame init
         ttk.Frame.__init__(self, self.tab.frame)
+
+        # main and bottom sub-frame
+        self.main_frame = ttk.Frame(self)
+        self.main_frame.pack(side=tk.TOP)
+        self.bottom_frame = ttk.Frame(self)
+        self.bottom_frame.pack(side=tk.TOP)
         
+        # button and label
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        self.postit_button = tk.Button(self,  
+        self.postit_button = tk.Button(self.main_frame,  
                                         relief='flat',
                                         borderwidth=0,
                                         text='***' , 
@@ -38,23 +56,26 @@ class BaseWidget(ttk.Frame):
                                         state='normal',
                                         )
 
-        self.note_label = ttk.Label(self, text='' ) 
- 
-        if not long_note:
-            #note right
-            self.postit_button.pack(side=tk.LEFT, anchor='w')
-            self.note_label.pack(side=tk.LEFT, anchor='w',padx=5)
-        else: # long note next line
-            self.postit_button.pack(side=tk.TOP, anchor='w')
-            self.note_label.pack(side=tk.TOP, anchor='center',padx=5)
+        self.main_note_label = ttk.Label(self.main_frame, text='' ) 
+        self.bottom_note_label = ttk.Label(self.bottom_frame, text='')
+
+        # 1st row sub-frame
+        self.postit_button.pack(side=tk.LEFT, anchor='w')
+        self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=5)
+        # 2nd row sub-frame
+        
+        self.bottom_note_label.pack(side=tk.TOP, anchor='center',padx=5)
 
 
 
 class BaseCode:
-    def code_init(self, code, code_display=None, note=None, postfix_enter=None):
+    def code_init(self, code, code_display=None, note=None, postfix_enter=None,
+                     long_note=False):
         # tk var
         self.var_postfix_enter = tk.BooleanVar()
         self.var_postfix_enter.set(False)
+
+        self.long_note = long_note
 
         if code_display is None:
             code_display = code
@@ -82,13 +103,21 @@ class BaseCode:
         self.postit_button.config(text=text)
 
     def set_code(self, text):
-        self.code = text
+        pass
 
     def set_note(self, help_text):
-        self.note_label.config(text=help_text)
+        if not self.long_note:
+            # use main note
+            self.main_note_label.config(text=help_text)
+            self.bottom_note_label.config(text='')
+            self.bottom_note_label.pack_forget()
+        else: # bottom note
+            self.main_note_label.config(text='')
+            self.bottom_note_label.pack()
+            self.bottom_note_label.config(text=help_text) 
 
     def update_postit_code(self):
-        self.set_code(self.code)
+        #self.set_code(self.code)
         self.set_code_display(self.code_display)
         self.set_note(self.note)
         self.update_button_enter_sign()
@@ -382,18 +411,16 @@ class BasePopup:
         self.postit_button.bind("<Button-3>", self.popup)
 
     def popup(self, event):
-        try:
-            self.popup_menu.tk_popup(event.x_root, event.y_root)
-        finally:
-            self.popup_menu.grab_release()
+        self.popup_menu.tk_popup(event.x_root, event.y_root)
+
 
 
 class BasePostit(BaseWidget, BaseCode, BasePost, BasePopup):
     """ composite and mixin approach base function postit"""
     def __init__(self,  tab_name, code, code_display=None, note=None, 
                     postfix_enter=False, long_note=False):
-        self.widget_init(tab_name, long_note)
-        self.code_init(code, code_display, note, postfix_enter)
+        self.widget_init(tab_name)
+        self.code_init(code, code_display, note, postfix_enter, long_note)
         self.post_init()
         self.popup_init()
         

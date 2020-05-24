@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 
 from keyword import iskeyword
 
-from collections import Counter
+from collections import Counter, namedtuple
 
 
 
@@ -13,12 +13,17 @@ from collections import Counter
 common_postit_tabs = {}
 
 
+### code namedtuple
+
+CodeNTuple = namedtuple('CodeNTuple','code code_display note long_note')
+
 # image dict
 def load_image(name):
     global common_images
     _im = Image.open(Path(__file__).parent / 'images' / (name + '.png'))       
     common_images[name] = ImageTk.PhotoImage(_im)
 
+### common images dict
 common_images = {}
 # images for tools
 load_image('enter')
@@ -44,8 +49,10 @@ load_image('cut')
 load_image('paste')
 load_image('symbol')
 load_image('keyword')
-# images for dropdown postit
-load_image('dropdown') 
+# images for  postit
+load_image('dropdown')
+load_image('enclosed_right') 
+load_image('enclosed_left') 
 
 #  
 # setup vars counter and default
