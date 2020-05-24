@@ -5,15 +5,15 @@ from tkinter import ttk
 from pathlib import Path
 from PIL import Image, ImageTk
 
-
 from thonny import get_workbench, get_shell, get_runner
-
 from thonny.ui_utils import VerticallyScrollableFrame
 from thonny.common import ToplevelCommand
 
-#monkey patching (code view text)
-#from . import monkey_patch
-
+from .base_postit import BasePostit
+from .enclosed_postit import EnclosedPostit
+from .dropdown_postit import DropdownPostit
+from .common import common_postit_tabs
+from . import common
 
 from .tools.enter_tool_postit import EnterToolPostit
 from .tools.backspace_tool_postit import BackspaceToolPostit
@@ -22,88 +22,16 @@ from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
 from .tools.comment_tool_postit import CommentToolPostit
 from .tools.pilcrow_tool_postit import PilcrowToolPostit
 from .tools.variables_tool_postit import ( VariableMenuPostit,
-        VariableAddToolPostit, VariableFetchToolPostit,
-        #VariableAssignToolPostit, VariableCommaToolPostit,
-        #VariableDotToolPostit,
-    )
+        VariableAddToolPostit, VariableFetchToolPostit)
 from .tools.copy_tool_postit import ( CopyToolPostit, PasteToolPostit,
-        CutToolPostit 
-    )     
+        CutToolPostit )     
 from .tools.symbol_tool_postit import SymbolToolPostit
 
-from .base_postit import BasePostit
-#from .tool_postit import ToolPostit
 
-from .enclosed_postit import EnclosedPostit
-from .general_postit import GeneralPostit
-from .property_postit import  PropertyPostit
-from .symbol_postit import SymbolPostit
-from .variable_postit import VariablePostit
-from .if_postit import IfPostit
-from .while_postit import WhilePostit
-from .common import common_postit_tabs
-from . import common
 
-### unicode return symbol \u23ce
 
 #for test
 from tkinter.messagebox import showinfo
-
-class Pie4tView(VerticallyScrollableFrame):
-    def __init__(self, master):
-        super().__init__(master)
-
-        pp = PropertyPostit(self.interior, 
-                            object_name='物理舞台',
-                            property_list=('重力x','重力y', '預設彈性'),
-                            property_name='重力x',
-                            property_value='20',
-                            assign_flag=True,
-                            #postfix_newline=False,
-                            )
-        pp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
-
-
-class NameSymbolView(VerticallyScrollableFrame):
-    def __init__(self, master):
-        super().__init__(master)
-
-        sp  = SymbolPostit(self.interior, '+')   
-        sp.grid(row=0, column=0, sticky=tk.W, padx=5, pady=5)
-
-        sp  = SymbolPostit(self.interior, '-')   
-        sp.grid(row=0, column=1, sticky=tk.W, padx=5, pady=5)
-
-        sp  = SymbolPostit(self.interior, '*')   
-        sp.grid(row=0, column=2, sticky=tk.W, padx=5, pady=5)
-
-        sp  = SymbolPostit(self.interior, '/')   
-        sp.grid(row=1, column=0, sticky=tk.W, padx=5, pady=5)
-
-        sp  = SymbolPostit(self.interior, ',')   
-        sp.grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
-
-        sp  = SymbolPostit(self.interior, '=')   
-        sp.grid(row=1, column=2, sticky=tk.W, padx=5, pady=5)
-
-        vp = VariablePostit(self.interior)
-        vp.grid(row=2, columnspan=3, sticky=tk.W,  padx=5, pady=5)
-
-
-class PythonView(VerticallyScrollableFrame):
-    def __init__(self, master):
-        super().__init__(master)
-
-        # p = Postit(self)
-        # p.set_content('物理舞台.新增隨機方塊(\n\t位置x=7, \n\t位置y=5, \n\t密度=13,\n)')
-        # p.set_help_label(' ... stage')
-        # p.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
-
-        ip = IfPostit(self.interior)
-        ip.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
-        wp = WhilePostit(self.interior)
-        wp.pack(side=tk.TOP, anchor='w', padx=5, pady=5)
-
 
 
 class PostitTab:
@@ -222,6 +150,15 @@ class PythonPostitView(VerticallyScrollableFrame):
 
 
         ### common postit
+        DropdownPostit(tab_name='common',
+                           code='"test dropdown!"',
+                           code_display='"test dropdown!"',
+                           note="(字串)",
+                           postfix_enter=False,
+                           long_note=False,
+        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+
         EnclosedPostit(tab_name='common',
                        enclosed_head='print(', 
                        enclosed_tail=')', 
@@ -244,176 +181,6 @@ class PythonPostitView(VerticallyScrollableFrame):
                            note="物件屬性",
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        # BasePostit(tab_name='common',
-        #                    code="help(物件名稱)",
-        #                    code_display="help(物件名稱)",
-        #                    note="物件說明",
-        #                    postfix_enter=False,
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-        ###symbol postit  (grid 2 columns)
-        
-        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【運算】')
-        # self.tab_symbol_add_row(c1)
-
-        # c1 = BasePostit(tab_name='symbol',
-        #                    code=" + ",
-        #                    code_display="+",
-        #                    note="加",
-        # )
-
-        # c2 = BasePostit(tab_name='symbol',
-        #                    code=" - ",
-        #                    code_display="-",
-        #                    note="減",
-        # )
-
-        # c3 = BasePostit(tab_name='symbol',
-        #                    code=" * ",
-        #                    code_display="*",
-        #                    note="乘",
-        # )
-
-        # self.tab_symbol_add_row(c1, c2, c3)
-
-        # c1 = BasePostit(tab_name='symbol',
-        #                    code=" / ",
-        #                    code_display="/",
-        #                    note="除",
-        # )
-
-        # c2 = BasePostit(tab_name='symbol',
-        #                    code=" % ",
-        #                    code_display="%",
-        #                    note="相除\n餘數",
-        # )
-
-        # c3 = BasePostit(tab_name='symbol',
-        #                    code=" ** ",
-        #                    code_display="**",
-        #                    note="指數",
-        # )
-
-        # self.tab_symbol_add_row(c1, c2, c3 )
-
-        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【設值(指定)】')
-        # self.tab_symbol_add_row(c1)
- 
-        # c1 = BasePostit(tab_name='symbol',
-        #                    code=" += ",
-        #                    code_display="+=",
-        #                    note="加法\n賦值",
-        # )   
-
-        # c2 = BasePostit(tab_name='symbol',
-        #                    code=" -= ",
-        #                    code_display="-=",
-        #                    note="減法\n賦值",
-        # )   
-
-        # c3 = BasePostit(tab_name='symbol',
-        #                    code=" *= ",
-        #                    code_display="*=",
-        #                    note="乘法\n賦值",
-        # )   
-        # self.tab_symbol_add_row(c1, c2, c3 )
-
-        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【比較】')
-        # self.tab_symbol_add_row(c1)
-
-        # c1 = BasePostit(tab_name='symbol',
-        #                    code=" == ",
-        #                    code_display="==",
-        #                    note="等於",
-        # )   
-
-        # c2 = BasePostit(tab_name='symbol',
-        #                    code=" != ",
-        #                    code_display="!=",
-        #                    note="不等於",
-        # )   
-
-        # c3 = BasePostit(tab_name='symbol',
-        #                    code=" > ",
-        #                    code_display=">",
-        #                    note="大於",
-        # )   
-        # self.tab_symbol_add_row(c1, c2, c3 )
-
-        # c1 = BasePostit(tab_name='symbol',
-        #                    code=" < ",
-        #                    code_display="<",
-        #                    note="小於",
-        # )   
-
-        # c2 = BasePostit(tab_name='symbol',
-        #                    code=" >= ",
-        #                    code_display=">=",
-        #                    note="大於\n等於",
-        # )   
-
-        # c3 = BasePostit(tab_name='symbol',
-        #                    code=" <= ",
-        #                    code_display="<=",
-        #                    note="小於\n等於",
-        # )   
-        # self.tab_symbol_add_row(c1, c2, c3 )
-
-        # c1 = tk.Label(common_postit_tabs['symbol'].frame, text='【邏輯】')
-        # self.tab_symbol_add_row(c1)
-
-        # c1 = BasePostit(tab_name='symbol',
-        #                    code=" True ",
-        #                    code_display="True",
-        #                    note="真",
-        # )   
-
-        # c2 = BasePostit(tab_name='symbol',
-        #                    code=" False ",
-        #                    code_display="False",
-        #                    note="假",
-        # )  
-        # self.tab_symbol_add_row(c1, c2 )
-
-        # c1 = BasePostit(tab_name='symbol',
-        #                    code=" and ",
-        #                    code_display="and",
-        #                    note="且",
-        # )   
-
-        # c2 = BasePostit(tab_name='symbol',
-        #                    code=" or ",
-        #                    code_display="or",
-        #                    note="或",
-        # )   
-
-        # c3 = BasePostit(tab_name='symbol',
-        #                    code=" not ",
-        #                    code_display="not",
-        #                    note="不是",
-        # )   
-        # self.tab_symbol_add_row(c1, c2, c3 )
-
-
-
-
-        # BasePostit(tab_name='pyautogui',
-        #                    code="import pyautogui",
-        #                    code_display="import pyautogui",
-        #                    note="匯入模組功能",
-        #                    long_note=True,
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
-
-
-
-        # EnclosedPostit(tab_name='symbol',
-        #                enclosed_head='(', 
-        #                enclosed_tail=')', 
-        #                code_display=None,
-        #                note='括號',
-        #                postfix_enter=False
-        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
         ### turtle postit
@@ -581,136 +348,20 @@ def try_thonny():
     text_widget.insert('1.0', s)
     text_widget.config(state=tk.DISABLED)
 
-    #showinfo("my command", get_workbench()._menus)
-    # def replace(char, subchar):
-    #     where = '1.0'; past_subchar = '1.0'
-    #     while where:
-    #         where = tainput.search(char, past_subchar, tk.END+'-1c')
-    #         past_subchar= '{}+{}c'.format(where, len(subchar));
-    #         past_char = '{}+{}c'.format(where, len(char));
-    #         if where:
-    #             tainput.delete(where, past_char)
-    #             tainput.insert(where, subchar)
-    #         else:
-    #             return False
-
-    #replace('\n', '¶\n')
-    #replace(' ', '·')
-
-    
-
-    # get_runner().send_command(
-    #     ToplevelCommand(
-    #         "execute_source", source='dir()', tty_mode=True
-    #     )
-    # )
-
-
-
-
 
 
 def load_plugin():
     """postit plugin start point"""
 
-    #handle menu
-    #get_workbench().get_menu("postit", "abc")
-    
-    
-
-
-    #get_workbench().add_view(PythonView, '便貼python', 'se')
-    #get_workbench().add_view(NameSymbolView, '便貼名稱符號', 'ne')
-    #get_workbench().add_view(Pie4tView, '便貼pie4t', 'se')
     get_workbench().add_view(PythonPostitView, 'Python便利貼', 'nw')
 
     #for test
-    get_workbench().add_command(command_id="try_thonny",
-                                    menu_name="tools",
-                                    command_label="測試thonny",
-                                    handler=try_thonny,
-                                    default_sequence="<F2>"
-                                    )
+    # get_workbench().add_command(command_id="try_thonny",
+    #                                 menu_name="tools",
+    #                                 command_label="測試thonny",
+    #                                 handler=try_thonny,
+    #                                 default_sequence="<F2>"
+    #                                 )
 
-
-
-    #     tk.Frame.__init__(self, master)
-    #     # self.ent1 = tk.Entry(self)
-    #     # self.ent1.pack()
-    #     # self.ent2 = tk.Entry(self)
-    #     # self.ent2.pack()
-        
-        
-    #     self.post_button = tk.Button(self, text='新增隨機方塊(x, y)12345', command=self.post)
-    #     #self.post_button.pack(anchor='w')
-    #     self.post_button.pack(anchor='w',padx=5, pady=5)
-
-    #     #right click menu
-    #     self.popup_menu = tk.Menu(self, tearoff=0)
-    #     self.popup_menu.add_command(label="修改", command=self.modify)
-    #     self.post_button.bind("<Button-3>", self.popup) # Button-2 on Aqua
-
-    # def popup(self, event):
-    #     try:
-    #         self.popup_menu.tk_popup(event.x_root, event.y_root)
-    #     finally:
-    #         self.popup_menu.grab_release()
-    
-
-    # def modify(self):
-    #     print('modify')
-
-    # def post(self):
-    #     #shell = get_shell()
-    #     #shell.submit_python_code(self.ent.get()+ '\n') 
-    #     #shell.focus_set()
-    #     editor = get_workbench().get_editor_notebook().get_current_editor()
-    #     text = editor.get_text_widget()
-        
-    #     text.see('insert')
-    #     #check selection
-
-    #     if len(text.tag_ranges('sel')):
-    #         #replace selection 
-    #         text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-    #         text.direct_insert("insert", self.post_button['text']) 
-    #     else:
-    #         #just insert
-    #         text.direct_insert("insert", self.post_button['text'])
-
-
-
-
-
-        #not work  -- text.event_generate("<Double-1>")
-        # double click emulation
-        #x = 0
-        #y = 100
-        # print(text.index('insert'))
-        # (x, y ,_ , _) = text.bbox('insert')
-        # for i in range(2):
-        #    text.event_generate('<Button-1>', x=x, y=y)
-        #    text.event_generate('<ButtonRelease-1>', x=x, y=y)
-
-        # text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-        # text.direct_insert("insert", self.ent2.get())
-           
-        #print(text.tag_ranges('sel'))
-        
-        #text.mark_set('insert', 'insert-2chars')        
-
-        #print(text.get('insert-1chars','insert+1chars'))
-
-        #text.tag_remove("sel", "1.0", "end")
-        #text.tag_add("sel", "insert wordstart", "insert wordend")
-        #for i in text.tag_ranges('sel'):
-        #    print(text.index(i))
-        #print()
-        #ind = text.index('insert')
-        #print(ind)
-        #print(type(ind))
-
-        #text.direct_delete(tk.SEL_FIRST, tk.SEL_LAST)
-        #text.direct_insert("insert wordend", self.ent2.get())
 
 

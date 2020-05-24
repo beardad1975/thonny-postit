@@ -8,7 +8,7 @@ from thonny.codeview import CodeViewText
 from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
-from .common import common_variable_set
+
 from .common import common_postit_tabs, common_images
 
 class BaseWidget(ttk.Frame):
