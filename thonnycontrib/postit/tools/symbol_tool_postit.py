@@ -65,17 +65,17 @@ class SymbolToolPopup:
         # submenu
         self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.assign_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.compare_flow_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
-
+        self.login_compare_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.bracket_misc_menu = tk.Menu(self.popup_menu, tearoff=0)
+        
 
         # cascade submenu
         self.popup_menu.add_cascade(label='運算', menu=self.arithmetic_menu)
         self.popup_menu.add_cascade(label='設值', menu=self.assign_menu)
-        self.popup_menu.add_cascade(label='比較與流程', 
-                menu=self.compare_flow_menu)
-        self.popup_menu.add_cascade(label='括號與引號',
-                menu=self.bracket_quote_menu)
+        self.popup_menu.add_cascade(label='邏輯與比較', 
+                menu=self.login_compare_menu)
+        self.popup_menu.add_cascade(label='括號與其他',
+                menu=self.bracket_misc_menu)
 
 
         # arithmetic menu command
@@ -91,12 +91,12 @@ class SymbolToolPopup:
             label="%  取餘數", command=lambda:self.menu_post(' % '))
         self.arithmetic_menu.add_command(
             label="** 次方", command=lambda:self.menu_post(' ** '))
-        self.arithmetic_menu.add_command(
-            label="0b  2進位表示", command=lambda:self.menu_post('0b'))
-        self.arithmetic_menu.add_command(
-            label="0o  8進位表示", command=lambda:self.menu_post('0o'))
-        self.arithmetic_menu.add_command(
-            label="0x 16進位表示", command=lambda:self.menu_post('0x'))
+        # self.arithmetic_menu.add_command(
+        #     label="0b  2進位表示", command=lambda:self.menu_post('0b'))
+        # self.arithmetic_menu.add_command(
+        #     label="0o  8進位表示", command=lambda:self.menu_post('0o'))
+        # self.arithmetic_menu.add_command(
+        #     label="0x 16進位表示", command=lambda:self.menu_post('0x'))
 
         # assign menu command
         self.assign_menu.add_command(
@@ -115,33 +115,46 @@ class SymbolToolPopup:
             label="**=  次方後設值", command=lambda:self.menu_post(' **= '))
 
         # comparison menu command
-        self.compare_flow_menu.add_command(
-            label="==   等於", command=lambda:self.menu_post(' == '))
-        self.compare_flow_menu.add_command(
+        self.login_compare_menu.add_command(
+            label="and   而且", command=lambda:self.menu_post(' and '))
+        self.login_compare_menu.add_command(
+            label="or    或", command=lambda:self.menu_post(' or '))
+        self.login_compare_menu.add_command(
+            label="not   不是", command=lambda:self.menu_post(' not '))
+        self.login_compare_menu.add_command(
+            label="True   真", command=lambda:self.menu_post('True '))
+        self.login_compare_menu.add_command(
+            label="False   假", command=lambda:self.menu_post('False '))
+        self.login_compare_menu.add_command(
             label="!=   不等於", command=lambda:self.menu_post(' != '))
-        self.compare_flow_menu.add_command(
+        self.login_compare_menu.add_command(
             label=">    大於", command=lambda:self.menu_post(' > '))
-        self.compare_flow_menu.add_command(
+        self.login_compare_menu.add_command(
             label="<   小於", command=lambda:self.menu_post(' < '))
-        self.compare_flow_menu.add_command(
+        self.login_compare_menu.add_command(
             label=">=   大於等於", command=lambda:self.menu_post(' >= '))
-        self.compare_flow_menu.add_command(
+        self.login_compare_menu.add_command(
             label="<=   小於等於", command=lambda:self.menu_post(' <= '))
-        self.compare_flow_menu.add_command(
-            label=":   冒號", command=lambda:self.menu_post(':'))
+        self.login_compare_menu.add_command(
+            label="None   空值", command=lambda:self.menu_post('None '))
+        self.login_compare_menu.add_command(
+            label="is   是", command=lambda:self.menu_post(' is '))
+        self.login_compare_menu.add_command(
+            label="in   在裡面", command=lambda:self.menu_post(' in '))
 
-        # bracket and quote menu command
-        self.bracket_quote_menu.add_command(
+        # bracket and misc menu command
+        self.bracket_misc_menu.add_command(
             label="( )  圓括號", command=lambda:self.menu_post('()'))
-        self.bracket_quote_menu.add_command(
+        self.bracket_misc_menu.add_command(
             label="[ ]  方括號", command=lambda:self.menu_post('[]'))
-        self.bracket_quote_menu.add_command(
+        self.bracket_misc_menu.add_command(
             label="{ }  大括號", command=lambda:self.menu_post('{}'))
-        self.bracket_quote_menu.add_command(
+        self.bracket_misc_menu.add_command(
             label="' '  單引號", command=lambda:self.menu_post("''"))
-        self.bracket_quote_menu.add_command(
+        self.bracket_misc_menu.add_command(
             label='" "  單引號', command=lambda:self.menu_post('""'))
-
+        self.bracket_misc_menu.add_command(
+            label=":   冒號", command=lambda:self.menu_post(':'))
         
 
         #self.postit_button.bind("<Button-3>", self.popup)
