@@ -30,7 +30,7 @@ class VariableMenuWidget(ttk.Frame):
         self.tk_var = tk.StringVar()
 
         ttk.Frame.__init__(self, master)        
-        self.vars_combobox = ttk.Combobox(self, width=14, state="readonly",
+        self.vars_combobox = ttk.Combobox(self, width=12, state="readonly",
                 justify=tk.CENTER,textvariable=self.tk_var,takefocus=0,
                 values=[])
         self.restore_default_vars()
@@ -236,6 +236,10 @@ class VariableFetchToolPostMixin:
             text = common.share_vars_postit.tk_var.get() + ' '
         elif self.tool_name == 'variable_assign':
             text = common.share_vars_postit.tk_var.get() + ' = '
+        elif self.tool_name == 'variable_plus_assign':
+            text = common.share_vars_postit.tk_var.get() + ' += '
+        elif self.tool_name == 'variable_minus_assign':
+            text = common.share_vars_postit.tk_var.get() + ' -= '
         elif self.tool_name == 'variable_comma':
             text = common.share_vars_postit.tk_var.get() + ', '
         elif self.tool_name == 'variable_dot':
@@ -267,6 +271,10 @@ class VariableFetchToolPostMixin:
             var_content = var 
         elif self.tool_name == 'variable_assign':
             var_content = var + ' = '
+        elif self.tool_name == 'variable_plus_assign':
+            var_content = var + ' += '
+        elif self.tool_name == 'variable_minus_assign':
+            var_content = var + ' -= '
         elif self.tool_name == 'variable_comma':
             var_content = var + ', '
         elif self.tool_name == 'variable_dot':
@@ -298,6 +306,10 @@ class VariableFetchToolPopup:
         #    command=lambda:self.switch_button('variable_get'))
         self.popup_menu.add_command(label="V =  變數設值",
             command=lambda:self.switch_button('variable_assign'))
+        self.popup_menu.add_command(label="V +  加後設值",
+            command=lambda:self.switch_button('variable_plus_assign'))
+        self.popup_menu.add_command(label="V -  減後設值",
+            command=lambda:self.switch_button('variable_minus_assign'))
         self.popup_menu.add_command(label="V ,   變數逗號",
             command=lambda:self.switch_button('variable_comma'))
         self.popup_menu.add_command(label="V .   變數句點",
