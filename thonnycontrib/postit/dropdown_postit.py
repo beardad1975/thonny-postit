@@ -80,7 +80,7 @@ class DropdownPopup:
         # dropdown popup menu
         self.dropdown_menu = tk.Menu(self, tearoff=0)
         for i, code_item in enumerate(self.code_list):
-            text = code_item.code_display + '  ' + code_item.note
+            text = code_item.menu_display
             f = lambda index=i: self.switch_postit(index)
             self.dropdown_menu.add_command(label=text, command=f)
         self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
@@ -113,7 +113,7 @@ class DropdownPostit( DropdownWidget,
 
         self.widget_init(tab_name)
         # use first item as default code
-        code, code_display, note, long_note = self.code_list[0]
+        _, code, code_display, note, long_note = self.code_list[0]
         self.code_init(code, code_display, note, postfix_enter, long_note)
         
         self.post_init()

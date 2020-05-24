@@ -15,7 +15,7 @@ common_postit_tabs = {}
 
 ### code namedtuple
 
-CodeNTuple = namedtuple('CodeNTuple','code code_display note long_note')
+CodeNTuple = namedtuple('CodeNTuple','menu_display code code_display note long_note')
 
 # image dict
 def load_image(name):
