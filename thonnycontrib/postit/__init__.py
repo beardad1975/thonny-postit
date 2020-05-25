@@ -182,7 +182,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='匯入海龜模組',
                 long_note=True ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
 
@@ -221,7 +221,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='向後',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -250,7 +250,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='左轉',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
         # dropdown list postit
@@ -402,7 +402,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='下筆嗎',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -430,8 +430,32 @@ class PythonPostitView(VerticallyScrollableFrame):
                 code_display='end_fill()',
                 note='停止填色',
                 long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='畫筆顏色',
+                code="畫筆顏色('black')",
+                code_display="畫筆顏色('black')",
+                note='pencolor',
+                long_note=True ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  pencolor',
+                code="pencolor('black')",
+                code_display="pencolor('black')",
+                note='畫筆顏色',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='填充顏色',
+                code="填充顏色('orange')",
+                code_display="填充顏色('orange')",
+                note='fillcolor',
+                long_note=True ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  fillcolor',
+                code="fillcolor('orange')",
+                code_display="fillcolor('orange')",
+                note='填充顏色',
+                long_note=True ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
     def flow_tab_init(self):
         ### flow tab
