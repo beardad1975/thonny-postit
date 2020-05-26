@@ -182,7 +182,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='匯入海龜模組',
                 long_note=True ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
 
@@ -454,8 +454,92 @@ class PythonPostitView(VerticallyScrollableFrame):
                 code_display="fillcolor('orange')",
                 note='填充顏色',
                 long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='畫筆尺寸',
+                code='畫筆尺寸(1)',
+                code_display='畫筆尺寸(1)',
+                note='pensize',
+                long_note=False ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  pensize',
+                code='pensize(1)',
+                code_display='pensize(1)',
+                note='畫筆尺寸',
+                long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='滑鼠點擊時',
+                code='滑鼠點擊時(_功能_)',
+                code_display='滑鼠點擊時(_功能_)',
+                note='onclick',
+                long_note=True ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  onclick',
+                code='onclick(_func_)',
+                code_display='onclick(_func_)',
+                note='滑鼠點擊時',
+                long_note=True )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display='滑鼠點擊螢幕時',
+                code='滑鼠點擊螢幕時(_功能_)',
+                code_display='滑鼠點擊螢幕時(_功能_)',
+                note='onscreenclick',
+                long_note=True )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display='  onscreenclick',
+                code='onscreenclick(_func_)',
+                code_display='onscreenclick(_func_)',
+                note='滑鼠點擊螢幕時',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='定義滑鼠點擊功能(函式)',
+                code='def 轉彎(x, y):\n右轉(90)',
+                code_display='def 轉彎(x, y):\n    右轉(90)',
+                note='定義滑鼠點擊功能(函式)',
+                long_note=True ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display='  define mouse click function ',
+                code='def turn(x, y):\nright(90)',
+                code_display='def turn(x, y):\n    right(90)',
+                note='定義滑鼠點擊功能(函式)',
+                long_note=True ))  
+
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+        # # dropdown list postit
+        # temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='鍵盤按下時',
+        #         code="鍵盤按下時(_功能_, 'Up')",
+        #         code_display="鍵盤按下時(_功能_, 'Up')",
+        #         note='onkeypress',
+        #         long_note=True )) 
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  onkeypress',
+        #         code="onkeypress(_func_, 'Up')",
+        #         code_display="onkeypress(_func_, 'Up')",
+        #         note='鍵盤按下時',
+        #         long_note=True ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='定義鍵盤按下功能(函式)',
+        #         code='def 轉彎():\n右轉(90)',
+        #         code_display='def 轉彎():\n    右轉(90)',
+        #         note='定義鍵盤按下功能(函式)',
+        #         long_note=True ))  
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  define key press func',
+        #         code='def turn():\nright(90)',
+        #         code_display='def turn():\n    right(90)',
+        #         note='定義鍵盤按下功能(函式)',
+        #         long_note=True ))  
+        # DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
 
     def flow_tab_init(self):
         ### flow tab
@@ -489,7 +573,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                            code='while 條件:\n___',
                            code_display='while 條件:\n    ___\n',
                                         
-                           note="當…時重複",
+                           note="當…時\n\n重複執行",
                            #long_note=True,
                            postfix_enter=False,
         ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
@@ -531,15 +615,13 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
         
         # keep reference in common
-
-        common.share_var_get_postit = VariableFetchToolPostit(
-                self.var_toolbar, tool_name='variable_get')
-        common.share_var_get_postit.pack(side=tk.RIGHT,padx=2, pady=4)
-
         common.share_var_assign_postit = VariableFetchToolPostit(
                 self.var_toolbar, tool_name='variable_assign')
         common.share_var_assign_postit.pack(side=tk.RIGHT,padx=2, pady=4)
 
+        common.share_var_get_postit = VariableFetchToolPostit(
+                self.var_toolbar, tool_name='variable_get')
+        common.share_var_get_postit.pack(side=tk.RIGHT,padx=2, pady=4)
 
 
         VariableAddToolPostit(self.var_toolbar).pack(side=tk.RIGHT,

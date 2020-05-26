@@ -26,7 +26,7 @@ class VariableMenuWidget(ttk.Frame):
         self.vars_counter = None
 
 
-        self.vars_limit = 30
+        self.vars_limit = 50
         self.tk_var = tk.StringVar()
 
         ttk.Frame.__init__(self, master)        
