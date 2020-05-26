@@ -58,7 +58,7 @@ load_image('enclosed_left')
 # setup vars counter and default
 
 
-common_default_vars = ('變數x','變數y','名字', '文字', '數字', '項目', '清單')
+common_default_vars = ('變數x','變數y','名字', '文字', '數字', 'i','項目', '清單')
 #common_default_vars =()
 
 # share postit . should be assign carefully

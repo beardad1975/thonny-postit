@@ -221,7 +221,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='向後',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -250,7 +250,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='左轉',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
         # dropdown list postit
@@ -366,6 +366,24 @@ class PythonPostitView(VerticallyScrollableFrame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
+                menu_display='速度',
+                code="速度(5)",
+                code_display="速度(5)",
+                note='speed  1~10 ',
+                long_note=False )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display='  speed',
+                code="speed(5)",
+                code_display="speed(5)",
+                note='速度 1~10',
+                long_note=False ))
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
                 menu_display='停筆',
                 code='停筆()',
                 code_display='停筆()',
@@ -401,8 +419,32 @@ class PythonPostitView(VerticallyScrollableFrame):
                 code_display='isdown()',
                 note='下筆嗎',
                 long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='隱藏海龜',
+                code='隱藏海龜()',
+                code_display='隱藏海龜()',
+                note='hideturtle',
+                long_note=False ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  hideturtle',
+                code='hideturtle()',
+                code_display='hideturtle()',
+                note='隱藏海龜',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='顯示海龜',
+                code='顯示海龜()',
+                code_display='顯示海龜()',
+                note='showturtle',
+                long_note=False ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  showturtle',
+                code='showturtle()',
+                code_display='showturtle()',
+                note='顯示海龜',
+                long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -467,7 +509,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='畫筆尺寸',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -511,34 +553,6 @@ class PythonPostitView(VerticallyScrollableFrame):
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
-        # # dropdown list postit
-        # temp_code_list = []
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='鍵盤按下時',
-        #         code="鍵盤按下時(_功能_, 'Up')",
-        #         code_display="鍵盤按下時(_功能_, 'Up')",
-        #         note='onkeypress',
-        #         long_note=True )) 
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='  onkeypress',
-        #         code="onkeypress(_func_, 'Up')",
-        #         code_display="onkeypress(_func_, 'Up')",
-        #         note='鍵盤按下時',
-        #         long_note=True ))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='定義鍵盤按下功能(函式)',
-        #         code='def 轉彎():\n右轉(90)',
-        #         code_display='def 轉彎():\n    右轉(90)',
-        #         note='定義鍵盤按下功能(函式)',
-        #         long_note=True ))  
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='  define key press func',
-        #         code='def turn():\nright(90)',
-        #         code_display='def turn():\n    right(90)',
-        #         note='定義鍵盤按下功能(函式)',
-        #         long_note=True ))  
-        # DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
 
     def flow_tab_init(self):
