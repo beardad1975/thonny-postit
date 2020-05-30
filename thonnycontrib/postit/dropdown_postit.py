@@ -9,6 +9,9 @@ from thonny import get_workbench, get_shell
 from .base_postit import BaseWidget,BaseCode, BasePost, BasePopup
 from .common import common_postit_tabs,common_images
 
+
+class CodeListEmpty(Exception): pass
+
 class DropdownWidget(ttk.Frame):
 
     def widget_init(self, tab_name):
@@ -29,7 +32,10 @@ class DropdownWidget(ttk.Frame):
         self.bottom_frame.pack(side=tk.TOP)
 
         # dropdown list button
-        self.dropdown_image = common_images['dropdown']
+        if len(self.code_list) > 1:
+            self.dropdown_image = common_images['dropdown']
+        else:
+            self.dropdown_image = common_images['dropdown_empty']
         self.dropdown_button = tk.Button(self.main_frame, 
                                         relief='flat',
                                         borderwidth=0,
@@ -37,12 +43,14 @@ class DropdownWidget(ttk.Frame):
                                         padx=0,
                                         )
         self.dropdown_button.pack(side=tk.LEFT, anchor='w',padx=0)
+        
 
         # postit button 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        #self.postit_button = ttk.Button(self.main_frame, text='1234')
         self.postit_button = tk.Button(self.main_frame,  
-                                        relief='flat',
-                                        borderwidth=0,
+                                        relief='solid',
+                                        borderwidth=1,
                                         text='***' , 
                                         fg=self.tab.font_color, 
                                         bg=self.tab.fill_color,
@@ -51,7 +59,8 @@ class DropdownWidget(ttk.Frame):
                                         compound='right',
                                         #image=self.enter_image,
                                         padx=0,
-                                        pady=5, 
+                                        pady=0,
+                                         
                                         state='normal',
                                         )
 
@@ -78,12 +87,13 @@ class DropdownPopup:
         self.postit_button.bind("<Button-3>", self.popup)
 
         # dropdown popup menu
-        self.dropdown_menu = tk.Menu(self, tearoff=0)
-        for i, code_item in enumerate(self.code_list):
-            text = code_item.menu_display
-            f = lambda index=i: self.switch_postit(index)
-            self.dropdown_menu.add_command(label=text, command=f)
-        self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
+        if len(self.code_list) > 1:
+            self.dropdown_menu = tk.Menu(self, tearoff=0)
+            for i, code_item in enumerate(self.code_list):
+                text = code_item.menu_display
+                f = lambda index=i: self.switch_postit(index)
+                self.dropdown_menu.add_command(label=text, command=f)
+            self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
 
     def popup(self, event):
         self.popup_menu.tk_popup(event.x_root, event.y_root)
@@ -109,6 +119,10 @@ class DropdownPostit( DropdownWidget,
     """   """
     def __init__(self,  tab_name, code_list, postfix_enter=False):
         # store code name tuple list
+
+        if not  code_list:
+            raise CodeListEmpty
+
         self.code_list = code_list
 
         self.widget_init(tab_name)

@@ -51,6 +51,7 @@ load_image('symbol')
 load_image('keyword')
 # images for  postit
 load_image('dropdown')
+load_image('dropdown_empty')
 load_image('enclosed_right') 
 load_image('enclosed_left') 
 

@@ -41,14 +41,22 @@ class PostitTab:
     """
 
     color_data = [
-        {"filename":'color0.png', 'fill_color':'#4c97ff', 'font_color':'white'},
-        {"filename":'color1.png', 'fill_color':'#9966ff', 'font_color':'white'},    
-        {"filename":'color2.png', 'fill_color':'#d65cd6', 'font_color':'white'},
-        {"filename":'color3.png', 'fill_color':'#ffd500', 'font_color':'black'},
-        {"filename":'color4.png', 'fill_color':'#ffab19', 'font_color':'black'},
-        {"filename":'color5.png', 'fill_color':'#4cbfe6', 'font_color':'black'},
-        {"filename":'color6.png', 'fill_color':'#40bf4a', 'font_color':'white'},
-        {"filename":'color7.png', 'fill_color':'#ff6680', 'font_color':'black'},
+        {"basic_filename":'color0.png', 'fill_color':'#4c97ff', 
+                "pack_filename":'pack0.png', 'font_color':'white'},
+        {"basic_filename":'color1.png', 'fill_color':'#9966ff', 
+                "pack_filename":'pack1.png', 'font_color':'white'},    
+        {"basic_filename":'color2.png', 'fill_color':'#d65cd6', 
+                "pack_filename":'pack2.png', 'font_color':'white'},
+        {"basic_filename":'color3.png', 'fill_color':'#ffd500', 
+                "pack_filename":'pack3.png', 'font_color':'black'},
+        {"basic_filename":'color4.png', 'fill_color':'#ffab19',
+                "pack_filename":'pack4.png',  'font_color':'black'},
+        {"basic_filename":'color5.png', 'fill_color':'#4cbfe6', 
+                "pack_filename":'pack5.png', 'font_color':'black'},
+        {"basic_filename":'color6.png', 'fill_color':'#40bf4a', 
+                "pack_filename":'pack6.png', 'font_color':'white'},
+        {"basic_filename":'color7.png', 'fill_color':'#ff6680', 
+                "pack_filename":'pack7.png', 'font_color':'black'},
     ]
     color_num = len(color_data)
     color_circular_index = 0  
@@ -63,7 +71,7 @@ class PostitTab:
         self.fill_color = color['fill_color']
         self.font_color = color['font_color']
         #load image
-        abs_image_path = Path(__file__).parent / 'images' / color['filename']
+        abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
         im = Image.open(abs_image_path)       
         self.image = ImageTk.PhotoImage(im) 
                 
@@ -91,11 +99,12 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         #add notebook tabs
         self.add_tab('common', '常用','basic')
-        self.add_tab('turtle4t', '海龜\n模組','basic')
+        
         #self.add_tab('symbol', '符號','basic')
         self.add_tab('data', '資料\n類型','basic')
-        self.add_tab('flow', '流程','basic')
-        self.add_tab('function', '函式','basic')
+        self.add_tab('flow', '流程\n邏輯','basic')
+        self.add_tab('turtle4t', '海龜\n繪圖','pack')
+        self.add_tab('function', 'Dino\n Bot','pack')
 
         self.common_tab_init()
         self.turtle4t_tab_init()
@@ -107,32 +116,73 @@ class PythonPostitView(VerticallyScrollableFrame):
 
     def common_tab_init(self):
         ### common postit
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='印出 print',
+                code='print()',
+                code_display='print()',
+                note='印出',
+                long_note=False ))
+        DropdownPostit(tab_name='common', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # EnclosedPostit(tab_name='common',
+        #                enclosed_head='print(', 
+        #                enclosed_tail=')', 
+        #                code_display=None,
+        #                note='印出',
+        #                postfix_enter=False,
+        #                long_note=False,
+        # ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='"Hello World!"',
+                code='"Hello World!"',
+                code_display='"Hello World!"',
+                note='你好世界(字串)',
+                long_note=True ))
+        DropdownPostit(tab_name='common', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        EnclosedPostit(tab_name='common',
-                       enclosed_head='print(', 
-                       enclosed_tail=')', 
-                       code_display=None,
-                       note='印出',
-                       postfix_enter=False,
-                       long_note=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # BasePostit(tab_name='common',
+        #                    code='"Hello World!"',
+        #                    code_display='"Hello World!"',
+        #                    note="你好世界(字串)",
+        #                    postfix_enter=False,
+        #                    long_note=True,
+        # ).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        BasePostit(tab_name='common',
-                           code='"Hello World!"',
-                           code_display='"Hello World!"',
-                           note="你好世界(字串)",
-                           postfix_enter=False,
-                           long_note=True,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='dir()',
+                code='dir()',
+                code_display='dir()',
+                note='物件屬性',
+                long_note=True ))
+        DropdownPostit(tab_name='common', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        BasePostit(tab_name='common',
-                           code="dir()",
-                           code_display="dir()",
-                           note="物件屬性",
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='help()',
+                code='help()',
+                code_display='help()',
+                note='說明',
+                long_note=True ))
+        DropdownPostit(tab_name='common', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # BasePostit(tab_name='common',
+        #                    code="dir()",
+        #                    code_display="dir()",
+        #                    note="物件屬性",
+        #                    postfix_enter=False,
+        # ).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
     def turtle4t_tab_init(self):
@@ -182,7 +232,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='匯入海龜模組',
                 long_note=True ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
@@ -221,7 +271,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='向後',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -250,7 +300,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='左轉',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
         # dropdown list postit
@@ -329,7 +379,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 long_note=False ))
 
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
@@ -361,7 +411,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='設定方向',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -378,7 +428,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='速度 1~10',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
         # dropdown list postit
@@ -444,7 +494,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='顯示海龜',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -509,7 +559,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='畫筆尺寸',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -549,9 +599,8 @@ class PythonPostitView(VerticallyScrollableFrame):
                 code_display='def turn(x, y):\n    right(90)',
                 note='定義滑鼠點擊功能(函式)',
                 long_note=True ))  
-
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
@@ -580,17 +629,27 @@ class PythonPostitView(VerticallyScrollableFrame):
             note='如果\n\n不然如果\n\n其他(否則)',
             long_note=False ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # dropdown list postit  
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                                    menu_display='while ',
+                                    code='while 條件:\n___',
+                                    code_display='while 條件:\n    ___\n',
+                                    note='當…時\n\n重複執行',
+                                    long_note=False ))
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        BasePostit(tab_name='flow',
-                           code='while 條件:\n___',
-                           code_display='while 條件:\n    ___\n',
+        # BasePostit(tab_name='flow',
+        #                    code='while 條件:\n___',
+        #                    code_display='while 條件:\n    ___\n',
                                         
-                           note="當…時\n\n重複執行",
-                           #long_note=True,
-                           postfix_enter=False,
-        ).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+        #                    note="當…時\n\n重複執行",
+        #                    #long_note=True,
+        #                    postfix_enter=False,
+        # ).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
         # dropdown list postit
@@ -608,44 +667,55 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='取出項目',
                 long_note=True ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
-    def tab_symbol_add_row(self, col1, col2=None, col3=None, col4=None):
-        col1.grid(row=self.symbol_row_index, column=0, padx=5, pady=5)
-        if col2:
-            col2.grid(row=self.symbol_row_index, column=1, padx=5, pady=5)
-        if col3:
-            col3.grid(row=self.symbol_row_index, column=2, padx=5, pady=5)
-        if col4:
-            col4.grid(row=self.symbol_row_index, column=3, padx=5, pady=5)
-        self.symbol_row_index += 1
+#     def tab_symbol_add_row(self, col1, col2=None, col3=None, col4=None):
+#         col1.grid(row=self.symbol_row_index, column=0, padx=5, pady=5)
+#         if col2:
+#             col2.grid(row=self.symbol_row_index, column=1, padx=5, pady=5)
+#         if col3:
+#             col3.grid(row=self.symbol_row_index, column=2, padx=5, pady=5)
+#         if col4:
+#             col4.grid(row=self.symbol_row_index, column=3, padx=5, pady=5)
+#         self.symbol_row_index += 1
 
     def toolbar_init(self):
 
         # var toolbar
         self.var_toolbar = ttk.Frame(self.interior)
         self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
-        
-        # keep reference in common
-        common.share_var_assign_postit = VariableFetchToolPostit(
-                self.var_toolbar, tool_name='variable_assign')
-        common.share_var_assign_postit.pack(side=tk.RIGHT,padx=2, pady=4)
+
+
 
         common.share_var_get_postit = VariableFetchToolPostit(
                 self.var_toolbar, tool_name='variable_get')
-        common.share_var_get_postit.pack(side=tk.RIGHT,padx=2, pady=4)
-
-
-        VariableAddToolPostit(self.var_toolbar).pack(side=tk.RIGHT,
-                padx=3, pady=5)
-
+        common.share_var_assign_postit = VariableFetchToolPostit(
+                self.var_toolbar, tool_name='variable_assign')
         common.share_vars_postit = VariableMenuPostit(self.var_toolbar)
-        common.share_vars_postit.pack(side=tk.RIGHT,padx=2, pady=5)
 
-        CommentToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=1, pady=4)
-        PilcrowToolPostit(self.var_toolbar).pack(side=tk.RIGHT,padx=1, pady=4)
+        PilcrowToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=1, pady=3)
+        CommentToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=1, pady=3)
+        common.share_vars_postit.pack(side=tk.LEFT,padx=2, pady=3)
+        VariableAddToolPostit(self.var_toolbar).pack(side=tk.LEFT,
+                padx=2, pady=3)
+        common.share_var_get_postit.pack(side=tk.LEFT,padx=2, pady=3)
+        common.share_var_assign_postit.pack(side=tk.LEFT,padx=2, pady=3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
 
         # edit_toolbar
