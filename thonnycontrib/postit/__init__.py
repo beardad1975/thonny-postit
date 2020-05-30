@@ -126,6 +126,11 @@ class PythonPostitView(VerticallyScrollableFrame):
                 long_note=False ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            
+        #ttk.Separator(common_postit_tabs['common'].frame, orient=tk.HORIZONTAL
+        #        ).pack(side=tk.TOP, fill=tk.X, padx=5)
+        ttk.Label(common_postit_tabs['common'].frame, text='-'*10 +' 常用 '+'-'*10, 
+                ).pack(side=tk.TOP, padx=5, pady=8)
 
         # EnclosedPostit(tab_name='common',
         #                enclosed_head='print(', 
@@ -691,8 +696,8 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         common.share_var_get_postit = VariableFetchToolPostit(
                 self.var_toolbar, tool_name='variable_get')
-        common.share_var_assign_postit = VariableFetchToolPostit(
-                self.var_toolbar, tool_name='variable_assign')
+        #common.share_var_assign_postit = VariableFetchToolPostit(
+        #        self.var_toolbar, tool_name='variable_assign')
         common.share_vars_postit = VariableMenuPostit(self.var_toolbar)
 
         PilcrowToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=1, pady=3)
@@ -701,37 +706,31 @@ class PythonPostitView(VerticallyScrollableFrame):
         VariableAddToolPostit(self.var_toolbar).pack(side=tk.LEFT,
                 padx=2, pady=3)
         common.share_var_get_postit.pack(side=tk.LEFT,padx=2, pady=3)
-        common.share_var_assign_postit.pack(side=tk.LEFT,padx=2, pady=3)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
+        #common.share_var_assign_postit.pack(side=tk.LEFT,padx=2, pady=3)
+        SymbolToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
 
         # edit_toolbar
         self.edit_toolbar = ttk.Frame(self.interior)
         self.edit_toolbar.pack(side=tk.TOP, fill=tk.X)
                 
-        EnterToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        SymbolToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        PasteToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        CopyToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        CutToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        RedoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        UndoToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        IndentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
-        DedentToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=2, pady=4)
+        DedentToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        IndentToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        UndoToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        RedoToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        CutToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        CopyToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        PasteToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+        EnterToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=2, pady=3)
+
+        
+
+
+
+
+
+
+
         
 
 

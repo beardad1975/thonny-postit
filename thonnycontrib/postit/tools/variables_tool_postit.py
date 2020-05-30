@@ -20,13 +20,17 @@ from .. import common
 
 class VariableMenuWidget(ttk.Frame):
     """ composite and mixin approach postit"""
-    def widget_init(self, master):
+    def widget_init(self, master, update_after_run=False):
         # just combobox. don't need to handle tab and image
         self.last_focus = ''
         self.vars_counter = None
+        self.var_update_after_run = tk.BooleanVar()
+        if update_after_run:
+            self.var_update_after_run.set(True)
+        else:
+            self.var_update_after_run.set(False)
 
-
-        self.vars_limit = 50
+        self.vars_limit = 100
         self.tk_var = tk.StringVar()
 
         ttk.Frame.__init__(self, master)        
@@ -45,11 +49,13 @@ class VariableMenuWidget(ttk.Frame):
 
         get_workbench().bind("ToplevelResponse", self._handle_toplevel_response, True)
 
-
+    def empty_vars(self):
+        self.vars_counter = Counter()
+        self.update_vars_menu()
 
     def restore_default_vars(self):
-        if self.vars_counter:
-            del self.vars_counter
+        #if self.vars_counter:
+        #    del self.vars_counter
 
         if common_default_vars:   
             self.vars_counter = Counter(common_default_vars)
@@ -88,24 +94,30 @@ class VariableMenuWidget(ttk.Frame):
         
     def _handle_toplevel_response(self, event):
         #print('got toplevel event')
-        if "globals" in event:
-            #self.vars_counter.update(event['globals'].keys())
-            # only add var the first time
-            for key in event['globals'].keys():
-                if key not in self.vars_counter:
-                    self.vars_counter[key] = 1
-            self.update_vars_menu()
+        if self.var_update_after_run.get():
+            if "globals" in event:
+                #self.vars_counter.update(event['globals'].keys())
+                # only add var the first time
+                for key in event['globals'].keys():
+                    if key not in self.vars_counter:
+                        self.vars_counter[key] = 1
+                self.update_vars_menu()
 
 class VariableMenuPopup:
     def popup_init(self):
         self.popup_menu = tk.Menu(self, tearoff=0)
+
+        self.popup_menu.add_command(
+            label="刪除目前變數", command=self.delete_current)
+        self.popup_menu.add_command(
+            label="恢復預設變數", command=self.delete_all_restore_default)
+        self.popup_menu.add_command(
+            label="清空全部變數", command=self.delete_all)
         self.popup_menu.add_separator()
-        self.popup_menu.add_command(
-            label="刪除目前變數", 
-            command=self.delete_current)
-        self.popup_menu.add_command(
-            label="刪除所有變數(恢復預設)", 
-            command=self.delete_all_restore_default)
+        self.popup_menu.add_checkbutton(label="【選項】執行後更新變數(全域)",
+                onvalue=1, offvalue=0, 
+                variable=self.var_update_after_run,
+                )
 
         self.vars_combobox.bind("<Button-3>", self.popup)
 
@@ -122,12 +134,23 @@ class VariableMenuPopup:
             self.update_vars_menu()
 
     def delete_all_restore_default(self):
+        
+        ans = messagebox.askyesno('刪除變數','刪除所有變數，並恢復預設值嗎？')
+        #print(ans)
+        if ans:
+            #print('yes ')
+            self.restore_default_vars()
+        else: # no
+            return
+
+    def delete_all(self):
         if len(self.vars_counter):
-            ans = messagebox.askyesno('刪除變數','刪除所有變數，並恢復預設值嗎？')
+            ans = messagebox.askyesno('清空全部變數','要清空全部變數嗎？')
             #print(ans)
             if ans:
                 #print('yes ')
-                self.restore_default_vars()
+                self.empty_vars()
+                
             else: # no
                 return
 
@@ -135,10 +158,8 @@ class VariableMenuPostit(VariableMenuWidget,
                     VariableMenuPopup
                  ):
     """ composite and mixin approach postit"""
-    def __init__(self, master):
-        self.widget_init(master)
-
-        
+    def __init__(self, master, update_after_run=False):
+        self.widget_init(master, update_after_run)
         #self.code_init()
         #self.post_init()
         self.popup_init()
@@ -302,8 +323,8 @@ class VariableFetchToolPostMixin:
 class VariableFetchToolPopup:
     def popup_init(self):
         self.popup_menu = tk.Menu(self, tearoff=0)
-        #self.popup_menu.add_command(label="V ",
-        #    command=lambda:self.switch_button('variable_get'))
+        self.popup_menu.add_command(label="V ",
+            command=lambda:self.switch_button('variable_get'))
         self.popup_menu.add_command(label="V =  變數設值",
             command=lambda:self.switch_button('variable_assign'))
         self.popup_menu.add_command(label="V +  加後設值",
@@ -323,8 +344,8 @@ class VariableFetchToolPopup:
         self.postit_button.bind("<Button-3>", self.popup)
 
     def popup(self, event):
-        if self.tool_name != 'variable_get':
-            self.popup_menu.tk_popup(event.x_root, event.y_root)
+        #if self.tool_name != 'variable_get':
+        self.popup_menu.tk_popup(event.x_root, event.y_root)
         
 
     def switch_button(self, tool_name):

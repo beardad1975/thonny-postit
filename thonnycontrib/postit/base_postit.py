@@ -142,7 +142,7 @@ class BasePost:
 
         x_root, y_root = event.x_root, event.y_root
 
-        self.drag_window.geometry('+{}+{}'.format(x_root+10, y_root+10))
+        self.drag_window.geometry('+{}+{}'.format(x_root+18, y_root+5))
 
         #change insert over editor or shell (but not postit button)
         
@@ -404,7 +404,7 @@ class BasePost:
 class BasePopup:
     def popup_init(self):
         self.popup_menu = tk.Menu(self, tearoff=0)
-        self.popup_menu.add_checkbutton(label="結尾Enter換行", onvalue=1, offvalue=0, 
+        self.popup_menu.add_checkbutton(label="【選項】結尾Enter換行", onvalue=1, offvalue=0, 
                 variable=self.var_postfix_enter,
                 command=self.toggle_postfix_enter,
                 )

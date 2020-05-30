@@ -59,7 +59,7 @@ load_image('enclosed_left')
 # setup vars counter and default
 
 
-common_default_vars = ('變數x','變數y','名字', '文字', '數字', 'i','項目', '清單')
+common_default_vars = ('X變數','Y變數', 'i','項目', '清單')
 #common_default_vars =()
 
 # share postit . should be assign carefully
@@ -72,11 +72,11 @@ share_var_dot_postit = None
 
 def enable_var_buttons():
     share_var_get_postit.postit_button.config(state='normal')
-    share_var_assign_postit.postit_button.config(state='normal')
+    #share_var_assign_postit.postit_button.config(state='normal')
 
 def disable_var_buttons():
     share_var_get_postit.postit_button.config(state='disable')
-    share_var_assign_postit.postit_button.config(state='disable')
+    #share_var_assign_postit.postit_button.config(state='disable')
 
 
 
