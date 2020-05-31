@@ -322,6 +322,7 @@ class BasePost:
     def content_insert(self, text_widget, content):
 
         lines = content.split('\n')  
+        print(lines)
         line_num = len(lines)          
         if line_num == 1 :
             # one line (no newline)
@@ -333,6 +334,8 @@ class BasePost:
             for i, line in enumerate(lines):
 
                 #if else else , need to add a extra backspack
+                # pass is special case
+                #if not line.startswith('pass'):
                 if line[:4] == 'else' or line[:4] == 'elif' :
                     text_widget.event_generate("<BackSpace>")
 

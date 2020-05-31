@@ -377,6 +377,8 @@ class SymbolToolPopup:
         self.misc_menu.add_command(
             label=":   冒號", command=lambda:self.change_symbol(':'))
         self.misc_menu.add_command(
+            label="pass  略過", command=lambda:self.change_symbol('pass'))
+        self.misc_menu.add_command(
             label="\\n  換行(需在字串中)", command=lambda:self.change_symbol('\\n'))
         
 
