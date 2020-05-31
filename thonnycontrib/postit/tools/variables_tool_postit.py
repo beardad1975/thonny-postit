@@ -327,9 +327,9 @@ class VariableFetchToolPopup:
             command=lambda:self.switch_button('variable_get'))
         self.popup_menu.add_command(label="V =  變數設值",
             command=lambda:self.switch_button('variable_assign'))
-        self.popup_menu.add_command(label="V +  加後設值",
+        self.popup_menu.add_command(label="V +=  加後設值",
             command=lambda:self.switch_button('variable_plus_assign'))
-        self.popup_menu.add_command(label="V -  減後設值",
+        self.popup_menu.add_command(label="V -=  減後設值",
             command=lambda:self.switch_button('variable_minus_assign'))
         self.popup_menu.add_command(label="V ,   變數逗號",
             command=lambda:self.switch_button('variable_comma'))
@@ -353,6 +353,29 @@ class VariableFetchToolPopup:
         self.tool_image = common_images[tool_name]
         self.postit_button.config(image=self.tool_image)
 
+        # insert at the same time
+        workbench = get_workbench()
+        focus_widget = workbench.focus_get()
+        if isinstance(focus_widget, CodeViewText):
+            # cursor in editor
+            editor_text = focus_widget 
+            if editor_text.tag_ranges(tk.SEL)  :
+                # has selection
+                self.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                self.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=False)
+        elif isinstance(focus_widget, ShellText):
+            # cusor in shell
+            shell_text = focus_widget
+            if shell_text.tag_ranges(tk.SEL):
+                # has selection
+                self.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                self.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=False) 
 
 
 
