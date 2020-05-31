@@ -280,18 +280,21 @@ class SymbolToolPopup:
         # submenu
         self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.assign_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.login_compare_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.comparison_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.logic_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.misc_menu = tk.Menu(self.popup_menu, tearoff=0)
         
 
         # cascade submenu
         self.popup_menu.add_cascade(label='運算', menu=self.arithmetic_menu)
-        self.popup_menu.add_cascade(label='括號與引號',
+        self.popup_menu.add_cascade(label='括號引號',
                 menu=self.bracket_quote_menu)
         self.popup_menu.add_cascade(label='設值', menu=self.assign_menu)
-        self.popup_menu.add_cascade(label='邏輯與比較', 
-                menu=self.login_compare_menu)
+        self.popup_menu.add_cascade(label='比較', 
+                menu=self.comparison_menu)
+        self.popup_menu.add_cascade(label='邏輯', 
+                menu=self.logic_menu)
 
         self.popup_menu.add_cascade(label='其他', menu=self.misc_menu)
 
@@ -332,33 +335,36 @@ class SymbolToolPopup:
             label="**=  次方後設值", command=lambda:self.change_symbol(' **= '))
 
         # comparison menu command
-        self.login_compare_menu.add_command(
-            label="and   而且", command=lambda:self.change_symbol(' and '))
-        self.login_compare_menu.add_command(
-            label="or    或", command=lambda:self.change_symbol(' or '))
-        self.login_compare_menu.add_command(
-            label="not   不是", command=lambda:self.change_symbol(' not '))
-        self.login_compare_menu.add_command(
-            label="True   真", command=lambda:self.change_symbol('True'))
-        self.login_compare_menu.add_command(
-            label="False   假", command=lambda:self.change_symbol('False'))
-        self.login_compare_menu.add_command(
+        self.comparison_menu.add_command(
             label="==   等於", command=lambda:self.change_symbol(' == '))
-        self.login_compare_menu.add_command(
+        self.comparison_menu.add_command(
             label="!=   不等於", command=lambda:self.change_symbol(' != '))
-        self.login_compare_menu.add_command(
+        self.comparison_menu.add_command(
             label=">    大於", command=lambda:self.change_symbol(' > '))
-        self.login_compare_menu.add_command(
+        self.comparison_menu.add_command(
             label="<   小於", command=lambda:self.change_symbol(' < '))
-        self.login_compare_menu.add_command(
+        self.comparison_menu.add_command(
             label=">=   大於等於", command=lambda:self.change_symbol(' >= '))
-        self.login_compare_menu.add_command(
+        self.comparison_menu.add_command(
             label="<=   小於等於", command=lambda:self.change_symbol(' <= '))
-        self.login_compare_menu.add_command(
+
+        # logic menu command
+        self.logic_menu.add_command(
+            label="and   而且", command=lambda:self.change_symbol(' and '))
+        self.logic_menu.add_command(
+            label="or    或", command=lambda:self.change_symbol(' or '))
+        self.logic_menu.add_command(
+            label="not   不是", command=lambda:self.change_symbol(' not '))
+        self.logic_menu.add_command(
+            label="True   真(成立)", command=lambda:self.change_symbol('True'))
+        self.logic_menu.add_command(
+            label="False   假(不成立)", command=lambda:self.change_symbol('False'))
+
+        self.logic_menu.add_command(
             label="None   空值", command=lambda:self.change_symbol('None'))
-        self.login_compare_menu.add_command(
+        self.logic_menu.add_command(
             label="is   是", command=lambda:self.change_symbol(' is '))
-        self.login_compare_menu.add_command(
+        self.logic_menu.add_command(
             label="in   在裡面", command=lambda:self.change_symbol(' in '))
 
         # bracket and quote menu command
