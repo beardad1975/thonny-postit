@@ -34,7 +34,7 @@ class VariableMenuWidget(ttk.Frame):
         self.tk_var = tk.StringVar()
 
         ttk.Frame.__init__(self, master)        
-        self.vars_combobox = ttk.Combobox(self, width=12, state="readonly",
+        self.vars_combobox = ttk.Combobox(self, width=10, state="readonly",
                 justify=tk.CENTER,textvariable=self.tk_var,takefocus=0,
                 values=[])
         self.restore_default_vars()
@@ -323,7 +323,7 @@ class VariableFetchToolPostMixin:
 class VariableFetchToolPopup:
     def popup_init(self):
         self.popup_menu = tk.Menu(self, tearoff=0)
-        self.popup_menu.add_command(label="V ",
+        self.popup_menu.add_command(label="V    取出變數",
             command=lambda:self.switch_button('variable_get'))
         self.popup_menu.add_command(label="V =  變數設值",
             command=lambda:self.switch_button('variable_assign'))

@@ -1,6 +1,7 @@
 import os 
 
 import tkinter as tk
+from tkinter import messagebox
 from tkinter import ttk
 from pathlib import Path
 from PIL import Image, ImageTk
@@ -12,8 +13,10 @@ from thonny.common import ToplevelCommand
 from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
-from .common import common_postit_tabs, CodeNTuple
+from .common import (common_postit_tabs, CodeNTuple, common_images, 
+                     )
 from . import common
+
 
 from .tools.enter_tool_postit import EnterToolPostit
 from .tools.backspace_tool_postit import BackspaceToolPostit
@@ -74,8 +77,39 @@ class PostitTab:
         abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
         im = Image.open(abs_image_path)       
         self.image = ImageTk.PhotoImage(im) 
-                
-        
+
+    def popup_init(self, example_vars):
+        self.example_vars = example_vars
+        self.popup_menu = tk.Menu(self.frame, tearoff=0)
+
+        self.popup_menu.add_command(label="範例變數匯入",
+            command=self.import_example_vars)
+
+        self.frame.bind("<Button-3>", self.popup)
+
+
+    def import_example_vars(self):
+        s = '【匯入變數名稱】\n'
+        for i in self.example_vars:
+            s = s + i + '\n'
+        s += '\n'
+
+        ans = messagebox.askokcancel('範例變數匯入',s)
+        #print(ans)
+        if ans: # import vars into vars_menu
+            vars_counter = common.share_vars_postit.vars_counter
+
+            for var in self.example_vars:
+                if var not in vars_counter:
+                    vars_counter[var] = 1
+            common.share_vars_postit.update_vars_menu()            
+        else: # no
+            return
+
+    def popup(self, event):
+        #if self.tool_name != 'variable_get':
+        self.popup_menu.tk_popup(event.x_root, event.y_root)
+
     @classmethod
     def pick_color(cls):
         c = cls.color_data[cls.color_circular_index]
@@ -95,7 +129,7 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.last_focus = None
         self.symbol_row_index = 0
 
-        #to do  :self.module_postit_tabs = {}
+        
 
         #add notebook tabs
         self.add_tab('common', '常用','basic')
@@ -104,15 +138,22 @@ class PythonPostitView(VerticallyScrollableFrame):
         self.add_tab('data', '資料\n類型','basic')
         self.add_tab('flow', '流程\n邏輯','basic')
         self.add_tab('turtle4t', '海龜\n繪圖','pack')
-        self.add_tab('function', 'Dino\n Bot','pack')
+        self.add_tab('dino', 'Dino\n Bot','pack')
 
         self.common_tab_init()
-        self.turtle4t_tab_init()
+        
         self.flow_tab_init()
+
+        self.turtle4t_tab_init()
+
+        self.dino_tab_init()
 
         #notebook event
         self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
         self.notebook.bind('<Button-1>',self.on_tab_click)
+
+
+
 
     def common_tab_init(self):
         ### common postit
@@ -129,7 +170,10 @@ class PythonPostitView(VerticallyScrollableFrame):
             
         #ttk.Separator(common_postit_tabs['common'].frame, orient=tk.HORIZONTAL
         #        ).pack(side=tk.TOP, fill=tk.X, padx=5)
-        ttk.Label(common_postit_tabs['common'].frame, text='-'*10 +' 常用 '+'-'*10, 
+        ttk.Label(common_postit_tabs['common'].frame, 
+                    text='-'*10 +' 常用 '+'-'*10,
+                    
+                    compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8)
 
         # EnclosedPostit(tab_name='common',
@@ -209,6 +253,18 @@ class PythonPostitView(VerticallyScrollableFrame):
         # DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
         #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=8, pady=8)
 
+        # title and setup tool
+        tab = common_postit_tabs['turtle4t']
+        example_vars = ['步數','角度','小海龜','海龜模組'] 
+        tab.popup_init(example_vars)
+
+        label =ttk.Label(common_postit_tabs['turtle4t'].frame, 
+                text='海龜繪圖便利包', 
+                image= common_images['gear'],
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8)
+        label.bind("<Button-1>", common_postit_tabs['turtle4t'].popup)
 
         # dropdown list postit
         temp_code_list = []
@@ -607,6 +663,20 @@ class PythonPostitView(VerticallyScrollableFrame):
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+
+    def dino_tab_init(self):
+        # title and setup tool
+        tab = common_postit_tabs['dino']
+        example_vars = ['圖片1','圖片2','上次時間','經過時間'] 
+        tab.popup_init(example_vars)
+
+        label =ttk.Label(common_postit_tabs['dino'].frame, 
+                text='小恐龍GameBot便利包', 
+                image= common_images['gear'],
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8)
+        label.bind("<Button-1>", common_postit_tabs['dino'].popup)        
 
 
     def flow_tab_init(self):
