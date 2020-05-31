@@ -29,7 +29,7 @@ class DropdownWidget(ttk.Frame):
         self.main_frame = ttk.Frame(self)
         self.main_frame.pack(side=tk.TOP)
         self.bottom_frame = ttk.Frame(self)
-        self.bottom_frame.pack(side=tk.TOP)
+        self.bottom_frame.pack(side=tk.TOP, anchor='w')
 
         # dropdown list button
         if len(self.code_list) > 1:
@@ -65,15 +65,15 @@ class DropdownWidget(ttk.Frame):
                                         )
 
         # two notes
-        self.main_note_label = ttk.Label(self.main_frame, text='' ) 
-        self.bottom_note_label = ttk.Label(self.bottom_frame, text='')
+        self.main_note_label = tk.Label(self.main_frame, text='' ) 
+        self.bottom_note_label = tk.Label(self.bottom_frame, text='')
 
         # 1st row sub-frame
         self.postit_button.pack(side=tk.LEFT, anchor='w')
         self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=5)
         # 2nd row sub-frame
         
-        self.bottom_note_label.pack(side=tk.TOP, anchor='center',padx=5)
+        self.bottom_note_label.pack(side=tk.LEFT,padx=15)
 
 
 class DropdownPopup:

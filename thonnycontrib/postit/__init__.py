@@ -165,16 +165,30 @@ class PythonPostitView(VerticallyScrollableFrame):
                 code_display='print()',
                 note='印出',
                 long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='印出(多個引數)',
+                code="print('你','好')",
+                code_display="print('你','好')",
+                note='印出(多個引數)',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='印出(不換行)',
+                code="print('早安', end='')",
+                code_display="print('早安', end='')",
+                note='印出(不換行)',
+                long_note=True ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
             
         #ttk.Separator(common_postit_tabs['common'].frame, orient=tk.HORIZONTAL
         #        ).pack(side=tk.TOP, fill=tk.X, padx=5)
-        ttk.Label(common_postit_tabs['common'].frame, 
-                    text='-'*10 +' 常用 '+'-'*10,
+
+        # # separator and note
+        # ttk.Label(common_postit_tabs['common'].frame, 
+        #             text='-'*10 +' 常用 '+'-'*10,
                     
-                    compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8)
+        #             compound=tk.LEFT, 
+        #         ).pack(side=tk.TOP, padx=5, pady=8)
 
         # EnclosedPostit(tab_name='common',
         #                enclosed_head='print(', 
