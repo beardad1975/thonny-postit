@@ -138,13 +138,14 @@ class PythonPostitView(VerticallyScrollableFrame):
         #self.add_tab('symbol', '符號','basic')
         self.add_tab('data', '資料','basic')
         self.add_tab('flow', '流程','basic')
+        self.add_tab('builtin', '內建','basic')
         self.add_tab('turtle4t', '海龜','pack')
         self.add_tab('dino', 'Dino','pack')
 
         self.common_tab_init()
-        
+        self.data_tab_init()
         self.flow_tab_init()
-
+        self.builtin_tab_init()
         self.turtle4t_tab_init()
 
         self.dino_tab_init()
@@ -215,10 +216,10 @@ class PythonPostitView(VerticallyScrollableFrame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='輸入 input',
-                code="input('請輸入數字 ')",
-                code_display="input('請輸入數字 ')",
+                code="input('請輸入: ')",
+                code_display="input('請輸入: ')",
                 note='輸入',
-                long_note=True ))
+                long_note=False ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -234,23 +235,81 @@ class PythonPostitView(VerticallyScrollableFrame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='dir()',
+                menu_display='查詢屬性 dir()',
                 code='dir()',
                 code_display='dir()',
-                note='物件屬性',
-                long_note=True ))
+                note='查詢屬性',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='查詢說明 help()',
+                code='help()',
+                code_display='help()',
+                note='查詢說明',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='查詢類型 type()',
+                code='type()',
+                code_display='type()',
+                note='查詢類型',
+                long_note=False ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+    def data_tab_init(self):
+
+        # separator and note
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['data'].frame, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text='【數值類型】',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='help()',
-                code='help()',
-                code_display='help()',
-                note='說明',
-                long_note=True ))
-        DropdownPostit(tab_name='common', code_list = temp_code_list,
+                menu_display='整數 int',
+                code='int()',
+                code_display='int()',
+                note='轉成整數類型',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='浮點數 float',
+                code='float()',
+                code_display='float()',
+                note='轉成浮點數類型',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='布林值 bool',
+                code='bool()',
+                code_display='bool()',
+                note='轉成布林值類型',
+                long_note=False ))
+        DropdownPostit(tab_name='data', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)		
+
+        ttk.Separator(common_postit_tabs['data'].frame, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['data'].frame, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text='【字串類型】',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='字串 str',
+                code='str()',
+                code_display='str()',
+                note='傳回字串類型',
+                long_note=False ))
+        DropdownPostit(tab_name='data', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # BasePostit(tab_name='common',
@@ -260,6 +319,46 @@ class PythonPostitView(VerticallyScrollableFrame):
         #                    postfix_enter=False,
         # ).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        ttk.Separator(common_postit_tabs['data'].frame, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['data'].frame, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text='【群集類型】',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+
+    def builtin_tab_init(self):
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['builtin'].frame, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text='【內建模組random】',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')        
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='隨機模組 random',
+                code='from random import randint',
+                code_display='from random import randint',
+                note='從隨機模組匯入randint',
+                long_note=True))
+        DropdownPostit(tab_name='builtin', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='隨機取整數 randint',
+                code='randint(1,10)',
+                code_display='randint(1,10)',
+                note='隨機取整數',
+                long_note=True))
+        DropdownPostit(tab_name='builtin', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
     def turtle4t_tab_init(self):
         ### turtle 4 t postit
@@ -716,11 +815,11 @@ class PythonPostitView(VerticallyScrollableFrame):
         # separator and note
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['flow'].frame, 
-                    #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-                    text='【 條件分支 】',
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text='【條件分支】',
                     font=f,    
                     compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -805,14 +904,14 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         # separator and note
         ttk.Separator(common_postit_tabs['flow'].frame, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=5)
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['flow'].frame, 
                     #text='='*6 +' 【  迴  圈  】 '+'='*6,
-                    text='【 迴 圈 】',
+                    text='【迴圈】',
                     font=f,   
                     compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit  
         temp_code_list = []
@@ -826,7 +925,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                                     menu_display='有條件重複 while ',
                                     code='while 條件:\n___',
                                     code_display='while 條件:\n    ___\n',
-                                    note='當成立時\n\n重複___',
+                                    note='當成立時\n\n重複',
                                     long_note=False ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -847,14 +946,14 @@ class PythonPostitView(VerticallyScrollableFrame):
                 menu_display='重複次數 for in range  ',
                 code='for i in range(10):\n___',
                 code_display='for i in range(10):\n    ___',
-                note='重複次數',
-                long_note=True))
+                note='重複\n幾次',
+                long_note=False))
         temp_code_list.append(CodeNTuple(
                 menu_display='取出項目 for in 清單  ',
                 code='for 項目 in 清單:\n___',
                 code_display='for 項目 in 清單:\n    ___',
-                note='取出項目',
-                long_note=True ))
+                note='逐項\n取出',
+                long_note=False ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -879,27 +978,37 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         #separator and note
         ttk.Separator(common_postit_tabs['flow'].frame, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=5)
+            ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['flow'].frame, 
                     #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-                    text='【 例外處理 】',
+                    text='【例外(錯誤)處理】',
                     font=f,    
                     compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='捕捉例外(錯誤)',
-                code='try:\n測試區\nexcept Exception:\n___',
-                code_display='try:\n    測試區\nexcept Exception:\n    ___',
-                note='捕捉例外(錯誤)',
-                long_note=True))
+                code='try:\n___\nexcept Exception:\n___',
+                code_display='try:\n    ___\nexcept Exception:\n    ___',
+                note='測試\n\n例外\n(錯誤)',
+                long_note=False))
 
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        #separator and note
+        ttk.Separator(common_postit_tabs['flow'].frame, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['flow'].frame, 
+                    #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
+                    text='【自訂功能(函式)】',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
 
 #     def tab_symbol_add_row(self, col1, col2=None, col3=None, col4=None):

@@ -113,7 +113,7 @@ class BaseCode:
             self.bottom_note_label.pack_forget()
         else: # bottom note
             self.main_note_label.config(text='')
-            self.bottom_note_label.pack()
+            self.bottom_note_label.pack(side=tk.LEFT,padx=15)
             self.bottom_note_label.config(text=help_text) 
 
     def update_postit_code(self):

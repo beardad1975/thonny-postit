@@ -41,6 +41,7 @@ class DropdownWidget(ttk.Frame):
                                         borderwidth=0,
                                         image=self.dropdown_image, 
                                         padx=0,
+                                        justify='left',
                                         )
         self.dropdown_button.pack(side=tk.LEFT, anchor='w',padx=0)
         
