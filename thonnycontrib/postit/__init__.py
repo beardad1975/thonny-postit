@@ -122,7 +122,8 @@ class PostitTab:
 
 
 
-class PythonPostitView(VerticallyScrollableFrame):
+#class PythonPostitView(VerticallyScrollableFrame):
+class PythonPostitView(ttk.Frame):
     def __init__(self, master):
         super().__init__(master) 
         self.toolbar_init()
@@ -388,7 +389,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='從隨機模組匯入choice',
                 long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -427,7 +428,7 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         # title and setup tool
         tab = common_postit_tabs['turtle4t']
-        example_vars = ['步數','角度','小海龜','海龜模組'] 
+        example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -467,7 +468,7 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='匯入海龜模組',
                 long_note=True ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
@@ -540,6 +541,18 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         # dropdown list postit
         temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='回出發點',
+                code='回出發點()',
+                code_display='回出發點()',
+                note='home',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  home',
+                code='home()',
+                code_display='home()',
+                note='回出發點',
+                long_note=False ))
         temp_code_list.append(CodeNTuple(
                 menu_display='走到',
                 code='走到(0,0)',
@@ -668,6 +681,7 @@ class PythonPostitView(VerticallyScrollableFrame):
 
         # dropdown list postit
         temp_code_list = []
+
         temp_code_list.append(CodeNTuple(
                 menu_display='停筆',
                 code='停筆()',
@@ -703,6 +717,18 @@ class PythonPostitView(VerticallyScrollableFrame):
                 code='isdown()',
                 code_display='isdown()',
                 note='下筆嗎',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='筆跡清除',
+                code='筆跡清除()',
+                code_display='筆跡清除()',
+                note='clear',
+                long_note=False ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  clear',
+                code='clear()',
+                code_display='clear()',
+                note='筆跡清除',
                 long_note=False ))
         temp_code_list.append(CodeNTuple(
                 menu_display='隱藏海龜',
@@ -861,23 +887,91 @@ class PythonPostitView(VerticallyScrollableFrame):
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+
+
+
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='鍵盤按下時',
-                code='鍵盤按下時(_功能函式_)\n監聽()',
+                menu_display='鍵盤按下時(任何鍵)',
+                code="鍵盤按下時(_功能函式_)\n監聽()",
                 code_display='鍵盤按下時(_功能函式_)\n監聽()',
-                note='onkeypress',
+                note='onkeypress(任何鍵)',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='鍵盤按下時(指定鍵)',
+                code="鍵盤按下時(_功能函式_, key='Up')\n監聽()",
+                code_display="鍵盤按下時(_功能函式_, key='Up')\n監聽()",
+                note='onkeypress(指定鍵)',
                 long_note=True ))
         temp_code_list.append(CodeNTuple(
                 menu_display='  onkeypress',
-                code='onkeypress(_func_)\nlisten()',
+                code="onkeypress(_func_, key='Up')\nlisten()",
                 code_display='onkeypress(_func_)\nlisten()',
                 note='鍵盤按下時',
                 long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='自訂功能(鍵盤按下時)',
+                code='def 轉彎():\n右轉(90)',
+                code_display='def 轉彎():\n    右轉(90)',
+                note='自訂功能(鍵盤按下時)',
+                long_note=True ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display='  define key press function ',
+                code='def turn():\nright(90)',
+                code_display='def turn():\n    right(90)',
+                note='自訂功能(鍵盤按下時)',
+                long_note=True ))  
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
 
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display="數字鍵",
+                code="'1'",
+                code_display="'1'",
+                note='數字鍵',
+                long_note=False ))   
+        temp_code_list.append(CodeNTuple(
+                menu_display="字母鍵",
+                code="'a'",
+                code_display="'a'",
+                note='字母鍵',
+                long_note=False ))   
+        temp_code_list.append(CodeNTuple(
+                menu_display="空白鍵 space",
+                code="'space'",
+                code_display="'space'",
+                note='空白鍵',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display="向上鍵 Up",
+                code="'Up'",
+                code_display="'Up'",
+                note='向上鍵',
+                long_note=False ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display="向下鍵 Down",
+                code="'Down'",
+                code_display="'Down'",
+                note='向下鍵',
+                long_note=False ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display="向右鍵 Right",
+                code="'Right'",
+                code_display="'Right'",
+                note='向右鍵',
+                long_note=False ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display="向左鍵 Left",
+                code="'Left'",
+                code_display="'Left'",
+                note='向左鍵',
+                long_note=False )) 
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -1153,7 +1247,8 @@ class PythonPostitView(VerticallyScrollableFrame):
     def toolbar_init(self):
 
         # var toolbar
-        self.var_toolbar = ttk.Frame(self.interior)
+        #self.var_toolbar = ttk.Frame(self.interior)
+        self.var_toolbar = ttk.Frame(self)
         self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
 
 
@@ -1174,7 +1269,8 @@ class PythonPostitView(VerticallyScrollableFrame):
         SymbolToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
 
         # edit_toolbar
-        self.edit_toolbar = ttk.Frame(self.interior)
+        #self.edit_toolbar = ttk.Frame(self.interior)
+        self.edit_toolbar = ttk.Frame(self)
         self.edit_toolbar.pack(side=tk.TOP, fill=tk.X)
                 
         DedentToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
@@ -1201,9 +1297,13 @@ class PythonPostitView(VerticallyScrollableFrame):
 
 
     def notebook_init(self):
-        style = ttk.Style(self.interior)
+        notebook_frame = VerticallyScrollableFrame(self)
+        notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
+        #style = ttk.Style(self.interior)
+        style = ttk.Style(notebook_frame.interior)
         style.configure('lefttab.TNotebook', tabposition='wn')
-        self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
+        #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
+        self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
         self.notebook.pack(side='top',fill="both", expand="true")
 
     def add_tab(self, name, label, tab_type):

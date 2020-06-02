@@ -199,9 +199,10 @@ class BasePost:
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
             text = self.postit_button.cget('text')
+            justify = self.postit_button.cget('justify')
             self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 
                         fg=fg,font=font, compound=compound, image=image,
-                        relief='solid', bd=0 )
+                        relief='solid', justify=justify, bd=0 )
             self.drag_button.pack()
             self.drag_window.overrideredirect(True)
             self.drag_window.attributes('-topmost', 'true')
