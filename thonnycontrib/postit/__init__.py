@@ -133,14 +133,14 @@ class PythonPostitView(VerticallyScrollableFrame):
         
 
         #add notebook tabs
-        self.add_tab('common', '基本','basic')
+        self.add_tab('common', ' 基本 ','basic')
         
         #self.add_tab('symbol', '符號','basic')
-        self.add_tab('data', '資料','basic')
-        self.add_tab('flow', '流程','basic')
-        self.add_tab('builtin', '內建','basic')
-        self.add_tab('turtle4t', '海龜','pack')
-        self.add_tab('dino', 'Dino','pack')
+        self.add_tab('data', ' 資料 ','basic')
+        self.add_tab('flow', ' 流程 ','basic')
+        self.add_tab('builtin', '程式庫','basic')
+        self.add_tab('turtle4t', ' 海龜 ','pack')
+        self.add_tab('dino', '小恐龍','pack')
 
         self.common_tab_init()
         self.data_tab_init()
@@ -312,6 +312,22 @@ class PythonPostitView(VerticallyScrollableFrame):
         DropdownPostit(tab_name='data', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='字串 str 雙引號',
+                code='名稱 = "小新"',
+                code_display='名稱 = "小新"',
+                note='建立str字串',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='字串 str 單引號',
+                code="名稱 = '小花'",
+                code_display="名稱 = '小花'",
+                note='建立str字串',
+                long_note=False ))
+        DropdownPostit(tab_name='data', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
         # BasePostit(tab_name='common',
         #                    code="dir()",
         #                    code_display="dir()",
@@ -329,6 +345,24 @@ class PythonPostitView(VerticallyScrollableFrame):
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='list清單 ',
+                code="清單 = [10,20,30]",
+                code_display="清單 = [10,20,30]",
+                note='建立list清單',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='list清單 (混合類型)',
+                code="清單 = [100,'小新','小花']",
+                code_display="清單 = [100,'小新','小花']",
+                note='建立list清單',
+                long_note=True ))
+        DropdownPostit(tab_name='data', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
 
     def builtin_tab_init(self):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -342,20 +376,32 @@ class PythonPostitView(VerticallyScrollableFrame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='隨機模組 random',
+                menu_display='從隨機模組匯入randint',
                 code='from random import randint',
                 code_display='from random import randint',
                 note='從隨機模組匯入randint',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='從隨機模組匯入choice',
+                code='from random import choice',
+                code_display='from random import choice',
+                note='從隨機模組匯入choice',
                 long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='隨機取整數 randint',
+                menu_display='隨機挑個整數 randint',
                 code='randint(1,10)',
                 code_display='randint(1,10)',
-                note='隨機取整數',
+                note='隨機挑個整數',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='隨機挑個項目 choice',
+                code='choice(清單)',
+                code_display='choice(清單)',
+                note='隨機挑個項目',
                 long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -753,9 +799,92 @@ class PythonPostitView(VerticallyScrollableFrame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
+                menu_display="red 紅色",
+                code="'red'",
+                code_display="'red'",
+                note='紅色',
+                long_note=False ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display="orange 橙色",
+                code="'orange'",
+                code_display="'orange'",
+                note='橙色',
+                long_note=False ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display="yellow 黃色",
+                code="'yellow'",
+                code_display="'yellow'",
+                note='黃色',
+                long_note=False ))   
+        temp_code_list.append(CodeNTuple(
+                menu_display="green 綠色",
+                code="'green'",
+                code_display="'green'",
+                note='綠色',
+                long_note=False )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display="blue 藍色",
+                code="'blue'",
+                code_display="'blue'",
+                note='藍色',
+                long_note=False )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display="cyan 青色",
+                code="'cyan'",
+                code_display="'cyan'",
+                note='青色',
+                long_note=False )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display="purple 紫色",
+                code="'purple'",
+                code_display="'purple'",
+                note='紫色',
+                long_note=False ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display="black 黑色",
+                code="'black'",
+                code_display="'black'",
+                note='黑色',
+                long_note=False ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display="gray 灰色",
+                code="'gray'",
+                code_display="'gray'",
+                note='灰色',
+                long_note=False )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display="white 白色",
+                code="'white'",
+                code_display="'white'",
+                note='白色',
+                long_note=False )) 
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='鍵盤按下時',
+                code='鍵盤按下時(_功能函式_)\n監聽()',
+                code_display='鍵盤按下時(_功能函式_)\n監聽()',
+                note='onkeypress',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  onkeypress',
+                code='onkeypress(_func_)\nlisten()',
+                code_display='onkeypress(_func_)\nlisten()',
+                note='鍵盤按下時',
+                long_note=True ))
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
                 menu_display='滑鼠點擊時',
-                code='滑鼠點擊時(_功能_)',
-                code_display='滑鼠點擊時(_功能_)',
+                code='滑鼠點擊時(_功能函式_)',
+                code_display='滑鼠點擊時(_功能函式_)',
                 note='onclick',
                 long_note=True ))    
         temp_code_list.append(CodeNTuple(
@@ -766,8 +895,8 @@ class PythonPostitView(VerticallyScrollableFrame):
                 long_note=True )) 
         temp_code_list.append(CodeNTuple(
                 menu_display='滑鼠點擊螢幕時',
-                code='滑鼠點擊螢幕時(_功能_)',
-                code_display='滑鼠點擊螢幕時(_功能_)',
+                code='滑鼠點擊螢幕時(_功能函式_)',
+                code_display='滑鼠點擊螢幕時(_功能函式_)',
                 note='onscreenclick',
                 long_note=True )) 
         temp_code_list.append(CodeNTuple(
@@ -777,16 +906,16 @@ class PythonPostitView(VerticallyScrollableFrame):
                 note='滑鼠點擊螢幕時',
                 long_note=True ))
         temp_code_list.append(CodeNTuple(
-                menu_display='定義滑鼠點擊功能(函式)',
+                menu_display='自訂功能(滑鼠點擊時)',
                 code='def 轉彎(x, y):\n右轉(90)',
                 code_display='def 轉彎(x, y):\n    右轉(90)',
-                note='定義滑鼠點擊功能(函式)',
+                note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         temp_code_list.append(CodeNTuple(
                 menu_display='  define mouse click function ',
                 code='def turn(x, y):\nright(90)',
                 code_display='def turn(x, y):\n    right(90)',
-                note='定義滑鼠點擊功能(函式)',
+                note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -946,14 +1075,14 @@ class PythonPostitView(VerticallyScrollableFrame):
                 menu_display='重複次數 for in range  ',
                 code='for i in range(10):\n___',
                 code_display='for i in range(10):\n    ___',
-                note='重複\n幾次',
-                long_note=False))
+                note='重複幾次',
+                long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='取出項目 for in 清單  ',
                 code='for 項目 in 清單:\n___',
                 code_display='for 項目 in 清單:\n    ___',
-                note='逐項\n取出',
-                long_note=False ))
+                note='從清單中逐一取出項目',
+                long_note=True ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
