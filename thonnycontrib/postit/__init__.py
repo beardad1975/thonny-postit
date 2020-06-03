@@ -428,7 +428,8 @@ class PythonPostitView(ttk.Frame):
 
         # title and setup tool
         tab = common_postit_tabs['turtle4t']
-        example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
+        #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
+        example_vars = ['長','角度','邊','多邊形','動作','顏色'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -541,18 +542,18 @@ class PythonPostitView(ttk.Frame):
 
         # dropdown list postit
         temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='回出發點',
-                code='回出發點()',
-                code_display='回出發點()',
-                note='home',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  home',
-                code='home()',
-                code_display='home()',
-                note='回出發點',
-                long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='回出發點',
+        #         code='回出發點()',
+        #         code_display='回出發點()',
+        #         note='home',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  home',
+        #         code='home()',
+        #         code_display='home()',
+        #         note='回出發點',
+        #         long_note=False ))
         temp_code_list.append(CodeNTuple(
                 menu_display='走到',
                 code='走到(0,0)',
@@ -565,30 +566,30 @@ class PythonPostitView(ttk.Frame):
                 code_display='goto(0,0)',
                 note='走到',
                 long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='x設為',
-                code='x設為(0)',
-                code_display='x設為(0)',
-                note='setx',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  setx',
-                code='setx(0)',
-                code_display='setx(0)',
-                note='x設為',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='y設為',
-                code='y設為(0)',
-                code_display='y設為(0)',
-                note='sety',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  sety',
-                code='sety(0)',
-                code_display='sety(0)',
-                note='y設為',
-                long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='x設為',
+        #         code='x設為(0)',
+        #         code_display='x設為(0)',
+        #         note='setx',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  setx',
+        #         code='setx(0)',
+        #         code_display='setx(0)',
+        #         note='x設為',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='y設為',
+        #         code='y設為(0)',
+        #         code_display='y設為(0)',
+        #         note='sety',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  sety',
+        #         code='sety(0)',
+        #         code_display='sety(0)',
+        #         note='y設為',
+        #         long_note=False ))
         temp_code_list.append(CodeNTuple(
                 menu_display='位置',
                 code='位置()',
@@ -601,30 +602,30 @@ class PythonPostitView(ttk.Frame):
                 code_display='pos()',
                 note='位置',
                 long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='x座標',
-                code='x座標()',
-                code_display='x座標()',
-                note='xcor',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  xcor',
-                code='xcor()',
-                code_display='xcor()',
-                note='x座標',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='y座標',
-                code='y座標()',
-                code_display='y座標()',
-                note='ycor',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  ycor',
-                code='ycor()',
-                code_display='ycor()',
-                note='y座標',
-                long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='x座標',
+        #         code='x座標()',
+        #         code_display='x座標()',
+        #         note='xcor',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  xcor',
+        #         code='xcor()',
+        #         code_display='xcor()',
+        #         note='x座標',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='y座標',
+        #         code='y座標()',
+        #         code_display='y座標()',
+        #         note='ycor',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  ycor',
+        #         code='ycor()',
+        #         code_display='ycor()',
+        #         note='y座標',
+        #         long_note=False ))
 
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -633,33 +634,33 @@ class PythonPostitView(ttk.Frame):
 
 
         # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='方向',
-                code='方向()',
-                code_display='方向()',
-                note='heading',
-                long_note=False )) 
-        temp_code_list.append(CodeNTuple(
-                menu_display='  heading',
-                code='heading()',
-                code_display='heading()',
-                note='方向',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定方向',
-                code='設定方向(0)',
-                code_display='設定方向(0)',
-                note='setheading',
-                long_note=False ))    
-        temp_code_list.append(CodeNTuple(
-                menu_display='  setheading',
-                code='setheading(0)',
-                code_display='setheading(0)',
-                note='設定方向',
-                long_note=False ))
-        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+        # temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='方向',
+        #         code='方向()',
+        #         code_display='方向()',
+        #         note='heading',
+        #         long_note=False )) 
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  heading',
+        #         code='heading()',
+        #         code_display='heading()',
+        #         note='方向',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='設定方向',
+        #         code='設定方向(0)',
+        #         code_display='設定方向(0)',
+        #         note='setheading',
+        #         long_note=False ))    
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  setheading',
+        #         code='setheading(0)',
+        #         code_display='setheading(0)',
+        #         note='設定方向',
+        #         long_note=False ))
+        # DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
         temp_code_list = []
@@ -706,30 +707,19 @@ class PythonPostitView(ttk.Frame):
                 code_display='pendown()',
                 note='下筆',
                 long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='下筆嗎',
-                code='下筆嗎()',
-                code_display='下筆嗎()',
-                note='isdown',
-                long_note=False ))    
-        temp_code_list.append(CodeNTuple(
-                menu_display='  isdown',
-                code='isdown()',
-                code_display='isdown()',
-                note='下筆嗎',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='筆跡清除',
-                code='筆跡清除()',
-                code_display='筆跡清除()',
-                note='clear',
-                long_note=False ))    
-        temp_code_list.append(CodeNTuple(
-                menu_display='  clear',
-                code='clear()',
-                code_display='clear()',
-                note='筆跡清除',
-                long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='下筆嗎',
+        #         code='下筆嗎()',
+        #         code_display='下筆嗎()',
+        #         note='isdown',
+        #         long_note=False ))    
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  isdown',
+        #         code='isdown()',
+        #         code_display='isdown()',
+        #         note='下筆嗎',
+        #         long_note=False ))
+
         temp_code_list.append(CodeNTuple(
                 menu_display='隱藏海龜',
                 code='隱藏海龜()',
@@ -807,6 +797,18 @@ class PythonPostitView(ttk.Frame):
                 code_display="fillcolor('orange')",
                 note='填充顏色',
                 long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='筆跡清除',
+                code='筆跡清除()',
+                code_display='筆跡清除()',
+                note='clear',
+                long_note=False ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  clear',
+                code='clear()',
+                code_display='clear()',
+                note='筆跡清除',
+                long_note=False ))
         temp_code_list.append(CodeNTuple(
                 menu_display='畫筆尺寸',
                 code='畫筆尺寸(1)',
@@ -890,129 +892,131 @@ class PythonPostitView(ttk.Frame):
 
 
 
-        # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='鍵盤按下時(任何鍵)',
-                code="鍵盤按下時(_功能函式_)\n監聽()",
-                code_display='鍵盤按下時(_功能函式_)\n監聽()',
-                note='onkeypress(任何鍵)',
-                long_note=True ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='鍵盤按下時(指定鍵)',
-                code="鍵盤按下時(_功能函式_, key='Up')\n監聽()",
-                code_display="鍵盤按下時(_功能函式_, key='Up')\n監聽()",
-                note='onkeypress(指定鍵)',
-                long_note=True ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  onkeypress',
-                code="onkeypress(_func_, key='Up')\nlisten()",
-                code_display='onkeypress(_func_)\nlisten()',
-                note='鍵盤按下時',
-                long_note=True ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='自訂功能(鍵盤按下時)',
-                code='def 轉彎():\n右轉(90)',
-                code_display='def 轉彎():\n    右轉(90)',
-                note='自訂功能(鍵盤按下時)',
-                long_note=True ))  
-        temp_code_list.append(CodeNTuple(
-                menu_display='  define key press function ',
-                code='def turn():\nright(90)',
-                code_display='def turn():\n    right(90)',
-                note='自訂功能(鍵盤按下時)',
-                long_note=True ))  
-        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
 
 
         # dropdown list postit
         temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display="數字鍵",
-                code="'1'",
-                code_display="'1'",
-                note='數字鍵',
-                long_note=False ))   
-        temp_code_list.append(CodeNTuple(
-                menu_display="字母鍵",
-                code="'a'",
-                code_display="'a'",
-                note='字母鍵',
-                long_note=False ))   
-        temp_code_list.append(CodeNTuple(
-                menu_display="空白鍵 space",
-                code="'space'",
-                code_display="'space'",
-                note='空白鍵',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display="向上鍵 Up",
-                code="'Up'",
-                code_display="'Up'",
-                note='向上鍵',
-                long_note=False ))  
-        temp_code_list.append(CodeNTuple(
-                menu_display="向下鍵 Down",
-                code="'Down'",
-                code_display="'Down'",
-                note='向下鍵',
-                long_note=False ))  
-        temp_code_list.append(CodeNTuple(
-                menu_display="向右鍵 Right",
-                code="'Right'",
-                code_display="'Right'",
-                note='向右鍵',
-                long_note=False ))  
-        temp_code_list.append(CodeNTuple(
-                menu_display="向左鍵 Left",
-                code="'Left'",
-                code_display="'Left'",
-                note='向左鍵',
-                long_note=False )) 
-        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-        # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='滑鼠點擊時',
-                code='滑鼠點擊時(_功能函式_)',
-                code_display='滑鼠點擊時(_功能函式_)',
-                note='onclick',
-                long_note=True ))    
-        temp_code_list.append(CodeNTuple(
-                menu_display='  onclick',
-                code='onclick(_func_)',
-                code_display='onclick(_func_)',
-                note='滑鼠點擊時',
-                long_note=True )) 
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='滑鼠點擊時',
+        #         code='滑鼠點擊時(功能函式)',
+        #         code_display='滑鼠點擊時(功能函式)',
+        #         note='onclick',
+        #         long_note=True ))    
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  onclick',
+        #         code='onclick(func)',
+        #         code_display='onclick(func)',
+        #         note='滑鼠點擊時',
+        #         long_note=True )) 
         temp_code_list.append(CodeNTuple(
                 menu_display='滑鼠點擊螢幕時',
-                code='滑鼠點擊螢幕時(_功能函式_)',
-                code_display='滑鼠點擊螢幕時(_功能函式_)',
+                code='滑鼠點擊螢幕時(功能函式)',
+                code_display='滑鼠點擊螢幕時(功能函式)',
                 note='onscreenclick',
                 long_note=True )) 
         temp_code_list.append(CodeNTuple(
                 menu_display='  onscreenclick',
-                code='onscreenclick(_func_)',
-                code_display='onscreenclick(_func_)',
+                code='onscreenclick(func)',
+                code_display='onscreenclick(func)',
                 note='滑鼠點擊螢幕時',
                 long_note=True ))
         temp_code_list.append(CodeNTuple(
                 menu_display='自訂功能(滑鼠點擊時)',
-                code='def 轉彎(x, y):\n右轉(90)',
-                code_display='def 轉彎(x, y):\n    右轉(90)',
+                code='def 功能函式(x, y):\n___',
+                code_display='def 功能函式(x, y):\n    ___',
                 note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         temp_code_list.append(CodeNTuple(
                 menu_display='  define mouse click function ',
-                code='def turn(x, y):\nright(90)',
-                code_display='def turn(x, y):\n    right(90)',
+                code='def func(x, y):\n___',
+                code_display='def func(x, y):\n    ___',
                 note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # # dropdown list postit
+        # temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='鍵盤按下時(任何鍵)',
+        #         code="鍵盤按下時(功能函式)\n監聽()",
+        #         code_display='鍵盤按下時(功能函式)\n監聽()',
+        #         note='onkeypress(任何鍵)',
+        #         long_note=True ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='鍵盤按下時(指定鍵)',
+        #         code="鍵盤按下時(功能函式, key='Up')\n監聽()",
+        #         code_display="鍵盤按下時(功能函式, key='Up')\n監聽()",
+        #         note='onkeypress(指定鍵)',
+        #         long_note=True ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  onkeypress',
+        #         code="onkeypress(func, key='Up')\nlisten()",
+        #         code_display='onkeypress(func)\nlisten()',
+        #         note='鍵盤按下時',
+        #         long_note=True ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='自訂功能(鍵盤按下時)',
+        #         code='def 功能函式():\n___',
+        #         code_display='def 功能函式():\n    ___',
+        #         note='自訂功能(鍵盤按下時)',
+        #         long_note=True ))  
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  define key press function ',
+        #         code='def func():\n___',
+        #         code_display='def func():\n    ___',
+        #         note='自訂功能(鍵盤按下時)',
+        #         long_note=True ))  
+        # DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
+
+
+        # # dropdown list postit
+        # temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display="數字鍵",
+        #         code="'1'",
+        #         code_display="'1'",
+        #         note='數字鍵',
+        #         long_note=False ))   
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display="字母鍵",
+        #         code="'a'",
+        #         code_display="'a'",
+        #         note='字母鍵',
+        #         long_note=False ))   
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display="空白鍵 space",
+        #         code="'space'",
+        #         code_display="'space'",
+        #         note='空白鍵',
+        #         long_note=False ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display="向上鍵 Up",
+        #         code="'Up'",
+        #         code_display="'Up'",
+        #         note='向上鍵',
+        #         long_note=False ))  
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display="向下鍵 Down",
+        #         code="'Down'",
+        #         code_display="'Down'",
+        #         note='向下鍵',
+        #         long_note=False ))  
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display="向右鍵 Right",
+        #         code="'Right'",
+        #         code_display="'Right'",
+        #         note='向右鍵',
+        #         long_note=False ))  
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display="向左鍵 Left",
+        #         code="'Left'",
+        #         code_display="'Left'",
+        #         note='向左鍵',
+        #         long_note=False )) 
+        # DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
     def dino_tab_init(self):
@@ -1232,6 +1236,35 @@ class PythonPostitView(ttk.Frame):
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='自訂功能函式',
+                code='def 功能函式(參數1, 參數2):\n___',
+                code_display='def 功能函式(參數1, 參數2):\n    ___',
+                note='自訂功能函式',
+                long_note=True ))  
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  define  function ',
+        #         code='def func(p1, p2):\n___',
+        #         code_display='def func(p1, p2):\n    ___',
+        #         note='自訂功能函式',
+        #         long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='呼叫功能函式',
+                code='功能函式(引數1, 引數2)',
+                code_display='功能函式(引數1, 引數2)',
+                note='呼叫功能函式',
+                long_note=True ))    
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  call function ',
+        #         code='func(a1, a2):\n___',
+        #         code_display='func(a1, a2):\n    ___',
+        #         note='呼叫功能函式',
+        #         long_note=True ))    
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 #     def tab_symbol_add_row(self, col1, col2=None, col3=None, col4=None):
