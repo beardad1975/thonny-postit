@@ -63,7 +63,7 @@ load_image('gear')
 # setup vars counter and default
 
 
-common_default_vars = ('變數X','變數Y','名稱','輸入','答案','次數', 'i','j','項目', '清單')
+common_default_vars = ('變數','名稱','輸入','答案','次數', 'i','j','項目', '清單')
 #common_default_vars =()
 
 # share postit . should be assign carefully

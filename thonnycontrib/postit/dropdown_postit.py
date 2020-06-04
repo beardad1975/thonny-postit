@@ -27,7 +27,7 @@ class DropdownWidget(ttk.Frame):
 
         # main and bottom sub-frame
         self.main_frame = ttk.Frame(self)
-        self.main_frame.pack(side=tk.TOP)
+        self.main_frame.pack(side=tk.TOP, anchor='w')
         self.bottom_frame = ttk.Frame(self)
         self.bottom_frame.pack(side=tk.TOP, anchor='w')
 
@@ -66,8 +66,9 @@ class DropdownWidget(ttk.Frame):
                                         )
 
         # two notes
-        self.main_note_label = tk.Label(self.main_frame, text='' ) 
-        self.bottom_note_label = tk.Label(self.bottom_frame, text='')
+        
+        self.main_note_label = tk.Label(self.main_frame, text='',  ) 
+        self.bottom_note_label = tk.Label(self.bottom_frame, text='',)
 
         # 1st row sub-frame
         self.postit_button.pack(side=tk.LEFT, anchor='w')

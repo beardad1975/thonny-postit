@@ -49,7 +49,7 @@ class SymbolCodeMixin:
         self.code_display = code 
         self.note = ''
 
-        self.enclosed_symbols = ('()','[]','{}',"''",'""',)
+        self.enclosed_symbols = ('()','[]','{}',"''",'""','r""',"r''")
 
         self.postit_button.config(text=code)
             
@@ -278,19 +278,25 @@ class SymbolToolPopup:
         self.popup_menu = tk.Menu(self, tearoff=0)
 
         # submenu
-        self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.assign_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.string_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.collection_menu =  tk.Menu(self.popup_menu, tearoff=0)
         self.comparison_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.logic_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
+        #self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.misc_menu = tk.Menu(self.popup_menu, tearoff=0)
         
 
         # cascade submenu
         self.popup_menu.add_cascade(label='運算', menu=self.arithmetic_menu)
-        self.popup_menu.add_cascade(label='括號引號',
-                menu=self.bracket_quote_menu)
         self.popup_menu.add_cascade(label='設值', menu=self.assign_menu)
+
+        self.popup_menu.add_cascade(label='字串', menu=self.string_menu)
+        self.popup_menu.add_cascade(label='群集', menu=self.collection_menu)
+        #self.popup_menu.add_cascade(label='括號引號',
+        #        menu=self.bracket_quote_menu)
+
         self.popup_menu.add_cascade(label='比較', 
                 menu=self.comparison_menu)
         self.popup_menu.add_cascade(label='邏輯', 
@@ -308,6 +314,8 @@ class SymbolToolPopup:
         self.arithmetic_menu.add_command(
             label="/  除", command=lambda:self.change_symbol(' / '))
         self.arithmetic_menu.add_command(
+            label="( )  圓括號", command=lambda:self.change_symbol('()'))
+        self.arithmetic_menu.add_command(
             label="%  取餘數", command=lambda:self.change_symbol(' % '))
         self.arithmetic_menu.add_command(
             label="** 次方", command=lambda:self.change_symbol(' ** '))
@@ -317,6 +325,19 @@ class SymbolToolPopup:
         #     label="0o  8進位表示", command=lambda:self.change_symbol('0o'))
         # self.arithmetic_menu.add_command(
         #     label="0x 16進位表示", command=lambda:self.change_symbol('0x'))
+
+
+        # string menu command
+        self.string_menu.add_command(
+            label="' '  單引號(字串)", command=lambda:self.change_symbol("''"))
+        self.string_menu.add_command(
+            label='" "  雙引號(字串)', command=lambda:self.change_symbol('""'))
+        self.string_menu.add_command(
+            label='r" "  原始字串', command=lambda:self.change_symbol('r""'))
+        self.string_menu.add_command(
+            label="r' '  原始字串", command=lambda:self.change_symbol("r''"))
+        self.string_menu.add_command(
+            label="\\n  換行(需在字串中)", command=lambda:self.change_symbol('\\n'))
 
         # assign menu command
         self.assign_menu.add_command(
@@ -329,10 +350,10 @@ class SymbolToolPopup:
             label="*=  乘後設值", command=lambda:self.change_symbol(' *= '))
         self.assign_menu.add_command(
             label="/=  除後設值", command=lambda:self.change_symbol(' /= '))
-        self.assign_menu.add_command(
-            label="%=  取餘數後設值", command=lambda:self.change_symbol(' %= '))
-        self.assign_menu.add_command(
-            label="**=  次方後設值", command=lambda:self.change_symbol(' **= '))
+        # self.assign_menu.add_command(
+        #     label="%=  取餘數後設值", command=lambda:self.change_symbol(' %= '))
+        # self.assign_menu.add_command(
+        #     label="**=  次方後設值", command=lambda:self.change_symbol(' **= '))
 
         # comparison menu command
         self.comparison_menu.add_command(
@@ -359,7 +380,6 @@ class SymbolToolPopup:
             label="True   真(成立)", command=lambda:self.change_symbol('True'))
         self.logic_menu.add_command(
             label="False   假(不成立)", command=lambda:self.change_symbol('False'))
-
         self.logic_menu.add_command(
             label="None   空值", command=lambda:self.change_symbol('None'))
         self.logic_menu.add_command(
@@ -367,27 +387,23 @@ class SymbolToolPopup:
         self.logic_menu.add_command(
             label="in   在裡面", command=lambda:self.change_symbol(' in '))
 
-        # bracket and quote menu command
-        self.bracket_quote_menu.add_command(
-            label="( )  圓括號", command=lambda:self.change_symbol('()'))
-        self.bracket_quote_menu.add_command(
-            label="[ ]  方括號", command=lambda:self.change_symbol('[]'))
-        self.bracket_quote_menu.add_command(
-            label="{ }  大括號", command=lambda:self.change_symbol('{}'))
-        self.bracket_quote_menu.add_command(
-            label="' '  單引號", command=lambda:self.change_symbol("''"))
-        self.bracket_quote_menu.add_command(
-            label='" "  雙引號', command=lambda:self.change_symbol('""'))
+        # collection menu command
+        self.collection_menu.add_command(
+            label="[ ]  方括號(清單、取項目)", command=lambda:self.change_symbol('[]'))
+        self.collection_menu.add_command(
+            label="()  圓括號(Tuple)", command=lambda:self.change_symbol('()'))
+        self.collection_menu.add_command(
+            label="{ }  大括號(字典、集合)", command=lambda:self.change_symbol('{}'))
+
 
         # misc menu command
         self.misc_menu.add_command(
-            label=",   逗號", command=lambda:self.change_symbol(','))
+            label=",   逗號", command=lambda:self.change_symbol(', '))
         self.misc_menu.add_command(
             label=":   冒號", command=lambda:self.change_symbol(':'))
         self.misc_menu.add_command(
             label="pass  略過", command=lambda:self.change_symbol('pass'))
-        self.misc_menu.add_command(
-            label="\\n  換行(需在字串中)", command=lambda:self.change_symbol('\\n'))
+
         
 
         self.postit_button.bind("<Button-3>", self.popup)

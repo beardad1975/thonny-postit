@@ -1022,7 +1022,7 @@ class PythonPostitView(ttk.Frame):
     def dino_tab_init(self):
         # title and setup tool
         tab = common_postit_tabs['dino']
-        example_vars = ['圖片1','圖片2','上次時間','經過時間'] 
+        example_vars = ['圖片','寬高','開始時間','經過時間','區域',] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1034,6 +1034,143 @@ class PythonPostitView(ttk.Frame):
                 )                
         label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
         label.bind("<Button-1>", common_postit_tabs['dino'].popup)        
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['dino'].frame, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['dino'].frame, 
+                    
+                    text='【pyautogui自動化】',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                                    menu_display='',
+                                    code='',
+                                    code_display=''
+                                    '',
+                                    note='',
+                                    long_note=False))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['dino'].frame, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['dino'].frame, 
+                    
+                    text='【pillow影像處理】',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='從PIL匯入Image模組',
+                code='from PIL import Image',
+                code_display='from PIL import Image',
+                note='從PIL模組匯入Image',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='從PIL匯入ImageGrab模組',
+                code='from PIL import ImageGrab',
+                code_display='from PIL import ImageGrab',
+                note='從PIL模組匯入ImageGrab',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='Image.open 開啟影像',
+                code='圖片 = Image.open(檔名)',
+                code_display='圖片 = Image.open(檔名)',
+                note='開啟影像',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='ImageGrab.grab 截取螢幕',
+                code='圖片 = Image.grab()',
+                code_display='圖片 = Image.grab()',
+                note='截取螢幕',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='ImageGrab.grab 截取區域中螢幕',
+                code='圖片 = Image.grab(區域)',
+                code_display='圖片 = Image.grab(區域)',
+                note='截取區域螢幕',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='影像格式 .format(Image屬性)',
+                code='圖片.format',
+                code_display='圖片.format',
+                note='影像格式(Image屬性)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='影像寬高 .size(Image屬性)',
+                code='圖片.size',
+                code_display='圖片.size',
+                note='影像寬高(Image屬性)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='影像模式 .mode(Image屬性)',
+                code='圖片.mode',
+                code_display='圖片.mode',
+                note='影像模式(Image屬性)',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='顯示影像 .show(Image操作方法)',
+                code='圖片.show()',
+                code_display='圖片.show()',
+                note='顯示影像(Image操作方法)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='取出部份影像 .crop(Image操作方法)',
+                code='圖片.crop(區域)',
+                code_display='圖片.crop(區域)',
+                note='取出部份影像(Image操作方法)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='縮圖 .thumbnail(Image操作方法)',
+                code='圖片.thumbnail(寬高)',
+                code_display='圖片.thumbnail(寬高)',
+                note='縮圖(Image操作方法)',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定區域',
+                code='區域 = [0, 0, 100, 100]',
+                code_display='區域 = [0, 0, 100, 100]',
+                note='設定區域(左上及右下座標)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定寬高',
+                code='寬高 = [100, 100]',
+                code_display='寬高 = [100, 100]',
+                note='設定寬高',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
     def flow_tab_init(self):
