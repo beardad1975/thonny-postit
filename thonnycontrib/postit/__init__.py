@@ -1022,7 +1022,7 @@ class PythonPostitView(ttk.Frame):
     def dino_tab_init(self):
         # title and setup tool
         tab = common_postit_tabs['dino']
-        example_vars = ['圖片','寬高','開始時間','經過時間','區域',] 
+        example_vars = ['圖片1','圖片2','區域','寬高','檔名','開始時間','經過時間',] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1112,22 +1112,22 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='影像格式 .format(Image屬性)',
+                menu_display='影像格式 .format',
                 code='圖片.format',
                 code_display='圖片.format',
-                note='影像格式(Image屬性)',
+                note='影像格式',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='影像寬高 .size(Image屬性)',
+                menu_display='影像寬高 .size',
                 code='圖片.size',
                 code_display='圖片.size',
-                note='影像寬高(Image屬性)',
+                note='影像寬高',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='影像模式 .mode(Image屬性)',
+                menu_display='影像模式 .mode',
                 code='圖片.mode',
                 code_display='圖片.mode',
-                note='影像模式(Image屬性)',
+                note='影像模式',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1135,22 +1135,52 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='顯示影像 .show(Image操作方法)',
+                menu_display='顯示影像 .show',
                 code='圖片.show()',
                 code_display='圖片.show()',
-                note='顯示影像(Image操作方法)',
+                note='顯示影像',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='取出部份影像 .crop(Image操作方法)',
-                code='圖片.crop(區域)',
-                code_display='圖片.crop(區域)',
-                note='取出部份影像(Image操作方法)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='縮圖 .thumbnail(Image操作方法)',
+                menu_display='縮圖 .thumbnail',
                 code='圖片.thumbnail(寬高)',
                 code_display='圖片.thumbnail(寬高)',
-                note='縮圖(Image操作方法)',
+                note='縮圖',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='影像存檔 .save',
+                code='圖片.save(檔名)',
+                code_display='圖片.save(檔名)',
+                note='影像存檔',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='取出部份影像 .crop',
+                code='圖片2 = 圖片.crop(區域)',
+                code_display='圖片2 = 圖片.crop(區域)',
+                note='取出部份影像(傳回新影像)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='轉成全彩影像 .convert',
+                code='圖片2 = 圖片.convert("RGB")',
+                code_display='圖片2 = 圖片.convert("RGB")',
+                note='轉成全彩影像(傳回新影像)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='轉成灰階影像 .convert',
+                code='圖片2 = 圖片.convert("L")',
+                code_display='圖片2 = 圖片.convert("L")',
+                note='轉成灰階影像(傳回新影像)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='轉成黑白影像 .convert',
+                code='圖片2 = 圖片.convert("1")',
+                code_display='圖片2 = 圖片.convert("1")',
+                note='轉成黑白影像(傳回新影像)',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1168,6 +1198,12 @@ class PythonPostitView(ttk.Frame):
                 code='寬高 = [100, 100]',
                 code_display='寬高 = [100, 100]',
                 note='設定寬高',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定檔名',
+                code="檔名 = r''",
+                code_display="檔名 = r' '",
+                note='設定檔名',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
