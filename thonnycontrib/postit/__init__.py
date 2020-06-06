@@ -272,7 +272,7 @@ class PythonPostitView(ttk.Frame):
 
         # separator and note
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['data'].frame, 
+        ttk.Label(common_postit_tabs['data'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【數值類型】',
                     font=f,    
@@ -302,10 +302,10 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='data', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)		
 
-        ttk.Separator(common_postit_tabs['data'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['data'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['data'].frame, 
+        ttk.Label(common_postit_tabs['data'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【字串類型】',
                     font=f,    
@@ -347,10 +347,10 @@ class PythonPostitView(ttk.Frame):
         #                    postfix_enter=False,
         # ).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        ttk.Separator(common_postit_tabs['data'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['data'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['data'].frame, 
+        ttk.Label(common_postit_tabs['data'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【群集類型】',
                     font=f,    
@@ -378,7 +378,7 @@ class PythonPostitView(ttk.Frame):
 
     def builtin_tab_init(self):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['builtin'].frame, 
+        ttk.Label(common_postit_tabs['builtin'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【內建函式】',
                     font=f,    
@@ -397,10 +397,10 @@ class PythonPostitView(ttk.Frame):
 
 
 
-        ttk.Separator(common_postit_tabs['builtin'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['builtin'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['builtin'].frame, 
+        ttk.Label(common_postit_tabs['builtin'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【隨機模組random】',
                     font=f,    
@@ -441,10 +441,10 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
-        ttk.Separator(common_postit_tabs['builtin'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['builtin'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['builtin'].frame, 
+        ttk.Label(common_postit_tabs['builtin'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【時間模組time】',
                     font=f,    
@@ -511,7 +511,7 @@ class PythonPostitView(ttk.Frame):
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        label =ttk.Label(common_postit_tabs['turtle4t'].frame, 
+        label =ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                 text='【海龜繪圖便利包】', 
                 image= common_images['gear'],
                 font=f,
@@ -561,10 +561,10 @@ class PythonPostitView(ttk.Frame):
 
 
 
-        ttk.Separator(common_postit_tabs['turtle4t'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['turtle4t'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['turtle4t'].frame, 
+        ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【動作與位置】',
                     font=f,    
@@ -751,10 +751,10 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        ttk.Separator(common_postit_tabs['turtle4t'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['turtle4t'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['turtle4t'].frame, 
+        ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【畫筆與畫布】',
                     font=f,    
@@ -877,10 +877,10 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        ttk.Separator(common_postit_tabs['turtle4t'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['turtle4t'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['turtle4t'].frame, 
+        ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【筆跡與填色】',
                     font=f,    
@@ -1057,10 +1057,10 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        ttk.Separator(common_postit_tabs['turtle4t'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['turtle4t'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['turtle4t'].frame, 
+        ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【形狀】',
                     font=f,    
@@ -1097,10 +1097,10 @@ class PythonPostitView(ttk.Frame):
              postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
-        ttk.Separator(common_postit_tabs['turtle4t'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['turtle4t'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['turtle4t'].frame, 
+        ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【事件】',
                     font=f,    
@@ -1240,7 +1240,7 @@ class PythonPostitView(ttk.Frame):
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        label =ttk.Label(common_postit_tabs['dino'].frame, 
+        label =ttk.Label(common_postit_tabs['dino'].frame.interior, 
                 text='【小恐龍GameBot便利包】', 
                 image= common_images['gear'],
                 font=f,
@@ -1250,10 +1250,10 @@ class PythonPostitView(ttk.Frame):
         label.bind("<Button-1>", common_postit_tabs['dino'].popup)        
 
         # separator and note
-        ttk.Separator(common_postit_tabs['dino'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['dino'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['dino'].frame, 
+        ttk.Label(common_postit_tabs['dino'].frame.interior, 
                     
                     text='【視窗自動化】',
                     font=f,   
@@ -1383,10 +1383,10 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # separator and note
-        ttk.Separator(common_postit_tabs['dino'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['dino'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['dino'].frame, 
+        ttk.Label(common_postit_tabs['dino'].frame.interior, 
                     
                     text='【影像處理】',
                     font=f,   
@@ -1545,7 +1545,7 @@ class PythonPostitView(ttk.Frame):
 
         # separator and note
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['flow'].frame, 
+        ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text='【條件分支】',
                     font=f,    
@@ -1634,10 +1634,10 @@ class PythonPostitView(ttk.Frame):
 
 
         # separator and note
-        ttk.Separator(common_postit_tabs['flow'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['flow'].frame, 
+        ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【  迴  圈  】 '+'='*6,
                     text='【迴圈】',
                     font=f,   
@@ -1720,10 +1720,10 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         #separator and note
-        ttk.Separator(common_postit_tabs['flow'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['flow'].frame, 
+        ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
                     text='【例外(錯誤)處理】',
                     font=f,    
@@ -1743,10 +1743,10 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         #separator and note
-        ttk.Separator(common_postit_tabs['flow'].frame, orient=tk.HORIZONTAL
+        ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['flow'].frame, 
+        ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
                     text='【自訂功能(函式)】',
                     font=f,    
@@ -1850,13 +1850,16 @@ class PythonPostitView(ttk.Frame):
 
 
     def notebook_init(self):
-        notebook_frame = VerticallyScrollableFrame(self)
+        #notebook_frame = VerticallyScrollableFrame(self)
+        notebook_frame = ttk.Frame(self)
         notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
         #style = ttk.Style(self.interior)
-        style = ttk.Style(notebook_frame.interior)
+        #style = ttk.Style(notebook_frame.interior)
+        style = ttk.Style(notebook_frame)
         style.configure('lefttab.TNotebook', tabposition='wn')
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
-        self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
+        #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
+        self.notebook = ttk.Notebook(notebook_frame, style='lefttab.TNotebook')
         self.notebook.pack(side='top',fill="both", expand="true")
 
     def add_tab(self, name, label, tab_type):
@@ -1864,12 +1867,18 @@ class PythonPostitView(ttk.Frame):
         tab = PostitTab(name, label, tab_type)
         common_postit_tabs[name] = tab
 
-        tab.frame = ttk.Frame(self.notebook)        
+        #tab.frame = ttk.Frame(self.notebook)        
+        tab.frame = VerticallyScrollableFrame(self.notebook)
         self.notebook.add(tab.frame,
                           text = tab.label,
                           image = tab.image,
                           compound="top",
                         )
+        # self.notebook.add(tab.frame,
+        #                   text = tab.label,
+        #                   image = tab.image,
+        #                   compound="top",
+        #                 )
 
         tab.index = self.notebook.index('end')
         return tab

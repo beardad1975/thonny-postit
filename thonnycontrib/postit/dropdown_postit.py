@@ -19,11 +19,13 @@ class DropdownWidget(ttk.Frame):
         self.tab_name = tab_name
         self.tab = common_postit_tabs[tab_name]
         
+        
         # image
         self.enter_image = common_images['enter_small']
 
         # frame init
-        ttk.Frame.__init__(self, self.tab.frame)
+        #ttk.Frame.__init__(self, self.tab.frame)
+        ttk.Frame.__init__(self, self.tab.frame.interior)
 
         # main and bottom sub-frame
         self.main_frame = ttk.Frame(self)
