@@ -507,7 +507,7 @@ class PythonPostitView(ttk.Frame):
         # title and setup tool
         tab = common_postit_tabs['turtle4t']
         #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-        example_vars = ['長','角度','邊','動作','顏色','寬'] 
+        example_vars = ['長','角度','邊','動作','顏色','寬','層','階層','分枝'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1779,6 +1779,18 @@ class PythonPostitView(ttk.Frame):
         #         code_display='func(a1, a2):\n    ___',
         #         note='呼叫功能函式',
         #         long_note=True ))    
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='功能函式返回(跳出) return',
+                code='return',
+                code_display='return',
+                note='功能函式返回(跳出)',
+                long_note=False))
+
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
