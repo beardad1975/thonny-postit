@@ -256,6 +256,17 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='common', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='主要執行模組 __main__',
+                code="if __name__=='__main__':\n___",
+                code_display="if __name__ == '__main__':\n    ___",
+                note='主要執行模組',
+                long_note=True ))
+        DropdownPostit(tab_name='common', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
 
     def data_tab_init(self):
 
@@ -369,7 +380,29 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['builtin'].frame, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【內建隨機模組】',
+                    text='【內建函式】',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')  
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='長度 len',
+                code='len()',
+                code_display='len()',
+                note='長度',
+                long_note=False))
+        DropdownPostit(tab_name='builtin', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+
+        ttk.Separator(common_postit_tabs['builtin'].frame, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['builtin'].frame, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text='【隨機模組random】',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')        
@@ -413,7 +446,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['builtin'].frame, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【內建時間模組】',
+                    text='【時間模組time】',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -828,6 +861,19 @@ class PythonPostitView(ttk.Frame):
                 code_display='screensize()',
                 note='畫布大小',
                 long_note=False ))  
+        temp_code_list.append(CodeNTuple(
+                menu_display='背景顏色',
+                code="背景顏色('white')",
+                code_display="背景顏色('white')",
+                note='bgcolor',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  bgcolor',
+                code="bgcolor('white')",
+                code_display="bgcolor('white')",
+                note='背景顏色',
+                long_note=True ))
+
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -844,30 +890,6 @@ class PythonPostitView(ttk.Frame):
 
         # dropdown list postit
         temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='開始填色',
-                code='開始填色()',
-                code_display='開始填色()',
-                note='begin_fill',
-                long_note=False ))    
-        temp_code_list.append(CodeNTuple(
-                menu_display='  begin_fill',
-                code='begin_fill()',
-                code_display='begin_fill()',
-                note='開始填色',
-                long_note=False ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='停止填色',
-                code='停止填色()',
-                code_display='停止填色()',
-                note='end_fill',
-                long_note=False ))    
-        temp_code_list.append(CodeNTuple(
-                menu_display='  end_fill',
-                code='end_fill()',
-                code_display='end_fill()',
-                note='停止填色',
-                long_note=False ))
         temp_code_list.append(CodeNTuple(
                 menu_display='畫筆顏色',
                 code="畫筆顏色('black')",
@@ -892,18 +914,32 @@ class PythonPostitView(ttk.Frame):
                 code_display="fillcolor('orange')",
                 note='填充顏色',
                 long_note=True ))
+
         temp_code_list.append(CodeNTuple(
-                menu_display='背景顏色',
-                code="背景顏色('white')",
-                code_display="背景顏色('white')",
-                note='bgcolor',
-                long_note=True ))
+                menu_display='開始填色',
+                code='開始填色()',
+                code_display='開始填色()',
+                note='begin_fill',
+                long_note=False ))    
         temp_code_list.append(CodeNTuple(
-                menu_display='  bgcolor',
-                code="bgcolor('white')",
-                code_display="bgcolor('white')",
-                note='背景顏色',
-                long_note=True ))
+                menu_display='  begin_fill',
+                code='begin_fill()',
+                code_display='begin_fill()',
+                note='開始填色',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='停止填色',
+                code='停止填色()',
+                code_display='停止填色()',
+                note='end_fill',
+                long_note=False ))    
+        temp_code_list.append(CodeNTuple(
+                menu_display='  end_fill',
+                code='end_fill()',
+                code_display='end_fill()',
+                note='停止填色',
+                long_note=False ))
+
 
         temp_code_list.append(CodeNTuple(
                 menu_display='畫筆尺寸',
@@ -988,6 +1024,18 @@ class PythonPostitView(ttk.Frame):
                 code_display="'pink'",
                 note='粉紅色',
                 long_note=False )) 
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='顏色清單',
+                code="清單 = ['orange','white']",
+                code_display="清單 = ['orange','white']",
+                note='顏色清單',
+                long_note=True))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -1227,22 +1275,109 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='',
-                code='',
-                code_display='',
-                note='',
+                menu_display='滑鼠位置 position',
+                code='pyautogui.position()',
+                code_display='pyautogui.position()',
+                note='滑鼠位置',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='螢幕大小 size',
+                code='pyautogui.size()',
+                code_display='pyautogui.size()',
+                note='螢幕大小',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='在螢幕內嗎 onScreen',
+                code='pyautogui.onScreen(100, 100)',
+                code_display='pyautogui.onScreen(100, 100)',
+                note='在螢幕內嗎',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='每次暫停(秒) PAUSE',
+                code='pyautogui.PAUSE = 1',
+                code_display='pyautogui.PAUSE = 1',
+                note='每次暫停(秒)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='失效安全  FAILSAFE',
+                code='pyautogui.FAILSAFE = True',
+                code_display='pyautogui.FAILSAFE = True',
+                note='失效安全',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='',
-                code='',
-                code_display='',
-                note='',
+                menu_display='點擊滑鼠(滑鼠按鍵)',
+                code='pyautogui.click(button="left")',
+                code_display='pyautogui.click(button="left")',
+                note='點擊滑鼠(滑鼠按鍵)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='移動滑鼠(到座標在幾秒內)',
+                code='pyautogui.moveTo(100, 100, 2)',
+                code_display='pyautogui.moveTo(100, 100, 2)',
+                note='移動滑鼠(到座標在幾秒內)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='移動滑鼠(相對距離在幾秒內)',
+                code='pyautogui.moveRel(0, 50, 1)',
+                code_display='pyautogui.moveRel(0, 50, 1)',
+                note='移動滑鼠(相對距離在幾秒內)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='拖曳滑鼠(到座標在幾秒內)',
+                code='pyautogui.dragTo(100, 100, 2)',
+                code_display='pyautogui.dragTo(100, 100, 2)',
+                note='拖曳滑鼠(到座標在幾秒內)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='拖曳滑鼠(相對距離在幾秒內)',
+                code='pyautogui.dragRel(0, 50, 1)',
+                code_display='pyautogui.dragRel(0, 50, 1)',
+                note='拖曳滑鼠(相對距離在幾秒內)',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='按鍵 perss',
+                code='pyautogui.press("space")',
+                code_display='pyautogui.press("space")',
+                note='按鍵',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='鍵盤列表 KEYBOARD_KEYS',
+                code='pyautogui.KEYBOARD_KEYS',
+                code_display='pyautogui.KEYBOARD_KEYS',
+                note='鍵盤列表',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='按著鍵 keyDown',
+                code='pyautogui.keyDown("shift")',
+                code_display='pyautogui.keyDown("shift")',
+                note='按著鍵',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='放開鍵 keyUp',
+                code='pyautogui.keyUp("shift")',
+                code_display='pyautogui.keyUp("shift")',
+                note='放開鍵',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='組合鍵 hotkey',
+                code='pyautogui.hotkey("ctrl","c")',
+                code_display='pyautogui.hotkey("ctrl","c")',
+                note='組合鍵',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1341,6 +1476,12 @@ class PythonPostitView(ttk.Frame):
                 code_display='圖片.save(檔名)',
                 note='影像存檔',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='影像貼上 .paste',
+                code='圖片.paste(圖片2,(0,0))',
+                code_display='圖片.paste(圖片2,(0,0))',
+                note='影像貼上',
+                long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -1353,6 +1494,7 @@ class PythonPostitView(ttk.Frame):
                 code_display='圖片2 = 圖片.crop(區域)',
                 note='取出部份影像(傳回新影像)',
                 long_note=True))
+#取出顏色 
         temp_code_list.append(CodeNTuple(
                 menu_display='轉成全彩影像 .convert',
                 code='圖片2 = 圖片.convert("RGB")',
@@ -1532,10 +1674,22 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='重複次數 for in range  ',
-                code='for i in range(10):\n___',
-                code_display='for i in range(10):\n    ___',
-                note='重複幾次',
+                menu_display='重複幾次(次數) for in range  ',
+                code='for i in range(次數):\n___',
+                code_display='for i in range(次數):\n    ___',
+                note='重複幾次(次數)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='重複幾次(開始, 結束) for in range  ',
+                code='for i in range(開始, 結束):\n___',
+                code_display='for i in range(開始, 結束):\n    ___',
+                note='重複幾次(開始, 結束)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='重複幾次(開始, 結束, 步進) for in range  ',
+                code='for i in range(開始, 結束, 步進):\n___',
+                code_display='for i in range(開始, 結束, 步進):\n    ___',
+                note='重複幾次(開始, 結束, 步進)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='取出項目 for in 清單  ',

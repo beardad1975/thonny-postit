@@ -282,10 +282,11 @@ class SymbolToolPopup:
         self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.string_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.collection_menu =  tk.Menu(self.popup_menu, tearoff=0)
+        self.flow_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.comparison_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.logic_menu = tk.Menu(self.popup_menu, tearoff=0)
         #self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.misc_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.punctuation_menu = tk.Menu(self.popup_menu, tearoff=0)
         
 
         # cascade submenu
@@ -296,19 +297,19 @@ class SymbolToolPopup:
         self.popup_menu.add_cascade(label='群集', menu=self.collection_menu)
         #self.popup_menu.add_cascade(label='括號引號',
         #        menu=self.bracket_quote_menu)
-
+        self.popup_menu.add_cascade(label='流程', menu=self.flow_menu)
         self.popup_menu.add_cascade(label='比較', 
                 menu=self.comparison_menu)
         self.popup_menu.add_cascade(label='邏輯', 
                 menu=self.logic_menu)
 
-        self.popup_menu.add_cascade(label='其他', menu=self.misc_menu)
+        self.popup_menu.add_cascade(label='標點符號', menu=self.punctuation_menu)
 
         # arithmetic menu command
         self.arithmetic_menu.add_command(
             label="+  加", command=lambda:self.change_symbol(' + '))
         self.arithmetic_menu.add_command(
-            label="-  減", command=lambda:self.change_symbol(' - '))
+            label="-  減(負)", command=lambda:self.change_symbol(' - '))
         self.arithmetic_menu.add_command(
             label="*  乘", command=lambda:self.change_symbol(' * '))
         self.arithmetic_menu.add_command(
@@ -394,17 +395,30 @@ class SymbolToolPopup:
             label="()  圓括號(Tuple)", command=lambda:self.change_symbol('()'))
         self.collection_menu.add_command(
             label="{ }  大括號(字典、集合)", command=lambda:self.change_symbol('{}'))
-
-
-        # misc menu command
-        self.misc_menu.add_command(
+        self.collection_menu.add_command(
             label=",   逗號", command=lambda:self.change_symbol(', '))
-        self.misc_menu.add_command(
+
+        # flow menu command
+        self.flow_menu.add_command(
+            label="( )  圓括號(呼叫)", command=lambda:self.change_symbol('()'))
+        self.flow_menu.add_command(
+            label=",   逗號", command=lambda:self.change_symbol(', '))
+        self.flow_menu.add_command(
             label=":   冒號", command=lambda:self.change_symbol(':'))
-        self.misc_menu.add_command(
+        self.flow_menu.add_command(
             label="pass  略過", command=lambda:self.change_symbol('pass'))
 
-        
+        # punctuation menu command 
+        self.punctuation_menu.add_command(
+            label=",   逗號", command=lambda:self.change_symbol(', '))
+        self.punctuation_menu.add_command(
+            label=".   句號", command=lambda:self.change_symbol('.'))
+        self.punctuation_menu.add_command(
+            label=":   冒號", command=lambda:self.change_symbol(':'))
+        self.punctuation_menu.add_command(
+            label="( )  圓括號(呼叫)", command=lambda:self.change_symbol('()'))
+        self.punctuation_menu.add_command(
+            label="' '  單引號(字串)", command=lambda:self.change_symbol("''"))
 
         self.postit_button.bind("<Button-3>", self.popup)
 
