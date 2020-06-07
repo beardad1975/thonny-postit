@@ -1236,7 +1236,7 @@ class PythonPostitView(ttk.Frame):
     def dino_tab_init(self):
         # title and setup tool
         tab = common_postit_tabs['dino']
-        example_vars = ['座標','圖片','區域','寬高','檔名','開始時間','經過時間',] 
+        example_vars = ['座標','圖片','區域','像素','寬高','檔名','開始時間','經過時間',] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1267,6 +1267,12 @@ class PythonPostitView(ttk.Frame):
                 code='import pyautogui',
                 code_display='import pyautogui',
                 note='匯入pyautogui模組',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='匯入pyperclip模組',
+                code='import pyperclip',
+                code_display='import pyperclip',
+                note='匯入pyperclip模組',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1307,7 +1313,7 @@ class PythonPostitView(ttk.Frame):
                 menu_display='失效安全  FAILSAFE',
                 code='pyautogui.FAILSAFE = True',
                 code_display='pyautogui.FAILSAFE = True',
-                note='失效安全',
+                note='失效安全(移到螢幕左上角)',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1375,9 +1381,26 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='組合鍵 hotkey',
-                code='pyautogui.hotkey("ctrl","c")',
-                code_display='pyautogui.hotkey("ctrl","c")',
+                code='pyautogui.hotkey("ctrl","v")',
+                code_display='pyautogui.hotkey("ctrl","v")',
                 note='組合鍵',
+                long_note=True))
+        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='複製到剪貼簿 copy',
+                code='pyperclip.copy("你好")',
+                code_display='pyperclip.copy("你好")',
+                note='複製到剪貼簿',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='從剪貼簿貼上 paste',
+                code='pyperclip.paste("你好")',
+                code_display='pyperclip.paste("你好")',
+                note='從剪貼簿貼上',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1414,20 +1437,20 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='Image.open 開啟影像',
-                code='圖片 = Image.open(檔名)',
-                code_display='圖片 = Image.open(檔名)',
+                code="圖片 = Image.open('檔名字串')",
+                code_display="圖片 = Image.open('檔名字串')",
                 note='開啟影像(傳回影像)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='ImageGrab.grab 截取螢幕',
-                code='圖片 = Image.grab()',
-                code_display='圖片 = Image.grab()',
+                code='圖片 = ImageGrab.grab()',
+                code_display='圖片 = ImageGrab.grab()',
                 note='截取螢幕(傳回影像)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='ImageGrab.grab 截取區域中螢幕',
-                code='圖片 = Image.grab(區域)',
-                code_display='圖片 = Image.grab(區域)',
+                code='圖片 = ImageGrab.grab(區域)',
+                code_display='圖片 = ImageGrab.grab(區域)',
                 note='截取區域螢幕(傳回影像)',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
@@ -1478,8 +1501,8 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='影像貼上 .paste',
-                code='圖片.paste(圖片2,(0,0))',
-                code_display='圖片.paste(圖片2,(0,0))',
+                code='圖片.paste(圖片2, 座標)',
+                code_display='圖片.paste(圖片2,座標)',
                 note='影像貼上',
                 long_note=True))
         DropdownPostit(tab_name='dino', code_list = temp_code_list,
@@ -1494,7 +1517,30 @@ class PythonPostitView(ttk.Frame):
                 code_display='圖片2 = 圖片.crop(區域)',
                 note='取出部份影像(傳回新影像)',
                 long_note=True))
-#取出顏色 
+        temp_code_list.append(CodeNTuple(
+                menu_display='改變影像大小 .resize',
+                code='圖片2 = 圖片.resize(寬高)',
+                code_display='圖片2 = 圖片.resize(寬高)',
+                note='改變影像大小(傳回新影像)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='旋轉影像 .rotate',
+                code='圖片2 = 圖片.rotate(90)',
+                code_display='圖片2 = 圖片.rotate(90)',
+                note='旋轉影像(傳回新影像)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='取出像素 .getpixel',
+                code='像素 = 圖片.getpixel(座標)',
+                code_display='像素 = 圖片.getpixel(座標)',
+                note='取出像素',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='顏色清單 .getcolors',
+                code='清單 = 圖片.getcolors()',
+                code_display='清單 = 圖片.getcolors()',
+                note='顏色清單(預設256色)',
+                long_note=True)) 
         temp_code_list.append(CodeNTuple(
                 menu_display='轉成全彩影像 .convert',
                 code='圖片2 = 圖片.convert("RGB")',
@@ -1529,6 +1575,12 @@ class PythonPostitView(ttk.Frame):
                 code='寬高 = [100, 100]',
                 code_display='寬高 = [100, 100]',
                 note='設定寬高',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定座標',
+                code='座標 = (0, 0)',
+                code_display='座標 = (0, 0)',
+                note='設定座標',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='設定檔名',
@@ -1674,25 +1726,25 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='重複幾次(次數) for in range  ',
-                code='for i in range(次數):\n___',
-                code_display='for i in range(次數):\n    ___',
-                note='重複幾次(次數)',
+                menu_display='重複(依次數) for in range  ',
+                code='for 次序 in range(次數):\n___',
+                code_display='for 次序 in range(次數):\n    ___',
+                note='重複(依次數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='重複幾次(開始, 結束) for in range  ',
-                code='for i in range(開始, 結束):\n___',
-                code_display='for i in range(開始, 結束):\n    ___',
-                note='重複幾次(開始, 結束)',
+                menu_display='重複(從開始不含結束) for in range  ',
+                code='for 次序 in range(開始, 結束):\n___',
+                code_display='for 次序 in range(開始, 結束):\n    ___',
+                note='重複(從開始不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='重複幾次(開始, 結束, 步進) for in range  ',
-                code='for i in range(開始, 結束, 步進):\n___',
-                code_display='for i in range(開始, 結束, 步進):\n    ___',
-                note='重複幾次(開始, 結束, 步進)',
+                menu_display='重複(從開始步進不含結束) for in range  ',
+                code='for 次序 in range(開始, 結束, 步進):\n___',
+                code_display='for 次序 in range(開始, 結束, 步進):\n    ___',
+                note='重複(從開始步進不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='取出項目 for in 清單  ',
+                menu_display='逐一取出項目 for in 清單  ',
                 code='for 項目 in 清單:\n___',
                 code_display='for 項目 in 清單:\n    ___',
                 note='從清單中逐一取出項目',

@@ -416,9 +416,18 @@ class SymbolToolPopup:
         self.punctuation_menu.add_command(
             label=":   冒號", command=lambda:self.change_symbol(':'))
         self.punctuation_menu.add_command(
+            label=";   分號", command=lambda:self.change_symbol(';'))
+        self.punctuation_menu.add_command(
             label="( )  圓括號(呼叫)", command=lambda:self.change_symbol('()'))
         self.punctuation_menu.add_command(
             label="' '  單引號(字串)", command=lambda:self.change_symbol("''"))
+        self.punctuation_menu.add_command(
+            label="#  井字號(註解)", command=lambda:self.change_symbol("# "))
+        self.punctuation_menu.add_command(
+            label="\\  反斜線", command=lambda:self.change_symbol("\\"))
+        self.punctuation_menu.add_command(
+            label="@  小老鼠", command=lambda:self.change_symbol("@"))
+
 
         self.postit_button.bind("<Button-3>", self.popup)
 
