@@ -516,7 +516,7 @@ class PythonPostitView(ttk.Frame):
         # title and setup tool
         tab = common_postit_tabs['turtle4t']
         #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-        example_vars = ['長','角度','邊','動作','顏色','寬','層','階層','分枝'] 
+        example_vars = ['長','角度','邊','動作','顏色','字型','寬','層','樹枝','縮減'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1033,6 +1033,12 @@ class PythonPostitView(ttk.Frame):
                 code_display="'pink'",
                 note='粉紅色',
                 long_note=False )) 
+        temp_code_list.append(CodeNTuple(
+                menu_display="brown 棕色",
+                code="'brown'",
+                code_display="'brown'",
+                note='棕色',
+                long_note=False )) 
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -1071,7 +1077,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text=' >> 形狀',
+                    text=' >> 形狀與文字',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1105,6 +1111,34 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
              postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='寫字',
+                code="寫字('內容', align='center', font=字型)",
+                code_display="寫字('內容', align='center', font=字型)",
+                note='write',
+                long_note=False ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  write',
+                code="write('內容', align='center', font=字型)",
+                code_display="write('內容', align='center', font=字型)",
+                note='寫字',
+                long_note=False ))
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='字型',
+                code="字型 = ('標楷的',12,'normal')",
+                code_display="字型 = ('標楷的',12,'normal')",
+                note='字型設定',
+                long_note=False ))
+        DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
+             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         ttk.Separator(common_postit_tabs['turtle4t'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
