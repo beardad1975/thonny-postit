@@ -395,6 +395,12 @@ class PythonPostitView(ttk.Frame):
                 code_display='len()',
                 note='長度',
                 long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='四捨五入 round',
+                code='round()',
+                code_display='round()',
+                note='四捨五入',
+                long_note=False))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -1393,14 +1399,14 @@ class PythonPostitView(ttk.Frame):
 
         temp_code_list.append(CodeNTuple(
                 menu_display='按著鍵 keyDown',
-                code='pyautogui.keyDown("shift")',
-                code_display='pyautogui.keyDown("shift")',
+                code='pyautogui.keyDown("space")',
+                code_display='pyautogui.keyDown("space")',
                 note='按著鍵',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='放開鍵 keyUp',
-                code='pyautogui.keyUp("shift")',
-                code_display='pyautogui.keyUp("shift")',
+                code='pyautogui.keyUp("space")',
+                code_display='pyautogui.keyUp("space")',
                 note='放開鍵',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
