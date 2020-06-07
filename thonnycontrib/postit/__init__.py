@@ -58,7 +58,7 @@ class PostitTab:
         {"basic_filename":'color5.png', 'fill_color':'#4cbfe6', 
                 "pack_filename":'pack5.png', 'font_color':'black'},
         {"basic_filename":'color6.png', 'fill_color':'#40bf4a', 
-                "pack_filename":'pack6.png', 'font_color':'white'},
+                "pack_filename":'pack6.png', 'font_color':'black'},
         {"basic_filename":'color7.png', 'fill_color':'#ff6680', 
                 "pack_filename":'pack7.png', 'font_color':'black'},
     ]
@@ -136,12 +136,14 @@ class PythonPostitView(ttk.Frame):
         #add notebook tabs
         self.add_tab('common', ' 基本 ','basic')
         
-        #self.add_tab('symbol', '符號','basic')
+        
         self.add_tab('data', ' 資料 ','basic')
         self.add_tab('flow', ' 流程 ','basic')
         self.add_tab('builtin', '程式庫','basic')
         self.add_tab('turtle4t', ' 海龜 ','pack')
-        self.add_tab('dino', '小恐龍','pack')
+        self.add_tab('auto', ' 自動 ','pack')
+        self.add_tab('pil', ' 影像 ','pack')
+
 
         self.common_tab_init()
         self.data_tab_init()
@@ -149,7 +151,8 @@ class PythonPostitView(ttk.Frame):
         self.builtin_tab_init()
         self.turtle4t_tab_init()
 
-        self.dino_tab_init()
+        self.auto_tab_init()
+        self.pil_tab_init()
 
         #notebook event
         self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
@@ -274,7 +277,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['data'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【數值類型】',
+                    text=' >> 數值類型',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -307,7 +310,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['data'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【字串類型】',
+                    text=' >> 字串類型',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -352,7 +355,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['data'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【群集類型】',
+                    text=' >> 群集類型',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -380,7 +383,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['builtin'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【內建函式】',
+                    text=' >> 內建函式',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')  
@@ -402,7 +405,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['builtin'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【隨機模組random】',
+                    text=' >> 隨機模組random',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')        
@@ -446,7 +449,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['builtin'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【時間模組time】',
+                    text=' >> 時間模組time',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -566,7 +569,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【動作與位置】',
+                    text=' >> 動作與位置',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -756,7 +759,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【畫筆與畫布】',
+                    text=' >> 畫筆與畫布',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -882,7 +885,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【筆跡與填色】',
+                    text=' >> 筆跡與顏色',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1062,7 +1065,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【形狀】',
+                    text=' >> 形狀',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1102,7 +1105,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【事件】',
+                    text=' >> 事件',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1233,32 +1236,23 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
-    def dino_tab_init(self):
+    def auto_tab_init(self):
         # title and setup tool
-        tab = common_postit_tabs['dino']
-        example_vars = ['座標','圖片','區域','像素','寬高','檔名','開始時間','經過時間',] 
-        tab.popup_init(example_vars)
+        #tab = common_postit_tabs['auto']
+        #example_vars = ['',] 
+        #tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        label =ttk.Label(common_postit_tabs['dino'].frame.interior, 
-                text='【小恐龍GameBot便利包】', 
-                image= common_images['gear'],
+        label =ttk.Label(common_postit_tabs['auto'].frame.interior, 
+                text='【自動化PyAutoGui便利包】', 
+                #image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
                 )                
         label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
-        label.bind("<Button-1>", common_postit_tabs['dino'].popup)        
+        #label.bind("<Button-1>", common_postit_tabs['auto'].popup)        
 
-        # separator and note
-        ttk.Separator(common_postit_tabs['dino'].frame.interior, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['dino'].frame.interior, 
-                    
-                    text='【視窗自動化】',
-                    font=f,   
-                    compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
 
         # dropdown list postit
         temp_code_list = []
@@ -1274,8 +1268,20 @@ class PythonPostitView(ttk.Frame):
                 code_display='import pyperclip',
                 note='匯入pyperclip模組',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['auto'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['auto'].frame.interior, 
+                    
+                    text=' >> 設定與資訊',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
 
         # dropdown list postit
@@ -1298,7 +1304,7 @@ class PythonPostitView(ttk.Frame):
                 code_display='pyautogui.onScreen(100, 100)',
                 note='在螢幕內嗎',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # dropdown list postit
@@ -1315,8 +1321,20 @@ class PythonPostitView(ttk.Frame):
                 code_display='pyautogui.FAILSAFE = True',
                 note='失效安全(移到螢幕左上角)',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['auto'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['auto'].frame.interior, 
+                    
+                    text=' >> 滑鼠操作',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -1350,8 +1368,19 @@ class PythonPostitView(ttk.Frame):
                 code_display='pyautogui.dragRel(0, 50, 1)',
                 note='拖曳滑鼠(相對距離在幾秒內)',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['auto'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['auto'].frame.interior, 
+                    
+                    text=' >> 鍵盤操作',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -1361,12 +1390,7 @@ class PythonPostitView(ttk.Frame):
                 code_display='pyautogui.press("space")',
                 note='按鍵',
                 long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='鍵盤列表 KEYBOARD_KEYS',
-                code='pyautogui.KEYBOARD_KEYS',
-                code_display='pyautogui.KEYBOARD_KEYS',
-                note='鍵盤列表',
-                long_note=True))
+
         temp_code_list.append(CodeNTuple(
                 menu_display='按著鍵 keyDown',
                 code='pyautogui.keyDown("shift")',
@@ -1385,8 +1409,66 @@ class PythonPostitView(ttk.Frame):
                 code_display='pyautogui.hotkey("ctrl","v")',
                 note='組合鍵',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display="空白鍵 space",
+                code="'space'",
+                code_display="'space'",
+                note='空白鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display="輸入鍵 enter",
+                code="'enter'",
+                code_display="'enter'",
+                note='空白鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display="控制鍵 ctrl",
+                code="'ctrl'",
+                code_display="'ctrl'",
+                note='空白鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display="shift鍵 shift",
+                code="'shift'",
+                code_display="'shift'",
+                note='shift鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display="字母鍵 a",
+                code="'a'",
+                code_display="'a'",
+                note='空白鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display="向上鍵 up",
+                code="'up'",
+                code_display="'up'",
+                note='向上鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='鍵盤列表 KEYBOARD_KEYS',
+                code='pyautogui.KEYBOARD_KEYS',
+                code_display='pyautogui.KEYBOARD_KEYS',
+                note='鍵盤列表',
+                long_note=True))
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['auto'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['auto'].frame.interior, 
+                    
+                    text=' >> 剪貼簿',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -1402,19 +1484,29 @@ class PythonPostitView(ttk.Frame):
                 code_display='pyperclip.paste("你好")',
                 note='從剪貼簿貼上',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        # separator and note
-        ttk.Separator(common_postit_tabs['dino'].frame.interior, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+
+
+    def pil_tab_init(self):
+        # title and setup tool
+        tab = common_postit_tabs['pil']
+        example_vars = ['座標','圖片','區域','像素','寬高','檔案路徑','開始時間','經過時間',] 
+        tab.popup_init(example_vars)
+
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['dino'].frame.interior, 
-                    
-                    text='【影像處理】',
-                    font=f,   
-                    compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+        label =ttk.Label(common_postit_tabs['pil'].frame.interior, 
+                text='【影像處理pillow便利包】', 
+                image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
+        label.bind("<Button-1>", common_postit_tabs['pil'].popup)   
+
+
+
 
         # dropdown list postit
         temp_code_list = []
@@ -1430,15 +1522,26 @@ class PythonPostitView(ttk.Frame):
                 code_display='from PIL import ImageGrab',
                 note='從PIL模組匯入ImageGrab',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='pil', code_list = temp_code_list,
             postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['pil'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['pil'].frame.interior, 
+                    
+                    text=' >> 建立影像物件',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='Image.open 開啟影像',
-                code="圖片 = Image.open('檔名字串')",
-                code_display="圖片 = Image.open('檔名字串')",
+                code="圖片 = Image.open('檔名')",
+                code_display="圖片 = Image.open('檔名')",
                 note='開啟影像(傳回影像)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
@@ -1453,8 +1556,19 @@ class PythonPostitView(ttk.Frame):
                 code_display='圖片 = ImageGrab.grab(區域)',
                 note='截取區域螢幕(傳回影像)',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='pil', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['pil'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['pil'].frame.interior, 
+                    
+                    text=' >> 影像資訊',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -1476,8 +1590,19 @@ class PythonPostitView(ttk.Frame):
                 code_display='圖片.mode',
                 note='影像模式',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='pil', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['pil'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['pil'].frame.interior, 
+                    
+                    text=' >> 影像操作',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -1505,7 +1630,7 @@ class PythonPostitView(ttk.Frame):
                 code_display='圖片.paste(圖片2,座標)',
                 note='影像貼上',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='pil', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
@@ -1559,8 +1684,19 @@ class PythonPostitView(ttk.Frame):
                 code_display='圖片2 = 圖片.convert("1")',
                 note='轉成黑白影像(傳回新影像)',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='pil', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['pil'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['pil'].frame.interior, 
+                    
+                    text=' >> 常用變數',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -1583,12 +1719,12 @@ class PythonPostitView(ttk.Frame):
                 note='設定座標',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定檔名',
-                code="檔名 = r''",
-                code_display="檔名 = r' '",
-                note='設定檔名',
+                menu_display='設定檔案路徑',
+                code="檔案路徑 = r''",
+                code_display="檔案路徑 = r' '",
+                note='設定檔案路徑',
                 long_note=True))
-        DropdownPostit(tab_name='dino', code_list = temp_code_list,
+        DropdownPostit(tab_name='pil', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
@@ -1599,7 +1735,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text='【條件分支】',
+                    text=' >> 條件分支',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1691,7 +1827,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【  迴  圈  】 '+'='*6,
-                    text='【迴圈】',
+                    text=' >> 迴圈',
                     font=f,   
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1777,7 +1913,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-                    text='【例外(錯誤)處理】',
+                    text=' >> 例外(錯誤)處理',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1800,7 +1936,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['flow'].frame.interior, 
                     #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-                    text='【自訂功能(函式)】',
+                    text=' >> 自訂功能(函式)',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
