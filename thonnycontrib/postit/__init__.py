@@ -1374,17 +1374,17 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='物件數量',
-                code='物件數量()',
-                code_display='物件數量()',
-                note='object_num',
-                long_note=False))
+                menu_display='物理舞台.重力',
+                code='物理舞台.重力 = 0, -500',
+                code_display='物理舞台.重力 = 0, -500',
+                note='gravity',
+                long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='  object_num',
-                code='object_num()',
-                code_display='object_num()',
-                note='物件數量',
-                long_note=False))
+                menu_display='  stage.gravity',
+                code='stage.gravity = 0, -900',
+                code_display='stage.gravity = 0, -900',
+                note='設定重力',
+                long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
