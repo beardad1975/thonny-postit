@@ -141,6 +141,7 @@ class PythonPostitView(ttk.Frame):
         self.add_tab('flow', ' 流程 ','basic')
         self.add_tab('builtin', '程式庫','basic')
         self.add_tab('turtle4t', ' 海龜 ','pack')
+        self.add_tab('physics', ' 物理 ','pack')
         self.add_tab('auto', ' 自動 ','pack')
         self.add_tab('pil', ' 影像 ','pack')
 
@@ -150,7 +151,7 @@ class PythonPostitView(ttk.Frame):
         self.flow_tab_init()
         self.builtin_tab_init()
         self.turtle4t_tab_init()
-
+        self.physics_tab_init()
         self.auto_tab_init()
         self.pil_tab_init()
 
@@ -1274,6 +1275,119 @@ class PythonPostitView(ttk.Frame):
                 long_note=False )) 
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+
+    def physics_tab_init(self):
+        # title and setup tool
+        tab = common_postit_tabs['physics']
+        #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
+        example_vars = ['舞台','球'] 
+        tab.popup_init(example_vars)
+
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        label =ttk.Label(common_postit_tabs['physics'].frame.interior, 
+                text='【遊戲物理引擎便利包】', 
+                image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+        label.bind("<Button-1>", common_postit_tabs['physics'].popup)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='from 物理模組 import *',
+                code='from 物理模組 import *',
+                code_display='from 物理模組 import *',
+                note='從物理模組匯入全部',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  from pie4t import *',
+                code='from pie4t import *',
+                code_display='from pie4t import *',
+                note='從pie4t模組匯入全部',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='import 物理模組 ',
+                code='import 物理模組',
+                code_display='import 物理模組',
+                note='匯入pie4t',
+                long_note=True ))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  import pie4t ',
+                code='import pie4t',
+                code_display='import pie4t',
+                note='匯入物理模組',
+                long_note=True ))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='開始模擬',
+                code='開始模擬()',
+                code_display='開始模擬()',
+                note='simulate',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  simulate',
+                code='simulate()',
+                code_display='simulate()',
+                note='開始模擬',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='主迴圈',
+                code='主迴圈()',
+                code_display='主迴圈()',
+                note='mainloop',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  mainloop',
+                code='mainloop()',
+                code_display='mainloop()',
+                note='主迴圈',
+                long_note=False))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增圓球',
+                code='新增圓球()',
+                code_display='新增圓球()',
+                note='add_circle',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  add_circle',
+                code='add_circle()',
+                code_display='add_circle()',
+                note='新增圓球',
+                long_note=False))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='物件數量',
+                code='物件數量()',
+                code_display='物件數量()',
+                note='object_num',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  object_num',
+                code='object_num()',
+                code_display='object_num()',
+                note='物件數量',
+                long_note=False))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
 
 
     def auto_tab_init(self):

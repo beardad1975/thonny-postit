@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup (
         name="thonny-postit",
-        version="0.0.1",
+        version="0.0.3",
         description="Program post-it for Thonny IDE",
         long_description="""Program post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
@@ -20,7 +20,7 @@ setup (
         
         platforms=["Windows"],
         python_requires=">=3.5",
-        
-        install_requires=["thonny == 3.2.0","pillow >= 7.1.2"],
+        package_data={'thonnycontrib.postit': ['images/*','tools/*']},
+        install_requires=["thonny >= 3.2.0","pillow >= 7.1.2"],
         packages=["thonnycontrib.postit"],
 )
