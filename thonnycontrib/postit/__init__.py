@@ -522,7 +522,7 @@ class PythonPostitView(ttk.Frame):
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['turtle4t'].frame.interior, 
-                text='【海龜繪圖便利包】', 
+                text='【海龜繪圖】', 
                 image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
@@ -1282,12 +1282,12 @@ class PythonPostitView(ttk.Frame):
         # title and setup tool
         tab = common_postit_tabs['physics']
         #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-        example_vars = ['舞台','球'] 
+        example_vars = ['物理舞台','球','中央座標','座標'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['physics'].frame.interior, 
-                text='【遊戲物理引擎便利包】', 
+                text='【遊戲物理引擎】', 
                 image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
@@ -1324,52 +1324,24 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='開始模擬',
-                code='開始模擬()',
-                code_display='開始模擬()',
-                note='simulate',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  simulate',
-                code='simulate()',
-                code_display='simulate()',
-                note='開始模擬',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display='主迴圈',
-                code='主迴圈()',
-                code_display='主迴圈()',
-                note='mainloop',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  mainloop',
-                code='mainloop()',
-                code_display='mainloop()',
-                note='主迴圈',
-                long_note=False))
-        DropdownPostit(tab_name='physics', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
 
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='新增圓球',
-                code='新增圓球()',
-                code_display='新增圓球()',
-                note='add_circle',
-                long_note=False))
+                menu_display='物理舞台',
+                code='物理舞台 = 物理引擎()',
+                code_display='物理舞台 = 物理引擎()',
+                note='物理舞台',
+                long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='  add_circle',
-                code='add_circle()',
-                code_display='add_circle()',
-                note='新增圓球',
-                long_note=False))
+                menu_display='物理舞台及寬高',
+                code='物理舞台 = 物理引擎(600, 600)',
+                code_display='物理舞台 = 物理引擎(600, 600)',
+                note='物理舞台及設定寬高',
+                long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
 
         # dropdown list postit
         temp_code_list = []
@@ -1389,6 +1361,142 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+        # dropdown list postit
+        temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='開始模擬',
+        #         code='開始模擬()',
+        #         code_display='開始模擬()',
+        #         note='simulate',
+        #         long_note=False))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  simulate',
+        #         code='simulate()',
+        #         code_display='simulate()',
+        #         note='開始模擬',
+        #         long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬主迴圈',
+                code='模擬主迴圈()',
+                code_display='模擬主迴圈()',
+                note='mainloop',
+                long_note=False))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  mainloop',
+        #         code='mainloop()',
+        #         code_display='mainloop()',
+        #         note='主迴圈',
+        #         long_note=False))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增圓球並設值',
+                code='球 = 新增圓球(半徑=20)',
+                code_display='球 = 新增圓球(半徑=20)',
+                note='新增圓球並設值',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增圓球函式',
+                code='新增圓球(半徑=20)',
+                code_display='新增圓球(半徑=20)',
+                note='add circle',
+                long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  add_circle',
+        #         code='add_circle()',
+        #         code_display='add_circle()',
+        #         note='新增圓球',
+        #         long_note=False))
+
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='位置(取值)',
+                code='球.位置',
+                code_display='球.位置',
+                note='位置(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 位置(設值)',
+                code='球.位置 = (300, 500)',
+                code_display='球.位置 = (300, 500)',
+                note='位置(設值)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='質量(取值)',
+                code='球.質量',
+                code_display='球.質量',
+                note='質量(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 質量(設值)',
+                code='球.質量 = 314',
+                code_display='球.質量 = 314',
+                note='質量(設值)(須大於0)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='密度(取值)',
+                code='球.密度',
+                code_display='球.密度',
+                note='密度(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 密度(設值)',
+                code='球.密度 = 1',
+                code_display='球.密度 = 1',
+                note='密度(設值)(須大於0)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='摩擦(取值)',
+                code='球.摩擦',
+                code_display='球.摩擦',
+                note='摩擦(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 摩擦(設值)',
+                code='球.摩擦 = 0.5',
+                code_display='球.摩擦 = 0.5',
+                note='摩擦(設值)(須大於0)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='彈性(取值)',
+                code='球.彈性',
+                code_display='球.彈性',
+                note='彈性(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 彈性(設值)',
+                code='球.彈性 = 0.98',
+                code_display='球.彈性 = 0.98',
+                note='彈性(設值)(須在0到1之間)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='半徑(取值)(唯讀)',
+                code='球.半徑',
+                code_display='球.半徑',
+                note='半徑(取值)(唯讀)',
+                long_note=False))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='按下滑鼠時',
+                code='def 按下滑鼠時(x, y):\n___\n',
+                code_display='def 按下滑鼠時(x, y):\n    ___',
+                note='按下滑鼠時',
+                long_note=True))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
     def auto_tab_init(self):
         # title and setup tool
@@ -1398,7 +1506,7 @@ class PythonPostitView(ttk.Frame):
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['auto'].frame.interior, 
-                text='【自動化PyAutoGui便利包】', 
+                text='【自動化PyAutoGui】', 
                 #image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
@@ -1651,7 +1759,7 @@ class PythonPostitView(ttk.Frame):
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['pil'].frame.interior, 
-                text='【影像處理pillow便利包】', 
+                text='【影像處理pillow】', 
                 image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
@@ -2017,20 +2125,20 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(依次數) for in range  ',
-                code='for 次序 in range(次數):\n___',
-                code_display='for 次序 in range(次數):\n    ___',
+                code='for 索引 in range(次數):\n___',
+                code_display='for 索引 in range(次數):\n    ___',
                 note='重複(依次數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(從開始不含結束) for in range  ',
-                code='for 次序 in range(開始, 結束):\n___',
-                code_display='for 次序 in range(開始, 結束):\n    ___',
+                code='for 索引 in range(開始, 結束):\n___',
+                code_display='for 索引 in range(開始, 結束):\n    ___',
                 note='重複(從開始不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(從開始步進不含結束) for in range  ',
-                code='for 次序 in range(開始, 結束, 步進):\n___',
-                code_display='for 次序 in range(開始, 結束, 步進):\n    ___',
+                code='for 索引 in range(開始, 結束, 步進):\n___',
+                code_display='for 索引 in range(開始, 結束, 步進):\n    ___',
                 note='重複(從開始步進不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
