@@ -1347,16 +1347,16 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='物理舞台.重力',
-                code='物理舞台.重力 = 0, -500',
-                code_display='物理舞台.重力 = 0, -500',
+                code='物理舞台.重力 = 0, -900',
+                code_display='物理舞台.重力 = 0, -900',
                 note='gravity',
                 long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  stage.gravity',
-                code='stage.gravity = 0, -900',
-                code_display='stage.gravity = 0, -900',
-                note='設定重力',
-                long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  stage.gravity',
+        #         code='stage.gravity = 0, -900',
+        #         code_display='stage.gravity = 0, -900',
+        #         note='設定重力',
+        #         long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -1477,6 +1477,19 @@ class PythonPostitView(ttk.Frame):
                 code_display='球.彈性 = 0.98',
                 note='彈性(設值)(須在0到1之間)',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='物理反應(取值)',
+                code='球.物理反應',
+                code_display='球.物理反應',
+                note='物理反應(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 物理反應(設值)',
+                code='球.物理反應 = True',
+                code_display='球.物理反應 = True',
+                note='物理反應(設值)',
+                long_note=True))
+
         temp_code_list.append(CodeNTuple(
                 menu_display='半徑(取值)(唯讀)',
                 code='球.半徑',
