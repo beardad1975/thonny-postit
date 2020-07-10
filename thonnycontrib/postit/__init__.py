@@ -1336,8 +1336,8 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='物理舞台及寬高',
-                code='物理舞台 = 物理引擎(600, 600)',
-                code_display='物理舞台 = 物理引擎(600, 600)',
+                code='物理舞台 = 物理引擎(寬=600,高=600)',
+                code_display='物理舞台 = 物理引擎(寬=600, 高=600)',
                 note='物理舞台及設定寬高',
                 long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
@@ -1411,9 +1411,9 @@ class PythonPostitView(ttk.Frame):
         #         code_display='add_circle()',
         #         note='新增圓球',
         #         long_note=False))
-
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
 
         # dropdown list postit
         temp_code_list = []
@@ -1429,6 +1429,47 @@ class PythonPostitView(ttk.Frame):
                 code_display='球.位置 = (300, 500)',
                 note='位置(設值)',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='速度(取值)',
+                code='球.速度',
+                code_display='球.速度',
+                note='速度(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 速度(設值)',
+                code='球.速度 = (300, -500)',
+                code_display='球.速度 = (300, -500)',
+                note='速度(設值)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='角度(取值)',
+                code='球.角度',
+                code_display='球.角度',
+                note='角度(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 角度(設值)',
+                code='球.角度 = 0',
+                code_display='球.角度 = 0',
+                note='角度(設值)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='角速度(取值)',
+                code='球.角速度',
+                code_display='球.角速度',
+                note='角速度(取值)',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display=' 角速度(設值)',
+                code='球.角速度 = 100',
+                code_display='球.角速度 = 100',
+                note='角速度(設值)',
+                long_note=True))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='質量(取值)',
                 code='球.質量',
@@ -1496,6 +1537,23 @@ class PythonPostitView(ttk.Frame):
                 code_display='球.半徑',
                 note='半徑(取值)(唯讀)',
                 long_note=False))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='施加力量',
+                code='向量 = (1000,0)\n球.施加力量(向量)',
+                code_display='向量 = (1000, 0)\n球.施加力量(向量)',
+                note='施加力量',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='施加衝量',
+                code='向量 = (200, 0)\n球.施加衝量(向量)',
+                code_display='向量 = (200, 0)\n球.施加衝量(向量)',
+                note='施加衝量',
+                long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
