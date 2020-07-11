@@ -1346,10 +1346,34 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='物理舞台.重力',
-                code='物理舞台.重力 = 0, -900',
-                code_display='物理舞台.重力 = 0, -900',
+                menu_display='重力',
+                code='物理舞台.重力 = [0, -500]',
+                code_display='物理舞台.重力 = [0, -500]',
                 note='gravity',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬暫停(False)',
+                code='物理舞台.模擬暫停 = False',
+                code_display='物理舞台.模擬暫停 = False',
+                note='模擬暫停',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬暫停(True)',
+                code='物理舞台.模擬暫停 = True',
+                code_display='物理舞台.模擬暫停 = True',
+                note='模擬暫停',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='慢動作(False)',
+                code='物理舞台.慢動作 = False',
+                code_display='物理舞台.慢動作 = False',
+                note='模擬暫停',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='慢動作(True)',
+                code='物理舞台.慢動作 = True',
+                code_display='物理舞台.慢動作 = True',
+                note='模擬暫停',
                 long_note=True))
         # temp_code_list.append(CodeNTuple(
         #         menu_display='  stage.gravity',
@@ -1561,22 +1585,48 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='新增線段(兩點)',
+                menu_display='新增線段(兩點設值)',
                 code='A點 = [100,100]\nB點 = [300,100]\n新增線段(A點, B點)\n',
-                code_display='A點 = [100,100]\nB點 = [300,100]\n新增線段(A點, B點)\n',
+                code_display='A點 = [100,100]\nB點 = [300,100]\n新增線段(A點, B點)',
+                note='新增線段',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增線段(寬)',
+                code='新增線段(A點, B點, 寬=5)',
+                code_display='新增線段(A點, B點, 寬=5)',
                 note='新增線段',
                 long_note=False))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+
+
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='按下滑鼠時',
-                code='def 按下滑鼠時(x, y):\n___\n',
-                code_display='def 按下滑鼠時(x, y):\n    ___',
-                note='按下滑鼠時',
+                menu_display='按下滑鼠左鍵時',
+                code='def 按下滑鼠左鍵時(x, y):\n___\n',
+                code_display='def 按下滑鼠左鍵時(x, y):\n    ___',
+                note='按下滑鼠左鍵時',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='放開滑鼠左鍵時',
+                code='def 放開滑鼠左鍵時(x, y):\n___\n',
+                code_display='def 放開滑鼠左鍵時(x, y):\n    ___',
+                note='放開滑鼠左鍵時',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='按下鍵盤時',
+                code='def 按下鍵盤時(key):\n___\n',
+                code_display='def 按下鍵盤時(key):\n    ___',
+                note='按下鍵盤時',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='放開鍵盤時',
+                code='def 放開鍵盤時(key):\n___\n',
+                code_display='def 放開鍵盤時(key):\n    ___',
+                note='放開鍵盤時',
                 long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
