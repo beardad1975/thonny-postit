@@ -1561,6 +1561,18 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
+                menu_display='新增線段(兩點)',
+                code='A點 = [100,100]\nB點 = [300,100]\n新增線段(A點, B點)\n',
+                code_display='A點 = [100,100]\nB點 = [300,100]\n新增線段(A點, B點)\n',
+                note='新增線段',
+                long_note=False))
+        DropdownPostit(tab_name='physics', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
                 menu_display='按下滑鼠時',
                 code='def 按下滑鼠時(x, y):\n___\n',
                 code_display='def 按下滑鼠時(x, y):\n    ___',
@@ -2196,20 +2208,20 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(依次數) for in range  ',
-                code='for 索引 in range(次數):\n___',
-                code_display='for 索引 in range(次數):\n    ___',
+                code='for 序 in range(次數):\n___',
+                code_display='for 序 in range(次數):\n    ___',
                 note='重複(依次數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(從開始不含結束) for in range  ',
-                code='for 索引 in range(開始, 結束):\n___',
-                code_display='for 索引 in range(開始, 結束):\n    ___',
+                code='for 序 in range(開始, 結束):\n___',
+                code_display='for 序 in range(開始, 結束):\n    ___',
                 note='重複(從開始不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(從開始步進不含結束) for in range  ',
-                code='for 索引 in range(開始, 結束, 步進):\n___',
-                code_display='for 索引 in range(開始, 結束, 步進):\n    ___',
+                code='for 序 in range(開始, 結束, 步進):\n___',
+                code_display='for 序 in range(開始, 結束, 步進):\n    ___',
                 note='重複(從開始步進不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
