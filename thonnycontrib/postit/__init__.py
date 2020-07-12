@@ -1347,8 +1347,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='重力',
-                code='物理舞台.重力 = [0, -500]',
-                code_display='物理舞台.重力 = [0, -500]',
+                code='物理舞台.重力 = [0, -800]',
+                code_display='物理舞台.重力 = [0, -800]',
                 note='gravity',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
@@ -1627,6 +1627,12 @@ class PythonPostitView(ttk.Frame):
                 code='def 放開鍵盤時(key):\n___\n',
                 code_display='def 放開鍵盤時(key):\n    ___',
                 note='放開鍵盤時',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='箭頭發射時',
+                code='def 箭頭發射時(向量, 開始座標):\n___\n',
+                code_display='def 箭頭發射時(向量, 開始座標):\n    ___',
+                note='箭頭發射時',
                 long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
