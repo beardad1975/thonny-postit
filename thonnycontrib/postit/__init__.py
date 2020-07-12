@@ -1418,16 +1418,28 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
+                menu_display='新增圓球函式',
+                code='新增圓球()',
+                code_display='新增圓球()',
+                note='add circle',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
                 menu_display='新增圓球並設值',
                 code='球 = 新增圓球(半徑=20)',
                 code_display='球 = 新增圓球(半徑=20)',
                 note='新增圓球並設值',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='新增圓球函式',
-                code='新增圓球(半徑=20)',
-                code_display='新增圓球(半徑=20)',
-                note='add circle',
+                menu_display='新增方塊函式',
+                code='新增方塊()',
+                code_display='新增方塊()',
+                note='add box',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增方塊並設值',
+                code='方塊 = 新增方塊(長=20,寬=10)',
+                code_display='方塊 = 新增方塊(長=20,寬=10)',
+                note='新增方塊並設值',
                 long_note=True))
         # temp_code_list.append(CodeNTuple(
         #         menu_display='  add_circle',
