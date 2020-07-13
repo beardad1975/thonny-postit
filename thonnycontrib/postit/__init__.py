@@ -1287,7 +1287,7 @@ class PythonPostitView(ttk.Frame):
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['physics'].frame.interior, 
-                text='【遊戲物理引擎】', 
+                text='【物理碰撞模擬】', 
                 image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
@@ -1309,80 +1309,68 @@ class PythonPostitView(ttk.Frame):
                 code_display='from pie4t import *',
                 note='從pie4t模組匯入全部',
                 long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='import 物理模組 ',
-                code='import 物理模組',
-                code_display='import 物理模組',
-                note='匯入pie4t',
-                long_note=True ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='  import pie4t ',
-                code='import pie4t',
-                code_display='import pie4t',
-                note='匯入物理模組',
-                long_note=True ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='import 物理模組 ',
+        #         code='import 物理模組',
+        #         code_display='import 物理模組',
+        #         note='匯入pie4t',
+        #         long_note=True ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  import pie4t ',
+        #         code='import pie4t',
+        #         code_display='import pie4t',
+        #         note='匯入物理模組',
+        #         long_note=True ))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+        ttk.Separator(common_postit_tabs['physics'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['physics'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 物理舞台',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='舞台',
+        #         code='舞台 = 物理引擎()',
+        #         code_display='舞台 = 物理引擎()',
+        #         note='舞台',
+        #         long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='物理舞台',
-                code='物理舞台 = 物理引擎()',
-                code_display='物理舞台 = 物理引擎()',
-                note='物理舞台',
+                menu_display='舞台(設定尺寸)',
+                code='舞台 = 物理引擎(500,800)',
+                code_display='舞台 = 物理引擎(500, 800)',
+                note='舞台(設定尺寸)',
                 long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='物理舞台及寬高',
-                code='物理舞台 = 物理引擎(寬=600,高=600)',
-                code_display='物理舞台 = 物理引擎(寬=600, 高=600)',
-                note='物理舞台及設定寬高',
-                long_note=True))
-        DropdownPostit(tab_name='physics', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-        # dropdown list postit
-        temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='重力',
-                code='物理舞台.重力 = [0, -800]',
-                code_display='物理舞台.重力 = [0, -800]',
+                code='舞台.重力 = [0, -800]',
+                code_display='舞台.重力 = [0, -800]',
                 note='gravity',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='模擬暫停(False)',
-                code='物理舞台.模擬暫停 = False',
-                code_display='物理舞台.模擬暫停 = False',
-                note='模擬暫停',
+                menu_display='慢動作(假)',
+                code='舞台.慢動作 = False',
+                code_display='舞台.慢動作 = False',
+                note='慢動作(假)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='模擬暫停(True)',
-                code='物理舞台.模擬暫停 = True',
-                code_display='物理舞台.模擬暫停 = True',
-                note='模擬暫停',
+                menu_display='  慢動作(真)',
+                code='舞台.慢動作 = True',
+                code_display='舞台.慢動作 = True',
+                note='慢動作(真)',
                 long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='慢動作(False)',
-                code='物理舞台.慢動作 = False',
-                code_display='物理舞台.慢動作 = False',
-                note='模擬暫停',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='慢動作(True)',
-                code='物理舞台.慢動作 = True',
-                code_display='物理舞台.慢動作 = True',
-                note='模擬暫停',
-                long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='  stage.gravity',
-        #         code='stage.gravity = 0, -900',
-        #         code_display='stage.gravity = 0, -900',
-        #         note='設定重力',
-        #         long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
 
 
         # dropdown list postit
@@ -1400,10 +1388,10 @@ class PythonPostitView(ttk.Frame):
         #         note='開始模擬',
         #         long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display='模擬主迴圈',
-                code='模擬主迴圈()',
-                code_display='模擬主迴圈()',
-                note='mainloop',
+                menu_display='開始模擬',
+                code='開始模擬()',
+                code_display='開始模擬()',
+                note='simulate',
                 long_note=False))
         # temp_code_list.append(CodeNTuple(
         #         menu_display='  mainloop',
@@ -1415,30 +1403,41 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+        ttk.Separator(common_postit_tabs['physics'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['physics'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 新增物體',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='新增圓球函式',
+                menu_display='新增圓球',
                 code='新增圓球()',
                 code_display='新增圓球()',
                 note='add circle',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='新增圓球並設值',
-                code='球 = 新增圓球(半徑=20)',
-                code_display='球 = 新增圓球(半徑=20)',
-                note='新增圓球並設值',
+                menu_display='新增圓球(設定半徑))',
+                code='物體 = 新增圓球(半徑=20)',
+                code_display='物體 = 新增圓球(半徑=20)',
+                note='add circle',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='新增方塊函式',
+                menu_display='新增方塊',
                 code='新增方塊()',
                 code_display='新增方塊()',
                 note='add box',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='新增方塊並設值',
-                code='方塊 = 新增方塊(長=20,寬=10)',
-                code_display='方塊 = 新增方塊(長=20,寬=10)',
+                code='物體 = 新增方塊(長=20,寬=10)',
+                code_display='物體 = 新增方塊(長=20,寬=10)',
                 note='新增方塊並設值',
                 long_note=True))
         # temp_code_list.append(CodeNTuple(
@@ -1451,128 +1450,148 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+        ttk.Separator(common_postit_tabs['physics'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['physics'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 運動屬性',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='位置(取值)',
-                code='球.位置',
-                code_display='球.位置',
-                note='位置(取值)',
+                menu_display='位置',
+                code='物體.位置',
+                code_display='物體.位置',
+                note='位置',
                 long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display=' 位置(設值)',
-                code='球.位置 = (300, 500)',
-                code_display='球.位置 = (300, 500)',
-                note='位置(設值)',
+                menu_display='  設定位置',
+                code='物體.位置 = (300, 300)',
+                code_display='物體.位置 = (300, 300)',
+                note='設定位置',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='速度(取值)',
-                code='球.速度',
-                code_display='球.速度',
-                note='速度(取值)',
+                menu_display='速度',
+                code='物體.速度',
+                code_display='物體.速度',
+                note='速度',
                 long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display=' 速度(設值)',
-                code='球.速度 = (300, -500)',
-                code_display='球.速度 = (300, -500)',
-                note='速度(設值)',
+                menu_display='  設定速度',
+                code='物體.速度 = (300, 0)',
+                code_display='物體.速度 = (300, 0)',
+                note='設定速度',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='角度(取值)',
-                code='球.角度',
-                code_display='球.角度',
-                note='角度(取值)',
+                menu_display='角度',
+                code='物體.角度',
+                code_display='物體.角度',
+                note='角度',
                 long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display=' 角度(設值)',
-                code='球.角度 = 0',
-                code_display='球.角度 = 0',
-                note='角度(設值)',
+                menu_display='  設定角度',
+                code='物體.角度 = 0',
+                code_display='物體.角度 = 0',
+                note='設定角度',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='角速度(取值)',
-                code='球.角速度',
-                code_display='球.角速度',
-                note='角速度(取值)',
+                menu_display='角速度',
+                code='物體.角速度',
+                code_display='物體.角速度',
+                note='角速度',
                 long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display=' 角速度(設值)',
-                code='球.角速度 = 100',
-                code_display='球.角速度 = 100',
-                note='角速度(設值)',
+                menu_display='  設定角速度',
+                code='物體.角速度 = 100',
+                code_display='物體.角速度 = 100',
+                note='設定角速度',
                 long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+
+
+        ttk.Label(common_postit_tabs['physics'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 物理屬性',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
         # dropdown list postit
         temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='質量',
+        #         code='物體.質量',
+        #         code_display='物體.質量',
+        #         note='質量(取值)',
+        #         long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display='質量(取值)',
-                code='球.質量',
-                code_display='球.質量',
-                note='質量(取值)',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display=' 質量(設值)',
-                code='球.質量 = 314',
-                code_display='球.質量 = 314',
-                note='質量(設值)(須大於0)',
+                menu_display='質量設定',
+                code='物體.質量 = 314',
+                code_display='物體.質量 = 314',
+                note='設定質量(須大於0)',
                 long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='密度',
+        #         code='物體.密度',
+        #         code_display='物體.密度',
+        #         note='密度(取值)',
+        #         long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display='密度(取值)',
-                code='球.密度',
-                code_display='球.密度',
-                note='密度(取值)',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display=' 密度(設值)',
-                code='球.密度 = 1',
-                code_display='球.密度 = 1',
-                note='密度(設值)(須大於0)',
+                menu_display='密度設定',
+                code='物體.密度 = 1',
+                code_display='物體.密度 = 1',
+                note='設定密度(須大於0)',
                 long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='摩擦',
+        #         code='物體.摩擦',
+        #         code_display='物體.摩擦',
+        #         note='摩擦(取值)',
+        #         long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display='摩擦(取值)',
-                code='球.摩擦',
-                code_display='球.摩擦',
-                note='摩擦(取值)',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display=' 摩擦(設值)',
-                code='球.摩擦 = 0.5',
-                code_display='球.摩擦 = 0.5',
-                note='摩擦(設值)(須大於0)',
+                menu_display='摩擦設定',
+                code='物體.摩擦 = 0.5',
+                code_display='物體.摩擦 = 0.5',
+                note='設定摩擦(須大於0)',
                 long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='彈性',
+        #         code='物體.彈性',
+        #         code_display='物體.彈性',
+        #         note='彈性',
+        #         long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display='彈性(取值)',
-                code='球.彈性',
-                code_display='球.彈性',
-                note='彈性(取值)',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display=' 彈性(設值)',
-                code='球.彈性 = 0.98',
-                code_display='球.彈性 = 0.98',
-                note='彈性(設值)(須在0到1之間)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='物理反應(取值)',
-                code='球.物理反應',
-                code_display='球.物理反應',
-                note='物理反應(取值)',
-                long_note=False))
-        temp_code_list.append(CodeNTuple(
-                menu_display=' 物理反應(設值)',
-                code='球.物理反應 = True',
-                code_display='球.物理反應 = True',
-                note='物理反應(設值)',
+                menu_display='彈性設定',
+                code='物體.彈性 = 0.98',
+                code_display='物體.彈性 = 0.98',
+                note='設定彈性(須在0到1之間)',
                 long_note=True))
 
         temp_code_list.append(CodeNTuple(
-                menu_display='半徑(取值)(唯讀)',
-                code='球.半徑',
-                code_display='球.半徑',
-                note='半徑(取值)(唯讀)',
-                long_note=False))
+                menu_display='物理反應(真)',
+                code='物體.物理反應 = True',
+                code_display='物體.物理反應 = True',
+                note='物理反應(真)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  物理反應(假)',
+                code='物體.物理反應 = False',
+                code_display='物體.物理反應 = False',
+                note='物理反應(假)',
+                long_note=True))
+
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='半徑(取值)(唯讀)',
+        #         code='球.半徑',
+        #         code_display='球.半徑',
+        #         note='半徑(取值)(唯讀)',
+        #         long_note=False))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
