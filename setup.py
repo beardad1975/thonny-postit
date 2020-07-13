@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup (
         name="thonny-postit",
-        version="0.0.3",
+        version="0.0.4",
         description="Program post-it for Thonny IDE",
         long_description="""Program post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
