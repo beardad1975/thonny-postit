@@ -80,6 +80,54 @@ class DropdownWidget(ttk.Frame):
         self.bottom_note_label.pack(side=tk.LEFT,padx=15)
 
 
+class DropdownPostMixin:
+
+    def determine_post_place_and_type(self, hover_widget):
+        """
+        disable all pressing (test)
+
+      post hover_widget:
+        (1)postit_button : press button
+        (2)editor_text : drag to editor
+        (3)shell_text  : drag to shell
+
+      post type:
+        (1)press postit insert (pressing=True, selecting=False)
+        (2)press postit insert with selection
+                                (pressing=True, selecting=True)
+        (3)drag postit insert (dragging=True, hovering=False)
+        (4)drag postit insert hovering over selection
+                                (dragging=True, hovering=True) 
+         """        
+        if hover_widget is self.postit_button: 
+            pass
+        elif isinstance(hover_widget, CodeViewText):
+            # drag to editor 
+            editor_text = hover_widget
+            
+            if self.drag_hover_selection:
+                # drag_hover_selection
+                self.insert_into_editor(editor_text, 
+                                    dragging=True, hovering=True)
+                
+            else:# not drag_hover_selection
+                self.insert_into_editor(editor_text, 
+                                    dragging=True, hovering=False)
+        elif isinstance(hover_widget, ShellText):
+            # drag to shell
+            shell_text = hover_widget
+            
+            if self.drag_hover_selection:
+                # drag_hover_selection
+                self.insert_into_shell(shell_text, 
+                                    dragging=True, hovering=True)
+            else:# no drag_hover_selection
+                self.insert_into_shell(shell_text, 
+                                    dragging=True, hovering=False)
+
+
+
+
 class DropdownPopup:
     def popup_init(self):
         # button popup menu
@@ -117,8 +165,8 @@ class DropdownPopup:
         self.update_button_enter_sign()
 
 class DropdownPostit( DropdownWidget, 
-                      BaseCode,
-                      BasePost, 
+                      BaseCode, 
+                      DropdownPostMixin, BasePost, 
                       DropdownPopup):
     """   """
     def __init__(self,  tab_name, code_list, postfix_enter=False):

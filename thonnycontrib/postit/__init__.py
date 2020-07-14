@@ -1349,6 +1349,7 @@ class PythonPostitView(ttk.Frame):
                 code_display='舞台 = 物理引擎(500, 800)',
                 note='舞台(設定尺寸)',
                 long_note=True))
+      
         temp_code_list.append(CodeNTuple(
                 menu_display='重力',
                 code='舞台.重力 = [0, -800]',
@@ -1430,28 +1431,28 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='新增圓球',
+                menu_display='隨機新增圓球',
                 code='新增圓球()',
                 code_display='新增圓球()',
-                note='add circle',
+                note='隨機新增圓球',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='新增圓球(設定半徑)',
+                menu_display='  新增圓球並設值',
                 code='物體 = 新增圓球(半徑=20)',
                 code_display='物體 = 新增圓球(半徑=20)',
-                note='add circle',
+                note='新增圓球並設值',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='新增方塊',
+                menu_display='隨機新增方塊',
                 code='新增方塊()',
                 code_display='新增方塊()',
-                note='add box',
+                note='隨機新增方塊',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='新增方塊(設定長寬)',
+                menu_display='  新增方塊並設值',
                 code='物體 = 新增方塊(長=20,寬=10)',
                 code_display='物體 = 新增方塊(長=20,寬=10)',
-                note='add box',
+                note='新增方塊並設值',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='移除物體',
@@ -1507,22 +1508,11 @@ class PythonPostitView(ttk.Frame):
                 code_display='def 放開滑鼠時(x, y):\n    ___',
                 note='on mouse release',
                 long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='按下鍵盤時',
-                code='def 按下鍵盤時(按鍵):\n___\n',
-                code_display='def 按下鍵盤時(按鍵):\n    ___',
-                note='on key press',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='放開鍵盤時',
-                code='def 放開鍵盤時(按鍵):\n___\n',
-                code_display='def 放開鍵盤時(按鍵):\n    ___',
-                note='on key release',
-                long_note=True))
+
         temp_code_list.append(CodeNTuple(
                 menu_display='點擊物體時',
-                code='def 點擊物體時(x, y, 物體):\n___\n',
-                code_display='def 點擊物體時(x, y, 物體):\n    ___',
+                code='def 點擊物體時(物體, x, y):\n___\n',
+                code_display='def 點擊物體時(物體, x, y):\n    ___',
                 note='on object click',
                 long_note=True))
         # temp_code_list.append(CodeNTuple(
@@ -1537,40 +1527,52 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='空白鍵',
-                code='key.SPACE',
-                code_display='key.SPACE',
-                note='空白鍵',
+                menu_display='按下鍵盤時',
+                code='def 按下鍵盤時(按鍵, x, y):\n___\n',
+                code_display='def 按下鍵盤時(按鍵, x, y):\n    ___',
+                note='on key press',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='輸入鍵',
-                code='key.ENTER',
-                code_display='key.ENTER',
-                note='輸入鍵',
+                menu_display='放開鍵盤時',
+                code='def 放開鍵盤時(按鍵, x, y):\n___\n',
+                code_display='def 放開鍵盤時(按鍵, x, y):\n    ___',
+                note='on key release',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='向上鍵',
-                code='key.UP',
-                code_display='key.UP',
-                note='向上鍵',
+                menu_display='  是空白鍵?',
+                code='if 按鍵 == key.SPACE :\n___',
+                code_display='if 按鍵 == key.SPACE :\n    ___',
+                note='是空白鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='向下鍵',
-                code='key.DOWN',
-                code_display='key.DOWN',
-                note='向下鍵',
+                menu_display='  是Enter鍵?',
+                code='if 按鍵 == key.ENTER :\n___',
+                code_display='if 按鍵 == key.ENTER :\n    ___',
+                note='是Enter鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='向右鍵',
-                code='key.RIGHT',
-                code_display='key.RIGHT',
-                note='向右鍵',
+                menu_display='  是向上鍵?',
+                code='if 按鍵 == key.UP :\n___',
+                code_display='if 按鍵 == key.UP :\n    ___',
+                note='是向上鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='向左鍵',
-                code='key.LEFT',
-                code_display='key.LEFT',
-                note='向左鍵',
+                menu_display='  是向下鍵?',
+                code='if 按鍵 == key.DOWN :\n___',
+                code_display='if 按鍵 == key.DOWN :\n    ___',
+                note='是向下鍵?',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是向右鍵?',
+                code='if 按鍵 == key.RIGHT :\n___',
+                code_display='if 按鍵 == key.RIGHT :\n    ___',
+                note='是向右鍵?',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是向左鍵?',
+                code='if 按鍵 == key.LEFT :\n___',
+                code_display='if 按鍵 == key.LEFT :\n    ___',
+                note='是向左鍵?',
                 long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1602,8 +1604,8 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='質量設定',
-                code='物體.質量 = 300',
-                code_display='物體.質量 = 300',
+                code='物體.質量 = 100',
+                code_display='物體.質量 = 100',
                 note='設定質量(須大於0)',
                 long_note=True))
         # temp_code_list.append(CodeNTuple(
