@@ -53,6 +53,10 @@ class ToolCodeMixin:
 
 class ToolPostMixin:
 
+
+
+
+
     def insert_into_editor(self, text_widget, selecting, dragging):
         if self.tool_name == 'backspace':
             if not dragging:

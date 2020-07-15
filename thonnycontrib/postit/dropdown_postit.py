@@ -82,6 +82,85 @@ class DropdownWidget(ttk.Frame):
 
 class DropdownPostMixin:
 
+    def on_mouse_drag(self, event):
+        ###print('drag ...')
+        #create drag window
+        if not self.drag_window: 
+            self.create_drag_window()
+            self.postit_button.config(cursor='hand2')
+
+        x_root, y_root = event.x_root, event.y_root
+
+        self.drag_window.geometry('+{}+{}'.format(x_root+18, y_root+5))
+
+        #change insert over editor or shell (but not postit button)
+        
+        hover_widget = event.widget.winfo_containing(x_root, y_root)
+        
+        if isinstance(hover_widget, CodeViewText):
+            # hover editor
+            editor_text = hover_widget
+            relative_x = x_root - editor_text.winfo_rootx()
+            relative_y =  y_root - editor_text.winfo_rooty()
+            mouse_index = editor_text.index(f"@{relative_x},{relative_y}")
+            # set cursor in editor
+            editor_text.focus_set()
+            editor_text.mark_set(tk.INSERT, mouse_index)
+
+            if editor_text.tag_ranges(tk.SEL):
+                #check darg hover selection
+                if editor_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                    editor_text.compare(mouse_index, "<=", tk.SEL_LAST):
+                    self.drag_hover_selection = True
+                    self.drag_button.config(text='【取代】'+self.hover_text_backup)
+                    
+                else:
+                    self.drag_hover_selection = False
+                    self.drag_button.config(text=self.hover_text_backup)
+                    
+                    
+        elif isinstance(hover_widget, ShellText):
+            # hover shell 
+            shell_text = hover_widget
+            relative_x = x_root - shell_text.winfo_rootx()
+            relative_y = y_root - shell_text.winfo_rooty()
+            # set cursor in shell
+            shell_text.focus_set()
+            mouse_index = shell_text.index(f"@{relative_x},{relative_y}")
+            input_start_index = shell_text.index('input_start')
+            if shell_text.compare(mouse_index, '>=', input_start_index):
+                shell_text.mark_set(tk.INSERT, mouse_index)
+
+                if shell_text.tag_ranges(tk.SEL):
+                    #check darg hover selection
+                    if shell_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                        shell_text.compare(mouse_index, "<=", tk.SEL_LAST):
+                        self.drag_hover_selection = True
+                        self.drag_button.config(text='【取代】'+self.hover_text_backup)
+                        
+                    else:
+                        self.drag_hover_selection = False
+                        self.drag_button.config(text=self.hover_text_backup)
+                        
+
+    def create_drag_window(self):
+            self.drag_window = tk.Toplevel()
+            # clone postit_button in drag window
+            image = self.postit_button.cget('image')
+            compound = self.postit_button.cget('compound')
+            font = self.postit_button.cget('font')
+            bg = self.postit_button.cget('bg')
+            fg = self.postit_button.cget('fg')
+            text = self.postit_button.cget('text')
+            self.hover_text_backup = text
+            justify = self.postit_button.cget('justify')
+            self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 
+                        fg=fg,font=font, compound=compound, image=image,
+                        relief='solid', justify=justify, bd=0 )
+            self.drag_button.pack()
+            self.drag_window.overrideredirect(True)
+            self.drag_window.attributes('-topmost', 'true')
+
     def determine_post_place_and_type(self, hover_widget):
         """
         disable all pressing (test)

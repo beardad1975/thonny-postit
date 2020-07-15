@@ -1431,28 +1431,40 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='隨機新增圓球',
+                menu_display='圓球隨機',
                 code='新增圓球()',
                 code_display='新增圓球()',
-                note='隨機新增圓球',
+                note='圓球隨機',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='  新增圓球並設值',
+                menu_display='圓球隨機(設值)',
+                code='物體 = 新增圓球()',
+                code_display='物體 = 新增圓球()',
+                note='圓球隨機(設值)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='圓球(半徑)(設值)',
                 code='物體 = 新增圓球(半徑=20)',
                 code_display='物體 = 新增圓球(半徑=20)',
-                note='新增圓球並設值',
+                note='圓球(半徑)(設值)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='隨機新增方塊',
+                menu_display='方塊隨機',
                 code='新增方塊()',
                 code_display='新增方塊()',
-                note='隨機新增方塊',
+                note='方塊隨機',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='  新增方塊並設值',
-                code='物體 = 新增方塊(長=20,寬=10)',
-                code_display='物體 = 新增方塊(長=20,寬=10)',
-                note='新增方塊並設值',
+                menu_display='方塊隨機(設值)',
+                code='物體 = 新增方塊()',
+                code_display='物體 = 新增方塊()',
+                note='方塊隨機(設值)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='方塊(寬高)(設值)',
+                code='物體 = 新增方塊(寬=30,高=20)',
+                code_display='物體 = 新增方塊(寬=30,高=20)',
+                note='方塊(寬高)(設值)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='移除物體',

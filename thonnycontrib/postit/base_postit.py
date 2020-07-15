@@ -127,6 +127,7 @@ class BasePost:
         self.drag_window = None
         self.drag_button = None
         self.drag_hover_selection = False
+        self.hover_text_backup = ''
         #self.mouse_dragging = False
         # drag and press event
         self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
@@ -163,10 +164,12 @@ class BasePost:
                 if editor_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
                     editor_text.compare(mouse_index, "<=", tk.SEL_LAST):
                     self.drag_hover_selection = True
-                    self.drag_button.config(bd=2)
+                    #self.drag_button.config(text='【取代】'+self.hover_text_backup)
+                    
                 else:
                     self.drag_hover_selection = False
-                    self.drag_button.config(bd=0)
+                    #self.drag_button.config(text=self.hover_text_backup)
+                    
                     
         elif isinstance(hover_widget, ShellText):
             # hover shell 
@@ -185,10 +188,12 @@ class BasePost:
                     if shell_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
                         shell_text.compare(mouse_index, "<=", tk.SEL_LAST):
                         self.drag_hover_selection = True
-                        self.drag_button.config(bd=3)
+                        #self.drag_button.config(text='【取代】'+self.hover_text_backup)
+                        
                     else:
                         self.drag_hover_selection = False
-                        self.drag_button.config(bd=0)
+                        #self.drag_button.config(text=self.hover_text_backup)
+                        
 
     def create_drag_window(self):
             self.drag_window = tk.Toplevel()
@@ -199,6 +204,7 @@ class BasePost:
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
             text = self.postit_button.cget('text')
+            #self.hover_text_backup = text
             justify = self.postit_button.cget('justify')
             self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 
                         fg=fg,font=font, compound=compound, image=image,
