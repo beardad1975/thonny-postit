@@ -264,8 +264,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='主要執行模組 __main__',
-                code="if __name__=='__main__':\n___",
-                code_display="if __name__ == '__main__':\n    ___",
+                code="if __name__=='__main__':\n執行這裡",
+                code_display="if __name__ == '__main__':\n    執行這裡",
                 note='主要執行模組',
                 long_note=True ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
@@ -1180,14 +1180,14 @@ class PythonPostitView(ttk.Frame):
                 long_note=True ))
         temp_code_list.append(CodeNTuple(
                 menu_display='自訂功能(滑鼠點擊時)',
-                code='def 功能函式(x, y):\n___',
-                code_display='def 功能函式(x, y):\n    ___',
+                code='def 功能函式(x, y):\n執行這裡',
+                code_display='def 功能函式(x, y):\n    執行這裡',
                 note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         temp_code_list.append(CodeNTuple(
                 menu_display='  define mouse click function ',
-                code='def func(x, y):\n___',
-                code_display='def func(x, y):\n    ___',
+                code='def func(x, y):\n執行這裡',
+                code_display='def func(x, y):\n    執行這裡',
                 note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
@@ -1215,14 +1215,14 @@ class PythonPostitView(ttk.Frame):
                 long_note=True ))
         temp_code_list.append(CodeNTuple(
                 menu_display='自訂功能(鍵盤按下時)',
-                code='def 功能函式():\n___',
-                code_display='def 功能函式():\n    ___',
+                code='def 功能函式():\n執行這裡',
+                code_display='def 功能函式():\n    執行這裡',
                 note='自訂功能(鍵盤按下時)',
                 long_note=True ))  
         temp_code_list.append(CodeNTuple(
                 menu_display='  define key press function ',
-                code='def func():\n___',
-                code_display='def func():\n    ___',
+                code='def func():\n執行這裡',
+                code_display='def func():\n    執行這裡',
                 note='自訂功能(鍵盤按下時)',
                 long_note=True ))  
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
@@ -1504,27 +1504,27 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='按下滑鼠時',
-                code='def 按下滑鼠時(x, y):\n___\n',
-                code_display='def 按下滑鼠時(x, y):\n    ___',
+                code='def 按下滑鼠時(x, y):\npass\n',
+                code_display='def 按下滑鼠時(x, y):\n    pass',
                 note='on mouse click',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='拖曳滑鼠時',
-                code='def 拖曳滑鼠時(x, y, dx, dy):\n___\n',
-                code_display='def 拖曳滑鼠時(x,y,dx,dy):\n    ___',
+                code='def 拖曳滑鼠時(x, y, dx, dy):\npass\n',
+                code_display='def 拖曳滑鼠時(x,y,dx,dy):\n    pass',
                 note='on mouse drag',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='放開滑鼠時',
-                code='def 放開滑鼠時(x, y):\n___\n',
-                code_display='def 放開滑鼠時(x, y):\n    ___',
+                code='def 放開滑鼠時(x, y):\npass\n',
+                code_display='def 放開滑鼠時(x, y):\n    pass',
                 note='on mouse release',
                 long_note=True))
 
         temp_code_list.append(CodeNTuple(
                 menu_display='點擊物體時',
-                code='def 點擊物體時(物體, x, y):\n___\n',
-                code_display='def 點擊物體時(物體, x, y):\n    ___',
+                code='def 點擊物體時(物體, x, y):\npass\n',
+                code_display='def 點擊物體時(物體, x, y):\n    pass',
                 note='on object click',
                 long_note=True))
         # temp_code_list.append(CodeNTuple(
@@ -1540,50 +1540,50 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='按下鍵盤時',
-                code='def 按下鍵盤時(按鍵, x, y):\n___\n',
-                code_display='def 按下鍵盤時(按鍵, x, y):\n    ___',
+                code='def 按下鍵盤時(按鍵, x, y):\npass\n',
+                code_display='def 按下鍵盤時(按鍵, x, y):\n    pass',
                 note='on key press',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='放開鍵盤時',
-                code='def 放開鍵盤時(按鍵, x, y):\n___\n',
-                code_display='def 放開鍵盤時(按鍵, x, y):\n    ___',
+                code='def 放開鍵盤時(按鍵, x, y):\npass\n',
+                code_display='def 放開鍵盤時(按鍵, x, y):\n    pass',
                 note='on key release',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是空白鍵?',
-                code='if 按鍵 == key.SPACE :\n___',
-                code_display='if 按鍵 == key.SPACE :\n    ___',
+                code='if 按鍵 == key.SPACE :\npass',
+                code_display='if 按鍵 == key.SPACE :\n    pass',
                 note='是空白鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是Enter鍵?',
-                code='if 按鍵 == key.ENTER :\n___',
-                code_display='if 按鍵 == key.ENTER :\n    ___',
+                code='if 按鍵 == key.ENTER :\npass',
+                code_display='if 按鍵 == key.ENTER :\n    pass',
                 note='是Enter鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向上鍵?',
-                code='if 按鍵 == key.UP :\n___',
-                code_display='if 按鍵 == key.UP :\n    ___',
+                code='if 按鍵 == key.UP :\npass',
+                code_display='if 按鍵 == key.UP :\n    pass',
                 note='是向上鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向下鍵?',
-                code='if 按鍵 == key.DOWN :\n___',
-                code_display='if 按鍵 == key.DOWN :\n    ___',
+                code='if 按鍵 == key.DOWN :\npass',
+                code_display='if 按鍵 == key.DOWN :\n    pass',
                 note='是向下鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向右鍵?',
-                code='if 按鍵 == key.RIGHT :\n___',
-                code_display='if 按鍵 == key.RIGHT :\n    ___',
+                code='if 按鍵 == key.RIGHT :\npass',
+                code_display='if 按鍵 == key.RIGHT :\n    pass',
                 note='是向右鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向左鍵?',
-                code='if 按鍵 == key.LEFT :\n___',
-                code_display='if 按鍵 == key.LEFT :\n    ___',
+                code='if 按鍵 == key.LEFT :\npass',
+                code_display='if 按鍵 == key.LEFT :\n    pass',
                 note='是向左鍵?',
                 long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
@@ -2284,21 +2284,21 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                                     menu_display='如果 不然就(否則) if else ',
-                                    code='if 條件:\n___\nelse:\n___',
-                                    code_display='if 條件:\n    ___\nelse:\n'
-                                    '    ___   ',
+                                    code='if 條件:\n執行這裡\nelse:\n執行那裡',
+                                    code_display='if 條件:\n    執行這裡\nelse:\n'
+                                    '    執行那裡',
                                     note='如果…\n\n不然就(否則)',
                                     long_note=False))
         temp_code_list.append(CodeNTuple(
                                     menu_display='如果 if ',
-                                    code='if 條件:\n___',
-                                    code_display='if 條件:\n    ___',
+                                    code='if 條件:\n執行這裡',
+                                    code_display='if 條件:\n    執行這裡',
                                     note='如果',
                                     long_note=False ))
         temp_code_list.append(CodeNTuple(
             menu_display='不然如果 (否則) if elif else ',
-            code='if 條件:\n___\nelif 條件:\n___\nelse:\n___',
-            code_display='if 條件:\n    ___\nelif 條件:\n    ___\nelse:\n    ___',
+            code='if 條件:\n執行這裡\nelif 條件:\n執行那裡\nelse:\n執行那裡',
+            code_display='if 條件:\n    執行這裡\nelif 條件:\n    執行那裡\nelse:\n    執行那裡',
             note='如果\n\n不然如果\n\n不然就(否則)',
             long_note=False ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
@@ -2376,14 +2376,14 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                                     menu_display='重複無限次 while True ',
-                                    code='while True:\n___',
-                                    code_display='while True:\n    ___\n',
+                                    code='while True:\n執行這裡',
+                                    code_display='while True:\n    執行這裡\n',
                                     note='重複無限次',
                                     long_note=False ))
         temp_code_list.append(CodeNTuple(
                                     menu_display='有條件重複 while ',
-                                    code='while 條件:\n___',
-                                    code_display='while 條件:\n    ___\n',
+                                    code='while 條件:\n執行這裡',
+                                    code_display='while 條件:\n    執行這裡\n',
                                     note='當成立時\n\n重複',
                                     long_note=False ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
@@ -2403,26 +2403,26 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(依次數) for in range  ',
-                code='for 序 in range(次數):\n___',
-                code_display='for 序 in range(次數):\n    ___',
+                code='for 序 in range(次數):\n執行這裡',
+                code_display='for 序 in range(次數):\n    執行這裡',
                 note='重複(依次數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(從開始不含結束) for in range  ',
-                code='for 序 in range(開始, 結束):\n___',
-                code_display='for 序 in range(開始, 結束):\n    ___',
+                code='for 序 in range(開始, 結束):\n執行這裡',
+                code_display='for 序 in range(開始, 結束):\n    執行這裡',
                 note='重複(從開始不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='重複(從開始步進不含結束) for in range  ',
-                code='for 序 in range(開始, 結束, 步進):\n___',
-                code_display='for 序 in range(開始, 結束, 步進):\n    ___',
+                code='for 序 in range(開始, 結束, 步進):\n執行這裡',
+                code_display='for 序 in range(開始, 結束, 步進):\n    執行這裡',
                 note='重複(從開始步進不含結束)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='逐一取出項目 for in 清單  ',
-                code='for 項目 in 清單:\n___',
-                code_display='for 項目 in 清單:\n    ___',
+                code='for 項目 in 清單:\n執行這裡',
+                code_display='for 項目 in 清單:\n    執行這裡',
                 note='從清單中逐一取出項目',
                 long_note=True ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
@@ -2462,8 +2462,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='捕捉例外(錯誤)',
-                code='try:\n___\nexcept Exception:\n___',
-                code_display='try:\n    ___\nexcept Exception:\n    ___',
+                code='try:\n執行這裡\nexcept Exception:\n執行那裡',
+                code_display='try:\n    執行這裡\nexcept Exception:\n    執行那裡',
                 note='測試\n\n例外\n(錯誤)',
                 long_note=False))
 
@@ -2485,8 +2485,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='自訂功能函式',
-                code='def 功能函式(參數1, 參數2):\n___',
-                code_display='def 功能函式(參數1, 參數2):\n    ___',
+                code='def 功能函式(參數1, 參數2):\n執行這裡',
+                code_display='def 功能函式(參數1, 參數2):\n    執行這裡',
                 note='自訂功能函式',
                 long_note=True ))  
         # temp_code_list.append(CodeNTuple(
