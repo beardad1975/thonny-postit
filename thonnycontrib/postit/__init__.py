@@ -1134,8 +1134,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='字型',
-                code="字型 = ('標楷的',12,'normal')",
-                code_display="字型 = ('標楷的',12,'normal')",
+                code="字型 = ('標楷體',12,'normal')",
+                code_display="字型 = ('標楷體',12,'normal')",
                 note='字型設定',
                 long_note=False ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
@@ -2569,12 +2569,12 @@ class PythonPostitView(ttk.Frame):
         CutToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
         CopyToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
         PasteToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-
-        EnterToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=3,
+        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3,
+                    )
+        EnterToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3,
                     )
 
-        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.RIGHT,padx=3, pady=3,
-                    )
+        
 
         
 
