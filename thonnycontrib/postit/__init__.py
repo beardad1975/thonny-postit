@@ -142,6 +142,7 @@ class PythonPostitView(ttk.Frame):
         self.add_tab('builtin', '程式庫','basic')
         self.add_tab('turtle4t', ' 海龜 ','pack')
         self.add_tab('physics', ' 物理 ','pack')
+        self.add_tab('threed', '  3D  ','pack')
         self.add_tab('auto', ' 自動 ','pack')
         self.add_tab('pil', ' 影像 ','pack')
 
@@ -152,6 +153,7 @@ class PythonPostitView(ttk.Frame):
         self.builtin_tab_init()
         self.turtle4t_tab_init()
         self.physics_tab_init()
+        self.threed_tab_init()
         self.auto_tab_init()
         self.pil_tab_init()
 
@@ -1394,18 +1396,18 @@ class PythonPostitView(ttk.Frame):
 
         # dropdown list postit
         temp_code_list = []
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='開始模擬',
-        #         code='開始模擬()',
-        #         code_display='開始模擬()',
-        #         note='simulate',
-        #         long_note=False))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='  simulate',
-        #         code='simulate()',
-        #         code_display='simulate()',
-        #         note='開始模擬',
-        #         long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬進行中',
+                code='模擬進行中()',
+                code_display='模擬進行中()',
+                note='simulate',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  simulate',
+                code='simulate()',
+                code_display='simulate()',
+                note='模擬進行中',
+                long_note=False))
         temp_code_list.append(CodeNTuple(
                 menu_display='模擬主迴圈',
                 code='模擬主迴圈()',
@@ -1772,6 +1774,52 @@ class PythonPostitView(ttk.Frame):
         # DropdownPostit(tab_name='physics', code_list = temp_code_list,
         #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+
+    def threed_tab_init(self):
+        # title and setup tool
+        tab = common_postit_tabs['threed']
+        #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
+        example_vars = ['x','y','z'] 
+        tab.popup_init(example_vars)
+
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        label =ttk.Label(common_postit_tabs['threed'].frame.interior, 
+                text='【模擬3D】', 
+                image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+        label.bind("<Button-1>", common_postit_tabs['threed'].popup)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='from 模擬3D模組 import *',
+                code='from 模擬3D模組 import *',
+                code_display='from 模擬3D模組 import *',
+                note='從模擬3D模組匯入全部',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='from ursina4t import *',
+                code='from threed4t import *',
+                code_display='from threed4t import *',
+                note='從模擬3D模組匯入全部',
+                long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='import 物理模組 ',
+        #         code='import 物理模組',
+        #         code_display='import 物理模組',
+        #         note='匯入pie4t',
+        #         long_note=True ))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  import pie4t ',
+        #         code='import pie4t',
+        #         code_display='import pie4t',
+        #         note='匯入物理模組',
+        #         long_note=True ))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
