@@ -434,7 +434,7 @@ class PythonPostitView(ttk.Frame):
                 note='從隨機模組匯入choice',
                 long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -478,7 +478,7 @@ class PythonPostitView(ttk.Frame):
                 note='從時間模組匯入sleep',
                 long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -559,7 +559,7 @@ class PythonPostitView(ttk.Frame):
                 note='匯入海龜模組',
                 long_note=True ))
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
@@ -1324,7 +1324,7 @@ class PythonPostitView(ttk.Frame):
         #         note='匯入物理模組',
         #         long_note=True ))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
         ttk.Separator(common_postit_tabs['physics'].frame.interior, orient=tk.HORIZONTAL
@@ -1347,8 +1347,8 @@ class PythonPostitView(ttk.Frame):
         #         long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='舞台(設定尺寸)',
-                code='舞台 = 物理引擎(500,800)',
-                code_display='舞台 = 物理引擎(500, 800)',
+                code='舞台 = 物理引擎(400,600)',
+                code_display='舞台 = 物理引擎(400, 600)',
                 note='舞台(設定尺寸)',
                 long_note=True))
       
@@ -1376,18 +1376,18 @@ class PythonPostitView(ttk.Frame):
                 code_display='舞台.慢動作 = not 舞台.慢動作',
                 note='慢動作(相反)',
                 long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='模擬暫停(真)',
-        #         code='舞台.模擬暫停 = True',
-        #         code_display='舞台.模擬暫停 = True',
-        #         note='模擬暫停(真)',
-        #         long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='模擬暫停(假)',
-        #         code='舞台.模擬暫停 = False',
-        #         code_display='舞台.模擬暫停 = False',
-        #         note='模擬暫停(假)',
-        #         long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬暫停(真)',
+                code='舞台.模擬暫停 = True',
+                code_display='舞台.模擬暫停 = True',
+                note='模擬暫停(真)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬暫停(假)',
+                code='舞台.模擬暫停 = False',
+                code_display='舞台.模擬暫停 = False',
+                note='模擬暫停(假)',
+                long_note=True))
         DropdownPostit(tab_name='physics', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -1400,20 +1400,20 @@ class PythonPostitView(ttk.Frame):
                 menu_display='模擬進行中',
                 code='模擬進行中()',
                 code_display='模擬進行中()',
-                note='simulate',
-                long_note=False))
+                note='(加在程式的最後一行)',
+                long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  simulate',
                 code='simulate()',
                 code_display='simulate()',
                 note='模擬進行中',
-                long_note=False))
+                long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='模擬主迴圈',
                 code='模擬主迴圈()',
                 code_display='模擬主迴圈()',
-                note='simulate',
-                long_note=False))
+                note='(加在程式的最後一行)',
+                long_note=True))
         # temp_code_list.append(CodeNTuple(
         #         menu_display='  mainloop',
         #         code='mainloop()',
@@ -1439,16 +1439,16 @@ class PythonPostitView(ttk.Frame):
                 note='圓球隨機',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='圓球隨機(設值)',
+                menu_display='圓球隨機(設定變數)',
                 code='物體 = 新增圓球()',
                 code_display='物體 = 新增圓球()',
-                note='圓球隨機(設值)',
+                note='圓球隨機(設定變數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='圓球(半徑)(設值)',
+                menu_display='圓球(半徑)(設定變數)',
                 code='物體 = 新增圓球(半徑=20)',
                 code_display='物體 = 新增圓球(半徑=20)',
-                note='圓球(半徑)(設值)',
+                note='圓球(半徑)(設定變數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='方塊隨機',
@@ -1457,16 +1457,16 @@ class PythonPostitView(ttk.Frame):
                 note='方塊隨機',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='方塊隨機(設值)',
+                menu_display='方塊隨機(設定變數)',
                 code='物體 = 新增方塊()',
                 code_display='物體 = 新增方塊()',
-                note='方塊隨機(設值)',
+                note='方塊隨機(設定變數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='方塊(寬高)(設值)',
+                menu_display='方塊(寬高)(設定變數)',
                 code='物體 = 新增方塊(寬=30,高=20)',
                 code_display='物體 = 新增方塊(寬=30,高=20)',
-                note='方塊(寬高)(設值)',
+                note='方塊(寬高)(設定變數)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='移除物體',
@@ -1612,8 +1612,8 @@ class PythonPostitView(ttk.Frame):
         #         long_note=False))
         temp_code_list.append(CodeNTuple(
                 menu_display='彈性設定',
-                code='物體.彈性 = 0.98',
-                code_display='物體.彈性 = 0.98',
+                code='物體.彈性 = 0.3',
+                code_display='物體.彈性 = 0.3',
                 note='設定彈性(須在0到1之間)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
@@ -1779,7 +1779,7 @@ class PythonPostitView(ttk.Frame):
         # title and setup tool
         tab = common_postit_tabs['threed']
         #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-        example_vars = ['x','y','z'] 
+        example_vars = ['x','y','z','物體'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1801,7 +1801,7 @@ class PythonPostitView(ttk.Frame):
                 note='從模擬3D模組匯入全部',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='from ursina4t import *',
+                menu_display='from threed4t import *',
                 code='from threed4t import *',
                 code_display='from threed4t import *',
                 note='從模擬3D模組匯入全部',
@@ -1819,9 +1819,81 @@ class PythonPostitView(ttk.Frame):
         #         note='匯入物理模組',
         #         long_note=True ))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+        temp_code_list = []
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='舞台',
+        #         code='舞台 = 物理引擎()',
+        #         code_display='舞台 = 物理引擎()',
+        #         note='舞台',
+        #         long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='舞台(設定尺寸)',
+                code='舞台 = 模擬3D引擎(400,600)',
+                code_display='舞台 = 模擬3D引擎(400,600)',
+                note='舞台(設定尺寸)',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬進行中',
+                code='模擬進行中()',
+                code_display='模擬進行中()',
+                note='(加在程式的最後一行)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  simulate',
+                code='simulate()',
+                code_display='simulate()',
+                note='模擬進行中',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='模擬主迴圈',
+                code='模擬主迴圈()',
+                code_display='模擬主迴圈()',
+                note='(加在程式的最後一行)',
+                long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='  mainloop',
+        #         code='mainloop()',
+        #         code_display='mainloop()',
+        #         note='主迴圈',
+        #         long_note=False))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增3D物件',
+                code='物體 = 新增3D物件()',
+                code_display='物體 = 新增3D物件()',
+                note='add_entity',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定模型',
+                code="物體.模型 = 'cube'",
+                code_display="物體.模型 = 'cube'",
+                note='model',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定紋理',
+                code="物體.紋理 = 'white_cube.png'",
+                code_display="物體.紋理 = 'white_cube.png'",
+                note='texture',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
     def auto_tab_init(self):
@@ -1857,7 +1929,7 @@ class PythonPostitView(ttk.Frame):
                 note='匯入pyperclip模組',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
         # separator and note
@@ -2111,7 +2183,7 @@ class PythonPostitView(ttk.Frame):
                 note='從PIL模組匯入ImageGrab',
                 long_note=True))
         DropdownPostit(tab_name='pil', code_list = temp_code_list,
-            postfix_enter=True).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         # separator and note
         ttk.Separator(common_postit_tabs['pil'].frame.interior, orient=tk.HORIZONTAL
