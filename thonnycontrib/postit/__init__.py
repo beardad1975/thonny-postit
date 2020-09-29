@@ -1895,6 +1895,41 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定位置(左右,上下,前後)',
+                code="物體.位置 = 0,0,0",
+                code_display="物體.位置 = 0,0,0",
+                note='設定位置(左右,上下,前後)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定x (左右)',
+                code="物體.x = 0",
+                code_display="物體.x = 0",
+                note='設定x (左右)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定y (上下)',
+                code="物體.y = 0",
+                code_display="物體.y = 0",
+                note='設定y (上下)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定z (前後)',
+                code="物體.z = 0",
+                code_display="物體.z = 0",
+                note='設定z (前後)',
+                long_note=True))        
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+
+
+
+
+
+
 
     def auto_tab_init(self):
         # title and setup tool
