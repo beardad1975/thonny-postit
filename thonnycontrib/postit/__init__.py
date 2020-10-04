@@ -1779,7 +1779,7 @@ class PythonPostitView(ttk.Frame):
         # title and setup tool
         tab = common_postit_tabs['threed']
         #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-        example_vars = ['x','y','z','物體'] 
+        example_vars = ['x','y','z','物體','物體父' ,'物體母' ] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1882,31 +1882,37 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='設定模型',
-                code="物體.模型 = 'cube'",
-                code_display="物體.模型 = 'cube'",
+                code="物體.模型 = ''",
+                code_display="物體.模型 = ''",
                 note='model',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='設定紋理',
-                code="物體.紋理 = 'white_cube.png'",
-                code_display="物體.紋理 = 'white_cube.png'",
+                code="物體.紋理 = ''",
+                code_display="物體.紋理 = ''",
                 note='texture',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定上層物件',
+                code="物體.上層物件 = ",
+                code_display="物體.上層物件 = ",
+                note='parent',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='設定位置(左右,上下,前後)',
+                menu_display='設定位置(右左,上下,前後)',
                 code="物體.位置 = 0,0,0",
                 code_display="物體.位置 = 0,0,0",
-                note='設定位置(左右,上下,前後)',
+                note='設定位置(右左,上下,前後)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定x (左右)',
+                menu_display='設定x (右左)',
                 code="物體.x = 0",
                 code_display="物體.x = 0",
-                note='設定x (左右)',
+                note='設定x (右左)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='設定y (上下)',
@@ -1919,7 +1925,31 @@ class PythonPostitView(ttk.Frame):
                 code="物體.z = 0",
                 code_display="物體.z = 0",
                 note='設定z (前後)',
-                long_note=True))        
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定全域位置(右左,上下,前後)',
+                code="物體.全域位置 = 0,0,0",
+                code_display="物體.全域位置 = 0,0,0",
+                note='設定全域位置(右左,上下,前後)',
+                long_note=True)) 
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定全域位置x (右左)',
+                code="物體.全域位置x = 0",
+                code_display="物體.全域位置x = 0",
+                note='設定全域位置x (右左)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定全域位置y (上下)',
+                code="物體.全域位置y = 0",
+                code_display="物體.全域位置y = 0",
+                note='設定全域位置y (上下)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定全域位置z (前後)',
+                code="物體.全域位置z = 0",
+                code_display="物體.全域位置z = 0",
+                note='設定全域位置z (前後)',
+                long_note=True))       
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
