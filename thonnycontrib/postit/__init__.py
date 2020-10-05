@@ -1893,10 +1893,64 @@ class PythonPostitView(ttk.Frame):
                 note='texture',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
+                menu_display='設定中心點偏移',
+                code="物體.中心點偏移 = 0,0,0",
+                code_display="物體.中心點偏移 = 0,0,0",
+                note='origin',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
                 menu_display='設定上層物件',
                 code="物體.上層物件 = ",
                 code_display="物體.上層物件 = ",
                 note='parent',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定顏色(紅)',
+                code="物體.顏色 = color.red",
+                code_display="物體.顏色 = color.red",
+                note='設定顏色(紅)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='        (綠)',
+                code="物體.顏色 = color.green",
+                code_display="物體.顏色 = color.green",
+                note='設定顏色(綠)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='        (藍)',
+                code="物體.顏色 = color.blue",
+                code_display="物體.顏色 = color.blue",
+                note='設定顏色(藍)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='        (黃)',
+                code="物體.顏色 = color.yellow",
+                code_display="物體.顏色 = color.yellow",
+                note='設定顏色(黃)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='        (橘)',
+                code="物體.顏色 = color.orange",
+                code_display="物體.顏色 = color.orange",
+                note='設定顏色(橘)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='        (rgba)',
+                code="物體.顏色 = color.rgba(50,0,0,255)",
+                code_display="物體.顏色 = color.rgba(50,0,0,255)",
+                note='設定顏色(rgba)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='        (隨機)',
+                code="物體.顏色 = color.random_color()",
+                code_display="物體.顏色 = color.random_color()",
+                note='設定顏色(隨機)',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2056,19 +2110,34 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+
+
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='按下鍵盤時',
-                code='def 按下鍵盤時(按鍵):\npass\n',
-                code_display='def 按下鍵盤時(按鍵):\n    pass',
+                menu_display='當按下時',
+                code='def 當按下時(按鍵):\npass\n',
+                code_display='def 當按下時(按鍵):\n    pass',
                 note='on key press',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='放開鍵盤時',
-                code='def 放開鍵盤時(按鍵):\npass\n',
-                code_display='def 放開鍵盤時(按鍵):\n    pass',
+                menu_display='當放開時',
+                code='def 當放開時(按鍵):\npass\n',
+                code_display='def 當放開時(按鍵):\n    pass',
                 note='on key release',
                 long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='按住鍵盤時',
+        #         code='def 按住鍵盤時(按鍵):\npass\n',
+        #         code_display='def 按住鍵盤時(按鍵):\n    pass',
+        #         note='on key hold',
+        #         long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是滑鼠左鍵?',
+                code="if 按鍵 == 'left mouse down' :\npass",
+                code_display="if 按鍵 == 'left mouse down' :\n    pass",
+                note='是滑鼠左鍵?',
+                long_note=True))
+
         temp_code_list.append(CodeNTuple(
                 menu_display='  是空白鍵?',
                 code="if 按鍵 == 'space' :\npass",
@@ -2083,29 +2152,75 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向右鍵?',
-                code="if 按鍵 == 'arrow_right' :\npass",
-                code_display="if 按鍵 == 'arrow_right' :\n    pass",
+                code="if 按鍵 == 'right arrow' :\npass",
+                code_display="if 按鍵 == 'right arrow' :\n    pass",
                 note='是向右鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向左鍵?',
-                code="if 按鍵 == 'arrow_left' :\npass",
-                code_display="if 按鍵 == 'arrow_left' :\n    pass",
+                code="if 按鍵 == 'left arrow' :\npass",
+                code_display="if 按鍵 == 'left arrow' :\n    pass",
                 note='是向左鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向上鍵?',
-                code="if 按鍵 == 'arrow_up' :\npass",
-                code_display="if 按鍵 == 'arrow_up' :\n    pass",
+                code="if 按鍵 == 'up arrow' :\npass",
+                code_display="if 按鍵 == 'up arrow' :\n    pass",
                 note='是向上鍵?',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='  是向下鍵?',
-                code="if 按鍵 == 'arrow_down' :\npass",
-                code_display="if 按鍵 == 'arrow_down' :\n    pass",
+                code="if 按鍵 == 'down arrow' :\npass",
+                code_display="if 按鍵 == 'down arrow' :\n    pass",
                 note='是向下鍵?',
                 long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='當更新時',
+                code='def 當更新時(時間差):\npass\n',
+                code_display='def 當更新時(時間差):\n    pass',
+                note='update',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='按住空白鍵？',
+                code="if 按住的鍵['space']:\npass\n",
+                code_display="if 按住的鍵['space']:\n    pass",
+                note='按住空白鍵？',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='按住Enter鍵？',
+                code="if 按住的鍵['enter']:\npass\n",
+                code_display="if 按住的鍵['enter']:\n    pass",
+                note='按住Enter鍵？',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='按住向右鍵？',
+                code="if 按住的鍵['right arrow']:\npass\n",
+                code_display="if 按住的鍵['right arrow']:\n    pass",
+                note='按住向右鍵？',
+                long_note=True))        
+        temp_code_list.append(CodeNTuple(
+                menu_display='按住向左鍵？',
+                code="if 按住的鍵['left arrow']:\npass\n",
+                code_display="if 按住的鍵['left arrow']:\n    pass",
+                note='按住向左鍵？',
+                long_note=True)) 
+        temp_code_list.append(CodeNTuple(
+                menu_display='按住向上鍵？',
+                code="if 按住的鍵['up arrow']:\npass\n",
+                code_display="if 按住的鍵['up arrow']:\n    pass",
+                note='按住向上鍵？',
+                long_note=True)) 
+        temp_code_list.append(CodeNTuple(
+                menu_display='按住向下鍵？',
+                code="if 按住的鍵['down arrow']:\npass\n",
+                code_display="if 按住的鍵['down arrow']:\n    pass",
+                note='按住向下鍵？',
+                long_note=True)) 
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
