@@ -1779,7 +1779,7 @@ class PythonPostitView(ttk.Frame):
         # title and setup tool
         tab = common_postit_tabs['threed']
         #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-        example_vars = ['x','y','z','物體','物體父' ,'物體母','座標' ] 
+        example_vars = ['x','y','z','物體','物體父' ,'物體母','座標','角度' ] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1820,6 +1820,17 @@ class PythonPostitView(ttk.Frame):
         #         long_note=True ))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        ttk.Separator(common_postit_tabs['threed'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['threed'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 3D舞台',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
 
         temp_code_list = []
@@ -1878,6 +1889,17 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+
+        ttk.Separator(common_postit_tabs['threed'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['threed'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 3d物件設定與屬性',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -1903,6 +1925,12 @@ class PythonPostitView(ttk.Frame):
                 code="物體.上層物件 = ",
                 code_display="物體.上層物件 = ",
                 note='parent',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定有效狀態',
+                code="物體.有效狀態 = True",
+                code_display="物體.有效狀態 = True",
+                note='enabled',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -1951,6 +1979,18 @@ class PythonPostitView(ttk.Frame):
                 code="物體.顏色 = color.random_color()",
                 code_display="物體.顏色 = color.random_color()",
                 note='設定顏色(隨機)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定顏色動畫(持續)',
+                code="物體.顏色動畫([255,0,0,255], 持續=1)",
+                code_display="物體.顏色動畫([255,0,0,255], 持續=1)",
+                note='設定顏色動畫',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定顏色動畫(延遲與持續)',
+                code="顏色 = 255,0,0,255\n物體.顏色動畫(顏色, 延遲=0, 持續=1)",
+                code_display="顏色 = 255,0,0,255\n物體.顏色動畫(顏色, 延遲=0, 持續=1)",
+                note='設定顏色動畫(延遲與持續)',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2006,14 +2046,14 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='設定位置動畫(持續)',
-                code="物體.位置動畫([2,0,0], 持續=1)",
-                code_display="物體.位置動畫([2,0,0], 持續=1)",
+                code="物體.位置動畫([1,0,0], 持續=1)",
+                code_display="物體.位置動畫([1,0,0], 持續=1)",
                 note='設定位置動畫',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='設定位置動畫(延遲與持續)',
-                code="座標 = 2,0,0\n物體.位置動畫(座標, 延遲=0, 持續=1)",
-                code_display="座標 = 座標 = 2,0,0\n物體.位置動畫(座標, 延遲=0, 持續=1)",
+                code="座標 = 1,0,0\n物體.位置動畫(座標, 延遲=0, 持續=1)",
+                code_display="座標 = 1,0,0\n物體.位置動畫(座標, 延遲=0, 持續=1)",
                 note='設定位置動畫(延遲與持續)',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
@@ -2024,34 +2064,46 @@ class PythonPostitView(ttk.Frame):
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='設定比例縮放x (x軸縮放)',
-                code="物體.比例縮放x = 1",
-                code_display="物體.比例縮放x = 1",
-                note='設定比例縮放x (x軸縮放)',
+                menu_display='設定縮放x ',
+                code="物體.縮放x = 1",
+                code_display="物體.縮放x = 1",
+                note='設定縮放x ',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定比例縮放y (y軸縮放)',
-                code="物體.比例縮放y = 1",
-                code_display="物體.比例縮放y = 1",
-                note='設定比例縮放y (y軸縮放)',
+                menu_display='設定縮放y ',
+                code="物體.縮放y = 1",
+                code_display="物體.縮放y = 1",
+                note='設定縮放y ',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定比例縮放z (z軸縮放)',
-                code="物體.比例縮放z = 1",
-                code_display="物體.比例縮放z = 1",
-                note='設定比例縮放z (z軸縮放)',
+                menu_display='設定縮放z ',
+                code="物體.縮放z = 1",
+                code_display="物體.縮放z = 1",
+                note='設定縮放z ',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定比例縮放 (3軸同時縮放)',
-                code="物體.比例縮放 = 1, 1, 1",
-                code_display="物體.比例縮放 = 1, 1, 1",
-                note='設定比例縮放 (3軸同時縮放)',
+                menu_display='設定縮放 (3軸同時)',
+                code="物體.縮放 = 1, 1, 1",
+                code_display="物體.縮放 = 1, 1, 1",
+                note='設定縮放 (3軸同時)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定全域比例縮放 (3軸同時縮放)',
-                code="物體.全域比例縮放 = 1, 1, 1",
-                code_display="物體.全域比例縮放 = 1, 1, 1",
-                note='設定全域比例縮放 (3軸同時縮放)',
+                menu_display='設定全域縮放 (3軸同時)',
+                code="物體.全域縮放 = 1, 1, 1",
+                code_display="物體.全域縮放 = 1, 1, 1",
+                note='設定全域縮放 (3軸同時)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定縮放動畫(持續)',
+                code="物體.縮放動畫([2,1,1], 持續=1)",
+                code_display="物體.縮放動畫([2,1,1], 持續=1)",
+                note='設定縮放動畫',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定縮放動畫(延遲與持續)',
+                code="比例 = 2,1,1\n物體.縮放動畫(比例, 延遲=0, 持續=1)",
+                code_display="比例 = 2,1,1\n物體.縮放動畫(比例, 延遲=0, 持續=1)",
+                note='設定縮放動畫(延遲與持續)',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2106,11 +2158,31 @@ class PythonPostitView(ttk.Frame):
                 code_display="物體.全域旋轉 = 0, 0, 0",
                 note='設定全域旋轉 (3軸)',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定旋轉動畫(持續)',
+                code="物體.旋轉動畫([90,0,0], 持續=1)",
+                code_display="物體.旋轉動畫([2,0,0], 持續=1)",
+                note='設定旋轉動畫',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定旋轉動畫(延遲與持續)',
+                code="角度 = 90,0,0\n物體.旋轉動畫(角度, 延遲=0, 持續=1)",
+                code_display="角度 = 90,0,0\n物體.旋轉動畫(角度, 延遲=0, 持續=1)",
+                note='設定旋轉動畫(延遲與持續)',
+                long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
-
+        ttk.Separator(common_postit_tabs['threed'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['threed'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 互動事件',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -2225,6 +2297,33 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='滑鼠位置',
+                code='滑鼠.位置',
+                code_display='滑鼠.位置',
+                note='mouse position',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='滑鼠碰觸物體',
+                code='滑鼠.碰觸物體',
+                code_display='滑鼠.碰觸物體',
+                note='hovered entity',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='滑鼠碰觸點',
+                code='滑鼠.碰觸點',
+                code_display='滑鼠.碰觸點',
+                note='hovered point',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='滑鼠按下左鍵',
+                code='滑鼠.按下左鍵',
+                code_display='滑鼠.按下左鍵',
+                note='left mouse down',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
     def auto_tab_init(self):
         # title and setup tool
