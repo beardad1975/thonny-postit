@@ -1779,7 +1779,7 @@ class PythonPostitView(ttk.Frame):
         # title and setup tool
         tab = common_postit_tabs['threed']
         #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-        example_vars = ['x','y','z','物體','物體父' ,'物體母' ] 
+        example_vars = ['x','y','z','物體','物體父' ,'物體母','座標' ] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -1903,61 +1903,211 @@ class PythonPostitView(ttk.Frame):
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='設定位置(右左,上下,前後)',
+                menu_display='設定位置x (右左)',
+                code="物體.位置x = 0",
+                code_display="物體.位置x = 0",
+                note='設定x (右左)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定位置y (上下)',
+                code="物體.位置y = 0",
+                code_display="物體.位置y = 0",
+                note='設定位置y (上下)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定位置z (前後)',
+                code="物體.位置z = 0",
+                code_display="物體.位置z = 0",
+                note='設定位置z (前後)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定位置(xyz同時)',
                 code="物體.位置 = 0,0,0",
                 code_display="物體.位置 = 0,0,0",
                 note='設定位置(右左,上下,前後)',
                 long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='設定全域位置x (右左)',
+        #         code="物體.全域位置x = 0",
+        #         code_display="物體.全域位置x = 0",
+        #         note='設定全域位置x (右左)',
+        #         long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='設定全域位置y (上下)',
+        #         code="物體.全域位置y = 0",
+        #         code_display="物體.全域位置y = 0",
+        #         note='設定全域位置y (上下)',
+        #         long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='設定全域位置z (前後)',
+        #         code="物體.全域位置z = 0",
+        #         code_display="物體.全域位置z = 0",
+        #         note='設定全域位置z (前後)',
+        #         long_note=True))       
         temp_code_list.append(CodeNTuple(
-                menu_display='設定x (右左)',
-                code="物體.x = 0",
-                code_display="物體.x = 0",
-                note='設定x (右左)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定y (上下)',
-                code="物體.y = 0",
-                code_display="物體.y = 0",
-                note='設定y (上下)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定z (前後)',
-                code="物體.z = 0",
-                code_display="物體.z = 0",
-                note='設定z (前後)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定全域位置(右左,上下,前後)',
+                menu_display='設定全域位置(xyz同時)',
                 code="物體.全域位置 = 0,0,0",
                 code_display="物體.全域位置 = 0,0,0",
                 note='設定全域位置(右左,上下,前後)',
-                long_note=True)) 
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定全域位置x (右左)',
-                code="物體.全域位置x = 0",
-                code_display="物體.全域位置x = 0",
-                note='設定全域位置x (右左)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定全域位置y (上下)',
-                code="物體.全域位置y = 0",
-                code_display="物體.全域位置y = 0",
-                note='設定全域位置y (上下)',
+                menu_display='設定位置動畫(持續)',
+                code="物體.位置動畫([2,0,0], 持續=1)",
+                code_display="物體.位置動畫([2,0,0], 持續=1)",
+                note='設定位置動畫',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定全域位置z (前後)',
-                code="物體.全域位置z = 0",
-                code_display="物體.全域位置z = 0",
-                note='設定全域位置z (前後)',
-                long_note=True))       
+                menu_display='設定位置動畫(延遲與持續)',
+                code="座標 = 2,0,0\n物體.位置動畫(座標, 延遲=0, 持續=1)",
+                code_display="座標 = 座標 = 2,0,0\n物體.位置動畫(座標, 延遲=0, 持續=1)",
+                note='設定位置動畫(延遲與持續)',
+                long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
 
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定比例縮放x (x軸縮放)',
+                code="物體.比例縮放x = 1",
+                code_display="物體.比例縮放x = 1",
+                note='設定比例縮放x (x軸縮放)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定比例縮放y (y軸縮放)',
+                code="物體.比例縮放y = 1",
+                code_display="物體.比例縮放y = 1",
+                note='設定比例縮放y (y軸縮放)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定比例縮放z (z軸縮放)',
+                code="物體.比例縮放z = 1",
+                code_display="物體.比例縮放z = 1",
+                note='設定比例縮放z (z軸縮放)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定比例縮放 (3軸同時縮放)',
+                code="物體.比例縮放 = 1, 1, 1",
+                code_display="物體.比例縮放 = 1, 1, 1",
+                note='設定比例縮放 (3軸同時縮放)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定全域比例縮放 (3軸同時縮放)',
+                code="物體.全域比例縮放 = 1, 1, 1",
+                code_display="物體.全域比例縮放 = 1, 1, 1",
+                note='設定全域比例縮放 (3軸同時縮放)',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定旋轉x (x軸順逆時針)',
+                code="物體.旋轉x = 0",
+                code_display="物體.旋轉x = 0",
+                note='設定旋轉x (x軸順逆時針)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定旋轉y (y軸順逆時針)',
+                code="物體.旋轉y = 0",
+                code_display="物體.旋轉y = 0",
+                note='設定旋轉y (y軸順逆時針)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定旋轉z (z軸順逆時針)',
+                code="物體.旋轉z = 0",
+                code_display="物體.旋轉z = 0",
+                note='設定旋轉z (z軸順逆時針)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定旋轉 (3軸)',
+                code="物體.旋轉 = 0, 0, 0",
+                code_display="物體.旋轉 = 0, 0, 0",
+                note='設定旋轉 (3軸)',
+                long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='設定全域旋轉x (x軸順逆時針)',
+        #         code="物體.全域旋轉x = 0",
+        #         code_display="物體.全域旋轉x = 0",
+        #         note='設定全域旋轉x (x軸順逆時針)',
+        #         long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='設定全域旋轉y (y軸順逆時針)',
+        #         code="物體.全域旋轉y = 0",
+        #         code_display="物體.全域旋轉y = 0",
+        #         note='設定全域旋轉y (y軸順逆時針)',
+        #         long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='設定全域旋轉z (z軸順逆時針)',
+        #         code="物體.全域旋轉z = 0",
+        #         code_display="物體.全域旋轉z = 0",
+        #         note='設定全域旋轉z (z軸順逆時針)',
+        #         long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定全域旋轉 (3軸)',
+                code="物體.全域旋轉 = 0, 0, 0",
+                code_display="物體.全域旋轉 = 0, 0, 0",
+                note='設定全域旋轉 (3軸)',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='按下鍵盤時',
+                code='def 按下鍵盤時(按鍵):\npass\n',
+                code_display='def 按下鍵盤時(按鍵):\n    pass',
+                note='on key press',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='放開鍵盤時',
+                code='def 放開鍵盤時(按鍵):\npass\n',
+                code_display='def 放開鍵盤時(按鍵):\n    pass',
+                note='on key release',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是空白鍵?',
+                code="if 按鍵 == 'space' :\npass",
+                code_display="if 按鍵 == 'space' :\n    pass",
+                note='是空白鍵?',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是Enter鍵?',
+                code="if 按鍵 == 'enter' :\npass",
+                code_display="if 按鍵 == 'enter' :\n    pass",
+                note='是Enter鍵?',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是向右鍵?',
+                code="if 按鍵 == 'arrow_right' :\npass",
+                code_display="if 按鍵 == 'arrow_right' :\n    pass",
+                note='是向右鍵?',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是向左鍵?',
+                code="if 按鍵 == 'arrow_left' :\npass",
+                code_display="if 按鍵 == 'arrow_left' :\n    pass",
+                note='是向左鍵?',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是向上鍵?',
+                code="if 按鍵 == 'arrow_up' :\npass",
+                code_display="if 按鍵 == 'arrow_up' :\n    pass",
+                note='是向上鍵?',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='  是向下鍵?',
+                code="if 按鍵 == 'arrow_down' :\npass",
+                code_display="if 按鍵 == 'arrow_down' :\n    pass",
+                note='是向下鍵?',
+                long_note=True))
+
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
