@@ -590,6 +590,18 @@ class PythonPostitView(ttk.Frame):
                 code_display='數學.cos(數學.pi / 2)',
                 note='三角函數 cos',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='角度轉弧度 radians',
+                code='數學.radians(180)',
+                code_display='數學.radians(180)',
+                note='角度轉弧度 radians',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='弧度轉角度 degrees',
+                code='數學.degrees(數學.pi)',
+                code_display='數學.degrees(數學.pi)',
+                note='弧度轉角度 degrees',
+                long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -1279,14 +1291,14 @@ class PythonPostitView(ttk.Frame):
                 long_note=True ))
         temp_code_list.append(CodeNTuple(
                 menu_display='自訂功能(滑鼠點擊時)',
-                code='def 功能函式(x, y):\n執行這裡',
-                code_display='def 功能函式(x, y):\n    執行這裡',
+                code='def 功能函式(x, y):\npass',
+                code_display='def 功能函式(x, y):\n    pass',
                 note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         temp_code_list.append(CodeNTuple(
                 menu_display='  define mouse click function ',
-                code='def func(x, y):\n執行這裡',
-                code_display='def func(x, y):\n    執行這裡',
+                code='def func(x, y):\npass',
+                code_display='def func(x, y):\n    pass',
                 note='自訂功能(滑鼠點擊時)',
                 long_note=True ))  
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
@@ -1314,14 +1326,14 @@ class PythonPostitView(ttk.Frame):
                 long_note=True ))
         temp_code_list.append(CodeNTuple(
                 menu_display='自訂功能(鍵盤按下時)',
-                code='def 功能函式():\n執行這裡',
-                code_display='def 功能函式():\n    執行這裡',
+                code='def 功能函式():\npass',
+                code_display='def 功能函式():\n    pass',
                 note='自訂功能(鍵盤按下時)',
                 long_note=True ))  
         temp_code_list.append(CodeNTuple(
                 menu_display='  define key press function ',
-                code='def func():\n執行這裡',
-                code_display='def func():\n    執行這裡',
+                code='def func():\npass',
+                code_display='def func():\n    pass',
                 note='自訂功能(鍵盤按下時)',
                 long_note=True ))  
         DropdownPostit(tab_name='turtle4t', code_list = temp_code_list,
@@ -3095,28 +3107,7 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        #separator and note
-        ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['flow'].frame.interior, 
-                    #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-                    text=' >> 例外(錯誤)處理',
-                    font=f,    
-                    compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
-        # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='捕捉例外(錯誤)',
-                code='try:\npass\nexcept Exception:\npass',
-                code_display='try:\n    pass\nexcept Exception:\n    pass',
-                note='測試:\n        測試區塊\n例外發生:\n        錯誤處理區塊',
-                long_note=True))
-
-        DropdownPostit(tab_name='flow', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         #separator and note
         ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
@@ -3178,6 +3169,30 @@ class PythonPostitView(ttk.Frame):
                 code_display='return',
                 note='功能函式返回(跳出)',
                 long_note=False))
+
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        #separator and note
+        ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['flow'].frame.interior, 
+                    #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
+                    text=' >> 例外(錯誤)處理',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='捕捉例外(錯誤)',
+                code='try:\npass\nexcept Exception:\npass',
+                code_display='try:\n    pass\nexcept Exception:\n    pass',
+                note='測試:\n        測試區塊\n例外發生:\n        錯誤處理區塊',
+                long_note=True))
 
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
