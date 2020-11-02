@@ -411,15 +411,33 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='長度 len',
-                code='len()',
-                code_display='len()',
+                code="len([0,1,2])",
+                code_display='len([0,1,2])',
                 note='長度',
                 long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display='四捨五入 round',
-                code='round()',
-                code_display='round()',
-                note='四捨五入',
+                menu_display='四捨六入五成雙 round',
+                code='round(4.6)',
+                code_display='round(4.6)',
+                note='四捨六入五成雙',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='最大值 max',
+                code='max(2, 3)',
+                code_display='max(2, 3)',
+                note='最大值',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='最小值 min',
+                code='min(2, 3)',
+                code_display='min(2, 3)',
+                note='最小值',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='絕對值 abs',
+                code='abs(-1)',
+                code_display='abs(-1)',
+                note='絕對值',
                 long_note=False))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -439,31 +457,25 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='從隨機模組匯入randint',
-                code='from random import randint',
-                code_display='from random import randint',
-                note='從隨機模組匯入randint',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='從隨機模組匯入choice',
-                code='from random import choice',
-                code_display='from random import choice',
-                note='從隨機模組匯入choice',
+                menu_display='匯入隨機模組 random',
+                code='import random as 隨機',
+                code_display='import random as 隨機',
+                note='匯入隨機模組 random',
                 long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='隨機挑個整數 randint',
-                code='randint(1,10)',
-                code_display='randint(1,10)',
-                note='隨機挑個整數',
+                menu_display='隨機挑個整數(範圍內) random.randint',
+                code='隨機.randint(1,10)',
+                code_display='隨機.randint(1,10)',
+                note='隨機挑個整數(範圍內)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='隨機挑個項目 choice',
-                code='choice(清單)',
-                code_display='choice(清單)',
+                code='隨機.choice([3,5,9])',
+                code_display='隨機.choice([3,5,9])',
                 note='隨機挑個項目',
                 long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
@@ -483,33 +495,101 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='從時間模組匯入time',
-                code='from time import time',
-                code_display='from time import time',
-                note='從時間模組匯入time',
+                menu_display='匯入時間模組time',
+                code='import time as 時間',
+                code_display='import time as 時間',
+                note='匯入時間模組time',
                 long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='從時間模組匯入sleep',
-                code='from time import sleep',
-                code_display='from time import sleep',
-                note='從時間模組匯入sleep',
-                long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='從時間模組匯入sleep',
+        #         code='from time import sleep',
+        #         code_display='from time import sleep',
+        #         note='從時間模組匯入sleep',
+        #         long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='時間(累計秒數) time',
-                code='time()',
-                code_display='time()',
+                code='時間.time()',
+                code_display='時間.time()',
                 note='時間(累計秒數)',
                 long_note=False))
         temp_code_list.append(CodeNTuple(
                 menu_display='暫停幾秒(睡眠) sleep',
-                code='sleep(1)',
-                code_display='sleep(1)',
+                code='時間.sleep(2)',
+                code_display='時間.sleep(2)',
                 note='暫停幾秒(睡眠)',
                 long_note=False))
+        DropdownPostit(tab_name='builtin', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        ttk.Separator(common_postit_tabs['builtin'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['builtin'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 數學模組math',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='匯入數學模組math',
+                code='import math as 數學',
+                code_display='import math as 數學',
+                note='匯入數學模組math',
+                long_note=True))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='從時間模組匯入sleep',
+        #         code='from time import sleep',
+        #         code_display='from time import sleep',
+        #         note='從時間模組匯入sleep',
+        #         long_note=True))
+        DropdownPostit(tab_name='builtin', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='最大公因數 gcd',
+                code='數學.gcd(8, 12)',
+                code_display='數學.gcd(8, 12)',
+                note='最大公因數',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='圓周率 pi',
+                code='數學.pi',
+                code_display='數學.pi',
+                note='圓周率 pi',
+                long_note=False))
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='最小公倍數 lcm',
+        #         code='數學.lcm(8, 12)',
+        #         code_display='數學.lcm(8, 12)',
+        #         note='最小公倍數',
+        #         long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='開平方根 sqrt',
+                code='數學.sqrt(9)',
+                code_display='數學.sqrt(9)',
+                note='開平方根',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='三角函數 sin',
+                code='數學.sin(數學.pi / 2)',
+                code_display='數學.sin(數學.pi / 2)',
+                note='三角函數 sin',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='三角函數 cos',
+                code='數學.cos(數學.pi / 2)',
+                code_display='數學.cos(數學.pi / 2)',
+                note='三角函數 cos',
+                long_note=True))
         DropdownPostit(tab_name='builtin', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
