@@ -56,10 +56,10 @@ class EnclosedWidget(ttk.Frame):
                                             image= self.enclosed_right_image,)
         self.tail_decoration_label.pack(side=tk.LEFT, anchor='w',padx=0)
 
-        self.main_note_label = ttk.Label(self.main_frame, text='' )
+        self.main_note_label = ttk.Label(self.main_frame, text='',justify='left', )
         self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=5)
         # 2nd row sub-frame
-        self.bottom_note_label = ttk.Label(self.bottom_frame, text='')
+        self.bottom_note_label = ttk.Label(self.bottom_frame, text='',justify='left')
         self.bottom_note_label.pack(side=tk.TOP, anchor='center',padx=5)
 
 

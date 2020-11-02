@@ -1,4 +1,7 @@
 import os 
+import datetime
+import webbrowser
+from pathlib import Path
 
 import tkinter as tk
 import tkinter.font as font
@@ -8,7 +11,7 @@ from pathlib import Path
 from PIL import Image, ImageTk
 
 from thonny import get_workbench, get_shell, get_runner
-from thonny.ui_utils import VerticallyScrollableFrame
+from thonny.ui_utils import VerticallyScrollableFrame, show_dialog, CommonDialog
 from thonny.common import ToplevelCommand
 
 from .base_postit import BasePostit
@@ -211,10 +214,10 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='"Hello World!"',
-                code='"Hello World!"',
-                code_display='"Hello World!"',
-                note='你好世界(字串)',
+                menu_display="'字串'",
+                code="'字串'",
+                code_display="'字串'",
+                note='字串(文字)',
                 long_note=True ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -223,8 +226,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='輸入 input',
-                code="input('請輸入: ')",
-                code_display="input('請輸入: ')",
+                code="變數 = input('請輸入: ')",
+                code_display="變數 = input('請輸入: ')",
                 note='輸入',
                 long_note=False ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
@@ -266,9 +269,9 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='主要執行模組 __main__',
-                code="if __name__=='__main__':\n執行這裡",
-                code_display="if __name__ == '__main__':\n    執行這裡",
-                note='主要執行模組',
+                code="if __name__=='__main__':\npass",
+                code_display="if __name__ == '__main__':\n    pass",
+                note='如果是主要模組:\n        成立區塊',
                 long_note=True ))
         DropdownPostit(tab_name='common', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -293,12 +296,25 @@ class PythonPostitView(ttk.Frame):
                 code_display='int()',
                 note='轉成整數類型',
                 long_note=False ))
+
+        DropdownPostit(tab_name='data', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)		
+
+
+        # dropdown list postit
+        temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='浮點數 float',
                 code='float()',
                 code_display='float()',
                 note='轉成浮點數類型',
                 long_note=False ))
+        DropdownPostit(tab_name='data', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)	
+
+
+        # dropdown list postit
+        temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='布林值 bool',
                 code='bool()',
@@ -306,7 +322,8 @@ class PythonPostitView(ttk.Frame):
                 note='轉成布林值類型',
                 long_note=False ))
         DropdownPostit(tab_name='data', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)		
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
 
         ttk.Separator(common_postit_tabs['data'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
@@ -325,7 +342,7 @@ class PythonPostitView(ttk.Frame):
                 menu_display='字串 str',
                 code='str()',
                 code_display='str()',
-                note='傳回字串類型',
+                note='轉成字串類型',
                 long_note=False ))
         DropdownPostit(tab_name='data', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2832,23 +2849,24 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                                    menu_display='如果 不然就(否則) if else ',
-                                    code='if 條件:\n執行這裡\nelse:\n執行那裡',
-                                    code_display='if 條件:\n    執行這裡\nelse:\n'
-                                    '    執行那裡',
-                                    note='如果…\n\n不然就(否則)',
-                                    long_note=False))
-        temp_code_list.append(CodeNTuple(
                                     menu_display='如果 if ',
-                                    code='if 條件:\n執行這裡',
-                                    code_display='if 條件:\n    執行這裡',
-                                    note='如果',
+                                    code='if 1 > 0: \npass',
+                                    code_display='if 1 > 0:\n    pass',
+                                    note='如果 條件:\n        成立區塊',
                                     long_note=False ))
         temp_code_list.append(CodeNTuple(
-            menu_display='不然如果 (否則) if elif else ',
-            code='if 條件:\n執行這裡\nelif 條件:\n執行那裡\nelse:\n執行那裡',
-            code_display='if 條件:\n    執行這裡\nelif 條件:\n    執行那裡\nelse:\n    執行那裡',
-            note='如果\n\n不然如果\n\n不然就(否則)',
+                                    menu_display='如果 不然(否則) if else ',
+                                    code='if 1 > 0:\npass\nelse:\npass',
+                                    code_display='if 1 > 0:\n    pass\nelse:\n'
+                                    '    pass',
+                                    note='如果 條件:\n        成立區塊\n不然(否則):\n        不成立區塊',
+                                    long_note=False))
+        
+        temp_code_list.append(CodeNTuple(
+            menu_display='不然如果  if elif else ',
+            code='if 1 > 0:\npass\nelif 0 < 1:\npass\nelse:\npass',
+            code_display='if 1 > 0:\n    pass\nelif 0 < 1:\n    pass\nelse:\n    pass',
+            note='如果 條件:\n        成立區塊\n不然如果 條件:\n        成立區塊\n不然(否則):\n        都不成立區塊',
             long_note=False ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2924,17 +2942,18 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit  
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                                    menu_display='重複無限次 while True ',
-                                    code='while True:\n執行這裡',
-                                    code_display='while True:\n    執行這裡\n',
-                                    note='重複無限次',
+                                    menu_display='有條件重複 while ',
+                                    code='while 1 > 0:\npass',
+                                    code_display='while 1 > 0:\n    pass',
+                                    note='當條件成立時:\n        迴圈區塊',
                                     long_note=False ))
         temp_code_list.append(CodeNTuple(
-                                    menu_display='有條件重複 while ',
-                                    code='while 條件:\n執行這裡',
-                                    code_display='while 條件:\n    執行這裡\n',
-                                    note='當成立時\n\n重複',
+                                    menu_display='重複無限次 while True ',
+                                    code='while True:\npass',
+                                    code_display='while True:\n    pass',
+                                    note='重複無限次:\n        迴圈區塊',
                                     long_note=False ))
+
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -2951,28 +2970,28 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='重複(依次數) for in range  ',
-                code='for 序 in range(次數):\n執行這裡',
-                code_display='for 序 in range(次數):\n    執行這裡',
-                note='重複(依次數)',
+                menu_display='從數列 逐一取出(重複幾次)for in range  ',
+                code='for 數 in range(10):\npass',
+                code_display='for 數 in range(10):\n    pass',
+                note='從數列 逐一取出(重複幾次):\n        迴圈區塊',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='重複(從開始不含結束) for in range  ',
-                code='for 序 in range(開始, 結束):\n執行這裡',
-                code_display='for 序 in range(開始, 結束):\n    執行這裡',
-                note='重複(從開始不含結束)',
+                menu_display='從數列 逐一取出(開始 不含結束) for in range  ',
+                code='for 數 in range(5, 10):\npass',
+                code_display='for 數 in range(5, 10):\n    pass',
+                note='從數列 逐一取出(開始 不含結束):\n        迴圈區塊',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='重複(從開始步進不含結束) for in range  ',
-                code='for 序 in range(開始, 結束, 步進):\n執行這裡',
-                code_display='for 序 in range(開始, 結束, 步進):\n    執行這裡',
-                note='重複(從開始步進不含結束)',
+                menu_display='從數列 逐一取出(開始 不含結束 每次步進) for in range  ',
+                code='for 數 in range(0, 10, 2):\npass',
+                code_display='for 數 in range(0, 10, 2):\n    pass',
+                note='從數列 逐一取出(開始 不含結束 每次步進):\n        迴圈區塊',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='逐一取出項目 for in 清單  ',
-                code='for 項目 in 清單:\n執行這裡',
-                code_display='for 項目 in 清單:\n    執行這裡',
-                note='從清單中逐一取出項目',
+                menu_display='從清單 逐一取出 for in   ',
+                code='for 項目 in [1,4,5]:\npass',
+                code_display='for 項目 in [1,4,5]:\n    pass',
+                note='從清單 逐一取出:\n        迴圈區塊',
                 long_note=True ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -3011,10 +3030,10 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='捕捉例外(錯誤)',
-                code='try:\n執行這裡\nexcept Exception:\n執行那裡',
-                code_display='try:\n    執行這裡\nexcept Exception:\n    執行那裡',
-                note='測試\n\n例外\n(錯誤)',
-                long_note=False))
+                code='try:\npass\nexcept Exception:\npass',
+                code_display='try:\n    pass\nexcept Exception:\n    pass',
+                note='測試:\n        測試區塊\n例外發生:\n        錯誤處理區塊',
+                long_note=True))
 
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -3033,29 +3052,41 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='自訂功能函式',
-                code='def 功能函式(參數1, 參數2):\n執行這裡',
-                code_display='def 功能函式(參數1, 參數2):\n    執行這裡',
-                note='自訂功能函式',
+                menu_display='定義 新功能(自訂函式)',
+                code='def 新功能(引數):\npass',
+                code_display='def 新功能(引數):\n    pass',
+                note='定義 新功能(引數):\n        函式區塊',
                 long_note=True ))  
+  
         # temp_code_list.append(CodeNTuple(
         #         menu_display='  define  function ',
         #         code='def func(p1, p2):\n___',
         #         code_display='def func(p1, p2):\n    ___',
         #         note='自訂功能函式',
         #         long_note=True ))
-        temp_code_list.append(CodeNTuple(
-                menu_display='呼叫功能函式',
-                code='功能函式(引數1, 引數2)',
-                code_display='功能函式(引數1, 引數2)',
-                note='呼叫功能函式',
-                long_note=True ))    
+        # temp_code_list.append(CodeNTuple(
+        #         menu_display='呼叫功能函式',
+        #         code='功能函式(引數1, 引數2)',
+        #         code_display='功能函式(引數1, 引數2)',
+        #         note='呼叫功能函式',
+        #         long_note=True ))    
         # temp_code_list.append(CodeNTuple(
         #         menu_display='  call function ',
         #         code='func(a1, a2):\n___',
         #         code_display='func(a1, a2):\n    ___',
         #         note='呼叫功能函式',
         #         long_note=True ))    
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='呼叫 新功能(自訂函式)',
+                code='新功能(5)',
+                code_display='新功能(5)',
+                note='呼叫 新功能(引數為5)',
+                long_note=True ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -3197,11 +3228,135 @@ def try_thonny():
     text_widget.config(state=tk.DISABLED)
 
 
+class AboutDialog(CommonDialog):
+    def __init__(self, master):
+        super().__init__(master)
+
+        main_frame = ttk.Frame(self)
+        main_frame.grid(sticky=tk.NSEW, ipadx=15, ipady=15)
+        main_frame.rowconfigure(0, weight=1)
+        main_frame.columnconfigure(0, weight=1)
+
+        self.title('關於Py4t')
+        self.resizable(height=tk.FALSE, width=tk.FALSE)
+        self.protocol("WM_DELETE_WINDOW", self._ok)
+
+        # bg_frame = ttk.Frame(self) # gives proper color in aqua
+        # bg_frame.grid()
+
+        heading_font = tk.font.nametofont("TkHeadingFont").copy()
+        heading_font.configure(size=19, weight="bold")
+        heading_label = ttk.Label(
+            main_frame, text="Py4t " + get_version(), font=heading_font
+        )
+        heading_label.grid()
+
+        url = "https://beardad1975.github.io/py4t/"
+        url_font = tk.font.nametofont("TkDefaultFont").copy()
+        url_font.configure(underline=1)
+        url_label = ttk.Label(
+            main_frame, text=url, style="Url.TLabel", cursor="hand2", font=url_font
+        )
+        url_label.grid()
+        url_label.bind("<Button-1>", lambda _: webbrowser.open(url))
+
+        # if platform.system() == "Linux":
+        #     try:
+        #         import distro  # distro don't need to be installed
+
+        #         system_desc = distro.name(True)
+        #     except ImportError:
+        #         system_desc = "Linux"
+
+        #     if "32" not in system_desc and "64" not in system_desc:
+        #         system_desc += " " + self.get_os_word_size_guess()
+        # else:
+        #     system_desc = (
+        #         platform.system() + " " + platform.release() + " " + self.get_os_word_size_guess()
+        #     )
+
+        # platform_label = ttk.Label(
+        #     main_frame,
+        #     justify=tk.CENTER,
+        #     text=system_desc
+        #     + "\n"
+        #     + "Python "
+        #     + get_python_version_string()
+        #     + "Tk "
+        #     + ui_utils.get_tk_version_str(),
+        # )
+        # platform_label.grid(pady=20)
+
+        credits_label = ttk.Label(
+            main_frame,
+            text=
+                "\nPy4t整合了多個套件\n"
+                + "目的是要搭一座學習之橋\n"
+                + "從Scratch到Python\n"
+                + "教導青少年寫程式\n"  
+            ,
+            #style="Url.TLabel",
+            #cursor="hand2",
+            #font=url_font,
+            justify="center",
+        )
+        credits_label.grid()
+        # credits_label.bind(
+        #     "<Button-1>",
+        #     lambda _: webbrowser.open("https://github.com/thonny/thonny/blob/master/CREDITS.rst"),
+        # )
+
+        license_font = tk.font.nametofont("TkDefaultFont").copy()
+        license_font.configure(size=7)
+        license_label = ttk.Label(
+            main_frame,
+            text="Copyright (©) "
+            + str(datetime.datetime.now().year)
+            + " Wen Hung, Chang 張文宏\n"
+            + "採MIT授權\n",
+            justify=tk.CENTER,
+            font=license_font,
+        )
+        license_label.grid(pady=20)
+
+        ok_button = ttk.Button(main_frame, text="OK", command=self._ok, default="active")
+        ok_button.grid(pady=(0, 15))
+        ok_button.focus_set()
+
+        self.bind("<Return>", self._ok, True)
+        self.bind("<Escape>", self._ok, True)
+
+    def _ok(self, event=None):
+        self.destroy()
+
+    def get_os_word_size_guess(self):
+        if "32" in platform.machine() and "64" not in platform.machine():
+            return "(32-bit)"
+        elif "64" in platform.machine() and "32" not in platform.machine():
+            return "(64-bit)"
+        else:
+            return ""
+
+def get_version():
+    try: 
+        with open(Path(__file__).parent / "VERSION" , encoding="ASCII") as fp:
+            return fp.read().strip()
+    except Exception:
+        return "0.0.0"
+
 
 def load_plugin():
     """postit plugin start point"""
 
     get_workbench().add_view(PythonPostitView, 'Python便利貼', 'nw')
+
+
+    def open_about(*args):
+        show_dialog(AboutDialog(get_workbench()))
+
+
+    get_workbench().add_command("aboutPy4t", "help", '關於Py4t', open_about, group=62)
+
 
     #for test
     # get_workbench().add_command(command_id="try_thonny",

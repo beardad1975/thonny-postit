@@ -20,7 +20,7 @@ setup (
         
         platforms=["Windows"],
         python_requires=">=3.5",
-        package_data={'thonnycontrib.postit': ['images/*','tools/*']},
+        package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*']},
         install_requires=["thonny >= 3.2.7","pillow >= 7.2.0"],
         packages=["thonnycontrib.postit"],
 )

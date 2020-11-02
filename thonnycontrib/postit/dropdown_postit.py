@@ -69,8 +69,8 @@ class DropdownWidget(ttk.Frame):
 
         # two notes
         
-        self.main_note_label = tk.Label(self.main_frame, text='',  ) 
-        self.bottom_note_label = tk.Label(self.bottom_frame, text='',)
+        self.main_note_label = tk.Label(self.main_frame, text='',justify='left'  ) 
+        self.bottom_note_label = tk.Label(self.bottom_frame, text='',justify='left')
 
         # 1st row sub-frame
         self.postit_button.pack(side=tk.LEFT, anchor='w')
@@ -91,7 +91,7 @@ class DropdownPostMixin:
 
         x_root, y_root = event.x_root, event.y_root
 
-        self.drag_window.geometry('+{}+{}'.format(x_root+18, y_root+5))
+        self.drag_window.geometry('+{}+{}'.format(x_root+5, y_root+5))
 
         #change insert over editor or shell (but not postit button)
         

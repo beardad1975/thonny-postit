@@ -143,7 +143,7 @@ class BasePost:
 
         x_root, y_root = event.x_root, event.y_root
 
-        self.drag_window.geometry('+{}+{}'.format(x_root+18, y_root+5))
+        self.drag_window.geometry('+{}+{}'.format(x_root+5, y_root+5))
 
         #change insert over editor or shell (but not postit button)
         
@@ -343,8 +343,9 @@ class BasePost:
                 #if else else and except, need to add a extra backspack
                 # pass is special case
                 #if not line.startswith('pass'):
-                if line[:4] in ('else', 'elif', 'exce')  :
-                    text_widget.event_generate("<BackSpace>")
+                
+                #if line[:4] in ('else', 'elif', 'exce')  :
+                #    text_widget.event_generate("<BackSpace>")
 
                 text_widget.insert(tk.INSERT,line)
 
