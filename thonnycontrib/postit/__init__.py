@@ -2442,7 +2442,7 @@ class PythonPostitView(ttk.Frame):
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['auto'].frame.interior, 
-                text='【自動化PyAutoGui】', 
+                text='【PyAutoGui模組】', 
                 #image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
@@ -2456,15 +2456,9 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='匯入pyautogui模組',
-                code='import pyautogui',
-                code_display='import pyautogui',
+                code='import pyautogui as 自動',
+                code_display='import pyautogui as 自動',
                 note='匯入pyautogui模組',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='匯入pyperclip模組',
-                code='import pyperclip',
-                code_display='import pyperclip',
-                note='匯入pyperclip模組',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2485,21 +2479,21 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='滑鼠位置 position',
-                code='pyautogui.position()',
-                code_display='pyautogui.position()',
-                note='滑鼠位置',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
                 menu_display='螢幕大小 size',
-                code='pyautogui.size()',
-                code_display='pyautogui.size()',
+                code='自動.size()',
+                code_display='自動.size()',
                 note='螢幕大小',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
+                menu_display='查詢滑鼠位置 position',
+                code='自動.position()',
+                code_display='自動.position()',
+                note='查詢滑鼠位置',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
                 menu_display='在螢幕內嗎 onScreen',
-                code='pyautogui.onScreen(100, 100)',
-                code_display='pyautogui.onScreen(100, 100)',
+                code='自動.onScreen(100, 100)',
+                code_display='自動.onScreen(100, 100)',
                 note='在螢幕內嗎',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
@@ -2509,14 +2503,14 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='每次暫停(秒) PAUSE',
-                code='pyautogui.PAUSE = 1',
-                code_display='pyautogui.PAUSE = 1',
+                code='自動.PAUSE = 1',
+                code_display='自動.PAUSE = 1',
                 note='每次暫停(秒)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='失效安全  FAILSAFE',
-                code='pyautogui.FAILSAFE = True',
-                code_display='pyautogui.FAILSAFE = True',
+                code='自動.FAILSAFE = True',
+                code_display='自動.FAILSAFE = True',
                 note='失效安全(移到螢幕左上角)',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
@@ -2534,37 +2528,44 @@ class PythonPostitView(ttk.Frame):
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
+ 
+        # dropdown list postit
+        temp_code_list = [] 
+        temp_code_list.append(CodeNTuple(
+                menu_display='移動滑鼠(到座標)',
+                code='自動.moveTo(100, 100, 2)',
+                code_display='自動.moveTo(100, 100, 1)',
+                note='移動滑鼠(x座標, y座標, 幾秒)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='移動滑鼠(距離)',
+                code='自動.moveRel(0, 50, 1)',
+                code_display='自動.moveRel(0, 50, 1)',
+                note='移動滑鼠(x距離, y距離, 幾秒)',
+                long_note=True))
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)                
+
+ 
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='點擊滑鼠(滑鼠按鍵)',
-                code='pyautogui.click(button="left")',
-                code_display='pyautogui.click(button="left")',
+                code="自動.click(button='left')",
+                code_display="自動.click(button='left')",
                 note='點擊滑鼠(滑鼠按鍵)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='移動滑鼠(到座標在幾秒內)',
-                code='pyautogui.moveTo(100, 100, 2)',
-                code_display='pyautogui.moveTo(100, 100, 2)',
-                note='移動滑鼠(到座標在幾秒內)',
+                menu_display='拖曳滑鼠(到座標)',
+                code='自動.dragTo(100, 100, 2)',
+                code_display='自動.dragTo(100, 100, 2)',
+                note='拖曳滑鼠(x座標, y座標, 幾秒)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='移動滑鼠(相對距離在幾秒內)',
-                code='pyautogui.moveRel(0, 50, 1)',
-                code_display='pyautogui.moveRel(0, 50, 1)',
-                note='移動滑鼠(相對距離在幾秒內)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='拖曳滑鼠(到座標在幾秒內)',
-                code='pyautogui.dragTo(100, 100, 2)',
-                code_display='pyautogui.dragTo(100, 100, 2)',
-                note='拖曳滑鼠(到座標在幾秒內)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='拖曳滑鼠(相對距離在幾秒內)',
-                code='pyautogui.dragRel(0, 50, 1)',
-                code_display='pyautogui.dragRel(0, 50, 1)',
-                note='拖曳滑鼠(相對距離在幾秒內)',
+                menu_display='拖曳滑鼠(距離)',
+                code='自動.dragRel(0, 50, 1)',
+                code_display='自動.dragRel(0, 50, 1)',
+                note='拖曳滑鼠(x距離, y距離, 幾秒)',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2584,27 +2585,27 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='按鍵 perss',
-                code='pyautogui.press("space")',
-                code_display='pyautogui.press("space")',
+                code="自動.press('space')",
+                code_display="自動.press('space')",
                 note='按鍵',
                 long_note=True))
 
         temp_code_list.append(CodeNTuple(
                 menu_display='按著鍵 keyDown',
-                code='pyautogui.keyDown("space")',
-                code_display='pyautogui.keyDown("space")',
+                code="自動.keyDown('space')",
+                code_display="自動.keyDown('space')",
                 note='按著鍵',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='放開鍵 keyUp',
-                code='pyautogui.keyUp("space")',
-                code_display='pyautogui.keyUp("space")',
+                code="自動.keyUp('space')",
+                code_display="自動.keyUp('space')",
                 note='放開鍵',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='組合鍵 hotkey',
-                code='pyautogui.hotkey("ctrl","v")',
-                code_display='pyautogui.hotkey("ctrl","v")',
+                code="自動.hotkey('ctrl','v')",
+                code_display="自動.hotkey('ctrl','v')",
                 note='組合鍵',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
@@ -2650,8 +2651,8 @@ class PythonPostitView(ttk.Frame):
                 long_note=False))
         temp_code_list.append(CodeNTuple(
                 menu_display='鍵盤列表 KEYBOARD_KEYS',
-                code='pyautogui.KEYBOARD_KEYS',
-                code_display='pyautogui.KEYBOARD_KEYS',
+                code='自動.KEYBOARD_KEYS',
+                code_display='自動.KEYBOARD_KEYS',
                 note='鍵盤列表',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
@@ -2661,6 +2662,16 @@ class PythonPostitView(ttk.Frame):
         ttk.Separator(common_postit_tabs['auto'].frame.interior, orient=tk.HORIZONTAL
             ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        label =ttk.Label(common_postit_tabs['auto'].frame.interior, 
+                text='【pyperclip模組】', 
+                #image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
+
+
+
         ttk.Label(common_postit_tabs['auto'].frame.interior, 
                     
                     text=' >> 剪貼簿',
@@ -2671,16 +2682,28 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='複製到剪貼簿 copy',
-                code='pyperclip.copy("你好")',
-                code_display='pyperclip.copy("你好")',
-                note='複製到剪貼簿',
+                menu_display='匯入pyperclip模組',
+                code='import pyperclip as 剪貼簿',
+                code_display='import pyperclip as 剪貼簿',
+                note='匯入pyperclip模組',
+                long_note=True))
+        DropdownPostit(tab_name='auto', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='字串複製到剪貼簿 copy',
+                code='剪貼簿.copy("你好")',
+                code_display='剪貼簿.copy("你好")',
+                note='字串複製到剪貼簿',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='從剪貼簿貼上 paste',
-                code='pyperclip.paste("你好")',
-                code_display='pyperclip.paste("你好")',
-                note='從剪貼簿貼上',
+                menu_display='從剪貼簿傳回字串 paste',
+                code='文字 = 剪貼簿.paste()',
+                code_display='文字 = 剪貼簿.paste()',
+                note='從剪貼簿傳回字串',
                 long_note=True))
         DropdownPostit(tab_name='auto', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2695,7 +2718,7 @@ class PythonPostitView(ttk.Frame):
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['pil'].frame.interior, 
-                text='【影像處理pillow】', 
+                text='【影像處理opencv】', 
                 image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
