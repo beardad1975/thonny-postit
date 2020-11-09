@@ -2735,9 +2735,20 @@ class PythonPostitView(ttk.Frame):
                 code_display='import numpy as 多維陣列',
                 note='匯入numpy模組',
                 long_note=True))
-
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['numpy'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        label =ttk.Label(common_postit_tabs['numpy'].frame.interior, 
+                text=' >> 建立陣列', 
+                #image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
 
 
         # dropdown list postit
@@ -2775,6 +2786,16 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # separator and note
+        ttk.Separator(common_postit_tabs['numpy'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        label =ttk.Label(common_postit_tabs['numpy'].frame.interior, 
+                text=' >> 陣列屬性', 
+                #image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -2805,6 +2826,16 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # separator and note
+        ttk.Separator(common_postit_tabs['numpy'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        label =ttk.Label(common_postit_tabs['numpy'].frame.interior, 
+                text=' >> 陣列操作', 
+                #image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -2857,6 +2888,16 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # separator and note
+        ttk.Separator(common_postit_tabs['numpy'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        label =ttk.Label(common_postit_tabs['numpy'].frame.interior, 
+                text=' >> 陣列切片', 
+                #image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -2934,7 +2975,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['cv'].frame.interior, 
                     
-                    text=' >> 建立圖片物件',
+                    text=' >> 圖片讀取與儲存',
                     font=f,   
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -2975,7 +3016,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['cv'].frame.interior, 
                     
-                    text=' >> 圖片資訊',
+                    text=' >> 圖片顯示',
                     font=f,   
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -3003,6 +3044,28 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='關閉所有圖片',
+                code='關閉所有圖片()',
+                code_display='關閉所有圖片()',
+                note='關閉所有圖片',
+                long_note=False))
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # separator and note
+        ttk.Separator(common_postit_tabs['cv'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['cv'].frame.interior, 
+                    
+                    text=' >> 圖片處理',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
@@ -3046,16 +3109,16 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
-        # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='關閉所有圖片',
-                code='關閉所有圖片()',
-                code_display='關閉所有圖片()',
-                note='關閉所有圖片',
-                long_note=False))
-        DropdownPostit(tab_name='cv', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+        # separator and note
+        ttk.Separator(common_postit_tabs['cv'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['cv'].frame.interior, 
+                    
+                    text=' >> 互動',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
 
         # dropdown list postit
@@ -3110,6 +3173,17 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # separator and note
+        ttk.Separator(common_postit_tabs['cv'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['cv'].frame.interior, 
+                    
+                    text=' >> 影像擷取',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
 
         # dropdown list postit
         temp_code_list = []
@@ -3145,6 +3219,18 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)                
+
+       # separator and note
+        ttk.Separator(common_postit_tabs['cv'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['cv'].frame.interior, 
+                    
+                    text=' >> 圖片繪圖',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
 
         # dropdown list postit
         temp_code_list = []
