@@ -2714,7 +2714,7 @@ class PythonPostitView(ttk.Frame):
     def numpy_tab_init(self):
          # title and setup tool
         tab = common_postit_tabs['numpy']
-        example_vars = ['陣列'] 
+        example_vars = ['陣列','行1','行2','列1','列2'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -2796,6 +2796,12 @@ class PythonPostitView(ttk.Frame):
                 code_display='陣列.dtype',
                 note='資料類型 dtype',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='資料數量 size',
+                code='陣列.size',
+                code_display='陣列.size',
+                note='資料數量 size',
+                long_note=True))
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -2807,6 +2813,17 @@ class PythonPostitView(ttk.Frame):
                 code='陣列 = 陣列.reshape([2,2])',
                 code_display='陣列 = 陣列.reshape([2,2])',
                 note='改變陣列形狀(形狀)',
+                long_note=True))
+        DropdownPostit(tab_name='numpy', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='唯一值(去除重複) unique',
+                code='唯一值陣列 = 多維陣列.unique(陣列)',
+                code_display='唯一值陣列 = 多維陣列.unique(陣列)',
+                note='唯一值(去除重複)',
                 long_note=True))
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2878,7 +2895,7 @@ class PythonPostitView(ttk.Frame):
     def cv_tab_init(self):
         # title and setup tool
         tab = common_postit_tabs['cv']
-        example_vars = ['陣列','攝影機'] 
+        example_vars = ['陣列','行1','行2','列1','列2'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
@@ -2971,6 +2988,12 @@ class PythonPostitView(ttk.Frame):
                 code_display='顯示圖片(陣列)',
                 note='顯示圖片(陣列)',
                 long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='顯示圖片 標題',
+                code="顯示圖片(陣列, 標題='我的圖片')",
+                code_display="顯示圖片(陣列, 標題='我的圖片')",
+                note='顯示圖片(陣列, 標題)',
+                long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='顯示圖片 新視窗',
                 code='顯示圖片(陣列, 新視窗=True)',
@@ -3123,6 +3146,16 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)                
 
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='畫灰階矩形',
+                code='陣列 = 畫灰階矩形(陣列,0,200,0,200)',
+                code_display='陣列 = 畫灰階矩形(陣列,0,200,0,200)',
+                note='畫灰階矩形(陣列,行1,行2,列1,列2)',
+                long_note=True))
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8) 
 
 
 
