@@ -148,7 +148,7 @@ class PythonPostitView(ttk.Frame):
         self.add_tab('threed', '  3D  ','pack')
         self.add_tab('auto', ' 自動 ','pack')
         self.add_tab('numpy', ' 陣列 ','pack')        
-        self.add_tab('cv', ' 影像 ','pack')
+        self.add_tab('cv', ' 視覺 ','pack')
 
 
         self.common_tab_init()
@@ -2766,6 +2766,12 @@ class PythonPostitView(ttk.Frame):
                 code_display='陣列 = 多維陣列.ones([2,2])',
                 note='建立均一陣列(形狀)',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='建立隨機陣列 randint',
+                code='陣列=多維陣列.random.randint(10,50,size=[5,5])',
+                code_display='陣列=多維陣列.random.randint(10,50,size=[5,5])',
+                note='建立隨機陣列(隨機範圍, 大小)',
+                long_note=True))
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -2797,10 +2803,10 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='改變形狀 reshape',
+                menu_display='改變陣列形狀 reshape',
                 code='陣列 = 陣列.reshape([2,2])',
                 code_display='陣列 = 陣列.reshape([2,2])',
-                note='改變形狀(形狀)',
+                note='改變陣列形狀(形狀)',
                 long_note=True))
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2858,13 +2864,13 @@ class PythonPostitView(ttk.Frame):
                 menu_display='切片取值',
                 code="陣列[0:2, 0:2]",
                 code_display="陣列[0:2, 0:2]",
-                note='切片取值 [直切片,橫切片]',
+                note='切片取值 [行切片,列切片]',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='        設值',
                 code="陣列[0:2, 0:2] = 5",
                 code_display="陣列[0:2, 0:2] = 5",
-                note='切片設值 [直切片,橫切片]',
+                note='切片設值 [行切片,列切片]',
                 long_note=True))
         DropdownPostit(tab_name='numpy', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2872,12 +2878,12 @@ class PythonPostitView(ttk.Frame):
     def cv_tab_init(self):
         # title and setup tool
         tab = common_postit_tabs['cv']
-        example_vars = ['座標','圖片','區域','像素','寬高','檔案路徑','開始時間','經過時間',] 
+        example_vars = ['陣列','攝影機'] 
         tab.popup_init(example_vars)
 
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         label =ttk.Label(common_postit_tabs['cv'].frame.interior, 
-                text='【影像處理opencv】', 
+                text='【電腦視覺cv】', 
                 image= common_images['gear'],
                 font=f,
                 compound=tk.RIGHT,
@@ -2891,50 +2897,16 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='從PIL匯入Image模組',
-                code='from PIL import Image',
-                code_display='from PIL import Image',
-                note='從PIL模組匯入Image',
+                menu_display='從電腦視覺模組匯入全部',
+                code='from 電腦視覺模組 import *',
+                code_display='from 電腦視覺模組 import *',
+                note='從電腦視覺模組匯入全部',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='從PIL匯入ImageGrab模組',
-                code='from PIL import ImageGrab',
-                code_display='from PIL import ImageGrab',
-                note='從PIL模組匯入ImageGrab',
-                long_note=True))
-        DropdownPostit(tab_name='cv', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-        # separator and note
-        ttk.Separator(common_postit_tabs['cv'].frame.interior, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['cv'].frame.interior, 
-                    
-                    text=' >> 建立影像物件',
-                    font=f,   
-                    compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
-
-        # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='Image.open 開啟影像',
-                code="圖片 = Image.open('檔名')",
-                code_display="圖片 = Image.open('檔名')",
-                note='開啟影像(傳回影像)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='ImageGrab.grab 截取螢幕',
-                code='圖片 = ImageGrab.grab()',
-                code_display='圖片 = ImageGrab.grab()',
-                note='截取螢幕(傳回影像)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='ImageGrab.grab 截取區域中螢幕',
-                code='圖片 = ImageGrab.grab(區域)',
-                code_display='圖片 = ImageGrab.grab(區域)',
-                note='截取區域螢幕(傳回影像)',
+                menu_display='從cv4t匯入全部',
+                code='from cv4t import *',
+                code_display='from cv4t import *',
+                note='從cv4t匯入全部',
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2945,7 +2917,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['cv'].frame.interior, 
                     
-                    text=' >> 影像資訊',
+                    text=' >> 建立圖片物件',
                     font=f,   
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -2953,25 +2925,32 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='影像格式 .format',
-                code='圖片.format',
-                code_display='圖片.format',
-                note='影像格式',
+                menu_display='讀取圖片灰階',
+                code="陣列 = 讀取圖片灰階('檔名.類型')",
+                code_display="陣列 = 讀取圖片灰階('檔名.類型')",
+                note='讀取圖片灰階(檔名字串)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='影像寬高 .size',
-                code='圖片.size',
-                code_display='圖片.size',
-                note='影像寬高',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='影像模式 .mode',
-                code='圖片.mode',
-                code_display='圖片.mode',
-                note='影像模式',
+                menu_display='讀取圖片彩色',
+                code="陣列 = 讀取圖片彩色('檔名.類型')",
+                code_display="陣列 = 讀取圖片彩色('檔名.類型')",
+                note='讀取圖片彩色(檔名字串)',
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='儲存圖片',
+                code="儲存圖片('檔名.jpg',陣列)",
+                code_display="儲存圖片('檔名.jpg',陣列)",
+                note='儲存圖片(檔名字串, 陣列)',
+                long_note=True))
+
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
 
         # separator and note
         ttk.Separator(common_postit_tabs['cv'].frame.interior, orient=tk.HORIZONTAL
@@ -2979,7 +2958,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['cv'].frame.interior, 
                     
-                    text=' >> 影像操作',
+                    text=' >> 圖片資訊',
                     font=f,   
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -2987,28 +2966,16 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='顯示影像 .show',
-                code='圖片.show()',
-                code_display='圖片.show()',
-                note='顯示影像',
-                long_note=True))
+                menu_display='顯示圖片',
+                code='顯示圖片(陣列)',
+                code_display='顯示圖片(陣列)',
+                note='顯示圖片(陣列)',
+                long_note=False))
         temp_code_list.append(CodeNTuple(
-                menu_display='縮圖 .thumbnail',
-                code='圖片.thumbnail(寬高)',
-                code_display='圖片.thumbnail(寬高)',
-                note='縮圖',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='影像存檔 .save',
-                code='圖片.save(檔名)',
-                code_display='圖片.save(檔名)',
-                note='影像存檔',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='影像貼上 .paste',
-                code='圖片.paste(圖片2, 座標)',
-                code_display='圖片.paste(圖片2,座標)',
-                note='影像貼上',
+                menu_display='顯示圖片 新視窗',
+                code='顯示圖片(陣列, 新視窗=True)',
+                code_display='顯示圖片(陣列, 新視窗=True)',
+                note='顯示圖片(陣列, 新視窗)',
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -3017,95 +2984,148 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='取出部份影像 .crop',
-                code='圖片2 = 圖片.crop(區域)',
-                code_display='圖片2 = 圖片.crop(區域)',
-                note='取出部份影像(傳回新影像)',
+                menu_display='彩色轉灰階',
+                code='陣列 = 彩色轉灰階(陣列)',
+                code_display='陣列 = 彩色轉灰階(陣列)',
+                note='彩色轉灰階',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='改變影像大小 .resize',
-                code='圖片2 = 圖片.resize(寬高)',
-                code_display='圖片2 = 圖片.resize(寬高)',
-                note='改變影像大小(傳回新影像)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='旋轉影像 .rotate',
-                code='圖片2 = 圖片.rotate(90)',
-                code_display='圖片2 = 圖片.rotate(90)',
-                note='旋轉影像(傳回新影像)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='取出像素 .getpixel',
-                code='像素 = 圖片.getpixel(座標)',
-                code_display='像素 = 圖片.getpixel(座標)',
-                note='取出像素',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='顏色清單 .getcolors',
-                code='清單 = 圖片.getcolors()',
-                code_display='清單 = 圖片.getcolors()',
-                note='顏色清單(預設256色)',
-                long_note=True)) 
-        temp_code_list.append(CodeNTuple(
-                menu_display='轉成全彩影像 .convert',
-                code='圖片2 = 圖片.convert("RGB")',
-                code_display='圖片2 = 圖片.convert("RGB")',
-                note='轉成全彩影像(傳回新影像)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='轉成灰階影像 .convert',
-                code='圖片2 = 圖片.convert("L")',
-                code_display='圖片2 = 圖片.convert("L")',
-                note='轉成灰階影像(傳回新影像)',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='轉成黑白影像 .convert',
-                code='圖片2 = 圖片.convert("1")',
-                code_display='圖片2 = 圖片.convert("1")',
-                note='轉成黑白影像(傳回新影像)',
+                menu_display='灰階轉彩色',
+                code='陣列 = 灰階轉彩色(陣列)',
+                code_display='陣列 = 灰階轉彩色(陣列)',
+                note='灰階轉彩色',
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
-        # separator and note
-        ttk.Separator(common_postit_tabs['cv'].frame.interior, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['cv'].frame.interior, 
-                    
-                    text=' >> 常用變數',
-                    font=f,   
-                    compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='設定區域',
-                code='區域 = [0, 0, 100, 100]',
-                code_display='區域 = [0, 0, 100, 100]',
-                note='設定區域(左上及右下座標)',
+                menu_display='左右翻轉',
+                code='陣列 = 左右翻轉(陣列)',
+                code_display='陣列 = 左右翻轉(陣列)',
+                note='左右翻轉',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定寬高',
-                code='寬高 = [100, 100]',
-                code_display='寬高 = [100, 100]',
-                note='設定寬高',
+                menu_display='上下翻轉',
+                code='陣列 = 上下翻轉(陣列)',
+                code_display='陣列 =上下翻轉(陣列)',
+                note='上下翻轉',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定座標',
-                code='座標 = (0, 0)',
-                code_display='座標 = (0, 0)',
-                note='設定座標',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定檔案路徑',
-                code="檔案路徑 = r''",
-                code_display="檔案路徑 = r' '",
-                note='設定檔案路徑',
+                menu_display='上下左右翻轉',
+                code='陣列 = 上下左右翻轉(陣列)',
+                code_display='陣列 =上下左右翻轉(陣列)',
+                note='上下翻轉左右',
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='關閉所有圖片',
+                code='關閉所有圖片()',
+                code_display='關閉所有圖片()',
+                note='關閉所有圖片',
+                long_note=False))
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='無限等待',
+                code='等待按鍵()',
+                code_display='等待按鍵()',
+                note='無限等待',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='等待毫秒',
+                code='等待按鍵(25)',
+                code_display='等待按鍵(25)',
+                note='等待毫秒',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='無限等待 傳回按鍵',
+                code='按鍵 = 等待按鍵()',
+                code_display='按鍵 = 等待按鍵()',
+                note='無限等待 傳回按鍵',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='等待毫秒 傳回按鍵',
+                code='按鍵 = 等待按鍵(25)',
+                code_display='按鍵 = 等待按鍵(25)',
+                note='等待毫秒 傳回按鍵',
+                long_note=True))
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='字母按鍵',
+                code="'a'",
+                code_display="'a'",
+                note='字母按鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='數字按鍵',
+                code="'1'",
+                code_display="'1'",
+                note='數字按鍵',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='符號按鍵',
+                code="'='",
+                code_display="'='",
+                note='符號按鍵',
+                long_note=False))
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='開啟影像擷取',
+                code='攝影機 = 開啟影像擷取()',
+                code_display='攝影機 = 開啟影像擷取()',
+                note='開啟影像擷取',
+                long_note=False))
+        temp_code_list.append(CodeNTuple(
+                menu_display='擷取單張影像',
+                code='陣列 = 擷取單張影像(攝影機)',
+                code_display='陣列 = 擷取單張影像(攝影機)',
+                note='擷取單張影像',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='關閉影像擷取',
+                code='攝影機.release()',
+                code_display='攝影機.release()',
+                note='關閉影像擷取',
+                long_note=False))
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='擷取螢幕灰階',
+                code='陣列 = 擷取螢幕灰階(0,200,0,200)',
+                code_display='陣列 = 擷取螢幕灰階(0,200,0,200)',
+                note='擷取螢幕灰階(行1,行2,列1,列2)',
+                long_note=True))
+        DropdownPostit(tab_name='cv', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)                
+
+
+
+
 
 
     def flow_tab_init(self):
@@ -3216,18 +3236,17 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit  
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                                    menu_display='有條件重複 while ',
-                                    code='while 1 > 0:\npass',
-                                    code_display='while 1 > 0:\n    pass',
-                                    note='當條件成立時:\n        迴圈區塊',
-                                    long_note=False ))
-        temp_code_list.append(CodeNTuple(
                                     menu_display='重複無限次 while True ',
                                     code='while True:\npass',
                                     code_display='while True:\n    pass',
                                     note='重複無限次:\n        迴圈區塊',
                                     long_note=False ))
-
+        temp_code_list.append(CodeNTuple(
+                                    menu_display='有條件重複 while ',
+                                    code='while 1 > 0:\npass',
+                                    code_display='while 1 > 0:\n    pass',
+                                    note='當條件成立時:\n        迴圈區塊',
+                                    long_note=False ))
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
