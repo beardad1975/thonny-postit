@@ -149,7 +149,7 @@ class PythonPostitView(ttk.Frame):
         self.add_tab('auto', ' 自動 ','pack')
         self.add_tab('numpy', ' 陣列 ','pack')        
         self.add_tab('cv', ' 視覺 ','pack')
-
+        self.add_tab('speech', ' 語音 ','pack')
 
         self.common_tab_init()
         self.data_tab_init()
@@ -161,6 +161,7 @@ class PythonPostitView(ttk.Frame):
         self.auto_tab_init()
         self.numpy_tab_init()
         self.cv_tab_init()
+        self.speech_tab_init()
 
         #notebook event
         self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
@@ -3244,6 +3245,106 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8) 
 
 
+
+    def speech_tab_init(self):
+        # title and setup tool
+        tab = common_postit_tabs['speech']
+        example_vars = [''] 
+        tab.popup_init(example_vars)
+
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        label =ttk.Label(common_postit_tabs['speech'].frame.interior, 
+                text='【語音】', 
+                image= common_images['gear'],
+                font=f,
+                compound=tk.RIGHT,
+                )                
+        label.pack(side=tk.TOP, padx=5, pady=8,anchor='w')
+        label.bind("<Button-1>", common_postit_tabs['speech'].popup)   
+
+
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='從語音模組匯入全部',
+                code='from 語音模組 import *',
+                code_display='from 語音模組 import *',
+                note='從語音模組匯入全部',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+       # separator and note
+        ttk.Separator(common_postit_tabs['speech'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['speech'].frame.interior, 
+                    
+                    text=' >> 文字轉語音',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音合成 並等待',
+                code="語音合成('你好')",
+                code_display="語音合成('你好')",
+                note='語音播完再繼續程式',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音合成 不等待',
+                code="語音合成('你好', 等待=False)",
+                code_display="語音合成('你好', 等待=False)",
+                note='語音未播完就繼續程式',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8) 
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定語音音量',
+                code="設定語音音量(70)",
+                code_display="設定語音音量(70)",
+                note='音量範圍 0 ~ 100',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定語音速度',
+                code="設定語音速度(1)",
+                code_display="設定語音速度(1)",
+                note='速度範圍 -10 ~ 10',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音說完了嗎 等待0.5秒',
+                code="語音說完了嗎()",
+                code_display="語音說完了嗎()",
+                note='等待0.5秒 預設',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音說完了嗎 等待時間',
+                code="語音說完了嗎(100)",
+                code_display="語音說完了嗎(100)",
+                note='等待0.1秒',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音說完了嗎 等待直到說完',
+                code="語音說完了嗎(-1)",
+                code_display="語音說完了嗎(-1)",
+                note='等待直到說完',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
 
