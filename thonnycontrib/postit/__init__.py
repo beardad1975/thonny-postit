@@ -3326,10 +3326,10 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='語音說完了嗎 等待0.5秒',
+                menu_display='語音說完了嗎',
                 code="語音說完了嗎()",
                 code_display="語音說完了嗎()",
-                note='等待0.5秒 預設',
+                note='語音說完了嗎',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='語音說完了嗎 等待時間',
@@ -3338,15 +3338,77 @@ class PythonPostitView(ttk.Frame):
                 note='等待0.1秒',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='語音說完了嗎 等待直到說完',
-                code="語音說完了嗎(-1)",
-                code_display="語音說完了嗎(-1)",
-                note='等待直到說完',
+                menu_display='等待語音說完',
+                code="等待語音說完()",
+                code_display="等待語音說完()",
+                note='等待語音說完',
                 long_note=True))
         DropdownPostit(tab_name='speech', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
 
+       # separator and note
+        ttk.Separator(common_postit_tabs['speech'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['speech'].frame.interior, 
+                    
+                    text=' >> 語音辨識',
+                    font=f,   
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音辨識google',
+                code="語音辨識google()",
+                code_display="語音辨識google()",
+                note='google服務(需連網)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音辨識google(次數)',
+                code="語音辨識google(次數=10)",
+                code_display="語音辨識google(次數=10)",
+                note='google服務(需連網)',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display="語音辨識azure key",
+                code="語音辨識azure(key='')",
+                code_display="語音辨識azure(key='')",
+                note='語音辨識azure 需註冊',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display="語音辨識azure key location",
+                code="語音辨識azure(key='', location='westus')",
+                code_display="語音辨識azure(key='', location='westus')",
+                note='語音辨識azure 需註冊',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='辨識成功了嗎',
+                code="辨識成功了嗎()",
+                code_display="辨識成功了嗎()",
+                note='辨識成功了嗎',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='取得辨識文字',
+                code="文字 = 取得辨識文字()",
+                code_display="文字 = 取得辨識文字()",
+                note='取得辨識文字',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
     def flow_tab_init(self):
         ### flow tab
