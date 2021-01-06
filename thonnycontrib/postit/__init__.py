@@ -3410,6 +3410,19 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='speech', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='關閉語音辨識',
+                code="關閉語音辨識()",
+                code_display="關閉語音辨識()",
+                note='關閉語音辨識',
+                long_note=True))
+        DropdownPostit(tab_name='speech', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+
     def flow_tab_init(self):
         ### flow tab
 
