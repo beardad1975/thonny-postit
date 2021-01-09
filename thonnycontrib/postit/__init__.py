@@ -3689,9 +3689,120 @@ class PythonPostitView(ttk.Frame):
                 code_display='try:\n    pass\nexcept Exception:\n    pass',
                 note='測試:\n        測試區塊\n例外發生:\n        錯誤處理區塊',
                 long_note=True))
-
         DropdownPostit(tab_name='flow', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+
+        #separator and note
+        ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['flow'].frame.interior, 
+                    #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
+                    text=' >> 物件類別',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='定義新類別',
+                code='class 類別:\n屬性 = 1\ndef 方法(self):\npass',
+                code_display='class 類別:\n    屬性 = 1\n    def 方法(self):\n    pass',
+                note='定義新類別',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='繼承類別',
+                code='class 子類別(父母類別):\n屬性 = 1\ndef 方法(self):\npass',
+                code_display='class 子類別(父母類別):\n    屬性 = 1\n    def 方法(self):\n    pass',
+                note='繼承類別',
+                long_note=True))                
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        #separator and note
+        ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['flow'].frame.interior, 
+                    #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
+                    text=' >> 有限狀態機',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='匯入狀態機模組',
+                code='from transitions import Machine as 狀態機',
+                code_display='from transitions import Machine as 狀態機',
+                note='匯入狀態機模組',
+                long_note=True))
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='階段清單',
+                code="階段清單 = ['開頭','關卡','結尾']",
+                code_display="階段清單 = ['開頭','關卡','結尾']",
+                note='階段清單',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='程式狀態類別',
+                code="class 程式狀態(狀態機):\ndef on_enter_開頭(self):\nprint('進入 開頭階段')",
+                code_display="class 程式狀態(狀態機)):\n    def on_enter_開頭(self):\n        print('進入 開頭')",
+                note='繼承類別',
+                long_note=True)) 
+        temp_code_list.append(CodeNTuple(
+                menu_display='程式狀態方法(離開)',
+                code="    def on_exit_開頭(self):\nprint('離開 開頭階段')",
+                code_display="def on_exit_開頭(self):\n    print('離開 開頭階段')",
+                note='程式狀態方法(離開)',
+                long_note=True))  
+        temp_code_list.append(CodeNTuple(
+                menu_display='主流程物件',
+                code="主流程 = 程式狀態(states=階段清單, initial='開頭')",
+                code_display="主流程 = 程式狀態(states=階段清單, initial='開頭')",
+                note='主流程物件',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='依序轉換',
+                code="主流程.add_ordered_transitions()",
+                code_display="主流程.add_ordered_transitions()",
+                note='依序轉換',
+                long_note=True))    
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='目前階段',
+                code='主流程.state',
+                code_display='主流程.state',
+                note='目前階段',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='跳到階段',
+                code='主流程.to_開頭()',
+                code_display='主流程.to_開頭()',
+                note='跳到階段',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='下一階段(依序)',
+                code='主流程.next_state()',
+                code_display='主流程.next_state()',
+                note='下一階段(依序)',
+                long_note=True))
+        DropdownPostit(tab_name='flow', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
 
 
 #     def tab_symbol_add_row(self, col1, col2=None, col3=None, col4=None):
