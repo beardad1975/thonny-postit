@@ -1993,10 +1993,16 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='新增3D物件',
-                code='物體 = 新增3D物件()',
-                code_display='物體 = 新增3D物件()',
-                note='add_entity',
+                menu_display='新增立方體',
+                code='物體 = 新增立方體()',
+                code_display='物體 = 新增立方體()',
+                note='add_cube',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增立方體6面',
+                code='物體 = 新增立方體6面()',
+                code_display='物體 = 新增立方體6面()',
+                note='add_cubic6',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)

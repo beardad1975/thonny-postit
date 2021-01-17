@@ -49,7 +49,7 @@ class DropdownWidget(ttk.Frame):
         
 
         # postit button 
-        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        f = font.Font(size=13, weight=font.NORMAL, family='Consolas')
         #self.postit_button = ttk.Button(self.main_frame, text='1234')
         self.postit_button = tk.Button(self.main_frame,  
                                         relief='solid',
