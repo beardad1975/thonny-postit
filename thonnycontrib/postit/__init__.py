@@ -1886,6 +1886,10 @@ class PythonPostitView(ttk.Frame):
         # DropdownPostit(tab_name='physics', code_list = temp_code_list,
         #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+    
+    def open_cubic6_texture(self):
+        print('open cubic6 texture')
+
 
     def threed_tab_init(self):
         # title and setup tool
@@ -1939,7 +1943,7 @@ class PythonPostitView(ttk.Frame):
         f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         ttk.Label(common_postit_tabs['threed'].frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text=' >> 3D舞台',
+                    text=' >> 3D舞台與主迴圈',
                     font=f,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -1990,6 +1994,16 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
+        ttk.Separator(common_postit_tabs['threed'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['threed'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 基本模型',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -1999,56 +2013,22 @@ class PythonPostitView(ttk.Frame):
                 note='add_cube',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='新增立方體6面',
-                code='物體 = 新增立方體6面()',
-                code_display='物體 = 新增立方體6面()',
-                note='add_cubic6',
-                long_note=True))
-        DropdownPostit(tab_name='threed', code_list = temp_code_list,
-            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-
-        ttk.Separator(common_postit_tabs['threed'].frame.interior, orient=tk.HORIZONTAL
-            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        ttk.Label(common_postit_tabs['threed'].frame.interior, 
-                    #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text=' >> 3d物件設定與屬性',
-                    font=f,    
-                    compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
-
-        # dropdown list postit
-        temp_code_list = []
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定模型',
-                code="物體.模型 = ''",
-                code_display="物體.模型 = ''",
-                note='model',
+                menu_display='新增球體',
+                code='物體 = 新增球體()',
+                code_display='物體 = 新增球體()',
+                note='add_sphere',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定紋理',
-                code="物體.紋理 = ''",
-                code_display="物體.紋理 = ''",
-                note='texture',
+                menu_display='新增平面',
+                code='物體 = 新增平面()',
+                code_display='物體 = 新增平面()',
+                note='add_quad',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='設定中心點偏移',
-                code="物體.中心點偏移 = 0,0,0",
-                code_display="物體.中心點偏移 = 0,0,0",
-                note='origin',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定上層物件',
-                code="物體.上層物件 = ",
-                code_display="物體.上層物件 = ",
-                note='parent',
-                long_note=True))
-        temp_code_list.append(CodeNTuple(
-                menu_display='設定有效狀態',
-                code="物體.有效狀態 = True",
-                code_display="物體.有效狀態 = True",
-                note='enabled',
+                menu_display='新增物體',
+                code='物體 = 新增物體()',
+                code_display='物體 = 新增物體()',
+                note='新增物體(預設立方體)',
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
@@ -2112,6 +2092,101 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         DropdownPostit(tab_name='threed', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定模型',
+                code="物體.模型 = ''",
+                code_display="物體.模型 = ''",
+                note='model',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定紋理',
+                code="物體.紋理 = ''",
+                code_display="物體.紋理 = ''",
+                note='texture',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+        ttk.Separator(common_postit_tabs['threed'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['threed'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 特定模型與紋理',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增立方體6面',
+                code='物體 = 新增立方體6面()',
+                code_display='物體 = 新增立方體6面()',
+                note='add_cubic6',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='新增球體內面',
+                code='物體 = 新增球體內面()',
+                code_display='物體 = 新增球體內面()',
+                note='add_sphere_inward',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        btn =tk.Button(common_postit_tabs['threed'].frame.interior, 
+                text='開啟立方體6面紋理', 
+                command=self.open_cubic6_texture, 
+                #image= common_images['gear'],
+                font=f,
+                #compound=tk.RIGHT,
+                )                
+        btn.pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+
+        ttk.Separator(common_postit_tabs['threed'].frame.interior, orient=tk.HORIZONTAL
+            ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        ttk.Label(common_postit_tabs['threed'].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=' >> 3d物件設定與屬性',
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+        # dropdown list postit
+        temp_code_list = []
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定中心點偏移',
+                code="物體.中心點偏移 = 0,0,0",
+                code_display="物體.中心點偏移 = 0,0,0",
+                note='origin',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定上層物件',
+                code="物體.上層物件 = ",
+                code_display="物體.上層物件 = ",
+                note='parent',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='設定有效狀態',
+                code="物體.有效狀態 = True",
+                code_display="物體.有效狀態 = True",
+                note='enabled',
+                long_note=True))
+        DropdownPostit(tab_name='threed', code_list = temp_code_list,
+            postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
+
+
+
+
+
+
 
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
@@ -3316,8 +3391,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='設定語音音量',
-                code="設定語音音量(70)",
-                code_display="設定語音音量(70)",
+                code="設定語音音量(80)",
+                code_display="設定語音音量(80)",
                 note='音量範圍 0 ~ 100',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
@@ -3374,8 +3449,8 @@ class PythonPostitView(ttk.Frame):
                 long_note=True))
         temp_code_list.append(CodeNTuple(
                 menu_display='語音辨識google(次數)',
-                code="語音辨識google(次數=10)",
-                code_display="語音辨識google(次數=10)",
+                code="語音辨識google(次數=15)",
+                code_display="語音辨識google(次數=15)",
                 note='google服務(需連網)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
@@ -3419,10 +3494,16 @@ class PythonPostitView(ttk.Frame):
         # dropdown list postit
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
-                menu_display='關閉語音辨識',
-                code="關閉語音辨識()",
-                code_display="關閉語音辨識()",
-                note='關閉語音辨識',
+                menu_display='暫停語音辨識',
+                code="暫停語音辨識()",
+                code_display="暫停語音辨識()",
+                note='pause',
+                long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='繼續語音辨識',
+                code="繼續語音辨識()",
+                code_display="繼續語音辨識()",
+                note='continue',
                 long_note=True))
         DropdownPostit(tab_name='speech', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
