@@ -2,6 +2,7 @@ import os
 import datetime
 import webbrowser
 from pathlib import Path
+import json
 
 import tkinter as tk
 import tkinter.font as font
@@ -79,7 +80,10 @@ class PostitTab:
         self.fill_color = color['fill_color']
         self.font_color = color['font_color']
         #load image
-        abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
+        if tab_type == 'more':
+            abs_image_path =Path(__file__).parent/'images'/ 'more.png'
+        else:
+            abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
         im = Image.open(abs_image_path)       
         self.image = ImageTk.PhotoImage(im) 
 
@@ -134,42 +138,74 @@ class PythonPostitView(ttk.Frame):
         self.notebook_init()
         self.last_focus = None
         self.symbol_row_index = 0
-
+        common.postit_view = self
         
+        self.add_tab_json('common')
 
-        #add notebook tabs
-        self.add_tab('common', ' 基本 ','basic')
-        
-        
-        self.add_tab('data', ' 資料 ','basic')
-        self.add_tab('flow', ' 流程 ','basic')
-        self.add_tab('builtin', '程式庫','basic')
-        self.add_tab('turtle4t', ' 海龜 ','pack')
-        self.add_tab('physics', ' 物理 ','pack')
-        self.add_tab('threed', '  3D  ','pack')
-        self.add_tab('auto', ' 自動 ','pack')
-        self.add_tab('numpy', ' 陣列 ','pack')        
-        self.add_tab('cv', ' 視覺 ','pack')
-        self.add_tab('speech', ' 語音 ','pack')
+        # #add notebook tabs
+        # self.add_tab('common', ' 基本 ','basic')
+        # self.add_tab('data', ' 資料 ','basic')
+        # self.add_tab('flow', ' 流程 ','basic')
+        # self.add_tab('builtin', '程式庫','basic')
+        # self.add_tab('turtle4t', ' 海龜 ','pack')
+        # self.add_tab('physics', ' 物理 ','pack')
+        # self.add_tab('threed', '  3D  ','pack')
+        # self.add_tab('auto', ' 自動 ','pack')
+        # self.add_tab('numpy', ' 陣列 ','pack')        
+        # self.add_tab('cv', ' 視覺 ','pack')
+        # self.add_tab('speech', ' 語音 ','pack')
+        # self.add_tab('more',' 　　 ','more')
 
-        self.common_tab_init()
-        self.data_tab_init()
-        self.flow_tab_init()
-        self.builtin_tab_init()
-        self.turtle4t_tab_init()
-        self.physics_tab_init()
-        self.threed_tab_init()
-        self.auto_tab_init()
-        self.numpy_tab_init()
-        self.cv_tab_init()
-        self.speech_tab_init()
+        # self.common_tab_init()
+        # self.data_tab_init()
+        # self.flow_tab_init()
+        # self.builtin_tab_init()
+        # self.turtle4t_tab_init()
+        # self.physics_tab_init()
+        # self.threed_tab_init()
+        # self.auto_tab_init()
+        # self.numpy_tab_init()
+        # self.cv_tab_init()
+        # self.speech_tab_init()
 
         #notebook event
         self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
         self.notebook.bind('<Button-1>',self.on_tab_click)
 
+    def add_tab_json(self, name):
+        path = Path(__file__).parent / 'tab_data' / 'builtin' / (name+'.json') 
+        with open(path) as fp:
+            tab_data = json.load(fp)
+        
+        if name in common_postit_tabs:
+            print('tab', name, ' already exists')
+            return
 
+        tab = PostitTab(name, tab_data['label'], tab_data['type'])
+        common_postit_tabs[name] = tab
 
+        tab.frame = CustomVerticallyScrollableFrame(self.notebook)
+        self.notebook.insert('end',tab.frame,
+                          text = tab.label,
+                          image = tab.image,
+                          compound="top",
+                        )
+
+        # add postits by json
+        for p in tab_data["postits"]:
+            if p['postit_type'] == 'dropdown_postit':
+                temp_code_list = []
+                for i in p["items"]:
+                    temp_code_list.append(CodeNTuple(
+                        menu_display=i['menu_display'],
+                        code=i['code'],
+                        code_display=i['code_display'],
+                        note=i['note'],
+                        long_note=i['long_note'] ))
+                DropdownPostit(tab_name=name, code_list = temp_code_list,
+                    postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
+
+        return tab
 
     def common_tab_init(self):
         ### common postit
@@ -3978,14 +4014,37 @@ class PythonPostitView(ttk.Frame):
         self.notebook = ttk.Notebook(notebook_frame, style='lefttab.TNotebook')
         self.notebook.pack(side='top',fill="both", expand="true")
 
+        # notebook menu
+        
+        self.tab_menu = tk.Menu(self.notebook, tearoff=0)
+        self.tab_menu.add_command(label='【便利貼】')
+        self.tab_menu.add_separator()
+        self.option = tk.BooleanVar()
+        self.option.set(True)
+        self.tab_menu.add_checkbutton(label="選項", onvalue=1, offvalue=0, 
+                variable=self.option,
+                command=lambda:self.remove_tab('flow'),
+                )
+
+        self.notebook.bind("<Button-3>", self.tab_menu_popup)
+
+    def tab_menu_popup(self, event):
+        #if self.tool_name != 'variable_get':
+        if event:
+            self.tab_menu.tk_popup(event.x_root, event.y_root)
+
+
     def add_tab(self, name, label, tab_type):
+        if name in common_postit_tabs:
+            print('tab', name, ' already exists')
+            return
 
         tab = PostitTab(name, label, tab_type)
         common_postit_tabs[name] = tab
 
         #tab.frame = ttk.Frame(self.notebook)        
         tab.frame = CustomVerticallyScrollableFrame(self.notebook)
-        self.notebook.add(tab.frame,
+        self.notebook.insert('end',tab.frame,
                           text = tab.label,
                           image = tab.image,
                           compound="top",
@@ -3996,15 +4055,26 @@ class PythonPostitView(ttk.Frame):
         #                   compound="top",
         #                 )
 
-        tab.index = self.notebook.index('end')
+        #tab.index = self.notebook.index('end')
+        
         return tab
+
+    def remove_tab(self, name):
+        if name in common_postit_tabs:
+            self.notebook.forget(common_postit_tabs[name].frame)
+            del common_postit_tabs[name]
+            print('tab ', name, ' deleted')
+        else:
+            print('no tab ', name)
 
     def on_tab_click(self, event):
         """record focus widget"""
+        
         self.last_focus = get_workbench().focus_get()
 
     def on_tab_changed(self, event):
         """restore last focus widget"""
+        
         if self.last_focus:
             self.last_focus.focus_set()
             self.last_focus = None
@@ -4059,19 +4129,26 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
 
-def try_thonny():
+def try_add_tab():
     pass
-    
-    editor = get_workbench().get_editor_notebook().get_current_editor()
-    text_widget = editor.get_text_widget()
-  
-    s = text_widget.get('1.0', 'end-1c')
-    s = s.replace('\n', '¶\n')
-    s = s.replace(' ', '·')
-    text_widget.delete('1.0', 'end-1c')
-    text_widget.insert('1.0', s)
-    text_widget.config(state=tk.DISABLED)
 
+    common.postit_view.add_tab('flow', ' 流程 ','basic')
+    
+    # editor = get_workbench().get_editor_notebook().get_current_editor()
+    # text_widget = editor.get_text_widget()
+  
+    # s = text_widget.get('1.0', 'end-1c')
+    # s = s.replace('\n', '¶\n')
+    # s = s.replace(' ', '·')
+    # text_widget.delete('1.0', 'end-1c')
+    # text_widget.insert('1.0', s)
+    # text_widget.config(state=tk.DISABLED)
+
+def try_remove_tab():
+    common.postit_view.remove_tab('flow')
+
+def try_menu():
+    print('here')
 
 class AboutDialog(CommonDialog):
     def __init__(self, master):
@@ -4195,21 +4272,32 @@ def load_plugin():
 
     get_workbench().add_view(PythonPostitView, 'Python便利貼', 'nw')
 
+    get_workbench().add_command("aboutPy4t", "help", '關於Py4t', get_version, group=62)
+
+    #get_workbench().get_menu('postit','便利貼')
 
     def open_about(*args):
         show_dialog(AboutDialog(get_workbench()))
 
 
-    get_workbench().add_command("aboutPy4t", "help", '關於Py4t', open_about, group=62)
+    get_workbench().add_command("test", "便利貼", '測試', try_menu)
+    get_workbench().add_command("test2", "便利貼", '測試2', try_menu)
 
 
     #for test
-    # get_workbench().add_command(command_id="try_thonny",
-    #                                 menu_name="tools",
-    #                                 command_label="測試thonny",
-    #                                 handler=try_thonny,
-    #                                 default_sequence="<F2>"
-    #                                 )
+    get_workbench().add_command(command_id="try_add_tab",
+                                    menu_name="tools",
+                                    command_label="測試thonny",
+                                    handler=try_add_tab,
+                                    default_sequence="<F2>"
+                                    )
+
+    get_workbench().add_command(command_id="try_remove_tab",
+                                    menu_name="tools",
+                                    command_label="測試thonny",
+                                    handler=try_remove_tab,
+                                    default_sequence="<F3>"
+                                    )
 
 
 

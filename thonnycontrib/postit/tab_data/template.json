@@ -1,0 +1,26 @@
+{
+    "label" : "",
+    "type" : "basic",
+    "postits": [
+        {
+            "postit_type" : "dropdown_postit",
+            "postfix_enter" : false,
+            "items" :[
+                {
+                    "menu_display" : "",
+                    "code" : "",
+                    "code_display" : "",
+                    "note" : "",
+                    "long_note" : false
+                },
+                {
+                    "menu_display" : "",
+                    "code" : "",
+                    "code_display" : "",
+                    "note" : "",
+                    "long_note" : false
+                }          
+            ]
+        }
+    ]
+}
