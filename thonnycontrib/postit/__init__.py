@@ -11,7 +11,8 @@ from pathlib import Path
 from PIL import Image, ImageTk
 
 from thonny import get_workbench, get_shell, get_runner
-from thonny.ui_utils import VerticallyScrollableFrame, show_dialog, CommonDialog
+
+from thonny.ui_utils import show_dialog, CommonDialog
 from thonny.common import ToplevelCommand
 
 from .base_postit import BasePostit
@@ -125,7 +126,7 @@ class PostitTab:
 
 
 
-#class PythonPostitView(VerticallyScrollableFrame):
+
 class PythonPostitView(ttk.Frame):
     def __init__(self, master):
         super().__init__(master) 
@@ -3505,6 +3506,12 @@ class PythonPostitView(ttk.Frame):
                 code_display="繼續語音辨識()",
                 note='continue',
                 long_note=True))
+        temp_code_list.append(CodeNTuple(
+                menu_display='語音辨識中嗎',
+                code="語音辨識中嗎()",
+                code_display="語音辨識中嗎()",
+                note='recognition status',
+                long_note=True))
         DropdownPostit(tab_name='speech', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
 
@@ -3959,7 +3966,7 @@ class PythonPostitView(ttk.Frame):
 
 
     def notebook_init(self):
-        #notebook_frame = VerticallyScrollableFrame(self)
+        
         notebook_frame = ttk.Frame(self)
         notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
         #style = ttk.Style(self.interior)
@@ -3977,7 +3984,7 @@ class PythonPostitView(ttk.Frame):
         common_postit_tabs[name] = tab
 
         #tab.frame = ttk.Frame(self.notebook)        
-        tab.frame = VerticallyScrollableFrame(self.notebook)
+        tab.frame = CustomVerticallyScrollableFrame(self.notebook)
         self.notebook.add(tab.frame,
                           text = tab.label,
                           image = tab.image,
@@ -4001,7 +4008,56 @@ class PythonPostitView(ttk.Frame):
         if self.last_focus:
             self.last_focus.focus_set()
             self.last_focus = None
-        
+
+
+class CustomVerticallyScrollableFrame(ttk.Frame):
+    # http://tkinter.unpythonic.net/wiki/VerticalScrolledFrame
+
+    def __init__(self, master):
+        ttk.Frame.__init__(self, master)
+
+        # set up scrolling with canvas
+        vscrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL)
+        self.canvas = tk.Canvas(self, bd=0, highlightthickness=0, yscrollcommand=vscrollbar.set)
+        vscrollbar.config(command=self.canvas.yview)
+        self.canvas.xview_moveto(0)
+        self.canvas.yview_moveto(0)
+        self.canvas.grid(row=0, column=0, sticky=tk.NSEW)
+        vscrollbar.grid(row=0, column=1, sticky=tk.NSEW)
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
+
+        self.interior = ttk.Frame(self.canvas)
+        self.interior_id = self.canvas.create_window(0, 0, window=self.interior, anchor=tk.NW)
+        self.bind("<Configure>", self._configure_interior, "+")
+        self.bind("<Expose>", self._expose, "+")
+        self.bind_all("<MouseWheel>", self._on_mousewheel,"+")
+
+    def _expose(self, event):
+        self.update_idletasks()
+        self.update_scrollbars()
+
+    def _configure_interior(self, event):
+        self.update_scrollbars()
+
+    def update_scrollbars(self):
+        # update the scrollbars to match the size of the inner frame
+        size = (self.canvas.winfo_width(), self.interior.winfo_reqheight())
+        self.canvas.config(scrollregion="0 0 %s %s" % size)
+        if (
+            self.interior.winfo_reqwidth() != self.canvas.winfo_width()
+            and self.canvas.winfo_width() > 10
+        ):
+            # update the interior's width to fit canvas
+            # print("CAWI", self.canvas.winfo_width())
+            self.canvas.itemconfigure(self.interior_id, width=self.canvas.winfo_width())
+
+    def _on_mousewheel(self, event):
+        #if isinstance(event.widget, BasePostit):
+        if 'customverticallyscrollableframe' in str(event.widget):
+            #print(str(event.widget))
+            self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+
 
 def try_thonny():
     pass
