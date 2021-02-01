@@ -10,7 +10,7 @@ from collections import Counter, namedtuple
 
 
 # dict{str:dict}
-common_postit_tabs = {}
+postit_tabs = {}
 
 postit_view = None
 

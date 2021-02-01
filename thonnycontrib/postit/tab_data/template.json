@@ -12,15 +12,17 @@
                     "code_display" : "",
                     "note" : "",
                     "long_note" : false
-                },
-                {
-                    "menu_display" : "",
-                    "code" : "",
-                    "code_display" : "",
-                    "note" : "",
-                    "long_note" : false
-                }          
+                }        
             ]
         }
     ]
+}
+
+{
+    "postit_type" : "ttk_label",
+    "text" : ""
+}
+
+{
+    "postit_type" : "ttk_separator"
 }

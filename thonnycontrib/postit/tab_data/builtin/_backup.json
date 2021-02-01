@@ -1,5 +1,5 @@
 {
-    "label" : "常用",
+    "label" : "輸出入",
     "type" : "basic",
     "postits": [
         {
@@ -29,19 +29,6 @@
                 }                
             ]
         },        
-        {
-            "postit_type" : "dropdown_postit",
-            "postfix_enter" : false,
-            "items" :[
-                {
-                    "menu_display" : "'字串'",
-                    "code" : "'字串'",
-                    "code_display" : "'字串'",
-                    "note" : "字串(文字)",
-                    "long_note" : false
-                }     
-            ]
-        },
         {
             "postit_type" : "dropdown_postit",
             "postfix_enter" : false,

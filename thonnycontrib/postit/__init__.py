@@ -19,7 +19,7 @@ from thonny.common import ToplevelCommand
 from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
-from .common import (common_postit_tabs, CodeNTuple, common_images, 
+from .common import ( CodeNTuple, common_images, 
                      )
 from . import common
 
@@ -140,7 +140,10 @@ class PythonPostitView(ttk.Frame):
         self.symbol_row_index = 0
         common.postit_view = self
         
-        self.add_tab_json('common')
+        
+        self.add_tab_json('data')
+        self.add_tab_json('flow')
+        self.add_tab_json('io')
 
         # #add notebook tabs
         # self.add_tab('common', ' 基本 ','basic')
@@ -177,12 +180,12 @@ class PythonPostitView(ttk.Frame):
         with open(path) as fp:
             tab_data = json.load(fp)
         
-        if name in common_postit_tabs:
+        if name in common.postit_tabs:
             print('tab', name, ' already exists')
             return
 
         tab = PostitTab(name, tab_data['label'], tab_data['type'])
-        common_postit_tabs[name] = tab
+        common.postit_tabs[name] = tab
 
         tab.frame = CustomVerticallyScrollableFrame(self.notebook)
         self.notebook.insert('end',tab.frame,
@@ -191,7 +194,9 @@ class PythonPostitView(ttk.Frame):
                           compound="top",
                         )
 
-        # add postits by json
+        # parse json data
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+
         for p in tab_data["postits"]:
             if p['postit_type'] == 'dropdown_postit':
                 temp_code_list = []
@@ -202,8 +207,21 @@ class PythonPostitView(ttk.Frame):
                         code_display=i['code_display'],
                         note=i['note'],
                         long_note=i['long_note'] ))
+
                 DropdownPostit(tab_name=name, code_list = temp_code_list,
                     postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
+
+            elif p['postit_type'] == 'ttk_label':
+                ttk.Label(common.postit_tabs[name].frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=p['text'],
+                    font=f,    
+                    compound=tk.LEFT, 
+                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+            elif p['postit_type'] == 'ttk_separator':
+                ttk.Separator(common.postit_tabs[name].frame.interior, orient=tk.HORIZONTAL
+                    ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
 
         return tab
 
@@ -424,7 +442,7 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='list清單 ',
-                code="清單 = [10,20,30]",
+                code="清單 = [3,1,2]",
                 code_display="清單 = [10,20,30]",
                 note='建立list清單',
                 long_note=True ))
@@ -4035,12 +4053,12 @@ class PythonPostitView(ttk.Frame):
 
 
     def add_tab(self, name, label, tab_type):
-        if name in common_postit_tabs:
+        if name in common.postit_tabs:
             print('tab', name, ' already exists')
             return
 
         tab = PostitTab(name, label, tab_type)
-        common_postit_tabs[name] = tab
+        common.postit_tabs[name] = tab
 
         #tab.frame = ttk.Frame(self.notebook)        
         tab.frame = CustomVerticallyScrollableFrame(self.notebook)
@@ -4060,9 +4078,9 @@ class PythonPostitView(ttk.Frame):
         return tab
 
     def remove_tab(self, name):
-        if name in common_postit_tabs:
-            self.notebook.forget(common_postit_tabs[name].frame)
-            del common_postit_tabs[name]
+        if name in common.postit_tabs:
+            self.notebook.forget(common.postit_tabs[name].frame)
+            del common.postit_tabs[name]
             print('tab ', name, ' deleted')
         else:
             print('no tab ', name)

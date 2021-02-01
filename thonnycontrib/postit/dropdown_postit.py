@@ -7,8 +7,8 @@ from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
 from .base_postit import BaseWidget,BaseCode, BasePost, BasePopup
-from .common import common_postit_tabs,common_images
-
+from .common import common_images
+from . import common
 
 class CodeListEmpty(Exception): pass
 
@@ -17,7 +17,7 @@ class DropdownWidget(ttk.Frame):
     def widget_init(self, tab_name):
         # store tab
         self.tab_name = tab_name
-        self.tab = common_postit_tabs[tab_name]
+        self.tab = common.postit_tabs[tab_name]
         
         
         # image
