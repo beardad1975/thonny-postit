@@ -3,6 +3,7 @@ import datetime
 import webbrowser
 from pathlib import Path
 import json
+from collections import OrderedDict
 
 import tkinter as tk
 import tkinter.font as font
@@ -19,7 +20,7 @@ from thonny.common import ToplevelCommand
 from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
-from .common import ( CodeNTuple, common_images, 
+from .common import ( CodeNTuple, common_images, PY_TAB_PATH
                      )
 from . import common
 
@@ -42,50 +43,119 @@ from .tools.symbol_tool_postit import SymbolToolPostit
 #for test
 from tkinter.messagebox import showinfo
 
+class TabGroup:
+    def __init__(self, label, path):
+        self.group_label = label
+        self.group_path = path
+
+        # 3 lists are the same size, all use circular_index
+        self.fill_colors = []
+        self.font_colors = []
+        self.icon_images = []
+        self.circular_index = 0
+
+        # all tab data in order
+        self.tabs = OrderedDict()
+
+        # init action
+        self.collect_icon_color()
+        self.color_num = len(self.fill_colors)
+
+        self.collect_tabs_info()
+        
+
+    def collect_tabs_info(self):
+        with open(self.group_path / 'tabs_info.json') as fp:
+            tabs_info = json.load(fp)
+        #print(tabs_info)
+
+        for t in tabs_info:
+            tab_name = t['tab_name']
+            tab_label = t['tab_label']
+            always_show = t['always_show']
+            tab_path = self.group_path / (tab_name+'.json')
+            self.tabs[tab_name] = PostitTab(tab_label, always_show, tab_path, self)
+
+    def collect_icon_color(self):
+        icon_path = self.group_path / 'icons'
+        with open(icon_path / 'icons_info.json') as fp:
+            icons_info = json.load(fp)
+        #print(icons_info)
+
+        for i in icons_info:
+            icon_filename = i['icon_filename']
+            fill_color = i['fill_color']
+            font_color = i['font_color']
+
+            im = Image.open(icon_path / icon_filename)       
+            self.icon_images.append(ImageTk.PhotoImage(im)) 
+            self.fill_colors.append(fill_color)
+            self.font_colors.append(font_color)       
+
+    def next_icon_color(self):
+        icon_image =  self.icon_images[self.circular_index]
+        fill_color = self.fill_colors[self.circular_index]
+        font_color = self.font_colors[self.circular_index]
+
+        self.circular_index += 1
+        if self.circular_index >= self.color_num:
+            self.circular_index = 0
+        return icon_image, fill_color, font_color
+
 
 class PostitTab:
-    """postit tab info 
-        attributes: name label tab_type fill_color 
-                   outline_color image frame
-    """
+    # color_data = [
+    #     {"basic_filename":'color0.png', 'fill_color':'#4c97ff', 
+    #             "pack_filename":'pack0.png', 'font_color':'white'},
+    #     {"basic_filename":'color1.png', 'fill_color':'#9966ff', 
+    #             "pack_filename":'pack1.png', 'font_color':'white'},    
+    #     {"basic_filename":'color2.png', 'fill_color':'#d65cd6', 
+    #             "pack_filename":'pack2.png', 'font_color':'white'},
+    #     {"basic_filename":'color3.png', 'fill_color':'#ffd500', 
+    #             "pack_filename":'pack3.png', 'font_color':'black'},
+    #     {"basic_filename":'color4.png', 'fill_color':'#ffab19',
+    #             "pack_filename":'pack4.png',  'font_color':'black'},
+    #     {"basic_filename":'color5.png', 'fill_color':'#4cbfe6', 
+    #             "pack_filename":'pack5.png', 'font_color':'black'},
+    #     {"basic_filename":'color6.png', 'fill_color':'#40bf4a', 
+    #             "pack_filename":'pack6.png', 'font_color':'black'},
+    #     {"basic_filename":'color7.png', 'fill_color':'#ff6680', 
+    #             "pack_filename":'pack7.png', 'font_color':'black'},
+    # ]
+    # color_num = len(color_data)
+    # color_circular_index = 0  
 
-    color_data = [
-        {"basic_filename":'color0.png', 'fill_color':'#4c97ff', 
-                "pack_filename":'pack0.png', 'font_color':'white'},
-        {"basic_filename":'color1.png', 'fill_color':'#9966ff', 
-                "pack_filename":'pack1.png', 'font_color':'white'},    
-        {"basic_filename":'color2.png', 'fill_color':'#d65cd6', 
-                "pack_filename":'pack2.png', 'font_color':'white'},
-        {"basic_filename":'color3.png', 'fill_color':'#ffd500', 
-                "pack_filename":'pack3.png', 'font_color':'black'},
-        {"basic_filename":'color4.png', 'fill_color':'#ffab19',
-                "pack_filename":'pack4.png',  'font_color':'black'},
-        {"basic_filename":'color5.png', 'fill_color':'#4cbfe6', 
-                "pack_filename":'pack5.png', 'font_color':'black'},
-        {"basic_filename":'color6.png', 'fill_color':'#40bf4a', 
-                "pack_filename":'pack6.png', 'font_color':'black'},
-        {"basic_filename":'color7.png', 'fill_color':'#ff6680', 
-                "pack_filename":'pack7.png', 'font_color':'black'},
-    ]
-    color_num = len(color_data)
-    color_circular_index = 0  
+    def __init__(self, tab_label, always_show, tab_path, tab_group):
+        self.tab_label = tab_label
+        self.always_show = always_show
+        self.tab_path = tab_path
+        self.tab_group = tab_group
 
-    def __init__(self, name, label, tab_type):
-        self.name = name
-        self.label = label
-        self.tab_type = tab_type
-        
-        #pick a color
-        color = self.pick_color()
-        self.fill_color = color['fill_color']
-        self.font_color = color['font_color']
-        #load image
-        if tab_type == 'more':
-            abs_image_path =Path(__file__).parent/'images'/ 'more.png'
-        else:
-            abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
-        im = Image.open(abs_image_path)       
-        self.image = ImageTk.PhotoImage(im) 
+        self.icon_image, self.fill_color, self.font_color =  tab_group.next_icon_color()
+
+        self.loaded = False
+
+        # prepare empty frame
+        py_notebook = common.postit_view.py_notebook
+        self.tab_frame = CustomVerticallyScrollableFrame(py_notebook)
+        py_notebook.insert('end',self.tab_frame,
+                          text = self.tab_label,
+                          image = self.icon_image,
+                          compound="top",
+                        )
+
+        # #pick a color
+        # color = self.pick_color()
+        # self.fill_color = color['fill_color']
+        # self.font_color = color['font_color']
+
+        # #load image
+        # if tab_type == 'more':
+        #     abs_image_path =Path(__file__).parent/'images'/ 'more.png'
+        # else:
+        #     abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
+        # im = Image.open(abs_image_path)       
+        # self.image = ImageTk.PhotoImage(im) 
 
     def popup_init(self, example_vars):
         self.example_vars = example_vars
@@ -119,13 +189,13 @@ class PostitTab:
         #if self.tool_name != 'variable_get':
         self.popup_menu.tk_popup(event.x_root, event.y_root)
 
-    @classmethod
-    def pick_color(cls):
-        c = cls.color_data[cls.color_circular_index]
-        cls.color_circular_index += 1
-        if cls.color_circular_index >= cls.color_num:
-            cls.color_circular_index = 0
-        return c
+    # @classmethod
+    # def pick_color(cls):
+    #     c = cls.color_data[cls.color_circular_index]
+    #     cls.color_circular_index += 1
+    #     if cls.color_circular_index >= cls.color_num:
+    #         cls.color_circular_index = 0
+    #     return c
 
 
 
@@ -139,11 +209,14 @@ class PythonPostitView(ttk.Frame):
         self.last_focus = None
         self.symbol_row_index = 0
         common.postit_view = self
+        self.py_tab_groups = OrderedDict()
+
+        self.tab_groups_init()
+
         
-        
-        self.add_tab_json('data')
-        self.add_tab_json('flow')
-        self.add_tab_json('io')
+        #self.add_tab_json('data')
+        #self.add_tab_json('flow')
+        #self.add_tab_json('io')
 
         # #add notebook tabs
         # self.add_tab('common', ' 基本 ','basic')
@@ -172,8 +245,21 @@ class PythonPostitView(ttk.Frame):
         # self.speech_tab_init()
 
         #notebook event
-        self.notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
-        self.notebook.bind('<Button-1>',self.on_tab_click)
+        self.py_notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
+        self.py_notebook.bind('<Button-1>',self.on_tab_click)
+
+    def tab_groups_init(self):
+        
+        with open(PY_TAB_PATH / 'groups_info.json') as fp:
+            groups_info = json.load(fp)
+        #print(info_data)
+
+        for g in groups_info:
+            group_name = g['group_name']
+            group_label = g['group_label']
+            group_path =  PY_TAB_PATH / g['group_name']
+            self.py_tab_groups[group_name] = TabGroup(group_label, group_path)
+
 
     def add_tab_json(self, name):
         path = Path(__file__).parent / 'tab_data' / 'builtin' / (name+'.json') 
@@ -4021,30 +4107,30 @@ class PythonPostitView(ttk.Frame):
 
     def notebook_init(self):
         
-        notebook_frame = ttk.Frame(self)
-        notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
+        py_notebook_frame = ttk.Frame(self)
+        py_notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
         #style = ttk.Style(self.interior)
         #style = ttk.Style(notebook_frame.interior)
-        style = ttk.Style(notebook_frame)
+        style = ttk.Style(py_notebook_frame)
         style.configure('lefttab.TNotebook', tabposition='wn')
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
         #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
-        self.notebook = ttk.Notebook(notebook_frame, style='lefttab.TNotebook')
-        self.notebook.pack(side='top',fill="both", expand="true")
+        self.py_notebook = ttk.Notebook(py_notebook_frame, style='lefttab.TNotebook')
+        self.py_notebook.pack(side='top',fill="both", expand="true")
 
         # notebook menu
         
-        self.tab_menu = tk.Menu(self.notebook, tearoff=0)
-        self.tab_menu.add_command(label='【便利貼】')
-        self.tab_menu.add_separator()
-        self.option = tk.BooleanVar()
-        self.option.set(True)
-        self.tab_menu.add_checkbutton(label="選項", onvalue=1, offvalue=0, 
-                variable=self.option,
-                command=lambda:self.remove_tab('flow'),
-                )
-
-        self.notebook.bind("<Button-3>", self.tab_menu_popup)
+        #self.tab_menu = tk.Menu(self.notebook, tearoff=0)
+        #self.tab_menu.add_command(label='【便利貼】')
+        #self.tab_menu.add_separator()
+        #self.option = tk.BooleanVar()
+        #self.option.set(True)
+        #self.tab_menu.add_checkbutton(label="選項", onvalue=1, offvalue=0, 
+        #        variable=self.option,
+        #        command=lambda:self.remove_tab('flow'),
+        #        )
+        #
+        #self.notebook.bind("<Button-3>", self.tab_menu_popup)
 
     def tab_menu_popup(self, event):
         #if self.tool_name != 'variable_get':
@@ -4290,8 +4376,8 @@ def load_plugin():
         show_dialog(AboutDialog(get_workbench()))
 
 
-    get_workbench().add_command("test", "便利貼", '測試', try_menu)
-    get_workbench().add_command("test2", "便利貼", '測試2', try_menu)
+    #get_workbench().add_command("test", "便利貼", '測試', try_menu)
+    #get_workbench().add_command("test2", "便利貼", '測試2', try_menu)
 
 
     #for test
