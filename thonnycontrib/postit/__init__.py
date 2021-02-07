@@ -4147,26 +4147,18 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
 
-def try_add_tab():
-    pass
 
-    common.postit_view.add_tab('flow', ' 流程 ','basic')
-    
-    # editor = get_workbench().get_editor_notebook().get_current_editor()
-    # text_widget = editor.get_text_widget()
-  
-    # s = text_widget.get('1.0', 'end-1c')
-    # s = s.replace('\n', '¶\n')
-    # s = s.replace(' ', '·')
-    # text_widget.delete('1.0', 'end-1c')
-    # text_widget.insert('1.0', s)
-    # text_widget.config(state=tk.DISABLED)
 
-def try_remove_tab():
-    common.postit_view.remove_tab('flow')
+def try_set_option():
+    builtin_list = ['common', 'flow']
+    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
+    get_workbench().set_option('postit_tabs_view.builtin', ['a','b'])
 
-def try_menu():
-    print('here')
+def try_get_option():
+    builtin_list = ['common', 'flow']
+    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
+    r = get_workbench().get_option('postit_tabs_view.builtin')
+    print(type(r), r)
 
 class AboutDialog(CommonDialog):
     def __init__(self, master):
@@ -4303,19 +4295,19 @@ def load_plugin():
 
 
     #for test
-    get_workbench().add_command(command_id="try_add_tab",
-                                    menu_name="tools",
-                                    command_label="測試thonny",
-                                    handler=try_add_tab,
-                                    default_sequence="<F2>"
-                                    )
+    # get_workbench().add_command(command_id="try_set_option",
+    #                                 menu_name="tools",
+    #                                 command_label="測試thonny",
+    #                                 handler=try_set_option,
+    #                                 default_sequence="<F2>"
+    #                                 )
 
-    get_workbench().add_command(command_id="try_remove_tab",
-                                    menu_name="tools",
-                                    command_label="測試thonny",
-                                    handler=try_remove_tab,
-                                    default_sequence="<F3>"
-                                    )
+    # get_workbench().add_command(command_id="try_get_option",
+    #                                 menu_name="tools",
+    #                                 command_label="測試thonny",
+    #                                 handler=try_get_option,
+    #                                 default_sequence="<F4>"
+    #                                 )
 
 
 
