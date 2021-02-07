@@ -1,0 +1,44 @@
+[
+    
+    
+    {
+        "icon_filename" : "eventloop_icon4.png",
+        "fill_color" : "#ffab19",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "eventloop_icon5.png",
+        "fill_color" : "#4cbfe6",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "eventloop_icon6.png",
+        "fill_color" : "#40bf4a",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "eventloop_icon7.png",
+        "fill_color" : "#ff6680",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "eventloop_icon0.png",
+        "fill_color" : "#4c97ff",
+        "font_color" : "white"
+    },
+    {
+        "icon_filename" : "eventloop_icon1.png",
+        "fill_color" : "#9966ff",
+        "font_color" : "white"        
+    },
+    {
+        "icon_filename" : "eventloop_icon2.png",
+        "fill_color" : "#d65cd6",
+        "font_color" : "white"        
+    },
+    {
+        "icon_filename" : "eventloop_icon3.png",
+        "fill_color" : "#ffd500",
+        "font_color" : "black"        
+    }
+]

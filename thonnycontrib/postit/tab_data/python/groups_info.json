@@ -1,0 +1,15 @@
+[
+    {
+        "group_name" : "builtin",
+        "group_label" : "python內建功能"
+    },
+    {
+        "group_name" : "eventloop",
+        "group_label" : "事件迴圈"
+    },
+    {
+        "group_name" : "library3rd",
+        "group_label" : "其他模組"
+    }
+
+]

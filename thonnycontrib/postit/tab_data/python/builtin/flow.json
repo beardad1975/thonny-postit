@@ -1,0 +1,35 @@
+[
+    {
+        "postit_type" : "ttk_label",
+        "text" : " >> 條件分支"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "如果",
+                "code" : "if 1 > 0: \npass",
+                "code_display" : "if 1 > 0:\n    pass",
+                "note" : "如果 條件:\n        成立區塊",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "如果 不然(否則)",
+                "code" : "if 1 > 0:\npass\nelse:\npass",
+                "code_display" : "if 1 > 0:\n    pass\nelse:\n    pass",
+                "note" : "如果 條件:\n        成立區塊\n不然(否則):\n        不成立區塊",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "不然如果",
+                "code" : "if 1 > 0:\npass\nelif 0 < 1:\npass\nelse:\npass",
+                "code_display" : "if 1 > 0:\n    pass\nelif 0 < 1:\n    pass\nelse:\n    pass",
+                "note" : "如果 條件:\n        成立區塊\n不然如果 條件:\n        成立區塊\n不然(否則):\n        都不成立區塊",
+                "long_note" : false
+            }        
+        ]
+    }
+]
+
+

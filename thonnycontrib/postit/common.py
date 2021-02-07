@@ -9,8 +9,13 @@ from collections import Counter, namedtuple
 
 
 
-# dict{str:dict}
-postit_tabs = {}
+# 
+PY_TAB_PATH = Path(__file__).parent / 'tab_data' / 'python'
+
+
+
+
+#postit_tabs = {}
 
 postit_view = None
 

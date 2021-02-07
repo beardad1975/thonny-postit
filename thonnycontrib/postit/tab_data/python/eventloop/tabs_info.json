@@ -1,0 +1,17 @@
+[
+    {
+        "tab_name" : "turtle",
+        "tab_label" : " 海龜 ",
+        "always_show" : false
+    },
+    {
+        "tab_name" : "physics",
+        "tab_label" : " 物理 ",
+        "always_show" : true        
+    },
+    {
+        "tab_name" : "threed",
+        "tab_label" : " 立體 ",
+        "always_show" : true        
+    }
+]
