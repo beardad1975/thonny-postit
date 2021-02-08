@@ -1,0 +1,22 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "from 海龜模組 import *",
+                "code" : "from 海龜模組 import *",
+                "code_display" : "from 海龜模組 import *",
+                "note" : "從模組匯入全部",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "from turtle4t import *",
+                "code" : "from turtle4t import *",
+                "code_display" : "from turtle4t import *",
+                "note" : "從模組匯入全部",
+                "long_note" : true
+            }
+        ]
+    }
+]

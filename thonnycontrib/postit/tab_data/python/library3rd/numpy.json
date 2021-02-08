@@ -1,0 +1,15 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "匯入numpy模組",
+                "code" : "import numpy as 多維陣列",
+                "code_display" : "import numpy as 多維陣列",
+                "note" : "匯入numpy模組",
+                "long_note" : true
+            }
+        ]
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "從電腦視覺模組匯入全部",
+                "code" : "from 電腦視覺模組 import *",
+                "code_display" : "from 電腦視覺模組 import *",
+                "note" : "從模組匯入全部",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "從cv4t匯入全部",
+                "code" : "from cv4t import *",
+                "code_display" : "from cv4t import *",
+                "note" : "從cv4t匯入全部",
+                "long_note" : true
+            }
+        ]
+    }
+]

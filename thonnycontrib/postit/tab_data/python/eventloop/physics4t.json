@@ -1,0 +1,15 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "from 物理模組 import *",
+                "code" : "from 物理模組 import *",
+                "code_display" : "from 物理模組 import *",
+                "note" : "從物理模組匯入全部",
+                "long_note" : true
+            }
+        ]
+    }
+]

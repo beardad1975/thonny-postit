@@ -1,0 +1,15 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "從語音模組匯入全部",
+                "code" : "from 語音模組 import *",
+                "code_display" : "from 語音模組 import *",
+                "note" : "從語音模組匯入全部",
+                "long_note" : true
+            }
+        ]
+    }
+]

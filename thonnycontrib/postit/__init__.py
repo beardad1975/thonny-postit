@@ -72,9 +72,9 @@ class TabGroup:
         for t in tabs_info:
             tab_name = t['tab_name']
             tab_label = t['tab_label']
-            always_show = t['always_show']
+            always_show = t['always_visible']
             tab_path = self.group_path / (tab_name+'.json')
-            self.tabs[tab_name] = PostitTab(tab_label, always_show, tab_path, self)
+            self.tabs[tab_name] = Tab(tab_label, always_show, tab_path, self)
 
     def collect_icon_color(self):
         icon_path = self.group_path / 'icons'
@@ -103,28 +103,7 @@ class TabGroup:
         return icon_image, fill_color, font_color
 
 
-class PostitTab:
-    # color_data = [
-    #     {"basic_filename":'color0.png', 'fill_color':'#4c97ff', 
-    #             "pack_filename":'pack0.png', 'font_color':'white'},
-    #     {"basic_filename":'color1.png', 'fill_color':'#9966ff', 
-    #             "pack_filename":'pack1.png', 'font_color':'white'},    
-    #     {"basic_filename":'color2.png', 'fill_color':'#d65cd6', 
-    #             "pack_filename":'pack2.png', 'font_color':'white'},
-    #     {"basic_filename":'color3.png', 'fill_color':'#ffd500', 
-    #             "pack_filename":'pack3.png', 'font_color':'black'},
-    #     {"basic_filename":'color4.png', 'fill_color':'#ffab19',
-    #             "pack_filename":'pack4.png',  'font_color':'black'},
-    #     {"basic_filename":'color5.png', 'fill_color':'#4cbfe6', 
-    #             "pack_filename":'pack5.png', 'font_color':'black'},
-    #     {"basic_filename":'color6.png', 'fill_color':'#40bf4a', 
-    #             "pack_filename":'pack6.png', 'font_color':'black'},
-    #     {"basic_filename":'color7.png', 'fill_color':'#ff6680', 
-    #             "pack_filename":'pack7.png', 'font_color':'black'},
-    # ]
-    # color_num = len(color_data)
-    # color_circular_index = 0  
-
+class Tab:
     def __init__(self, tab_label, always_show, tab_path, tab_group):
         self.tab_label = tab_label
         self.always_show = always_show
@@ -134,15 +113,17 @@ class PostitTab:
         self.icon_image, self.fill_color, self.font_color =  tab_group.next_icon_color()
 
         self.loaded = False
+        self.visible = False
 
-        # prepare empty frame
-        py_notebook = common.postit_view.py_notebook
-        self.tab_frame = CustomVerticallyScrollableFrame(py_notebook)
-        py_notebook.insert('end',self.tab_frame,
+        # insert empty frame and hide
+        py4t_notebook = common.postit_view.py4t_notebook
+        self.tab_frame = CustomVerticallyScrollableFrame(py4t_notebook)
+        py4t_notebook.insert('end',self.tab_frame,
                           text = self.tab_label,
                           image = self.icon_image,
                           compound="top",
                         )
+        py4t_notebook.hide(self.tab_frame)
 
         # #pick a color
         # color = self.pick_color()
@@ -198,8 +179,20 @@ class PostitTab:
     #     return c
 
 
+class MoreTab:
+    def __init__(self):
+        im = Image.open(Path(__file__).parent/'images'/ 'more.png')       
+        self.icon_image = ImageTk.PhotoImage(im) 
 
-
+        # prepare  frame
+        py4t_notebook = common.postit_view.py4t_notebook
+        self.tab_frame = CustomVerticallyScrollableFrame(py4t_notebook)
+        py4t_notebook.insert('end',self.tab_frame,
+                          text = ' 　　 ',
+                          image = self.icon_image,
+                          compound=tk.CENTER,
+                          padding='0i',
+                        )
 
 class PythonPostitView(ttk.Frame):
     def __init__(self, master):
@@ -209,11 +202,18 @@ class PythonPostitView(ttk.Frame):
         self.last_focus = None
         self.symbol_row_index = 0
         common.postit_view = self
-        self.py_tab_groups = OrderedDict()
+        self.py4t_tab_groups = OrderedDict()
 
         self.tab_groups_init()
-
+        self.more_tab = MoreTab()
         
+        self.py4t_show_tab('builtin', 'data')
+        self.py4t_show_tab('builtin', 'flow')
+        self.py4t_show_tab('builtin', 'io')
+
+        self.py4t_notebook.select(0)
+
+
         #self.add_tab_json('data')
         #self.add_tab_json('flow')
         #self.add_tab_json('io')
@@ -245,11 +245,12 @@ class PythonPostitView(ttk.Frame):
         # self.speech_tab_init()
 
         #notebook event
-        self.py_notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
-        self.py_notebook.bind('<Button-1>',self.on_tab_click)
+        self.py4t_notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
+        self.py4t_notebook.bind('<Button-1>',self.on_tab_click)
 
     def tab_groups_init(self):
         
+        #python tab group
         with open(PY_TAB_PATH / 'groups_info.json') as fp:
             groups_info = json.load(fp)
         #print(info_data)
@@ -258,32 +259,40 @@ class PythonPostitView(ttk.Frame):
             group_name = g['group_name']
             group_label = g['group_label']
             group_path =  PY_TAB_PATH / g['group_name']
-            self.py_tab_groups[group_name] = TabGroup(group_label, group_path)
+            self.py4t_tab_groups[group_name] = TabGroup(group_label, group_path)
 
+    def py4t_show_tab(self, group_name, tab_name):
+        tab = self.py4t_tab_groups[group_name].tabs[tab_name]
+        if not tab.visible:
+            self.py4t_notebook.add(tab.tab_frame)
+            if not tab.loaded:
+                self.load_tab_json(group_name, tab_name)
+                tab.loaded = True
+            tab.visible = True
 
-    def add_tab_json(self, name):
-        path = Path(__file__).parent / 'tab_data' / 'builtin' / (name+'.json') 
-        with open(path) as fp:
-            tab_data = json.load(fp)
+    def load_tab_json(self, group_name, tab_name):
+        tab = self.py4t_tab_groups[group_name].tabs[tab_name]
+        with open(tab.tab_path) as fp:
+            postit_list = json.load(fp)
         
-        if name in common.postit_tabs:
-            print('tab', name, ' already exists')
-            return
+        # if name in common.postit_tabs:
+        #     print('tab', name, ' already exists')
+        #     return
 
-        tab = PostitTab(name, tab_data['label'], tab_data['type'])
-        common.postit_tabs[name] = tab
+        # tab = PostitTab(name, tab_data['label'], tab_data['type'])
+        # common.postit_tabs[name] = tab
 
-        tab.frame = CustomVerticallyScrollableFrame(self.notebook)
-        self.notebook.insert('end',tab.frame,
-                          text = tab.label,
-                          image = tab.image,
-                          compound="top",
-                        )
+        # tab.frame = CustomVerticallyScrollableFrame(self.notebook)
+        # self.notebook.insert('end',tab.frame,
+        #                   text = tab.label,
+        #                   image = tab.image,
+        #                   compound="top",
+        #                 )
 
         # parse json data
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        label_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
 
-        for p in tab_data["postits"]:
+        for p in postit_list:
             if p['postit_type'] == 'dropdown_postit':
                 temp_code_list = []
                 for i in p["items"]:
@@ -294,22 +303,22 @@ class PythonPostitView(ttk.Frame):
                         note=i['note'],
                         long_note=i['long_note'] ))
 
-                DropdownPostit(tab_name=name, code_list = temp_code_list,
+                DropdownPostit(tab=tab, code_list = temp_code_list,
                     postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
 
             elif p['postit_type'] == 'ttk_label':
-                ttk.Label(common.postit_tabs[name].frame.interior, 
+                ttk.Label(tab.tab_frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text=p['text'],
-                    font=f,    
+                    font=label_font,    
                     compound=tk.LEFT, 
                 ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
             elif p['postit_type'] == 'ttk_separator':
-                ttk.Separator(common.postit_tabs[name].frame.interior, orient=tk.HORIZONTAL
+                ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL
                     ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
 
-        return tab
+        
 
     def common_tab_init(self):
         ### common postit
@@ -4107,16 +4116,16 @@ class PythonPostitView(ttk.Frame):
 
     def notebook_init(self):
         
-        py_notebook_frame = ttk.Frame(self)
-        py_notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
+        py4t_notebook_frame = ttk.Frame(self)
+        py4t_notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
         #style = ttk.Style(self.interior)
         #style = ttk.Style(notebook_frame.interior)
-        style = ttk.Style(py_notebook_frame)
+        style = ttk.Style(py4t_notebook_frame)
         style.configure('lefttab.TNotebook', tabposition='wn')
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
         #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
-        self.py_notebook = ttk.Notebook(py_notebook_frame, style='lefttab.TNotebook')
-        self.py_notebook.pack(side='top',fill="both", expand="true")
+        self.py4t_notebook = ttk.Notebook(py4t_notebook_frame, style='lefttab.TNotebook')
+        self.py4t_notebook.pack(side='top',fill="both", expand="true")
 
         # notebook menu
         
@@ -4138,38 +4147,38 @@ class PythonPostitView(ttk.Frame):
             self.tab_menu.tk_popup(event.x_root, event.y_root)
 
 
-    def add_tab(self, name, label, tab_type):
-        if name in common.postit_tabs:
-            print('tab', name, ' already exists')
-            return
+    # def add_tab(self, name, label, tab_type):
+    #     if name in common.postit_tabs:
+    #         print('tab', name, ' already exists')
+    #         return
 
-        tab = PostitTab(name, label, tab_type)
-        common.postit_tabs[name] = tab
+    #     tab = PostitTab(name, label, tab_type)
+    #     common.postit_tabs[name] = tab
 
-        #tab.frame = ttk.Frame(self.notebook)        
-        tab.frame = CustomVerticallyScrollableFrame(self.notebook)
-        self.notebook.insert('end',tab.frame,
-                          text = tab.label,
-                          image = tab.image,
-                          compound="top",
-                        )
-        # self.notebook.add(tab.frame,
-        #                   text = tab.label,
-        #                   image = tab.image,
-        #                   compound="top",
-        #                 )
+    #     #tab.frame = ttk.Frame(self.notebook)        
+    #     tab.frame = CustomVerticallyScrollableFrame(self.notebook)
+    #     self.notebook.insert('end',tab.frame,
+    #                       text = tab.label,
+    #                       image = tab.image,
+    #                       compound="top",
+    #                     )
+    #     # self.notebook.add(tab.frame,
+    #     #                   text = tab.label,
+    #     #                   image = tab.image,
+    #     #                   compound="top",
+    #     #                 )
 
-        #tab.index = self.notebook.index('end')
+    #     #tab.index = self.notebook.index('end')
         
-        return tab
+    #     return tab
 
-    def remove_tab(self, name):
-        if name in common.postit_tabs:
-            self.notebook.forget(common.postit_tabs[name].frame)
-            del common.postit_tabs[name]
-            print('tab ', name, ' deleted')
-        else:
-            print('no tab ', name)
+    # def remove_tab(self, name):
+    #     if name in common.postit_tabs:
+    #         self.notebook.forget(common.postit_tabs[name].frame)
+    #         del common.postit_tabs[name]
+    #         print('tab ', name, ' deleted')
+    #     else:
+    #         print('no tab ', name)
 
     def on_tab_click(self, event):
         """record focus widget"""
@@ -4233,7 +4242,14 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
 
-
+def try_add_tab():
+    common.postit_view.py4t_show_tab('library3rd', 'auto')
+    common.postit_view.py4t_show_tab('library3rd', 'cv4t')
+    common.postit_view.py4t_show_tab('library3rd', 'numpy')
+    common.postit_view.py4t_show_tab('library3rd', 'speech4t')
+    common.postit_view.py4t_show_tab('eventloop', 'threed4t')
+    common.postit_view.py4t_show_tab('eventloop', 'turtle4t')
+    common.postit_view.py4t_show_tab('eventloop', 'physics4t')
 
 def try_set_option():
     builtin_list = ['common', 'flow']
@@ -4381,12 +4397,12 @@ def load_plugin():
 
 
     #for test
-    # get_workbench().add_command(command_id="try_set_option",
-    #                                 menu_name="tools",
-    #                                 command_label="測試thonny",
-    #                                 handler=try_set_option,
-    #                                 default_sequence="<F2>"
-    #                                 )
+    get_workbench().add_command(command_id="try_add_tab",
+                                    menu_name="tools",
+                                    command_label="測試thonny",
+                                    handler=try_add_tab,
+                                    default_sequence="<F2>"
+                                    )
 
     # get_workbench().add_command(command_id="try_get_option",
     #                                 menu_name="tools",

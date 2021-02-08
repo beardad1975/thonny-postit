@@ -2,11 +2,16 @@
     {
         "tab_name" : "data",
         "tab_label" : " 資料 ",
-        "always_show" : true
+        "always_visible" : true
     },
     {
         "tab_name" : "flow",
         "tab_label" : " 流程 ",
-        "always_show" : true        
+        "always_visible" : true        
+    },
+    {
+        "tab_name" : "io",
+        "tab_label" : " 輸入 \n 輸出 ",
+        "always_visible" : false        
     }
 ]

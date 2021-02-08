@@ -2,7 +2,22 @@
     {
         "tab_name" : "auto",
         "tab_label" : " 自動 ",
-        "always_show" : false
+        "always_visible" : false
+    },
+    {
+        "tab_name" : "numpy",
+        "tab_label" : " 多維 \n 陣列 ",
+        "always_visible" : false        
+    },
+    {
+        "tab_name" : "cv4t",
+        "tab_label" : " 視覺 ",
+        "always_visible" : false        
+    },
+    {
+        "tab_name" : "speech4t",
+        "tab_label" : " 語音 ",
+        "always_visible" : false        
     }
 
 ]

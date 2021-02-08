@@ -1,0 +1,22 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "from 模擬3D模組 import *",
+                "code" : "from 模擬3D模組 import *",
+                "code_display" : "from 模擬3D模組 import *",
+                "note" : "從模擬3D模組匯入全部",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "from threed4t import *",
+                "code" : "from threed4t import *",
+                "code_display" : "from threed4t import *",
+                "note" : "從模擬3D模組匯入全部",
+                "long_note" : true
+            }
+        ]
+    }
+]

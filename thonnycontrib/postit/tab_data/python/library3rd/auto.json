@@ -1,0 +1,15 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "匯入pyautogui模組",
+                "code" : "import pyautogui as 自動",
+                "code_display" : "import pyautogui as 自動",
+                "note" : "匯入自動模組",
+                "long_note" : true
+            }
+        ]
+    }
+]

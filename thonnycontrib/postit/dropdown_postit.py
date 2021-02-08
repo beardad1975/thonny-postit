@@ -14,10 +14,10 @@ class CodeListEmpty(Exception): pass
 
 class DropdownWidget(ttk.Frame):
 
-    def widget_init(self, tab_name):
+    def widget_init(self, tab):
         # store tab
-        self.tab_name = tab_name
-        self.tab = common.postit_tabs[tab_name]
+        
+        self.tab = tab
         
         
         # image
@@ -25,7 +25,7 @@ class DropdownWidget(ttk.Frame):
 
         # frame init
         #ttk.Frame.__init__(self, self.tab.frame)
-        ttk.Frame.__init__(self, self.tab.frame.interior)
+        ttk.Frame.__init__(self, self.tab.tab_frame.interior)
 
         # main and bottom sub-frame
         self.main_frame = ttk.Frame(self)
@@ -248,7 +248,7 @@ class DropdownPostit( DropdownWidget,
                       DropdownPostMixin, BasePost, 
                       DropdownPopup):
     """   """
-    def __init__(self,  tab_name, code_list, postfix_enter=False):
+    def __init__(self,  tab, code_list, postfix_enter=False):
         # store code name tuple list
 
         if not  code_list:
@@ -256,7 +256,7 @@ class DropdownPostit( DropdownWidget,
 
         self.code_list = code_list
 
-        self.widget_init(tab_name)
+        self.widget_init(tab)
         # use first item as default code
         _, code, code_display, note, long_note = self.code_list[0]
         self.code_init(code, code_display, note, postfix_enter, long_note)
