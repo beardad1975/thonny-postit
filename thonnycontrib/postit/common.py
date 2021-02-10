@@ -10,7 +10,7 @@ from collections import Counter, namedtuple
 
 
 # 
-PY_TAB_PATH = Path(__file__).parent / 'tab_data' / 'python'
+TAB_DATA_PATH = Path(__file__).parent / 'tab_data'
 
 
 

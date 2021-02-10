@@ -1,0 +1,13 @@
+[
+    {
+        "mode_name" : "py4t",
+        "mode_label" : "python學習模式",
+        "customizable" : true
+    },
+    {
+        "mode_name" : "bit",
+        "mode_label" : "microbit模式",
+        "customizable" : false
+    }
+
+]

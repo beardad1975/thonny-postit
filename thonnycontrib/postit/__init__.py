@@ -20,7 +20,7 @@ from thonny.common import ToplevelCommand
 from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
-from .common import ( CodeNTuple, common_images, PY_TAB_PATH
+from .common import ( CodeNTuple, common_images, TAB_DATA_PATH
                      )
 from . import common
 
@@ -43,10 +43,61 @@ from .tools.symbol_tool_postit import SymbolToolPostit
 #for test
 from tkinter.messagebox import showinfo
 
+#  tab data level
+#  Mode(contain notebook) ----> TabGoup ----> Tab 
+#       
+
+class Mode:
+    def __init__(self, mode_name, mode_label, customizable):
+        self.mode_name = mode_name
+        self.mode_label = mode_label
+        self.customizable = customizable
+        self.groups = OrderedDict()
+
+
+
+        #collect  tab group
+        #print(TAB_DATA_PATH)
+        #print(mode_name)
+        with open(TAB_DATA_PATH / mode_name / 'groups_info.json') as fp:
+            groups_info = json.load(fp)
+        #print(info_data)
+
+        for g in groups_info:
+            group_name = g['group_name']
+            group_label = g['group_label']
+            group_path =  TAB_DATA_PATH / mode_name / g['group_name']
+            self.groups[group_name] = TabGroup(group_name, mode_name, group_label, group_path)
+
+    def gui_init(self):
+        # make notebook
+        self.notebook_frame = ttk.Frame(common.postit_view)
+        self.notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
+        #style = ttk.Style(self.interior)
+        #style = ttk.Style(notebook_frame.interior)
+        style = ttk.Style(self.notebook_frame)
+        style.configure('lefttab.TNotebook', tabposition='wn')
+        #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
+        #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
+        self.notebook = ttk.Notebook(self.notebook_frame, style='lefttab.TNotebook')
+        self.notebook.pack(side='top',fill="both", expand="true")
+
+        #notebook event (keep cursor intact in editor)
+        self.notebook.bind('<<NotebookTabChanged>>',common.postit_view.on_tab_changed)
+        self.notebook.bind('<Button-1>',common.postit_view.on_tab_click)
+
+    def add_more_tab(self):
+        if self.customizable:
+            self.more_tab = MoreTab(self.notebook)
+        else:
+            self.more_tab = None
+
 class TabGroup:
-    def __init__(self, label, path):
-        self.group_label = label
-        self.group_path = path
+    def __init__(self, group_name, mode_name, group_label, group_path):
+        self.group_name = group_name
+        self.mode_name = mode_name
+        self.group_label = group_label
+        self.group_path = group_path
 
         # 3 lists are the same size, all use circular_index
         self.fill_colors = []
@@ -61,10 +112,7 @@ class TabGroup:
         self.collect_icon_color()
         self.color_num = len(self.fill_colors)
 
-        self.collect_tabs_info()
-        
-
-    def collect_tabs_info(self):
+        # collect tabs info
         with open(self.group_path / 'tabs_info.json') as fp:
             tabs_info = json.load(fp)
         #print(tabs_info)
@@ -74,7 +122,11 @@ class TabGroup:
             tab_label = t['tab_label']
             always_show = t['always_visible']
             tab_path = self.group_path / (tab_name+'.json')
-            self.tabs[tab_name] = Tab(tab_label, always_show, tab_path, self)
+            self.tabs[tab_name] = Tab(tab_name, group_name, mode_name, tab_label, always_show, tab_path, self)
+
+    def gui_init(self):
+        # dummy
+        pass    
 
     def collect_icon_color(self):
         icon_path = self.group_path / 'icons'
@@ -104,26 +156,18 @@ class TabGroup:
 
 
 class Tab:
-    def __init__(self, tab_label, always_show, tab_path, tab_group):
+    def __init__(self, tab_name, group_name, mode_name, tab_label, always_show, tab_path, tab_group):
+        self.tab_name = tab_name
+        self.group_name = group_name
+        self.mode_name = mode_name
         self.tab_label = tab_label
         self.always_show = always_show
         self.tab_path = tab_path
         self.tab_group = tab_group
 
-        self.icon_image, self.fill_color, self.font_color =  tab_group.next_icon_color()
+        #print('mode name:', mode_name, 'group name:', group_name)
 
-        self.loaded = False
-        self.visible = False
 
-        # insert empty frame and hide
-        py4t_notebook = common.postit_view.py4t_notebook
-        self.tab_frame = CustomVerticallyScrollableFrame(py4t_notebook)
-        py4t_notebook.insert('end',self.tab_frame,
-                          text = self.tab_label,
-                          image = self.icon_image,
-                          compound="top",
-                        )
-        py4t_notebook.hide(self.tab_frame)
 
         # #pick a color
         # color = self.pick_color()
@@ -137,6 +181,23 @@ class Tab:
         #     abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
         # im = Image.open(abs_image_path)       
         # self.image = ImageTk.PhotoImage(im) 
+
+    def gui_init(self):
+        mode = common.postit_view.all_modes[self.mode_name]
+        group = mode.groups[self.group_name]
+        self.icon_image, self.fill_color, self.font_color =  group.next_icon_color()
+        self.loaded = False
+        self.visible = False
+
+        # insert empty frame and hide
+        
+        self.tab_frame = CustomVerticallyScrollableFrame(mode.notebook_frame)
+        mode.notebook.insert('end',self.tab_frame,
+                          text = self.tab_label,
+                          image = self.icon_image,
+                          compound="top",
+                        )
+        mode.notebook.hide(self.tab_frame)
 
     def popup_init(self, example_vars):
         self.example_vars = example_vars
@@ -180,14 +241,14 @@ class Tab:
 
 
 class MoreTab:
-    def __init__(self):
-        im = Image.open(Path(__file__).parent/'images'/ 'more.png')       
+    def __init__(self, notebook):
+        im = Image.open(Path(__file__).parent / 'images' / 'more.png')       
         self.icon_image = ImageTk.PhotoImage(im) 
 
         # prepare  frame
-        py4t_notebook = common.postit_view.py4t_notebook
-        self.tab_frame = CustomVerticallyScrollableFrame(py4t_notebook)
-        py4t_notebook.insert('end',self.tab_frame,
+        
+        self.tab_frame = CustomVerticallyScrollableFrame(notebook)
+        notebook.insert('end',self.tab_frame,
                           text = ' 　　 ',
                           image = self.icon_image,
                           compound=tk.CENTER,
@@ -196,22 +257,29 @@ class MoreTab:
 
 class PythonPostitView(ttk.Frame):
     def __init__(self, master):
-        super().__init__(master) 
-        self.toolbar_init()
-        self.notebook_init()
+        super().__init__(master)
+
+        common.postit_view = self 
         self.last_focus = None
         self.symbol_row_index = 0
-        common.postit_view = self
-        self.py4t_tab_groups = OrderedDict()
-
-        self.tab_groups_init()
-        self.more_tab = MoreTab()
         
-        self.py4t_show_tab('builtin', 'data')
-        self.py4t_show_tab('builtin', 'flow')
-        self.py4t_show_tab('builtin', 'io')
+        self.toolbar_init()
+        
+        self.current_mode = 'py4t'
+        # data structure of all modes, groups and tabs
+        self.all_modes = OrderedDict()
+        self.all_modes_init()
 
-        self.py4t_notebook.select(0)
+        #self.tab_groups_init()
+        
+        
+        self.show_tab('py4t','builtin', 'data')
+        self.show_tab('py4t','builtin', 'flow')
+        self.show_tab('py4t','eventloop', 'threed4t')
+        self.show_tab('bit','microbit', 'main')
+        #self.py4t_show_tab('builtin', 'io')
+
+        #self.py4t_notebook.select(0)
 
 
         #self.add_tab_json('data')
@@ -244,34 +312,73 @@ class PythonPostitView(ttk.Frame):
         # self.cv_tab_init()
         # self.speech_tab_init()
 
-        #notebook event
-        self.py4t_notebook.bind('<<NotebookTabChanged>>',self.on_tab_changed)
-        self.py4t_notebook.bind('<Button-1>',self.on_tab_click)
 
-    def tab_groups_init(self):
+
+    def all_modes_init(self):        
+
+        # collect modes data , one notebook per mode
+        with open(TAB_DATA_PATH / 'modes_info.json') as fp:
+            modes_info = json.load(fp) 
+        #print('modes info:' , modes_info)
+
+        # collect data first
+        for m in modes_info:
+            mode_name = m['mode_name']
+            mode_label =  m['mode_label']
+            customizable = m['customizable'] 
+            self.all_modes[mode_name] = Mode(mode_name, mode_label, customizable)    
+
+        # gui init second
+        for mode in self.all_modes.values():
+            mode.gui_init()
+            for group in mode.groups.values():
+                group.gui_init()
+                for tab in group.tabs.values():
+                    tab.gui_init()
+            mode.add_more_tab()
+
+
+
+        # notebook menu
         
-        #python tab group
-        with open(PY_TAB_PATH / 'groups_info.json') as fp:
-            groups_info = json.load(fp)
-        #print(info_data)
+        #self.tab_menu = tk.Menu(self.notebook, tearoff=0)
+        #self.tab_menu.add_command(label='【便利貼】')
+        #self.tab_menu.add_separator()
+        #self.option = tk.BooleanVar()
+        #self.option.set(True)
+        #self.tab_menu.add_checkbutton(label="選項", onvalue=1, offvalue=0, 
+        #        variable=self.option,
+        #        command=lambda:self.remove_tab('flow'),
+        #        )
+        #
+        #self.notebook.bind("<Button-3>", self.tab_menu_popup)
 
-        for g in groups_info:
-            group_name = g['group_name']
-            group_label = g['group_label']
-            group_path =  PY_TAB_PATH / g['group_name']
-            self.py4t_tab_groups[group_name] = TabGroup(group_label, group_path)
+    # def tab_groups_init(self):
+        
+    #     #python tab group
+    #     with open(PY_TAB_PATH / 'groups_info.json') as fp:
+    #         groups_info = json.load(fp)
+    #     #print(info_data)
 
-    def py4t_show_tab(self, group_name, tab_name):
-        tab = self.py4t_tab_groups[group_name].tabs[tab_name]
+    #     for g in groups_info:
+    #         group_name = g['group_name']
+    #         group_label = g['group_label']
+    #         group_path =  PY_TAB_PATH / g['group_name']
+    #         self.py4t_tab_groups[group_name] = TabGroup(group_label, group_path)
+
+    def show_tab(self, mode_name, group_name, tab_name):
+        mode = self.all_modes[mode_name]
+        tab = mode.groups[group_name].tabs[tab_name]
         if not tab.visible:
-            self.py4t_notebook.add(tab.tab_frame)
+            mode.notebook.add(tab.tab_frame)
             if not tab.loaded:
-                self.load_tab_json(group_name, tab_name)
+                self.load_tab_json(mode_name, group_name, tab_name)
                 tab.loaded = True
             tab.visible = True
 
-    def load_tab_json(self, group_name, tab_name):
-        tab = self.py4t_tab_groups[group_name].tabs[tab_name]
+    def load_tab_json(self, mode_name, group_name, tab_name):
+        mode = self.all_modes[mode_name]
+        tab = mode.groups[group_name].tabs[tab_name]
         with open(tab.tab_path) as fp:
             postit_list = json.load(fp)
         
@@ -4114,32 +4221,7 @@ class PythonPostitView(ttk.Frame):
 
 
 
-    def notebook_init(self):
-        
-        py4t_notebook_frame = ttk.Frame(self)
-        py4t_notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
-        #style = ttk.Style(self.interior)
-        #style = ttk.Style(notebook_frame.interior)
-        style = ttk.Style(py4t_notebook_frame)
-        style.configure('lefttab.TNotebook', tabposition='wn')
-        #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
-        #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
-        self.py4t_notebook = ttk.Notebook(py4t_notebook_frame, style='lefttab.TNotebook')
-        self.py4t_notebook.pack(side='top',fill="both", expand="true")
 
-        # notebook menu
-        
-        #self.tab_menu = tk.Menu(self.notebook, tearoff=0)
-        #self.tab_menu.add_command(label='【便利貼】')
-        #self.tab_menu.add_separator()
-        #self.option = tk.BooleanVar()
-        #self.option.set(True)
-        #self.tab_menu.add_checkbutton(label="選項", onvalue=1, offvalue=0, 
-        #        variable=self.option,
-        #        command=lambda:self.remove_tab('flow'),
-        #        )
-        #
-        #self.notebook.bind("<Button-3>", self.tab_menu_popup)
 
     def tab_menu_popup(self, event):
         #if self.tool_name != 'variable_get':
@@ -4241,6 +4323,8 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
             #print(str(event.widget))
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
+def try_hide_tab():
+    common.postit_view.all_modes['bit'].notebook_frame.pack_forget()
 
 def try_add_tab():
     common.postit_view.py4t_show_tab('library3rd', 'auto')
@@ -4382,7 +4466,7 @@ def get_version():
 def load_plugin():
     """postit plugin start point"""
 
-    get_workbench().add_view(PythonPostitView, 'Python便利貼', 'nw')
+    get_workbench().add_view(PythonPostitView, '便利貼', 'nw')
 
     get_workbench().add_command("aboutPy4t", "help", '關於Py4t', get_version, group=62)
 
@@ -4397,10 +4481,10 @@ def load_plugin():
 
 
     #for test
-    get_workbench().add_command(command_id="try_add_tab",
+    get_workbench().add_command(command_id="try_hide_tab",
                                     menu_name="tools",
                                     command_label="測試thonny",
-                                    handler=try_add_tab,
+                                    handler=try_hide_tab,
                                     default_sequence="<F2>"
                                     )
 
