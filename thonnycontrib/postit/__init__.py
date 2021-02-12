@@ -48,10 +48,10 @@ from tkinter.messagebox import showinfo
 #       
 
 class Mode:
-    def __init__(self, mode_name, mode_label, customizable):
+    def __init__(self, mode_name, mode_label, has_more_tab):
         self.mode_name = mode_name
         self.mode_label = mode_label
-        self.customizable = customizable
+        self.has_more_tab = has_more_tab
         self.groups = OrderedDict()
 
 
@@ -79,16 +79,16 @@ class Mode:
         style.configure('lefttab.TNotebook', tabposition='wn')
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
         #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
-        self.notebook = ttk.Notebook(self.notebook_frame, style='lefttab.TNotebook')
-        self.notebook.pack(side='top',fill="both", expand="true")
+        self.tab_notebook = ttk.Notebook(self.notebook_frame, style='lefttab.TNotebook')
+        self.tab_notebook.pack(side='top',fill="both", expand="true")
 
         #notebook event (keep cursor intact in editor)
-        self.notebook.bind('<<NotebookTabChanged>>',common.postit_view.on_tab_changed)
-        self.notebook.bind('<Button-1>',common.postit_view.on_tab_click)
+        self.tab_notebook.bind('<<NotebookTabChanged>>',common.postit_view.on_tab_changed)
+        self.tab_notebook.bind('<Button-1>',common.postit_view.on_tab_click)
 
     def add_more_tab(self):
-        if self.customizable:
-            self.more_tab = MoreTab(self.notebook)
+        if self.has_more_tab:
+            self.more_tab = MoreTab(self.tab_notebook)
         else:
             self.more_tab = None
 
@@ -192,12 +192,12 @@ class Tab:
         # insert empty frame and hide
         
         self.tab_frame = CustomVerticallyScrollableFrame(mode.notebook_frame)
-        mode.notebook.insert('end',self.tab_frame,
+        mode.tab_notebook.insert('end',self.tab_frame,
                           text = self.tab_label,
                           image = self.icon_image,
                           compound="top",
                         )
-        mode.notebook.hide(self.tab_frame)
+        mode.tab_notebook.hide(self.tab_frame)
 
     def popup_init(self, example_vars):
         self.example_vars = example_vars
@@ -266,9 +266,15 @@ class PythonPostitView(ttk.Frame):
         self.toolbar_init()
         
         self.current_mode = 'py4t'
+        self.last_backend = ''
+        get_workbench().bind("BackendRestart", self.switch_mode_by_backend, True)
+
+
         # data structure of all modes, groups and tabs
         self.all_modes = OrderedDict()
         self.all_modes_init()
+
+        
 
         #self.tab_groups_init()
         
@@ -277,9 +283,11 @@ class PythonPostitView(ttk.Frame):
         self.show_tab('py4t','builtin', 'flow')
         self.show_tab('py4t','eventloop', 'threed4t')
         self.show_tab('bit','microbit', 'main')
-        #self.py4t_show_tab('builtin', 'io')
+        
 
-        #self.py4t_notebook.select(0)
+        self.switch_mode_by_backend()
+        self.all_modes['py4t'].tab_notebook.select(0)
+        self.all_modes['bit'].tab_notebook.select(0)
 
 
         #self.add_tab_json('data')
@@ -312,21 +320,41 @@ class PythonPostitView(ttk.Frame):
         # self.cv_tab_init()
         # self.speech_tab_init()
 
+    def switch_mode_by_backend(self, event=None):
+        backend_in_option = get_workbench().get_option("run.backend_name")
 
+        if backend_in_option == self.last_backend:
+            # backend not changed, no need to switch
+            #print('no need to switch mode')
+            return
+        else:
+            # backend has changed, check which mode to switch
+            if backend_in_option == 'microbit':
+                self.all_modes['py4t'].notebook_frame.pack_forget()
+                self.all_modes['bit'].notebook_frame.pack()
+            else:
+                self.all_modes['bit'].notebook_frame.pack_forget()
+                self.all_modes['py4t'].notebook_frame.pack()                
+
+            self.last_backend = backend_in_option
 
     def all_modes_init(self):        
 
-        # collect modes data , one notebook per mode
-        with open(TAB_DATA_PATH / 'modes_info.json') as fp:
-            modes_info = json.load(fp) 
-        #print('modes info:' , modes_info)
+        # # collect modes data , one notebook per mode
+        # with open(TAB_DATA_PATH / 'modes_info.json') as fp:
+        #     modes_info = json.load(fp) 
+        # #print('modes info:' , modes_info)
 
-        # collect data first
-        for m in modes_info:
-            mode_name = m['mode_name']
-            mode_label =  m['mode_label']
-            customizable = m['customizable'] 
-            self.all_modes[mode_name] = Mode(mode_name, mode_label, customizable)    
+        # # collect data first
+        # for m in modes_info:
+        #     mode_name = m['mode_name']
+        #     mode_label =  m['mode_label']
+        #     has_more_tab = m['has_more_tab'] 
+        #     self.all_modes[mode_name] = Mode(mode_name, mode_label, has_more_tab)    
+
+        self.all_modes['py4t'] = Mode('py4t', 'python學習模式', has_more_tab=True)
+        self.all_modes['bit'] = Mode('bit', 'microbit模式', has_more_tab=False)
+
 
         # gui init second
         for mode in self.all_modes.values():
@@ -370,7 +398,7 @@ class PythonPostitView(ttk.Frame):
         mode = self.all_modes[mode_name]
         tab = mode.groups[group_name].tabs[tab_name]
         if not tab.visible:
-            mode.notebook.add(tab.tab_frame)
+            mode.tab_notebook.add(tab.tab_frame)
             if not tab.loaded:
                 self.load_tab_json(mode_name, group_name, tab_name)
                 tab.loaded = True
@@ -4323,28 +4351,7 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
             #print(str(event.widget))
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
-def try_hide_tab():
-    common.postit_view.all_modes['bit'].notebook_frame.pack_forget()
 
-def try_add_tab():
-    common.postit_view.py4t_show_tab('library3rd', 'auto')
-    common.postit_view.py4t_show_tab('library3rd', 'cv4t')
-    common.postit_view.py4t_show_tab('library3rd', 'numpy')
-    common.postit_view.py4t_show_tab('library3rd', 'speech4t')
-    common.postit_view.py4t_show_tab('eventloop', 'threed4t')
-    common.postit_view.py4t_show_tab('eventloop', 'turtle4t')
-    common.postit_view.py4t_show_tab('eventloop', 'physics4t')
-
-def try_set_option():
-    builtin_list = ['common', 'flow']
-    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
-    get_workbench().set_option('postit_tabs_view.builtin', ['a','b'])
-
-def try_get_option():
-    builtin_list = ['common', 'flow']
-    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
-    r = get_workbench().get_option('postit_tabs_view.builtin')
-    print(type(r), r)
 
 class AboutDialog(CommonDialog):
     def __init__(self, master):
@@ -4468,17 +4475,22 @@ def load_plugin():
 
     get_workbench().add_view(PythonPostitView, '便利貼', 'nw')
 
-    get_workbench().add_command("aboutPy4t", "help", '關於Py4t', get_version, group=62)
-
-    #get_workbench().get_menu('postit','便利貼')
+    #get_workbench().add_command("aboutPy4t", "help", '關於Py4t', get_version, group=62)
 
     def open_about(*args):
         show_dialog(AboutDialog(get_workbench()))
+
+    get_workbench().add_command("aboutPy4t", "help", '關於Py4t', open_about, group=62)
+
+    #get_workbench().get_menu('postit','便利貼')
+
+
 
 
     #get_workbench().add_command("test", "便利貼", '測試', try_menu)
     #get_workbench().add_command("test2", "便利貼", '測試2', try_menu)
 
+    #get_workbench().bind("BackendRestart", try_toplevel_response, True)
 
     #for test
     get_workbench().add_command(command_id="try_hide_tab",
@@ -4495,5 +4507,32 @@ def load_plugin():
     #                                 default_sequence="<F4>"
     #                                 )
 
+def try_toplevel_response(event):
+    #backend_name = get_runner().get_backend_proxy().backend_name
+    backend_name = get_workbench().get_option("run.backend_name")
+    print('got BackendRestart event. backend: ', backend_name)
 
+
+def try_hide_tab():
+    common.postit_view.all_modes['bit'].notebook_frame.pack_forget()
+
+def try_add_tab():
+    common.postit_view.py4t_show_tab('library3rd', 'auto')
+    common.postit_view.py4t_show_tab('library3rd', 'cv4t')
+    common.postit_view.py4t_show_tab('library3rd', 'numpy')
+    common.postit_view.py4t_show_tab('library3rd', 'speech4t')
+    common.postit_view.py4t_show_tab('eventloop', 'threed4t')
+    common.postit_view.py4t_show_tab('eventloop', 'turtle4t')
+    common.postit_view.py4t_show_tab('eventloop', 'physics4t')
+
+def try_set_option():
+    builtin_list = ['common', 'flow']
+    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
+    get_workbench().set_option('postit_tabs_view.builtin', ['a','b'])
+
+def try_get_option():
+    builtin_list = ['common', 'flow']
+    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
+    r = get_workbench().get_option('postit_tabs_view.builtin')
+    print(type(r), r)
 

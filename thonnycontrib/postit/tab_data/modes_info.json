@@ -1,13 +1,16 @@
+not used
+
 [
     {
         "mode_name" : "py4t",
         "mode_label" : "python學習模式",
-        "customizable" : true
+        "has_more_tab" : true
+        
     },
     {
         "mode_name" : "bit",
         "mode_label" : "microbit模式",
-        "customizable" : false
+        "has_more_tab" : false
     }
 
 ]
