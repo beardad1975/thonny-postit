@@ -72,7 +72,8 @@ class Mode:
     def gui_init(self):
         # make notebook
         self.notebook_frame = ttk.Frame(common.postit_view)
-        self.notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=True)
+        self.notebook_frame.pack(side=tk.TOP, fill=tk.Y)
+        #self.notebook_frame.pack(side=tk.TOP, fill=tk.Y)
         #style = ttk.Style(self.interior)
         #style = ttk.Style(notebook_frame.interior)
         style = ttk.Style(self.notebook_frame)
@@ -80,7 +81,7 @@ class Mode:
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
         #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
         self.tab_notebook = ttk.Notebook(self.notebook_frame, style='lefttab.TNotebook')
-        self.tab_notebook.pack(side='top',fill="both", expand="true")
+        self.tab_notebook.pack(side='top',fill=tk.Y)
 
         #notebook event (keep cursor intact in editor)
         self.tab_notebook.bind('<<NotebookTabChanged>>',common.postit_view.on_tab_changed)
@@ -329,12 +330,32 @@ class PythonPostitView(ttk.Frame):
             return
         else:
             # backend has changed, check which mode to switch
+            #self.all_modes['bit'].notebook_frame.pack(expand=False)
+            #self.all_modes['bit'].tab_notebook.pack(expand=False)
+            #self.all_modes['py4t'].notebook_frame.pack(expand=False)
+            #self.all_modes['py4t'].tab_notebook.pack(expand=False)
             if backend_in_option == 'microbit':
+                
+                #self.all_modes['bit'].tab_notebook.pack()
                 self.all_modes['py4t'].notebook_frame.pack_forget()
-                self.all_modes['bit'].notebook_frame.pack()
+                self.all_modes['py4t'].tab_notebook.pack_forget()
+                #self.all_modes['py4t'].notebook_frame.config(expand=False)
+                self.all_modes['bit'].notebook_frame.pack(side=tk.TOP, fill=tk.Y,expand=True)
+                self.all_modes['bit'].tab_notebook.pack(side=tk.TOP, fill=tk.Y,expand=True)
+                #self.all_modes['bit'].notebook_frame.config(expand=True)
+                #self.all_modes['py4t'].tab_notebook.pack_forget()
+                
             else:
+                
+                #self.all_modes['py4t'].tab_notebook.pack()   
                 self.all_modes['bit'].notebook_frame.pack_forget()
-                self.all_modes['py4t'].notebook_frame.pack()                
+                self.all_modes['bit'].tab_notebook.pack_forget()
+                #self.all_modes['bit'].notebook_frame.config(expand=False)
+                self.all_modes['py4t'].notebook_frame.pack(side=tk.TOP, fill=tk.Y,expand=True)
+                self.all_modes['py4t'].tab_notebook.pack(side=tk.TOP, fill=tk.Y,expand=True)
+                #self.all_modes['py4t'].notebook_frame.config(expand=True)
+                #self.all_modes['bit'].tab_notebook.pack_forget()
+                              
 
             self.last_backend = backend_in_option
 
