@@ -1086,7 +1086,7 @@ class PythonPostitView(ttk.Frame):
         #         note='回出發點',
         #         long_note=False ))
         temp_code_list.append(CodeNTuple(
-                menu_display='走到',
+                menu_display='走到座標',
                 code='走到(0,0)',
                 code_display='走到(0,0)',
                 note='goto',

@@ -1,47 +1,171 @@
 [
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "from 海龜模組 import *",
                 "code" : "from 海龜模組 import *",
                 "code_display" : "from 海龜模組 import *",
-                "note" : "從模組匯入全部",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "from turtle4t import *",
-                "code" : "from turtle4t import *",
-                "code_display" : "from turtle4t import *",
-                "note" : "從模組匯入全部",
+                "note" : "從模組匯入(必要)",
                 "long_note" : true
             }
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "ttk_label",
-        "text" : ">> 動作與位置"
+        "text" : ">> 移動與轉動"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "向前",
+                "code" : "向前(50)",
+                "code_display" : "向前(50)",
+                "note" : "向前幾步",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "向後",
+                "code" : "向後(50)",
+                "code_display" : "向後(50)",
+                "note" : "向後幾步",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "右轉",
+                "code" : "右轉(90)",
+                "code_display" : "右轉(90)",
+                "note" : "右轉90度(順時針)",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "左轉",
+                "code" : "左轉(90)",
+                "code_display" : "左轉(90)",
+                "note" : "左轉90度(逆時針)",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">> 位置與方向"
     },
     {
         "postit_type" : "dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "向前",
-                "code" : "向前(50)",
-                "code_display" : "向前(50)",
-                "note" : "forward",
+                "menu_display" : "查詢目前座標",
+                "code" : "位置()",
+                "code_display" : "位置()",
+                "note" : "查詢目前座標",
                 "long_note" : false
             },
             {
-                "menu_display" : "向後",
-                "code" : "向後(50)",
-                "code_display" : "向後(50)",
-                "note" : "back",
+                "menu_display" : "查詢x座標",
+                "code" : "x座標()",
+                "code_display" : "x座標()",
+                "note" : "查詢x座標",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "查詢y座標",
+                "code" : "y座標()",
+                "code_display" : "y座標()",
+                "note" : "查詢y座標",
                 "long_note" : false
             }
         ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "走到座標",
+                "code" : "走到(0,0)",
+                "code_display" : "走到(0,0)",
+                "note" : "走到座標",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "x座標設為",
+                "code" : "x設為(0)",
+                "code_display" : "x設為(0)",
+                "note" : "x座標設為",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "y座標設為",
+                "code" : "y設為(0)",
+                "code_display" : "y設為(0)",
+                "note" : "y座標設為",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "回原點0,0座標",
+                "code" : "回出發點()",
+                "code_display" : "回出發點()",
+                "note" : "回原點0,0座標",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "查詢目前角度",
+                "code" : "方向()",
+                "code_display" : "方向()",
+                "note" : "查詢目前角度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "設定方向角度",
+                "code" : "設定方向(0)",
+                "code_display" : "設定方向(0)",
+                "note" : "設定方向角度",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">> 畫筆與畫布"
     }
+
 
 ]
