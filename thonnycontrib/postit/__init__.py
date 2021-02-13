@@ -270,6 +270,7 @@ class PythonPostitView(ttk.Frame):
         self.last_backend = ''
         get_workbench().bind("BackendRestart", self.switch_mode_by_backend, True)
 
+        self.bind_all("<MouseWheel>", self.on_mousewheel,"+")
 
         # data structure of all modes, groups and tabs
         self.all_modes = OrderedDict()
@@ -282,6 +283,7 @@ class PythonPostitView(ttk.Frame):
         
         self.show_tab('py4t','builtin', 'data')
         self.show_tab('py4t','builtin', 'flow')
+        self.show_tab('py4t','eventloop', 'turtle4t')
         self.show_tab('py4t','eventloop', 'threed4t')
         self.show_tab('bit','microbit', 'main')
         
@@ -321,6 +323,15 @@ class PythonPostitView(ttk.Frame):
         # self.cv_tab_init()
         # self.speech_tab_init()
 
+    def on_mousewheel(self, event):
+        tab_notebook = self.all_modes[self.current_mode].tab_notebook
+        tab_name = tab_notebook.select()
+        if tab_name:
+            tab = tab_notebook.nametowidget(tab_name)
+            #print(type(tab),tab)
+            tab._on_mousewheel(event)
+        
+
     def switch_mode_by_backend(self, event=None):
         backend_in_option = get_workbench().get_option("run.backend_name")
 
@@ -344,7 +355,7 @@ class PythonPostitView(ttk.Frame):
                 self.all_modes['bit'].tab_notebook.pack(side=tk.TOP, fill=tk.Y,expand=True)
                 #self.all_modes['bit'].notebook_frame.config(expand=True)
                 #self.all_modes['py4t'].tab_notebook.pack_forget()
-                
+                self.current_mode = 'bit'
             else:
                 
                 #self.all_modes['py4t'].tab_notebook.pack()   
@@ -355,7 +366,7 @@ class PythonPostitView(ttk.Frame):
                 self.all_modes['py4t'].tab_notebook.pack(side=tk.TOP, fill=tk.Y,expand=True)
                 #self.all_modes['py4t'].notebook_frame.config(expand=True)
                 #self.all_modes['bit'].tab_notebook.pack_forget()
-                              
+                self.current_mode = 'py4t'              
 
             self.last_backend = backend_in_option
 
@@ -460,7 +471,7 @@ class PythonPostitView(ttk.Frame):
                         long_note=i['long_note'] ))
 
                 DropdownPostit(tab=tab, code_list = temp_code_list,
-                    postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=2, pady=8)    
+                    postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)    
 
             elif p['postit_type'] == 'ttk_label':
                 ttk.Label(tab.tab_frame.interior, 
@@ -4345,7 +4356,7 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
         self.interior_id = self.canvas.create_window(0, 0, window=self.interior, anchor=tk.NW)
         self.bind("<Configure>", self._configure_interior, "+")
         self.bind("<Expose>", self._expose, "+")
-        self.bind_all("<MouseWheel>", self._on_mousewheel,"+")
+        #self.bind_all("<MouseWheel>", self._on_mousewheel,"+")
 
     def _expose(self, event):
         self.update_idletasks()
@@ -4370,6 +4381,8 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
         #if isinstance(event.widget, BasePostit):
         if 'customverticallyscrollableframe' in str(event.widget):
             #print(str(event.widget))
+            
+            
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
 
@@ -4514,10 +4527,10 @@ def load_plugin():
     #get_workbench().bind("BackendRestart", try_toplevel_response, True)
 
     #for test
-    get_workbench().add_command(command_id="try_hide_tab",
+    get_workbench().add_command(command_id="try_notebook",
                                     menu_name="tools",
                                     command_label="測試thonny",
-                                    handler=try_hide_tab,
+                                    handler=try_notebook,
                                     default_sequence="<F2>"
                                     )
 
@@ -4527,6 +4540,12 @@ def load_plugin():
     #                                 handler=try_get_option,
     #                                 default_sequence="<F4>"
     #                                 )
+
+
+def try_notebook():
+    tab_notebook = common.postit_view.all_modes['py4t'].tab_notebook        
+    s = tab_notebook.select()
+    print(type(s), s)
 
 def try_toplevel_response(event):
     #backend_name = get_runner().get_backend_proxy().backend_name
