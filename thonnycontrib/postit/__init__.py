@@ -289,7 +289,8 @@ class PythonPostitView(ttk.Frame):
         
 
         self.switch_mode_by_backend()
-        self.all_modes['py4t'].tab_notebook.select(0)
+        frame = self.all_modes['py4t'].groups['eventloop'].tabs['turtle4t'].tab_frame
+        self.all_modes['py4t'].tab_notebook.select(frame)
         self.all_modes['bit'].tab_notebook.select(0)
 
 
