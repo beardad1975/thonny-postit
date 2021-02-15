@@ -90,8 +90,8 @@ class DropdownPostMixin:
             self.postit_button.config(cursor='hand2')
 
         x_root, y_root = event.x_root, event.y_root
-
-        self.drag_window.geometry('+{}+{}'.format(x_root+5, y_root+5))
+        
+        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+10))
 
         #change insert over editor or shell (but not postit button)
         
@@ -151,7 +151,7 @@ class DropdownPostMixin:
             font = self.postit_button.cget('font')
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
-            text = self.postit_button.cget('text')
+            text = ' ' + self.postit_button.cget('text')
             self.hover_text_backup = text
             justify = self.postit_button.cget('justify')
             self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 
