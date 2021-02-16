@@ -1,22 +1,275 @@
 [
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "from 模擬3D模組 import *",
                 "code" : "from 模擬3D模組 import *",
                 "code_display" : "from 模擬3D模組 import *",
-                "note" : "從模擬3D模組匯入全部",
+                "note" : "### 需先匯入模組",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 主迴圈與3D舞台"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "模擬主迴圈",
+                "code" : "模擬主迴圈()",
+                "code_display" : "模擬主迴圈()",
+                "note" : "### 需在程式最後",
                 "long_note" : true
             },
             {
-                "menu_display" : "from threed4t import *",
-                "code" : "from threed4t import *",
-                "code_display" : "from threed4t import *",
-                "note" : "從模擬3D模組匯入全部",
+                "menu_display" : "模擬進行中",
+                "code" : "模擬進行中()",
+                "code_display" : "模擬進行中()",
+                "note" : "### 需在程式最後",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "舞台 設定尺寸 ",
+                "code" : "舞台 = 模擬3D引擎(400,600)",
+                "code_display" : "舞台 = 模擬3D引擎(400,600)",
+                "note" : "設定視窗寬度與高度",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 基本3D模型"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "新增立方體",
+                "code" : "物體 = 新增立方體()",
+                "code_display" : "物體 = 新增立方體()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增球體",
+                "code" : "物體 = 新增球體()",
+                "code_display" : "物體 = 新增球體()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增平面",
+                "code" : "物體 = 新增平面()",
+                "code_display" : "物體 = 新增平面()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增物體",
+                "code" : "物體 = 新增物體()",
+                "code_display" : "物體 = 新增物體()",
+                "note" : "預設為立方體",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 3D模型屬性"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定顏色(紅)",
+                "code" : "物體.顏色 = color.red",
+                "code_display" : "物體.顏色 = color.red",
+                "note" : "設定顏色(紅)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        (綠)",
+                "code" : "物體.顏色 = color.green",
+                "code_display" : "物體.顏色 = color.green",
+                "note" : "設定顏色(綠)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        (藍)",
+                "code" : "物體.顏色 = color.blue",
+                "code_display" : "物體.顏色 = color.blue",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        (rgba)",
+                "code" : "物體.顏色 = color.rgba(50,0,0,255)",
+                "code_display" : "物體.顏色 = color.rgba(50,0,0,255)",
+                "note" : "設定顏色(rgba)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        (隨機)",
+                "code" : "物體.顏色 = color.random_color()",
+                "code_display" : "物體.顏色 = color.random_color()",
+                "note" : "設定顏色(隨機)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定顏色動畫(持續)",
+                "code" : "物體.顏色動畫([255,0,0,255], 持續=1)",
+                "code_display" : "物體.顏色動畫([255,0,0,255],\n    持續=1)",
+                "note" : "設定顏色動畫",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定顏色動畫(延遲與持續)",
+                "code" : "物體.顏色動畫([255,0,0,255], 延遲=0, 持續=1)",
+                "code_display" : "物體.顏色動畫([255,0,0,255],\n    延遲=0, 持續=1)",
+                "note" : "設定顏色動畫(延遲與持續)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定位置x 左右",
+                "code" : "物體.位置x = 0",
+                "code_display" : "物體.位置x = 0",
+                "note" : "物體的左右x位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定位置y 上下",
+                "code" : "物體.位置y = 0",
+                "code_display" : "物體.位置y = 0",
+                "note" : "物體的上下y位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定位置z 前後",
+                "code" : "物體.位置z = 0",
+                "code_display" : "物體.位置z = 0",
+                "note" : "物體的前後z位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定位置 xyz同時",
+                "code" : "物體.位置 = [0,0,0]",
+                "code_display" : "物體.位置 = [0,0,0]",
+                "note" : "設定位置(右左,上下,前後)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "有效狀態 成立",
+                "code" : "物體.有效狀態 = True",
+                "code_display" : "物體.有效狀態 = True",
+                "note" : "物體顯示",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "有效狀態 不成立",
+                "code" : "物體.有效狀態 = False",
+                "code_display" : "物體.有效狀態 = False",
+                "note" : "物體不顯示",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定中心點偏移",
+                "code" : "物體.中心點偏移 = [0,0,0]",
+                "code_display" : "物體.中心點偏移 = [0,0,0]",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定上層物件",
+                "code" : "物體.上層物件 = ",
+                "code_display" : "物體.上層物件 = ",
+                "note" : "設定父(母)物件",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定模型",
+                "code" : "物體.模型 = ''",
+                "code_display" : "物體.模型 = ''",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定紋理",
+                "code" : "物體.紋理 = ''",
+                "code_display" : "物體.紋理 = ''",
+                "note" : "設定材質貼圖",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 特定模型與紋理"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "新增立方體6面",
+                "code" : "物體 = 新增立方體6面()",
+                "code_display" : "物體 = 新增立方體6面()",
+                "note" : "6面紋理立方體",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增球體內面",
+                "code" : "物體 = 新增球體內面()",
+                "code_display" : "物體 = 新增球體內面()",
+                "note" : "球體紋理面向圓心",
                 "long_note" : true
             }
         ]
     }
+
+
 ]

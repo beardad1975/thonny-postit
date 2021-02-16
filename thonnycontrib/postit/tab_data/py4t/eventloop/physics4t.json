@@ -21,26 +21,27 @@
     },
     {
         "postit_type" : "ttk_label",
-        "text" : ">>> 物理舞台"
+        "text" : ">>> 主迴圈與物理舞台"
     },
     {
         "postit_type" : "dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "模擬進行中",
-                "code" : "模擬進行中()",
-                "code_display" : "模擬進行中()",
-                "note" : "### 需在程式最後",
-                "long_note" : true
-            },
-            {
                 "menu_display" : "模擬主迴圈",
                 "code" : "模擬主迴圈()",
                 "code_display" : "模擬主迴圈()",
                 "note" : "### 需在程式最後",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "模擬進行中",
+                "code" : "模擬進行中()",
+                "code_display" : "模擬進行中()",
+                "note" : "### 需在程式最後",
+                "long_note" : true
             }
+            
         ]
     },
     {
@@ -51,7 +52,7 @@
                 "menu_display" : "建立舞台 設定寬高",
                 "code" : "舞台 = 物理引擎(400,600)",
                 "code_display" : "舞台 = 物理引擎(400, 600)",
-                "note" : "建立舞台 設定寬高",
+                "note" : "設定視窗寬度與高度",
                 "long_note" : true
             }
         ]
@@ -84,7 +85,7 @@
                 "menu_display" : "重力",
                 "code" : "舞台.重力 = [0, -800]",
                 "code_display" : "舞台.重力 = [0, -800]",
-                "note" : "設定左右重力, 上下重力",
+                "note" : "設定左右x重力, 上下y重力",
                 "long_note" : true
             },
             {
@@ -182,7 +183,7 @@
                 "menu_display" : "位置",
                 "code" : "物體.位置 = [300, 300]",
                 "code_display" : "物體.位置 = [300, 300]",
-                "note" : "設定左右與上下位置",
+                "note" : "設定左右x與上下y位置",
                 "long_note" : true
             },
             {
@@ -196,7 +197,7 @@
                 "menu_display" : "速度",
                 "code" : "物體.速度 = [300, 0]",
                 "code_display" : "物體.速度 = [300, 0]",
-                "note" : "設定左右與上下速度",
+                "note" : "設定左右x與上下y速度",
                 "long_note" : true
             },
             {
@@ -250,14 +251,14 @@
                 "menu_display" : "施加衝力",
                 "code" : "向量 = [0, 500]\n物體.施加衝力(向量)",
                 "code_display" : "向量 = [0, 500]\n物體.施加衝力(向量)",
-                "note" : "施加左右與上下衝力",
+                "note" : "施加左右x與上下y衝力",
                 "long_note" : true
             },
             {
                 "menu_display" : "施加力量",
                 "code" : "向量 = [100000,0]\n物體.施加力量(向量)",
                 "code_display" : "向量 = [100000, 0]\n物體.施加力量(向量)",
-                "note" : "施加左右與上下力量",
+                "note" : "施加左右x與上下y力量",
                 "long_note" : true
             }
         ]
