@@ -1,0 +1,26 @@
+[
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 物件類別"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "定義新類別",
+                "code" : "class 類別:\n屬性 = 1\ndef 方法(self):\npass",
+                "code_display" : "class 類別:\n    屬性 = 1\n    def 方法(self):\n    pass",
+                "note" : "定義新類別",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "繼承類別",
+                "code" : "class 子類別(父母類別):\n屬性 = 1\ndef 方法(self):\npass",
+                "code_display" : "class 子類別(父母類別):\n    屬性 = 1\n    def 方法(self):\n    pass",
+                "note" : "繼承類別",
+                "long_note" : false
+            }
+        ]
+    }
+]

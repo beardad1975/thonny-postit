@@ -121,9 +121,9 @@ class TabGroup:
         for t in tabs_info:
             tab_name = t['tab_name']
             tab_label = t['tab_label']
-            always_show = t['always_visible']
+            #always_show = t['always_visible']
             tab_path = self.group_path / (tab_name+'.json')
-            self.tabs[tab_name] = Tab(tab_name, group_name, mode_name, tab_label, always_show, tab_path, self)
+            self.tabs[tab_name] = Tab(tab_name, group_name, mode_name, tab_label,  tab_path, self)
 
     def gui_init(self):
         # dummy
@@ -157,12 +157,12 @@ class TabGroup:
 
 
 class Tab:
-    def __init__(self, tab_name, group_name, mode_name, tab_label, always_show, tab_path, tab_group):
+    def __init__(self, tab_name, group_name, mode_name, tab_label, tab_path, tab_group):
         self.tab_name = tab_name
         self.group_name = group_name
         self.mode_name = mode_name
         self.tab_label = tab_label
-        self.always_show = always_show
+        #self.always_show = always_show
         self.tab_path = tab_path
         self.tab_group = tab_group
 
@@ -283,6 +283,10 @@ class PythonPostitView(ttk.Frame):
         
         self.show_tab('py4t','builtin', 'data')
         self.show_tab('py4t','builtin', 'flow')
+        self.show_tab('py4t','builtin', 'io')
+        self.show_tab('py4t','builtin', 'function')
+        self.show_tab('py4t','builtin', 'exception')
+        self.show_tab('py4t','builtin', 'oo')
         self.show_tab('py4t','eventloop', 'turtle4t')
         self.show_tab('py4t','eventloop', 'threed4t')
         self.show_tab('bit','microbit', 'main')

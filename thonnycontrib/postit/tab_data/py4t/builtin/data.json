@@ -1,19 +1,12 @@
 [
     {
         "postit_type" : "ttk_label",
-        "text" : " >> 數值類型"
+        "text" : ">>> 數值類型"
     },
     {
         "postit_type" : "dropdown_postit",
         "postfix_enter" : false,
         "items" :[
-            {
-                "menu_display" : "轉成整數",
-                "code" : "int()",
-                "code_display" : "int()",
-                "note" : "轉成整數",
-                "long_note" : false
-            },
             {
                 "menu_display" : "文字轉整數",
                 "code" : "int('3')",
@@ -35,24 +28,17 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "轉成浮點數(近似小數)",
-                "code" : "float()",
-                "code_display" : "float()",
-                "note" : "轉成浮點數(近似小數)",
-                "long_note" : false
-            },
-            {
                 "menu_display" : "整數轉浮點數",
                 "code" : "float(7)",
                 "code_display" : "float(7)",
-                "note" : "整數轉浮點數",
+                "note" : "整數轉浮點數(近似小數)",
                 "long_note" : false
             },
             {
                 "menu_display" : "文字轉浮點數",
                 "code" : "float('3.14')",
                 "code_display" : "float('3.14')",
-                "note" : "文字轉浮點數",
+                "note" : "文字轉浮點數(近似小數)",
                 "long_note" : false
             }        
         ]
@@ -62,21 +48,14 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "轉成布林值(真假)",
-                "code" : "bool()",
-                "code_display" : "bool()",
-                "note" : "轉成布林值(真假)",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "整數值轉布林值(真假)",
+                "menu_display" : "整數值轉布林值",
                 "code" : "bool(2)",
                 "code_display" : "bool(2)",
                 "note" : "整數轉布林值(真假)",
                 "long_note" : false
             },
             {
-                "menu_display" : "文字轉布林值(真假)",
+                "menu_display" : "文字轉布林值",
                 "code" : "bool('abc')",
                 "code_display" : "bool('abc')",
                 "note" : "文字轉布林值(真假)",
@@ -86,7 +65,7 @@
     },
     {
         "postit_type" : "ttk_label",
-        "text" : " >> 數值運算"
+        "text" : ">>> 數值運算"
     },
     {
         "postit_type" : "dropdown_postit",
@@ -98,6 +77,34 @@
                 "code_display" : "3 > 0",
                 "note" : "大於",
                 "long_note" : false
+            },
+            {
+                "menu_display" : "大於等於",
+                "code" : "3 >= 0",
+                "code_display" : "3 >= 0",
+                "note" : "大於或等於",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "小於",
+                "code" : "1 < 4",
+                "code_display" : "1 < 4",
+                "note" : "小於",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "小於等於",
+                "code" : "1 <= 4",
+                "code_display" : "1 <= 4",
+                "note" : "小於或等於",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "不等於",
+                "code" : "3 != 6",
+                "code_display" : "3 != 6",
+                "note" : "不等於",
+                "long_note" : false
             }        
         ]
     },
@@ -106,7 +113,7 @@
     },
     {
         "postit_type" : "ttk_label",
-        "text" : " >> 字串類型"
+        "text" : ">>> 字串類型"
     },
     {
         "postit_type" : "dropdown_postit",
@@ -161,7 +168,7 @@
     },
     {
         "postit_type" : "ttk_label",
-        "text" : " >> 特殊類型"
+        "text" : ">>> 特殊類型"
     },
     {
         "postit_type" : "dropdown_postit",
@@ -181,7 +188,7 @@
     },
     {
         "postit_type" : "ttk_label",
-        "text" : " >> 群集類型"
+        "text" : ">>> 群集類型"
     },
     {
         "postit_type" : "dropdown_postit",

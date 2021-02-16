@@ -1,0 +1,19 @@
+[
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 例外(錯誤)處理"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "捕捉例外(錯誤)",
+                "code" : "try:\npass\nexcept:\npass",
+                "code_display" : "try:\n    pass\nexcept Exception:\n    pass",
+                "note" : "測試:\n        測試區塊\n例外發生:\n        錯誤處理區塊",
+                "long_note" : false
+            }
+        ]
+    }
+]

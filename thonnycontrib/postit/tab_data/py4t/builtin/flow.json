@@ -1,7 +1,7 @@
 [
     {
         "postit_type" : "ttk_label",
-        "text" : " >> if 條件分支"
+        "text" : ">>> if 條件分支"
     },
     {
         "postit_type" : "dropdown_postit",
@@ -35,7 +35,7 @@
     },
     {
         "postit_type" : "ttk_label",
-        "text" : ">> while 迴圈"
+        "text" : ">>> while 迴圈"
     },
     {
         "postit_type" : "dropdown_postit",
@@ -59,7 +59,7 @@
     },
     {
         "postit_type" : "ttk_label",
-        "text" : ">> for 迴圈"
+        "text" : ">>> for 迴圈"
     },
     {
         "postit_type" : "dropdown_postit",
@@ -69,35 +69,35 @@
                 "menu_display" : "重複幾次",
                 "code" : "for 數 in range(10):\npass",
                 "code_display" : "for 數 in range(10):\n    pass",
-                "note" : "從數列 逐一取出(重複幾次):\n        迴圈區塊",
+                "note" : "逐一取出 從數列 (重複次數):\n        迴圈區塊",
                 "long_note" : true
             },
             {
-                "menu_display" : "重複次數(開頭 不含結束)",
+                "menu_display" : "重複(開頭,結尾不含)",
                 "code" : "for 數 in range(5, 10):\npass",
                 "code_display" : "for 數 in range(5, 10):\n    pass",
-                "note" : "從數列 逐一取出(開始 不含結束):\n        迴圈區塊",
+                "note" : "逐一取出 從數列(開始,結尾不含):\n        迴圈區塊",
                 "long_note" : true
             },
             {
-                "menu_display" : "從數列 逐一取出(開始 不含結束 每次步進)",
+                "menu_display" : "重複次數(開始,結尾不含,步進)",
                 "code" : "for 數 in range(0, 10, 2):\npass",
                 "code_display" : "for 數 in range(0, 10, 2):\n    pass",
-                "note" : "從數列 逐一取出(開始 不含結束 每次步進):\n        迴圈區塊",
+                "note" : "逐一取出 從數列(開始,結尾不含,步進):\n        迴圈區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "從清單 逐一取出",
                 "code" : "for 項目 in [1,4,5]:\npass",
                 "code_display" : "for 項目 in [1,4,5]:\n    pass",
-                "note" : "從清單 逐一取出:\n        迴圈區塊",
+                "note" : "逐一取出 從清單 :\n        迴圈區塊",
                 "long_note" : true
             }
         ]
     },
     {
         "postit_type" : "ttk_label",
-        "text" : ">> 迴圈控制"
+        "text" : ">>> 迴圈控制"
     },
     {
         "postit_type" : "dropdown_postit",

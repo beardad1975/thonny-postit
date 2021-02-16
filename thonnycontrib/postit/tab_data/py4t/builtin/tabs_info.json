@@ -1,17 +1,28 @@
 [
     {
         "tab_name" : "data",
-        "tab_label" : " 資料 ",
-        "always_visible" : true
+        "tab_label" : " 資料 "        
     },
     {
         "tab_name" : "flow",
-        "tab_label" : " 流程 ",
-        "always_visible" : true        
+        "tab_label" : " 流程 "
+               
     },
     {
         "tab_name" : "io",
-        "tab_label" : " 輸入 \n 輸出 ",
-        "always_visible" : false        
+        "tab_label" : " 輸入 \n 輸出 "
+              
+    },
+    {
+        "tab_name" : "function",
+        "tab_label" : " 函式 "        
+    },
+    {
+        "tab_name" : "exception",
+        "tab_label" : " 例外 "        
+    },
+    {
+        "tab_name" : "oo",
+        "tab_label" : " 物件 "        
     }
 ]
