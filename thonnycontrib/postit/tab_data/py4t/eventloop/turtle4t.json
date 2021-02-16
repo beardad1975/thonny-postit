@@ -11,7 +11,7 @@
                 "menu_display" : "匯入海龜模組",
                 "code" : "from 海龜模組 import *",
                 "code_display" : "from 海龜模組 import *",
-                "note" : "模組匯入(需先執行)",
+                "note" : "### 需先匯入模組",
                 "long_note" : true
             }
         ]

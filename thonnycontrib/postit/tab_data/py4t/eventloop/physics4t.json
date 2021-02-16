@@ -1,13 +1,111 @@
 [
     {
+        "postit_type" : "ttk_label",
+        "text" : " 【物理碰撞模擬】 "
+    },
+    {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "from 物理模組 import *",
                 "code" : "from 物理模組 import *",
                 "code_display" : "from 物理模組 import *",
-                "note" : "從物理模組匯入全部",
+                "note" : "### 需先匯入模組",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 物理舞台"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "模擬進行中",
+                "code" : "模擬進行中()",
+                "code_display" : "模擬進行中()",
+                "note" : "### 需在程式最後",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "模擬主迴圈",
+                "code" : "模擬主迴圈()",
+                "code_display" : "模擬主迴圈()",
+                "note" : "### 需在程式最後",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "建立舞台 設定寬高",
+                "code" : "舞台 = 物理引擎(400,600)",
+                "code_display" : "舞台 = 物理引擎(400, 600)",
+                "note" : "建立舞台 設定寬高",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "模擬暫停 成立",
+                "code" : "舞台.模擬暫停 = True",
+                "code_display" : "舞台.模擬暫停 = True",
+                "note" : "模擬暫停 成立",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "模擬暫停 不成立",
+                "code" : "舞台.模擬暫停 = False",
+                "code_display" : "舞台.模擬暫停 = False",
+                "note" : "模擬暫停 不成立",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "重力",
+                "code" : "舞台.重力 = [0, -800]",
+                "code_display" : "舞台.重力 = [0, -800]",
+                "note" : "左右重力, 上下重力",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "慢動作 不成立",
+                "code" : "舞台.慢動作 = False",
+                "code_display" : "舞台.慢動作 = False",
+                "note" : "慢動作 不成立",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "慢動作 成立",
+                "code" : "舞台.慢動作 = True",
+                "code_display" : "舞台.慢動作 = True",
+                "note" : "慢動作 成立",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "慢動作 切換",
+                "code" : "舞台.慢動作 = not 舞台.慢動作",
+                "code_display" : "舞台.慢動作 = not 舞台.慢動作",
+                "note" : "慢動作 切換",
                 "long_note" : true
             }
         ]
