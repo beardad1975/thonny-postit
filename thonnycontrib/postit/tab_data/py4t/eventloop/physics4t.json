@@ -84,7 +84,7 @@
                 "menu_display" : "重力",
                 "code" : "舞台.重力 = [0, -800]",
                 "code_display" : "舞台.重力 = [0, -800]",
-                "note" : "左右重力, 上下重力",
+                "note" : "設定左右重力, 上下重力",
                 "long_note" : true
             },
             {
@@ -102,10 +102,291 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "慢動作 切換",
+                "menu_display" : "慢動作 狀態切換",
                 "code" : "舞台.慢動作 = not 舞台.慢動作",
                 "code_display" : "舞台.慢動作 = not 舞台.慢動作",
-                "note" : "慢動作 切換",
+                "note" : "慢動作 狀態切換",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 物體新增移除"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "圓球",
+                "code" : "物體 = 新增圓球()",
+                "code_display" : "物體 = 新增圓球()",
+                "note" : "圓球 隨機大小與位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "圓球 半徑",
+                "code" : "物體 = 新增圓球(半徑=20)",
+                "code_display" : "物體 = 新增圓球(半徑=20)",
+                "note" : "圓球 半徑 隨機位置",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "方塊",
+                "code" : "物體 = 新增方塊()",
+                "code_display" : "物體 = 新增方塊()",
+                "note" : "方塊 隨機大小與位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "方塊 寬高",
+                "code" : "物體 = 新增方塊(寬=30,高=20)",
+                "code_display" : "物體 = 新增方塊(寬=30,高=20)",
+                "note" : "方塊 寬高 隨機位置",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "移除物體",
+                "code" : "移除(物體)",
+                "code_display" : "移除(物體)",
+                "note" : "",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 物體屬性與運動"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "位置",
+                "code" : "物體.位置 = [300, 300]",
+                "code_display" : "物體.位置 = [300, 300]",
+                "note" : "設定左右與上下位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "角度",
+                "code" : "物體.角度 = 0",
+                "code_display" : "物體.角度 = 0",
+                "note" : "設定角度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "速度",
+                "code" : "物體.速度 = [300, 0]",
+                "code_display" : "物體.速度 = [300, 0]",
+                "note" : "設定左右與上下速度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "角速度",
+                "code" : "物體.角速度 = 100",
+                "code_display" : "物體.角速度 = 100",
+                "note" : "設定轉動角速度",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "彈性",
+                "code" : "物體.彈性 = 0.3",
+                "code_display" : "物體.彈性 = 0.3",
+                "note" : "恢復係數0到1之間",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "摩擦",
+                "code" : "物體.摩擦 = 0.5",
+                "code_display" : "物體.摩擦 = 0.5",
+                "note" : "摩擦係數需大於0",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "質量",
+                "code" : "物體.質量 = 100",
+                "code_display" : "物體.質量 = 100",
+                "note" : "質量需大於0",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "密度",
+                "code" : "物體.密度 = 1",
+                "code_display" : "物體.密度 = 1",
+                "note" : "密度需大於0",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "施加衝力",
+                "code" : "向量 = [0, 500]\n物體.施加衝力(向量)",
+                "code_display" : "向量 = [0, 500]\n物體.施加衝力(向量)",
+                "note" : "施加左右與上下衝力",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "施加力量",
+                "code" : "向量 = [100000,0]\n物體.施加力量(向量)",
+                "code_display" : "向量 = [100000, 0]\n物體.施加力量(向量)",
+                "note" : "施加左右與上下力量",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "物理反應 成立",
+                "code" : "物體.物理反應 = True",
+                "code_display" : "物體.物理反應 = True",
+                "note" : "物理反應 成立",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "物理反應 不成立",
+                "code" : "物體.物理反應 = False",
+                "code_display" : "物體.物理反應 = False",
+                "note" : "物理反應 不成立",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "物理反應 狀態切換",
+                "code" : "物體.物理反應 = not 物體.物理反應",
+                "code_display" : "物體.物理反應 = not 物體.物理反應",
+                "note" : "物理反應 狀態切換",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 事件處理函式"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "按下滑鼠時",
+                "code" : "def 按下滑鼠時(x, y):\npass\n",
+                "code_display" : "def 按下滑鼠時(x, y):\n    pass",
+                "note" : "按下滑鼠時(左右,上下)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "拖曳滑鼠時",
+                "code" : "def 拖曳滑鼠時(x, y, dx, dy):\npass\n",
+                "code_display" : "def 拖曳滑鼠時(x,y,dx,dy):\n    pass",
+                "note" : "拖曳滑鼠時(左右,上下,左右差,上下差)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "放開滑鼠時",
+                "code" : "def 放開滑鼠時(x, y):\npass\n",
+                "code_display" : "def 放開滑鼠時(x, y):\n    pass",
+                "note" : "放開滑鼠時(左右,上下)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "按下鍵盤時",
+                "code" : "def 按下鍵盤時(按鍵, x, y):\npass\n",
+                "code_display" : "def 按下鍵盤時(按鍵, x, y):\n    pass",
+                "note" : "按下鍵盤時(按鍵,左右,上下)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "放開鍵盤時",
+                "code" : "def 放開鍵盤時(按鍵, x, y):\npass\n",
+                "code_display" : "def 放開鍵盤時(按鍵, x, y):\n    pass",
+                "note" : "放開鍵盤時(按鍵,左右,上下)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "是空白鍵?",
+                "code" : "if 按鍵 == key.SPACE :\npass",
+                "code_display" : "if 按鍵 == key.SPACE :\n    pass",
+                "note" : "是空白鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "是Enter鍵?",
+                "code" : "if 按鍵 == key.ENTER :\npass",
+                "code_display" : "if 按鍵 == key.ENTER :\n    pass",
+                "note" : "是Enter鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "是向上鍵?",
+                "code" : "if 按鍵 == key.UP :\npass",
+                "code_display" : "if 按鍵 == key.UP :\n    pass",
+                "note" : "是向上鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "是向下鍵?",
+                "code" : "if 按鍵 == key.DOWN :\npass",
+                "code_display" : "if 按鍵 == key.DOWN :\n    pass",
+                "note" : "是向下鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "是向右鍵?",
+                "code" : "if 按鍵 == key.RIGHT :\npass",
+                "code_display" : "if 按鍵 == key.RIGHT :\n    pass",
+                "note" : "是向右鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "是向左鍵?",
+                "code" : "if 按鍵 == key.LEFT :\npass",
+                "code_display" : "if 按鍵 == key.LEFT :\n    pass",
+                "note" : "是向左鍵?",
                 "long_note" : true
             }
         ]

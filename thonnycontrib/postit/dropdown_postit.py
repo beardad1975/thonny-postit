@@ -211,7 +211,7 @@ class DropdownPopup:
     def popup_init(self):
         # button popup menu
         self.popup_menu = tk.Menu(self, tearoff=0)
-        self.popup_menu.add_checkbutton(label="【選項】結尾Enter換行", onvalue=1, offvalue=0, 
+        self.popup_menu.add_checkbutton(label="加上Enter換行", onvalue=1, offvalue=0, 
                 variable=self.var_postfix_enter,
                 command=self.toggle_postfix_enter,
                 )
