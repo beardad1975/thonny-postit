@@ -438,6 +438,9 @@ class SymbolToolPopup:
         self.code = symbol
         self.code_display = symbol
         self.postit_button.config(text=symbol)
+        
+        return
+
 
         # insert at the same time
         workbench = get_workbench()

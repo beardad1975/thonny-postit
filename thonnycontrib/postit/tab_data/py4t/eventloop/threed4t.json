@@ -160,40 +160,6 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "設定位置x 左右",
-                "code" : "物體.位置x = 0",
-                "code_display" : "物體.位置x = 0",
-                "note" : "物體的左右x位置",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定位置y 上下",
-                "code" : "物體.位置y = 0",
-                "code_display" : "物體.位置y = 0",
-                "note" : "物體的上下y位置",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定位置z 前後",
-                "code" : "物體.位置z = 0",
-                "code_display" : "物體.位置z = 0",
-                "note" : "物體的前後z位置",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定位置 xyz同時",
-                "code" : "物體.位置 = [0,0,0]",
-                "code_display" : "物體.位置 = [0,0,0]",
-                "note" : "設定位置(右左,上下,前後)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
                 "menu_display" : "有效狀態 成立",
                 "code" : "物體.有效狀態 = True",
                 "code_display" : "物體.有效狀態 = True",
@@ -248,6 +214,143 @@
     },
     {
         "postit_type" : "ttk_label",
+        "text" : ">>> 模型位置、縮放與旋轉"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "左右x位置",
+                "code" : "物體.位置x = 0",
+                "code_display" : "物體.位置x = 0",
+                "note" : "左右x位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "上下y位置",
+                "code" : "物體.位置y = 0",
+                "code_display" : "物體.位置y = 0",
+                "note" : "上下y位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "前後z位置",
+                "code" : "物體.位置z = 0",
+                "code_display" : "物體.位置z = 0",
+                "note" : "前後z位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "同時設定xyz位置",
+                "code" : "物體.位置 = [0,0,0]",
+                "code_display" : "物體.位置 = [0,0,0]",
+                "note" : "同時設定xyz位置",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "左右x縮放",
+                "code" : "物體.縮放x = 1",
+                "code_display" : "物體.縮放x = 1",
+                "note" : "左右x縮放",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "上下y縮放",
+                "code" : "物體.縮放y = 1",
+                "code_display" : "體.縮放y = 1",
+                "note" : "上下y縮放",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "前後z縮放",
+                "code" : "物體.縮放z = 1",
+                "code_display" : "物體.縮放z = 1",
+                "note" : "前後z縮放",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "3軸同時縮放",
+                "code" : "物體.縮放 = [1, 1, 1]",
+                "code_display" : "物體.縮放 = [1, 1, 1]",
+                "note" : "3軸同時縮放",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定縮放動畫(持續)",
+                "code" : "物體.縮放動畫([2,1,1], 持續=1)",
+                "code_display" : "物體.縮放動畫([2,1,1],\n    持續=1)",
+                "note" : "設定縮放動畫",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定縮放動畫(延遲與持續)",
+                "code" : "物體.縮放動畫([2,1,1], 延遲=0, 持續=1)",
+                "code_display" : "物體.縮放動畫([2,1,1],\n    延遲=0, 持續=1)",
+                "note" : "設定縮放動畫(延遲與持續)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "x軸為中心的旋轉角度",
+                "code" : "物體.旋轉x = 0",
+                "code_display" : "物體.旋轉x = 0",
+                "note" : "x軸為中心的旋轉角度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "y軸為中心的旋轉角度",
+                "code" : "物體.旋轉y = 0",
+                "code_display" : "物體.旋轉y = 0",
+                "note" : "y軸為中心的旋轉角度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "z軸為中心的旋轉角度",
+                "code" : "物體.旋轉z = 0",
+                "code_display" : "物體.旋轉z = 0",
+                "note" : "z軸為中心的旋轉角度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "同時設定3軸旋轉角度",
+                "code" : "物體.旋轉 = [0, 0, 0]",
+                "code_display" : "物體.旋轉 = [0, 0, 0]",
+                "note" : "同時設定3軸旋轉角度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定旋轉動畫(持續)",
+                "code" : "物體.旋轉動畫([90,0,0], 持續=1)",
+                "code_display" : "物體.旋轉動畫([2,0,0], 持續=1)",
+                "note" : "設定旋轉動畫",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定旋轉動畫(延遲與持續)",
+                "code" : "物體.旋轉動畫([90,0,0], 延遲=0, 持續=1)",
+                "code_display" : "物體.旋轉動畫([90,0,0],\n    延遲=0, 持續=1)",
+                "note" : "設定旋轉動畫(延遲與持續)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
         "text" : ">>> 特定模型與紋理"
     },
     {
@@ -269,7 +372,170 @@
                 "long_note" : true
             }
         ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 事件處理函式"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "當按下時",
+                "code" : "def 當按下時(按鍵):\npass",
+                "code_display" : "def 當按下時(按鍵):\n    pass",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "當放開時",
+                "code" : "def 當放開時(按鍵):\npass",
+                "code_display" : "def 當放開時(按鍵):\n    pass",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是滑鼠左鍵?",
+                "code" : "if 按鍵 == 'left mouse down' :\npass",
+                "code_display" : "if 按鍵 == 'left mouse down' :\n    pass",
+                "note" : "是滑鼠左鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是空白鍵?",
+                "code" : "if 按鍵 == 'space' :\npass",
+                "code_display" : "if 按鍵 == 'space' :\n    pass",
+                "note" : "是空白鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是Enter鍵?",
+                "code" : "if 按鍵 == 'enter' :\npass",
+                "code_display" : "if 按鍵 == 'enter' :\n    pass",
+                "note" : "是Enter鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向右鍵?",
+                "code" : "if 按鍵 == 'right arrow' :\npass",
+                "code_display" : "if 按鍵 == 'right arrow' :\n    pass",
+                "note" : "是向右鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向左鍵?",
+                "code" : "if 按鍵 == 'left arrow' :\npass",
+                "code_display" : "if 按鍵 == 'left arrow' :\n    pass",
+                "note" : "是向左鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向上鍵?",
+                "code" : "if 按鍵 == 'up arrow' :\npass",
+                "code_display" : "if 按鍵 == 'up arrow' :\n    pass",
+                "note" : "是向上鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向下鍵?",
+                "code" : "if 按鍵 == 'down arrow' :\npass",
+                "code_display" : "if 按鍵 == 'down arrow' :\n    pass",
+                "note" : "是向下鍵?",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "當更新時",
+                "code" : "def 當更新時(時間差):\npass",
+                "code_display" : "def 當更新時(時間差):\n    pass",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住空白鍵？",
+                "code" : "if 按住的鍵['space']:\npass\n",
+                "code_display" : "if 按住的鍵['space']:\n    pass",
+                "note" : "按住空白鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住Enter鍵？",
+                "code" : "if 按住的鍵['enter']:\npass",
+                "code_display" : "if 按住的鍵['enter']:\n    pass",
+                "note" : "按住Enter鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向右鍵？",
+                "code" : "if 按住的鍵['right arrow']:\npass",
+                "code_display" : "if 按住的鍵['right arrow']:\n    pass",
+                "note" : "按住向右鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向左鍵？",
+                "code" : "if 按住的鍵['left arrow']:\npass",
+                "code_display" : "if 按住的鍵['left arrow']:\n    pass",
+                "note" : "按住向左鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向上鍵？",
+                "code" : "if 按住的鍵['up arrow']:\npass",
+                "code_display" : "if 按住的鍵['up arrow']:\n    pass",
+                "note" : "按住向上鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向下鍵？",
+                "code" : "if 按住的鍵['down arrow']:\npass",
+                "code_display" : "if 按住的鍵['down arrow']:\n    pass",
+                "note" : "按住向下鍵？",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "滑鼠位置",
+                "code" : "滑鼠.位置",
+                "code_display" : "滑鼠.位置",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠的碰觸物體",
+                "code" : "滑鼠.碰觸物體",
+                "code_display" : "滑鼠.碰觸物體",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠的碰觸點",
+                "code" : "滑鼠.碰觸點",
+                "code_display" : "滑鼠.碰觸點",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 按下左鍵",
+                "code" : "滑鼠.按下左鍵",
+                "code_display" : "滑鼠.按下左鍵",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
     }
-
-
 ]

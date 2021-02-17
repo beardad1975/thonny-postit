@@ -151,7 +151,7 @@ class DropdownPostMixin:
             font = self.postit_button.cget('font')
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
-            text = ' ' + self.postit_button.cget('text')
+            text = '  ' + self.postit_button.cget('text')
             self.hover_text_backup = text
             justify = self.postit_button.cget('justify')
             self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 

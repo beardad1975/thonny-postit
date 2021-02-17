@@ -33,10 +33,13 @@ class VariableMenuWidget(ttk.Frame):
         self.vars_limit = 100
         self.tk_var = tk.StringVar()
 
-        ttk.Frame.__init__(self, master)        
+        ttk.Frame.__init__(self, master)
+        style = ttk.Style()
+        style.configure("V.TLabel",  background="#ffff55",
+                )        
         self.vars_combobox = ttk.Combobox(self, width=10, state="readonly",
                 justify=tk.CENTER,textvariable=self.tk_var,takefocus=0,
-                values=[])
+                values=[],style="V.TLabel")
         self.restore_default_vars()
 
         self.vars_combobox.pack(side=tk.LEFT, anchor='w')
@@ -254,26 +257,26 @@ class VariableFetchToolPostMixin:
         font = self.postit_button.cget('font')
 
         if self.tool_name == 'variable_get':
-            text = common.share_vars_postit.tk_var.get() + ' '
+            text = '  ' + common.share_vars_postit.tk_var.get() + ' '
         elif self.tool_name == 'variable_assign':
-            text = common.share_vars_postit.tk_var.get() + ' = '
+            text = '  ' + common.share_vars_postit.tk_var.get() + ' = '
         elif self.tool_name == 'variable_plus_assign':
-            text = common.share_vars_postit.tk_var.get() + ' += '
+            text = '  ' + common.share_vars_postit.tk_var.get() + ' += '
         elif self.tool_name == 'variable_minus_assign':
-            text = common.share_vars_postit.tk_var.get() + ' -= '
+            text = '  ' + common.share_vars_postit.tk_var.get() + ' -= '
         elif self.tool_name == 'variable_comma':
-            text = common.share_vars_postit.tk_var.get() + ', '
+            text = '  ' + common.share_vars_postit.tk_var.get() + ', '
         elif self.tool_name == 'variable_dot':
-            text = common.share_vars_postit.tk_var.get() + '.'
+            text = '  ' + common.share_vars_postit.tk_var.get() + '.'
         elif self.tool_name == 'variable_parentheses':
-            text = common.share_vars_postit.tk_var.get() + '() '
+            text = '  ' + common.share_vars_postit.tk_var.get() + '() '
         elif self.tool_name == 'variable_square':
-            text = common.share_vars_postit.tk_var.get() + '[] '
+            text = '  ' + common.share_vars_postit.tk_var.get() + '[] '
         else:
             text = ''
 
         if self.tool_name == 'variable_get':
-            color = '#7af85a'
+            color = '#ffff00'
         else:
             color = '#5acef8'
 
@@ -322,6 +325,8 @@ class VariableFetchToolPostMixin:
 
 class VariableFetchToolPopup:
     def popup_init(self):
+        return
+
         self.popup_menu = tk.Menu(self, tearoff=0)
         self.popup_menu.add_command(label="V    取出變數",
             command=lambda:self.switch_button('variable_get'))

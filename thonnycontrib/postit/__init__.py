@@ -2827,7 +2827,7 @@ class PythonPostitView(ttk.Frame):
                 note='hovered entity',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='滑鼠碰觸點',
+                menu_display='滑鼠的碰觸點',
                 code='滑鼠.碰觸點',
                 code_display='滑鼠.碰觸點',
                 note='hovered point',
@@ -4246,19 +4246,22 @@ class PythonPostitView(ttk.Frame):
         #        self.var_toolbar, tool_name='variable_assign')
         common.share_vars_postit = VariableMenuPostit(self.var_toolbar)
 
-        PilcrowToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=1, pady=3)
-        CommentToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=1, pady=3)
-        common.share_vars_postit.pack(side=tk.LEFT,padx=1, pady=3)
+        CommentToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
         VariableAddToolPostit(self.var_toolbar).pack(side=tk.LEFT,
-                padx=1, pady=3)
-        common.share_var_get_postit.pack(side=tk.LEFT,padx=1, pady=3)
+                padx=0, pady=3)
+        common.share_vars_postit.pack(side=tk.LEFT,padx=0, pady=3)
+        
+        common.share_var_get_postit.pack(side=tk.LEFT,padx=0, pady=3)
         #common.share_var_assign_postit.pack(side=tk.LEFT,padx=2, pady=3)
+        
         SymbolToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
 
         # edit_toolbar
         #self.edit_toolbar = ttk.Frame(self.interior)
         self.edit_toolbar = ttk.Frame(self)
         self.edit_toolbar.pack(side=tk.TOP, fill=tk.X)
+
+        PilcrowToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=1, pady=3)
                 
         DedentToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
         IndentToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
