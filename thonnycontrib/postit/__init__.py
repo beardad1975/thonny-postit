@@ -290,11 +290,12 @@ class PythonPostitView(ttk.Frame):
         self.show_tab('py4t','eventloop', 'turtle4t')
         self.show_tab('py4t','eventloop', 'physics4t')
         self.show_tab('py4t','eventloop', 'threed4t')
+        self.show_tab('py4t','library3rd', 'numpy')
         self.show_tab('bit','microbit', 'main')
         
 
         self.switch_mode_by_backend()
-        frame = self.all_modes['py4t'].groups['eventloop'].tabs['threed4t'].tab_frame
+        frame = self.all_modes['py4t'].groups['library3rd'].tabs['numpy'].tab_frame
         self.all_modes['py4t'].tab_notebook.select(frame)
         self.all_modes['bit'].tab_notebook.select(0)
 

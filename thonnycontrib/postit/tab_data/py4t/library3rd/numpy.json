@@ -1,7 +1,7 @@
 [
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "匯入numpy模組",
@@ -11,5 +11,216 @@
                 "long_note" : true
             }
         ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 建立陣列"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "建立數列陣列 arange",
+                "code" : "陣列 = 多維陣列.arange(4)",
+                "code_display" : "陣列=多維陣列.arange(4)",
+                "note" : "數列陣列 同range用法",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "建立陣列 array",
+                "code" : "陣列 = 多維陣列.array([1,2,3,4])",
+                "code_display" : "陣列=多維陣列.array([1,2,\n    3,4])",
+                "note" : "建立陣列 從清單 ",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "建立均零陣列 zeros",
+                "code" : "陣列 = 多維陣列.zeros([2,2])",
+                "code_display" : "陣列=多維陣列.zeros([2,2])",
+                "note" : "都是0的陣列(行列形狀)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "建立均一陣列 ones",
+                "code" : "陣列 = 多維陣列.ones([2,2])",
+                "code_display" : "陣列=多維陣列.ones([2,2])",
+                "note" : "都是1的陣列(行列形狀)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "建立隨機陣列 randint",
+                "code" : "陣列 = 多維陣列.random.randint(10,50,size=[5,5])",
+                "code_display" : "陣列=多維陣列.random.randint(10,\n    50,size=[5,5])",
+                "note" : "隨機陣列(隨機範圍, 大小)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 陣列屬性"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "陣列的維度 ndim",
+                "code" : "陣列.ndim",
+                "code_display" : "陣列.ndim",
+                "note" : "陣列的維度 ndim",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "陣列的形狀 shape",
+                "code" : "陣列.shape",
+                "code_display" : "陣列.shape",
+                "note" : "陣列的形狀 shape",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "資料類型 dtype",
+                "code" : "陣列.dtype",
+                "code_display" : "陣列.dtype",
+                "note" : "資料類型 dtype",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "資料數量 size",
+                "code" : "陣列.size",
+                "code_display" : "陣列.size",
+                "note" : "資料數量 size",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 陣列操作"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "改變陣列形狀 reshape",
+                "code" : "陣列 = 陣列.reshape([2,2])",
+                "code_display" : "陣列=陣列.reshape([2,2])",
+                "note" : "改變陣列的行列形狀",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "唯一值 去除重複 unique",
+                "code" : "唯一值陣列 = 多維陣列.unique(陣列)",
+                "code_display" : "唯一值陣列=多維陣列.unique(陣列)",
+                "note" : "唯一值 去除重複",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "改變類型 8位元正整數",
+                "code" : "陣列 = 陣列.astype('uint8')",
+                "code_display" : "陣列 = 陣列.astype('uint8')",
+                "note" : "改變類型 8位元正整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "改變類型 16位元正整數",
+                "code" : "陣列 = 陣列.astype('uint16')",
+                "code_display" : "陣列 = 陣列.astype('uint16')",
+                "note" : "改變類型 16位元正整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "改變類型 16位元整數",
+                "code" : "陣列 = 陣列.astype('int16')",
+                "code_display" : "陣列 = 陣列.astype('int16')",
+                "note" : "改變類型 16位元整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "改變類型 32位元浮點數",
+                "code" : "陣列 = 陣列.astype('float32')",
+                "code_display" : "陣列 = 陣列.astype('float32')",
+                "note" : "改變類型 32位元浮點數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 陣列切片"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "元素取值",
+                "code" : "陣列[0, 0]",
+                "code_display" : "陣列[0, 0]",
+                "note" : "元素取值 [直行,橫列]",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        設值",
+                "code" : "陣列[0, 0] = 3",
+                "code_display" : "陣列[0, 0] = 3",
+                "note" : "元素設值 [直行,橫列]",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "切片取值",
+                "code" : "陣列[0:2, 0:2]",
+                "code_display" : "陣列[0:2, 0:2]",
+                "note" : "切片取值 [行切片,列切片]",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        設值",
+                "code" : "陣列[0:2, 0:2] = 5",
+                "code_display" : "陣列[0:2, 0:2] = 5",
+                "note" : "切片設值 [行切片,列切片]",
+                "long_note" : true
+            }
+        ]
     }
+
+
 ]

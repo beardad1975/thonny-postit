@@ -104,9 +104,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="-2060.9238"
-     inkscape:cy="3067.7374"
+     inkscape:zoom="1"
+     inkscape:cx="-9323.3026"
+     inkscape:cy="4427.0597"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -3470,5 +3470,38 @@
          x="-2746.7292"
          id="tspan1239"
          sodipodi:role="line">註</tspan></text>
+    <path
+       inkscape:export-ydpi="9.8290386"
+       inkscape:export-xdpi="9.8290386"
+       sodipodi:nodetypes="cccccc"
+       d="m -2480.8965,1240.6191 -26.8968,-5.3267 c -2.7922,-1.1285 -4.25,-3.6309 -4.4188,-7.4609 v -56.3811 c 0.059,-4.7002 1.7822,-6.9493 3.921,-8.5888 l 27.3946,-7.442"
+       style="fill:#fbf7f7;fill-opacity:1;stroke:#636363;stroke-width:3.61073;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path1243" />
+    <path
+       inkscape:export-ydpi="9.8290386"
+       inkscape:export-xdpi="9.8290386"
+       sodipodi:type="star"
+       style="opacity:1;fill:#5e5e5e;fill-opacity:0.960784;stroke:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.721569"
+       id="path1245"
+       sodipodi:sides="3"
+       sodipodi:cx="-1241.1997"
+       sodipodi:cy="503.33206"
+       sodipodi:r1="52.122353"
+       sodipodi:r2="26.061174"
+       sodipodi:arg1="0.44530104"
+       sodipodi:arg2="1.4924986"
+       inkscape:flatsided="true"
+       inkscape:rounded="0.07"
+       inkscape:randomized="0"
+       d="m -1194.1603,525.7827 c -2.722,5.70323 -86.4238,12.27032 -90.0019,7.06139 -3.5782,-5.20893 32.5855,-80.9804 38.8856,-81.47469 6.3001,-0.4943 53.8383,68.71007 51.1163,74.4133 z"
+       inkscape:transform-center-x="-0.48910794"
+       inkscape:transform-center-y="3.9343399"
+       transform="matrix(0.11051114,-0.21130625,0.17652348,0.13932514,-2446.4082,862.9174)" />
+    <path
+       inkscape:export-ydpi="9.8290386"
+       inkscape:export-xdpi="9.8290386"
+       id="path1247"
+       d="m -2481.5441,1154.3158 v 86.2433 h 0.7389"
+       style="fill:none;stroke:#636363;stroke-width:3.29064;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>
