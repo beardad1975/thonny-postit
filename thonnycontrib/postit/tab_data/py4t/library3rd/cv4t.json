@@ -1,7 +1,7 @@
 [
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "從電腦視覺模組匯入全部",
@@ -9,14 +9,297 @@
                 "code_display" : "from 電腦視覺模組 import *",
                 "note" : "從模組匯入全部",
                 "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 圖片讀取與儲存"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "讀取圖片灰階",
+                "code" : "陣列 = 讀取圖片灰階('檔名.類型')",
+                "code_display" : "陣列=讀取圖片灰階('檔名.類型')",
+                "note" : "讀取圖片灰階",
+                "long_note" : true
             },
             {
-                "menu_display" : "從cv4t匯入全部",
-                "code" : "from cv4t import *",
-                "code_display" : "from cv4t import *",
-                "note" : "從cv4t匯入全部",
+                "menu_display" : "讀取圖片彩色",
+                "code" : "陣列 = 讀取圖片彩色('檔名.類型')",
+                "code_display" : "陣列=讀取圖片彩色('檔名.類型')",
+                "note" : "讀取圖片彩色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "儲存圖片",
+                "code" : "儲存圖片('檔名.jpg',陣列)",
+                "code_display" : "儲存圖片('檔名.jpg',陣列)",
+                "note" : "儲存圖片(檔名字串, 陣列)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 圖片顯示"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "顯示圖片",
+                "code" : "顯示圖片(陣列)",
+                "code_display" : "顯示圖片(陣列)",
+                "note" : "顯示圖片(陣列)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "顯示圖片 標題",
+                "code" : "顯示圖片(陣列, 標題='pic')",
+                "code_display" : "顯示圖片(陣列, 標題='pic')",
+                "note" : "顯示圖片(陣列, 標題)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "顯示圖片 新視窗",
+                "code" : "顯示圖片(陣列, 新視窗=True)",
+                "code_display" : "顯示圖片(陣列, 新視窗=True)",
+                "note" : "顯示圖片(陣列, 新視窗)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "關閉所有圖片",
+                "code" : "關閉所有圖片()",
+                "code_display" : "關閉所有圖片()",
+                "note" : "關閉所有圖片",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 圖片處理"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "彩色轉灰階",
+                "code" : "陣列 = 彩色轉灰階(陣列)",
+                "code_display" : "陣列 = 彩色轉灰階(陣列)'",
+                "note" : "彩色轉灰階",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "灰階轉彩色",
+                "code" : "陣列 = 灰階轉彩色(陣列)",
+                "code_display" : "陣列 = 灰階轉彩色(陣列)",
+                "note" : "灰階轉彩色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "左右翻轉",
+                "code" : "陣列 = 左右翻轉(陣列)",
+                "code_display" : "陣列 = 左右翻轉(陣列)",
+                "note" : "左右翻轉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "上下翻轉",
+                "code" : "陣列 = 上下翻轉(陣列)",
+                "code_display" : "陣列 =上下翻轉(陣列)",
+                "note" : "上下翻轉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "上下左右翻轉",
+                "code" : "陣列 = 上下左右翻轉(陣列)",
+                "code_display" : "陣列 =上下左右翻轉(陣列)",
+                "note" : "上下翻轉左右",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 攝影機擷取"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "開啟影像擷取",
+                "code" : "攝影機 = 開啟影像擷取()",
+                "code_display" : "攝影機 = 開啟影像擷取()",
+                "note" : "開啟影像擷取",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "關閉影像擷取",
+                "code" : "攝影機.release()",
+                "code_display" : "攝影機.release()",
+                "note" : "關閉影像擷取",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "擷取單張影像",
+                "code" : "陣列 = 擷取單張影像(攝影機)",
+                "code_display" : "陣列 = 擷取單張影像(攝影機)",
+                "note" : "影像為彩色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 螢幕擷取"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "擷取螢幕灰階",
+                "code" : "陣列 = 擷取螢幕灰階(0,50,0,50)",
+                "code_display" : "陣列 = 擷取螢幕灰階(0,50,\n    0,50)",
+                "note" : "擷取範圍 行1,行2,列1,列2",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 幾何繪圖"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "畫灰階矩形",
+                "code" : "陣列 = 畫灰階矩形(陣列,0,50,0,50)",
+                "code_display" : "陣列 = 畫灰階矩形(陣列,\n    0,50,0,50)",
+                "note" : "矩形範圍 行1,行2,列1,列2",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 等待與輸入"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "無限等待",
+                "code" : "等待按鍵()",
+                "code_display" : "等待按鍵()",
+                "note" : "無限等待",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "等待毫秒",
+                "code" : "等待按鍵(25)",
+                "code_display" : "等待按鍵(25)",
+                "note" : "等待 毫秒",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "無限等待 傳回按鍵",
+                "code" : "按鍵 = 等待按鍵()",
+                "code_display" : "按鍵 = 等待按鍵()",
+                "note" : "無限等待 傳回按鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "等待毫秒 傳回按鍵",
+                "code" : "按鍵 = 等待按鍵(25)",
+                "code_display" : "按鍵 = 等待按鍵(25)",
+                "note" : "等待毫秒 傳回按鍵",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "字母按鍵",
+                "code" : "'a'",
+                "code_display" : "'a'",
+                "note" : "字母按鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "數字按鍵",
+                "code" : "'1'",
+                "code_display" : "'1'",
+                "note" : "數字按鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "符號按鍵",
+                "code" : "'='",
+                "code_display" : "'='",
+                "note" : "符號按鍵",
                 "long_note" : true
             }
         ]
     }
+
 ]

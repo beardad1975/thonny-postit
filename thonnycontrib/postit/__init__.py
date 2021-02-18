@@ -291,11 +291,12 @@ class PythonPostitView(ttk.Frame):
         self.show_tab('py4t','eventloop', 'physics4t')
         self.show_tab('py4t','eventloop', 'threed4t')
         self.show_tab('py4t','library3rd', 'numpy')
+        self.show_tab('py4t','library3rd', 'cv4t')
         self.show_tab('bit','microbit', 'main')
         
 
         self.switch_mode_by_backend()
-        frame = self.all_modes['py4t'].groups['library3rd'].tabs['numpy'].tab_frame
+        frame = self.all_modes['py4t'].groups['library3rd'].tabs['cv4t'].tab_frame
         self.all_modes['py4t'].tab_notebook.select(frame)
         self.all_modes['bit'].tab_notebook.select(0)
 
@@ -3437,8 +3438,8 @@ class PythonPostitView(ttk.Frame):
                 long_note=False))
         temp_code_list.append(CodeNTuple(
                 menu_display='顯示圖片 標題',
-                code="顯示圖片(陣列, 標題='我的圖片')",
-                code_display="顯示圖片(陣列, 標題='我的圖片')",
+                code="顯示圖片(陣列, 標題='pic')",
+                code_display="顯示圖片(陣列, 標題='pic')",
                 note='顯示圖片(陣列, 標題)',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
@@ -3619,9 +3620,9 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='擷取螢幕灰階',
-                code='陣列 = 擷取螢幕灰階(0,200,0,200)',
-                code_display='陣列 = 擷取螢幕灰階(0,200,0,200)',
-                note='擷取螢幕灰階(行1,行2,列1,列2)',
+                code='陣列 = 擷取螢幕灰階(0,50,0,50)',
+                code_display='陣列=擷取螢幕灰階(0,50,0,50)',
+                note='擷取範圍 行1,行2,列1,列2',
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
             postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)                
@@ -3642,8 +3643,8 @@ class PythonPostitView(ttk.Frame):
         temp_code_list = []
         temp_code_list.append(CodeNTuple(
                 menu_display='畫灰階矩形',
-                code='陣列 = 畫灰階矩形(陣列,0,200,0,200)',
-                code_display='陣列 = 畫灰階矩形(陣列,0,200,0,200)',
+                code='陣列 = 畫灰階矩形(陣列,0,20,0,20)',
+                code_display='陣列=畫灰階矩形(陣列,0,20,0,20)',
                 note='畫灰階矩形(陣列,行1,行2,列1,列2)',
                 long_note=True))
         DropdownPostit(tab_name='cv', code_list = temp_code_list,
