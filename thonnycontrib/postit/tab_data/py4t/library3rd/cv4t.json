@@ -7,7 +7,7 @@
                 "menu_display" : "從電腦視覺模組匯入全部",
                 "code" : "from 電腦視覺模組 import *",
                 "code_display" : "from 電腦視覺模組 import *",
-                "note" : "從模組匯入全部",
+                "note" : "### 需先匯入模組",
                 "long_note" : true
             }
         ]
@@ -26,15 +26,15 @@
             {
                 "menu_display" : "讀取圖片灰階",
                 "code" : "陣列 = 讀取圖片灰階('檔名.類型')",
-                "code_display" : "陣列=讀取圖片灰階('檔名.類型')",
-                "note" : "讀取圖片灰階",
+                "code_display" : "陣列 = 讀取圖片灰階(\n    '檔名.類型')",
+                "note" : "### 需改為實際圖片檔名",
                 "long_note" : true
             },
             {
                 "menu_display" : "讀取圖片彩色",
                 "code" : "陣列 = 讀取圖片彩色('檔名.類型')",
-                "code_display" : "陣列=讀取圖片彩色('檔名.類型')",
-                "note" : "讀取圖片彩色",
+                "code_display" : "陣列 = 讀取圖片彩色(\n    '檔名.類型')",
+                "note" : "### 需改為實際圖片檔名",
                 "long_note" : true
             }
         ]

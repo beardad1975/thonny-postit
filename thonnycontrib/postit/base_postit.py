@@ -143,7 +143,7 @@ class BasePost:
 
         x_root, y_root = event.x_root, event.y_root
 
-        self.drag_window.geometry('+{}+{}'.format(x_root+5, y_root+5))
+        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+10))
 
         #change insert over editor or shell (but not postit button)
         

@@ -292,11 +292,12 @@ class PythonPostitView(ttk.Frame):
         self.show_tab('py4t','eventloop', 'threed4t')
         self.show_tab('py4t','library3rd', 'numpy')
         self.show_tab('py4t','library3rd', 'cv4t')
+        self.show_tab('py4t','library3rd', 'speech4t')
         self.show_tab('bit','microbit', 'main')
         
 
         self.switch_mode_by_backend()
-        frame = self.all_modes['py4t'].groups['library3rd'].tabs['cv4t'].tab_frame
+        frame = self.all_modes['py4t'].groups['library3rd'].tabs['speech4t'].tab_frame
         self.all_modes['py4t'].tab_notebook.select(frame)
         self.all_modes['bit'].tab_notebook.select(0)
 
@@ -3831,7 +3832,7 @@ class PythonPostitView(ttk.Frame):
                 note='continue',
                 long_note=True))
         temp_code_list.append(CodeNTuple(
-                menu_display='語音辨識中嗎',
+                menu_display='語音辨識中？',
                 code="語音辨識中嗎()",
                 code_display="語音辨識中嗎()",
                 note='recognition status',
@@ -4237,26 +4238,26 @@ class PythonPostitView(ttk.Frame):
 
         # var toolbar
         #self.var_toolbar = ttk.Frame(self.interior)
-        self.var_toolbar = ttk.Frame(self)
-        self.var_toolbar.pack(side=tk.TOP, fill=tk.X)
+        self.code_toolbar = ttk.Frame(self)
+        self.code_toolbar.pack(side=tk.TOP, fill=tk.X)
 
 
 
         common.share_var_get_postit = VariableFetchToolPostit(
-                self.var_toolbar, tool_name='variable_get')
+                self.code_toolbar, tool_name='variable_get')
         #common.share_var_assign_postit = VariableFetchToolPostit(
         #        self.var_toolbar, tool_name='variable_assign')
-        common.share_vars_postit = VariableMenuPostit(self.var_toolbar)
+        common.share_vars_postit = VariableMenuPostit(self.code_toolbar)
 
-        CommentToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
-        VariableAddToolPostit(self.var_toolbar).pack(side=tk.LEFT,
+        CommentToolPostit(self.code_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
+        VariableAddToolPostit(self.code_toolbar).pack(side=tk.LEFT,
                 padx=0, pady=3)
         common.share_vars_postit.pack(side=tk.LEFT,padx=0, pady=3)
         
         common.share_var_get_postit.pack(side=tk.LEFT,padx=0, pady=3)
         #common.share_var_assign_postit.pack(side=tk.LEFT,padx=2, pady=3)
         
-        SymbolToolPostit(self.var_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
+        SymbolToolPostit(self.code_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
 
         # edit_toolbar
         #self.edit_toolbar = ttk.Frame(self.interior)

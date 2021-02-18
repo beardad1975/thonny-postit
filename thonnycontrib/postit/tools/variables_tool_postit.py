@@ -257,7 +257,7 @@ class VariableFetchToolPostMixin:
         font = self.postit_button.cget('font')
 
         if self.tool_name == 'variable_get':
-            text = '  ' + common.share_vars_postit.tk_var.get() + ' '
+            text = '    ' + common.share_vars_postit.tk_var.get() + ' '
         elif self.tool_name == 'variable_assign':
             text = '  ' + common.share_vars_postit.tk_var.get() + ' = '
         elif self.tool_name == 'variable_plus_assign':
@@ -273,7 +273,7 @@ class VariableFetchToolPostMixin:
         elif self.tool_name == 'variable_square':
             text = '  ' + common.share_vars_postit.tk_var.get() + '[] '
         else:
-            text = ''
+            text = '  '
 
         if self.tool_name == 'variable_get':
             color = '#ffff00'

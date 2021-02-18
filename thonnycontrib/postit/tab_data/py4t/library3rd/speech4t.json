@@ -1,14 +1,182 @@
 [
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "從語音模組匯入全部",
                 "code" : "from 語音模組 import *",
                 "code_display" : "from 語音模組 import *",
-                "note" : "從語音模組匯入全部",
+                "note" : "### 需先匯入模組",
                 "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 文字轉語音"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "語音合成 並等待",
+                "code" : "語音合成('你好')",
+                "code_display" : "語音合成('你好')",
+                "note" : "語音播完再繼續程式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "語音合成 不等待",
+                "code" : "語音合成('你好', 等待=False)",
+                "code_display" : "語音合成('你好',等待=False)",
+                "note" : "語音未播完就繼續程式",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定語音音量",
+                "code" : "設定語音音量(80)",
+                "code_display" : "設定語音音量(80)",
+                "note" : "音量範圍 0 ~ 100",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定語音速度",
+                "code" : "設定語音速度(1)",
+                "code_display" : "設定語音速度(1)",
+                "note" : "速度範圍 -10 ~ 10",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "語音說完了嗎",
+                "code" : "語音說完了嗎()",
+                "code_display" : "語音說完了嗎()",
+                "note" : "",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "語音說完了嗎 等待時間",
+                "code" : "語音說完了嗎(100)",
+                "code_display" : "語音說完了嗎(100)",
+                "note" : "等待0.1秒",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "等待語音說完",
+                "code" : "等待語音說完()",
+                "code_display" : "等待語音說完()",
+                "note" : "",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "ttk_label",
+        "text" : ">>> 語音辨識"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "語音辨識google",
+                "code" : "語音辨識google()",
+                "code_display" : "語音辨識google()",
+                "note" : "google服務(需連網)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "語音辨識google(次數)",
+                "code" : "語音辨識google(次數=15)",
+                "code_display" : "語音辨識google(次數=15)",
+                "note" : "google服務(需連網)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "語音辨識azure key",
+                "code" : "語音辨識azure(key='')",
+                "code_display" : "語音辨識azure(key='')",
+                "note" : "語音辨識azure 需註冊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "語音辨識azure key location",
+                "code" : "語音辨識azure(key='', location='westus')",
+                "code_display" : "語音辨識azure(key='',\n    location='westus')",
+                "note" : "語音辨識azure 需註冊",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "辨識成功了嗎",
+                "code" : "辨識成功了嗎()",
+                "code_display" : "辨識成功了嗎()",
+                "note" : "",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "取得辨識文字",
+                "code" : "文字 = 取得辨識文字()",
+                "code_display" : "文字 = 取得辨識文字()",
+                "note" : "",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "暫停語音辨識",
+                "code" : "暫停語音辨識()",
+                "code_display" : "暫停語音辨識()",
+                "note" : "",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "繼續語音辨識",
+                "code" : "繼續語音辨識()",
+                "code_display" : "繼續語音辨識()",
+                "note" : "",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "語音辨識中？",
+                "code" : "語音辨識中嗎()",
+                "code_display" : "語音辨識中嗎()",
+                "note" : "",
+                "long_note" : false
             }
         ]
     }
