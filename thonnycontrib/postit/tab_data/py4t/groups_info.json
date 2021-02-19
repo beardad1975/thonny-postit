@@ -4,7 +4,7 @@
         "group_label" : "事件迴圈"
     },
     {
-        "group_name" : "builtin",
+        "group_name" : "language",
         "group_label" : "python語言"
     },
     
