@@ -331,14 +331,14 @@
             {
                 "menu_display" : "按下鍵盤時",
                 "code" : "def 按下鍵盤時(按鍵, x, y):\npass\n",
-                "code_display" : "def 按下鍵盤時(按鍵, x, y):\n    pass",
+                "code_display" : "def 按下鍵盤時(按鍵,x,y):\n    pass",
                 "note" : "按下鍵盤時(按鍵,左右,上下)",
                 "long_note" : true
             },
             {
                 "menu_display" : "放開鍵盤時",
                 "code" : "def 放開鍵盤時(按鍵, x, y):\npass\n",
-                "code_display" : "def 放開鍵盤時(按鍵, x, y):\n    pass",
+                "code_display" : "def 放開鍵盤時(按鍵,x,y):\n    pass",
                 "note" : "放開鍵盤時(按鍵,左右,上下)",
                 "long_note" : true
             }

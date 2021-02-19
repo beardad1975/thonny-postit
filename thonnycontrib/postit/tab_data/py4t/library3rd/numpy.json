@@ -133,8 +133,8 @@
         "items" :[
             {
                 "menu_display" : "唯一值 去除重複 unique",
-                "code" : "唯一值陣列 = 多維陣列.unique(陣列)",
-                "code_display" : "唯一值陣列=多維陣列.unique(陣列)",
+                "code" : "唯一值 = 多維陣列.unique(陣列)",
+                "code_display" : "唯一值=多維陣列.unique(陣列)",
                 "note" : "唯一值 去除重複",
                 "long_note" : true
             }

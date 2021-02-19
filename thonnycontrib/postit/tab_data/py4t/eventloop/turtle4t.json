@@ -419,7 +419,7 @@
             {
                 "menu_display" : "字型",
                 "code" : "字型 = ('標楷體',12,'normal')",
-                "code_display" : "字型 = ('標楷體',12,'normal')",
+                "code_display" : "字型 = ('標楷體',\n    12,'normal')",
                 "note" : "字型設定",
                 "long_note" : true
             }
@@ -432,7 +432,7 @@
             {
                 "menu_display" : "寫字",
                 "code" : "寫字('文字', align='center', font=字型)",
-                "code_display" : "寫字('內容', align='center',\n    font=字型)",
+                "code_display" : "寫字('內容',\n    align='center',\n    font=字型)",
                 "note" : "寫字(文字,對齊,字型)",
                 "long_note" : true
             }
