@@ -1,16 +1,25 @@
 [
     {
         "group_name" : "eventloop",
-        "group_label" : "事件迴圈"
+        "group_label" : "事件迴圈",
+        "default_tabs":[
+            "turtle4t"
+        ]
     },
     {
         "group_name" : "language",
-        "group_label" : "python語言"
+        "group_label" : "python語言",
+        "default_tabs":[
+            "flow"
+        ]
     },
     
     {
         "group_name" : "library3rd",
-        "group_label" : "第三方函式庫"
+        "group_label" : "第三方函式庫",
+        "default_tabs":[
+            
+        ]
     }
 
 ]

@@ -66,8 +66,10 @@ class Mode:
         for g in groups_info:
             group_name = g['group_name']
             group_label = g['group_label']
+            default_tabs = g['default_tabs']
             group_path =  TAB_DATA_PATH / mode_name / g['group_name']
-            self.groups[group_name] = TabGroup(group_name, mode_name, group_label, group_path)
+            self.groups[group_name] = TabGroup(group_name, mode_name, 
+                    group_label, group_path, default_tabs)
 
     def gui_init(self):
         # make notebook
@@ -112,10 +114,11 @@ class Mode:
         self.tab_notebook.select(self.more_tab.tab_frame)
 
 class TabGroup:
-    def __init__(self, group_name, mode_name, group_label, group_path):
+    def __init__(self, group_name, mode_name, group_label, group_path, default_tabs):
         self.group_name = group_name
         self.mode_name = mode_name
         self.group_label = group_label
+        self.default_tabs = default_tabs
         self.group_path = group_path
 
         # 3 lists are the same size, all use circular_index
@@ -305,49 +308,16 @@ class PythonPostitView(ttk.Frame):
         common.postit_view = self 
         self.last_focus = None
         self.symbol_row_index = 0
-        
-        self.toolbar_init()
-        
         self.current_mode = 'py4t'
         self.last_backend = ''
-        get_workbench().bind("BackendRestart", self.switch_mode_by_backend, True)
-
-        self.bind_all("<MouseWheel>", self.on_mousewheel,"+")
-
-        # data structure of all modes, groups and tabs
         self.all_modes = OrderedDict()
+
+        self.toolbar_init()
         self.all_modes_init()
-
-        
-
-        #self.tab_groups_init()
-        
-        
-        # self.show_tab('py4t','builtin', 'data')
-        # self.show_tab('py4t','builtin', 'flow')
-        # self.show_tab('py4t','builtin', 'io')
-        #self.show_tab('py4t','builtin', 'function')
-        #self.show_tab('py4t','builtin', 'exception')
-        #self.show_tab('py4t','builtin', 'oo')
-        # self.show_tab('py4t','eventloop', 'turtle4t')
-        # self.show_tab('py4t','eventloop', 'physics4t')
-        # self.show_tab('py4t','eventloop', 'threed4t')
-        # self.show_tab('py4t','library3rd', 'numpy')
-        # self.show_tab('py4t','library3rd', 'cv4t')
-        # self.show_tab('py4t','library3rd', 'speech4t')
-        # self.show_tab('bit','microbit', 'main')
-        
-
         self.switch_mode_by_backend()
-        
-        # frame = self.all_modes['py4t'].groups['library3rd'].tabs['speech4t'].tab_frame
-        # self.all_modes['py4t'].tab_notebook.select(frame)
-        # self.all_modes['bit'].tab_notebook.select(0)
 
-
-        #self.add_tab_json('data')
-        #self.add_tab_json('flow')
-        #self.add_tab_json('io')
+        get_workbench().bind("BackendRestart", self.switch_mode_by_backend, True)
+        self.bind_all("<MouseWheel>", self.on_mousewheel,"+")    
 
         # #add notebook tabs
         # self.add_tab('common', ' 基本 ','basic')
@@ -363,17 +333,6 @@ class PythonPostitView(ttk.Frame):
         # self.add_tab('speech', ' 語音 ','pack')
         # self.add_tab('more',' 　　 ','more')
 
-        # self.common_tab_init()
-        # self.data_tab_init()
-        # self.flow_tab_init()
-        # self.builtin_tab_init()
-        # self.turtle4t_tab_init()
-        # self.physics_tab_init()
-        # self.threed_tab_init()
-        # self.auto_tab_init()
-        # self.numpy_tab_init()
-        # self.cv_tab_init()
-        # self.speech_tab_init()
 
     def on_mousewheel(self, event):
         tab_notebook = self.all_modes[self.current_mode].tab_notebook
@@ -436,11 +395,22 @@ class PythonPostitView(ttk.Frame):
         #     has_more_tab = m['has_more_tab'] 
         #     self.all_modes[mode_name] = Mode(mode_name, mode_label, has_more_tab)    
 
+        # # collect mode, group, tabs json data (in Mode TabGroup Tab class ) 
         self.all_modes['py4t'] = Mode('py4t', 'python學習模式', has_more_tab=True)
-        self.all_modes['bit'] = Mode('bit', 'microbit模式', has_more_tab=False)
+        self.all_modes['bit'] = Mode('bit', 'microbit模式', has_more_tab=True)
 
+        # set default option (source: group json data)
+        for g in self.all_modes['py4t'].groups.values():
+            option_name = 'postit_tabs.{}.{}'.format(g.mode_name, g.group_name)
+            print('defalut:', option_name, g.default_tabs)
+            get_workbench().set_default(option_name, g.default_tabs)
 
-        # gui init second
+        for g in self.all_modes['bit'].groups.values():
+            option_name = 'postit_tabs.{}.{}'.format(g.mode_name, g.group_name)
+            print('defalut:', option_name, g.default_tabs)
+            get_workbench().set_default(option_name, g.default_tabs)
+
+        # gui init second (build notebook and empty tab frame)
         for mode in self.all_modes.values():
             mode.gui_init()
             for group in mode.groups.values():
@@ -449,8 +419,14 @@ class PythonPostitView(ttk.Frame):
                     tab.gui_init()
             mode.add_more_tab()
 
-        # init more tab content
+        # build more tab content, set visible if needed
         self.more_tab_gui_init('py4t')
+        self.more_tab_gui_init('bit')
+
+        # select tab
+        self.select_first_visible_tab('py4t')
+        self.select_first_visible_tab('bit')
+
 
         # notebook menu
         
@@ -479,10 +455,25 @@ class PythonPostitView(ttk.Frame):
     #         group_path =  PY_TAB_PATH / g['group_name']
     #         self.py4t_tab_groups[group_name] = TabGroup(group_label, group_path)
 
+    def select_first_visible_tab(self, mode_name):
+        mode = self.all_modes[mode_name]
+        for g in mode.groups.values():
+            for tab in g.tabs.values():
+                if tab.visible:
+                    mode.tab_notebook.select(tab.tab_frame)
+                    print(mode_name + ' mode select first visible tab: ', tab.tab_name)
+                    return
+
+     
+        
+        # self.all_modes['bit'].tab_notebook.select(0)
+
+
     def more_tab_gui_init(self, mode_name):
         mode  = self.all_modes[mode_name]
         more_tab_frame = mode.more_tab.tab_frame
         
+        # title label
         title_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         tk.Label(more_tab_frame.interior, 
                 text='【更多 便利貼】', font=title_font,
@@ -492,12 +483,13 @@ class PythonPostitView(ttk.Frame):
                     ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
         
 
-        names_of_group = mode.groups.keys()
+        #names_of_group = mode.groups.keys()
         #print(names_of_group)
         
+        # group and tab buttons
         label_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        for group_name in names_of_group:
-            text = '>>> {}'.format(mode.groups[group_name].group_label)
+        for g in mode.groups.values():
+            text = '>>> {}'.format(g.group_label)
             ttk.Label(more_tab_frame.interior,
                       text=text,
                       font=label_font,
@@ -507,9 +499,13 @@ class PythonPostitView(ttk.Frame):
                       #relief="groove",
             )
             group_frame.pack(side=tk.TOP, padx=10, pady=8, anchor='center')
-
             
-            for i, tab in enumerate(mode.groups[group_name].tabs.values()):
+            option_name = 'postit_tabs.{}.{}'.format(g.mode_name, g.group_name)
+            selected_group_tabs = get_workbench().get_option(option_name)
+            
+            #print(g.group_name, group_tab_option)
+
+            for i, tab in enumerate(g.tabs.values()):
                 text = tab.tab_label.replace('\n','')
                 text = text.replace(' ','')
                 tk.Label(group_frame,text=text,
@@ -523,6 +519,10 @@ class PythonPostitView(ttk.Frame):
                     variable=tab.button_tkvar,
                     indicatoron=0, value=1, selectcolor='#ffc526',
                     ).grid(row=i, column=2, padx=3, pady=2)
+
+                if tab.tab_name in selected_group_tabs:
+                   tab.button_tkvar.set(True)    
+
 
             ttk.Separator(more_tab_frame.interior, orient=tk.HORIZONTAL
                     ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
@@ -546,6 +546,15 @@ class PythonPostitView(ttk.Frame):
                 self.load_tab_json(mode_name, group_name, tab_name)
                 tab.loaded = True
             tab.visible = True
+
+            # add tab in option 
+            option_name = 'postit_tabs.{}.{}'.format(mode_name, group_name)
+            selected_group_tabs = get_workbench().get_option(option_name)
+            
+            if not tab_name in selected_group_tabs:
+                selected_group_tabs.append(tab_name)
+                print('show_tab: ',option_name, selected_group_tabs)
+            get_workbench().set_option(option_name, selected_group_tabs)
 
     def load_tab_json(self, mode_name, group_name, tab_name):
         mode = self.all_modes[mode_name]
@@ -602,6 +611,14 @@ class PythonPostitView(ttk.Frame):
         if tab.visible:
             mode.tab_notebook.hide(tab.tab_frame)
             tab.visible = False        
+
+            # remove tab in option 
+            option_name = 'postit_tabs.{}.{}'.format(mode_name, group_name)
+            selected_group_tabs = get_workbench().get_option(option_name)
+            if tab_name in selected_group_tabs:
+                selected_group_tabs.remove(tab_name)
+                print('hide_tab: ',option_name, selected_group_tabs)
+            get_workbench().set_option(option_name, selected_group_tabs)
 
     # def common_tab_init(self):
     #     ### common postit

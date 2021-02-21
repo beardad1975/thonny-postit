@@ -1,7 +1,10 @@
 [
     {
         "group_name" : "microbit",
-        "group_label" : "microbit"
+        "group_label" : "microbit",
+        "default_tabs":[
+            "main"
+        ]
         
     }
 

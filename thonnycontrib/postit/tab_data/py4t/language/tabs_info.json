@@ -1,12 +1,13 @@
 [
-    {
-        "tab_name" : "data",
-        "tab_label" : " 資料 "        
-    },
+    
     {
         "tab_name" : "flow",
         "tab_label" : " 流程 "
                
+    },
+    {
+        "tab_name" : "data",
+        "tab_label" : " 資料 "        
     },
     {
         "tab_name" : "io",
