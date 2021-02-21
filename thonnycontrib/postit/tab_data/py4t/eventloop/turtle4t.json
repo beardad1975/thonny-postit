@@ -1,10 +1,12 @@
 [
     {
-        "postit_type" : "ttk_label",
-        "text" : "【海龜繪圖】"
+        "postit_type" : "postit_para",
+        "on_label" : ">> 海龜繪圖模組",
+        "off_label" : "<< 海龜繪圖模組",
+        "start_on" : true
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -17,14 +19,13 @@
         ]
     },
     {
-        "postit_type" : "ttk_separator"
+        "postit_type" : "postit_para",
+        "on_label" : ">> 位置與方向",
+        "off_label" : "<< 位置與方向",
+        "start_on" : false
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 位置與方向"
-    },
-    {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -37,7 +38,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -57,7 +58,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -77,7 +78,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -126,7 +127,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -146,7 +147,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -187,14 +188,13 @@
         ]
     },
     {
-        "postit_type" : "ttk_separator"
+        "postit_type" : "postit_para",
+        "on_label" : ">> 游標與視窗",
+        "off_label" : "<< 游標與視窗",
+        "start_on" : true
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 游標與視窗"
-    },
-    {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -228,7 +228,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -276,7 +276,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -289,14 +289,13 @@
         ]
     },
     {
-        "postit_type" : "ttk_separator"
+        "postit_type" : "postit_para",
+        "on_label" : ">> 畫筆與填色",
+        "off_label" : "<< 畫筆與填色",
+        "start_on" : true
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 畫筆與填色"
-    },
-    {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -310,7 +309,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -324,7 +323,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -338,7 +337,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -366,7 +365,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -379,14 +378,13 @@
         ]
     },
     {
-        "postit_type" : "ttk_separator"
+        "postit_type" : "postit_para",
+        "on_label" : ">> 畫圓與文字",
+        "off_label" : "<< 畫圓與文字",
+        "start_on" : true
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 畫圓與文字"
-    },
-    {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -413,7 +411,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -426,7 +424,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {

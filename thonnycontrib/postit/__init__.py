@@ -68,7 +68,7 @@ class Mode:
             group_label = g['group_label']
             default_tabs = g['default_tabs']
             group_path =  TAB_DATA_PATH / mode_name / g['group_name']
-            self.groups[group_name] = TabGroup(group_name, mode_name, 
+            self.groups[group_name] = TabGroup(group_name, self, 
                     group_label, group_path, default_tabs)
 
     def gui_init(self):
@@ -114,9 +114,9 @@ class Mode:
         self.tab_notebook.select(self.more_tab.tab_frame)
 
 class TabGroup:
-    def __init__(self, group_name, mode_name, group_label, group_path, default_tabs):
+    def __init__(self, group_name, mode, group_label, group_path, default_tabs):
         self.group_name = group_name
-        self.mode_name = mode_name
+        self.mode = mode
         self.group_label = group_label
         self.default_tabs = default_tabs
         self.group_path = group_path
@@ -144,7 +144,7 @@ class TabGroup:
             tab_label = t['tab_label']
             #always_show = t['always_visible']
             tab_path = self.group_path / (tab_name+'.json')
-            self.tabs[tab_name] = Tab(tab_name, group_name, mode_name, tab_label,  tab_path, self)
+            self.tabs[tab_name] = Tab(tab_name, self, tab_label,  tab_path)
 
     def gui_init(self):
         # dummy
@@ -178,17 +178,21 @@ class TabGroup:
 
 
 class Tab:
-    def __init__(self, tab_name, group_name, mode_name, tab_label, tab_path, tab_group):
+    def __init__(self, tab_name, group, tab_label, tab_path):
         self.tab_name = tab_name
-        self.group_name = group_name
-        self.mode_name = mode_name
+        #self.group_name = group_name
+        #self.mode_name = mode_name
         self.tab_label = tab_label
         #self.always_show = always_show
         self.tab_path = tab_path
-        self.tab_group = tab_group
-        
+        self.loaded = False
+        self.group = group
+
+        self.postit_paras_list = []
+        self.current_postit_para = None
         
         self.visible = False
+        self.para_start_on_done = False
         self.button_tkvar = tk.BooleanVar()
         self.button_tkvar.trace('w', self.on_button_change)
         #print('mode name:', mode_name, 'group name:', group_name)
@@ -208,6 +212,13 @@ class Tab:
         # im = Image.open(abs_image_path)       
         # self.image = ImageTk.PhotoImage(im) 
 
+    def do_para_start_on(self):
+        print(self.tab_name, ': do para start on')
+        for para in self.postit_paras_list:
+            if not para.start_on:
+                para.on_button_pressed()
+                self.para_start_on_done = True
+
     def on_button_change(self, *args):
         value = self.button_tkvar.get()
         if value != self.visible :
@@ -215,22 +226,17 @@ class Tab:
             #print(self.tab_name, value, args)
             
             if value:
-                common.postit_view.show_tab(
-                    self.mode_name,
-                    self.group_name,
-                    self.tab_name)
+                common.postit_view.show_tab(self)
             else:
-                common.postit_view.hide_tab(
-                    self.mode_name,
-                    self.group_name,
-                    self.tab_name)
+                common.postit_view.hide_tab(self)
             
                 
 
 
     def gui_init(self):
-        mode = common.postit_view.all_modes[self.mode_name]
-        group = mode.groups[self.group_name]
+        mode = self.group.mode
+        group = self.group
+
         self.icon_image, self.fill_color, self.font_color =  group.next_icon_color()
         self.loaded = False
         self.visible = False
@@ -238,6 +244,8 @@ class Tab:
         # insert empty frame and hide
         
         self.tab_frame = CustomVerticallyScrollableFrame(mode.notebook_frame)
+        # add tab ref
+        self.tab_frame.tab = self
         mode.tab_notebook.insert('end',self.tab_frame,
                           text = self.tab_label,
                           image = self.icon_image,
@@ -301,6 +309,56 @@ class MoreTab:
                           padding='0i',
                         )
 
+class PostitPara:
+    def __init__(self, tab, on_label, off_label, start_on):
+        self.tab = tab
+        self.on_label = on_label
+        self.off_label = off_label
+        self.start_on = start_on
+        self.para_visible = True
+
+        # text = on_label if start_on else off_label
+        # if start_on :
+        #     text = on_label
+        # else:
+        #     text = off_label
+
+        button_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        self.para_button = tk.Button(tab.tab_frame.interior,
+                command=self.on_button_pressed, 
+                text=on_label, relief='flat', font=button_font)
+        self.para_button.grid(sticky='w', padx=2, pady=8)
+        #self.para_button.pack(side=tk.TOP, anchor='w', padx=2, pady=2)
+
+        self.para_frame = ttk.Frame(tab.tab_frame.interior,
+                )
+        self.para_frame.grid(sticky='sn', padx=0, pady=0)
+        #self.para_frame.pack(side=tk.TOP, padx=10, pady=8, anchor='w')
+
+        # if not start_on:
+        #     self.para_frame.grid_remove()
+
+    def on_button_pressed(self):
+        if self.para_visible :
+            self.para_button.config(text=self.off_label)
+            self.para_visible = False
+            self.para_frame.grid_remove()
+            #self.para_frame.pack_forget()
+        else:
+            self.para_button.config(text=self.on_label)
+            self.para_visible = True
+            self.para_frame.grid()
+            #self.para_frame.grid_propagate(0)
+            #self.para_frame.pack(side=tk.TOP, padx=10, pady=8, anchor='w')
+
+            # for para in self.tab.postit_paras_list:
+            #     para.para_frame.grid_remove()
+
+            # for para in self.tab.postit_paras_list:
+            #     if para.visible:
+            #         para.para_frame.grid(sticky='w', padx=0, pady=0)
+
+
 class PythonPostitView(ttk.Frame):
     def __init__(self, master):
         super().__init__(master)
@@ -336,11 +394,11 @@ class PythonPostitView(ttk.Frame):
 
     def on_mousewheel(self, event):
         tab_notebook = self.all_modes[self.current_mode].tab_notebook
-        tab_name = tab_notebook.select()
-        if tab_name:
-            tab = tab_notebook.nametowidget(tab_name)
+        tab_widget_name = tab_notebook.select()
+        if tab_widget_name:
+            tab_frame = tab_notebook.nametowidget(tab_widget_name)
             #print(type(tab),tab)
-            tab._on_mousewheel(event)
+            tab_frame._on_mousewheel(event)
         
 
     def switch_mode_by_backend(self, event=None):
@@ -401,13 +459,17 @@ class PythonPostitView(ttk.Frame):
 
         # set default option (source: group json data)
         for g in self.all_modes['py4t'].groups.values():
-            option_name = 'postit_tabs.{}.{}'.format(g.mode_name, g.group_name)
-            print('defalut:', option_name, g.default_tabs)
+            mode_name = g.mode.mode_name
+            group_name = g.group_name
+            option_name = 'postit_tabs.{}.{}'.format(mode_name, group_name)
+            #print('defalut:', option_name, g.default_tabs)
             get_workbench().set_default(option_name, g.default_tabs)
 
         for g in self.all_modes['bit'].groups.values():
-            option_name = 'postit_tabs.{}.{}'.format(g.mode_name, g.group_name)
-            print('defalut:', option_name, g.default_tabs)
+            mode_name = g.mode.mode_name
+            group_name = g.group_name
+            option_name = 'postit_tabs.{}.{}'.format(mode_name, group_name)
+            #print('defalut:', option_name, g.default_tabs)
             get_workbench().set_default(option_name, g.default_tabs)
 
         # gui init second (build notebook and empty tab frame)
@@ -461,7 +523,7 @@ class PythonPostitView(ttk.Frame):
             for tab in g.tabs.values():
                 if tab.visible:
                     mode.tab_notebook.select(tab.tab_frame)
-                    print(mode_name + ' mode select first visible tab: ', tab.tab_name)
+                    #print(mode_name + ' mode select first visible tab: ', tab.tab_name)
                     return
 
      
@@ -500,7 +562,7 @@ class PythonPostitView(ttk.Frame):
             )
             group_frame.pack(side=tk.TOP, padx=10, pady=8, anchor='center')
             
-            option_name = 'postit_tabs.{}.{}'.format(g.mode_name, g.group_name)
+            option_name = 'postit_tabs.{}.{}'.format(g.mode.mode_name, g.group_name)
             selected_group_tabs = get_workbench().get_option(option_name)
             
             #print(g.group_name, group_tab_option)
@@ -537,28 +599,29 @@ class PythonPostitView(ttk.Frame):
 
  
 
-    def show_tab(self, mode_name, group_name, tab_name):
-        mode = self.all_modes[mode_name]
-        tab = mode.groups[group_name].tabs[tab_name]
+    def show_tab(self, tab):
+        mode = tab.group.mode
+        group = tab.group
+        
         if not tab.visible:
             mode.tab_notebook.add(tab.tab_frame)
             if not tab.loaded:
-                self.load_tab_json(mode_name, group_name, tab_name)
+                self.load_tab_json(tab)
                 tab.loaded = True
             tab.visible = True
 
             # add tab in option 
-            option_name = 'postit_tabs.{}.{}'.format(mode_name, group_name)
+            option_name = 'postit_tabs.{}.{}'.format(mode.mode_name, group.group_name)
             selected_group_tabs = get_workbench().get_option(option_name)
             
-            if not tab_name in selected_group_tabs:
-                selected_group_tabs.append(tab_name)
-                print('show_tab: ',option_name, selected_group_tabs)
+            if not tab.tab_name in selected_group_tabs:
+                selected_group_tabs.append(tab.tab_name)
+                #print('show_tab: ',option_name, selected_group_tabs)
             get_workbench().set_option(option_name, selected_group_tabs)
 
-    def load_tab_json(self, mode_name, group_name, tab_name):
-        mode = self.all_modes[mode_name]
-        tab = mode.groups[group_name].tabs[tab_name]
+    def load_tab_json(self, tab):
+        mode = tab.group.mode
+        
         with open(tab.tab_path) as fp:
             postit_list = json.load(fp)
         
@@ -590,34 +653,60 @@ class PythonPostitView(ttk.Frame):
                         note=i['note'],
                         long_note=i['long_note'] ))
 
-                DropdownPostit(tab=tab, code_list = temp_code_list,
-                    postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)    
-
+                DropdownPostit(tab.tab_frame.interior, tab, code_list = temp_code_list,
+                    postfix_enter=p['postfix_enter']).grid(sticky='w', padx=5, pady=8)    
+                    #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)    
             elif p['postit_type'] == 'ttk_label':
                 ttk.Label(tab.tab_frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
                     text=p['text'],
                     font=label_font,    
                     compound=tk.LEFT, 
-                ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+                ).grid(sticky='w', padx=5, pady=8)
+                #).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
             elif p['postit_type'] == 'ttk_separator':
                 ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL
-                    ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+                    ).grid(sticky='ew', padx=0, pady=2)
+                    #).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
 
-    def hide_tab(self, mode_name, group_name, tab_name):
-        mode = self.all_modes[mode_name]
-        tab = mode.groups[group_name].tabs[tab_name]
+            elif p['postit_type'] == 'postit_para':
+                on_label = p['on_label']
+                off_label = p['off_label']
+                start_on = p['start_on']
+                para = PostitPara(tab,on_label, off_label, start_on)
+                tab.current_postit_para = para
+                tab.postit_paras_list.append(para)
+
+            elif p['postit_type'] == 'in_para_dropdown_postit':
+                temp_code_list = []
+                for i in p["items"]:
+                    temp_code_list.append(CodeNTuple(
+                        menu_display=i['menu_display'],
+                        code=i['code'],
+                        code_display=i['code_display'],
+                        note=i['note'],
+                        long_note=i['long_note'] ))
+
+                parent = tab.current_postit_para.para_frame
+                DropdownPostit(parent, tab, code_list = temp_code_list,
+                    postfix_enter=p['postfix_enter']).grid(sticky='w', padx=2, pady=2)                
+                    #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)                
+
+    def hide_tab(self, tab):
+        mode = tab.group.mode
+        group = tab.group
+        
         if tab.visible:
             mode.tab_notebook.hide(tab.tab_frame)
             tab.visible = False        
 
             # remove tab in option 
-            option_name = 'postit_tabs.{}.{}'.format(mode_name, group_name)
+            option_name = 'postit_tabs.{}.{}'.format(mode.mode_name, group.group_name)
             selected_group_tabs = get_workbench().get_option(option_name)
-            if tab_name in selected_group_tabs:
-                selected_group_tabs.remove(tab_name)
-                print('hide_tab: ',option_name, selected_group_tabs)
+            if tab.tab_name in selected_group_tabs:
+                selected_group_tabs.remove(tab.tab_name)
+                #print('hide_tab: ',option_name, selected_group_tabs)
             get_workbench().set_option(option_name, selected_group_tabs)
 
     # def common_tab_init(self):
@@ -4459,13 +4548,24 @@ class PythonPostitView(ttk.Frame):
     #         print('no tab ', name)
 
     def on_tab_click(self, event):
-        """record focus widget"""
-        
+        """record focus widget"""        
         self.last_focus = get_workbench().focus_get()
 
     def on_tab_changed(self, event):
-        """restore last focus widget"""
+        tab_notebook = self.all_modes[self.current_mode].tab_notebook
         
+        tab_num = tab_notebook.index('end')
+        
+        tab_widget_name = event.widget.select()
+        if tab_num > 0 and tab_widget_name:
+            tab_frame = tab_notebook.nametowidget(tab_widget_name)
+            tab = tab_frame.tab
+            if not tab.para_start_on_done and tab.loaded:
+                tab.do_para_start_on()
+                
+
+
+        """restore last focus widget"""
         if self.last_focus:
             self.last_focus.focus_set()
             self.last_focus = None
