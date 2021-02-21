@@ -40,18 +40,18 @@ class SymbolWidget(ttk.Frame):
         self.postit_button.pack(side=tk.LEFT, anchor='w')
 
 class SymbolCodeMixin:
-    def code_init(self, code):
+    def code_init(self, code, code_display):
         # tk var
         self.var_postfix_enter = tk.BooleanVar()
         self.var_postfix_enter.set(False)
 
         self.code = code
-        self.code_display = code 
+        self.code_display = code_display
         self.note = ''
 
         self.enclosed_symbols = ('()','[]','{}',"''",'""','r""',"r''")
 
-        self.postit_button.config(text=code)
+        self.postit_button.config(text=code_display)
             
             #self.update_postit_code()
 
@@ -278,6 +278,7 @@ class SymbolToolPopup:
         self.popup_menu = tk.Menu(self, tearoff=0)
 
         # submenu
+        self.common_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.assign_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.string_menu = tk.Menu(self.popup_menu, tearoff=0)
@@ -290,36 +291,61 @@ class SymbolToolPopup:
         
 
         # cascade submenu
+        self.popup_menu.add_cascade(label='常用', menu=self.common_menu)
         self.popup_menu.add_cascade(label='運算', menu=self.arithmetic_menu)
         self.popup_menu.add_cascade(label='設值', menu=self.assign_menu)
-
+        self.popup_menu.add_cascade(label='比較', 
+                menu=self.comparison_menu)
+        self.popup_menu.add_cascade(label='邏輯', 
+                menu=self.logic_menu)
         self.popup_menu.add_cascade(label='字串', menu=self.string_menu)
         self.popup_menu.add_cascade(label='群集', menu=self.collection_menu)
         #self.popup_menu.add_cascade(label='括號引號',
         #        menu=self.bracket_quote_menu)
         self.popup_menu.add_cascade(label='流程', menu=self.flow_menu)
-        self.popup_menu.add_cascade(label='比較', 
-                menu=self.comparison_menu)
-        self.popup_menu.add_cascade(label='邏輯', 
-                menu=self.logic_menu)
-
+    
         self.popup_menu.add_cascade(label='標點符號', menu=self.punctuation_menu)
 
+        # common menu command
+        self.common_menu.add_command( label='print() 列印', 
+                command=lambda:self.change_symbol('print()','print() 列印'))
+        self.common_menu.add_command( label=" = 設值 ", 
+                command=lambda:self.change_symbol(' = '," = 設值 "))
+        self.common_menu.add_command( label=" == 等於 ", 
+                command=lambda:self.change_symbol(' == '," == 等於 "))
+        self.common_menu.add_command( label=" != 不等於 ", 
+                command=lambda:self.change_symbol(' != '," != 不等於 "))
+        self.common_menu.add_command( label=" True 真(成立) ", 
+                command=lambda:self.change_symbol('True'," True 真(成立) "))
+        self.common_menu.add_command( label=" False 假(不成立) ", 
+                command=lambda:self.change_symbol('False'," False 假(不成立) "))
+
+
+
         # arithmetic menu command
-        self.arithmetic_menu.add_command(
-            label="+  加", command=lambda:self.change_symbol(' + '))
-        self.arithmetic_menu.add_command(
-            label="-  減(負)", command=lambda:self.change_symbol(' - '))
-        self.arithmetic_menu.add_command(
-            label="*  乘", command=lambda:self.change_symbol(' * '))
-        self.arithmetic_menu.add_command(
-            label="/  除", command=lambda:self.change_symbol(' / '))
-        self.arithmetic_menu.add_command(
-            label="( )  圓括號", command=lambda:self.change_symbol('()'))
-        self.arithmetic_menu.add_command(
-            label="%  取餘數", command=lambda:self.change_symbol(' % '))
-        self.arithmetic_menu.add_command(
-            label="** 次方", command=lambda:self.change_symbol(' ** '))
+
+        
+        self.arithmetic_menu.add_command( label=' + 加 ', 
+                command=lambda:self.change_symbol(' + ',' + 加 '))
+        
+        self.arithmetic_menu.add_command( label=' - 減(負) ', 
+                command=lambda:self.change_symbol(' - ',' - 減(負) '))
+
+        self.arithmetic_menu.add_command( label=' * 乘 ', 
+                command=lambda:self.change_symbol(' * ',' * 乘 '))
+
+        self.arithmetic_menu.add_command( label=' / 除 ', 
+                command=lambda:self.change_symbol(' / ',' / 除 '))
+
+        self.arithmetic_menu.add_command( label='( ) 圓括號 ', 
+                command=lambda:self.change_symbol('()','( ) 圓括號 '))
+
+        self.arithmetic_menu.add_command( label=' % 取餘數 ', 
+                command=lambda:self.change_symbol(' % ',' % 取餘數 '))
+
+        self.arithmetic_menu.add_command( label=' ** 次方 ', 
+                command=lambda:self.change_symbol(' ** ',' ** 次方 '))
+
         # self.arithmetic_menu.add_command(
         #     label="0b  2進位表示", command=lambda:self.change_symbol('0b'))
         # self.arithmetic_menu.add_command(
@@ -329,104 +355,188 @@ class SymbolToolPopup:
 
 
         # string menu command
-        self.string_menu.add_command(
-            label="' '  單引號(字串)", command=lambda:self.change_symbol("''"))
-        self.string_menu.add_command(
-            label='" "  雙引號(字串)', command=lambda:self.change_symbol('""'))
-        self.string_menu.add_command(
-            label='r" "  原始字串', command=lambda:self.change_symbol('r""'))
-        self.string_menu.add_command(
-            label="r' '  原始字串", command=lambda:self.change_symbol("r''"))
-        self.string_menu.add_command(
-            label="\\n  換行(需在字串中)", command=lambda:self.change_symbol('\\n'))
+        # self.string_menu.add_command(
+        #     label=" ' ' 單引號(字串)", command=lambda:self.change_symbol("''"))
+        # self.string_menu.add_command(
+        #     label=' " " 雙引號(字串)', command=lambda:self.change_symbol('""'))
+        # self.string_menu.add_command(
+        #     label='r" "  原始字串', command=lambda:self.change_symbol('r""'))
+        # self.string_menu.add_command(
+        #     label=" r' '  原始字串", command=lambda:self.change_symbol("r''"))
+        # self.string_menu.add_command(
+        #     label="\\n  換行(需在字串中)", command=lambda:self.change_symbol('\\n'))
+
+        self.string_menu.add_command( label=" ' ' 單引號(字串) ", 
+                command=lambda:self.change_symbol("''"," ' ' 單引號(字串) "))
+        self.string_menu.add_command( label=' " " 雙引號(字串) ', 
+                command=lambda:self.change_symbol('""',' " " 雙引號(字串) '))
+        self.string_menu.add_command( label="\\n  換行(需在字串中) ", 
+                command=lambda:self.change_symbol('\\n',"\\n  換行(需在字串中) "))
+        self.string_menu.add_command( label=" r' '  原始字串 ", 
+                command=lambda:self.change_symbol("r''"," r' '  原始字串 "))
+
+
+
 
         # assign menu command
-        self.assign_menu.add_command(
-            label="=   設值", command=lambda:self.change_symbol(' = '))
-        self.assign_menu.add_command(
-            label="+=  加後設值", command=lambda:self.change_symbol(' += '))
-        self.assign_menu.add_command(
-            label="-=  減後設值", command=lambda:self.change_symbol(' -= '))
-        self.assign_menu.add_command(
-            label="*=  乘後設值", command=lambda:self.change_symbol(' *= '))
-        self.assign_menu.add_command(
-            label="/=  除後設值", command=lambda:self.change_symbol(' /= '))
+        # self.assign_menu.add_command(
+        #     label=" = 設值 ", command=lambda:self.change_symbol(' = '))
+        # self.assign_menu.add_command(
+        #     label=" += 加後設值 ", command=lambda:self.change_symbol(' += '))
+        # self.assign_menu.add_command(
+        #     label=" -= 減後設值 ", command=lambda:self.change_symbol(' -= '))
+        # self.assign_menu.add_command(
+        #     label=" *= 乘後設值 ", command=lambda:self.change_symbol(' *= '))
+        # self.assign_menu.add_command(
+        #     label=" /= 除後設值 ", command=lambda:self.change_symbol(' /= '))
+
+        self.assign_menu.add_command( label=" = 設值 ", 
+                command=lambda:self.change_symbol(' = '," = 設值 "))
+        self.assign_menu.add_command( label=" += 加後設值 ", 
+                command=lambda:self.change_symbol(' += '," += 加後設值 "))
+        self.assign_menu.add_command( label=" -= 減後設值 ", 
+                command=lambda:self.change_symbol(' -= '," -= 減後設值 "))
+        self.assign_menu.add_command( label=" *= 乘後設值 ", 
+                command=lambda:self.change_symbol(' *= '," *= 乘後設值 "))
+        self.assign_menu.add_command( label=" /= 除後設值 ", 
+                command=lambda:self.change_symbol(' /= '," /= 除後設值 "))
+
+
         # self.assign_menu.add_command(
         #     label="%=  取餘數後設值", command=lambda:self.change_symbol(' %= '))
         # self.assign_menu.add_command(
         #     label="**=  次方後設值", command=lambda:self.change_symbol(' **= '))
 
         # comparison menu command
-        self.comparison_menu.add_command(
-            label="==   等於", command=lambda:self.change_symbol(' == '))
-        self.comparison_menu.add_command(
-            label="!=   不等於", command=lambda:self.change_symbol(' != '))
-        self.comparison_menu.add_command(
-            label=">    大於", command=lambda:self.change_symbol(' > '))
-        self.comparison_menu.add_command(
-            label="<   小於", command=lambda:self.change_symbol(' < '))
-        self.comparison_menu.add_command(
-            label=">=   大於等於", command=lambda:self.change_symbol(' >= '))
-        self.comparison_menu.add_command(
-            label="<=   小於等於", command=lambda:self.change_symbol(' <= '))
+        # self.comparison_menu.add_command(
+        #     label=" == 等於 ", command=lambda:self.change_symbol(' == '))
+        # self.comparison_menu.add_command(
+        #     label=" != 不等於 ", command=lambda:self.change_symbol(' != '))
+        # self.comparison_menu.add_command(
+        #     label=" > 大於 ", command=lambda:self.change_symbol(' > '))
+        # self.comparison_menu.add_command(
+        #     label=" < 小於 ", command=lambda:self.change_symbol(' < '))
+        # self.comparison_menu.add_command(
+        #     label=" >= 大於等於 ", command=lambda:self.change_symbol(' >= '))
+        # self.comparison_menu.add_command(
+        #     label=" <= 小於等於 ", command=lambda:self.change_symbol(' <= '))
+
+        self.comparison_menu.add_command( label=" == 等於 ", 
+                command=lambda:self.change_symbol(' == '," == 等於 "))
+        self.comparison_menu.add_command( label=" != 不等於 ", 
+                command=lambda:self.change_symbol(' != '," != 不等於 "))
+        self.comparison_menu.add_command( label=" > 大於 ", 
+                command=lambda:self.change_symbol(' > '," > 大於 "))
+        self.comparison_menu.add_command( label=" < 小於 ", 
+                command=lambda:self.change_symbol(' < '," < 小於 "))
+        self.comparison_menu.add_command( label=" >= 大於等於 ", 
+                command=lambda:self.change_symbol(' >= '," >= 大於等於 "))
+        self.comparison_menu.add_command( label=" <= 小於等於 ", 
+                command=lambda:self.change_symbol(' <= '," <= 小於等於 "))
+
 
         # logic menu command
-        self.logic_menu.add_command(
-            label="and   而且", command=lambda:self.change_symbol(' and '))
-        self.logic_menu.add_command(
-            label="or    或", command=lambda:self.change_symbol(' or '))
-        self.logic_menu.add_command(
-            label="not   不是", command=lambda:self.change_symbol(' not '))
-        self.logic_menu.add_command(
-            label="True   真(成立)", command=lambda:self.change_symbol('True'))
-        self.logic_menu.add_command(
-            label="False   假(不成立)", command=lambda:self.change_symbol('False'))
-        self.logic_menu.add_command(
-            label="None   空值", command=lambda:self.change_symbol('None'))
-        self.logic_menu.add_command(
-            label="is   是", command=lambda:self.change_symbol(' is '))
-        self.logic_menu.add_command(
-            label="in   在裡面", command=lambda:self.change_symbol(' in '))
+        # self.logic_menu.add_command(
+        #     label=" and 而且 ", command=lambda:self.change_symbol(' and '))
+        # self.logic_menu.add_command(
+        #     label=" or 或 ", command=lambda:self.change_symbol(' or '))
+        # self.logic_menu.add_command(
+        #     label=" not 不是(否) ", command=lambda:self.change_symbol(' not '))
+        # self.logic_menu.add_command(
+        #     label=" True 真(成立) ", command=lambda:self.change_symbol('True'))
+        # self.logic_menu.add_command(
+        #     label=" False 假(不成立) ", command=lambda:self.change_symbol('False'))
+        # self.logic_menu.add_command(
+        #     label=" None 空值 ", command=lambda:self.change_symbol('None'))
+        # self.logic_menu.add_command(
+        #     label=" is 是 ", command=lambda:self.change_symbol(' is '))
+        # self.logic_menu.add_command(
+        #     label=" in 在裡面 ", command=lambda:self.change_symbol(' in '))
+
+        self.logic_menu.add_command( label=" and 而且 ", 
+                command=lambda:self.change_symbol(' and '," and 而且 "))
+        self.logic_menu.add_command( label=" or 或 ", 
+                command=lambda:self.change_symbol(' or '," or 或 "))
+        self.logic_menu.add_command( label=" not 不是(否) ", 
+                command=lambda:self.change_symbol(' not '," not 不是(否) "))
+        self.logic_menu.add_command( label=" True 真(成立) ", 
+                command=lambda:self.change_symbol('True'," True 真(成立) "))
+        self.logic_menu.add_command( label=" False 假(不成立) ", 
+                command=lambda:self.change_symbol('False'," False 假(不成立) "))
+        self.logic_menu.add_command( label=" None 空值 ", 
+                command=lambda:self.change_symbol('None'," None 空值 "))
+        self.logic_menu.add_command( label=" is 是 ", 
+                command=lambda:self.change_symbol(' is '," is 是 "))
+        self.logic_menu.add_command( label=" in 在裡面 ", 
+                command=lambda:self.change_symbol(' in '," in 在裡面 "))
 
         # collection menu command
-        self.collection_menu.add_command(
-            label="[ ]  方括號(清單、取項目)", command=lambda:self.change_symbol('[]'))
-        self.collection_menu.add_command(
-            label="()  圓括號(Tuple)", command=lambda:self.change_symbol('()'))
-        self.collection_menu.add_command(
-            label="{ }  大括號(字典、集合)", command=lambda:self.change_symbol('{}'))
-        self.collection_menu.add_command(
-            label=",   逗號", command=lambda:self.change_symbol(', '))
+        # self.collection_menu.add_command(
+        #     label=" [ ] 方括號(清單、字典)", command=lambda:self.change_symbol('[]'))
+        # self.collection_menu.add_command(
+        #     label=" ( ) 圓括號(元組)", command=lambda:self.change_symbol('()'))
+        # self.collection_menu.add_command(
+        #     label=" { } 大括號(字典、集合)", command=lambda:self.change_symbol('{}'))
+        # self.collection_menu.add_command(
+        #     label=",   逗號", command=lambda:self.change_symbol(', '))
+
+        self.collection_menu.add_command( label=" [ ] 清單、字典)", 
+                command=lambda:self.change_symbol('[]'," [ ] 清單、字典"))
+        self.collection_menu.add_command( label=" ( ) 元組 ", 
+                command=lambda:self.change_symbol('()'," ( ) 元組 "))
+        self.collection_menu.add_command( label=" { } 字典、集合", 
+                command=lambda:self.change_symbol('{}'," { } 字典、集合"))
 
         # flow menu command
-        self.flow_menu.add_command(
-            label="( )  圓括號(呼叫)", command=lambda:self.change_symbol('()'))
-        self.flow_menu.add_command(
-            label=",   逗號", command=lambda:self.change_symbol(', '))
-        self.flow_menu.add_command(
-            label=":   冒號", command=lambda:self.change_symbol(':'))
-        self.flow_menu.add_command(
-            label="pass  略過", command=lambda:self.change_symbol('pass'))
+        # self.flow_menu.add_command(
+        #     label=" () 呼叫 ", command=lambda:self.change_symbol('()'))
+        # self.flow_menu.add_command(
+        #     label=",   逗號", command=lambda:self.change_symbol(', '))
+        # self.flow_menu.add_command(
+        #     label=" : 後接區塊", command=lambda:self.change_symbol(':'))
+        # self.flow_menu.add_command(
+        #     label=" pass 略過(佔位)", command=lambda:self.change_symbol('pass'))
+
+        self.flow_menu.add_command( label=" ( ) 呼叫 ", 
+                command=lambda:self.change_symbol('()'," ( ) 呼叫 "))
+        self.flow_menu.add_command( label=" , 分隔 ", 
+                command=lambda:self.change_symbol(', '," , 分隔 "))
+        self.flow_menu.add_command( label=" : 後接區塊", 
+                command=lambda:self.change_symbol(':'," : 後接區塊"))
+        self.flow_menu.add_command( label=" pass 略過(佔位)", 
+                command=lambda:self.change_symbol('pass\n'," pass 略過(佔位)"))
 
         # punctuation menu command 
-        self.punctuation_menu.add_command(
-            label=",   逗號", command=lambda:self.change_symbol(', '))
-        self.punctuation_menu.add_command(
-            label=".   句號", command=lambda:self.change_symbol('.'))
-        self.punctuation_menu.add_command(
-            label=":   冒號", command=lambda:self.change_symbol(':'))
-        self.punctuation_menu.add_command(
-            label=";   分號", command=lambda:self.change_symbol(';'))
-        self.punctuation_menu.add_command(
-            label="( )  圓括號(呼叫)", command=lambda:self.change_symbol('()'))
-        self.punctuation_menu.add_command(
-            label="' '  單引號(字串)", command=lambda:self.change_symbol("''"))
-        self.punctuation_menu.add_command(
-            label="#  井字號(註解)", command=lambda:self.change_symbol("# "))
-        self.punctuation_menu.add_command(
-            label="\\  反斜線", command=lambda:self.change_symbol("\\"))
-        self.punctuation_menu.add_command(
-            label="@  小老鼠", command=lambda:self.change_symbol("@"))
+        # self.punctuation_menu.add_command(
+        #     label=" , 逗號 ", command=lambda:self.change_symbol(', '))
+        # self.punctuation_menu.add_command(
+        #     label=" . 句號 ", command=lambda:self.change_symbol('.'))
+        # self.punctuation_menu.add_command(
+        #     label=" : 冒號 ", command=lambda:self.change_symbol(':'))
+        # self.punctuation_menu.add_command(
+        #     label=" ; 分號 ", command=lambda:self.change_symbol(';'))
+        # self.punctuation_menu.add_command(
+        #     label="( )  圓括號(呼叫)", command=lambda:self.change_symbol('()'))
+        # self.punctuation_menu.add_command(
+        #     label="' '  單引號(字串)", command=lambda:self.change_symbol("''"))
+        # self.punctuation_menu.add_command(
+        #     label=" # 井字號(註解)", command=lambda:self.change_symbol("# "))
+        # self.punctuation_menu.add_command(
+        #     label="\\  反斜線", command=lambda:self.change_symbol("\\"))
+        # self.punctuation_menu.add_command(
+        #     label="@  小老鼠", command=lambda:self.change_symbol("@"))
+
+        self.punctuation_menu.add_command( label=" , 逗號 ", 
+                command=lambda:self.change_symbol(', '," , 逗號 "))
+        self.punctuation_menu.add_command( label=" . 句號 ", 
+                command=lambda:self.change_symbol('.'," . 句號 "))
+        self.punctuation_menu.add_command( label=" : 冒號 ", 
+                command=lambda:self.change_symbol(':'," : 冒號 "))
+        self.punctuation_menu.add_command( label=" ; 分號 ", 
+                command=lambda:self.change_symbol(';'," ; 分號 "))
+        self.punctuation_menu.add_command( label=" # 井字號(註解)", 
+                command=lambda:self.change_symbol("# "," # 井字號(註解)"))
+
 
 
         self.postit_button.bind("<Button-3>", self.popup)
@@ -434,10 +544,10 @@ class SymbolToolPopup:
     def popup(self, event):
          self.popup_menu.tk_popup(event.x_root, event.y_root)
 
-    def change_symbol(self, symbol):
-        self.code = symbol
-        self.code_display = symbol
-        self.postit_button.config(text=symbol)
+    def change_symbol(self, code, code_display):
+        self.code = code
+        self.code_display = code_display
+        self.postit_button.config(text=code_display)
         
         return
 
@@ -538,6 +648,6 @@ class SymbolToolPostit(SymbolWidget,
     """ composite and mixin approach postit"""
     def __init__(self, master):
         self.widget_init(master)
-        self.code_init(' + ')
+        self.code_init('print()\n', "print() 列印")
         self.post_init()
         self.popup_init()
