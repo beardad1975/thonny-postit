@@ -74,7 +74,7 @@ class Mode:
     def gui_init(self):
         # make notebook
         self.notebook_frame = ttk.Frame(common.postit_view)
-        self.notebook_frame.pack(side=tk.TOP, fill=tk.Y)
+        self.notebook_frame.pack(side=tk.TOP, fill=tk.BOTH)
         #self.notebook_frame.pack(side=tk.TOP, fill=tk.Y)
         #style = ttk.Style(self.interior)
         #style = ttk.Style(notebook_frame.interior)
@@ -213,11 +213,15 @@ class Tab:
         # self.image = ImageTk.PhotoImage(im) 
 
     def do_para_start_on(self):
-        print(self.tab_name, ': do para start on')
+        if self.para_start_on_done:
+            return
+
         for para in self.postit_paras_list:
             if not para.start_on:
                 para.on_button_pressed()
-                self.para_start_on_done = True
+
+        self.para_start_on_done = True
+        print(self.tab_name, ': do para start on')        
 
     def on_button_change(self, *args):
         value = self.button_tkvar.get()
@@ -302,6 +306,7 @@ class MoreTab:
         # prepare  frame
         
         self.tab_frame = CustomVerticallyScrollableFrame(notebook)
+        self.tab_frame.tab = self
         notebook.insert('end',self.tab_frame,
                           text = '更多…',
                           image = self.icon_image,
@@ -327,12 +332,12 @@ class PostitPara:
         self.para_button = tk.Button(tab.tab_frame.interior,
                 command=self.on_button_pressed, 
                 text=on_label, relief='flat', font=button_font)
-        self.para_button.grid(sticky='w', padx=2, pady=8)
+        self.para_button.grid(sticky='w', padx=0, pady=8)
         #self.para_button.pack(side=tk.TOP, anchor='w', padx=2, pady=2)
 
         self.para_frame = ttk.Frame(tab.tab_frame.interior,
                 )
-        self.para_frame.grid(sticky='sn', padx=0, pady=0)
+        self.para_frame.grid(sticky='we', padx=0, pady=0)
         #self.para_frame.pack(side=tk.TOP, padx=10, pady=8, anchor='w')
 
         # if not start_on:
@@ -369,6 +374,9 @@ class PythonPostitView(ttk.Frame):
         self.current_mode = 'py4t'
         self.last_backend = ''
         self.all_modes = OrderedDict()
+
+        im = Image.open(Path(__file__).parent / 'images' / 'vertical_spacer.png')       
+        self.spacer_image= ImageTk.PhotoImage(im) 
 
         self.toolbar_init()
         self.all_modes_init()
@@ -420,8 +428,8 @@ class PythonPostitView(ttk.Frame):
                 self.all_modes['py4t'].notebook_frame.pack_forget()
                 self.all_modes['py4t'].tab_notebook.pack_forget()
                 #self.all_modes['py4t'].notebook_frame.config(expand=False)
-                self.all_modes['bit'].notebook_frame.pack(side=tk.TOP, fill=tk.Y,expand=True)
-                self.all_modes['bit'].tab_notebook.pack(side=tk.TOP, fill=tk.Y,expand=True)
+                self.all_modes['bit'].notebook_frame.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
+                self.all_modes['bit'].tab_notebook.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
                 #self.all_modes['bit'].notebook_frame.config(expand=True)
                 #self.all_modes['py4t'].tab_notebook.pack_forget()
                 self.current_mode = 'bit'
@@ -431,8 +439,8 @@ class PythonPostitView(ttk.Frame):
                 self.all_modes['bit'].notebook_frame.pack_forget()
                 self.all_modes['bit'].tab_notebook.pack_forget()
                 #self.all_modes['bit'].notebook_frame.config(expand=False)
-                self.all_modes['py4t'].notebook_frame.pack(side=tk.TOP, fill=tk.Y,expand=True)
-                self.all_modes['py4t'].tab_notebook.pack(side=tk.TOP, fill=tk.Y,expand=True)
+                self.all_modes['py4t'].notebook_frame.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
+                self.all_modes['py4t'].tab_notebook.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
                 #self.all_modes['py4t'].notebook_frame.config(expand=True)
                 #self.all_modes['bit'].tab_notebook.pack_forget()
                 self.current_mode = 'py4t'              
@@ -667,7 +675,7 @@ class PythonPostitView(ttk.Frame):
 
             elif p['postit_type'] == 'ttk_separator':
                 ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL
-                    ).grid(sticky='ew', padx=0, pady=2)
+                    ).grid(sticky='ew', padx=0, pady=5)
                     #).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
 
             elif p['postit_type'] == 'postit_para':
@@ -690,8 +698,14 @@ class PythonPostitView(ttk.Frame):
 
                 parent = tab.current_postit_para.para_frame
                 DropdownPostit(parent, tab, code_list = temp_code_list,
-                    postfix_enter=p['postfix_enter']).grid(sticky='w', padx=2, pady=2)                
+                    postfix_enter=p['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
                     #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)                
+
+        # end spacer for end space scrolling
+        tk.Label(tab.tab_frame.interior, text='',
+                image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
+        
+
 
     def hide_tab(self, tab):
         mode = tab.group.mode
@@ -4560,7 +4574,7 @@ class PythonPostitView(ttk.Frame):
         if tab_num > 0 and tab_widget_name:
             tab_frame = tab_notebook.nametowidget(tab_widget_name)
             tab = tab_frame.tab
-            if not tab.para_start_on_done and tab.loaded:
+            if not isinstance(tab, MoreTab) and not tab.para_start_on_done and tab.loaded:
                 tab.do_para_start_on()
                 
 

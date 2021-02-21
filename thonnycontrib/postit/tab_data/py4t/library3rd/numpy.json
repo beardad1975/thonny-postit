@@ -1,13 +1,19 @@
 [
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入多維陣列",
+        "off_label" : "匯入多維陣列 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "匯入numpy模組",
                 "code" : "import numpy as 多維陣列",
                 "code_display" : "import numpy as 多維陣列",
-                "note" : "### 需先匯入numpy模組",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }
         ]
@@ -16,11 +22,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 建立陣列"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 建立多維陣列",
+        "off_label" : "建立多維陣列 >>",
+        "start_on" : true
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -40,7 +48,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -70,11 +78,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 陣列屬性"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 陣列屬性",
+        "off_label" : "陣列屬性 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -83,21 +93,39 @@
                 "code_display" : "陣列.ndim",
                 "note" : "陣列的維度 ndim",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "陣列的形狀 shape",
                 "code" : "陣列.shape",
                 "code_display" : "陣列.shape",
                 "note" : "陣列的形狀 shape",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "資料類型 dtype",
                 "code" : "陣列.dtype",
                 "code_display" : "陣列.dtype",
                 "note" : "資料類型 dtype",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "資料數量 size",
                 "code" : "陣列.size",
@@ -111,11 +139,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 陣列操作"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 陣列操作",
+        "off_label" : "陣列操作 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -128,7 +158,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -141,7 +171,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -178,11 +208,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 陣列切片"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 陣列切片",
+        "off_label" : "陣列切片 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -202,7 +234,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {

@@ -1,17 +1,19 @@
 [
     {
-        "postit_type" : "ttk_label",
-        "text" : " 【物理碰撞模擬】 "
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入物理模組 ",
+        "off_label" : "匯入物理模組 >>",
+        "start_on" : true
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "from 物理模組 import *",
                 "code" : "from 物理模組 import *",
                 "code_display" : "from 物理模組 import *",
-                "note" : "### 需先匯入模組",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }
         ]
@@ -20,11 +22,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 主迴圈與物理舞台"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 主迴圈與舞台",
+        "off_label" : "主迴圈與舞台 >>",
+        "start_on" : true
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -45,7 +49,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -58,7 +62,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -78,7 +82,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -115,11 +119,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 物體新增移除"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 物體新增移除",
+        "off_label" : "物體新增移除 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -139,7 +145,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -159,7 +165,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -172,11 +178,13 @@
         ]
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 物體屬性與運動"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 物體屬性與運動",
+        "off_label" : "物體屬性與運動 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -210,7 +218,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -244,7 +252,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -264,7 +272,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -294,11 +302,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 事件處理函式"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 事件處理函式",
+        "off_label" : "事件處理函式 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -325,7 +335,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -345,7 +355,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {

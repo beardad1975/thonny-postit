@@ -1,8 +1,8 @@
 [
     {
         "postit_type" : "postit_para",
-        "on_label" : ">> 海龜繪圖模組",
-        "off_label" : "<< 海龜繪圖模組",
+        "on_label" : "<< 匯入海龜模組",
+        "off_label" : "匯入海龜模組 >>",
         "start_on" : true
     },
     {
@@ -13,16 +13,19 @@
                 "menu_display" : "匯入海龜模組",
                 "code" : "from 海龜模組 import *",
                 "code_display" : "from 海龜模組 import *",
-                "note" : "### 需先匯入模組",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "postit_para",
-        "on_label" : ">> 位置與方向",
-        "off_label" : "<< 位置與方向",
-        "start_on" : false
+        "on_label" : "<< 位置與方向",
+        "off_label" : "位置與方向 >>",
+        "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -188,10 +191,13 @@
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "postit_para",
-        "on_label" : ">> 游標與視窗",
-        "off_label" : "<< 游標與視窗",
-        "start_on" : true
+        "on_label" : "<< 游標與視窗",
+        "off_label" : "游標與視窗 >>",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -289,10 +295,13 @@
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "postit_para",
-        "on_label" : ">> 畫筆與填色",
-        "off_label" : "<< 畫筆與填色",
-        "start_on" : true
+        "on_label" : "<< 畫筆與填色",
+        "off_label" : "畫筆與填色 >>",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -378,10 +387,13 @@
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "postit_para",
-        "on_label" : ">> 畫圓與文字",
-        "off_label" : "<< 畫圓與文字",
-        "start_on" : true
+        "on_label" : "<< 畫圓與文字",
+        "off_label" : "畫圓與文字 >>",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",

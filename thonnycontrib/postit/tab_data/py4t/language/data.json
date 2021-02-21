@@ -1,10 +1,12 @@
 [
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 數值類型"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 數值類型",
+        "off_label" : "數值類型 >>",
+        "start_on" : true
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -24,7 +26,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -44,7 +46,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -64,11 +66,13 @@
         ]
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 數值運算"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 數值運算",
+        "off_label" : "數值運算 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -112,11 +116,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 字串類型"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 字串類型",
+        "off_label" : "字串類型 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -136,7 +142,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -167,11 +173,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 特殊類型"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 特殊類型",
+        "off_label" : "特殊類型 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -187,11 +195,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 群集類型"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 群集類型",
+        "off_label" : "群集類型 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {

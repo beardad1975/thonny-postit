@@ -1,13 +1,19 @@
 [
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入電腦視覺模組",
+        "off_label" : "匯入電腦視覺模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "從電腦視覺模組匯入全部",
                 "code" : "from 電腦視覺模組 import *",
                 "code_display" : "from 電腦視覺模組 import *",
-                "note" : "### 需先匯入模組",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }
         ]
@@ -16,11 +22,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 圖片讀取與儲存"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 圖片讀取與儲存",
+        "off_label" : "圖片讀取與儲存 >>",
+        "start_on" : true
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -40,7 +48,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -56,11 +64,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 圖片顯示"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 圖片顯示",
+        "off_label" : "圖片顯示 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -87,7 +97,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -103,11 +113,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 圖片處理"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 圖片處理",
+        "off_label" : "圖片處理 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -127,7 +139,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -157,11 +169,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 攝影機擷取"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 攝影機擷取",
+        "off_label" : "攝影機擷取 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -181,7 +195,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -197,11 +211,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 螢幕擷取"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 螢幕擷取",
+        "off_label" : "螢幕擷取 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -217,11 +233,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 幾何繪圖"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 幾何繪圖",
+        "off_label" : "幾何繪圖 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -237,11 +255,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 等待與輸入"
+        "postit_type" : "postit_para",
+        "on_label" : "<< 等待與輸入",
+        "off_label" : "等待與輸入 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -275,7 +295,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {

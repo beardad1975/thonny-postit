@@ -1,10 +1,12 @@
 [
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> if 條件分支"
+        "postit_type" : "postit_para",
+        "on_label" : "<< if 條件分支",
+        "off_label" : "if 條件分支 >>",
+        "start_on" : true
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -34,11 +36,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> while 迴圈"
+        "postit_type" : "postit_para",
+        "on_label" : "<< while 迴圈",
+        "off_label" : "while 迴圈 >>",
+        "start_on" : false
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -58,11 +62,16 @@
         ]
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> for 迴圈"
+        "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< for 迴圈",
+        "off_label" : "for 迴圈 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -96,11 +105,16 @@
         ]
     },
     {
-        "postit_type" : "ttk_label",
-        "text" : ">>> 迴圈控制"
+        "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 迴圈控制",
+        "off_label" : "迴圈控制 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
