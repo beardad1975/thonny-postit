@@ -1,0 +1,42 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "印出 print",
+                "code" : "print()",
+                "code_display" : "print()",
+                "note" : "印出",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "印出(多個引數)",
+                "code" : "print('你','好')",
+                "code_display" : "print('你','好')",
+                "note" : "印出(多個引數)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "印出(不換行)",
+                "code" : "print('早安', end='')",
+                "code_display" : "print('早安', end='')",
+                "note" : "印出(不換行)",
+                "long_note" : true
+            }                
+        ]
+    },        
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "輸入 input",
+                "code" : "變數 = input('請輸入: ')",
+                "code_display" : "變數 = input('請輸入: ')",
+                "note" : "輸入",
+                "long_note" : true
+            }       
+        ]
+    }
+]

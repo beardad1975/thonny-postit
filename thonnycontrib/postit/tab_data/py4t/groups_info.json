@@ -13,10 +13,16 @@
             "flow"
         ]
     },
-    
+    {
+        "group_name" : "stdlib",
+        "group_label" : "標準函式庫",
+        "default_tabs":[
+            
+        ]
+    },
     {
         "group_name" : "library3rd",
-        "group_label" : "第三方函式庫",
+        "group_label" : "協力函式庫",
         "default_tabs":[
             
         ]

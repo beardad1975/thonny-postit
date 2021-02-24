@@ -546,7 +546,7 @@ class PythonPostitView(ttk.Frame):
         # title label
         title_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         tk.Label(more_tab_frame.interior, 
-                text='【 更多便利貼 】', font=title_font,
+                text='-- 更多便利貼 --', font=title_font,
         ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
 
         ttk.Separator(more_tab_frame.interior, orient=tk.HORIZONTAL 
@@ -559,9 +559,11 @@ class PythonPostitView(ttk.Frame):
         # group and tab buttons
         label_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         for g in mode.groups.values():
-            text = '>>> {}'.format(g.group_label)
+            text = '{}'.format(g.group_label)
             ttk.Label(more_tab_frame.interior,
                       text=text,
+                      image=g.icon_images[0],
+                      compound='left',
                       font=label_font,
             ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
         
@@ -670,8 +672,18 @@ class PythonPostitView(ttk.Frame):
                     text=p['text'],
                     font=label_font,    
                     compound=tk.LEFT, 
-                ).grid( padx=0, pady=8)
+                ).grid( sticky='w',padx=0, pady=8)
                 #).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+            elif p['postit_type'] == 'postit_title':
+                ttk.Label(tab.tab_frame.interior, 
+                    #text='='*6 +' 【 條件分支 】 '+'='*6,
+                    text=p['text'],
+                    font=label_font,
+                    image=tab.icon_image,
+                    compound='top',    
+                    
+                ).grid( padx=0, pady=8)
 
             elif p['postit_type'] == 'ttk_separator':
                 ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL
