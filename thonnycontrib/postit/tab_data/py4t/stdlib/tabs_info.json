@@ -1,8 +1,20 @@
 [
-    
     {
         "tab_name" : "time",
-        "tab_label" : " 時間 "
+        "tab_label" : " 時間 ",
+        "tab_title" : "時間"
+               
+    },
+    {
+        "tab_name" : "math",
+        "tab_label" : " 數學 ",
+        "tab_title" : "數學"
+               
+    },
+    {
+        "tab_name" : "random",
+        "tab_label" : " 隨機 ",
+        "tab_title" : "隨機"
                
     }
 ]

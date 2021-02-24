@@ -1,7 +1,8 @@
 [
     {
         "tab_name" : "main",
-        "tab_label" : " 主要 "
+        "tab_label" : " 主要 ",
+        "tab_title" : "主要"
         
     }
 ]

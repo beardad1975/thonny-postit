@@ -1,0 +1,194 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入數學模組",
+                "code" : "import math as 數學",
+                "code_display" : "import math as 數學",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 常數",
+        "off_label" : "常數 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "圓周率 pi",
+                "code" : "數學.pi",
+                "code_display" : "數學.pi",
+                "note" : "圓周率 pi",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 基本算術",
+        "off_label" : "基本算術 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "最大公因數",
+                "code" : "數學.gcd(8, 12)",
+                "code_display" : "數學.gcd(8, 12)",
+                "note" : "最大公因數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 指數、方根與對數",
+        "off_label" : "指數、方根與對數 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "次方",
+                "code" : "數學.pow(2, 3)",
+                "code_display" : "數學.pow(2, 3)",
+                "note" : "數學.pow(底數, 指數)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "開平方根",
+                "code" : "數學.sqrt(9)",
+                "code_display" : "數學.sqrt(9)",
+                "note" : "開平方根",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "以10為底的對數",
+                "code" : "數學.log10(100)",
+                "code_display" : "數學.log10(100)",
+                "note" : "以10為底的對數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "以2為底的對數",
+                "code" : "數學.log2(8)",
+                "code_display" : "數學.log2(8)",
+                "note" : "以2為底的對數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 三角函數",
+        "off_label" : "三角函數 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "三角函數 sin",
+                "code" : "數學.sin(數學.pi / 2)",
+                "code_display" : "數學.sin(數學.pi / 2)",
+                "note" : "三角函數 sin",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "三角函數 cos",
+                "code" : "數學.cos(數學.pi / 2)",
+                "code_display" : "數學.cos(數學.pi / 2)",
+                "note" : "三角函數 cos",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "角度轉弧度",
+                "code" : "數學.radians(180)",
+                "code_display" : "數學.radians(180)",
+                "note" : "角度轉弧度",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "弧度轉角度",
+                "code" : "數學.degrees(數學.pi)",
+                "code_display" : "數學.degrees(數學.pi)",
+                "note" : "弧度轉角度",
+                "long_note" : true
+            }
+        ]
+    }
+]

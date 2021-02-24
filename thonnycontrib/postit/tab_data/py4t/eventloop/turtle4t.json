@@ -1,7 +1,6 @@
 [
     {
-        "postit_type" : "postit_title",
-        "text" : "海龜繪圖"
+        "postit_type" : "postit_title"
     },
     {
         "postit_type" : "ttk_separator"

@@ -2,15 +2,18 @@
     
     {
         "tab_name" : "numpy",
-        "tab_label" : " 多維 \n 陣列 "  
+        "tab_label" : " 多維 ",
+        "tab_title" : "多維陣列"  
     },
     {
         "tab_name" : "cv4t",
-        "tab_label" : " 視覺 "        
+        "tab_label" : " 視覺 ",
+        "tab_title" :   "視覺影像處理"     
     },
     {
         "tab_name" : "speech4t",
-        "tab_label" : " 語音 "       
+        "tab_label" : " 語音 ",
+        "tab_title" : "語音合成辨識"       
     }
 
 ]

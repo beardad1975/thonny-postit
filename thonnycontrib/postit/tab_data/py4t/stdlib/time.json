@@ -1,42 +1,92 @@
 [
     {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "印出 print",
-                "code" : "print()",
-                "code_display" : "print()",
-                "note" : "印出",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "印出(多個引數)",
-                "code" : "print('你','好')",
-                "code_display" : "print('你','好')",
-                "note" : "印出(多個引數)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "印出(不換行)",
-                "code" : "print('早安', end='')",
-                "code_display" : "print('早安', end='')",
-                "note" : "印出(不換行)",
-                "long_note" : true
-            }                
-        ]
-    },        
+        "postit_type" : "postit_title"
+    },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "輸入 input",
-                "code" : "變數 = input('請輸入: ')",
-                "code_display" : "變數 = input('請輸入: ')",
-                "note" : "輸入",
+                "menu_display" : "匯入時間模組",
+                "code" : "import time as 時間",
+                "code_display" : "import time as 時間",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
-            }       
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 累計秒數",
+        "off_label" : "累計秒數 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "累計秒數",
+                "code" : "時間.time()",
+                "code_display" : "時間.time()",
+                "note" : "取得累計秒數",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "印出 累計秒數",
+                "code" : "print(時間.time())",
+                "code_display" : "print(時間.time())",
+                "note" : "印出累計秒數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "累計秒數設定變數",
+                "code" : "目前時間 = 時間.time()",
+                "code_display" : "目前時間 = 時間.time()",
+                "note" : "累計秒數設定變數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 暫停控制",
+        "off_label" : "暫停控制 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "睡眠(幾秒)",
+                "code" : "時間.sleep(2)",
+                "code_display" : "時間.sleep(2)",
+                "note" : "睡眠(幾秒)",
+                "long_note" : true
+            }
         ]
     }
 ]

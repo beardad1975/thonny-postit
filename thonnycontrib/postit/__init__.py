@@ -142,9 +142,10 @@ class TabGroup:
         for t in tabs_info:
             tab_name = t['tab_name']
             tab_label = t['tab_label']
+            tab_title = t['tab_title']
             #always_show = t['always_visible']
             tab_path = self.group_path / (tab_name+'.json')
-            self.tabs[tab_name] = Tab(tab_name, self, tab_label,  tab_path)
+            self.tabs[tab_name] = Tab(tab_name, self, tab_label, tab_title,  tab_path)
 
     def gui_init(self):
         # dummy
@@ -178,11 +179,12 @@ class TabGroup:
 
 
 class Tab:
-    def __init__(self, tab_name, group, tab_label, tab_path):
+    def __init__(self, tab_name, group, tab_label,tab_title, tab_path):
         self.tab_name = tab_name
         #self.group_name = group_name
         #self.mode_name = mode_name
         self.tab_label = tab_label
+        self.tab_title = tab_title
         #self.always_show = always_show
         self.tab_path = tab_path
         self.loaded = False
@@ -546,7 +548,7 @@ class PythonPostitView(ttk.Frame):
         # title label
         title_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         tk.Label(more_tab_frame.interior, 
-                text='-- 更多便利貼 --', font=title_font,
+                text='更多便利貼', font=title_font,
         ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
 
         ttk.Separator(more_tab_frame.interior, orient=tk.HORIZONTAL 
@@ -578,19 +580,20 @@ class PythonPostitView(ttk.Frame):
             #print(g.group_name, group_tab_option)
 
             for i, tab in enumerate(g.tabs.values()):
-                text = tab.tab_label.replace('\n','')
-                text = text.replace(' ','')
-                tk.Label(group_frame,text=text,
-                    font=label_font,
-                    ).grid(row=i, column=0, padx=5, pady=2, sticky='e')
+                #text = tab.tab_label.replace('\n','')
+                #text = text.replace(' ','')
+                
                 tk.Radiobutton(group_frame,text='隱藏',
                     variable=tab.button_tkvar,
                     indicatoron=0, value=0, selectcolor='#88ebfc',
-                    ).grid(row=i, column=1, padx=3, pady=2)
+                    ).grid(row=i, column=0, padx=3, pady=2)
                 tk.Radiobutton(group_frame,text='顯示',
                     variable=tab.button_tkvar,
                     indicatoron=0, value=1, selectcolor='#ffc526',
-                    ).grid(row=i, column=2, padx=3, pady=2)
+                    ).grid(row=i, column=1, padx=3, pady=2)
+                tk.Label(group_frame,text=tab.tab_title,
+                    font=label_font,
+                    ).grid(row=i, column=2, padx=5, pady=2, sticky='w')
 
                 if tab.tab_name in selected_group_tabs:
                    tab.button_tkvar.set(True)    
@@ -678,10 +681,10 @@ class PythonPostitView(ttk.Frame):
             elif p['postit_type'] == 'postit_title':
                 ttk.Label(tab.tab_frame.interior, 
                     #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text=p['text'],
+                    text=tab.tab_title,
                     font=label_font,
                     image=tab.icon_image,
-                    compound='top',    
+                    compound='left',    
                     
                 ).grid( padx=0, pady=8)
 
@@ -1041,7 +1044,7 @@ class PythonPostitView(ttk.Frame):
     #             note='隨機挑個整數(範圍內)',
     #             long_note=True))
     #     temp_code_list.append(CodeNTuple(
-    #             menu_display='隨機挑個項目 choice',
+    #             menu_display='隨機項目 choice',
     #             code='隨機.choice([3,5,9])',
     #             code_display='隨機.choice([3,5,9])',
     #             note='隨機挑個項目',
