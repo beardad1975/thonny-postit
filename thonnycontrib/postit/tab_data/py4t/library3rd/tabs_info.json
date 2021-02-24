@@ -1,8 +1,5 @@
 [
-    {
-        "tab_name" : "auto",
-        "tab_label" : " 自動 "
-    },
+    
     {
         "tab_name" : "numpy",
         "tab_label" : " 多維 \n 陣列 "  

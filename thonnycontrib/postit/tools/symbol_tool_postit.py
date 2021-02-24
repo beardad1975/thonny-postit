@@ -286,6 +286,7 @@ class SymbolToolPopup:
         self.flow_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.comparison_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.logic_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.module_menu = tk.Menu(self.popup_menu, tearoff=0)
         #self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.punctuation_menu = tk.Menu(self.popup_menu, tearoff=0)
         
@@ -303,7 +304,7 @@ class SymbolToolPopup:
         #self.popup_menu.add_cascade(label='括號引號',
         #        menu=self.bracket_quote_menu)
         self.popup_menu.add_cascade(label='流程', menu=self.flow_menu)
-    
+        self.popup_menu.add_cascade(label='模組', menu=self.module_menu)
         self.popup_menu.add_cascade(label='標點符號', menu=self.punctuation_menu)
 
         # common menu command
@@ -505,6 +506,12 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol(':'," : 後接區塊"))
         self.flow_menu.add_command( label=" pass 略過(佔位)", 
                 command=lambda:self.change_symbol('pass\n'," pass 略過(佔位)"))
+
+        self.module_menu.add_command( label=" import 匯入 ", 
+                command=lambda:self.change_symbol('import '," import 匯入"))
+        self.module_menu.add_command( label=" from 從 ", 
+                command=lambda:self.change_symbol('from '," from 從 "))
+
 
         # punctuation menu command 
         # self.punctuation_menu.add_command(

@@ -221,7 +221,7 @@ class Tab:
                 para.on_button_pressed()
 
         self.para_start_on_done = True
-        print(self.tab_name, ': do para start on')        
+        #print(self.tab_name, ': do para start on')        
 
     def on_button_change(self, *args):
         value = self.button_tkvar.get()
@@ -544,10 +544,10 @@ class PythonPostitView(ttk.Frame):
         more_tab_frame = mode.more_tab.tab_frame
         
         # title label
-        title_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        title_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         tk.Label(more_tab_frame.interior, 
-                text='【更多 便利貼】', font=title_font,
-        ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+                text='【 更多便利貼 】', font=title_font,
+        ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
 
         ttk.Separator(more_tab_frame.interior, orient=tk.HORIZONTAL 
                     ).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
@@ -670,7 +670,7 @@ class PythonPostitView(ttk.Frame):
                     text=p['text'],
                     font=label_font,    
                     compound=tk.LEFT, 
-                ).grid(sticky='w', padx=5, pady=8)
+                ).grid( padx=0, pady=8)
                 #).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
 
             elif p['postit_type'] == 'ttk_separator':

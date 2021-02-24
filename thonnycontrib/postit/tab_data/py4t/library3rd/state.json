@@ -1,0 +1,130 @@
+[
+    {
+        "postit_type" : "ttk_label",
+        "text" : "【 有限狀態機 】"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入狀態機模組",
+                "code" : "from transitions import Machine as 狀態機",
+                "code_display" : "from transitions \\\n import Machine as 狀態機",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "階段清單",
+                "code" : "階段清單 = ['開頭','關卡','結尾']",
+                "code_display" : "階段清單 = ['開頭','關卡','結尾']",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "程式狀態類別",
+                "code" : "class 程式狀態(狀態機):\ndef on_enter_開頭(self):\nprint('進入 開頭階段')",
+                "code_display" : "class 程式狀態(狀態機)):\n    def on_enter_開頭(self):\n        print('進入 開頭')",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "程式狀態方法(離開)",
+                "code" : "    def on_exit_開頭(self):\nprint('離開 開頭階段')",
+                "code_display" : "def on_exit_開頭(self):\n    print('離開 開頭階段')",
+                "note" : "程式狀態方法(離開)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "主流程物件",
+                "code" : "主流程 = 程式狀態(states=階段清單, initial='開頭')",
+                "code_display" : "主流程 = 程式狀態(states=階段清單, initial='開頭')",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "依序轉換",
+                "code" : "主流程.add_ordered_transitions()",
+                "code_display" : "主流程.add_ordered_transitions()",
+                "note" : "依序轉換",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "目前階段",
+                "code" : "主流程.state",
+                "code_display" : "主流程.state",
+                "note" : "目前階段",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "跳到階段",
+                "code" : "主流程.to_開頭()",
+                "code_display" : "主流程.to_開頭()",
+                "note" : "跳到階段",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "下一階段(依序)",
+                "code" : "主流程.next_state()",
+                "code_display" : "主流程.next_state()",
+                "note" : "下一階段(依序)",
+                "long_note" : true
+            }
+        ]
+    }
+
+]
