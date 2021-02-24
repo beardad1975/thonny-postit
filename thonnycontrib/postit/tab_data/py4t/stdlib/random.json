@@ -75,10 +75,17 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "清單內隨機項目",
+                "menu_display" : "清單內隨機項目 範例",
                 "code" : "隨機.choice([3,5,9])",
                 "code_display" : "隨機.choice([3,5,9])",
                 "note" : "清單內隨機項目",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "清單內隨機項目 ",
+                "code" : "隨機.choice(清單)",
+                "code_display" : "隨機.choice(清單)",
+                "note" : "清單內隨機項目 清單需先設值",
                 "long_note" : true
             }
             
@@ -89,10 +96,17 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "清單項目洗牌 原地演算",
+                "menu_display" : "清單項目洗牌 範例",
                 "code" : "清單 = [0,1,2,3,4]\n隨機.shuffle(清單)",
                 "code_display" : "清單 = [0,1,2,3,4]\n隨機.shuffle(清單)",
                 "note" : "清單項目洗牌 原地演算",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "清單項目洗牌 ",
+                "code" : "隨機.shuffle(清單)",
+                "code_display" : "隨機.shuffle(清單)",
+                "note" : "清單項目洗牌 清單需先設值",
                 "long_note" : true
             }
             
