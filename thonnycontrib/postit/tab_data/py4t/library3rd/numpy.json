@@ -104,7 +104,7 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
+        "postfix_enter" : false,
         "items" :[
             {
                 "menu_display" : "陣列的形狀 shape",
@@ -117,7 +117,7 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
+        "postfix_enter" : false,
         "items" :[
             {
                 "menu_display" : "資料類型 dtype",
@@ -130,7 +130,7 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
+        "postfix_enter" : false,
         "items" :[
             {
                 "menu_display" : "資料數量 size",

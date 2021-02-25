@@ -178,6 +178,33 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "設定模型",
+                "code" : "物體.模型 = ''",
+                "code_display" : "物體.模型 = ''",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+           
+            {
+                "menu_display" : "設定材質貼圖",
+                "code" : "物體.材質貼圖 = ''",
+                "code_display" : "物體.材質貼圖 = ''",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
                 "menu_display" : "有效狀態 成立",
                 "code" : "物體.有效狀態 = True",
                 "code_display" : "物體.有效狀態 = True",
@@ -204,25 +231,19 @@
                 "code_display" : "物體.上層物件 = ",
                 "note" : "設定父(母)物件",
                 "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
+            },
             {
-                "menu_display" : "設定模型",
-                "code" : "物體.模型 = ''",
-                "code_display" : "物體.模型 = ''",
-                "note" : "",
+                "menu_display" : "動畫清單",
+                "code" : "物體.動畫清單",
+                "code_display" : "物體.動畫清單",
+                "note" : "物體.動畫清單",
                 "long_note" : true
             },
             {
-                "menu_display" : "設定紋理",
-                "code" : "物體.紋理 = ''",
-                "code_display" : "物體.紋理 = ''",
-                "note" : "設定材質貼圖",
+                "menu_display" : "最後動畫是否完成",
+                "code" : "物體.動畫清單[-1].finished",
+                "code_display" : "物體.動畫清單[-1].finished",
+                "note" : "最後動畫是否完成",
                 "long_note" : true
             }
         ]
@@ -371,8 +392,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 特定模型與紋理",
-        "off_label" : "特定模型與紋理 >>",
+        "on_label" : "<< 特定模型與材質",
+        "off_label" : "特定模型與材質 >>",
         "start_on" : false
     },
     {
@@ -380,17 +401,30 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "新增立方體6面",
-                "code" : "物體 = 新增立方體6面()",
-                "code_display" : "物體 = 新增立方體6面()",
-                "note" : "6面紋理立方體",
-                "long_note" : true
+                "menu_display" : "新增6面貼圖方塊",
+                "code" : "物體 = 新增6面貼圖方塊()",
+                "code_display" : "物體 = 新增6面貼圖方塊()",
+                "note" : "",
+                "long_note" : false
             },
             {
-                "menu_display" : "新增球體內面",
-                "code" : "物體 = 新增球體內面()",
-                "code_display" : "物體 = 新增球體內面()",
-                "note" : "球體紋理面向圓心",
+                "menu_display" : "新增內面貼圖球體",
+                "code" : "物體 = 新增內面貼圖球體()",
+                "code_display" : "物體 = 新增內面貼圖球體()",
+                "note" : "",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "多維陣列貼圖",
+                "code" : "物體.多維陣列貼圖 = 陣列",
+                "code_display" : "物體.多維陣列貼圖 = 陣列",
+                "note" : "多維陣列貼圖",
                 "long_note" : true
             }
         ]
@@ -558,6 +592,26 @@
                 "code" : "滑鼠.按下左鍵",
                 "code_display" : "滑鼠.按下左鍵",
                 "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "預約執行 範例",
+                "code" : "預約執行(print, 'hello', 時間=5)",
+                "code_display" : "預約執行(print, 'hello',\n    時間=5)",
+                "note" : "時間過後執行函式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "預約執行",
+                "code" : "預約執行(函式, 時間=5)",
+                "code_display" : "預約執行(函式, 時間=5)",
+                "note" : "### 需先定義函式",
                 "long_note" : true
             }
         ]

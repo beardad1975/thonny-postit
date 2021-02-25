@@ -567,7 +567,7 @@ class PythonPostitView(ttk.Frame):
                       image=g.icon_images[0],
                       compound='left',
                       font=label_font,
-            ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+            ).pack(side=tk.TOP, padx=5, pady=8, anchor='c')
         
             group_frame = ttk.Frame(more_tab_frame.interior,
                       #relief="groove",
