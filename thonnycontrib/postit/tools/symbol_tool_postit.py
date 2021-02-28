@@ -506,6 +506,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol(':'," : 後接區塊"))
         self.flow_menu.add_command( label=" pass 略過(佔位)", 
                 command=lambda:self.change_symbol('pass\n'," pass 略過(佔位)"))
+        self.flow_menu.add_command( label=" global 全域 ", 
+                command=lambda:self.change_symbol('global '," global 全域 "))
 
         self.module_menu.add_command( label=" import 匯入 ", 
                 command=lambda:self.change_symbol('import '," import 匯入"))
