@@ -68,7 +68,7 @@
                 "menu_display" : "設定全螢幕 ",
                 "code" : "舞台.全螢幕 = True",
                 "code_display" : "舞台.全螢幕 = True",
-                "note" : "設定全螢幕",
+                "note" : "",
                 "long_note" : true
             },
             {
@@ -76,6 +76,27 @@
                 "code" : "舞台.全螢幕 = not 舞台.全螢幕",
                 "code_display" : "舞台.全螢幕 = not 舞台.全螢幕",
                 "note" : "切換全螢幕",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定視窗邊框 ",
+                "code" : "舞台.視窗邊框 = True",
+                "code_display" : "舞台.視窗邊框 = True",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "切換視窗邊框 ",
+                "code" : "舞台.視窗邊框 = not 舞台.視窗邊框",
+                "code_display" : "舞台.視窗邊框 = not 舞台.視窗邊框",
+                "note" : "切換視窗邊框",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色",
+                "code" : "舞台.背景顏色 = color.rgb(0, 0, 0)",
+                "code_display" : "舞台.背景顏色 = color.rgb(0, 0, 0)",
+                "note" : "",
                 "long_note" : true
             }
         ]
@@ -274,45 +295,59 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "設定顏色(紅)",
+                "menu_display" : "顏色 紅 ",
                 "code" : "物體.顏色 = color.red",
                 "code_display" : "物體.顏色 = color.red",
-                "note" : "設定顏色(紅)",
+                "note" : "顏色 紅",
                 "long_note" : true
             },
             {
-                "menu_display" : "        (綠)",
+                "menu_display" : "顏色 綠",
                 "code" : "物體.顏色 = color.green",
                 "code_display" : "物體.顏色 = color.green",
-                "note" : "設定顏色(綠)",
+                "note" : "顏色 綠",
                 "long_note" : true
             },
             {
-                "menu_display" : "        (藍)",
-                "code" : "物體.顏色 = color.blue",
-                "code_display" : "物體.顏色 = color.blue",
-                "note" : "",
+                "menu_display" : "顏色 橘",
+                "code" : "物體.顏色 = color.orange",
+                "code_display" : "物體.顏色 = color.orange",
+                "note" : "顏色 橘",
                 "long_note" : true
             },
             {
-                "menu_display" : "        (rgb)",
-                "code" : "物體.顏色 = color.rgba(255255,255)",
-                "code_display" : "物體.顏色 = color.rgba(50,255,255)",
+                "menu_display" : "顏色 白",
+                "code" : "物體.顏色 = color.white",
+                "code_display" : "物體.顏色 = color.white",
+                "note" : "顏色 白",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "顏色 透明",
+                "code" : "物體.顏色 = color.clear",
+                "code_display" : "物體.顏色 = color.clear",
+                "note" : "顏色 透明",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "rgb 紅綠藍",
+                "code" : "物體.顏色 = color.rgb(0,0,0)",
+                "code_display" : "物體.顏色 = color.rgb(0,0,0)",
                 "note" : "rgb 紅綠藍",
                 "long_note" : true
             },
             {
-                "menu_display" : "        (rgba)",
-                "code" : "物體.顏色 = color.rgba(255255,255,255)",
-                "code_display" : "物體.顏色 = color.rgba(50,255,255,255)",
-                "note" : "rgb紅綠藍與a不透明度",
+                "menu_display" : "rgba紅綠藍與不透明度",
+                "code" : "物體.顏色 = color.rgba(0,0,0,0)",
+                "code_display" : "物體.顏色 = color.rgba(0,0,0,0)",
+                "note" : "rgba紅綠藍與不透明度",
                 "long_note" : true
             },
             {
-                "menu_display" : "        (隨機)",
+                "menu_display" : "顏色 隨機",
                 "code" : "物體.顏色 = color.random_color()",
                 "code_display" : "物體.顏色 = color.random_color()",
-                "note" : "設定顏色(隨機)",
+                "note" : "顏色 隨機",
                 "long_note" : true
             }
         ]
@@ -524,16 +559,23 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "位置動畫",
+                "code" : "物體.位置動畫([1,0,0])",
+                "code_display" : "物體.位置動畫([1,0,0])",
+                "note" : "",
+                "long_note" : true
+            },
+            {
                 "menu_display" : "位置動畫 持續",
                 "code" : "物體.位置動畫([1,0,0], 持續=1)",
-                "code_display" : "物體.位置動畫([1,0,0], 持續=1)",
+                "code_display" : "物體.位置動畫([1,0,0],\n    持續=1)",
                 "note" : "位置動畫 持續",
                 "long_note" : true
             },
             {
                 "menu_display" : "位置動畫 延遲與持續",
                 "code" : "物體.位置動畫([1,0,0], 延遲=0, 持續=1)",
-                "code_display" : "物體.位置動畫([1,0,0], \n    延遲=0, 持續=1)",
+                "code_display" : "物體.位置動畫([1,0,0],\n    延遲=0, 持續=1)",
                 "note" : "位置動畫 延遲與持續",
                 "long_note" : true
             }
@@ -544,17 +586,24 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "設定縮放動畫(持續)",
+                "menu_display" : "縮放動畫",
+                "code" : "物體.縮放動畫([2,1,1])",
+                "code_display" : "物體.縮放動畫([2,1,1])",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "縮放動畫 持續",
                 "code" : "物體.縮放動畫([2,1,1], 持續=1)",
                 "code_display" : "物體.縮放動畫([2,1,1],\n    持續=1)",
-                "note" : "設定縮放動畫",
+                "note" : "縮放動畫 持續",
                 "long_note" : true
             },
             {
-                "menu_display" : "設定縮放動畫(延遲與持續)",
+                "menu_display" : "縮放動畫 延遲與持續",
                 "code" : "物體.縮放動畫([2,1,1], 延遲=0, 持續=1)",
                 "code_display" : "物體.縮放動畫([2,1,1],\n    延遲=0, 持續=1)",
-                "note" : "設定縮放動畫(延遲與持續)",
+                "note" : "縮放動畫 延遲與持續",
                 "long_note" : true
             }
         ]
@@ -564,17 +613,24 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "設定旋轉動畫(持續)",
-                "code" : "物體.旋轉動畫([90,0,0], 持續=1)",
-                "code_display" : "物體.旋轉動畫([90,0,0], 持續=1)",
-                "note" : "設定旋轉動畫",
+                "menu_display" : "旋轉動畫",
+                "code" : "物體.旋轉動畫([90,0,0])",
+                "code_display" : "物體.旋轉動畫([90,0,0])",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "設定旋轉動畫(延遲與持續)",
+                "menu_display" : "旋轉動畫 持續",
+                "code" : "物體.旋轉動畫([90,0,0], 持續=1)",
+                "code_display" : "物體.旋轉動畫([90,0,0],\n    持續=1)",
+                "note" : "旋轉動畫 持續",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "旋轉動畫 延遲與持續",
                 "code" : "物體.旋轉動畫([90,0,0], 延遲=0, 持續=1)",
                 "code_display" : "物體.旋轉動畫([90,0,0],\n    延遲=0, 持續=1)",
-                "note" : "設定旋轉動畫(延遲與持續)",
+                "note" : "旋轉動畫 延遲與持續",
                 "long_note" : true
             }
         ]
@@ -584,17 +640,24 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "設定顏色動畫(持續)",
-                "code" : "物體.顏色動畫([255,0,0,255], 持續=1)",
-                "code_display" : "物體.顏色動畫([255,0,0,255],\n    持續=1)",
-                "note" : "設定顏色動畫",
+                "menu_display" : "顏色動畫",
+                "code" : "物體.顏色動畫([0,0,0,255])",
+                "code_display" : "物體.顏色動畫([0,0,0,255])",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "設定顏色動畫(延遲與持續)",
-                "code" : "物體.顏色動畫([255,0,0,255], 延遲=0, 持續=1)",
-                "code_display" : "物體.顏色動畫([255,0,0,255],\n    延遲=0, 持續=1)",
-                "note" : "設定顏色動畫(延遲與持續)",
+                "menu_display" : "顏色動畫 持續",
+                "code" : "物體.顏色動畫([0,0,0,255], 持續=1)",
+                "code_display" : "物體.顏色動畫([0,0,0,255],\n    持續=1)",
+                "note" : "顏色動畫 持續",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "顏色動畫 延遲與持續",
+                "code" : "物體.顏色動畫([0,0,0,255], 延遲=0, 持續=1)",
+                "code_display" : "物體.顏色動畫([0,0,0,255],\n    延遲=0, 持續=1)",
+                "note" : "顏色動畫 延遲與持續",
                 "long_note" : true
             }
         ]
@@ -604,16 +667,30 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "物體淡出",
+                "menu_display" : "淡出",
                 "code" : "物體.淡出(持續=2)",
                 "code_display" : "物體.淡出(持續=2)",
                 "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "物體淡入",
+                "menu_display" : "淡入",
                 "code" : "物體.淡入(持續=2)",
                 "code_display" : "物體.淡入(持續=2)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "閃爍",
+                "code" : "物體.閃爍(持續=0.5)",
+                "code_display" : "物體.閃爍(持續=0.5)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "晃動",
+                "code" : "物體.晃動()",
+                "code_display" : "物體.晃動()",
                 "note" : "",
                 "long_note" : true
             }
@@ -624,17 +701,38 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "動畫清單",
-                "code" : "物體.動畫清單",
-                "code_display" : "物體.動畫清單",
-                "note" : "物體.動畫清單",
+                "menu_display" : "動畫組合",
+                "code" : "動畫 = 動畫組合()",
+                "code_display" : "動畫 = 動畫組合()",
+                "note" : "## 引數為動作或時間",
                 "long_note" : true
             },
             {
-                "menu_display" : "最後動畫是否完成",
-                "code" : "物體.動畫清單[-1].finished",
-                "code_display" : "物體.動畫清單[-1].finished",
-                "note" : "最後動畫是否完成",
+                "menu_display" : "動畫組合 重複 自動移除",
+                "code" : "動畫 = 動畫組合(loop=True, auto_destroy=False)",
+                "code_display" : "動畫 = 動畫組合(loop=True,\n    auto_destroy=False)",
+                "note" : "動畫組合 重複 自動移除",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "動作 一般函式",
+                "code" : "自訂 = 動作(print,'hi')",
+                "code_display" : "自訂 = 動作(print,'hi')",
+                "note" : "動作 一般函式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "動作 物件屬性設定",
+                "code" : "自訂 = 動作(setattr,物體,'位置',[0,0,0])",
+                "code_display" : "自訂 = 動作(setattr\n    ,物體,'位置',[0,0,0])",
+                "note" : "動作 物件屬性設定",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "動作 動畫",
+                "code" : "自訂 = 動作(物體.位置動畫,[0,0,0],持續=1)",
+                "code_display" : "自訂 = 動作(物體.位置動畫,\n    [0,0,0],持續=1)",
+                "note" : "動作 動畫",
                 "long_note" : true
             }
         ]
@@ -673,63 +771,63 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "置於介面中心",
+                "menu_display" : "介面中心",
                 "code" : "物體.位置 = 舞台.介面中心",
                 "code_display" : "物體.位置 = 舞台.介面中心",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　上邊",
+                "menu_display" : "　　上邊",
                 "code" : "物體.位置 = 舞台.介面上邊",
                 "code_display" : "物體.位置 = 舞台.介面上邊",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　下邊",
+                "menu_display" : "　　下邊",
                 "code" : "物體.位置 = 舞台.介面下邊",
                 "code_display" : "物體.位置 = 舞台.介面下邊",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　右邊",
+                "menu_display" : "　　右邊",
                 "code" : "物體.位置 = 舞台.介面右邊",
                 "code_display" : "物體.位置 = 舞台.介面右邊",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　左邊",
+                "menu_display" : "　　左邊",
                 "code" : "物體.位置 = 舞台.介面左邊",
                 "code_display" : "物體.位置 = 舞台.介面左邊",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　右上",
+                "menu_display" : "　　右上",
                 "code" : "物體.位置 = 舞台.介面右上",
                 "code_display" : "物體.位置 = 舞台.介面右上",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　右下",
+                "menu_display" : "　　右下",
                 "code" : "物體.位置 = 舞台.介面右下",
                 "code_display" : "物體.位置 = 舞台.介面右下",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　左上",
+                "menu_display" : "　　左上",
                 "code" : "物體.位置 = 舞台.介面左上",
                 "code_display" : "物體.位置 = 舞台.介面左上",
                 "note" : "## 物體位於介面時使用",
                 "long_note" : true
             },
             {
-                "menu_display" : "　　　　左下",
+                "menu_display" : "　　左下",
                 "code" : "物體.位置 = 舞台.介面左下",
                 "code_display" : "物體.位置 = 舞台.介面左下",
                 "note" : "## 物體位於介面時使用",
@@ -911,8 +1009,8 @@
         "items" :[
             {
                 "menu_display" : "預約執行 範例",
-                "code" : "預約執行(print, 'hello', 時間=5)",
-                "code_display" : "預約執行(print, 'hello',\n    時間=5)",
+                "code" : "預約執行(print, 'hi', 時間=5)",
+                "code_display" : "預約執行(print, 'hi',\n    時間=5)",
                 "note" : "時間過後執行函式",
                 "long_note" : true
             },
