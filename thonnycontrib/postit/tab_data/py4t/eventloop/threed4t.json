@@ -63,6 +63,20 @@
                 "code_display" : "舞台 = 模擬3D引擎(400,600)",
                 "note" : "設定視窗寬度與高度",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "設定全螢幕 ",
+                "code" : "舞台.全螢幕 = True",
+                "code_display" : "舞台.全螢幕 = True",
+                "note" : "設定全螢幕",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "切換全螢幕 ",
+                "code" : "舞台.全螢幕 = not 舞台.全螢幕",
+                "code_display" : "舞台.全螢幕 = not 舞台.全螢幕",
+                "note" : "切換全螢幕",
+                "long_note" : true
             }
         ]
     },
@@ -71,8 +85,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 基本3D模型",
-        "off_label" : "基本3D模型 >>",
+        "on_label" : "<< 建立3D模型",
+        "off_label" : "建立3D模型 >>",
         "start_on" : false
     },
     {
@@ -99,13 +113,39 @@
                 "code_display" : "物體 = 新增平面()",
                 "note" : "",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "新增物體",
                 "code" : "物體 = 新增物體()",
                 "code_display" : "物體 = 新增物體()",
-                "note" : "預設為立方體",
+                "note" : "需另設定模型與材質貼圖",
                 "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "新增6面貼圖方塊",
+                "code" : "物體 = 新增6面貼圖方塊()",
+                "code_display" : "物體 = 新增6面貼圖方塊()",
+                "note" : "",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "新增內面貼圖球體",
+                "code" : "物體 = 新增內面貼圖球體()",
+                "code_display" : "物體 = 新增內面貼圖球體()",
+                "note" : "",
+                "long_note" : false
             }
         ]
     },
@@ -114,147 +154,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 3D模型屬性",
-        "off_label" : "3D模型屬性 >>",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "設定顏色(紅)",
-                "code" : "物體.顏色 = color.red",
-                "code_display" : "物體.顏色 = color.red",
-                "note" : "設定顏色(紅)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "        (綠)",
-                "code" : "物體.顏色 = color.green",
-                "code_display" : "物體.顏色 = color.green",
-                "note" : "設定顏色(綠)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "        (藍)",
-                "code" : "物體.顏色 = color.blue",
-                "code_display" : "物體.顏色 = color.blue",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "        (rgba)",
-                "code" : "物體.顏色 = color.rgba(50,0,0,255)",
-                "code_display" : "物體.顏色 = color.rgba(50,0,0,255)",
-                "note" : "設定顏色(rgba)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "        (隨機)",
-                "code" : "物體.顏色 = color.random_color()",
-                "code_display" : "物體.顏色 = color.random_color()",
-                "note" : "設定顏色(隨機)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定顏色動畫(持續)",
-                "code" : "物體.顏色動畫([255,0,0,255], 持續=1)",
-                "code_display" : "物體.顏色動畫([255,0,0,255],\n    持續=1)",
-                "note" : "設定顏色動畫",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定顏色動畫(延遲與持續)",
-                "code" : "物體.顏色動畫([255,0,0,255], 延遲=0, 持續=1)",
-                "code_display" : "物體.顏色動畫([255,0,0,255],\n    延遲=0, 持續=1)",
-                "note" : "設定顏色動畫(延遲與持續)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "設定模型",
-                "code" : "物體.模型 = ''",
-                "code_display" : "物體.模型 = ''",
-                "note" : "",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-           
-            {
-                "menu_display" : "設定材質貼圖",
-                "code" : "物體.材質貼圖 = ''",
-                "code_display" : "物體.材質貼圖 = ''",
-                "note" : "",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "有效狀態 成立",
-                "code" : "物體.有效狀態 = True",
-                "code_display" : "物體.有效狀態 = True",
-                "note" : "物體顯示",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "有效狀態 不成立",
-                "code" : "物體.有效狀態 = False",
-                "code_display" : "物體.有效狀態 = False",
-                "note" : "物體不顯示",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定中心點偏移",
-                "code" : "物體.中心點偏移 = [0,0,0]",
-                "code_display" : "物體.中心點偏移 = [0,0,0]",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定上層物件",
-                "code" : "物體.上層物件 = ",
-                "code_display" : "物體.上層物件 = ",
-                "note" : "設定父(母)物件",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "動畫清單",
-                "code" : "物體.動畫清單",
-                "code_display" : "物體.動畫清單",
-                "note" : "物體.動畫清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "最後動畫是否完成",
-                "code" : "物體.動畫清單[-1].finished",
-                "code_display" : "物體.動畫清單[-1].finished",
-                "note" : "最後動畫是否完成",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : "<< 模型位置、縮放與旋轉",
-        "off_label" : "模型位置、縮放與旋轉 >>",
+        "on_label" : "<< 位置、縮放與旋轉",
+        "off_label" : "位置、縮放與旋轉 >>",
         "start_on" : false
     },
     {
@@ -322,20 +223,6 @@
                 "code_display" : "物體.縮放 = [1, 1, 1]",
                 "note" : "3軸同時縮放",
                 "long_note" : true
-            },
-            {
-                "menu_display" : "設定縮放動畫(持續)",
-                "code" : "物體.縮放動畫([2,1,1], 持續=1)",
-                "code_display" : "物體.縮放動畫([2,1,1],\n    持續=1)",
-                "note" : "設定縮放動畫",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定縮放動畫(延遲與持續)",
-                "code" : "物體.縮放動畫([2,1,1], 延遲=0, 持續=1)",
-                "code_display" : "物體.縮放動畫([2,1,1],\n    延遲=0, 持續=1)",
-                "note" : "設定縮放動畫(延遲與持續)",
-                "long_note" : true
             }
         ]
     },
@@ -370,11 +257,255 @@
                 "code_display" : "物體.旋轉 = [0, 0, 0]",
                 "note" : "同時設定3軸旋轉角度",
                 "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 顏色、模型、材質與屬性",
+        "off_label" : "顏色、模型、材質與屬性 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定顏色(紅)",
+                "code" : "物體.顏色 = color.red",
+                "code_display" : "物體.顏色 = color.red",
+                "note" : "設定顏色(紅)",
+                "long_note" : true
             },
+            {
+                "menu_display" : "        (綠)",
+                "code" : "物體.顏色 = color.green",
+                "code_display" : "物體.顏色 = color.green",
+                "note" : "設定顏色(綠)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        (藍)",
+                "code" : "物體.顏色 = color.blue",
+                "code_display" : "物體.顏色 = color.blue",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        (rgba)",
+                "code" : "物體.顏色 = color.rgba(50,0,0,255)",
+                "code_display" : "物體.顏色 = color.rgba(50,0,0,255)",
+                "note" : "設定顏色(rgba)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        (隨機)",
+                "code" : "物體.顏色 = color.random_color()",
+                "code_display" : "物體.顏色 = color.random_color()",
+                "note" : "設定顏色(隨機)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定模型",
+                "code" : "物體.模型 = ''",
+                "code_display" : "物體.模型 = ''",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+           
+            {
+                "menu_display" : "設定材質貼圖",
+                "code" : "物體.材質貼圖 = ''",
+                "code_display" : "物體.材質貼圖 = ''",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "多維陣列貼圖",
+                "code" : "物體.多維陣列貼圖 = 陣列",
+                "code_display" : "物體.多維陣列貼圖 = 陣列",
+                "note" : "多維陣列貼圖",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "有效狀態 成立",
+                "code" : "物體.有效狀態 = True",
+                "code_display" : "物體.有效狀態 = True",
+                "note" : "物體顯示",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "有效狀態 不成立",
+                "code" : "物體.有效狀態 = False",
+                "code_display" : "物體.有效狀態 = False",
+                "note" : "物體不顯示",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定中心點偏移",
+                "code" : "物體.中心點偏移 = [0,0,0]",
+                "code_display" : "物體.中心點偏移 = [0,0,0]",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定上層物件",
+                "code" : "物體.上層物件 = ",
+                "code_display" : "物體.上層物件 = ",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 文字",
+        "off_label" : "文字 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "新增文字物體",
+                "code" : "文字物體 = 新增文字('你好')",
+                "code_display" : "文字物體 = 新增文字('你好')",
+                "note" : "預設在介面上",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增文字物體 最大",
+                "code" : "文字物體 = 新增文字('你好', 尺寸='最大')",
+                "code_display" : "文字物體 = 新增文字('你好',\n   尺寸='最大')",
+                "note" : "文字 最大 預設在介面上",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增文字物體 大",
+                "code" : "文字物體 = 新增文字('你好', 尺寸='大')",
+                "code_display" : "文字物體 = 新增文字('你好',\n   尺寸='大')",
+                "note" : "文字 大 預設在介面上",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增文字物體 中",
+                "code" : "文字物體 = 新增文字('你好', 尺寸='中')",
+                "code_display" : "文字物體 = 新增文字('你好',\n   尺寸='中')",
+                "note" : "文字 中 預設在介面上",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增文字物體 小",
+                "code" : "文字物體 = 新增文字('你好', 尺寸='小')",
+                "code_display" : "文字物體 = 新增文字('你好',\n   尺寸='小')",
+                "note" : "文字 小 預設在介面上",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "新增文字物體 最小",
+                "code" : "文字物體 = 新增文字('你好', 尺寸='最小')",
+                "code_display" : "文字物體 = 新增文字('你好',\n   尺寸='最小')",
+                "note" : "文字 最小 預設在介面上",
+                "long_note" : true
+            }
+
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "文字內容",
+                "code" : "文字物體.文字 = '很有趣'",
+                "code_display" : "文字物體.文字 = '很有趣'",
+                "note" : "文字內容",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 動畫效果",
+        "off_label" : "動畫效果 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "位置動畫 持續",
+                "code" : "物體.位置動畫([1,0,0], 持續=1)",
+                "code_display" : "物體.位置動畫([1,0,0], 持續=1)",
+                "note" : "位置動畫 持續",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "位置動畫 延遲與持續",
+                "code" : "物體.位置動畫([1,0,0], 延遲=0, 持續=1)",
+                "code_display" : "物體.位置動畫([1,0,0], \n    延遲=0, 持續=1)",
+                "note" : "位置動畫 延遲與持續",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定縮放動畫(持續)",
+                "code" : "物體.縮放動畫([2,1,1], 持續=1)",
+                "code_display" : "物體.縮放動畫([2,1,1],\n    持續=1)",
+                "note" : "設定縮放動畫",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定縮放動畫(延遲與持續)",
+                "code" : "物體.縮放動畫([2,1,1], 延遲=0, 持續=1)",
+                "code_display" : "物體.縮放動畫([2,1,1],\n    延遲=0, 持續=1)",
+                "note" : "設定縮放動畫(延遲與持續)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "設定旋轉動畫(持續)",
                 "code" : "物體.旋轉動畫([90,0,0], 持續=1)",
-                "code_display" : "物體.旋轉動畫([2,0,0], 持續=1)",
+                "code_display" : "物體.旋轉動畫([90,0,0], 持續=1)",
                 "note" : "設定旋轉動畫",
                 "long_note" : true
             },
@@ -388,31 +519,22 @@
         ]
     },
     {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : "<< 特定模型與材質",
-        "off_label" : "特定模型與材質 >>",
-        "start_on" : false
-    },
-    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "新增6面貼圖方塊",
-                "code" : "物體 = 新增6面貼圖方塊()",
-                "code_display" : "物體 = 新增6面貼圖方塊()",
-                "note" : "",
-                "long_note" : false
+                "menu_display" : "設定顏色動畫(持續)",
+                "code" : "物體.顏色動畫([255,0,0,255], 持續=1)",
+                "code_display" : "物體.顏色動畫([255,0,0,255],\n    持續=1)",
+                "note" : "設定顏色動畫",
+                "long_note" : true
             },
             {
-                "menu_display" : "新增內面貼圖球體",
-                "code" : "物體 = 新增內面貼圖球體()",
-                "code_display" : "物體 = 新增內面貼圖球體()",
-                "note" : "",
-                "long_note" : false
+                "menu_display" : "設定顏色動畫(延遲與持續)",
+                "code" : "物體.顏色動畫([255,0,0,255], 延遲=0, 持續=1)",
+                "code_display" : "物體.顏色動畫([255,0,0,255],\n    延遲=0, 持續=1)",
+                "note" : "設定顏色動畫(延遲與持續)",
+                "long_note" : true
             }
         ]
     },
@@ -421,10 +543,46 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "多維陣列貼圖",
-                "code" : "物體.多維陣列貼圖 = 陣列",
-                "code_display" : "物體.多維陣列貼圖 = 陣列",
-                "note" : "多維陣列貼圖",
+                "menu_display" : "動畫清單",
+                "code" : "物體.動畫清單",
+                "code_display" : "物體.動畫清單",
+                "note" : "物體.動畫清單",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "最後動畫是否完成",
+                "code" : "物體.動畫清單[-1].finished",
+                "code_display" : "物體.動畫清單[-1].finished",
+                "note" : "最後動畫是否完成",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 介面與場景",
+        "off_label" : "介面與場景 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "置於介面",
+                "code" : "物體.上層物件 = 舞台.介面",
+                "code_display" : "物體.上層物件 = 舞台.介面",
+                "note" : "置於最上層介面 不隨鏡頭旋轉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "置於空間場景",
+                "code" : "物體.上層物件 = 舞台.空間場景",
+                "code_display" : "物體.上層物件 = 舞台.空間場景",
+                "note" : "置於空間場景 會隨鏡頭旋轉",
                 "long_note" : true
             }
         ]
