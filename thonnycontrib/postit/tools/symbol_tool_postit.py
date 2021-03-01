@@ -543,6 +543,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol(':'," : 冒號 "))
         self.punctuation_menu.add_command( label=" ; 分號 ", 
                 command=lambda:self.change_symbol(';'," ; 分號 "))
+        self.punctuation_menu.add_command( label=" _ 底線 ", 
+                command=lambda:self.change_symbol('_'," _ 底線 "))
         self.punctuation_menu.add_command( label=" # 井字號(註解)", 
                 command=lambda:self.change_symbol("# "," # 井字號(註解)"))
 

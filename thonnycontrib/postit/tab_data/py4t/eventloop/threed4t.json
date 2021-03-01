@@ -550,8 +550,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 動畫效果",
-        "off_label" : "動畫效果 >>",
+        "on_label" : "<< 基本動畫",
+        "off_label" : "基本動畫 >>",
         "start_on" : false
     },
     {
@@ -697,42 +697,272 @@
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 進階動畫組合",
+        "off_label" : "進階動畫組合 >>",
+        "start_on" : false
+    },
+    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "動畫組合",
-                "code" : "動畫 = 動畫組合()",
-                "code_display" : "動畫 = 動畫組合()",
+                "code" : "自訂動畫 = 動畫組合(\n\n)",
+                "code_display" : "自訂動畫 = 動畫組合(\n    \n    )",
                 "note" : "## 引數為動作或時間",
                 "long_note" : true
             },
             {
-                "menu_display" : "動畫組合 重複 自動移除",
-                "code" : "動畫 = 動畫組合(loop=True, auto_destroy=False)",
-                "code_display" : "動畫 = 動畫組合(loop=True,\n    auto_destroy=False)",
-                "note" : "動畫組合 重複 自動移除",
+                "menu_display" : "動畫組合 重複播放",
+                "code" : "自訂動畫 = 動畫組合(\n\n重複播放=True,\n)",
+                "code_display" : "自訂動畫 = 動畫組合(\n    \n    重複播放=True,\n    )",
+                "note" : "動畫組合 重複播放",
                 "long_note" : true
             },
             {
-                "menu_display" : "動作 一般函式",
-                "code" : "自訂 = 動作(print,'hi')",
-                "code_display" : "自訂 = 動作(print,'hi')",
-                "note" : "動作 一般函式",
+                "menu_display" : "動畫組合 自動移除",
+                "code" : "自訂動畫 = 動畫組合(\n\n自動移除=True,\n)",
+                "code_display" : "自訂動畫 = 動畫組合(\n    \n    自動移除=True,\n    )",
+                "note" : "動畫組合 自動移除",
                 "long_note" : true
             },
             {
-                "menu_display" : "動作 物件屬性設定",
-                "code" : "自訂 = 動作(setattr,物體,'位置',[0,0,0])",
-                "code_display" : "自訂 = 動作(setattr\n    ,物體,'位置',[0,0,0])",
-                "note" : "動作 物件屬性設定",
+                "menu_display" : "動畫控制 開始",
+                "code" : "自訂動畫.開始()",
+                "code_display" : "自訂動畫.開始()",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "動作 動畫",
-                "code" : "自訂 = 動作(物體.位置動畫,[0,0,0],持續=1)",
-                "code_display" : "自訂 = 動作(物體.位置動畫,\n    [0,0,0],持續=1)",
-                "note" : "動作 動畫",
+                "menu_display" : "         暫停",
+                "code" : "自訂動畫.暫停()",
+                "code_display" : "自訂動畫.暫停()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         繼續",
+                "code" : "自訂動畫.繼續()",
+                "code_display" : "自訂動畫.繼續()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         結束",
+                "code" : "自訂動畫.結束()",
+                "code_display" : "自訂動畫.結束()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         暫停了嗎",
+                "code" : "自訂動畫.暫停了嗎()",
+                "code_display" : "自訂動畫.暫停了嗎()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         結束了嗎",
+                "code" : "自訂動畫.結束了嗎",
+                "code_display" : "自訂動畫.結束了嗎",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         移除",
+                "code" : "自訂動畫.移除()",
+                "code_display" : "自訂動畫.移除()",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "動作 設定位置",
+                "code" : "動作(setattr, 物體, '位置', [0,0,0]),",
+                "code_display" : "動作(setattr\n    ,物體,'位置',[0,0,0]),",
+                "note" : "設定位置 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     設定縮放",
+                "code" : "動作(setattr, 物體, '縮放', [0,0,0]),",
+                "code_display" : "動作(setattr\n    ,物體,'縮放',[0,0,0]),",
+                "note" : "設定縮放 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     設定旋轉",
+                "code" : "動作(setattr, 物體, '旋轉', [0,0,0]),",
+                "code_display" : "動作(setattr\n    ,物體,'旋轉',[0,0,0]),",
+                "note" : "設定旋轉 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     設定顏色",
+                "code" : "動作(setattr, 物體, '顏色', [0,0,0,0]),",
+                "code_display" : "動作(setattr\n    ,物體,'顏色',[0,0,0,0]),",
+                "note" : "設定顏色 ## 動畫組合引數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "等待秒數",
+                "code" : "1,",
+                "code_display" : "1,",
+                "note" : "等待秒數 ## 動畫組合引數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "動作 位置動畫",
+                "code" : "動作(物體.位置動畫, [2,0,0], 持續=1),",
+                "code_display" : "動作(物體.位置動畫,\n    [2,0,0],持續=1),",
+                "note" : "位置動畫 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     縮放動畫",
+                "code" : "動作(物體.縮放動畫, [2,1,1], 持續=1),",
+                "code_display" : "動作(物體.縮放動畫,\n    [2,1,1],持續=1),",
+                "note" : "縮放動畫 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     旋轉動畫",
+                "code" : "動作(物體.旋轉動畫, [0,90,0], 持續=1),",
+                "code_display" : "動作(物體.旋轉動畫,\n    [0,90,0],持續=1),",
+                "note" : "旋轉動畫 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     顏色動畫",
+                "code" : "動作(物體.顏色動畫, [0,0,0,0], 持續=1),",
+                "code_display" : "動作(物體.顏色動畫,\n    [0,0,0,0],持續=1),",
+                "note" : "顏色動畫 ## 動畫組合引數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "動作 淡入",
+                "code" : "動作(物體.淡入, 持續=2),",
+                "code_display" : "動作(物體.淡入, 持續=2),",
+                "note" : "淡入 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     淡出",
+                "code" : "動作(物體.淡出, 持續=2),",
+                "code_display" : "動作(物體.淡出, 持續=2),",
+                "note" : "淡出 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     閃爍",
+                "code" : "動作(物體.閃爍, 持續=0.5),",
+                "code_display" : "動作(物體.閃爍, 持續=0.5),",
+                "note" : "閃爍 ## 動畫組合引數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     晃動",
+                "code" : "動作(物體.晃動),",
+                "code_display" : "動作(物體.晃動),",
+                "note" : "晃動 ## 動畫組合引數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 聲音",
+        "off_label" : "聲音 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "載入聲音",
+                "code" : "聲音 = 載入聲音('檔名')",
+                "code_display" : "聲音 = 載入聲音('檔名')",
+                "note" : "聲音",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "載入聲音 重複播放",
+                "code" : "聲音 = 載入聲音('檔名', 重複播放=False)",
+                "code_display" : "聲音 = 載入聲音('檔名',\n    重複播放=False)",
+                "note" : "聲音",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "載入聲音 自動播放",
+                "code" : "載入聲音('檔名', 自動播放=False)",
+                "code_display" : "載入聲音('檔名',\n    自動播放=False)",
+                "note" : "聲音",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "聲音控制 播放",
+                "code" : "聲音.播放()",
+                "code_display" : "聲音.播放()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         暫停",
+                "code" : "聲音.暫停()",
+                "code_display" : "聲音.暫停()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         繼續",
+                "code" : "聲音.繼續()",
+                "code_display" : "聲音.繼續()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         停止",
+                "code" : "聲音.結束()",
+                "code_display" : "聲音.停止()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "         播放中嗎",
+                "code" : "聲音.播放中嗎()",
+                "code_display" : "聲音.播放中嗎()",
+                "note" : "",
                 "long_note" : true
             }
         ]
