@@ -185,10 +185,24 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "開啟影像擷取",
+                "menu_display" : "開啟影像擷取 640x480",
                 "code" : "攝影機 = 開啟影像擷取()",
                 "code_display" : "攝影機 = 開啟影像擷取()",
-                "note" : "開啟影像擷取",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "開啟影像擷取 720p",
+                "code" : "攝影機 = 開啟影像擷取(解析度='720p')",
+                "code_display" : "攝影機 = 開啟影像擷取(解析度='720p')",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "開啟影像擷取 1080p",
+                "code" : "攝影機 = 開啟影像擷取(解析度='1080p')",
+                "code_display" : "攝影機 = 開啟影像擷取(解析度='1080p')",
+                "note" : "",
                 "long_note" : true
             },
             {
