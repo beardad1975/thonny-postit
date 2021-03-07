@@ -211,18 +211,22 @@ class VariableAddToolPostit(ttk.Frame):
 
     def on_mouse_click(self):
         #print("clicked")
-        if not self.select_text.isidentifier():
+
+        #select_text and have .   like obj.attr
+        without_dot_text = self.select_text.replace('.','')
+
+        if not without_dot_text.isidentifier():
             content = '【 ' + self.select_text + ' 】 不是一個合格的變數名稱\n\n'
             content += '【說明】1.變數名稱可以用的字是文字,底線(_)或數字\n'
             content += '　　　　2.變數名稱的開頭第1個字不可以用數字'
             messagebox.showwarning('變數名稱錯誤', content)
             return
-        elif iskeyword(self.select_text):
-            content = '【 ' + self.select_text + ' 】 是python的保留關鍵字\n'
-            content += '不適合用來作為變數名稱\n'
-            content += '請修改或是換一個名稱'
-            messagebox.showwarning('變數名稱錯誤', content)
-            return
+        # elif iskeyword(self.select_text):
+        #     content = '【 ' + self.select_text + ' 】 是python的保留關鍵字\n'
+        #     content += '不適合用來作為變數名稱\n'
+        #     content += '請修改或是換一個名稱'
+        #     messagebox.showwarning('變數名稱錯誤', content)
+        #     return
         else: # var name ok
             vars_postit = common.share_vars_postit
             #print(vars_postit)

@@ -331,15 +331,15 @@
             },
             {
                 "menu_display" : "rgb 紅綠藍",
-                "code" : "物體.顏色 = color.rgb(0,0,0)",
-                "code_display" : "物體.顏色 = color.rgb(0,0,0)",
+                "code" : "物體.顏色 = color.rgb(255,255,255)",
+                "code_display" : "物體.顏色 = color.rgb(255,255,255)",
                 "note" : "rgb 紅綠藍",
                 "long_note" : true
             },
             {
                 "menu_display" : "rgba紅綠藍與不透明度",
-                "code" : "物體.顏色 = color.rgba(0,0,0,0)",
-                "code_display" : "物體.顏色 = color.rgba(0,0,0,0)",
+                "code" : "物體.顏色 = color.rgba(255,255,255,255)",
+                "code_display" : "物體.顏色 = color.rgba(255,255,255,255)",
                 "note" : "rgba紅綠藍與不透明度",
                 "long_note" : true
             },
@@ -391,6 +391,33 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "預設著色器",
+                "code" : "物體.著色器 = None",
+                "code_display" : "物體.著色器 = None",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "光影著色器",
+                "code" : "物體.著色器 = 光影著色器",
+                "code_display" : "物體.著色器 = 光影著色器",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "法線著色器",
+                "code" : "物體.著色器 = 法線著色器",
+                "code_display" : "物體.著色器 = 法線著色器",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
                 "menu_display" : "有效狀態 成立",
                 "code" : "物體.有效狀態 = True",
                 "code_display" : "物體.有效狀態 = True",
@@ -415,6 +442,13 @@
                 "menu_display" : "設定上層物件",
                 "code" : "物體.上層物件 = ",
                 "code_display" : "物體.上層物件 = ",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "兩面貼圖",
+                "code" : "物體.兩面貼圖 = True",
+                "code_display" : "物體.兩面貼圖 = True",
                 "note" : "",
                 "long_note" : true
             }
@@ -518,35 +552,35 @@
             {
                 "menu_display" : "文字標記 紅色",
                 "code" : "<red>",
-                "code_display" : "<red>'",
+                "code_display" : "<red>",
                 "note" : "文字標記 紅色",
                 "long_note" : false
             },
             {
                 "menu_display" : "文字標記 綠色",
                 "code" : "<green>",
-                "code_display" : "<green>'",
+                "code_display" : "<green>",
                 "note" : "文字標記 綠色",
                 "long_note" : false
             },
             {
                 "menu_display" : "文字標記 黃色",
                 "code" : "<yellow>",
-                "code_display" : "<yellow>'",
+                "code_display" : "<yellow>",
                 "note" : "文字標記 黃色",
                 "long_note" : false
             },
             {
                 "menu_display" : "文字標記 預設顏色 白",
                 "code" : "<default>",
-                "code_display" : "<default>'",
+                "code_display" : "<default>",
                 "note" : "文字標記 預設顏色 白",
                 "long_note" : false
             },
             {
                 "menu_display" : "文字標記 縮放",
                 "code" : "<scale:1.5>",
-                "code_display" : "<scale:1.5>'",
+                "code_display" : "<scale:1.5>",
                 "note" : "文字標記 縮放",
                 "long_note" : false
             }
@@ -796,28 +830,28 @@
                 "menu_display" : "動作 設定位置",
                 "code" : "動作(setattr, 物體, '位置', [0,0,0]),",
                 "code_display" : "動作(setattr\n    ,物體,'位置',[0,0,0]),",
-                "note" : "設定位置 ## 動畫組合引數",
+                "note" : "動作 設定屬性 位置## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     設定縮放",
                 "code" : "動作(setattr, 物體, '縮放', [0,0,0]),",
                 "code_display" : "動作(setattr\n    ,物體,'縮放',[0,0,0]),",
-                "note" : "設定縮放 ## 動畫組合引數",
+                "note" : "動作 設定屬性 縮放 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     設定旋轉",
                 "code" : "動作(setattr, 物體, '旋轉', [0,0,0]),",
                 "code_display" : "動作(setattr\n    ,物體,'旋轉',[0,0,0]),",
-                "note" : "設定旋轉 ## 動畫組合引數",
+                "note" : "動作 設定屬性 旋轉 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     設定顏色",
                 "code" : "動作(setattr, 物體, '顏色', [0,0,0,0]),",
                 "code_display" : "動作(setattr\n    ,物體,'顏色',[0,0,0,0]),",
-                "note" : "設定顏色 ## 動畫組合引數",
+                "note" : "動作 設定屬性 顏色 ## 動畫組合引數",
                 "long_note" : true
             }
         ]
@@ -843,28 +877,28 @@
                 "menu_display" : "動作 位置動畫",
                 "code" : "動作(物體.位置動畫, [2,0,0], 持續=1),",
                 "code_display" : "動作(物體.位置動畫,\n    [2,0,0],持續=1),",
-                "note" : "位置動畫 ## 動畫組合引數",
+                "note" : "動作 函式 位置動畫 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     縮放動畫",
                 "code" : "動作(物體.縮放動畫, [2,1,1], 持續=1),",
                 "code_display" : "動作(物體.縮放動畫,\n    [2,1,1],持續=1),",
-                "note" : "縮放動畫 ## 動畫組合引數",
+                "note" : "動作 函式 縮放動畫 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     旋轉動畫",
                 "code" : "動作(物體.旋轉動畫, [0,90,0], 持續=1),",
                 "code_display" : "動作(物體.旋轉動畫,\n    [0,90,0],持續=1),",
-                "note" : "旋轉動畫 ## 動畫組合引數",
+                "note" : "動作 函式 旋轉動畫 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     顏色動畫",
                 "code" : "動作(物體.顏色動畫, [0,0,0,0], 持續=1),",
                 "code_display" : "動作(物體.顏色動畫,\n    [0,0,0,0],持續=1),",
-                "note" : "顏色動畫 ## 動畫組合引數",
+                "note" : "動作 函式 顏色動畫 ## 動畫組合引數",
                 "long_note" : true
             }
         ]
@@ -877,28 +911,28 @@
                 "menu_display" : "動作 淡入",
                 "code" : "動作(物體.淡入, 持續=2),",
                 "code_display" : "動作(物體.淡入, 持續=2),",
-                "note" : "淡入 ## 動畫組合引數",
+                "note" : "動作 函式 淡入 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     淡出",
                 "code" : "動作(物體.淡出, 持續=2),",
                 "code_display" : "動作(物體.淡出, 持續=2),",
-                "note" : "淡出 ## 動畫組合引數",
+                "note" : "動作 函式 淡出 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     閃爍",
                 "code" : "動作(物體.閃爍, 持續=0.5),",
                 "code_display" : "動作(物體.閃爍, 持續=0.5),",
-                "note" : "閃爍 ## 動畫組合引數",
+                "note" : "動作 函式 閃爍 ## 動畫組合引數",
                 "long_note" : true
             },
             {
                 "menu_display" : "     晃動",
                 "code" : "動作(物體.晃動),",
                 "code_display" : "動作(物體.晃動),",
-                "note" : "晃動 ## 動畫組合引數",
+                "note" : "動作 函式 晃動 ## 動畫組合引數",
                 "long_note" : true
             }
         ]

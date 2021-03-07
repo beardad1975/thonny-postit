@@ -560,7 +560,7 @@ class SymbolToolPopup:
         self.code_display = code_display
         self.postit_button.config(text=code_display)
         
-        return
+        #return
 
 
         # insert at the same time
