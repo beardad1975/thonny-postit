@@ -1,14 +1,73 @@
 [
     {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "microbit",
-                "code" : "microbit",
-                "code_display" : "uart",
-                "note" : "microbit",
-                "long_note" : false
+                "menu_display" : "序列 初始化",
+                "code" : "序列.初始化(115200)",
+                "code_display" : "序列.初始化(115200)",
+                "note" : "初始化 傳輸率",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "寫入 傳送文字",
+                "code" : "序列.寫入('你好')",
+                "code_display" : "序列.寫入('你好')",
+                "note" : "寫入 傳送",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "寫入 傳送位元組",
+                "code" : "序列.寫入(b'abc')",
+                "code_display" : "序列.寫入(b'abc')",
+                "note" : "寫入 傳送",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "有資料嗎",
+                "code" : "序列.有資料嗎()",
+                "code_display" : "序列.有資料嗎()",
+                "note" : "有傳入的資料嗎",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "讀取 接收全部",
+                "code" : "序列.讀取()",
+                "code_display" : "序列.讀取()",
+                "note" : "接收全部",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "讀取 接收多少位元組",
+                "code" : "序列.讀取(5)",
+                "code_display" : "序列.讀取(5)",
+                "note" : "接收多少位元組",
+                "long_note" : true
             }            
         ]
     }

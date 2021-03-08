@@ -36,3 +36,10 @@ LED.感測亮度 = display.read_light_level
 圖示 = base()
 圖示.愛心 = Image.HEART
 圖示.小愛心 = Image.HEART_SMALL
+
+序列 = base()
+序列.初始化 = uart.init
+序列.寫入 = uart.write
+序列.有資料嗎 = uart.any
+序列.讀取 = uart.read
+
