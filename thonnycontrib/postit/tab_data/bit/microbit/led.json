@@ -1,0 +1,61 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "LED 清除",
+                "code" : "LED.清除()",
+                "code_display" : "LED.清除()",
+                "note" : "",
+                "long_note" : false
+            }           
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "LED 捲動 數字",
+                "code" : "LED.捲動(12345)",
+                "code_display" : "LED.捲動(12345)",
+                "note" : "捲動 數字",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "LED 捲動 文字",
+                "code" : "LED.捲動('Hello')",
+                "code_display" : "LED.捲動('Hello')",
+                "note" : "捲動 英文文字",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "LED 設定像素",
+                "code" : "LED.設定像素(0, 0, 5)",
+                "code_display" : "LED.設定像素(0, 0, 5)",
+                "note" : "左右(0~4) 上下(0~4) 亮度(0~9)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "LED 取得像素",
+                "code" : "亮度 = LED.取得像素(0, 0)",
+                "code_display" : "亮度 = LED.取得像素(0, 0)",
+                "note" : "左右(0~4) 上下(0~4) 亮度(0~9)",
+                "long_note" : true
+            }           
+        ]
+    }
+]

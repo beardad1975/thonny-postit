@@ -1,0 +1,78 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "bit_install_lib_postit",
+        "postit_label" : "安裝模組"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit模組 import *",
+                "code_display" : "from microbit模組\n    import *",
+                "note" : "### 需先安裝及匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "LED 捲動 數字",
+                "code" : "LED.捲動(12345)",
+                "code_display" : "LED.捲動(12345)",
+                "note" : "捲動 數字",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "LED 捲動 文字",
+                "code" : "LED.捲動('Hello')",
+                "code_display" : "LED.捲動('Hello')",
+                "note" : "捲動 英文文字",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "暫停毫秒",
+                "code" : "暫停毫秒(500)",
+                "code_display" : "暫停毫秒(500)",
+                "note" : "",
+                "long_note" : false
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "重複無限次",
+                "code" : "while True:\npass",
+                "code_display" : "while True:\n    pass",
+                "note" : "重複無限次:\n        迴圈區塊",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "有條件重複",
+                "code" : "while 1 > 0:\npass",
+                "code_display" : "while 1 > 0:\n    pass",
+                "note" : "當條件成立時:\n        迴圈區塊",
+                "long_note" : false
+            }
+        ]
+    }
+]

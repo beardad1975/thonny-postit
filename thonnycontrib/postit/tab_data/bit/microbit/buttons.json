@@ -1,14 +1,67 @@
 [
     {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "microbit",
-                "code" : "microbit",
-                "code_display" : "buttons",
-                "note" : "microbit",
-                "long_note" : false
+                "menu_display" : "按鈕A 按下嗎",
+                "code" : "按鈕A.按下嗎()",
+                "code_display" : "按鈕A.按下嗎()",
+                "note" : "按鈕正被按下",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "按鈕B 按下嗎",
+                "code" : "按鈕B.按下嗎()",
+                "code_display" : "按鈕B.按下嗎()",
+                "note" : "按鈕正被按下",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "按鈕A 按過嗎",
+                "code" : "按鈕A.按過嗎()",
+                "code_display" : "按鈕A.按過嗎()",
+                "note" : "按鈕被按過(執行後狀態重設)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "按鈕B 按過嗎",
+                "code" : "按鈕B.按過嗎()",
+                "code_display" : "按鈕B.按過嗎()",
+                "note" : "按鈕被按過(執行後狀態重設)",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "按鈕A 取得次數",
+                "code" : "按鈕A.取得次數()",
+                "code_display" : "按鈕A.取得次數()",
+                "note" : "按鈕按過次數(執行後次數重設)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "按鈕B 取得次數",
+                "code" : "按鈕B.取得次數()",
+                "code_display" : "按鈕B.取得次數()",
+                "note" : "按鈕按過次數(執行後次數重設)",
+                "long_note" : true
             }            
         ]
     }
