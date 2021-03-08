@@ -9,7 +9,7 @@
     },
     {
         "group_name" : "micropython",
-        "group_label" : "基本語言與函式庫",
+        "group_label" : "micropython與函式庫",
         "default_tabs":[
             "flow"
         ]

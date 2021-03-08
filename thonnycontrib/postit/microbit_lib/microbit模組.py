@@ -1,3 +1,5 @@
+# microbit 模組 v0.1
+
 from microbit import *
 
 暫停毫秒 = sleep

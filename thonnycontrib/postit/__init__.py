@@ -12,10 +12,9 @@ from tkinter import ttk
 from pathlib import Path
 from PIL import Image, ImageTk
 
-from thonny import get_workbench, get_shell, get_runner
-
+from thonny import get_workbench, get_shell, get_runner 
 from thonny.ui_utils import show_dialog, CommonDialog
-from thonny.common import ToplevelCommand
+from thonny.common import ToplevelCommand, InlineCommand
 
 from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
@@ -644,6 +643,8 @@ class PythonPostitView(ttk.Frame):
             elif postit_data['postit_type'] == 'in_para_dropdown_postit':
                 self.build_in_para_dropdown_postit(tab, postit_data)
               
+            elif postit_data['postit_type'] == 'bit_install_lib_postit':
+                self.build_bit_install_lib_postit(tab, postit_data)
 
         # end vertical spacer for end space scrolling
         tk.Label(tab.tab_frame.interior, text='',
@@ -706,6 +707,68 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(parent, tab, code_list = temp_code_list,
             postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
             #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)  
+
+    def build_bit_install_lib_postit(self, tab, postit_data):
+        logo_path = Path(__file__).parent / 'images' / 'install.png'
+        im = Image.open(logo_path)       
+        self.install_image = ImageTk.PhotoImage(im) 
+
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+
+        def install_lib():
+            ready = get_runner().ready_for_remote_file_operations(show_message=False)
+            
+            if not ready:
+                messagebox.showwarning(
+                    '連線問題',
+                    '未連接microbit，請接上硬體並連線',
+                    master=self,
+                )
+                return
+
+            answer = messagebox.askyesno(
+                '安裝模組',
+                '是否在microbit上安裝模組？\n(至少需安裝一次，才可使用中文模組)',
+                master=self,
+            )
+
+            if answer:
+                lib_path = Path(__file__).parent / 'microbit_lib' / 'microbit模組.py'
+                with open(lib_path, 'rb') as f:
+                    content_bytes = f.read()
+
+                get_runner().send_command_and_wait(
+                InlineCommand(
+                    "write_file",
+                    path="microbit模組.py",
+                    content_bytes=content_bytes,
+                    editor_id=id(tab),
+                    blocking=True,
+                    description="安裝microbit模組.py",
+                ),
+                dialog_title="安裝...",
+            )
+            else:
+                return
+
+
+
+        tk.Button(tab.tab_frame.interior,
+            relief='solid', 
+            borderwidth=1,
+            text=postit_data['postit_label'],
+            #fg='#333333',
+            #fg=tab.font_color, 
+            #bg=tab.fill_color,
+            #bg='#aaaaff',
+            justify='left',
+            font=f,  
+            image=self.install_image,  
+            compound=tk.LEFT, 
+            padx=0,
+            pady=0,
+            command=install_lib,
+        ).grid( sticky='e',padx=20, pady=8)
 
     def hide_tab(self, tab):
         mode = tab.group.mode
