@@ -1,8 +1,32 @@
 [
     {
-        "tab_name" : "main",
-        "tab_label" : " 主要 ",
-        "tab_title" : "主要"
+        "tab_name" : "module",
+        "tab_label" : " 模組 ",
+        "tab_title" : "模組"
         
-    }
+    },
+    {
+        "tab_name" : "buttons",
+        "tab_label" : " 按鈕 ",
+        "tab_title" : "按鈕"
+        
+    },
+    {
+        "tab_name" : "accelerometer",
+        "tab_label" : " 加速 ",
+        "tab_title" : "加速度感測器"
+        
+    },
+    {
+        "tab_name" : "radio",
+        "tab_label" : " 廣播 ",
+        "tab_title" : "無線電廣播"
+        
+    },
+    {
+        "tab_name" : "uart",
+        "tab_label" : " 序列 ",
+        "tab_title" : "序列通訊"
+        
+    }     
 ]

@@ -1,0 +1,15 @@
+[
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "microbit",
+                "code" : "microbit",
+                "code_display" : "module",
+                "note" : "microbit",
+                "long_note" : false
+            }            
+        ]
+    }
+]

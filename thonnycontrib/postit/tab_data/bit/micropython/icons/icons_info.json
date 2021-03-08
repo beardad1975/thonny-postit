@@ -1,0 +1,43 @@
+[
+    
+    {
+        "icon_filename" : "language_icon4.png",
+        "fill_color" : "#ffab19",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "language_icon5.png",
+        "fill_color" : "#4cbfe6",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "language_icon6.png",
+        "fill_color" : "#40bf4a",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "language_icon7.png",
+        "fill_color" : "#ff6680",
+        "font_color" : "black"        
+    },
+    {
+        "icon_filename" : "language_icon0.png",
+        "fill_color" : "#4c97ff",
+        "font_color" : "white"
+    },
+    {
+        "icon_filename" : "language_icon1.png",
+        "fill_color" : "#9966ff",
+        "font_color" : "white"        
+    },
+    {
+        "icon_filename" : "language_icon2.png",
+        "fill_color" : "#d65cd6",
+        "font_color" : "white"        
+    },
+    {
+        "icon_filename" : "language_icon3.png",
+        "fill_color" : "#ffd500",
+        "font_color" : "black"        
+    }
+]

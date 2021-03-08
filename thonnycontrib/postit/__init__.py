@@ -623,74 +623,89 @@ class PythonPostitView(ttk.Frame):
         #                 )
 
         # parse json data
-        label_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        self.label_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
 
-        for p in postit_list:
-            if p['postit_type'] == 'dropdown_postit':
-                temp_code_list = []
-                for i in p["items"]:
-                    temp_code_list.append(CodeNTuple(
-                        menu_display=i['menu_display'],
-                        code=i['code'],
-                        code_display=i['code_display'],
-                        note=i['note'],
-                        long_note=i['long_note'] ))
+        for postit_data in postit_list:
+            if postit_data['postit_type'] == 'dropdown_postit':
+                self.build_dropdown_postit(tab, postit_data)
 
-                DropdownPostit(tab.tab_frame.interior, tab, code_list = temp_code_list,
-                    postfix_enter=p['postfix_enter']).grid(sticky='w', padx=5, pady=8)    
-                    #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)    
-            elif p['postit_type'] == 'ttk_label':
-                ttk.Label(tab.tab_frame.interior, 
-                    #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text=p['text'],
-                    font=label_font,    
-                    compound=tk.LEFT, 
-                ).grid( sticky='w',padx=0, pady=8)
-                #).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+            elif postit_data['postit_type'] == 'ttk_label':
+                self.build_ttk_label(tab, postit_data)
 
-            elif p['postit_type'] == 'postit_title':
-                ttk.Label(tab.tab_frame.interior, 
-                    #text='='*6 +' 【 條件分支 】 '+'='*6,
-                    text=tab.tab_title,
-                    font=label_font,
-                    image=tab.icon_image,
-                    compound='left',    
-                    
-                ).grid( padx=0, pady=8)
+            elif postit_data['postit_type'] == 'postit_title':
+                self.build_postit_title(tab, postit_data)
 
-            elif p['postit_type'] == 'ttk_separator':
-                ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL
-                    ).grid(sticky='ew', padx=0, pady=5)
-                    #).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+            elif postit_data['postit_type'] == 'ttk_separator':
+                self.build_ttk_separator(tab, postit_data)
 
-            elif p['postit_type'] == 'postit_para':
-                on_label = p['on_label']
-                off_label = p['off_label']
-                start_on = p['start_on']
-                para = PostitPara(tab,on_label, off_label, start_on)
-                tab.current_postit_para = para
-                tab.postit_paras_list.append(para)
+            elif postit_data['postit_type'] == 'postit_para':
+                self.build_postit_para(tab, postit_data)
 
-            elif p['postit_type'] == 'in_para_dropdown_postit':
-                temp_code_list = []
-                for i in p["items"]:
-                    temp_code_list.append(CodeNTuple(
-                        menu_display=i['menu_display'],
-                        code=i['code'],
-                        code_display=i['code_display'],
-                        note=i['note'],
-                        long_note=i['long_note'] ))
+            elif postit_data['postit_type'] == 'in_para_dropdown_postit':
+                self.build_in_para_dropdown_postit(tab, postit_data)
+              
 
-                parent = tab.current_postit_para.para_frame
-                DropdownPostit(parent, tab, code_list = temp_code_list,
-                    postfix_enter=p['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
-                    #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)                
-
-        # end spacer for end space scrolling
+        # end vertical spacer for end space scrolling
         tk.Label(tab.tab_frame.interior, text='',
                 image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
-        
 
+    def build_dropdown_postit(self, tab, postit_data):
+        temp_code_list = []
+        for i in postit_data["items"]:
+            temp_code_list.append(CodeNTuple(
+                menu_display=i['menu_display'],
+                code=i['code'],
+                code_display=i['code_display'],
+                note=i['note'],
+                long_note=i['long_note'] ))
+
+        DropdownPostit(tab.tab_frame.interior, tab, code_list = temp_code_list,
+            postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=5, pady=8)    
+            #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)    
+
+    def build_ttk_label(self, tab, postit_data):
+        ttk.Label(tab.tab_frame.interior, 
+            text=postit_data['text'],
+            font=self.label_font,    
+            compound=tk.LEFT, 
+        ).grid( sticky='w',padx=0, pady=8)
+        #).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
+
+    def build_postit_title(self, tab, postit_data):
+        ttk.Label(tab.tab_frame.interior, 
+            text=tab.tab_title,
+            font=self.label_font,
+            image=tab.icon_image,
+            compound='left',
+        ).grid( padx=0, pady=8)
+
+    def build_ttk_separator(self, tab, postit_data):
+        ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL
+            ).grid(sticky='ew', padx=0, pady=5)
+            #).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+
+    def build_postit_para(self, tab, postit_data):
+        on_label = postit_data['on_label']
+        off_label = postit_data['off_label']
+        start_on = postit_data['start_on']
+        para = PostitPara(tab,on_label, off_label, start_on)
+        tab.current_postit_para = para
+        tab.postit_paras_list.append(para)
+
+    def build_in_para_dropdown_postit(self, tab, postit_data):
+        temp_code_list = []
+        for i in postit_data["items"]:
+            temp_code_list.append(CodeNTuple(
+                menu_display=i['menu_display'],
+                code=i['code'],
+                code_display=i['code_display'],
+                note=i['note'],
+                long_note=i['long_note'] ))
+
+        parent = tab.current_postit_para.para_frame
+        DropdownPostit(parent, tab, code_list = temp_code_list,
+            postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
+            #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)  
 
     def hide_tab(self, tab):
         mode = tab.group.mode
