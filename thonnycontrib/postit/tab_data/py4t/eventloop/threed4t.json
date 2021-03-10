@@ -853,6 +853,13 @@
                 "code_display" : "動作(setattr\n    ,物體,'顏色',[0,0,0,0]),",
                 "note" : "動作 設定屬性 顏色 ## 動畫組合引數",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "     設定有效狀態",
+                "code" : "動作(setattr, 物體, '有效狀態', True),",
+                "code_display" : "動作(setattr\n    ,物體,'有效狀態', True),",
+                "note" : "動作 設定屬性 有效狀態 ## 動畫組合引數",
+                "long_note" : true
             }
         ]
     },
