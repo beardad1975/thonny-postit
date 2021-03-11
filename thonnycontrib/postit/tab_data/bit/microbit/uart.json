@@ -7,12 +7,28 @@
     },
     {
         "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import uart as 序列",
+                "code_display" : "from microbit import \n  uart as 序列",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
                 "menu_display" : "序列 初始化",
-                "code" : "序列.初始化(115200)",
-                "code_display" : "序列.初始化(115200)",
+                "code" : "序列.init(115200)",
+                "code_display" : "序列.init(115200)",
                 "note" : "初始化 傳輸率",
                 "long_note" : true
             }            
@@ -24,16 +40,16 @@
         "items" :[
             {
                 "menu_display" : "寫入 傳送文字",
-                "code" : "序列.寫入('你好')",
-                "code_display" : "序列.寫入('你好')",
-                "note" : "寫入 傳送",
+                "code" : "序列.write('你好')",
+                "code_display" : "序列.write('你好')",
+                "note" : "寫入 傳送 文字",
                 "long_note" : true
             },
             {
                 "menu_display" : "寫入 傳送位元組",
-                "code" : "序列.寫入(b'abc')",
-                "code_display" : "序列.寫入(b'abc')",
-                "note" : "寫入 傳送",
+                "code" : "序列.write(b'abc')",
+                "code_display" : "序列.write(b'abc')",
+                "note" : "寫入 傳送 位元組",
                 "long_note" : true
             }            
         ]
@@ -44,8 +60,8 @@
         "items" :[
             {
                 "menu_display" : "有資料嗎",
-                "code" : "序列.有資料嗎()",
-                "code_display" : "序列.有資料嗎()",
+                "code" : "序列.any()",
+                "code_display" : "序列.any()",
                 "note" : "有傳入的資料嗎",
                 "long_note" : true
             }            
@@ -57,15 +73,15 @@
         "items" :[
             {
                 "menu_display" : "讀取 接收全部",
-                "code" : "序列.讀取()",
-                "code_display" : "序列.讀取()",
+                "code" : "序列.read()",
+                "code_display" : "序列.read()",
                 "note" : "接收全部",
                 "long_note" : true
             },
             {
                 "menu_display" : "讀取 接收多少位元組",
-                "code" : "序列.讀取(5)",
-                "code_display" : "序列.讀取(5)",
+                "code" : "序列.read(5)",
+                "code_display" : "序列.read(5)",
                 "note" : "接收多少位元組",
                 "long_note" : true
             }            

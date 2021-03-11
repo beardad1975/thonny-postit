@@ -1,0 +1,47 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "import struct as 結構",
+                "code_display" : "import struct\n    as 結構",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "包裝資料",
+                "code" : "包裝資料 = 結構.pack('hh',10, 100)",
+                "code_display" : "包裝資料 = 結構.pack(\n    'hh',10, 100)",
+                "note" : "包裝資料(h為2位元組數字)",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "折開資料",
+                "code" : "清單 = 結構.unpack('hh',包裝資料)",
+                "code_display" : "清單 = 結構.unpack(\n    'hh',包裝資料)",
+                "note" : "折開資料(h為2位元組數字)",
+                "long_note" : true
+            }            
+        ]
+    }
+]

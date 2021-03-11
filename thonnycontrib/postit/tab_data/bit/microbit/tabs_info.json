@@ -19,7 +19,7 @@
     },
     {
         "tab_name" : "accelerometer",
-        "tab_label" : " 加速 \n 度計 ",
+        "tab_label" : " 加速 ",
         "tab_title" : "加速度感測器"
         
     },

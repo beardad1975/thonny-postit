@@ -3,10 +3,6 @@
         "postit_type" : "postit_title"
     },
     {
-        "postit_type" : "bit_install_lib_postit",
-        "postit_label" : "安裝模組"
-    },
-    {
         "postit_type" : "ttk_separator"
     },
     {
@@ -15,9 +11,9 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "from microbit模組 import *",
-                "code_display" : "from microbit模組\n    import *",
-                "note" : "### 需先安裝及匯入才能使用",
+                "code" : "import microbit as 開發板",
+                "code_display" : "import microbit as 開發板",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            
         ]
@@ -27,19 +23,19 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "LED 捲動 數字",
-                "code" : "LED.捲動(12345)",
-                "code_display" : "LED.捲動(12345)",
-                "note" : "捲動 數字",
+                "menu_display" : "暫停 毫秒",
+                "code" : "開發板.sleep(1000)",
+                "code_display" : "開發板.sleep(1000)",
+                "note" : "暫停 毫秒",
                 "long_note" : true
             },
             {
-                "menu_display" : "LED 捲動 文字",
-                "code" : "LED.捲動('Hello')",
-                "code_display" : "LED.捲動('Hello')",
-                "note" : "捲動 英文文字",
+                "menu_display" : "開機時間 毫秒",
+                "code" : "開發板.running_time()",
+                "code_display" : "開發板.running_time()",
+                "note" : "開機時間 毫秒",
                 "long_note" : true
-            }            
+            }             
         ]
     },
     {
@@ -47,13 +43,23 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "暫停毫秒",
-                "code" : "暫停毫秒(500)",
-                "code_display" : "暫停毫秒(500)",
-                "note" : "",
-                "long_note" : false
+                "menu_display" : "溫度 攝式",
+                "code" : "開發板.temperature()",
+                "code_display" : "開發板.temperature()",
+                "note" : "溫度 攝式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重新啟動",
+                "code" : "開發板.reset()",
+                "code_display" : "開發板.reset()",
+                "note" : "重新啟動",
+                "long_note" : true
             }            
         ]
+    },
+    {
+        "postit_type" : "ttk_separator"
     },
     {
         "postit_type" : "dropdown_postit",
@@ -73,6 +79,67 @@
                 "note" : "當條件成立時:\n        迴圈區塊",
                 "long_note" : false
             }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "重複幾次",
+                "code" : "for 數 in range(10):\npass",
+                "code_display" : "for 數 in range(10):\n    pass",
+                "note" : "逐一取出 從數列 (重複次數):\n        迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重複(開頭,結尾不含)",
+                "code" : "for 數 in range(5, 10):\npass",
+                "code_display" : "for 數 in range(5, 10):\n    pass",
+                "note" : "逐一取出 從數列(開始,結尾不含):\n        迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重複次數(開始,結尾不含,步進)",
+                "code" : "for 數 in range(0, 10, 2):\npass",
+                "code_display" : "for 數 in range(0, 10, 2):\n    pass",
+                "note" : "逐一取出 從數列(開始,結尾不含,步進):\n        迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "從清單 逐一取出",
+                "code" : "for 項目 in [1,4,5]:\npass",
+                "code_display" : "for 項目 in [1,4,5]:\n    pass",
+                "note" : "逐一取出 從清單 :\n        迴圈區塊",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "如果",
+                "code" : "if 1 > 0: \npass",
+                "code_display" : "if 1 > 0:\n    pass",
+                "note" : "如果 條件:\n        成立區塊",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "如果 不然(否則)",
+                "code" : "if 1 > 0:\npass\nelse:\npass",
+                "code_display" : "if 1 > 0:\n    pass\nelse:\n    pass",
+                "note" : "如果 條件:\n        成立區塊\n不然(否則):\n        不成立區塊",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "不然如果",
+                "code" : "if 1 > 0:\npass\nelif 0 < 1:\npass\nelse:\npass",
+                "code_display" : "if 1 > 0:\n    pass\nelif 0 < 1:\n    pass\nelse:\n    pass",
+                "note" : "如果 條件:\n        成立區塊\n不然如果 條件:\n        成立區塊\n不然(否則):\n        都不成立區塊",
+                "long_note" : false
+            }        
         ]
     }
 ]

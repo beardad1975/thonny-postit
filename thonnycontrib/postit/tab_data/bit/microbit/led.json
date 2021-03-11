@@ -10,11 +10,27 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "LED 清除",
-                "code" : "LED.清除()",
-                "code_display" : "LED.清除()",
-                "note" : "",
-                "long_note" : false
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import display as 燈光",
+                "code_display" : "from microbit import \n    display as 燈光",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "燈光 清除",
+                "code" : "燈光.clear()",
+                "code_display" : "燈光.clear()",
+                "note" : "燈光 清除",
+                "long_note" : true
             }           
         ]
     },
@@ -23,17 +39,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "LED 捲動 數字",
-                "code" : "LED.捲動(12345)",
-                "code_display" : "LED.捲動(12345)",
-                "note" : "捲動 數字",
+                "menu_display" : "燈光 捲動 數字",
+                "code" : "燈光.scroll(12345)",
+                "code_display" : "燈光.scroll(12345)",
+                "note" : "燈光 捲動 數字",
                 "long_note" : true
             },
             {
-                "menu_display" : "LED 捲動 文字",
-                "code" : "LED.捲動('Hello')",
-                "code_display" : "LED.捲動('Hello')",
-                "note" : "捲動 英文文字",
+                "menu_display" : "燈光 捲動 文字",
+                "code" : "燈光.scroll('Hello')",
+                "code_display" : "燈光.scroll('Hello')",
+                "note" : "燈光 捲動 英文字",
                 "long_note" : true
             }            
         ]
@@ -43,17 +59,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "LED 設定像素",
-                "code" : "LED.設定像素(0, 0, 5)",
-                "code_display" : "LED.設定像素(0, 0, 5)",
-                "note" : "左右(0~4) 上下(0~4) 亮度(0~9)",
+                "menu_display" : "燈光 設定像素",
+                "code" : "燈光.set_pixel(0, 0, 5)",
+                "code_display" : "燈光.set_pixel(0, 0, 5)",
+                "note" : "設定像素 x(0~4) y(0~4) 亮度(0~9)",
                 "long_note" : true
             },
             {
-                "menu_display" : "LED 取得像素",
-                "code" : "亮度 = LED.取得像素(0, 0)",
-                "code_display" : "亮度 = LED.取得像素(0, 0)",
-                "note" : "左右(0~4) 上下(0~4) 亮度(0~9)",
+                "menu_display" : "燈光 取得像素",
+                "code" : "亮度 = 燈光.get_pixel(0, 0)",
+                "code_display" : "亮度 = 燈光.get_pixel(\n    0, 0)",
+                "note" : "取得像素 x(0~4) y(0~4)",
                 "long_note" : true
             }           
         ]

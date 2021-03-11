@@ -7,82 +7,15 @@
     },
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "取得x軸",
-                "code" : "加速度計.取得x軸()",
-                "code_display" : "加速度計.取得x軸()",
-                "note" : "",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "取得y軸",
-                "code" : "加速度計.取得y軸()",
-                "code_display" : "加速度計.取得y軸()",
-                "note" : "",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "取得z軸",
-                "code" : "加速度計.取得z軸()",
-                "code_display" : "加速度計.取得z軸()",
-                "note" : "",
-                "long_note" : false
-            }            
-        ]
-    },
-    {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "取得3軸",
-                "code" : "加速度計.取得3軸()",
-                "code_display" : "加速度計.取得3軸()",
-                "note" : "",
-                "long_note" : false
-            }          
-        ]
-    },
-    {
-        "postit_type" : "dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "設值 x軸",
-                "code" : "感測值 = 加速度計.取得x軸()",
-                "code_display" : "感測值 = 加速度計.取得x軸()",
-                "note" : "",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "設值 y軸",
-                "code" : "感測值 = 加速度計.取得y軸()",
-                "code_display" : "感測值 = 加速度計.取得y軸()",
-                "note" : "",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "設值 z軸",
-                "code" : "感測值 = 加速度計.取得z軸()",
-                "code_display" : "感測值 = 加速度計.取得z軸()",
-                "note" : "",
-                "long_note" : false
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import accelerometer as 加速度",
+                "code_display" : "from microbit import \n  accelerometer as 加速度",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
             }            
-        ]
-    },
-    {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "設值 3軸",
-                "code" : "清單 = 加速度計.取得3軸()",
-                "code_display" : "清單 = 加速度計.取得3軸()",
-                "note" : "",
-                "long_note" : false
-            }          
         ]
     },
     {
@@ -93,10 +26,100 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "目前動作",
-                "code" : "加速度計.目前動作()",
-                "code_display" : "加速度計.目前動作()",
-                "note" : "",
+                "menu_display" : "取得 x軸加速度",
+                "code" : "加速度.get_x()",
+                "code_display" : "加速度計.get_x()",
+                "note" : "取得 x軸加速度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設值 x軸加速度",
+                "code" : "感測值 = 加速度.get_x()",
+                "code_display" : "感測值 = 加速度.get_x()",
+                "note" : "設值 x軸加速度",
+                "long_note" : true
+            }          
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "取得 y軸加速度",
+                "code" : "加速度.get_y()",
+                "code_display" : "加速度計.get_y()",
+                "note" : "取得 y軸加速度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設值 y軸加速度",
+                "code" : "感測值 = 加速度.get_y()",
+                "code_display" : "感測值 = 加速度.get_y()",
+                "note" : "設值 y軸加速度",
+                "long_note" : true
+            }          
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "取得 z軸加速度",
+                "code" : "加速度.get_z()",
+                "code_display" : "加速度計.get_z()",
+                "note" : "取得 z軸加速度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設值 z軸加速度",
+                "code" : "感測值 = 加速度.get_z()",
+                "code_display" : "感測值 = 加速度.get_z()",
+                "note" : "設值 z軸加速度",
+                "long_note" : true
+            }          
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "取得3軸",
+                "code" : "加速度.get_values()",
+                "code_display" : "加速度.get_values()",
+                "note" : "取得3軸加速度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "取得3軸",
+                "code" : "清單 = 加速度.get_values()",
+                "code_display" : "清單 = 加速度.get_values()",
+                "note" : "取得3軸加速度",
+                "long_note" : true
+            }           
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "取值 目前動作",
+                "code" : "加速度.current_gesture()",
+                "code_display" : "加速度.current_gesture()",
+                "note" : "取值 目前動作",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "設值 目前動作",
+                "code" : "動作 = 加速度.current_gesture()",
+                "code_display" : "動作 = 加速度.current_gesture()",
+                "note" : "設值 目前動作",
                 "long_note" : false
             }          
         ]
@@ -109,14 +132,14 @@
                 "menu_display" : "動作 上",
                 "code" : "'up'",
                 "code_display" : "'up'",
-                "note" : "動作 標誌朝上",
+                "note" : "動作 標誌在上",
                 "long_note" : false
             },
             {
                 "menu_display" : "動作 下",
                 "code" : "'down'",
                 "code_display" : "'down'",
-                "note" : "動作 標誌朝下",
+                "note" : "動作 標誌在下",
                 "long_note" : false
             },
             {
@@ -162,9 +185,9 @@
         "items" :[
             {
                 "menu_display" : "動作是",
-                "code" : "加速度計.動作是('up')",
-                "code_display" : "加速度計.動作是('up')",
-                "note" : "",
+                "code" : "加速度.is_gesture('up')",
+                "code_display" : "加速度.is_gesture('up')",
+                "note" : "動作是",
                 "long_note" : false
             }          
         ]

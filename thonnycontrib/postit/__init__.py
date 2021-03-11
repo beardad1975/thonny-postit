@@ -734,6 +734,7 @@ class PythonPostitView(ttk.Frame):
 
             if answer:
                 lib_path = Path(__file__).parent / 'microbit_lib' / 'microbit模組.py'
+                #lib_path = Path(__file__).parent / 'microbit_lib' / 'boot.py'
                 with open(lib_path, 'rb') as f:
                     content_bytes = f.read()
 
@@ -741,10 +742,11 @@ class PythonPostitView(ttk.Frame):
                 InlineCommand(
                     "write_file",
                     path="microbit模組.py",
+                    #path="boot.py",
                     content_bytes=content_bytes,
                     editor_id=id(tab),
                     blocking=True,
-                    description="安裝microbit模組.py",
+                    description="安裝boot.py模組",
                 ),
                 dialog_title="安裝...",
             )

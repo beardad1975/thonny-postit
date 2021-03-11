@@ -7,20 +7,13 @@
     },
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "按鈕A 按下嗎",
-                "code" : "按鈕A.按下嗎()",
-                "code_display" : "按鈕A.按下嗎()",
-                "note" : "按鈕正被按下",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "按鈕B 按下嗎",
-                "code" : "按鈕B.按下嗎()",
-                "code_display" : "按鈕B.按下嗎()",
-                "note" : "按鈕正被按下",
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import button_a as A鈕, button_b as B鈕",
+                "code_display" : "from microbit import \n    button_a as A鈕, \n    button_b as B鈕",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            
         ]
@@ -30,19 +23,26 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "按鈕A 按過嗎",
-                "code" : "按鈕A.按過嗎()",
-                "code_display" : "按鈕A.按過嗎()",
-                "note" : "按鈕被按過(執行後狀態重設)",
+                "menu_display" : "A鈕 按住了嗎",
+                "code" : "A鈕.is_pressed()",
+                "code_display" : "A鈕.is_pressed()",
+                "note" : "A鈕 按住了嗎",
                 "long_note" : true
             },
             {
-                "menu_display" : "按鈕B 按過嗎",
-                "code" : "按鈕B.按過嗎()",
-                "code_display" : "按鈕B.按過嗎()",
-                "note" : "按鈕被按過(執行後狀態重設)",
+                "menu_display" : "A鈕 按過了嗎",
+                "code" : "A鈕.was_pressed()",
+                "code_display" : "A鈕.was_pressed()",
+                "note" : "A鈕 按過了嗎(執行後狀態重設)",
                 "long_note" : true
-            }            
+            },
+            {
+                "menu_display" : "A鈕 取得按下次數",
+                "code" : "A鈕.get_presses()",
+                "code_display" : "A鈕.get_presses()",
+                "note" : "A鈕 取得按下次數(執行後次數重設)",
+                "long_note" : true
+            }          
         ]
     },
     {
@@ -50,19 +50,26 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "按鈕A 取得次數",
-                "code" : "按鈕A.取得次數()",
-                "code_display" : "按鈕A.取得次數()",
-                "note" : "按鈕按過次數(執行後次數重設)",
+                "menu_display" : "B鈕 按住了嗎",
+                "code" : "B鈕.is_pressed()",
+                "code_display" : "B鈕.is_pressed()",
+                "note" : "B鈕 按住了嗎",
                 "long_note" : true
             },
             {
-                "menu_display" : "按鈕B 取得次數",
-                "code" : "按鈕B.取得次數()",
-                "code_display" : "按鈕B.取得次數()",
-                "note" : "按鈕按過次數(執行後次數重設)",
+                "menu_display" : "B鈕 按過了嗎",
+                "code" : "B鈕.was_pressed()",
+                "code_display" : "B鈕.was_pressed()",
+                "note" : "B鈕 按過了嗎(執行後狀態重設)",
                 "long_note" : true
-            }            
+            },
+            {
+                "menu_display" : "B鈕 取得按下次數",
+                "code" : "B鈕.get_presses()",
+                "code_display" : "B鈕.get_presses()",
+                "note" : "B鈕 取得按下次數(執行後次數重設)",
+                "long_note" : true
+            }          
         ]
     }
 ]
