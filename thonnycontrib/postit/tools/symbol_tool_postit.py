@@ -320,7 +320,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('True'," True 真(成立) "))
         self.common_menu.add_command( label=" False 假(不成立) ", 
                 command=lambda:self.change_symbol('False'," False 假(不成立) "))
-
+        self.common_menu.add_command( label=" len() 長度 ", 
+                command=lambda:self.change_symbol('len()'," len() 長度 "))
 
 
         # arithmetic menu command

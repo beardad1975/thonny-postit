@@ -1,15 +1,229 @@
 [
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 數值類型",
+        "off_label" : "數值類型 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "microbit",
-                "code" : "microbit",
-                "code_display" : "data",
-                "note" : "microbit",
+                "menu_display" : "文字轉整數",
+                "code" : "int('3')",
+                "code_display" : "int('3')",
+                "note" : "文字轉整數",
                 "long_note" : false
-            }            
+            },
+            {
+                "menu_display" : "浮點數轉整數",
+                "code" : "int(4.2)",
+                "code_display" : "int(4.2)",
+                "note" : "浮點數轉整數(捨去小數)",
+                "long_note" : false
+            }         
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "整數轉浮點數",
+                "code" : "float(7)",
+                "code_display" : "float(7)",
+                "note" : "整數轉浮點數(近似小數)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "文字轉浮點數",
+                "code" : "float('3.14')",
+                "code_display" : "float('3.14')",
+                "note" : "文字轉浮點數(近似小數)",
+                "long_note" : false
+            }        
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "整數值轉布林值",
+                "code" : "bool(2)",
+                "code_display" : "bool(2)",
+                "note" : "整數轉布林值(真假)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "文字轉布林值",
+                "code" : "bool('abc')",
+                "code_display" : "bool('abc')",
+                "note" : "文字轉布林值(真假)",
+                "long_note" : false
+            }                        
+        ]
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 數值運算",
+        "off_label" : "數值運算 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "大於",
+                "code" : "3 > 0",
+                "code_display" : "3 > 0",
+                "note" : "大於",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "大於等於",
+                "code" : "3 >= 0",
+                "code_display" : "3 >= 0",
+                "note" : "大於或等於",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "小於",
+                "code" : "1 < 4",
+                "code_display" : "1 < 4",
+                "note" : "小於",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "小於等於",
+                "code" : "1 <= 4",
+                "code_display" : "1 <= 4",
+                "note" : "小於或等於",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "不等於",
+                "code" : "3 != 6",
+                "code_display" : "3 != 6",
+                "note" : "不等於",
+                "long_note" : false
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 字串類型",
+        "off_label" : "字串類型 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "字串(文字)",
+                "code" : "str()",
+                "code_display" : "str()",
+                "note" : "轉成字串(文字)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "整數轉字串(文字)",
+                "code" : "str(12)",
+                "code_display" : "str(12)",
+                "note" : "整數轉字串(文字)",
+                "long_note" : false
+            }        
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "字串(單引號)",
+                "code" : "'這是文字'",
+                "code_display" : "'這是文字'",
+                "note" : "字串(單引號)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "字串(雙引號)",
+                "code" : "\"這是文字\"",
+                "code_display" : "\"這是文字\"",
+                "note" : "字串(雙引號)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "字串(三引號)(可多行)",
+                "code" : "'''\n  這是\n文字\n'''",
+                "code_display" : "'''\n  這是\n  文字\n'''",
+                "note" : "字串(三引號)(可多行)",
+                "long_note" : false
+            }
+    
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 特殊類型",
+        "off_label" : "特殊類型 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "空值",
+                "code" : "None",
+                "code_display" : "None",
+                "note" : "空值",
+                "long_note" : false
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 群集類型",
+        "off_label" : "群集類型 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "list清單",
+                "code" : "[3,1,2]",
+                "code_display" : "[3,1,2]",
+                "note" : "list清單",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "list清單(混合類型)",
+                "code" : "[100,'水果',3.14]",
+                "code_display" : "[100,'水果',3.14]",
+                "note" : "list清單(混合類型)",
+                "long_note" : true
+            }        
         ]
     }
 ]

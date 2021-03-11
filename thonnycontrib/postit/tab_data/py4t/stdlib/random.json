@@ -16,7 +16,7 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "匯入時間模組",
+                "menu_display" : "匯入模組",
                 "code" : "import random as 隨機",
                 "code_display" : "import random as 隨機",
                 "note" : "### 需先匯入才能使用",

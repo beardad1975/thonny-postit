@@ -1,14 +1,9 @@
 [
-    {
-        "tab_name" : "basic",
-        "tab_label" : " 基本 ",
-        "tab_title" : "基本常用功能"
-        
-    },
+    
     {
         "tab_name" : "led",
         "tab_label" : " 燈光 ",
-        "tab_title" : "LED燈5x5"
+        "tab_title" : "5x5 LED燈"
         
     },
     {
@@ -33,6 +28,12 @@
         "tab_name" : "uart",
         "tab_label" : " 序列 ",
         "tab_title" : "序列通訊"
+        
+    },
+    {
+        "tab_name" : "system",
+        "tab_label" : " 系統 ",
+        "tab_title" : "基本系統功能"
         
     }     
 ]

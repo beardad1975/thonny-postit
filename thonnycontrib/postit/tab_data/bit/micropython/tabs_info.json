@@ -12,6 +12,24 @@
         
     },
     {
+        "tab_name" : "utime",
+        "tab_label" : " 時間 ",
+        "tab_title" : "時間"
+        
+    },
+    {
+        "tab_name" : "math",
+        "tab_label" : " 數學 ",
+        "tab_title" : "數學"
+               
+    },
+    {
+        "tab_name" : "random",
+        "tab_label" : " 隨機 ",
+        "tab_title" : "隨機"
+               
+    },
+    {
         "tab_name" : "ustruct",
         "tab_label" : " 結構 ",
         "tab_title" : "C結構資料轉換"

@@ -1,0 +1,64 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "import microbit as 開發板",
+                "code_display" : "import microbit as 開發板",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "暫停 毫秒",
+                "code" : "開發板.sleep(1000)",
+                "code_display" : "開發板.sleep(1000)",
+                "note" : "暫停 毫秒",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "開機時間 毫秒",
+                "code" : "開發板.running_time()",
+                "code_display" : "開發板.running_time()",
+                "note" : "開機時間 毫秒",
+                "long_note" : true
+            }             
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "溫度 攝式",
+                "code" : "開發板.temperature()",
+                "code_display" : "開發板.temperature()",
+                "note" : "溫度 攝式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重新啟動",
+                "code" : "開發板.reset()",
+                "code_display" : "開發板.reset()",
+                "note" : "重新啟動",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    }
+]

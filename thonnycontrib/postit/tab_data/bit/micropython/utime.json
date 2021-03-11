@@ -1,0 +1,62 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入時間模組",
+                "code" : "import utime as 時間",
+                "code_display" : "import utime as 時間",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 暫停控制",
+        "off_label" : "暫停控制 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "睡眠 秒",
+                "code" : "時間.sleep(2)",
+                "code_display" : "時間.sleep(2)",
+                "note" : "睡眠 幾秒 ",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "睡眠 毫秒",
+                "code" : "時間.sleep_ms(1000)",
+                "code_display" : "時間.sleep_ms(1000)",
+                "note" : "睡眠 毫秒 ",
+                "long_note" : true
+            }
+        ]
+    }
+]

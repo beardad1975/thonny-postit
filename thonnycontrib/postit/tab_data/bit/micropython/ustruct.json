@@ -43,5 +43,31 @@
                 "long_note" : true
             }            
         ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "折開資料",
+                "code" : "清單 = 結構.unpack('hh',包裝資料)",
+                "code_display" : "清單 = 結構.unpack(\n    'hh',包裝資料)",
+                "note" : "折開資料(h為2位元組數字)",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "計算多少位元組",
+                "code" : "資料長度 = 結構.calcsize('hh')",
+                "code_display" : "資料長度 = 結構.calcsize('hh')",
+                "note" : "計算多少位元組",
+                "long_note" : true
+            }            
+        ]
     }
 ]
