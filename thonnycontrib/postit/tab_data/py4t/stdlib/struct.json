@@ -24,8 +24,8 @@
         "items" :[
             {
                 "menu_display" : "包裝資料",
-                "code" : "包裝資料 = 結構.pack('hh',10, 100)",
-                "code_display" : "包裝資料 = 結構.pack(\n    'hh',10, 100)",
+                "code" : "位元組資料 = 結構.pack('hh',10, 100)",
+                "code_display" : "位元組資料 = 結構.pack(\n    'hh',10, 100)",
                 "note" : "包裝資料(h為2位元組數字)",
                 "long_note" : true
             }            
@@ -37,8 +37,8 @@
         "items" :[
             {
                 "menu_display" : "折開資料",
-                "code" : "清單 = 結構.unpack('hh',包裝資料)",
-                "code_display" : "清單 = 結構.unpack(\n    'hh',包裝資料)",
+                "code" : "清單 = 結構.unpack('hh',位元組資料)",
+                "code_display" : "清單 = 結構.unpack(\n    'hh',位元組資料)",
                 "note" : "折開資料(h為2位元組數字)",
                 "long_note" : true
             }            

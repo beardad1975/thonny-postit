@@ -176,6 +176,38 @@
         ]
     },
     {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 位元組類型",
+        "off_label" : "位元組類型 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "位元組",
+                "code" : "b'abc'",
+                "code_display" : "b'abc'",
+                "note" : "位元組 英數字",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "文字轉位元組",
+                "code" : "bytes('文字', 'utf8')",
+                "code_display" : "bytes('文字', 'utf8')",
+                "note" : "轉成位元組 utf8編碼",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
         "postit_type" : "ttk_separator"
     },
     {

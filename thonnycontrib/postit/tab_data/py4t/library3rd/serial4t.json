@@ -1,0 +1,130 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from 序列模組 import *",
+                "code_display" : "from 序列模組 import *",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "連接 自動偵測",
+                "code" : "序列連線 = 連接microbit()",
+                "code_display" : "序列連線 = 連接microbit()",
+                "note" : "連接 自動偵測",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "連接 自動偵測 無例外錯誤",
+                "code" : "序列連線 = 連接microbit(例外錯誤=False)",
+                "code_display" : "序列連線 = 連接microbit(\n    例外錯誤=False)",
+                "note" : "連接 自動偵測 無例外錯誤",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "連接 自動偵測 無例外 不等待",
+                "code" : "序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)",
+                "code_display" : "序列連線 = 連接microbit(\n  例外錯誤=False, 讀取等待=0)",
+                "note" : "連接 自動偵測 無例外 不等待",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "連接 全部引數",
+                "code" : "序列連線 = 連接microbit(埠='auto', 例外錯誤=True ,傳輸率=115200, 讀取等待=None)",
+                "code_display" : "序列連線 = 連接microbit(\n  埠='auto', 例外錯誤=True ,\n  傳輸率=115200, 讀取等待=None)",
+                "note" : "連接 全部引數",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "傳送 位元組",
+                "code" : "序列連線.傳送(b'hello')",
+                "code_display" : "序列連線.傳送(b'hello')",
+                "note" : "傳送 位元組",
+                "long_note" : true
+            }, 
+            {
+                "menu_display" : "傳送 文字",
+                "code" : "序列連線.傳送('你好')",
+                "code_display" : "序列連線.傳送('你好')",
+                "note" : "傳送 文字(自動轉成位元組)",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "接收 全部",
+                "code" : "位元組資料 = 序列連線.接收()",
+                "code_display" : "位元組資料 = 序列連線.接收()",
+                "note" : "接收 全部",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "接收 幾個位元組",
+                "code" : "位元組資料 = 序列連線.接收(位元組=4)",
+                "code_display" : "位元組資料 = 序列連線.接收(\n    位元組=4)",
+                "note" : "接收 幾個位元組",
+                "long_note" : true
+            }          
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "清除緩除區",
+                "code" : "序列連線.清除緩除區()",
+                "code_display" : "序列連線.清除緩除區()",
+                "note" : "",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "關閉連線",
+                "code" : "序列連線.關閉()",
+                "code_display" : "序列連線.關閉()",
+                "note" : "",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    }
+]

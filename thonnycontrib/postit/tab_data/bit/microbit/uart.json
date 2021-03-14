@@ -39,19 +39,19 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "寫入 傳送文字",
-                "code" : "序列.write('你好')",
-                "code_display" : "序列.write('你好')",
-                "note" : "寫入 傳送 文字",
-                "long_note" : true
-            },
-            {
                 "menu_display" : "寫入 傳送位元組",
                 "code" : "序列.write(b'abc')",
                 "code_display" : "序列.write(b'abc')",
-                "note" : "寫入 傳送 位元組",
+                "note" : "寫入 傳送位元組",
                 "long_note" : true
-            }            
+            }, 
+            {
+                "menu_display" : "寫入 傳送文字",
+                "code" : "序列.write('你好')",
+                "code_display" : "序列.write('你好')",
+                "note" : "寫入 傳送文字(自動轉成位元組)",
+                "long_note" : true
+            }           
         ]
     },
     {
@@ -75,14 +75,14 @@
                 "menu_display" : "讀取 接收全部",
                 "code" : "序列.read()",
                 "code_display" : "序列.read()",
-                "note" : "接收全部",
+                "note" : "讀取 接收全部",
                 "long_note" : true
             },
             {
                 "menu_display" : "讀取 接收多少位元組",
                 "code" : "序列.read(5)",
                 "code_display" : "序列.read(5)",
-                "note" : "接收多少位元組",
+                "note" : "讀取 接收多少位元組",
                 "long_note" : true
             }            
         ]
