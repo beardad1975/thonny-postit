@@ -530,6 +530,19 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "文字背景",
+                "code" : "文字物體.背景 = True",
+                "code_display" : "文字物體.背景 = True",
+                "note" : "文字背景",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
                 "menu_display" : "逐字動畫",
                 "code" : "文字物體.逐字動畫()",
                 "code_display" : "文字物體.逐字動畫()",
