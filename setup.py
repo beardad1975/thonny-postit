@@ -1,8 +1,13 @@
 from setuptools import setup
 
+from pathlib import Path
+
+datadir = Path(__file__).parent / 'thonnycontrib' / 'postit' / 'tab_data'
+files = [str(p.relative_to(datadir)) for p in datadir.rglob('*')]
+
 setup (
         name="thonny-postit",
-        version="0.3",
+        version="0.4",
         description="Program post-it for Thonny IDE",
         long_description="""Program post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
@@ -20,7 +25,9 @@ setup (
         
         platforms=["Windows"],
         python_requires=">=3.5",
-        package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*']},
-        install_requires=["thonny >= 3.2.7","pillow >= 7.2.0"],
+        package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*'],
+                'thonnycontrib.postit.tab_data':  files,
+                },
+        install_requires=["thonny >= 3.3.6","pillow >= 7.2.0"],
         packages=["thonnycontrib.postit"],
 )
