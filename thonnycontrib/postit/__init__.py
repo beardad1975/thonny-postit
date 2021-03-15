@@ -58,7 +58,7 @@ class Mode:
         #collect  tab group
         #print(TAB_DATA_PATH)
         #print(mode_name)
-        with open(TAB_DATA_PATH / mode_name / 'groups_info.json') as fp:
+        with open(TAB_DATA_PATH / mode_name / 'groups_info.json', encoding='utf8') as fp:
             groups_info = json.load(fp)
         #print(info_data)
 
@@ -134,7 +134,7 @@ class TabGroup:
         self.color_num = len(self.fill_colors)
 
         # collect tabs info
-        with open(self.group_path / 'tabs_info.json') as fp:
+        with open(self.group_path / 'tabs_info.json', encoding='utf8') as fp:
             tabs_info = json.load(fp)
         #print(tabs_info)
 
@@ -152,7 +152,7 @@ class TabGroup:
 
     def collect_icon_color(self):
         icon_path = self.group_path / 'icons'
-        with open(icon_path / 'icons_info.json') as fp:
+        with open(icon_path / 'icons_info.json', encoding='utf8') as fp:
             icons_info = json.load(fp)
         #print(icons_info)
 
@@ -604,7 +604,7 @@ class PythonPostitView(ttk.Frame):
     def load_tab_json(self, tab):
         mode = tab.group.mode
         
-        with open(tab.tab_path) as fp:
+        with open(tab.tab_path, encoding='utf8') as fp:
             postit_list = json.load(fp)
         
         # if name in common.postit_tabs:
