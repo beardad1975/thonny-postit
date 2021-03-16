@@ -106,8 +106,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 建立3D模型",
-        "off_label" : "建立3D模型 >>",
+        "on_label" : "<< 3D物體建立與刪除",
+        "off_label" : "3D物體建立與刪除 >>",
         "start_on" : false
     },
     {
@@ -167,6 +167,19 @@
                 "code_display" : "物體 = 新增內面貼圖球體()",
                 "note" : "",
                 "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "刪除物體",
+                "code" : "刪除物體(物體)",
+                "code_display" : "刪除物體(物體)",
+                "note" : "物體需先被建立",
+                "long_note" : true
             }
         ]
     },
@@ -449,6 +462,13 @@
                 "menu_display" : "兩面貼圖",
                 "code" : "物體.兩面貼圖 = True",
                 "code_display" : "物體.兩面貼圖 = True",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "不可刪除",
+                "code" : "物體.不可刪除 = True",
+                "code_display" : "物體.不可刪除 = True",
                 "note" : "",
                 "long_note" : true
             }
@@ -1265,23 +1285,30 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "滑鼠位置",
+                "menu_display" : "滑鼠 位置",
                 "code" : "滑鼠.位置",
                 "code_display" : "滑鼠.位置",
                 "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "滑鼠的碰觸物體",
-                "code" : "滑鼠.碰觸物體",
-                "code_display" : "滑鼠.碰觸物體",
+                "menu_display" : "滑鼠 接觸物體",
+                "code" : "滑鼠.接觸物體",
+                "code_display" : "滑鼠.接觸物體",
                 "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "滑鼠的碰觸點",
-                "code" : "滑鼠.碰觸點",
-                "code_display" : "滑鼠.碰觸點",
+                "menu_display" : "滑鼠 接觸點",
+                "code" : "滑鼠.接觸點",
+                "code_display" : "滑鼠.接觸點",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 接觸面法線",
+                "code" : "滑鼠.接觸面法線",
+                "code_display" : "滑鼠.接觸面法線",
                 "note" : "",
                 "long_note" : true
             },
