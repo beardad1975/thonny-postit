@@ -64,7 +64,7 @@ class DropdownWidget(ttk.Frame):
                                         #image=self.enter_image,
                                         padx=0,
                                         pady=0,
-                                         
+                                        #underline = 0, 
                                         state='normal',
                                         )
 

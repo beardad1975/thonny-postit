@@ -2,7 +2,7 @@
     {
         "tab_name" : "turtle4t",
         "tab_label" : " 海龜 ",
-        "tab_title" : "海龜繪圖 "
+        "tab_title" : "海龜幾何 "
     },
     {
         "tab_name" : "physics4t",
@@ -12,6 +12,11 @@
     {
         "tab_name" : "threed4t",
         "tab_label" : "  3D  ",
-        "tab_title" :   "3D立體"    
+        "tab_title" :   "3D程式"  
+    },
+    {
+        "tab_name" : "cv4t",
+        "tab_label" : " 視覺 ",
+        "tab_title" :   "視覺影像"  
     }
 ]

@@ -1,7 +1,7 @@
 [
     {
-        "group_name" : "eventloop",
-        "group_label" : "事件迴圈",
+        "group_name" : "theme",
+        "group_label" : "學習主題",
         "default_tabs":[
             "turtle4t"
         ]
