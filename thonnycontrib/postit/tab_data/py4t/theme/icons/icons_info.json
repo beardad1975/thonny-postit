@@ -1,5 +1,24 @@
 [
-    
+    {
+        "icon_filename" : "theme_icon0.png",
+        "fill_color" : "#4c97ff",
+        "font_color" : "white"
+    },
+    {
+        "icon_filename" : "theme_icon1.png",
+        "fill_color" : "#9966ff",
+        "font_color" : "white"        
+    },
+    {
+        "icon_filename" : "theme_icon2.png",
+        "fill_color" : "#d65cd6",
+        "font_color" : "white"        
+    },
+    {
+        "icon_filename" : "theme_icon3.png",
+        "fill_color" : "#ffd500",
+        "font_color" : "black"        
+    },
     
     {
         "icon_filename" : "theme_icon4.png",
@@ -20,25 +39,6 @@
         "icon_filename" : "theme_icon7.png",
         "fill_color" : "#ff6680",
         "font_color" : "black"        
-    },
-    {
-        "icon_filename" : "theme_icon0.png",
-        "fill_color" : "#4c97ff",
-        "font_color" : "white"
-    },
-    {
-        "icon_filename" : "theme_icon1.png",
-        "fill_color" : "#9966ff",
-        "font_color" : "white"        
-    },
-    {
-        "icon_filename" : "theme_icon2.png",
-        "fill_color" : "#d65cd6",
-        "font_color" : "white"        
-    },
-    {
-        "icon_filename" : "theme_icon3.png",
-        "fill_color" : "#ffd500",
-        "font_color" : "black"        
     }
+    
 ]

@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖片讀取與儲存",
-        "off_label" : "圖片讀取與儲存 >>",
+        "on_label" : "<< 攝影機擷取",
+        "off_label" : "攝影機擷取 >>",
         "start_on" : true
     },
     {
@@ -38,17 +38,38 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "讀取圖片灰階",
-                "code" : "陣列 = 讀取圖片灰階('檔名.類型')",
-                "code_display" : "陣列 = 讀取圖片灰階(\n    '檔名.類型')",
-                "note" : "### 需改為實際圖片檔名",
+                "menu_display" : "設置影像擷取 640x480",
+                "code" : "攝影機 = 設置影像擷取()",
+                "code_display" : "攝影機 = 設置影像擷取()",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "讀取圖片彩色",
-                "code" : "陣列 = 讀取圖片彩色('檔名.類型')",
-                "code_display" : "陣列 = 讀取圖片彩色(\n    '檔名.類型')",
-                "note" : "### 需改為實際圖片檔名",
+                "menu_display" : "設置影像擷取 720p",
+                "code" : "攝影機 = 設置影像擷取(解析度='720p')",
+                "code_display" : "攝影機 = 設置影像擷取(解析度='720p')",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置影像擷取 1080p",
+                "code" : "攝影機 = 設置影像擷取(解析度='1080p')",
+                "code_display" : "攝影機 = 設置影像擷取(解析度='1080p')",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置影像擷取 後端DSHOW",
+                "code" : "攝影機 = 設置影像擷取(後端='DSHOW')",
+                "code_display" : "攝影機 = 設置影像擷取(後端='DSHOW')",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "關閉影像擷取",
+                "code" : "攝影機.release()",
+                "code_display" : "攝影機.release()",
+                "note" : "關閉影像擷取",
                 "long_note" : true
             }
         ]
@@ -58,10 +79,10 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "儲存圖片",
-                "code" : "儲存圖片('檔名.jpg',陣列)",
-                "code_display" : "儲存圖片('檔名.jpg',陣列)",
-                "note" : "儲存圖片(檔名字串, 陣列)",
+                "menu_display" : "擷取影像",
+                "code" : "陣列 = 擷取影像(攝影機)",
+                "code_display" : "陣列 = 擷取影像(攝影機)",
+                "note" : "影像為彩色",
                 "long_note" : true
             }
         ]
@@ -71,8 +92,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖片顯示",
-        "off_label" : "圖片顯示 >>",
+        "on_label" : "<< 影像顯示",
+        "off_label" : "影像顯示 >>",
         "start_on" : false
     },
     {
@@ -80,24 +101,10 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "顯示圖片",
-                "code" : "顯示圖片(陣列)",
-                "code_display" : "顯示圖片(陣列)",
-                "note" : "顯示圖片(陣列)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "顯示圖片 標題",
-                "code" : "顯示圖片(陣列, 標題='pic')",
-                "code_display" : "顯示圖片(陣列, 標題='pic')",
-                "note" : "顯示圖片(陣列, 標題)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "顯示圖片 新視窗",
-                "code" : "顯示圖片(陣列, 新視窗=True)",
-                "code_display" : "顯示圖片(陣列, 新視窗=True)",
-                "note" : "顯示圖片(陣列, 新視窗)",
+                "menu_display" : "顯示影像",
+                "code" : "顯示影像(陣列)",
+                "code_display" : "顯示影像(陣列)",
+                "note" : "顯示影像(陣列)",
                 "long_note" : true
             }
         ]
@@ -107,10 +114,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "關閉所有圖片",
-                "code" : "關閉所有圖片()",
-                "code_display" : "關閉所有圖片()",
-                "note" : "關閉所有圖片",
+                "menu_display" : "顯示影像 視窗名稱",
+                "code" : "顯示影像(陣列, 視窗名稱='1')",
+                "code_display" : "顯示影像(陣列, \n    視窗名稱='1')",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "關閉所有影像",
+                "code" : "關閉所有影像()",
+                "code_display" : "關閉所有影像()",
+                "note" : "關閉所有影像",
                 "long_note" : true
             }
         ]
@@ -120,8 +134,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖片處理",
-        "off_label" : "圖片處理 >>",
+        "on_label" : "<< 影像處理",
+        "off_label" : "影像處理 >>",
         "start_on" : false
     },
     {
@@ -176,8 +190,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 攝影機擷取",
-        "off_label" : "攝影機擷取 >>",
+        "on_label" : "<< 影像檔讀取與儲存",
+        "off_label" : "影像檔讀取與儲存 >>",
         "start_on" : false
     },
     {
@@ -185,31 +199,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "開啟影像擷取 640x480",
-                "code" : "攝影機 = 開啟影像擷取()",
-                "code_display" : "攝影機 = 開啟影像擷取()",
-                "note" : "",
+                "menu_display" : "讀取影像灰階",
+                "code" : "陣列 = 讀取影像灰階('檔名.類型')",
+                "code_display" : "陣列 = 讀取影像灰階(\n    '檔名.類型')",
+                "note" : "### 需改為實際影像檔名",
                 "long_note" : true
             },
             {
-                "menu_display" : "開啟影像擷取 720p",
-                "code" : "攝影機 = 開啟影像擷取(解析度='720p')",
-                "code_display" : "攝影機 = 開啟影像擷取(解析度='720p')",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "開啟影像擷取 1080p",
-                "code" : "攝影機 = 開啟影像擷取(解析度='1080p')",
-                "code_display" : "攝影機 = 開啟影像擷取(解析度='1080p')",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "關閉影像擷取",
-                "code" : "攝影機.release()",
-                "code_display" : "攝影機.release()",
-                "note" : "關閉影像擷取",
+                "menu_display" : "讀取影像彩色",
+                "code" : "陣列 = 讀取影像彩色('檔名.類型')",
+                "code_display" : "陣列 = 讀取影像彩色(\n    '檔名.類型')",
+                "note" : "### 需改為實際片影像檔名",
                 "long_note" : true
             }
         ]
@@ -219,10 +219,10 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "擷取單張影像",
-                "code" : "陣列 = 擷取單張影像(攝影機)",
-                "code_display" : "陣列 = 擷取單張影像(攝影機)",
-                "note" : "影像為彩色",
+                "menu_display" : "儲存影像",
+                "code" : "儲存影像('檔名.jpg',陣列)",
+                "code_display" : "儲存影像('檔名.jpg',陣列)",
+                "note" : "儲存影像(檔名字串, 陣列)",
                 "long_note" : true
             }
         ]
@@ -241,10 +241,23 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "擷取螢幕",
+                "code" : "陣列 = 擷取螢幕(0,100,0,100)",
+                "code_display" : "陣列 = 擷取螢幕(\n    0, 100, 0, 100)",
+                "note" : "列1,列2,行1,行2",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
                 "menu_display" : "擷取螢幕灰階",
-                "code" : "陣列 = 擷取螢幕灰階(0,50,0,50)",
-                "code_display" : "陣列 = 擷取螢幕灰階(0,50,\n    0,50)",
-                "note" : "擷取範圍 行1,行2,列1,列2",
+                "code" : "陣列 = 擷取螢幕灰階(0,100,0,100)",
+                "code_display" : "陣列 = 擷取螢幕灰階(\n    0, 100, 0, 100)",
+                "note" : "列1,列2,行1,行2",
                 "long_note" : true
             }
         ]
@@ -254,8 +267,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 幾何繪圖",
-        "off_label" : "幾何繪圖 >>",
+        "on_label" : "<< 繪圖與顏色",
+        "off_label" : "繪圖與顏色 >>",
         "start_on" : false
     },
     {
@@ -263,10 +276,120 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "畫灰階矩形",
-                "code" : "陣列 = 畫灰階矩形(陣列,0,50,0,50)",
-                "code_display" : "陣列 = 畫灰階矩形(陣列,\n    0,50,0,50)",
-                "note" : "矩形範圍 行1,行2,列1,列2",
+                "menu_display" : "畫方形",
+                "code" : "畫方形(陣列, 0, 0, 50, 50)",
+                "code_display" : "畫方形(陣列,\n    0,0,50,50)",
+                "note" : "x, y, 寬, 高",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫方形 顏色",
+                "code" : "畫方形(陣列, 0, 0, 50, 50, 顏色=color.紅)",
+                "code_display" : "畫方形(陣列,0,0\n    ,50,50,顏色=color.紅)",
+                "note" : "x, y, 寬, 高, 顏色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫實心方形",
+                "code" : "畫實心方形(陣列,0,0,50,50)",
+                "code_display" : "畫實心方形(陣列,\n    0,0,50,50)",
+                "note" : "x, y, 寬, 高",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫實心方形 顏色",
+                "code" : "畫實心方形(陣列, 0, 0, 50, 50, 顏色=color.紅)",
+                "code_display" : "畫實心方形(陣列,0,0\n    ,50,50,顏色=color.紅)",
+                "note" : "x, y, 寬, 高, 顏色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "畫圓形",
+                "code" : "畫圓形(陣列, 100, 100, 半徑=20)",
+                "code_display" : "畫圓形(陣列,\n    100,100,半徑=20)",
+                "note" : "圓心x, 圓心y, 半徑",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫圓形 顏色",
+                "code" : "畫圓形(陣列, 100, 100, 半徑=20, 顏色=color.紅)",
+                "code_display" : "畫圓形(陣列,100,100,\n    半徑=20, 顏色=color.紅)",
+                "note" : "圓心x, 圓心y, 半徑, 顏色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫實心圓形",
+                "code" : "畫實心圓形(陣列, 100, 100, 半徑=20)",
+                "code_display" : "畫實心圓形(陣列,\n    100,100,半徑=20)",
+                "note" : "圓心x, 圓心y, 半徑",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫實心圓形 顏色",
+                "code" : "畫實心圓形(陣列, 100, 100, 半徑=20, 顏色=color.紅)",
+                "code_display" : "畫實心圓形(陣列,100,100,\n    半徑=20, 顏色=color.紅)",
+                "note" : "圓心x, 圓心y, 半徑, 顏色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "紅",
+                "code" : "color.紅",
+                "code_display" : "color.紅",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "綠",
+                "code" : "color.綠",
+                "code_display" : "color.綠",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "藍",
+                "code" : "color.藍",
+                "code_display" : "color.藍",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "黃",
+                "code" : "color.黃",
+                "code_display" : "color.黃",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "橘",
+                "code" : "color.橘",
+                "code_display" : "color.橘",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "粉紅",
+                "code" : "color.粉紅",
+                "code_display" : "color.粉紅",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "rgb",
+                "code" : "color.rgb(255,255,255)",
+                "code_display" : "color.rgb(255,255,255)",
+                "note" : "",
                 "long_note" : true
             }
         ]
