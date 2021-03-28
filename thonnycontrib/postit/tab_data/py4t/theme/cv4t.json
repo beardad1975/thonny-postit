@@ -134,8 +134,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 影像處理",
-        "off_label" : "影像處理 >>",
+        "on_label" : "<< 灰階轉換、亮度對比",
+        "off_label" : "灰階轉換、亮度對比 >>",
         "start_on" : false
     },
     {
@@ -155,6 +155,13 @@
                 "code_display" : "陣列 = 灰階轉彩色(陣列)",
                 "note" : "灰階轉彩色",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "灰階轉黑白",
+                "code" : "陣列 = 灰階轉黑白(陣列, 門檻值=127)",
+                "code_display" : "陣列 = 灰階轉黑白(陣列, \n    門檻值=127)",
+                "note" : "灰階轉黑白",
+                "long_note" : true
             }
         ]
     },
@@ -162,25 +169,19 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
+            
             {
-                "menu_display" : "左右翻轉",
-                "code" : "陣列 = 左右翻轉(陣列)",
-                "code_display" : "陣列 = 左右翻轉(陣列)",
-                "note" : "左右翻轉",
+                "menu_display" : "調整亮度",
+                "code" : "陣列 = 調整亮度(陣列, 0)",
+                "code_display" : "陣列 = 調整亮度(陣列, 0)",
+                "note" : "-100 ~ 100, 0不變",
                 "long_note" : true
             },
             {
-                "menu_display" : "上下翻轉",
-                "code" : "陣列 = 上下翻轉(陣列)",
-                "code_display" : "陣列 =上下翻轉(陣列)",
-                "note" : "上下翻轉",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "上下左右翻轉",
-                "code" : "陣列 = 上下左右翻轉(陣列)",
-                "code_display" : "陣列 =上下左右翻轉(陣列)",
-                "note" : "上下翻轉左右",
+                "menu_display" : "調整對比",
+                "code" : "陣列 = 調整對比(陣列, 0)",
+                "code_display" : "陣列 = 調整對比(陣列, 0)",
+                "note" : "-100 ~ 100, 0不變",
                 "long_note" : true
             }
         ]
@@ -190,8 +191,132 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 影像檔讀取與儲存",
-        "off_label" : "影像檔讀取與儲存 >>",
+        "on_label" : "<< 翻轉、旋轉、平移與縮放",
+        "off_label" : "翻轉、旋轉、平移與縮放 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "左右翻轉",
+                "code" : "陣列 = 左右翻轉(陣列)",
+                "code_display" : "陣列 = 左右翻轉(陣列)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "上下翻轉",
+                "code" : "陣列 = 上下翻轉(陣列)",
+                "code_display" : "陣列 =上下翻轉(陣列)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "上下左右翻轉",
+                "code" : "陣列 = 上下左右翻轉(陣列)",
+                "code_display" : "陣列 =上下左右翻轉(陣列)",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "旋轉影像",
+                "code" : "陣列 = 旋轉影像(陣列, 角度=90)",
+                "code_display" : "陣列 = 旋轉影像(陣列,\n    角度=90)",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "平移影像",
+                "code" : "陣列 = 平移影像(陣列, 水平=50, 垂直=50)",
+                "code_display" : "陣列 = 平移影像(陣列,\n   水平=50, 垂直=50)",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "縮放影像 依寬度",
+                "code" : "陣列 = 縮放影像(陣列, 寬度=300)",
+                "code_display" : "陣列 = 縮放影像(陣列, \n    寬度=300)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "縮放影像 依高度",
+                "code" : "陣列 = 縮放影像(陣列, 高度=300)",
+                "code_display" : "陣列 = 縮放影像(陣列, \n    高度=300)",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 影像模糊與邊緣偵測",
+        "off_label" : "影像模糊與邊緣偵測 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "模糊",
+                "code" : "陣列 = 模糊(陣列, 核心=5)",
+                "code_display" : "陣列 = 模糊(陣列, 核心=5)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "高斯模糊",
+                "code" : "陣列 = 高斯模糊(陣列, 核心=5)",
+                "code_display" : "陣列 = 高斯模糊(陣列, 核心=5)",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "Canny邊緣偵測",
+                "code" : "陣列 = Canny邊緣偵測(陣列)",
+                "code_display" : "陣列 = Canny邊緣偵測(陣列)",
+                "note" : "# 需傳入灰階影像",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 讀取與儲存",
+        "off_label" : "讀取與儲存 >>",
         "start_on" : false
     },
     {

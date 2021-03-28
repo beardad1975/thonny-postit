@@ -479,6 +479,200 @@
     },
     {
         "postit_type" : "postit_para",
+        "on_label" : "<< 事件處理函式",
+        "off_label" : "事件處理函式 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "當按下時",
+                "code" : "def 當按下時(按鍵):\npass",
+                "code_display" : "def 當按下時(按鍵):\n    pass",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "當放開時",
+                "code" : "def 當放開時(按鍵):\npass",
+                "code_display" : "def 當放開時(按鍵):\n    pass",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是滑鼠左鍵?",
+                "code" : "if 按鍵 == 'left mouse down' :\npass",
+                "code_display" : "if 按鍵 == 'left mouse down' :\n    pass",
+                "note" : "是滑鼠左鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是空白鍵?",
+                "code" : "if 按鍵 == 'space' :\npass",
+                "code_display" : "if 按鍵 == 'space' :\n    pass",
+                "note" : "是空白鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是Enter鍵?",
+                "code" : "if 按鍵 == 'enter' :\npass",
+                "code_display" : "if 按鍵 == 'enter' :\n    pass",
+                "note" : "是Enter鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向右鍵?",
+                "code" : "if 按鍵 == 'right arrow' :\npass",
+                "code_display" : "if 按鍵 == 'right arrow' :\n    pass",
+                "note" : "是向右鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向左鍵?",
+                "code" : "if 按鍵 == 'left arrow' :\npass",
+                "code_display" : "if 按鍵 == 'left arrow' :\n    pass",
+                "note" : "是向左鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向上鍵?",
+                "code" : "if 按鍵 == 'up arrow' :\npass",
+                "code_display" : "if 按鍵 == 'up arrow' :\n    pass",
+                "note" : "是向上鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是向下鍵?",
+                "code" : "if 按鍵 == 'down arrow' :\npass",
+                "code_display" : "if 按鍵 == 'down arrow' :\n    pass",
+                "note" : "是向下鍵?",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "當更新時",
+                "code" : "def 當更新時(時間差):\npass",
+                "code_display" : "def 當更新時(時間差):\n    pass",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住空白鍵？",
+                "code" : "if 按住的鍵['space']:\npass\n",
+                "code_display" : "if 按住的鍵['space']:\n    pass",
+                "note" : "按住空白鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住Enter鍵？",
+                "code" : "if 按住的鍵['enter']:\npass",
+                "code_display" : "if 按住的鍵['enter']:\n    pass",
+                "note" : "按住Enter鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向右鍵？",
+                "code" : "if 按住的鍵['right arrow']:\npass",
+                "code_display" : "if 按住的鍵['right arrow']:\n    pass",
+                "note" : "按住向右鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向左鍵？",
+                "code" : "if 按住的鍵['left arrow']:\npass",
+                "code_display" : "if 按住的鍵['left arrow']:\n    pass",
+                "note" : "按住向左鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向上鍵？",
+                "code" : "if 按住的鍵['up arrow']:\npass",
+                "code_display" : "if 按住的鍵['up arrow']:\n    pass",
+                "note" : "按住向上鍵？",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  按住向下鍵？",
+                "code" : "if 按住的鍵['down arrow']:\npass",
+                "code_display" : "if 按住的鍵['down arrow']:\n    pass",
+                "note" : "按住向下鍵？",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "滑鼠 位置",
+                "code" : "滑鼠.位置",
+                "code_display" : "滑鼠.位置",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 接觸物體",
+                "code" : "滑鼠.接觸物體",
+                "code_display" : "滑鼠.接觸物體",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 接觸點",
+                "code" : "滑鼠.接觸點",
+                "code_display" : "滑鼠.接觸點",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 接觸面法線",
+                "code" : "滑鼠.接觸面法線",
+                "code_display" : "滑鼠.接觸面法線",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 按下左鍵",
+                "code" : "滑鼠.按下左鍵",
+                "code_display" : "滑鼠.按下左鍵",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "預約執行 範例",
+                "code" : "預約執行(print, 'hi', 時間=5)",
+                "code_display" : "預約執行(print, 'hi',\n    時間=5)",
+                "note" : "時間過後執行函式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "預約執行",
+                "code" : "預約執行(函式, 時間=5)",
+                "code_display" : "預約執行(函式, 時間=5)",
+                "note" : "### 需先定義函式",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
         "on_label" : "<< 文字",
         "off_label" : "文字 >>",
         "start_on" : false
@@ -1145,200 +1339,6 @@
                 "long_note" : true
             }
 
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : "<< 事件處理函式",
-        "off_label" : "事件處理函式 >>",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "當按下時",
-                "code" : "def 當按下時(按鍵):\npass",
-                "code_display" : "def 當按下時(按鍵):\n    pass",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "當放開時",
-                "code" : "def 當放開時(按鍵):\npass",
-                "code_display" : "def 當放開時(按鍵):\n    pass",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  是滑鼠左鍵?",
-                "code" : "if 按鍵 == 'left mouse down' :\npass",
-                "code_display" : "if 按鍵 == 'left mouse down' :\n    pass",
-                "note" : "是滑鼠左鍵?",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  是空白鍵?",
-                "code" : "if 按鍵 == 'space' :\npass",
-                "code_display" : "if 按鍵 == 'space' :\n    pass",
-                "note" : "是空白鍵?",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  是Enter鍵?",
-                "code" : "if 按鍵 == 'enter' :\npass",
-                "code_display" : "if 按鍵 == 'enter' :\n    pass",
-                "note" : "是Enter鍵?",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  是向右鍵?",
-                "code" : "if 按鍵 == 'right arrow' :\npass",
-                "code_display" : "if 按鍵 == 'right arrow' :\n    pass",
-                "note" : "是向右鍵?",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  是向左鍵?",
-                "code" : "if 按鍵 == 'left arrow' :\npass",
-                "code_display" : "if 按鍵 == 'left arrow' :\n    pass",
-                "note" : "是向左鍵?",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  是向上鍵?",
-                "code" : "if 按鍵 == 'up arrow' :\npass",
-                "code_display" : "if 按鍵 == 'up arrow' :\n    pass",
-                "note" : "是向上鍵?",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  是向下鍵?",
-                "code" : "if 按鍵 == 'down arrow' :\npass",
-                "code_display" : "if 按鍵 == 'down arrow' :\n    pass",
-                "note" : "是向下鍵?",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "當更新時",
-                "code" : "def 當更新時(時間差):\npass",
-                "code_display" : "def 當更新時(時間差):\n    pass",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  按住空白鍵？",
-                "code" : "if 按住的鍵['space']:\npass\n",
-                "code_display" : "if 按住的鍵['space']:\n    pass",
-                "note" : "按住空白鍵？",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  按住Enter鍵？",
-                "code" : "if 按住的鍵['enter']:\npass",
-                "code_display" : "if 按住的鍵['enter']:\n    pass",
-                "note" : "按住Enter鍵？",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  按住向右鍵？",
-                "code" : "if 按住的鍵['right arrow']:\npass",
-                "code_display" : "if 按住的鍵['right arrow']:\n    pass",
-                "note" : "按住向右鍵？",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  按住向左鍵？",
-                "code" : "if 按住的鍵['left arrow']:\npass",
-                "code_display" : "if 按住的鍵['left arrow']:\n    pass",
-                "note" : "按住向左鍵？",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  按住向上鍵？",
-                "code" : "if 按住的鍵['up arrow']:\npass",
-                "code_display" : "if 按住的鍵['up arrow']:\n    pass",
-                "note" : "按住向上鍵？",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  按住向下鍵？",
-                "code" : "if 按住的鍵['down arrow']:\npass",
-                "code_display" : "if 按住的鍵['down arrow']:\n    pass",
-                "note" : "按住向下鍵？",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "滑鼠 位置",
-                "code" : "滑鼠.位置",
-                "code_display" : "滑鼠.位置",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "滑鼠 接觸物體",
-                "code" : "滑鼠.接觸物體",
-                "code_display" : "滑鼠.接觸物體",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "滑鼠 接觸點",
-                "code" : "滑鼠.接觸點",
-                "code_display" : "滑鼠.接觸點",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "滑鼠 接觸面法線",
-                "code" : "滑鼠.接觸面法線",
-                "code_display" : "滑鼠.接觸面法線",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "滑鼠 按下左鍵",
-                "code" : "滑鼠.按下左鍵",
-                "code_display" : "滑鼠.按下左鍵",
-                "note" : "",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "預約執行 範例",
-                "code" : "預約執行(print, 'hi', 時間=5)",
-                "code_display" : "預約執行(print, 'hi',\n    時間=5)",
-                "note" : "時間過後執行函式",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "預約執行",
-                "code" : "預約執行(函式, 時間=5)",
-                "code_display" : "預約執行(函式, 時間=5)",
-                "note" : "### 需先定義函式",
-                "long_note" : true
-            }
         ]
     }
 ]
