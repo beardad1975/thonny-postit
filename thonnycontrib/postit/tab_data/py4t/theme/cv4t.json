@@ -315,6 +315,15 @@
     },
     {
         "postit_type" : "postit_para",
+        "on_label" : "<< 哈爾特徵與物件偵測",
+        "off_label" : "哈爾特徵與物件偵測 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
         "on_label" : "<< 讀取與儲存",
         "off_label" : "讀取與儲存 >>",
         "start_on" : false
@@ -327,14 +336,27 @@
                 "menu_display" : "讀取影像灰階",
                 "code" : "陣列 = 讀取影像灰階('檔名.類型')",
                 "code_display" : "陣列 = 讀取影像灰階(\n    '檔名.類型')",
-                "note" : "### 需改為實際影像檔名",
+                "note" : "### 需改為實際檔名(需英文數字)",
                 "long_note" : true
             },
             {
                 "menu_display" : "讀取影像彩色",
                 "code" : "陣列 = 讀取影像彩色('檔名.類型')",
                 "code_display" : "陣列 = 讀取影像彩色(\n    '檔名.類型')",
-                "note" : "### 需改為實際片影像檔名",
+                "note" : "### 需改為實際檔名(需英文數字)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "讀取影像PNG",
+                "code" : "透明圖陣列 = 讀取影像PNG('檔名.png')",
+                "code_display" : "透明圖陣列 = 讀取影像PNG(\n    '檔名.png')",
+                "note" : "### 需改為實際檔名(需英文數字)",
                 "long_note" : true
             }
         ]
@@ -460,6 +482,46 @@
                 "code" : "畫實心圓形(陣列, 100, 100, 半徑=20, 顏色=color.紅)",
                 "code_display" : "畫實心圓形(陣列,100,100,\n    半徑=20, 顏色=color.紅)",
                 "note" : "圓心x, 圓心y, 半徑, 顏色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "畫出文字",
+                "code" : "畫出文字(陣列, '你好', 0, 0)",
+                "code_display" : "畫出文字(陣列, '你好', 0, 0)",
+                "note" : "文字, x, y",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫出文字 大小",
+                "code" : "畫出文字(陣列, '你好', 0, 0, 大小=30)",
+                "code_display" : "畫出文字(陣列,\n    '你好', 0, 0, 大小=30)",
+                "note" : "文字, x, y, 大小",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫出文字 大小 顏色",
+                "code" : "畫出文字(陣列, '你好', 0, 0, 大小=30, 顏色=color.紅)",
+                "code_display" : "畫出文字(陣列, \n    '你好', 0, 0, 大小=30, \n    顏色=color.紅)",
+                "note" : "文字, x, y, 大小, 顏色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "畫透明圖",
+                "code" : "畫透明圖(陣列, 透明圖陣列, 0, 0)",
+                "code_display" : "畫透明圖(陣列,\n   透明圖陣列, 0, 0)",
+                "note" : "",
                 "long_note" : true
             }
         ]
