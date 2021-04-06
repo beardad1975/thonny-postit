@@ -51,7 +51,14 @@
                 "code_display" : "燈光.scroll('Hello')",
                 "note" : "燈光 捲動 英文字",
                 "long_note" : true
-            }            
+            },
+            {
+                "menu_display" : "燈光 捲動 文字 重複",
+                "code" : "燈光.scroll('Hello', loop=True)",
+                "code_display" : "燈光.scroll('Hello', loop=True)",
+                "note" : "燈光 捲動 英文字 重複",
+                "long_note" : true
+            }           
         ]
     },
     {
