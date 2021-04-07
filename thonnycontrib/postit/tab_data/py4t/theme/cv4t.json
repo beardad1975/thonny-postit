@@ -469,8 +469,8 @@
         "items" :[
             {
                 "menu_display" : "從臉部特徵點 逐一取出",
-                "code" : "for 點 in 臉部特徵點\npass",
-                "code_display" : "for 點 in 臉部特徵點\n    pass",
+                "code" : "for 點 in 臉部特徵點 :\npass",
+                "code_display" : "for 點 in 臉部特徵點 :\n    pass",
                 "note" : "逐一取出 從清單 :\n        迴圈區塊",
                 "long_note" : true
             },
@@ -642,32 +642,66 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "畫圓形",
-                "code" : "畫圓形(陣列, 100, 100, 半徑=20)",
-                "code_display" : "畫圓形(陣列,\n    100,100,半徑=20)",
-                "note" : "圓心x, 圓心y, 半徑",
-                "long_note" : true
+                "menu_display" : "圓形 圓心 半徑",
+                "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n)",
+                "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    )",
+                "note" : "",
+                "long_note" : false
             },
             {
-                "menu_display" : "畫圓形 顏色",
-                "code" : "畫圓形(陣列, 100, 100, 半徑=20, 顏色=color.紅)",
-                "code_display" : "畫圓形(陣列,100,100,\n    半徑=20, 顏色=color.紅)",
-                "note" : "圓心x, 圓心y, 半徑, 顏色",
-                "long_note" : true
+                "menu_display" : "圓形 圓心 半徑 顏色",
+                "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n)",
+                "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10),\n    半徑 = 2,\n    顏色 = color.紅 ,\n    )",
+                "note" : "",
+                "long_note" : false
             },
             {
-                "menu_display" : "畫實心圓形",
-                "code" : "畫實心圓形(陣列, 100, 100, 半徑=20)",
-                "code_display" : "畫實心圓形(陣列,\n    100,100,半徑=20)",
-                "note" : "圓心x, 圓心y, 半徑",
-                "long_note" : true
+                "menu_display" : "圓形 圓心 半徑 顏色 寬度",
+                "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
+                "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n    )",
+                "note" : "",
+                "long_note" : false
             },
             {
-                "menu_display" : "畫實心圓形 顏色",
-                "code" : "畫實心圓形(陣列, 100, 100, 半徑=20, 顏色=color.紅)",
-                "code_display" : "畫實心圓形(陣列,100,100,\n    半徑=20, 顏色=color.紅)",
-                "note" : "圓心x, 圓心y, 半徑, 顏色",
-                "long_note" : true
+                "menu_display" : "圓形實心 圓心 半徑",
+                "code" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n)",
+                "code_display" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    )",
+                "note" : "",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "圓形實心 圓心 半徑 顏色",
+                "code" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n)",
+                "code_display" : "畫圓形實心( 陣列 , \n    圓心 = (10,10),\n    半徑 = 2,\n    顏色 = color.紅 ,\n    )",
+                "note" : "",
+                "long_note" : false
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "折線 點清單 封閉",
+                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n)",
+                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    )",
+                "note" : "",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "折線 點清單 封閉 顏色",
+                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
+                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
+                "note" : "",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "折線 點清單 封閉 顏色 線寬",
+                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
+                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
+                "note" : "",
+                "long_note" : false
             }
         ]
     },
