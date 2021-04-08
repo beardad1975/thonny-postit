@@ -39,8 +39,8 @@
         "items" :[
             {
                 "menu_display" : "建立數列陣列 arange",
-                "code" : "陣列 = 多維陣列.arange(4)",
-                "code_display" : "陣列=多維陣列.arange(4)",
+                "code" : "陣列 = 多維陣列.arange(10)",
+                "code_display" : "陣列=多維陣列.arange(10)",
                 "note" : "數列陣列 同range用法",
                 "long_note" : true
             },
@@ -59,15 +59,15 @@
         "items" :[
             {
                 "menu_display" : "建立均零陣列 zeros",
-                "code" : "陣列 = 多維陣列.zeros([2,2])",
-                "code_display" : "陣列=多維陣列.zeros([2,2])",
+                "code" : "陣列 = 多維陣列.zeros([4,4])",
+                "code_display" : "陣列=多維陣列.zeros([4,4])",
                 "note" : "都是0的陣列(行列形狀)",
                 "long_note" : true
             },
             {
                 "menu_display" : "建立均一陣列 ones",
-                "code" : "陣列 = 多維陣列.ones([2,2])",
-                "code_display" : "陣列=多維陣列.ones([2,2])",
+                "code" : "陣列 = 多維陣列.ones([5,5])",
+                "code_display" : "陣列=多維陣列.ones([5,5])",
                 "note" : "都是1的陣列(行列形狀)",
                 "long_note" : true
             },
@@ -75,7 +75,7 @@
                 "menu_display" : "建立隨機陣列 randint",
                 "code" : "陣列 = 多維陣列.random.randint(10,50,size=[5,5])",
                 "code_display" : "陣列=多維陣列.random.randint(10,\n    50,size=[5,5])",
-                "note" : "隨機陣列(隨機範圍, 大小)",
+                "note" : "隨機陣列(開始, 結束, 大小)",
                 "long_note" : true
             }
         ]
@@ -224,17 +224,31 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "元素取值",
-                "code" : "陣列[0, 0]",
-                "code_display" : "陣列[0, 0]",
-                "note" : "元素取值 [直行,橫列]",
+                "menu_display" : "1D元素",
+                "code" : "陣列[0]",
+                "code_display" : "陣列[0]",
+                "note" : "1D元素",
                 "long_note" : true
             },
             {
-                "menu_display" : "        設值",
-                "code" : "陣列[0, 0] = 3",
-                "code_display" : "陣列[0, 0] = 3",
-                "note" : "元素設值 [直行,橫列]",
+                "menu_display" : "1D切片",
+                "code" : "陣列[0:2]",
+                "code_display" : "陣列[0:2]",
+                "note" : "1D切片",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "1D間隔切片",
+                "code" : "陣列[::2]",
+                "code_display" : "陣列[::2]",
+                "note" : "1D間隔切片",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "1D相反切片",
+                "code" : "陣列[::-1]",
+                "code_display" : "陣列[::-1]",
+                "note" : "1D相反切片",
                 "long_note" : true
             }
         ]
@@ -244,21 +258,70 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "切片取值",
-                "code" : "陣列[0:2, 0:2]",
-                "code_display" : "陣列[0:2, 0:2]",
-                "note" : "切片取值 [行切片,列切片]",
+                "menu_display" : "2D元素",
+                "code" : "陣列[0, 0]",
+                "code_display" : "陣列[0, 0]",
+                "note" : "2D元素",
                 "long_note" : true
             },
             {
-                "menu_display" : "        設值",
-                "code" : "陣列[0:2, 0:2] = 5",
-                "code_display" : "陣列[0:2, 0:2] = 5",
-                "note" : "切片設值 [行切片,列切片]",
+                "menu_display" : "2D切片",
+                "code" : "陣列[0:5, :]",
+                "code_display" : "陣列[0:5, :]",
+                "note" : "2D切片",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "2D間隔切片",
+                "code" : "陣列[::2, ::]",
+                "code_display" : "陣列[::2, ::]",
+                "note" : "2D間隔切片",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "2D相反切片",
+                "code" : "陣列[::-1, ::]",
+                "code_display" : "陣列[::-1, ::]",
+                "note" : "2D相反切片",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "3D元素",
+                "code" : "陣列[0, 0, 0]",
+                "code_display" : "陣列[0, 0, 0]",
+                "note" : "3D元素",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "3D切片",
+                "code" : "陣列[0:5, :, :]",
+                "code_display" : "陣列[0:5, :, :]",
+                "note" : "3D切片",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "3D間隔切片",
+                "code" : "陣列[::2, ::, :: ]",
+                "code_display" : "陣列[::2, ::, ::]",
+                "note" : "3D間隔切片",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "3D相反切片",
+                "code" : "陣列[::-1, ::, ::]",
+                "code_display" : "陣列[::-1, ::, ::]",
+                "note" : "3D相反切片",
                 "long_note" : true
             }
         ]
     }
+    
 
 
 ]
