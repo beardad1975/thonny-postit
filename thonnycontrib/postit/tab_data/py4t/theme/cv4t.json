@@ -184,8 +184,21 @@
             {
                 "menu_display" : "影像相反切片",
                 "code" : "陣列[::, ::-1]",
-                "code_display" : "陣列[::-1, ::-1]",
+                "code_display" : "陣列[::, ::-1]",
                 "note" : "影像相反切片",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "影像複製",
+                "code" : "陣列2 = 陣列.copy()",
+                "code_display" : "陣列2 = 陣列.copy()",
+                "note" : "影像複製",
                 "long_note" : true
             }
         ]

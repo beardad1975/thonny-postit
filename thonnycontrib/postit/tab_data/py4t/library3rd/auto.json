@@ -1,13 +1,262 @@
 [
     {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "匯入pyautogui模組",
                 "code" : "import pyautogui as 自動",
                 "code_display" : "import pyautogui as 自動",
-                "note" : "匯入自動模組",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 設定與資訊",
+        "off_label" : "設定與資訊 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "螢幕尺寸",
+                "code" : "自動.size()",
+                "code_display" : "自動.size()",
+                "note" : "螢幕尺寸",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "螢幕寬度",
+                "code" : "自動.size().width",
+                "code_display" : "自動.size().width",
+                "note" : "螢幕寬度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "螢幕高度",
+                "code" : "自動.size().height",
+                "code_display" : "自動.size().height",
+                "note" : "螢幕高度",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "滑鼠位置",
+                "code" : "自動.position()",
+                "code_display" : "自動.position()",
+                "note" : "滑鼠位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠位置x",
+                "code" : "自動.position().x",
+                "code_display" : "自動.position().x",
+                "note" : "滑鼠位置x",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠位置y",
+                "code" : "自動.position().y",
+                "code_display" : "自動.position().y",
+                "note" : "滑鼠位置y",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "在螢幕內嗎",
+                "code" : "自動.onScreen(100, 100)",
+                "code_display" : "自動.onScreen(100, 100)",
+                "note" : "在螢幕內嗎",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "每次暫停(秒)",
+                "code" : "自動.PAUSE = 0.1",
+                "code_display" : "自動.PAUSE = 0.1",
+                "note" : "每次暫停(秒)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "失效安全",
+                "code" : "自動.FAILSAFE = True",
+                "code_display" : "自動.FAILSAFE = True",
+                "note" : "失效安全(移到螢幕左上角)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 滑鼠操作",
+        "off_label" : "滑鼠操作 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "滑鼠 移動到位置",
+                "code" : "自動.moveTo(100, 100, 1)",
+                "code_display" : "自動.moveTo(100, 100, 1)",
+                "note" : "移動滑鼠到(位置x, 位置y, 幾秒)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 移動距離",
+                "code" : "自動.moveRel(100, 0, 1)",
+                "code_display" : "自動.moveRel(100, 0, 1)",
+                "note" : "移動滑鼠距離(x距離, y距離, 幾秒)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "滑鼠 點擊左鍵",
+                "code" : "自動.click()",
+                "code_display" : "自動.click()",
+                "note" : "點擊滑鼠左鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 點擊左鍵 位置",
+                "code" : "自動.click(100, 100)",
+                "code_display" : "自動.click(100, 100)",
+                "note" : "點擊滑鼠左鍵(位置x, 位置y)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 點擊右鍵",
+                "code" : "自動.click(button='right')",
+                "code_display" : "自動.click(button='right')",
+                "note" : "點擊滑鼠右鍵",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "滑鼠 拖曳到位置",
+                "code" : "自動.dragTo(100, 100, 1)",
+                "code_display" : "自動.dragTo(100, 100, 1)",
+                "note" : "拖曳滑鼠到(位置x, 位置y, 幾秒)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 拖曳距離",
+                "code" : "自動.dragRel(100, 0, 1)",
+                "code_display" : "自動.dragRel(100, 0, 1)",
+                "note" : "拖曳滑鼠距離(x距離, y距離, 幾秒)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 鍵盤操作",
+        "off_label" : "鍵盤操作 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "按一下 空白鍵",
+                "code" : "自動.press('space')",
+                "code_display" : "自動.press('space')",
+                "note" : "按一下 空白鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    輸入鍵",
+                "code" : "自動.press('enter')",
+                "code_display" : "自動.press('enter')",
+                "note" : "按一下 輸入鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    字母鍵",
+                "code" : "自動.press('a')",
+                "code_display" : "自動.press('a')",
+                "note" : "按一下 字母鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    向上鍵",
+                "code" : "自動.press('up')",
+                "code_display" : "自動.press('up')",
+                "note" : "按一下 向上鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    向下鍵",
+                "code" : "自動.press('down')",
+                "code_display" : "自動.press('down')",
+                "note" : "按一下 向下鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    向右鍵",
+                "code" : "自動.press('right')",
+                "code_display" : "自動.press('right')",
+                "note" : "按一下 向右鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    向左鍵",
+                "code" : "自動.press('left')",
+                "code_display" : "自動.press('left')",
+                "note" : "按一下 向左鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "鍵盤清單",
+                "code" : "自動.KEYBOARD_KEYS",
+                "code_display" : "自動.KEYBOARD_KEYS",
+                "note" : "鍵盤清單",
                 "long_note" : true
             }
         ]

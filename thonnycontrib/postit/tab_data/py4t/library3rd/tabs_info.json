@@ -1,5 +1,9 @@
 [
-    
+    {
+        "tab_name" : "auto",
+        "tab_label" : " 自動 ",
+        "tab_title" : "視窗自動化"  
+    },
     {
         "tab_name" : "numpy",
         "tab_label" : " 多維 ",
