@@ -167,6 +167,13 @@
                 "code_display" : "自動.click(button='right')",
                 "note" : "點擊滑鼠右鍵",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "滑鼠 連按2下左鍵",
+                "code" : "自動.doubleClick()",
+                "code_display" : "自動.doubleClick()",
+                "note" : "連按2下左鍵",
+                "long_note" : true
             }
         ]
     },
@@ -203,27 +210,15 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
+            
             {
-                "menu_display" : "按一下 空白鍵",
-                "code" : "自動.press('space')",
-                "code_display" : "自動.press('space')",
-                "note" : "按一下 空白鍵",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "    輸入鍵",
+                "menu_display" : "按一下  輸入鍵",
                 "code" : "自動.press('enter')",
                 "code_display" : "自動.press('enter')",
                 "note" : "按一下 輸入鍵",
                 "long_note" : true
             },
-            {
-                "menu_display" : "    字母鍵",
-                "code" : "自動.press('a')",
-                "code_display" : "自動.press('a')",
-                "note" : "按一下 字母鍵",
-                "long_note" : true
-            },
+            
             {
                 "menu_display" : "    向上鍵",
                 "code" : "自動.press('up')",
@@ -257,6 +252,116 @@
                 "code" : "自動.KEYBOARD_KEYS",
                 "code_display" : "自動.KEYBOARD_KEYS",
                 "note" : "鍵盤清單",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "按住  移位鍵",
+                "code" : "自動.keyDown('shift')",
+                "code_display" : "自動.keyDown('shift')",
+                "note" : "按住 移位鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    控制鍵",
+                "code" : "自動.keyDown('ctrl')",
+                "code_display" : "自動.keyDown('ctrl')",
+                "note" : "按住 控制鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    空白鍵",
+                "code" : "自動.keyDown('space')",
+                "code_display" : "自動.keyDown('space')",
+                "note" : "按住 空白鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "放開  移位鍵",
+                "code" : "自動.keyUp('shift')",
+                "code_display" : "自動.keyUp('shift')",
+                "note" : "放開 移位鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    控制鍵",
+                "code" : "自動.keyUp('ctrl')",
+                "code_display" : "自動.keyUp('ctrl')",
+                "note" : "放開 控制鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    空白鍵",
+                "code" : "自動.keyUp('space')",
+                "code_display" : "自動.keyUp('space')",
+                "note" : "放開 空白鍵",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "組合鍵 ctrl + c",
+                "code" : "自動.hotkey('ctrl','c')",
+                "code_display" : "自動.hotkey('ctrl','c')",
+                "note" : "組合鍵 ctrl + c",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "組合鍵 ctrl + v",
+                "code" : "自動.hotkey('ctrl','v')",
+                "code_display" : "自動.hotkey('ctrl','v')",
+                "note" : "組合鍵 ctrl + v",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 剪貼簿",
+        "off_label" : "剪貼簿 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入pyperclip模組",
+                "code" : "import pyperclip as 剪貼簿",
+                "code_display" : "import pyperclip as 剪貼簿",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "文字 複製到剪貼簿",
+                "code" : "剪貼簿.copy('你好')",
+                "code_display" : "剪貼簿.copy('你好')",
+                "note" : "文字 複製到剪貼簿",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "從剪貼簿貼上 文字",
+                "code" : "文字 = 剪貼簿.paste()",
+                "code_display" : "文字 = 剪貼簿.paste()",
+                "note" : "從剪貼簿貼上 文字",
                 "long_note" : true
             }
         ]
