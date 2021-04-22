@@ -21,7 +21,7 @@ class SymbolWidget(ttk.Frame):
         #self.tool_image = common_images[tool_name]
 
         ttk.Frame.__init__(self, master)
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')        
+        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')        
         self.postit_button = tk.Button(self,  
                                         relief='solid',
                                         borderwidth=1,
@@ -275,20 +275,21 @@ class SymbolToolPostMixin:
 
 class SymbolToolPopup:
     def popup_init(self):
-        self.popup_menu = tk.Menu(self, tearoff=0)
+        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        self.popup_menu = tk.Menu(self, tearoff=0, font=f)
 
         # submenu
-        self.common_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.assign_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.string_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.collection_menu =  tk.Menu(self.popup_menu, tearoff=0)
-        self.flow_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.comparison_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.logic_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.module_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.common_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.assign_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.arithmetic_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.string_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.collection_menu =  tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.flow_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.comparison_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.logic_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.module_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
         #self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
-        self.punctuation_menu = tk.Menu(self.popup_menu, tearoff=0)
+        self.punctuation_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
         
 
         # cascade submenu

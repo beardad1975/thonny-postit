@@ -79,7 +79,7 @@ class Mode:
         #style = ttk.Style(notebook_frame.interior)
         style = ttk.Style(self.notebook_frame)
         style.configure('lefttab.TNotebook', tabposition='wn')
-        style.configure('TNotebook.Tab', font=('Consolas','11') )
+        style.configure('TNotebook.Tab', font=('Consolas','12') )
 
         #style.configure('lefttab.TNotebook', font=('Consolas', 16))
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
@@ -1760,7 +1760,7 @@ class AboutDialog(CommonDialog):
         # )
 
         license_font = tk.font.nametofont("TkDefaultFont").copy()
-        license_font.configure(size=7)
+        license_font.configure(size=12)
         license_label = ttk.Label(
             main_frame,
             text="Copyright (©) "
