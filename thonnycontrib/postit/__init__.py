@@ -79,6 +79,9 @@ class Mode:
         #style = ttk.Style(notebook_frame.interior)
         style = ttk.Style(self.notebook_frame)
         style.configure('lefttab.TNotebook', tabposition='wn')
+        style.configure('TNotebook.Tab', font=('Consolas','11') )
+
+        #style.configure('lefttab.TNotebook', font=('Consolas', 16))
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
         #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
         self.tab_notebook = ttk.Notebook(self.notebook_frame, style='lefttab.TNotebook')
@@ -329,7 +332,7 @@ class PostitPara:
         # else:
         #     text = off_label
 
-        button_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        button_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         self.para_button = tk.Button(tab.tab_frame.interior,
                 command=self.on_button_pressed, 
                 text=on_label, relief='flat', font=button_font)
@@ -515,7 +518,7 @@ class PythonPostitView(ttk.Frame):
         more_tab_frame = mode.more_tab.tab_frame
         
         # title label
-        title_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        title_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         tk.Label(more_tab_frame.interior, 
                 text='更多便利貼', font=title_font,
         ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
@@ -528,7 +531,7 @@ class PythonPostitView(ttk.Frame):
         #print(names_of_group)
         
         # group and tab buttons
-        label_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        label_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         for g in mode.groups.values():
             text = '{}'.format(g.group_label)
             ttk.Label(more_tab_frame.interior,
@@ -553,11 +556,11 @@ class PythonPostitView(ttk.Frame):
                 #text = text.replace(' ','')
                 
                 tk.Radiobutton(group_frame,text='隱藏',
-                    variable=tab.button_tkvar,
+                    variable=tab.button_tkvar,font=label_font,
                     indicatoron=0, value=0, selectcolor='#88ebfc',
                     ).grid(row=i, column=0, padx=3, pady=2)
                 tk.Radiobutton(group_frame,text='顯示',
-                    variable=tab.button_tkvar,
+                    variable=tab.button_tkvar,font=label_font,
                     indicatoron=0, value=1, selectcolor='#ffc526',
                     ).grid(row=i, column=1, padx=3, pady=2)
                 tk.Label(group_frame,text=tab.tab_title,
