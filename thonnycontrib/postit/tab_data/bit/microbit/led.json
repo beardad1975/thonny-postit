@@ -6,7 +6,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入燈光模組",
+        "off_label" : "匯入燈光模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -32,6 +38,19 @@
                 "note" : "燈光 清除",
                 "long_note" : true
             }           
+        ]
+    },
+    {
+        "postit_type" : "dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "燈光 顯示 文字",
+                "code" : "燈光.show('a')",
+                "code_display" : "燈光.show('a')",
+                "note" : "燈光 顯示 文字",
+                "long_note" : true
+            }         
         ]
     },
     {
@@ -79,6 +98,147 @@
                 "note" : "取得像素 x(0~4) y(0~4)",
                 "long_note" : true
             }           
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入圖示模組",
+        "off_label" : "匯入圖示模組 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import Image as 圖示",
+                "code_display" : "from microbit import \n    Image as 圖示",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 圖示",
+        "off_label" : "圖示 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "圖示 愛心",
+                "code" : "圖示.HEART",
+                "code_display" : "圖示.HEART",
+                "note" : "圖示 愛心",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    小愛心",
+                "code" : "圖示.HEART_SMALL",
+                "code_display" : "圖示.HEART_SMALL",
+                "note" : "圖示 小愛心",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    快樂",
+                "code" : "圖示.HAPPY",
+                "code_display" : "圖示.HAPPY",
+                "note" : "圖示 快樂",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    傷心",
+                "code" : "圖示.SAD",
+                "code_display" : "圖示.SAD",
+                "note" : "圖示 傷心",
+                "long_note" : true
+            }           
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "    打勾",
+                "code" : "圖示.YES",
+                "code_display" : "圖示.YES",
+                "note" : "圖示 打勾",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    打叉",
+                "code" : "圖示.NO",
+                "code_display" : "圖示.NO",
+                "note" : "圖示 打叉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 北",
+                "code" : "圖示.ARROW_N",
+                "code_display" : "圖示.ARROW_N",
+                "note" : "圖示 箭頭 北",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 東北",
+                "code" : "圖示.ARROW_NE",
+                "code_display" : "圖示.ARROW_NE",
+                "note" : "圖示 箭頭 東北",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 東",
+                "code" : "圖示.ARROW_E",
+                "code_display" : "圖示.ARROW_E",
+                "note" : "圖示 箭頭 東",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 東南",
+                "code" : "圖示.ARROW_SE",
+                "code_display" : "圖示.ARROW_SE",
+                "note" : "圖示 箭頭 東南",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 南",
+                "code" : "圖示.ARROW_S",
+                "code_display" : "圖示.ARROW_S",
+                "note" : "圖示 箭頭 南",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 西南",
+                "code" : "圖示.ARROW_SW",
+                "code_display" : "圖示.ARROW_SW",
+                "note" : "圖示 箭頭 西南",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 西",
+                "code" : "圖示.ARROW_W",
+                "code_display" : "圖示.ARROW_W",
+                "note" : "圖示 箭頭 西",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    箭頭 西北",
+                "code" : "圖示.ARROW_NW",
+                "code_display" : "圖示.ARROW_NW",
+                "note" : "圖示 箭頭 西北",
+                "long_note" : true
+            }     
         ]
     }
 ]
