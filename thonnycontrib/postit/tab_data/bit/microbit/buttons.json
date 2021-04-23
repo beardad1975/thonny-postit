@@ -6,20 +6,35 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import button_a as A鈕, button_b as B鈕",
-                "code_display" : "from microbit import \n    button_a as A鈕, \n    button_b as B鈕",
+                "code_display" : "from microbit import \\\n    button_a as A鈕, \\\n    button_b as B鈕",
                 "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< A鈕與B鈕",
+        "off_label" : "A鈕與B鈕 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -46,7 +61,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {

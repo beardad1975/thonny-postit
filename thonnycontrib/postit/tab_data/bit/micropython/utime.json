@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 暫停控制",
-        "off_label" : "暫停控制 >>",
+        "on_label" : "<< 暫停與計時器",
+        "off_label" : "暫停與計時器 >>",
         "start_on" : true
     },
     {
@@ -39,22 +39,43 @@
         "items" :[
             {
                 "menu_display" : "睡眠 秒",
-                "code" : "時間.sleep(2)",
-                "code_display" : "時間.sleep(2)",
+                "code" : "時間.sleep(1)",
+                "code_display" : "時間.sleep(1)",
                 "note" : "睡眠 幾秒 ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "睡眠 毫秒",
+                "code" : "時間.sleep_ms(100)",
+                "code_display" : "時間.sleep_ms(100)",
+                "note" : "睡眠 毫秒 (1000毫秒是1秒)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "睡眠 微秒",
+                "code" : "時間.sleep_us(1000)",
+                "code_display" : "時間.sleep_us(1000)",
+                "note" : "睡眠 微秒 (1000微秒是1毫秒)",
                 "long_note" : true
             }
         ]
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
+        "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "睡眠 毫秒",
-                "code" : "時間.sleep_ms(1000)",
-                "code_display" : "時間.sleep_ms(1000)",
-                "note" : "睡眠 毫秒 ",
+                "menu_display" : "計時器 毫秒",
+                "code" : "時間.ticks_ms()",
+                "code_display" : "時間.ticks_ms()",
+                "note" : "毫秒 計時器(開機累計到現在)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "計時器 微秒",
+                "code" : "時間.ticks_us()",
+                "code_display" : "時間.ticks_us()",
+                "note" : "微秒 計時器(開機累計到現在)",
                 "long_note" : true
             }
         ]

@@ -506,6 +506,10 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol(', '," , 分隔 "))
         self.flow_menu.add_command( label=" : 後接區塊", 
                 command=lambda:self.change_symbol(':'," : 後接區塊"))
+        self.flow_menu.add_command( label=" break 中斷(迴圈)", 
+                command=lambda:self.change_symbol('break\n'," break 中斷(迴圈)"))
+        self.flow_menu.add_command( label=" continue 繼續(迴圈)", 
+                command=lambda:self.change_symbol('continue\n'," continue 繼續(迴圈)"))
         self.flow_menu.add_command( label=" pass 略過(佔位)", 
                 command=lambda:self.change_symbol('pass\n'," pass 略過(佔位)"))
         self.flow_menu.add_command( label=" global 全域 ", 

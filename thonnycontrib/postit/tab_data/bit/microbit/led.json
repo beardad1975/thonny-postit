@@ -18,7 +18,7 @@
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import display as 燈光",
-                "code_display" : "from microbit import \n    display as 燈光",
+                "code_display" : "from microbit import \\\n    display as 燈光",
                 "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            
@@ -245,6 +245,13 @@
                 "code" : "圖示.SQUARE_SMALL",
                 "code_display" : "圖示.SQUARE_SMALL",
                 "note" : "圖示 小正方形",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "    音符",
+                "code" : "圖示.MUSIC_QUAVER",
+                "code_display" : "圖示.MUSIC_QUAVER",
+                "note" : "圖示 音符",
                 "long_note" : true
             }            
         ]

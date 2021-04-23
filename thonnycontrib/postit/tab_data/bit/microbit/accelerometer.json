@@ -6,13 +6,19 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import accelerometer as 加速度",
-                "code_display" : "from microbit import \n  accelerometer as 加速度",
+                "code_display" : "from microbit import \\\n  accelerometer as 加速度",
                 "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            
@@ -22,7 +28,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 3軸轉動(傾斜)偵測",
+        "off_label" : "3軸轉動(傾斜)偵測 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -42,7 +54,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -62,7 +74,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -82,7 +94,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -93,7 +105,7 @@
                 "long_note" : false
             },
             {
-                "menu_display" : "取得3軸",
+                "menu_display" : "取得3軸 設值",
                 "code" : "清單 = 加速度.get_values()",
                 "code_display" : "清單 = 加速度.get_values()",
                 "note" : "取得3軸加速度",
@@ -105,7 +117,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 動作偵測",
+        "off_label" : "動作偵測 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -125,7 +143,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
@@ -180,7 +198,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {

@@ -11,7 +11,7 @@
         "group_name" : "micropython",
         "group_label" : "micropython與函式庫",
         "default_tabs":[
-            "flow"
+            "flow", "utime"
         ]
         
     }
