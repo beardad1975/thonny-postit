@@ -1,0 +1,111 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "import music as 音效",
+                "code_display" : "import music as 音效",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 音樂播放",
+        "off_label" : "音樂播放 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "播放",
+                "code" : "音效.play(音效.BIRTHDAY)",
+                "code_display" : "音效.play(音效.BIRTHDAY)",
+                "note" : "播放",
+                "long_note" : true
+            }          
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "旋律 命運交響曲 貝多芬",
+                "code" : "音效.DADADADUM",
+                "code_display" : "音效.DADADADUM",
+                "note" : "命運交響曲 貝多芬",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "旋律 演藝人 喬普林",
+                "code" : "音效.ENTERTAINER",
+                "code_display" : "音效.ENTERTAINER",
+                "note" : "旋律 演藝人 喬普林",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "旋律 C大調前奏曲 巴哈",
+                "code" : "音效.PRELUDE",
+                "code_display" : "音效.PRELUDE",
+                "note" : "旋律 C大調前奏曲 巴哈",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "旋律 歡樂頌 貝多芬",
+                "code" : "音效.ODE",
+                "code_display" : "音效.ODE",
+                "note" : "旋律 歡樂頌 貝多芬",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "旋律 結婚進行曲 華格納",
+                "code" : "音效.WEDDING",
+                "code_display" : "音效.WEDDING",
+                "note" : "旋律 結婚進行曲 華格納",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "旋律 蒙提·派森的飛行馬戲團",
+                "code" : "音效.PYTHON",
+                "code_display" : "音效.PYTHON",
+                "note" : "旋律 蒙提·派森的飛行馬戲團",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "旋律 升級",
+                "code" : "音效.POWER_UP",
+                "code_display" : "音效.POWER_UP",
+                "note" : "旋律 升級",
+                "long_note" : true
+            } ,
+            {
+                "menu_display" : "旋律 降級",
+                "code" : "音效.POWER_DOWN",
+                "code_display" : "音效.POWER_DOWN",
+                "note" : "旋律 降級",
+                "long_note" : true
+            }        
+        ]
+    }
+]
