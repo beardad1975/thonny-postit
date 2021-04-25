@@ -35,10 +35,12 @@ class VariableMenuWidget(ttk.Frame):
 
         ttk.Frame.__init__(self, master)
         style = ttk.Style()
-        style.configure("V.TLabel",  background="#ffff55",
+        style.configure("V.TLabel",  background="#fefefe", #background="#ffff55",
                 )
-        text_font = ('Consolas','12')  
-         
+        text_font = ('Consolas','11')  
+
+        get_workbench().option_add('*TCombobox*Listbox.font', text_font)
+
         self.vars_combobox = ttk.Combobox(self, width=10, state="readonly", font=text_font,
                 justify=tk.CENTER,textvariable=self.tk_var,takefocus=0,
                 values=[],style="V.TLabel")

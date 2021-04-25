@@ -13,7 +13,10 @@ from pathlib import Path
 from PIL import Image, ImageTk
 
 from thonny import get_workbench, get_shell, get_runner 
-from thonny.ui_utils import show_dialog, CommonDialog
+from thonny.ui_utils import show_dialog, CommonDialog, create_tooltip
+
+
+
 from thonny.common import ToplevelCommand, InlineCommand
 
 from .base_postit import BasePostit
@@ -77,9 +80,10 @@ class Mode:
         #self.notebook_frame.pack(side=tk.TOP, fill=tk.Y)
         #style = ttk.Style(self.interior)
         #style = ttk.Style(notebook_frame.interior)
+        
         style = ttk.Style(self.notebook_frame)
         style.configure('lefttab.TNotebook', tabposition='wn')
-        style.configure('TNotebook.Tab', font=('Consolas','12') )
+        #style.configure('TNotebook.Tab', font=('Consolas','12') )
 
         #style.configure('lefttab.TNotebook', font=('Consolas', 16))
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
@@ -332,12 +336,15 @@ class PostitPara:
         # else:
         #     text = off_label
 
-        button_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        button_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
         self.para_button = tk.Button(tab.tab_frame.interior,
                 command=self.on_button_pressed, 
                 text=on_label, relief='flat', font=button_font)
-        self.para_button.grid(sticky='w', padx=0, pady=8)
+        self.para_button.grid(sticky='w', padx=0, pady=12)
         #self.para_button.pack(side=tk.TOP, anchor='w', padx=2, pady=2)
+
+        #self.ori_bg_color = self.para_button.cget('bg')
+        self.para_button.config(bg="#fefefe")
 
         self.para_frame = ttk.Frame(tab.tab_frame.interior,
                 )
@@ -349,12 +356,12 @@ class PostitPara:
 
     def on_button_pressed(self):
         if self.para_visible :
-            self.para_button.config(text=self.off_label)
+            self.para_button.config(text=self.off_label, )
             self.para_visible = False
             self.para_frame.grid_remove()
             #self.para_frame.pack_forget()
         else:
-            self.para_button.config(text=self.on_label)
+            self.para_button.config(text=self.on_label, )
             self.para_visible = True
             self.para_frame.grid()
             #self.para_frame.grid_propagate(0)
@@ -625,7 +632,7 @@ class PythonPostitView(ttk.Frame):
         #                 )
 
         # parse json data
-        self.label_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        self.label_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
         for postit_data in postit_list:
             if postit_data['postit_type'] == 'dropdown_postit':
@@ -716,7 +723,7 @@ class PythonPostitView(ttk.Frame):
         im = Image.open(logo_path)       
         self.install_image = ImageTk.PhotoImage(im) 
 
-        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
         def install_lib():
             ready = get_runner().ready_for_remote_file_operations(show_message=False)
@@ -1576,50 +1583,72 @@ class PythonPostitView(ttk.Frame):
         #        self.var_toolbar, tool_name='variable_assign')
         common.share_vars_postit = VariableMenuPostit(self.code_toolbar)
 
-        CommentToolPostit(self.code_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
-        VariableAddToolPostit(self.code_toolbar).pack(side=tk.LEFT,
-                padx=0, pady=3)
-        common.share_vars_postit.pack(side=tk.LEFT,padx=0, pady=3)
+        comment = CommentToolPostit(self.code_toolbar)
+        comment.pack(side=tk.LEFT,padx=8, pady=3)
+        create_tooltip(comment, '註解(#)')
+
+        var_add = VariableAddToolPostit(self.code_toolbar)
+        var_add.pack(side=tk.LEFT,padx=0, pady=3)
+        create_tooltip(var_add, '加入變數')
+
+        share_var = common.share_vars_postit
+        share_var.pack(side=tk.LEFT,padx=0, pady=3)
+        create_tooltip(share_var, '目前變數')
         
-        common.share_var_get_postit.pack(side=tk.LEFT,padx=0, pady=3)
+        var_get = common.share_var_get_postit
+        var_get.pack(side=tk.LEFT,padx=0, pady=3)
+        create_tooltip(var_get, '貼上變數')
         #common.share_var_assign_postit.pack(side=tk.LEFT,padx=2, pady=3)
         
-        SymbolToolPostit(self.code_toolbar).pack(side=tk.LEFT,padx=8, pady=3)
+        symbol = SymbolToolPostit(self.code_toolbar)
+        symbol.pack(side=tk.LEFT,padx=8, pady=3)
+        create_tooltip(symbol, '名稱與符號(右鍵選擇)')
 
         # edit_toolbar
         #self.edit_toolbar = ttk.Frame(self.interior)
         self.edit_toolbar = ttk.Frame(self)
         self.edit_toolbar.pack(side=tk.TOP, fill=tk.X)
 
-        PilcrowToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=1, pady=3)
-                
-        DedentToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-        IndentToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-        UndoToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-        RedoToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-        CutToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-        CopyToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-        PasteToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3)
-        BackspaceToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3,
-                    )
-        EnterToolPostit(self.edit_toolbar).pack(side=tk.LEFT,padx=3, pady=3,
-                    )
-
+        pilcrow_postit = PilcrowToolPostit(self.edit_toolbar)
+        pilcrow_postit.pack(side=tk.LEFT,padx=1, pady=3)
+        create_tooltip(pilcrow_postit, '顯示空白鍵與換行')
         
+        dedent_postit = DedentToolPostit(self.edit_toolbar)
+        dedent_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(dedent_postit, '減少縮排(向左4格)')
 
-        
+        indent_postit = IndentToolPostit(self.edit_toolbar)
+        indent_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(indent_postit, '增加縮排(向右4格)')
+
+        undo_postit = UndoToolPostit(self.edit_toolbar)
+        undo_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(undo_postit, '復原')
+
+        redo_postit = RedoToolPostit(self.edit_toolbar)
+        redo_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(redo_postit, '取消復原')
+
+        cut_postit = CutToolPostit(self.edit_toolbar)
+        cut_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(cut_postit, '剪下')
+
+        copy_postit = CopyToolPostit(self.edit_toolbar)
+        copy_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(copy_postit, '複製')
+
+        paste_postit = PasteToolPostit(self.edit_toolbar)
+        paste_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(paste_postit, '貼上')
+
+        backspace = BackspaceToolPostit(self.edit_toolbar)
+        backspace.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(backspace, '退位鍵(向左刪除)')
 
 
-
-
-
-
-
-        
-
-
-
-
+        enter_postit = EnterToolPostit(self.edit_toolbar)
+        enter_postit.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(enter_postit, '輸入鍵(換行)')
 
 
     def tab_menu_popup(self, event):

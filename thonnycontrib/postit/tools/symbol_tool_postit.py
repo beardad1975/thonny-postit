@@ -21,7 +21,7 @@ class SymbolWidget(ttk.Frame):
         #self.tool_image = common_images[tool_name]
 
         ttk.Frame.__init__(self, master)
-        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')        
+        f = font.Font(size=10, weight=font.NORMAL, family='Consolas')        
         self.postit_button = tk.Button(self,  
                                         relief='solid',
                                         borderwidth=1,
@@ -275,7 +275,7 @@ class SymbolToolPostMixin:
 
 class SymbolToolPopup:
     def popup_init(self):
-        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        f = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.popup_menu = tk.Menu(self, tearoff=0, font=f)
 
         # submenu
@@ -510,11 +510,11 @@ class SymbolToolPopup:
         self.flow_menu.add_command( label=" : 後接區塊", 
                 command=lambda:self.change_symbol(':'," : 後接區塊"))
         self.flow_menu.add_command( label=" break 中斷(迴圈)", 
-                command=lambda:self.change_symbol('break\n'," break 中斷(迴圈)"))
+                command=lambda:self.change_symbol('break'," break 中斷(迴圈)"))
         self.flow_menu.add_command( label=" continue 繼續(迴圈)", 
-                command=lambda:self.change_symbol('continue\n'," continue 繼續(迴圈)"))
+                command=lambda:self.change_symbol('continue'," continue 繼續(迴圈)"))
         self.flow_menu.add_command( label=" pass 略過(佔位)", 
-                command=lambda:self.change_symbol('pass\n'," pass 略過(佔位)"))
+                command=lambda:self.change_symbol('pass'," pass 略過(佔位)"))
         self.flow_menu.add_command( label=" global 全域 ", 
                 command=lambda:self.change_symbol('global '," global 全域 "))
 
@@ -523,7 +523,7 @@ class SymbolToolPopup:
         self.module_menu.add_command( label=" from 從 ", 
                 command=lambda:self.change_symbol('from '," from 從 "))
 
-        self.builtin_menu.add_command( label=" abs() 絕對值 ", 
+        self.builtin_menu.add_command( label="abs() 絕對值 ", 
                 command=lambda:self.change_symbol('abs()'," abs() 絕對值 "))
         # self.builtin_menu.add_command( label=" all() 全部為真 ", 
         #         command=lambda:self.change_symbol('all()'," all() 全部為真 "))

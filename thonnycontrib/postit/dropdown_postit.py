@@ -50,7 +50,7 @@ class DropdownWidget(ttk.Frame):
         
 
         # postit button 
-        f = font.Font(size=14, weight=font.NORMAL, family='Consolas')
+        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         #self.postit_button = ttk.Button(self.main_frame, text='1234')
         self.postit_button = tk.Button(self.main_frame,  
                                         relief='solid',
@@ -69,9 +69,10 @@ class DropdownWidget(ttk.Frame):
                                         )
 
         # two notes
-        f2 = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.main_note_label = tk.Label(self.main_frame, text='',justify='left', font=f2  ) 
         self.bottom_note_label = tk.Label(self.bottom_frame, text='',justify='left', font=f2)
+        
 
         # 1st row sub-frame
         self.postit_button.pack(side=tk.LEFT, anchor='w')
@@ -211,7 +212,7 @@ class DropdownPostMixin:
 class DropdownPopup:
     def popup_init(self):
         # button popup menu
-        f2 = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
         self.popup_menu.add_checkbutton(label="加上Enter換行", onvalue=1, offvalue=0, 
                 variable=self.var_postfix_enter,
