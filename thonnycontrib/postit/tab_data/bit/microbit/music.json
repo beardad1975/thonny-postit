@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 音樂播放",
-        "off_label" : "音樂播放 >>",
+        "on_label" : "<< 演奏旋律與音階",
+        "off_label" : "演奏旋律與音階 >>",
         "start_on" : true
     },
     {
@@ -38,10 +38,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "播放",
+                "menu_display" : "演奏",
                 "code" : "音效.play(音效.BIRTHDAY)",
                 "code_display" : "音效.play(音效.BIRTHDAY)",
-                "note" : "播放",
+                "note" : "演奏",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "演奏 等待 重複",
+                "code" : "音效.play(音效.BIRTHDAY,\nwait=True,\nloop=False,\n)",
+                "code_display" : "音效.play(音效.BIRTHDAY,\n    wait=True,\n    loop=False,\n    )",
+                "note" : "演奏 (旋律, 等待, 重複)",
                 "long_note" : true
             }          
         ]
@@ -54,7 +61,7 @@
                 "menu_display" : "旋律 命運交響曲 貝多芬",
                 "code" : "音效.DADADADUM",
                 "code_display" : "音效.DADADADUM",
-                "note" : "命運交響曲 貝多芬",
+                "note" : "旋律 命運交響曲 貝多芬",
                 "long_note" : true
             },
             {
@@ -106,6 +113,88 @@
                 "note" : "旋律 降級",
                 "long_note" : true
             }        
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "演奏 音階",
+                "code" : "音效.play([\n'c',\n'd',\n'e',\n])",
+                "code_display" : "音效.play([\n    'c',\n    'd',\n    'e',\n    ])",
+                "note" : "音階 c d e f g a b",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "演奏 音階 八度:拍子",
+                "code" : "音效.play([\n'c4:4',\n'd4:4',\n'e4:4',\n])",
+                "code_display" : "音效.play([\n    'c4:4',\n    'd4:4',\n    'e4:4',\n    ])",
+                "note" : "音階 c d e f g a b \n八度:拍子(4表示1拍)\nr休止符 b降半音 #升半音",
+                "long_note" : true
+            }          
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "速度 每分鐘幾拍",
+                "code" : "音效.set_tempo(bpm=120)",
+                "code_display" : "音效.set_tempo(bpm=120)",
+                "note" : "速度 每分鐘幾拍",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "速度 回復預設值",
+                "code" : "音效.reset()",
+                "code_display" : "音效.reset()",
+                "note" : "速度 每分鐘幾拍",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 音高頻率與停止",
+        "off_label" : "音高頻率與停止 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "音高 頻率 時間",
+                "code" : "音效.pitch(440, duration=500)",
+                "code_display" : "音效.pitch(440, duration=500)",
+                "note" : "音高 (頻率, 時間)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音高 頻率 等待",
+                "code" : "音效.pitch(440, wait=False)",
+                "code_display" : "音效.pitch(440, wait=False)",
+                "note" : "音高 (頻率, 等待)",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "聲音停止",
+                "code" : "音效.stop()",
+                "code_display" : "音效.stop()",
+                "note" : "聲音停止",
+                "long_note" : true
+            }       
         ]
     }
 ]
