@@ -288,6 +288,7 @@ class SymbolToolPopup:
         self.comparison_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
         self.logic_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
         self.module_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
+        self.builtin_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
         #self.bracket_quote_menu = tk.Menu(self.popup_menu, tearoff=0)
         self.punctuation_menu = tk.Menu(self.popup_menu, tearoff=0, font=f)
         
@@ -306,6 +307,7 @@ class SymbolToolPopup:
         #        menu=self.bracket_quote_menu)
         self.popup_menu.add_cascade(label='流程', menu=self.flow_menu)
         self.popup_menu.add_cascade(label='模組', menu=self.module_menu)
+        self.popup_menu.add_cascade(label='內建函式', menu=self.builtin_menu)
         self.popup_menu.add_cascade(label='標點符號', menu=self.punctuation_menu)
 
         # common menu command
@@ -313,17 +315,12 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('print()','print() 列印'))
         self.common_menu.add_command( label=" = 設值 ", 
                 command=lambda:self.change_symbol(' = '," = 設值 "))
-        self.common_menu.add_command( label=" == 等於 ", 
-                command=lambda:self.change_symbol(' == '," == 等於 "))
-        self.common_menu.add_command( label=" != 不等於 ", 
-                command=lambda:self.change_symbol(' != '," != 不等於 "))
         self.common_menu.add_command( label=" True 真(成立) ", 
                 command=lambda:self.change_symbol('True'," True 真(成立) "))
         self.common_menu.add_command( label=" False 假(不成立) ", 
                 command=lambda:self.change_symbol('False'," False 假(不成立) "))
         self.common_menu.add_command( label=" len() 長度 ", 
                 command=lambda:self.change_symbol('len()'," len() 長度 "))
-
 
         # arithmetic menu command
 
@@ -339,6 +336,9 @@ class SymbolToolPopup:
 
         self.arithmetic_menu.add_command( label=' / 除 ', 
                 command=lambda:self.change_symbol(' / ',' / 除 '))
+
+        self.arithmetic_menu.add_command( label=' // 整數除法 ', 
+                command=lambda:self.change_symbol(' // ',' // 整數除法 '))
 
         self.arithmetic_menu.add_command( label='( ) 圓括號 ', 
                 command=lambda:self.change_symbol('()','( ) 圓括號 '))
@@ -375,9 +375,12 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('""',' " " 雙引號(字串) '))
         self.string_menu.add_command( label="\\n  換行(需在字串中) ", 
                 command=lambda:self.change_symbol('\\n',"\\n  換行(需在字串中) "))
+        self.string_menu.add_command( label="{}  替換(需在字串中)", 
+                command=lambda:self.change_symbol('{}',"{}  替換(需在字串中)"))
         self.string_menu.add_command( label=" r' '  原始字串 ", 
                 command=lambda:self.change_symbol("r''"," r' '  原始字串 "))
-
+        self.string_menu.add_command( label=".format() 格式替換", 
+                command=lambda:self.change_symbol('.format()',".format() 格式替換"))
 
 
 
@@ -520,6 +523,38 @@ class SymbolToolPopup:
         self.module_menu.add_command( label=" from 從 ", 
                 command=lambda:self.change_symbol('from '," from 從 "))
 
+        self.builtin_menu.add_command( label=" abs() 絕對值 ", 
+                command=lambda:self.change_symbol('abs()'," abs() 絕對值 "))
+        # self.builtin_menu.add_command( label=" all() 全部為真 ", 
+        #         command=lambda:self.change_symbol('all()'," all() 全部為真 "))
+        # self.builtin_menu.add_command( label=" any() 有一個為真 ", 
+        #         command=lambda:self.change_symbol('any()'," any() 有一個為真 "))
+        self.builtin_menu.add_command( label="bin() 二進位字串 ", 
+                command=lambda:self.change_symbol('bin()'," bin() 二進位字串 "))
+        self.builtin_menu.add_command( label="hex() 十六進位字串", 
+                command=lambda:self.change_symbol('hex()',"hex() 十六進位字串"))
+        self.builtin_menu.add_command( label="chr() 傳回字元 ", 
+                command=lambda:self.change_symbol('chr()'," chr() 傳回字元 "))
+        self.builtin_menu.add_command( label="ord() 傳回字碼 ", 
+                command=lambda:self.change_symbol('ord()'," ord() 傳回字碼 "))
+        
+        self.builtin_menu.add_command( label="min() 最小值 ", 
+                command=lambda:self.change_symbol('min()'," min() 最小值 "))
+        self.builtin_menu.add_command( label="max() 最大值 ", 
+                command=lambda:self.change_symbol('max()'," max() 最大值 "))
+        self.builtin_menu.add_command( label="divmod() 商與餘數", 
+                command=lambda:self.change_symbol('divmod()',"divmod() 商與餘數"))
+        self.builtin_menu.add_command( label="round() 4捨6入5成雙", 
+                command=lambda:self.change_symbol('round()',"round() 4捨6入5成雙"))
+        self.builtin_menu.add_command( label="help() 說明 ", 
+                command=lambda:self.change_symbol('help()'," help() 說明 "))
+        self.builtin_menu.add_command( label="dir() 查看內部 ", 
+                command=lambda:self.change_symbol('dir()'," dir() 說明 "))
+        self.builtin_menu.add_command( label="type() 類型 ", 
+                command=lambda:self.change_symbol('type()'," type() 類型 "))
+        self.builtin_menu.add_command( label="sorted() 排序 ", 
+                command=lambda:self.change_symbol('sorted()'," sorted() 排序 "))
+
 
         # punctuation menu command 
         # self.punctuation_menu.add_command(
@@ -553,6 +588,10 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('_'," _ 底線 "))
         self.punctuation_menu.add_command( label=" # 井字號(註解)", 
                 command=lambda:self.change_symbol("# "," # 井字號(註解)"))
+        self.punctuation_menu.add_command( label=" @ 小老鼠(at)", 
+                command=lambda:self.change_symbol("@ "," @ 小老鼠(at)"))
+        self.punctuation_menu.add_command( label=" \\ 反斜線", 
+                command=lambda:self.change_symbol("\\"," \\ 反斜線"))
 
 
 
