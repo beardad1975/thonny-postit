@@ -1587,9 +1587,9 @@ class PythonPostitView(ttk.Frame):
         comment.pack(side=tk.LEFT,padx=8, pady=3)
         create_tooltip(comment, '註解(#)')
 
-        var_add = VariableAddToolPostit(self.code_toolbar)
-        var_add.pack(side=tk.LEFT,padx=0, pady=3)
-        create_tooltip(var_add, '加入變數')
+        common.share_var_add_postit = VariableAddToolPostit(self.code_toolbar)
+        common.share_var_add_postit.pack(side=tk.LEFT,padx=0, pady=3)
+        create_tooltip(common.share_var_add_postit, '加入變數')
 
         share_var = common.share_vars_postit
         share_var.pack(side=tk.LEFT,padx=0, pady=3)
@@ -1839,6 +1839,25 @@ def load_plugin():
 
     get_workbench().add_command("aboutPy4t", "help", '關於Py4t', open_about, group=62)
 
+
+    get_workbench().add_command(command_id="share_var_get",
+                                menu_name="edit",
+                                command_label="貼上變數",
+                                handler=_cmd_share_var_get,
+                                group=5,
+                                #default_sequence="<F2>"
+                                )
+
+    get_workbench().add_command(command_id="share_var_add",
+                                menu_name="edit",
+                                command_label="加入變數",
+                                handler=_cmd_share_var_add,
+                                group=5,
+                                #default_sequence="<F2>"
+                                )
+
+    #print(get_shell().menu) # error. could be exec order
+
     #get_workbench().get_menu('postit','便利貼')
 
 
@@ -1850,12 +1869,7 @@ def load_plugin():
     #get_workbench().bind("BackendRestart", try_toplevel_response, True)
 
     #for test
-    get_workbench().add_command(command_id="try_runner",
-                                    menu_name="tools",
-                                    command_label="測試thonny",
-                                    handler=try_runner,
-                                    default_sequence="<F2>"
-                                    )
+    
 
     # get_workbench().add_command(command_id="try_get_option",
     #                                 menu_name="tools",
@@ -1864,61 +1878,73 @@ def load_plugin():
     #                                 default_sequence="<F4>"
     #                                 )
 
+def _cmd_share_var_get():
+    postit = common.share_var_get_postit
+    state = postit.postit_button.cget('state')
+    if state in ('normal', 'active') :
+        
+        postit.determine_post_place_and_type(postit.postit_button)
+        #print('here')
+    else: # state is disable . do nothing
+        #print('else')
+        #print(self.postit_button.cget('state'))
+        pass
 
-def try_runner():
-    #s = get_runner().get_state()
-    #print('runner state: ', s)
-    backend_name = get_workbench().get_option("run.backend_name")
-    ready = get_runner().ready_for_remote_file_operations(show_message=True)
+def _cmd_share_var_add():
+    postit = common.share_var_add_postit
+    state = postit.postit_button.cget('state')
+    if state in ('normal', 'active') :
+        postit.on_mouse_click()
+        #print('here')
+    else: # state is disable . do nothing
+        #print('else')
+        #print(self.postit_button.cget('state'))
+        pass    
 
-    from thonny.common import  InlineCommand
-    from thonny.languages import tr
-    if backend_name == 'microbit' and ready:
-        get_runner().send_command_and_wait(
-                InlineCommand(
-                    "write_file",
-                    path="microbit模組.py",
-                    content_bytes=b'pass\n\xe6\x84\x9b\xe5\xbf\x83 = 5',
-                    editor_id=id(Tab),
-                    blocking=True,
-                    description=tr("Saving to microbit模組.py") ,
-                ),
-                dialog_title=tr("Saving"),
-            )
-    else:
-        print('f2: cannot write file')
+# def try_runner():
+#     #s = get_runner().get_state()
+#     #print('runner state: ', s)
+#     backend_name = get_workbench().get_option("run.backend_name")
+#     ready = get_runner().ready_for_remote_file_operations(show_message=True)
+
+#     from thonny.common import  InlineCommand
+#     from thonny.languages import tr
+#     if backend_name == 'microbit' and ready:
+#         get_runner().send_command_and_wait(
+#                 InlineCommand(
+#                     "write_file",
+#                     path="microbit模組.py",
+#                     content_bytes=b'pass\n\xe6\x84\x9b\xe5\xbf\x83 = 5',
+#                     editor_id=id(Tab),
+#                     blocking=True,
+#                     description=tr("Saving to microbit模組.py") ,
+#                 ),
+#                 dialog_title=tr("Saving"),
+#             )
+#     else:
+#         print('f2: cannot write file')
     
-def try_notebook():
-    tab_notebook = common.postit_view.all_modes['py4t'].tab_notebook        
-    s = tab_notebook.select()
-    print(type(s), s)
+# def try_notebook():
+#     tab_notebook = common.postit_view.all_modes['py4t'].tab_notebook        
+#     s = tab_notebook.select()
+#     print(type(s), s)
 
-def try_toplevel_response(event):
-    #backend_name = get_runner().get_backend_proxy().backend_name
-    backend_name = get_workbench().get_option("run.backend_name")
-    print('got BackendRestart event. backend: ', backend_name)
+# def try_toplevel_response(event):
+#     #backend_name = get_runner().get_backend_proxy().backend_name
+#     backend_name = get_workbench().get_option("run.backend_name")
+#     print('got BackendRestart event. backend: ', backend_name)
 
 
-def try_hide_tab():
-    common.postit_view.all_modes['bit'].notebook_frame.pack_forget()
 
-def try_add_tab():
-    common.postit_view.py4t_show_tab('library3rd', 'auto')
-    common.postit_view.py4t_show_tab('library3rd', 'cv4t')
-    common.postit_view.py4t_show_tab('library3rd', 'numpy')
-    common.postit_view.py4t_show_tab('library3rd', 'speech4t')
-    common.postit_view.py4t_show_tab('eventloop', 'threed4t')
-    common.postit_view.py4t_show_tab('eventloop', 'turtle4t')
-    common.postit_view.py4t_show_tab('eventloop', 'physics4t')
 
-def try_set_option():
-    builtin_list = ['common', 'flow']
-    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
-    get_workbench().set_option('postit_tabs_view.builtin', ['a','b'])
+# def try_set_option():
+#     builtin_list = ['common', 'flow']
+#     get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
+#     get_workbench().set_option('postit_tabs_view.builtin', ['a','b'])
 
-def try_get_option():
-    builtin_list = ['common', 'flow']
-    get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
-    r = get_workbench().get_option('postit_tabs_view.builtin')
-    print(type(r), r)
+# def try_get_option():
+#     builtin_list = ['common', 'flow']
+#     get_workbench().set_default('postit_tabs_view.builtin',builtin_list)
+#     r = get_workbench().get_option('postit_tabs_view.builtin')
+#     print(type(r), r)
 
