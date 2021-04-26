@@ -24,13 +24,14 @@ class VariableMenuWidget(ttk.Frame):
         # just combobox. don't need to handle tab and image
         self.last_focus = ''
         self.vars_counter = None
-        self.var_update_after_run = tk.BooleanVar()
-        if update_after_run:
-            self.var_update_after_run.set(True)
-        else:
-            self.var_update_after_run.set(False)
+        self.option_name = 'postit.share_vars'
+        # self.var_update_after_run = tk.BooleanVar()
+        # if update_after_run:
+        #     self.var_update_after_run.set(True)
+        # else:
+        #     self.var_update_after_run.set(False)
 
-        self.vars_limit = 20
+        self.vars_limit = 30
         self.tk_var = tk.StringVar()
 
         ttk.Frame.__init__(self, master)
@@ -44,7 +45,9 @@ class VariableMenuWidget(ttk.Frame):
         self.vars_combobox = ttk.Combobox(self, width=10, state="readonly", font=text_font,
                 justify=tk.CENTER,textvariable=self.tk_var,takefocus=0,
                 values=[],style="V.TLabel")
-        self.restore_default_vars()
+
+        #self.restore_default_vars()
+        self.load_vars()
 
         self.vars_combobox.pack(side=tk.LEFT, anchor='w')
 
@@ -54,22 +57,31 @@ class VariableMenuWidget(ttk.Frame):
         #self.vars_combobox.bind('<<Selection>>', self.on_select)
         self.vars_combobox.bind('<Button-1>',self.on_combo_click)
 
-        get_workbench().bind("ToplevelResponse", self._handle_toplevel_response, True)
+        #get_workbench().bind("ToplevelResponse", self._handle_toplevel_response, True)
 
-    def empty_vars(self):
-        self.vars_counter = Counter()
+    # def empty_vars(self):
+    #     self.vars_counter = Counter()
+    #     self.update_vars_menu()
+
+    def load_vars(self):
+        get_workbench().set_default(self.option_name, common_default_vars)
+
+        vars = get_workbench().get_option(self.option_name)
+        self.vars_counter = Counter(vars)
         self.update_vars_menu()
 
-    def restore_default_vars(self):
-        #if self.vars_counter:
-        #    del self.vars_counter
 
-        if common_default_vars:   
-            self.vars_counter = Counter(common_default_vars)
-            self.update_vars_menu()
-        else:
-            self.vars_counter = Counter()
-            self.update_vars_menu()
+
+    # def restore_default_vars(self):
+    #     #if self.vars_counter:
+    #     #    del self.vars_counter
+
+    #     if common_default_vars:   
+    #         self.vars_counter = Counter(common_default_vars)
+    #         self.update_vars_menu()
+    #     else:
+    #         self.vars_counter = Counter()
+    #         self.update_vars_menu()
 
     def update_vars_menu(self):
         if len(self.vars_counter):
@@ -85,6 +97,9 @@ class VariableMenuWidget(ttk.Frame):
             #
             common.disable_var_buttons()
 
+    def update_vars_option_from_counter(self):
+        vars_list =[v for v,_ in self.vars_counter.most_common(self.vars_limit)]
+        get_workbench().set_option(self.option_name, vars_list)
 
 
     def on_combo_select(self, event):
@@ -99,16 +114,16 @@ class VariableMenuWidget(ttk.Frame):
         self.last_focus = workbench.focus_get()
         #self.selection_clear()
         
-    def _handle_toplevel_response(self, event):
-        #print('got toplevel event')
-        if self.var_update_after_run.get():
-            if "globals" in event:
-                #self.vars_counter.update(event['globals'].keys())
-                # only add var the first time
-                for key in event['globals'].keys():
-                    if key not in self.vars_counter:
-                        self.vars_counter[key] = 1
-                self.update_vars_menu()
+    # def _handle_toplevel_response(self, event):
+    #     #print('got toplevel event')
+    #     if self.var_update_after_run.get():
+    #         if "globals" in event:
+    #             #self.vars_counter.update(event['globals'].keys())
+    #             # only add var the first time
+    #             for key in event['globals'].keys():
+    #                 if key not in self.vars_counter:
+    #                     self.vars_counter[key] = 1
+    #             self.update_vars_menu()
 
 class VariableMenuPopup:
     def popup_init(self):
@@ -120,11 +135,11 @@ class VariableMenuPopup:
             label="恢復預設變數", command=self.delete_all_restore_default)
         self.popup_menu.add_command(
             label="清空全部變數", command=self.delete_all)
-        self.popup_menu.add_separator()
-        self.popup_menu.add_checkbutton(label="【選項】執行後更新變數(全域)",
-                onvalue=1, offvalue=0, 
-                variable=self.var_update_after_run,
-                )
+        # self.popup_menu.add_separator()
+        # self.popup_menu.add_checkbutton(label="【選項】執行後更新變數(全域)",
+        #         onvalue=1, offvalue=0, 
+        #         variable=self.var_update_after_run,
+        #         )
 
         self.vars_combobox.bind("<Button-3>", self.popup)
 
@@ -139,6 +154,8 @@ class VariableMenuPopup:
         if var:
             del self.vars_counter[var]
             self.update_vars_menu()
+            self.update_vars_option_from_counter()
+            
 
     def delete_all_restore_default(self):
         
@@ -146,7 +163,11 @@ class VariableMenuPopup:
         #print(ans)
         if ans:
             #print('yes ')
-            self.restore_default_vars()
+            #self.restore_default_vars()
+
+            self.vars_counter = Counter(common_default_vars)
+            self.update_vars_menu()
+            self.update_vars_option_from_counter()
         else: # no
             return
 
@@ -156,8 +177,10 @@ class VariableMenuPopup:
             #print(ans)
             if ans:
                 #print('yes ')
-                self.empty_vars()
-                
+                #self.empty_vars()
+                self.vars_counter = Counter()
+                self.update_vars_menu()
+                self.update_vars_option_from_counter()
             else: # no
                 return
 
@@ -217,10 +240,14 @@ class VariableAddToolPostit(ttk.Frame):
         #print("clicked")
 
         #select_text and have .   like obj.attr
-        without_dot_text = self.select_text.replace('.','')
+        target_text = self.select_text.strip()
+
+        #without_dot_text = self.select_text.replace('.','')
+        without_dot_text = target_text.replace('.','')
+
 
         if not without_dot_text.isidentifier():
-            content = '【 ' + self.select_text + ' 】 不是一個合格的變數名稱\n\n'
+            content = '【 ' + target_text + ' 】 不是一個合格的變數名稱\n\n'
             content += '【說明】1.變數名稱可以用的字是文字,底線(_)或數字\n'
             content += '　　　　2.變數名稱的開頭第1個字不可以用數字'
             messagebox.showwarning('變數名稱錯誤', content)
@@ -234,9 +261,10 @@ class VariableAddToolPostit(ttk.Frame):
         else: # var name ok
             vars_postit = common.share_vars_postit
             #print(vars_postit)
-            vars_postit.vars_counter[self.select_text] += 1 
+            vars_postit.vars_counter[target_text] += 1 
             vars_postit.update_vars_menu()
-            vars_postit.tk_var.set(self.select_text)
+            vars_postit.update_vars_option_from_counter()
+            vars_postit.tk_var.set(target_text)
 
 
 
@@ -328,6 +356,7 @@ class VariableFetchToolPostMixin:
         # add counter and  update menu according to most common
         vars_postit.vars_counter[var] += 1
         vars_postit.update_vars_menu()
+        vars_postit.update_vars_option_from_counter()
         vars_postit.tk_var.set(var)
 
 
