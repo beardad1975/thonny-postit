@@ -70,7 +70,13 @@
                 "code_display" : "陣列=多維陣列.ones([5,5])",
                 "note" : "都是1的陣列(行列形狀)",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "建立隨機陣列 randint",
                 "code" : "陣列 = 多維陣列.random.randint(10,50,size=[5,5])",
@@ -146,8 +152,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 陣列操作",
-        "off_label" : "陣列操作 >>",
+        "on_label" : "<< 形狀、類型與拼貼",
+        "off_label" : "形狀、類型與拼貼 >>",
         "start_on" : false
     },
     {
@@ -159,19 +165,6 @@
                 "code" : "陣列 = 陣列.reshape([2,2])",
                 "code_display" : "陣列=陣列.reshape([2,2])",
                 "note" : "改變陣列的行列形狀",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "唯一值 去除重複 unique",
-                "code" : "唯一值 = 多維陣列.unique(陣列)",
-                "code_display" : "唯一值=多維陣列.unique(陣列)",
-                "note" : "唯一值 去除重複",
                 "long_note" : true
             }
         ]
@@ -203,9 +196,77 @@
             },
             {
                 "menu_display" : "改變類型 32位元浮點數",
-                "code" : "陣列 = 陣列.astype('float32')",
+                "code" : "陣列 = 多維陣列.tile(陣列)",
                 "code_display" : "陣列 = 陣列.astype('float32')",
                 "note" : "改變類型 32位元浮點數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "拼貼 2D陣列",
+                "code" : "拼貼陣列 = 多維陣列.tile(陣列, (2,2))",
+                "code_display" : "拼貼陣列 = 多維陣列.tile(陣列,\n    (2,2))",
+                "note" : "拼貼 2D陣列",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "拼貼 3D陣列",
+                "code" : "拼貼陣列 = 多維陣列.tile(陣列, (2,2,1))",
+                "code_display" : "拼貼陣列 = 多維陣列.tile(陣列,\n    (2,2,1))",
+                "note" : "拼貼 3D陣列",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 陣列運算",
+        "off_label" : "陣列運算 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "平均 average",
+                "code" : "平均 = 多維陣列.average(陣列)",
+                "code_display" : "平均 = 多維陣列.average(陣列)",
+                "note" : "平均 average",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "加總 sum",
+                "code" : "總和 = 多維陣列.sum(陣列)",
+                "code_display" : "總和 = 多維陣列.sum(陣列)",
+                "note" : "加總 sum",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "唯一值 去除重複 unique",
+                "code" : "唯一值 = 多維陣列.unique(陣列)",
+                "code_display" : "唯一值=多維陣列.unique(陣列)",
+                "note" : "唯一值 去除重複",
                 "long_note" : true
             }
         ]

@@ -219,7 +219,7 @@
             {
                 "menu_display" : "彩色轉灰階",
                 "code" : "陣列 = 彩色轉灰階(陣列)",
-                "code_display" : "陣列 = 彩色轉灰階(陣列)'",
+                "code_display" : "陣列 = 彩色轉灰階(陣列)",
                 "note" : "彩色轉灰階",
                 "long_note" : true
             },
@@ -366,7 +366,7 @@
                 "menu_display" : "高斯模糊",
                 "code" : "陣列 = 高斯模糊(陣列, 核心=5)",
                 "code_display" : "陣列 = 高斯模糊(陣列, 核心=5)",
-                "note" : "",
+                "note" : "## 核心需為單數",
                 "long_note" : true
             }
         ]

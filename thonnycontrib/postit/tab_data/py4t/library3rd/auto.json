@@ -218,7 +218,13 @@
                 "note" : "按一下 輸入鍵",
                 "long_note" : true
             },
-            
+            {
+                "menu_display" : "按一下  空白鍵",
+                "code" : "自動.press('space')",
+                "code_display" : "自動.press('space')",
+                "note" : "按一下 空白鍵",
+                "long_note" : true
+            },
             {
                 "menu_display" : "    向上鍵",
                 "code" : "自動.press('up')",
