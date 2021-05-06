@@ -30,7 +30,7 @@ from . import common
 from .tools.enter_tool_postit import EnterToolPostit
 from .tools.backspace_tool_postit import BackspaceToolPostit
 from .tools.undo_tool_postit import UndoToolPostit, RedoToolPostit
-from .tools.indenxt_tool_postit import IndentToolPostit, DedentToolPostit
+from .tools.indent_tool_postit import IndentToolPostit, DedentToolPostit
 from .tools.comment_tool_postit import CommentToolPostit
 from .tools.pilcrow_tool_postit import PilcrowToolPostit
 from .tools.variables_tool_postit import ( VariableMenuPostit,
@@ -1758,6 +1758,8 @@ class AboutDialog(CommonDialog):
         )
         heading_label.grid()
 
+        text_font = font.Font(size=14, weight=font.NORMAL, family='Consolas')
+
         url = "https://beardad1975.github.io/py4t/"
         url_font = tk.font.nametofont("TkDefaultFont").copy()
         url_font.configure(underline=1)
@@ -1771,11 +1773,21 @@ class AboutDialog(CommonDialog):
 
         credits_label = ttk.Label(
             main_frame,
+            font = text_font,
             text=
-                "\nPy4t整合了多個套件\n"
-                + "目的是要搭一座學習之橋\n"
+                "\nPy4t是個由中小學教師發起的計畫\n"
+                + "採用多個開放原始碼套件\n"
+                + "整合成簡易的python程式環境\n"
+                + "\n"
+                + "目的是搭一座學習之橋\n"
                 + "從Scratch到Python\n"
-                + "教導青少年寫程式\n"  
+                + "教青少年寫程式\n"
+                + "\n"
+                + "【感謝】\n"
+                + "桃園市建國自造教育及科技中心\n"
+                + "新竹縣博愛自造教育及科技中心\n"
+                + "桃園市南門國民小學\n"
+                + "Python、Thonny及各個函式庫的開發者\n"
             ,
             #style="Url.TLabel",
             #cursor="hand2",
@@ -1788,8 +1800,8 @@ class AboutDialog(CommonDialog):
         #     lambda _: webbrowser.open("https://github.com/thonny/thonny/blob/master/CREDITS.rst"),
         # )
 
-        license_font = tk.font.nametofont("TkDefaultFont").copy()
-        license_font.configure(size=12)
+        license_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        #license_font.configure(size=12)
         license_label = ttk.Label(
             main_frame,
             text="Copyright (©) "
