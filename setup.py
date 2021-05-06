@@ -27,6 +27,6 @@ setup (
         python_requires=">=3.5",
         package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*'] + files,
                 },
-        install_requires=["thonny >= 3.3.6","pillow >= 7.2.0"],
+        install_requires=["thonny == 3.3.7","pillow == 7.2.0"],
         packages=["thonnycontrib.postit"],
 )
