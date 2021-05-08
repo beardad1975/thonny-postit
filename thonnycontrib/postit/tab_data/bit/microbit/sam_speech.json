@@ -1,0 +1,56 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "import speech as 語音合成",
+                "code_display" : "import speech as 語音合成",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 說出合成語音",
+        "off_label" : "說出合成語音 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "說出",
+                "code" : "語音合成.say('Hello, 123')",
+                "code_display" : "語音合成.say('Hello, 123')",
+                "note" : "說出",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "說出 音高 速度 嘴巴 喉嚨",
+                "code" : "語音合成.say('Hello, 123' ,\n    pitch = 64 ,\n    speed = 72 ,\n    mouth = 128 ,\n    throat = 128 ,\n)",
+                "code_display" : "語音合成.say('Hello, 123' ,\n    pitch = 64 ,\n    speed = 72 ,\n    mouth = 128 ,\n    throat = 128 ,\n)",
+                "note" : "說出 音高 速度 嘴巴 喉嚨 (0~255)",
+                "long_note" : true
+            }         
+        ]
+    }
+]

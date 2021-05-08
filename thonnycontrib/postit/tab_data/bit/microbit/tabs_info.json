@@ -37,6 +37,12 @@
         
     },
     {
+        "tab_name" : "sam_speech",
+        "tab_label" : " 語音",
+        "tab_title" : "英文語音合成"
+        
+    },
+    {
         "tab_name" : "system",
         "tab_label" : " 系統 ",
         "tab_title" : "基本系統功能"
