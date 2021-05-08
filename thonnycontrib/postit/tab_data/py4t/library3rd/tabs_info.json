@@ -10,6 +10,11 @@
         "tab_title" : "多維陣列"  
     },
     {
+        "tab_name" : "audio4t",
+        "tab_label" : " 聲音 ",
+        "tab_title" : "聲音訊號"       
+    },
+    {
         "tab_name" : "speech4t",
         "tab_label" : " 語音 ",
         "tab_title" : "語音合成辨識"       
