@@ -1781,7 +1781,7 @@ class AboutDialog(CommonDialog):
                 + "\n"
                 + "目的是搭一座學習之橋\n"
                 + "從Scratch到Python\n"
-                + "教青少年寫程式玩科技\n"
+                + "讓青少年學習程式、體驗科技\n"
                 + "\n"
                 + "【感謝】\n"
                 + "桃園市建國自造教育及科技中心\n"

@@ -1,0 +1,376 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "從聲音模組匯入全部",
+                "code" : "from 聲音模組 import *",
+                "code_display" : "from 聲音模組 import *",
+                "note" : "### 需先匯入模組",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 基本音源與轉換聲音",
+        "off_label" : "基本音源與轉換聲音 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "正弦波",
+                "code" : "音源 = 正弦波(440)",
+                "code_display" : "音源 = 正弦波(440)",
+                "note" : "正弦波 頻率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "正弦波 頻率 CD音質取樣率",
+                "code" : "音源 = 正弦波(440, 取樣率=44100)",
+                "code_display" : "音源 = 正弦波(440, \n    取樣率=44100)",
+                "note" : "正弦波 頻率 CD音質取樣率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "正弦波 頻率 取樣率 8000",
+                "code" : "音源 = 正弦波(440, 取樣率=8000)",
+                "code_display" : "音源 = 正弦波(440, \n    取樣率=8000)",
+                "note" : "正弦波 頻率 取樣率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "正弦波 頻率 取樣率 位元深度",
+                "code" : "音源 = 正弦波(440 , \n    取樣率=44100 , \n    位元深度=16 , \n    )",
+                "code_display" : "音源 = 正弦波(440 , \n    取樣率=44100 , \n    位元深度=16 ,\n    )",
+                "note" : "正弦波 頻率 取樣率 位元深度",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "方波",
+                "code" : "音源 = 方波(440)",
+                "code_display" : "音源 = 方波(440)",
+                "note" : "方波 頻率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "方波 頻率 CD音質取樣率",
+                "code" : "音源 = 方波(440, 取樣率=44100)",
+                "code_display" : "音源 = 方波(440, \n    取樣率=44100)",
+                "note" : "方波 頻率 CD音質取樣率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "方波 頻率 取樣率 8000",
+                "code" : "音源 = 方波(440, 取樣率=8000)",
+                "code_display" : "音源 = 方波(440, \n    取樣率=8000)",
+                "note" : "方波 頻率 取樣率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "方波 頻率 取樣率 位元深度",
+                "code" : "音源 = 方波(440 , \n    取樣率=44100 , \n    位元深度=16 , \n    )",
+                "code_display" : "音源 = 方波(440 , \n    取樣率=44100 , \n    位元深度=16 ,\n    )",
+                "note" : "方波 頻率 取樣率 位元深度",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "白雜訊",
+                "code" : "音源 = 白雜訊()",
+                "code_display" : "音源 = 白雜訊()",
+                "note" : "隨機數 平均為0",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "白雜訊 CD音質取樣率",
+                "code" : "音源 = 白雜訊(取樣率=44100)",
+                "code_display" : "音源 = 白雜訊(取樣率=44100)",
+                "note" : "白雜訊 CD音質取樣率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "白雜訊 取樣率 8000",
+                "code" : "音源 = 白雜訊(取樣率=8000)",
+                "code_display" : "音源 = 白雜訊(取樣率=8000)",
+                "note" : "白雜訊 取樣率",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "白雜訊 取樣率 位元深度",
+                "code" : "音源 = 白雜訊(取樣率=44100 , \n    位元深度=16 , \n    )",
+                "code_display" : "音源 = 白雜訊(取樣率=44100 , \n    位元深度=16 ,\n    )",
+                "note" : "白雜訊 取樣率 位元深度",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "轉成聲音",
+                "code" : "聲音 = 音源.轉成聲音()",
+                "code_display" : "聲音 = 音源.轉成聲音()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "轉成聲音 持續時間 音量",
+                "code" : "聲音 = 音源.轉成聲音(持續時間=1000, 音量=-8.0)",
+                "code_display" : "聲音 = 音源.轉成聲音(\n    持續時間=1000, \n    音量=-8.0)",
+                "note" : "持續時間 dBFS音量(0最大聲)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 播放、屬性與檔案",
+        "off_label" : "播放、屬性與檔案 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "播放聲音",
+                "code" : "播放聲音(聲音)",
+                "code_display" : "播放聲音(聲音)",
+                "note" : "播放並等待",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "聲音 取樣率",
+                "code" : "聲音.取樣率",
+                "code_display" : "聲音.取樣率",
+                "note" : "每秒的聲音取樣數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "聲音 位元深度",
+                "code" : "聲音.位元深度",
+                "code_display" : "聲音.位元深度",
+                "note" : "音量的位元解析度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "聲音 秒數",
+                "code" : "聲音.秒數",
+                "code_display" : "聲音.秒數",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "聲音 取樣總數",
+                "code" : "聲音.取樣總數",
+                "code_display" : "聲音.取樣總數",
+                "note" : "聲音取樣的總數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "聲音 聲道數",
+                "code" : "聲音.聲道數",
+                "code_display" : "聲音.聲道數",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "儲存wav檔",
+                "code" : "聲音.儲存wav檔('檔名.wav')",
+                "code_display" : "聲音.儲存wav檔('檔名.wav')",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "開啟wav檔",
+                "code" : "聲音 = 開啟wav檔('檔名.wav')",
+                "code_display" : "聲音 = 開啟wav檔('檔名.wav')",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 聲音處理",
+        "off_label" : "聲音處理 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "減少音量",
+                "code" : "聲音 = 聲音 - 5",
+                "code_display" : "聲音 = 聲音 - 5",
+                "note" : "減少dBFS音量",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "增加音量",
+                "code" : "聲音 = 聲音 + 5",
+                "code_display" : "聲音 = 聲音 + 5",
+                "note" : "增加dBFS音量",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "淡出",
+                "code" : "聲音 = 聲音.淡出(500)",
+                "code_display" : "聲音 = 聲音.淡出(500)",
+                "note" : "淡出 毫秒",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "淡入",
+                "code" : "聲音 = 聲音.淡入(500)",
+                "code_display" : "聲音 = 聲音.淡入(500)",
+                "note" : "淡入 毫秒",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "串接",
+                "code" : "聲音 = 聲音 + 聲音2",
+                "code_display" : "聲音 = 聲音 + 聲音2",
+                "note" : "串接",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "串接 交叉淡化",
+                "code" : "聲音 = 聲音.串接(聲音2, 交叉淡化=100)",
+                "code_display" : "聲音 = 聲音.串接(聲音2, \n    交叉淡化=100)",
+                "note" : "串接 交叉淡化",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重複",
+                "code" : "聲音 = 聲音 * 3",
+                "code_display" : "聲音 = 聲音 * 3",
+                "note" : "重複多次聲音",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "截取開頭毫秒",
+                "code" : "聲音片段 = 聲音[:1000]",
+                "code_display" : "聲音片段 = 聲音[:1000]",
+                "note" : "截取開頭毫秒",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "截取結尾毫秒",
+                "code" : "聲音片段 = 聲音[-1000:]",
+                "code_display" : "聲音片段 = 聲音[-1000:]",
+                "note" : "截取結尾毫秒",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "截取中間毫秒",
+                "code" : "聲音片段 = 聲音[1000:2000]",
+                "code_display" : "聲音片段 = 聲音[1000:2000]",
+                "note" : "截取中間毫秒",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "反轉",
+                "code" : "聲音 = 聲音.反轉()",
+                "code_display" : "聲音 = 聲音.反轉()",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 多維陣列轉換",
+        "off_label" : "多維陣列轉換 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "",
+                "code" : "",
+                "code_display" : "",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    }
+]
