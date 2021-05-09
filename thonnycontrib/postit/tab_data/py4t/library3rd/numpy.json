@@ -38,7 +38,7 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "建立數列陣列 arange",
+                "menu_display" : "建立陣列 arange",
                 "code" : "陣列 = 多維陣列.arange(10)",
                 "code_display" : "陣列=多維陣列.arange(10)",
                 "note" : "數列陣列 同range用法",
@@ -49,6 +49,13 @@
                 "code" : "陣列 = 多維陣列.array([1,2,3,4])",
                 "code_display" : "陣列=多維陣列.array([1,2,\n    3,4])",
                 "note" : "建立陣列 從清單 ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "建立陣列 linspace",
+                "code" : "陣列 = 多維陣列.linspace(0, 10, 100)",
+                "code_display" : "陣列 = 多維陣列.linspace(\n    0, 10, 100)",
+                "note" : "開始 結尾(含) 分成幾個數 ",
                 "long_note" : true
             }
         ]

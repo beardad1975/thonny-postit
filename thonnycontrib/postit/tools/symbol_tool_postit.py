@@ -480,6 +480,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('False'," False 假(不成立) "))
         self.common_menu.add_command( label=" len() 長度 ", 
                 command=lambda:self.change_symbol('len()'," len() 長度 "))
+        self.common_menu.add_command( label=" ' ' 單引號 ", 
+                command=lambda:self.change_symbol("''"," ' ' 單引號 "))
         self.common_menu.add_command( label=" ( ) 圓括號 ", 
                 command=lambda:self.change_symbol('()'," ( ) 圓括號 "))
         self.common_menu.add_command( label=" [ ] 方括號)", 
