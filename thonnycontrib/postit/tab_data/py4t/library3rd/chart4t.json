@@ -68,7 +68,7 @@
                 "menu_display" : "折線圖 xy陣列",
                 "code" : "繪製折線圖(x, y)",
                 "code_display" : "繪製折線圖(x, y)",
-                "note" : "## 需先建立陣列",
+                "note" : "## 需建立x y陣列且個數相同",
                 "long_note" : true
             },
             {
@@ -114,7 +114,7 @@
         "postit_type" : "postit_para",
         "on_label" : "<< 圖表設定",
         "off_label" : "圖表設定 >>",
-        "start_on" : true
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -178,6 +178,75 @@
                 "code" : "設定Y軸標籤('Y')",
                 "code_display" : "設定Y軸標籤('Y')",
                 "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 圖表動畫",
+        "off_label" : "圖表動畫 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設置折線圖動畫 陣列",
+                "code" : "設置折線圖動畫(陣列)",
+                "code_display" : "設置折線圖動畫(陣列)",
+                "note" : "陣列為Y軸的值\n# 設定範圍標題需在設置動畫後",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置折線圖動畫 x y陣列",
+                "code" : "設置折線圖動畫(x, y)",
+                "code_display" : "設置折線圖動畫(x, y)",
+                "note" : "xy陣列需個數相同\n# 設定範圍標題需在設置動畫後",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "動畫更新時 計數 折線",
+                "code" : "def 動畫更新時(計數, 折線):\npass",
+                "code_display" : "def 動畫更新時(計數, 折線):\n    pass",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "折線 更新Y軸資料",
+                "code" : "折線.更新Y軸資料(陣列)",
+                "code_display" : "折線.更新Y軸資料(陣列)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "折線 更新X軸資料",
+                "code" : "折線.更新X軸資料(陣列)",
+                "code_display" : "折線.更新X軸資料(陣列)",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "開始折線圖動畫",
+                "code" : "開始折線圖動畫()",
+                "code_display" : "開始折線圖動畫()",
+                "note" : "## 需先設置及定義更新函式",
                 "long_note" : true
             }
         ]
