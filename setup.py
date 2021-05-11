@@ -7,9 +7,9 @@ files = ['tab_data\\' + str(p.relative_to(datadir)) for p in datadir.rglob('*')]
 
 setup (
         name="thonny-postit",
-        version="0.5",
-        description="Program post-it for Thonny IDE",
-        long_description="""Program post-it for Thonny IDE""",
+        version="0.6",
+        description="Program Post-it for Thonny IDE",
+        long_description="""Program Post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
         author="Wen-Hung, Chang 張文宏",
         author_email="beardad1975@nmes.tyc.edu.tw",
