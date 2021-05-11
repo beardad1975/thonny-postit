@@ -6,7 +6,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -19,7 +25,16 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 基本設定",
+        "off_label" : "基本設定 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -39,7 +54,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -48,7 +63,14 @@
                 "code_display" : "開發板.temperature()",
                 "note" : "溫度 攝式",
                 "long_note" : true
-            },
+            }           
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+           
             {
                 "menu_display" : "重新啟動",
                 "code" : "開發板.reset()",
@@ -60,5 +82,31 @@
     },
     {
         "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 內建喇叭(限V2版)",
+        "off_label" : "內建喇叭(限V2版) >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[           
+            {
+                "menu_display" : "內建喇叭 關閉",
+                "code" : "開發板.speaker.off()",
+                "code_display" : "開發板.speaker.off()",
+                "note" : "內建喇叭 關閉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "內建喇叭 開啟",
+                "code" : "開發板.speaker.on()",
+                "code_display" : "開發板.speaker.on()",
+                "note" : "內建喇叭 開啟",
+                "long_note" : true
+            }            
+        ]
     }
 ]

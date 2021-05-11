@@ -46,8 +46,8 @@
             },
             {
                 "menu_display" : "折線圖 格式",
-                "code" : "繪製折線圖(陣列, '-')",
-                "code_display" : "繪製折線圖(陣列, '-')",
+                "code" : "繪製折線圖(陣列, '-o')",
+                "code_display" : "繪製折線圖(陣列, '-o')",
                 "note" : "-實線 o點 --虛線 ",
                 "long_note" : true
             },
@@ -73,8 +73,8 @@
             },
             {
                 "menu_display" : "折線圖 xy陣列 格式",
-                "code" : "繪製折線圖(x, y, '-')",
-                "code_display" : "繪製折線圖(x, y, '-')",
+                "code" : "繪製折線圖(x, y, '-o')",
+                "code_display" : "繪製折線圖(x, y, '-o')",
                 "note" : "xy陣列 -實線 o點 --虛線 ",
                 "long_note" : true
             },
