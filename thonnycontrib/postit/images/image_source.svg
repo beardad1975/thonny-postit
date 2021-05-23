@@ -12,7 +12,7 @@
    inkscape:export-xdpi="14.43924"
    inkscape:export-filename="D:\python\thonny-postit-development\thonnycontrib\postit\images\color7.png"
    sodipodi:docname="image_source.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   inkscape:version="1.0.2-2 (e86c870879, 2021-01-15)"
    id="svg8"
    version="1.1"
    viewBox="0 0 210 297"
@@ -104,16 +104,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="-316.68968"
-     inkscape:cy="2785.2239"
+     inkscape:zoom="1"
+     inkscape:cx="-1413.5742"
+     inkscape:cy="2534.034"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1013"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:snap-global="false"
      showguides="false"
@@ -134,6 +134,14 @@
      inkscape:label="圖層 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <path
+       style="opacity:0;fill:none;fill-opacity:1;stroke:#575757;stroke-width:2.48971;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m -322.30202,650.75265 h -92.48734 c -2.33577,0 -4.21624,1.07593 -4.21624,2.41236 v 55.05636 c 0,1.33643 1.88047,2.41236 4.21624,2.41236 h 92.10211 c 2.3359,0 4.21189,-1.07798 4.21634,-2.41236 l 0.0907,-27.25079 0.29461,-27.80557 c 0.0151,-1.42673 -1.88045,-2.41236 -4.21633,-2.41236 z"
+       id="path1318"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssssssscss"
+       inkscape:export-xdpi="10.443242"
+       inkscape:export-ydpi="10.443242" />
     <rect
        style="opacity:0.98;fill:#ffffff;fill-opacity:1;stroke:#575757;stroke-width:2.13969;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.980392"
        id="rect1191"
@@ -4163,5 +4171,29 @@
        width="12.038542"
        id="rect1305"
        style="fill:#fff3a1;stroke-width:3.26501;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1" />
+    <path
+       style="opacity:0.98;fill:none;fill-opacity:1;stroke:#575757;stroke-width:2.16203;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m -327.37496,655.08674 h -81.81226 c -2.06617,0 -3.7296,0.91721 -3.7296,2.05652 v 46.93516 c 0,1.13931 1.66343,2.05652 3.7296,2.05652 h 81.47149 c 2.06629,0 3.72576,-0.91897 3.72969,-2.05652 l 0.0802,-23.2311 0.26061,-23.70406 c 0.0134,-1.21628 -1.66341,-2.05652 -3.72969,-2.05652 z"
+       id="path1310"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssssssscss"
+       inkscape:export-xdpi="10.443242"
+       inkscape:export-ydpi="10.443242" />
+    <path
+       inkscape:export-ydpi="10.443242"
+       inkscape:export-xdpi="10.443242"
+       style="fill:#ffffff;stroke:#575757;stroke-width:10.186;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -369.01837,665.30693 0.13666,31.35354"
+       id="path1314"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="10.443242"
+       inkscape:export-xdpi="10.443242"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path1316"
+       d="M -353.27374,680.91579 -384.627,681.0515"
+       style="fill:#ffffff;stroke:#575757;stroke-width:10.186;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

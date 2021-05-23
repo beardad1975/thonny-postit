@@ -59,8 +59,8 @@
         "items" :[
             {
                 "menu_display" : "舞台 設定尺寸 ",
-                "code" : "舞台 = 模擬3D引擎(400,600)",
-                "code_display" : "舞台 = 模擬3D引擎(400,600)",
+                "code" : "舞台 = 模擬3D引擎(800,500)",
+                "code_display" : "舞台 = 模擬3D引擎(800,500)",
                 "note" : "設定視窗寬度與高度",
                 "long_note" : true
             },
@@ -76,6 +76,13 @@
                 "code" : "舞台.全螢幕 = not 舞台.全螢幕",
                 "code_display" : "舞台.全螢幕 = not 舞台.全螢幕",
                 "note" : "切換全螢幕",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "第1人稱視角",
+                "code" : "第1人稱視角()",
+                "code_display" : "第1人稱視角()",
+                "note" : "前後左右wsad 滑鼠控制視角\n空白鍵跳(無法移動時請先跳躍)",
                 "long_note" : true
             },
             {
@@ -308,59 +315,52 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "顏色 紅 ",
-                "code" : "物體.顏色 = color.red",
-                "code_display" : "物體.顏色 = color.red",
-                "note" : "顏色 紅",
+                "menu_display" : "紅色",
+                "code" : "物體.顏色 = 色彩.red",
+                "code_display" : "物體.顏色 = 色彩.red",
+                "note" : "紅色",
                 "long_note" : true
             },
             {
-                "menu_display" : "顏色 綠",
-                "code" : "物體.顏色 = color.green",
-                "code_display" : "物體.顏色 = color.green",
-                "note" : "顏色 綠",
+                "menu_display" : "綠色",
+                "code" : "物體.顏色 = 色彩.green",
+                "code_display" : "物體.顏色 = 色彩.green",
+                "note" : "綠色",
                 "long_note" : true
             },
             {
-                "menu_display" : "顏色 橘",
-                "code" : "物體.顏色 = color.orange",
-                "code_display" : "物體.顏色 = color.orange",
-                "note" : "顏色 橘",
+                "menu_display" : "橘色",
+                "code" : "物體.顏色 = 色彩.orange",
+                "code_display" : "物體.顏色 = 色彩.orange",
+                "note" : "橘色",
                 "long_note" : true
             },
             {
-                "menu_display" : "顏色 白",
-                "code" : "物體.顏色 = color.white",
-                "code_display" : "物體.顏色 = color.white",
-                "note" : "顏色 白",
+                "menu_display" : "hsv色彩空間",
+                "code" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
+                "code_display" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
+                "note" : "色相0~360 飽和0~1 亮度0~1",
                 "long_note" : true
             },
             {
-                "menu_display" : "顏色 透明",
-                "code" : "物體.顏色 = color.clear",
-                "code_display" : "物體.顏色 = color.clear",
-                "note" : "顏色 透明",
+                "menu_display" : "hsv色彩空間 透明度",
+                "code" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
+                "code_display" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
+                "note" : "色相0~360 飽和0~1\n亮度0~1 透明度0~1",
                 "long_note" : true
             },
             {
-                "menu_display" : "rgb 紅綠藍",
-                "code" : "物體.顏色 = color.rgb(255,255,255)",
-                "code_display" : "物體.顏色 = color.rgb(255,255,255)",
+                "menu_display" : "rgb 紅綠藍 色彩空間",
+                "code" : "物體.顏色 = 色彩.rgb(255,255,255)",
+                "code_display" : "物體.顏色 = 色彩.rgb(255,255,255)",
                 "note" : "rgb 紅綠藍",
                 "long_note" : true
             },
             {
                 "menu_display" : "rgba紅綠藍與不透明度",
-                "code" : "物體.顏色 = color.rgba(255,255,255,255)",
-                "code_display" : "物體.顏色 = color.rgba(255,255,255,255)",
+                "code" : "物體.顏色 = 色彩.rgba(255,255,255,255)",
+                "code_display" : "物體.顏色 = 色彩.rgba(255,255,255,255)",
                 "note" : "rgba紅綠藍與不透明度",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "顏色 隨機",
-                "code" : "物體.顏色 = color.random_color()",
-                "code_display" : "物體.顏色 = color.random_color()",
-                "note" : "顏色 隨機",
                 "long_note" : true
             }
         ]
@@ -506,6 +506,13 @@
                 "code" : "if 按鍵 == 'left mouse down' :\npass",
                 "code_display" : "if 按鍵 == 'left mouse down' :\n    pass",
                 "note" : "是滑鼠左鍵?",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  是滑鼠右鍵?",
+                "code" : "if 按鍵 == 'right mouse down' :\npass",
+                "code_display" : "if 按鍵 == 'right mouse down' :\n    pass",
+                "note" : "是滑鼠右鍵?",
                 "long_note" : true
             },
             {

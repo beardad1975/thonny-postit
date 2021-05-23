@@ -316,10 +316,10 @@ class MoreTab:
         self.tab_frame = CustomVerticallyScrollableFrame(notebook)
         self.tab_frame.tab = self
         notebook.insert('end',self.tab_frame,
-                          text = '更多…',
+                          text = ' ',
                           image = self.icon_image,
-                          compound=tk.TOP,
-                          padding='0i',
+                          compound=tk.CENTER,
+                          #padding='3',
                         )
 
 class PostitPara:
@@ -475,11 +475,12 @@ class PythonPostitView(ttk.Frame):
         # gui init second (build notebook and empty tab frame)
         for mode in self.all_modes.values():
             mode.gui_init()
+            mode.add_more_tab()
             for group in mode.groups.values():
                 group.gui_init()
                 for tab in group.tabs.values():
                     tab.gui_init()
-            mode.add_more_tab()
+            
 
         # build more tab content, set visible if needed
         self.more_tab_gui_init('py4t')

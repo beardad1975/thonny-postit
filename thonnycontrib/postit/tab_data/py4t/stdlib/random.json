@@ -38,10 +38,24 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "範圍內隨機整數",
+                "menu_display" : "範圍內 隨機整數",
                 "code" : "隨機.randint(1,10)",
                 "code_display" : "隨機.randint(1,10)",
-                "note" : "隨機範圍內整數",
+                "note" : "範圍內 隨機整數",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "範圍內 隨機小數",
+                "code" : "隨機.uniform(0.8, 1)",
+                "code_display" : "隨機.uniform(0.8, 1)",
+                "note" : "範圍內 隨機小數",
                 "long_note" : true
             }
             
@@ -82,7 +96,7 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "清單內隨機項目 ",
+                "menu_display" : "清單內隨機項目 變數",
                 "code" : "隨機.choice(清單)",
                 "code_display" : "隨機.choice(清單)",
                 "note" : "清單內隨機項目 清單需先設值",
@@ -103,7 +117,7 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "清單項目洗牌 ",
+                "menu_display" : "清單項目洗牌 變數",
                 "code" : "隨機.shuffle(清單)",
                 "code_display" : "隨機.shuffle(清單)",
                 "note" : "清單項目洗牌 清單需先設值",
