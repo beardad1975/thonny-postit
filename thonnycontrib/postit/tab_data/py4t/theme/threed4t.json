@@ -247,7 +247,7 @@
             {
                 "menu_display" : "上下y縮放",
                 "code" : "物體.縮放y = 1",
-                "code_display" : "體.縮放y = 1",
+                "code_display" : "物體.縮放y = 1",
                 "note" : "上下y縮放",
                 "long_note" : true
             },
