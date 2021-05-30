@@ -1586,7 +1586,7 @@ class PythonPostitView(ttk.Frame):
 
         comment = CommentToolPostit(self.code_toolbar)
         comment.pack(side=tk.LEFT,padx=8, pady=3)
-        create_tooltip(comment, '註解(右鍵選擇)')
+        create_tooltip(comment, '註解(滑鼠右鍵選單)')
 
         common.share_var_add_postit = VariableAddToolPostit(self.code_toolbar)
         common.share_var_add_postit.pack(side=tk.LEFT,padx=0, pady=3)
@@ -1594,7 +1594,7 @@ class PythonPostitView(ttk.Frame):
 
         share_var = common.share_vars_postit
         share_var.pack(side=tk.LEFT,padx=0, pady=3)
-        create_tooltip(share_var, '變數清單(右鍵選擇)')
+        create_tooltip(share_var, '變數清單(滑鼠右鍵選單)')
         
         var_get = common.share_var_get_postit
         var_get.pack(side=tk.LEFT,padx=0, pady=3)
@@ -1603,7 +1603,7 @@ class PythonPostitView(ttk.Frame):
         
         symbol = SymbolToolPostit(self.code_toolbar)
         symbol.pack(side=tk.LEFT,padx=8, pady=3)
-        create_tooltip(symbol, '名稱與符號(右鍵選擇)')
+        create_tooltip(symbol, '保留字、內建函式與符號(滑鼠右鍵選單)')
 
         # edit_toolbar
         #self.edit_toolbar = ttk.Frame(self.interior)
