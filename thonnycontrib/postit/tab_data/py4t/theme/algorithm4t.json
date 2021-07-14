@@ -388,15 +388,15 @@
             },
             {
                 "menu_display" : "指定物件 兩張牌 大於 ",
-                "code" : "牌.點數 > 牌2.點數",
-                "code_display" : "牌.點數 > 牌2.點數",
+                "code" : "牌.點數 > 牌b.點數",
+                "code_display" : "牌.點數 > 牌b.點數",
                 "note" : "兩張牌 大於 指定物件",
                 "long_note" : true
             },
             {
                 "menu_display" : "指定物件 兩張牌 小於 ",
                 "code" : "牌.點數 < 牌2.點數",
-                "code_display" : "牌.點數 < 牌2.點數",
+                "code_display" : "牌.點數 < 牌b.點數",
                 "note" : "兩張牌 小於 指定物件",
                 "long_note" : true
             },
@@ -423,8 +423,8 @@
             },
             {
                 "menu_display" : "兩個牌物件 交換",
-                "code" : "牌.交換(牌2)",
-                "code_display" : "牌.交換(牌2)",
+                "code" : "牌.交換(牌b)",
+                "code_display" : "牌.交換(牌b)",
                 "note" : "兩個牌物件 交換",
                 "long_note" : true
             }
@@ -443,8 +443,8 @@
             },
             {
                 "menu_display" : "牌物件 插入到 牌物件位置",
-                "code" : "牌.插入到(牌2)",
-                "code_display" : "牌.插入到(牌2)",
+                "code" : "牌.插入到(牌b)",
+                "code_display" : "牌.插入到(牌b)",
                 "note" : "牌物件 插入到 牌物件位置",
                 "long_note" : true
             }
@@ -455,9 +455,36 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< (撲克) 統計與結算 ",
-        "off_label" : "(撲克) 統計與結算 >>",
+        "on_label" : "<< (撲克) 印出、統計與結算 ",
+        "off_label" : "(撲克) 印出、統計與結算 >>",
         "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "印出所有手牌",
+                "code" : "print(排序撲克)",
+                "code_display" : "print(排序撲克)",
+                "note" : "印出所有手牌",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "印出單張牌 索引值",
+                "code" : "print(排序撲克[2])",
+                "code_display" : "print(排序撲克[2])",
+                "note" : "印出牌的點數與索引值",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "印出單張牌 指定物件",
+                "code" : "print(牌)",
+                "code_display" : "print(牌)",
+                "note" : "印出牌的點數與索引值",
+                "long_note" : true
+            }
+        ]
     },
     {
         "postit_type" : "in_para_dropdown_postit",
