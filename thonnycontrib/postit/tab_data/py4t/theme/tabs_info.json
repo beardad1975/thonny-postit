@@ -18,5 +18,10 @@
         "tab_name" : "cv4t",
         "tab_label" : " 視覺 ",
         "tab_title" :   "視覺影像"  
+    },
+    {
+        "tab_name" : "algorithm4t",
+        "tab_label" : " 演算 ",
+        "tab_title" :   "初級演算法"  
     }
 ]
