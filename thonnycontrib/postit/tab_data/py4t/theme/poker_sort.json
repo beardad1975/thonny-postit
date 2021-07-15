@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< (撲克) 匯入模組",
-        "off_label" : "(撲克) 匯入模組 >>",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
         "start_on" : true
     },
     {
@@ -19,7 +19,7 @@
                 "menu_display" : "從演算模組匯入排序撲克",
                 "code" : "from 演算模組 import 排序撲克",
                 "code_display" : "from 演算模組 import 排序撲克",
-                "note" : "(撲克) ### 需先匯入才能使用",
+                "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }
         ]
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< (撲克) 設定、產生與發牌",
-        "off_label" : "(撲克) 設定、產生與發牌 >>",
+        "on_label" : "<< 設定、產生與發牌",
+        "off_label" : "設定、產生與發牌 >>",
         "start_on" : true
     },
     {
@@ -126,6 +126,13 @@
                 "code_display" : "排序撲克.未發牌數",
                 "note" : "",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "手上牌數",
+                "code" : "len(排序撲克)",
+                "code_display" : "len(排序撲克)",
+                "note" : "手上牌數",
+                "long_note" : true
             }
         ]
     },
@@ -161,8 +168,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< (撲克) 索引位置與牌操作 ",
-        "off_label" : "(撲克) 索引位置與牌操作 >>",
+        "on_label" : "<< 索引位置與牌操作 ",
+        "off_label" : "索引位置與牌操作 >>",
         "start_on" : false
     },
     {
@@ -304,8 +311,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< (撲克) 指定物件與牌操作 ",
-        "off_label" : "(撲克) 指定物件與牌操作 >>",
+        "on_label" : "<< 指定物件與牌操作 ",
+        "off_label" : "指定物件與牌操作 >>",
         "start_on" : false
     },
     {
@@ -455,8 +462,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< (撲克) 印出、統計與結算 ",
-        "off_label" : "(撲克) 印出、統計與結算 >>",
+        "on_label" : "<< 印出、統計與結算 ",
+        "off_label" : "印出、統計與結算 >>",
         "start_on" : false
     },
     {
