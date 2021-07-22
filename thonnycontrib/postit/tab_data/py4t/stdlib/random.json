@@ -25,6 +25,20 @@
         ]
     },
     {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "設定隨機種子",
+                "code" : "隨機.seed(1)",
+                "code_display" : "隨機.seed(1)",
+                "note" : "種子相同, 隨機數字也相同",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
         "postit_type" : "ttk_separator"
     },
     {

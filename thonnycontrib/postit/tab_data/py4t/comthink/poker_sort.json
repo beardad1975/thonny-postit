@@ -16,9 +16,9 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "從演算模組匯入排序撲克",
-                "code" : "from 演算模組 import 排序撲克",
-                "code_display" : "from 演算模組 import 排序撲克",
+                "menu_display" : "從模組匯入",
+                "code" : "from 演算法 import poker",
+                "code_display" : "from 演算法 import poker",
                 "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }
@@ -39,36 +39,36 @@
         "items" :[
             {
                 "menu_display" : "選擇花色 黑桃",
-                "code" : "排序撲克.選擇花色('spade')",
-                "code_display" : "排序撲克.選擇花色('spade')",
+                "code" : "poker.選擇花色('spade')",
+                "code_display" : "poker.選擇花色('spade')",
                 "note" : "黑桃 spade",
                 "long_note" : true
             },
             {
                 "menu_display" : "選擇花色 紅心",
-                "code" : "排序撲克.選擇花色('heart')",
-                "code_display" : "排序撲克.選擇花色('heart')",
+                "code" : "poker.選擇花色('heart')",
+                "code_display" : "poker.選擇花色('heart')",
                 "note" : "紅心 heart",
                 "long_note" : true
             },
             {
                 "menu_display" : "選擇花色 方塊",
-                "code" : "排序撲克.選擇花色('diamond')",
-                "code_display" : "排序撲克.選擇花色('diamond')",
+                "code" : "poker.選擇花色('diamond')",
+                "code_display" : "poker.選擇花色('diamond')",
                 "note" : "方塊 diamond",
                 "long_note" : true
             },
             {
                 "menu_display" : "選擇花色 梅花",
-                "code" : "排序撲克.選擇花色('club')",
-                "code_display" : "排序撲克.選擇花色('club')",
+                "code" : "poker.選擇花色('club')",
+                "code_display" : "poker.選擇花色('club')",
                 "note" : "梅花 club",
                 "long_note" : true
             },
             {
                 "menu_display" : "選擇花色 隨機",
-                "code" : "排序撲克.選擇花色('random')",
-                "code_display" : "排序撲克.選擇花色('random')",
+                "code" : "poker.選擇花色('random')",
+                "code_display" : "poker.選擇花色('random')",
                 "note" : "隨機 random",
                 "long_note" : true
             }
@@ -81,22 +81,22 @@
             
             {
                 "menu_display" : "產生牌組 隨機幾張牌",
-                "code" : "排序撲克.產生牌組(5)",
-                "code_display" : "排序撲克.產生牌組(5)",
+                "code" : "poker.產生牌組(5)",
+                "code_display" : "poker.產生牌組(5)",
                 "note" : "隨機幾張牌(限3~13張)",
                 "long_note" : true
             },
             {
                 "menu_display" : "產生牌組 依指定清單",
-                "code" : "排序撲克.產生牌組([5,1,3])",
-                "code_display" : "排序撲克.產生牌組([5,1,3])",
+                "code" : "poker.產生牌組([5,1,3])",
+                "code_display" : "poker.產生牌組([5,1,3])",
                 "note" : "依指定清單(限3~13張)",
                 "long_note" : true
             },
             {
                 "menu_display" : "產生牌組 隨機種子",
-                "code" : "排序撲克.產生牌組(5, 隨機種子=1)",
-                "code_display" : "排序撲克.產生牌組(5, 隨機種子=1)",
+                "code" : "poker.產生牌組(5, 隨機種子=1)",
+                "code_display" : "poker.產生牌組(5, 隨機種子=1)",
                 "note" : "種子相同,隨機出的牌也相同",
                 "long_note" : true
             }
@@ -108,29 +108,29 @@
         "items" :[
             {
                 "menu_display" : "發牌 全部發完",
-                "code" : "排序撲克.發牌()",
-                "code_display" : "排序撲克.發牌()",
+                "code" : "poker.發牌()",
+                "code_display" : "poker.發牌()",
                 "note" : "全部發完",
                 "long_note" : true
             },
             {
                 "menu_display" : "發牌 發單張",
-                "code" : "排序撲克.發牌(單張=True)",
-                "code_display" : "排序撲克.發牌(單張=True)",
+                "code" : "poker.發牌(單張=True)",
+                "code_display" : "poker.發牌(單張=True)",
                 "note" : "發牌 單張",
                 "long_note" : true
             },
             {
                 "menu_display" : "未發牌數",
-                "code" : "排序撲克.未發牌數",
-                "code_display" : "排序撲克.未發牌數",
+                "code" : "poker.未發牌數",
+                "code_display" : "poker.未發牌數",
                 "note" : "",
                 "long_note" : true
             },
             {
                 "menu_display" : "手上牌數",
-                "code" : "len(排序撲克)",
-                "code_display" : "len(排序撲克)",
+                "code" : "len(poker)",
+                "code_display" : "len(poker)",
                 "note" : "手上牌數",
                 "long_note" : true
             }
@@ -142,22 +142,22 @@
         "items" :[
             {
                 "menu_display" : "發牌 正常速度",
-                "code" : "排序撲克.設定速度('normal')",
-                "code_display" : "排序撲克.設定速度('normal')",
+                "code" : "poker.設定速度('normal')",
+                "code_display" : "poker.設定速度('normal')",
                 "note" : "正常速度 normal",
                 "long_note" : true
             },
             {
                 "menu_display" : "發牌 快速",
-                "code" : "排序撲克.設定速度('fast')",
-                "code_display" : "排序撲克.設定速度('fast')",
+                "code" : "poker.設定速度('fast')",
+                "code_display" : "poker.設定速度('fast')",
                 "note" : "快速 fast",
                 "long_note" : true
             },
             {
                 "menu_display" : "發牌 慢速",
-                "code" : "排序撲克.設定速度('slow')",
-                "code_display" : "排序撲克.設定速度('slow')",
+                "code" : "poker.設定速度('slow')",
+                "code_display" : "poker.設定速度('slow')",
                 "note" : "慢速 slow",
                 "long_note" : true
             }
@@ -178,22 +178,22 @@
         "items" :[
             {
                 "menu_display" : "取得牌 依索引值",
-                "code" : "排序撲克[2]",
-                "code_display" : "排序撲克[2]",
+                "code" : "poker[2]",
+                "code_display" : "poker[2]",
                 "note" : "取得牌 依索引值(勿超過上限)",
                 "long_note" : true
             },
             {
                 "menu_display" : "取得牌 開頭",
-                "code" : "排序撲克[0]",
-                "code_display" : "排序撲克[0]",
+                "code" : "poker[0]",
+                "code_display" : "poker[0]",
                 "note" : "取得開頭的牌 ",
                 "long_note" : true
             },
             {
                 "menu_display" : "取得牌 從最後開始數",
-                "code" : "排序撲克[-1]",
-                "code_display" : "排序撲克[-1]",
+                "code" : "poker[-1]",
+                "code_display" : "poker[-1]",
                 "note" : "取得牌 從最後開始數",
                 "long_note" : true
             }
@@ -205,15 +205,15 @@
         "items" :[
             {
                 "menu_display" : "蓋牌 依索引值",
-                "code" : "排序撲克[2].蓋牌()",
-                "code_display" : "排序撲克[2].蓋牌()",
+                "code" : "poker[2].蓋牌()",
+                "code_display" : "poker[2].蓋牌()",
                 "note" : "某一張蓋牌(依索引)",
                 "long_note" : true
             },
             {
                 "menu_display" : "掀牌 依索引值",
-                "code" : "排序撲克[2].掀牌()",
-                "code_display" : "排序撲克[2].掀牌()",
+                "code" : "poker[2].掀牌()",
+                "code_display" : "poker[2].掀牌()",
                 "note" : "某一張掀牌(依索引)",
                 "long_note" : true
             }
@@ -225,8 +225,8 @@
         "items" :[
             {
                 "menu_display" : "點數 依索引值",
-                "code" : "排序撲克[2].點數",
-                "code_display" : "排序撲克[2].點數",
+                "code" : "poker[2].點數",
+                "code_display" : "poker[2].點數",
                 "note" : "某一張牌的點數(依索引)",
                 "long_note" : true
             }
@@ -238,43 +238,43 @@
         "items" :[
             {
                 "menu_display" : "兩張牌比較 大於",
-                "code" : "排序撲克[0].點數 > 排序撲克[2].點數",
-                "code_display" : "排序撲克[0].點數 > \n    排序撲克[2].點數",
+                "code" : "poker[0].點數 > poker[2].點數",
+                "code_display" : "poker[0].點數 > \n    poker[2].點數",
                 "note" : "牌與牌比較 大於",
                 "long_note" : true
             },
             {
                 "menu_display" : "兩張牌比較 小於",
-                "code" : "排序撲克[0].點數 < 排序撲克[2].點數",
-                "code_display" : "排序撲克[0].點數 < \n    排序撲克[2].點數",
+                "code" : "poker[0].點數 < poker[2].點數",
+                "code_display" : "poker[0].點數 < \n    poker[2].點數",
                 "note" : "牌與牌比較 小於",
                 "long_note" : true
             },
             {
                 "menu_display" : "兩張牌比較 等於",
-                "code" : "排序撲克[0].點數 == 排序撲克[2].點數",
-                "code_display" : "排序撲克[0].點數 == \n    排序撲克[2].點數",
+                "code" : "poker[0].點數 == poker[2].點數",
+                "code_display" : "poker[0].點數 == \n    poker[2].點數",
                 "note" : "牌與牌比較 等於",
                 "long_note" : true
             },
             {
                 "menu_display" : "牌與數字比較 大於",
-                "code" : "排序撲克[2].點數 > 5",
-                "code_display" : "排序撲克[2].點數 > 5",
+                "code" : "poker[2].點數 > 5",
+                "code_display" : "poker[2].點數 > 5",
                 "note" : "牌與數字比較 大於",
                 "long_note" : true
             },
             {
                 "menu_display" : "牌與數字比較 小於",
-                "code" : "排序撲克[2].點數 < 5",
-                "code_display" : "排序撲克[2].點數 < 5",
+                "code" : "poker[2].點數 < 5",
+                "code_display" : "poker[2].點數 < 5",
                 "note" : "牌與數字比較 小於",
                 "long_note" : true
             },
             {
                 "menu_display" : "牌與數字比較 等於",
-                "code" : "排序撲克[2].點數 == 5",
-                "code_display" : "排序撲克[2].點數 == 5",
+                "code" : "poker[2].點數 == 5",
+                "code_display" : "poker[2].點數 == 5",
                 "note" : "牌與數字比較 等於",
                 "long_note" : true
             }
@@ -286,8 +286,8 @@
         "items" :[
             {
                 "menu_display" : "兩張牌 交換",
-                "code" : "排序撲克[2].交換(0)",
-                "code_display" : "排序撲克[2].交換(0)",
+                "code" : "poker[2].交換(0)",
+                "code_display" : "poker[2].交換(0)",
                 "note" : "兩張牌 交換",
                 "long_note" : true
             }
@@ -299,8 +299,8 @@
         "items" :[
             {
                 "menu_display" : "牌插入到 索引位置",
-                "code" : "排序撲克[2].插入到(0)",
-                "code_display" : "排序撲克[2].插入到(0)",
+                "code" : "poker[2].插入到(0)",
+                "code_display" : "poker[2].插入到(0)",
                 "note" : "牌插入到 索引位置",
                 "long_note" : true
             }
@@ -321,8 +321,8 @@
         "items" :[
             {
                 "menu_display" : "指定物件 依索引值",
-                "code" : "牌 = 排序撲克[2]",
-                "code_display" : "牌 = 排序撲克[2]",
+                "code" : "牌 = poker[2]",
+                "code_display" : "牌 = poker[2]",
                 "note" : "指定物件 依索引值",
                 "long_note" : true
             }
@@ -472,15 +472,15 @@
         "items" :[
             {
                 "menu_display" : "印出所有手牌",
-                "code" : "print(排序撲克)",
-                "code_display" : "print(排序撲克)",
+                "code" : "print(poker)",
+                "code_display" : "print(poker)",
                 "note" : "印出所有手牌",
                 "long_note" : true
             },
             {
                 "menu_display" : "印出單張牌 索引值",
-                "code" : "print(排序撲克[2])",
-                "code_display" : "print(排序撲克[2])",
+                "code" : "print(poker[2])",
+                "code_display" : "print(poker[2])",
                 "note" : "印出牌的點數與索引值",
                 "long_note" : true
             },
@@ -499,15 +499,15 @@
         "items" :[
             {
                 "menu_display" : "顯示統計",
-                "code" : "排序撲克.顯示統計()",
-                "code_display" : "排序撲克.顯示統計()",
+                "code" : "poker.顯示統計()",
+                "code_display" : "poker.顯示統計()",
                 "note" : "比較,交換與插入的演算次數",
                 "long_note" : true
             },
             {
                 "menu_display" : "隱藏統計",
-                "code" : "排序撲克.隱藏統計()",
-                "code_display" : "排序撲克.隱藏統計()",
+                "code" : "poker.隱藏統計()",
+                "code_display" : "poker.隱藏統計()",
                 "note" : "比較,交換與插入的演算次數",
                 "long_note" : true
             }
@@ -519,9 +519,9 @@
         "items" :[
             {
                 "menu_display" : "排序結算",
-                "code" : "排序撲克.排序結算()",
-                "code_display" : "排序撲克.排序結算()",
-                "note" : "結算已排序張數(會終止單行輸入)",
+                "code" : "poker.排序結算()",
+                "code_display" : "poker.排序結算()",
+                "note" : "結算已排序張數\n(進入主迴圈, 暫無互動環境)",
                 "long_note" : true
             }
         ]

@@ -678,12 +678,20 @@ class SymbolToolPopup:
         # self.collection_menu.add_command(
         #     label=",   逗號", command=lambda:self.change_symbol(', '))
 
-        self.collection_menu.add_command( label=" [ ] 清單、字典)", 
+        self.collection_menu.add_command( label=" [ ] 清單、字典", 
                 command=lambda:self.change_symbol('[]'," [ ] 清單、字典"))
         self.collection_menu.add_command( label=" ( ) 元組 ", 
                 command=lambda:self.change_symbol('()'," ( ) 元組 "))
         self.collection_menu.add_command( label=" { } 字典、集合", 
                 command=lambda:self.change_symbol('{}'," { } 字典、集合"))
+        self.collection_menu.add_command( label=" list() 清單", 
+                command=lambda:self.change_symbol('list()'," list() 清單"))
+        self.collection_menu.add_command( label=" tuple() 元組", 
+                command=lambda:self.change_symbol('tuple()'," tuple() 元組"))
+        self.collection_menu.add_command( label=" dict() 字典", 
+                command=lambda:self.change_symbol('dict()'," dict() 字典"))
+        self.collection_menu.add_command( label=" set() 集合", 
+                command=lambda:self.change_symbol('set()'," set() 集合"))
 
         # flow menu command
         # self.flow_menu.add_command(

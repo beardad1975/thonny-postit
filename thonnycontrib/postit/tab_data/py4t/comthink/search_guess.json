@@ -16,10 +16,255 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "從演算模組匯入搜尋猜數",
-                "code" : "from 演算模組 import 搜尋猜數",
-                "code_display" : "from 演算模組 import 搜尋猜數",
+                "menu_display" : "從模組匯入搜尋猜數",
+                "code" : "from 演算法 import guess",
+                "code_display" : "from 演算法 import guess",
                 "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 設定與產生題目",
+        "off_label" : "設定與產生題目 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "產生題目 0~上範圍 隨機",
+                "code" : "guess.產生題目(100)",
+                "code_display" : "guess.產生題目(100)",
+                "note" : "0~上範圍(少1) 隨機",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "產生題目 0~上範圍 隨機種子",
+                "code" : "guess.產生題目(100, 隨機種子=1)",
+                "code_display" : "guess.產生題目(100, \n    隨機種子=1)",
+                "note" : "種子相同, 隨機出的牌也相同",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "產生題目 下範圍~上範圍 隨機",
+                "code" : "guess.產生題目(50, 100)",
+                "code_display" : "guess.產生題目(50, 100)",
+                "note" : "下範圍~上範圍(少1) 隨機",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "產生題目 下範圍~上範圍 隨機種子",
+                "code" : "guess.產生題目(50, 100, 隨機種子=1)",
+                "code_display" : "guess.產生題目(50, 100, \n    隨機種子=1)",
+                "note" : "種子相同, 隨機出的牌也相同",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "正常速度",
+                "code" : "guess.設定速度('normal')",
+                "code_display" : "guess.設定速度('normal')",
+                "note" : "正常速度 normal",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "快速",
+                "code" : "guess.設定速度('fast')",
+                "code_display" : "guess.設定速度('fast')",
+                "note" : "快速 fast",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "慢速",
+                "code" : "guess.設定速度('slow')",
+                "code_display" : "guess.設定速度('slow')",
+                "note" : "慢速 slow",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 搜尋(與答案比較)",
+        "off_label" : "搜尋(與答案比較) >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "搜尋比較 大於",
+                "code" : "guess.答案 > 0",
+                "code_display" : "guess.答案 > 0",
+                "note" : "搜尋比較 大於 (需在範圍內)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "搜尋比較 等於",
+                "code" : "guess.答案 == 0",
+                "code_display" : "guess.答案 == 0",
+                "note" : "搜尋比較 等於 (需在範圍內)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "搜尋比較 小於",
+                "code" : "guess.答案 < 0",
+                "code_display" : "guess.答案 < 0",
+                "note" : "搜尋比較 小於 (需在範圍內)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 題目範圍與上下限",
+        "off_label" : "題目範圍與上下限 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "題目上範圍",
+                "code" : "guess.題目上範圍",
+                "code_display" : "guess.題目上範圍",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "題目下範圍",
+                "code" : "guess.題目下範圍",
+                "code_display" : "guess.題目下範圍",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "上限 設值",
+                "code" : "guess.上限 = 50",
+                "code_display" : "guess.上限 = 50",
+                "note" : "上限 設值 (需在範圍內)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "上限 取值",
+                "code" : "guess.上限",
+                "code_display" : "guess.上限",
+                "note" : "",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "下限 設值",
+                "code" : "guess.下限 = 0",
+                "code_display" : "guess.下限 = 0",
+                "note" : "下限 設值 (需在範圍內)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "下限 取值",
+                "code" : "guess.下限",
+                "code_display" : "guess.下限",
+                "note" : "",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 印出、統計與提交 ",
+        "off_label" : "印出、統計與提交 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "印出猜數狀況",
+                "code" : "print(guess)",
+                "code_display" : "print(guess)",
+                "note" : "印出猜數狀況",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "顯示統計",
+                "code" : "guess.顯示統計()",
+                "code_display" : "guess.顯示統計()",
+                "note" : "搜尋統計(同1數字比較只計算1次)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "隱藏統計",
+                "code" : "guess.隱藏統計()",
+                "code_display" : "guess.隱藏統計()",
+                "note" : "搜尋統計(同1數字比較只計算1次)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "提交搜尋",
+                "code" : "guess.提交搜尋()",
+                "code_display" : "guess.提交搜尋()",
+                "note" : "將目前搜尋提交\n(進入主迴圈, 暫無互動環境)",
                 "long_note" : true
             }
         ]
