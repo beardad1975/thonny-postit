@@ -1,0 +1,29 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "從演算模組匯入搜尋猜數",
+                "code" : "from 演算模組 import 搜尋猜數",
+                "code_display" : "from 演算模組 import 搜尋猜數",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }
+        ]
+    }
+
+
+]

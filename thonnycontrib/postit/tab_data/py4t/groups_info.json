@@ -1,9 +1,16 @@
 [
     {
         "group_name" : "theme",
-        "group_label" : "學習主題",
+        "group_label" : "主題學習",
         "default_tabs":[
             "turtle4t"
+        ]
+    },
+    {
+        "group_name" : "comthink",
+        "group_label" : "運算思維",
+        "default_tabs":[
+            
         ]
     },
     {

@@ -1,0 +1,13 @@
+[
+    
+    {
+        "tab_name" : "poker_sort",
+        "tab_label" : " 排序 ",
+        "tab_title" :   "排序撲克"  
+    },
+    {
+        "tab_name" : "search_guess",
+        "tab_label" : " 搜尋 ",
+        "tab_title" :   "搜尋猜數"  
+    }
+]
