@@ -340,7 +340,7 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "掀牌 依索引值",
+                "menu_display" : "掀牌 指定牌物件",
                 "code" : "牌.掀牌()",
                 "code_display" : "牌.掀牌()",
                 "note" : "某一張掀牌(指定物件)",
