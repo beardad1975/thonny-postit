@@ -108,10 +108,10 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "搜尋比較 大於",
-                "code" : "guess.答案 > 0",
-                "code_display" : "guess.答案 > 0",
-                "note" : "搜尋比較 大於 (需在範圍內)",
+                "menu_display" : "搜尋比較 等於",
+                "code" : "guess.答案 == 0",
+                "code_display" : "guess.答案 == 0",
+                "note" : "搜尋比較 等於 (需在範圍內)",
                 "long_note" : true
             }
         ]
@@ -121,10 +121,10 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "搜尋比較 等於",
-                "code" : "guess.答案 == 0",
-                "code_display" : "guess.答案 == 0",
-                "note" : "搜尋比較 等於 (需在範圍內)",
+                "menu_display" : "搜尋比較 大於",
+                "code" : "guess.答案 > 0",
+                "code_display" : "guess.答案 > 0",
+                "note" : "搜尋比較 大於 (需在範圍內)",
                 "long_note" : true
             }
         ]
