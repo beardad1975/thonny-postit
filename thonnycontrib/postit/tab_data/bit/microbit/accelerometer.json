@@ -102,7 +102,7 @@
                 "code" : "加速度.get_values()",
                 "code_display" : "加速度.get_values()",
                 "note" : "取得3軸加速度",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "取得3軸 設值",
@@ -124,21 +124,21 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "取值 目前動作",
                 "code" : "加速度.current_gesture()",
                 "code_display" : "加速度.current_gesture()",
                 "note" : "取值 目前動作",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "設值 目前動作",
                 "code" : "動作 = 加速度.current_gesture()",
                 "code_display" : "動作 = 加速度.current_gesture()",
                 "note" : "設值 目前動作",
-                "long_note" : false
+                "long_note" : true
             }          
         ]
     },
@@ -199,15 +199,22 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "動作是",
+                "menu_display" : "是…動作嗎",
                 "code" : "加速度.is_gesture('up')",
                 "code_display" : "加速度.is_gesture('up')",
-                "note" : "動作是",
-                "long_note" : false
-            }          
+                "note" : "是…動作嗎",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "做過…動作嗎",
+                "code" : "加速度.was_gesture('up')",
+                "code_display" : "加速度.was_gesture('up')",
+                "note" : "做過…動作嗎",
+                "long_note" : true
+            }           
         ]
     }
 ]

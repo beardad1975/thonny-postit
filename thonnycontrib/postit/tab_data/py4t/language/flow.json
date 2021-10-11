@@ -88,7 +88,7 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "重複(開頭,結尾不含)",
+                "menu_display" : "重複(開始,結尾不含)",
                 "code" : "for 數 in range(5, 10) :\npass",
                 "code_display" : "for 數 in range(5, 10) :\n    pass",
                 "note" : "逐一取出 從數列(開始,結尾不含):\n        迴圈區塊",

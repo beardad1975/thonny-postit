@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入燈光模組",
-        "off_label" : "匯入燈光模組 >>",
+        "on_label" : "<< 匯入燈光與圖示模組",
+        "off_label" : "匯入燈光與圖示模組 >>",
         "start_on" : true
     },
     {
@@ -17,8 +17,8 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "from microbit import display as 燈光",
-                "code_display" : "from microbit import \\\n    display as 燈光",
+                "code" : "from microbit import display as 燈光, Image as 圖示",
+                "code_display" : "from microbit import \\\n    display as 燈光, \\\n    Image as 圖示",
                 "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            
@@ -38,10 +38,31 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "燈光 清除",
+                "menu_display" : "燈光 LED清除",
                 "code" : "燈光.clear()",
                 "code_display" : "燈光.clear()",
-                "note" : "清除",
+                "note" : "LED清除",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "燈光 LED關閉",
+                "code" : "燈光.off()",
+                "code_display" : "燈光.off()",
+                "note" : "LED關閉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "燈光 LED開啟",
+                "code" : "燈光.on()",
+                "code_display" : "燈光.on()",
+                "note" : "LED開啟",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "燈光 LED有開啟嗎",
+                "code" : "燈光.is_on()",
+                "code_display" : "燈光.is_on()",
+                "note" : "LED有開啟嗎",
                 "long_note" : true
             }           
         ]
@@ -54,7 +75,7 @@
                 "menu_display" : "燈光 顯示 數字",
                 "code" : "燈光.show(123)",
                 "code_display" : "燈光.show(123)",
-                "note" : "顯示 文字",
+                "note" : "顯示 數字",
                 "long_note" : true
             },
             {
@@ -68,7 +89,7 @@
                 "menu_display" : "燈光 顯示 文字 延遲 清除 等待 重複",
                 "code" : "燈光.show(123,\ndelay=400,\nclear=False,\nwait=True,\nloop=False,\n)",
                 "code_display" : "燈光.show(123,\n    delay=400,\n    clear=False,\n    wait=True,\n    loop=False,\n    )",
-                "note" : "顯示 (文字, 延遲, 清除, 等待, 重複)",
+                "note" : "顯示 (文字, 延遲, 清除,\n    等待, 重複)",
                 "long_note" : true
             }         
         ]
@@ -122,8 +143,8 @@
             },
             {
                 "menu_display" : "燈光 取得像素",
-                "code" : "亮度 = 燈光.get_pixel(0, 0)",
-                "code_display" : "亮度 = 燈光.get_pixel(\n    0, 0)",
+                "code" : "燈光.get_pixel(0, 0)",
+                "code_display" : "燈光.get_pixel(0, 0)",
                 "note" : "取得像素 x(0~4) y(0~4)",
                 "long_note" : true
             }           
@@ -147,30 +168,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入圖示模組",
-        "off_label" : "匯入圖示模組 >>",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "匯入模組",
-                "code" : "from microbit import Image as 圖示",
-                "code_display" : "from microbit import \n    Image as 圖示",
-                "note" : "### 需先匯入才能使用",
-                "long_note" : true
-            }            
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : "<< 圖示顯示與自訂",
-        "off_label" : "圖示顯示與自訂 >>",
+        "on_label" : "<< 圖示顯示",
+        "off_label" : "圖示顯示 >>",
         "start_on" : false
     },
     {
@@ -324,6 +323,19 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "圖示 單一字元",
+                "code" : "圖示('S')",
+                "code_display" : "圖示('S')",
+                "note" : "單一字元",
+                "long_note" : true
+            }    
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
                 "menu_display" : "燈光 顯示 圖示",
                 "code" : "燈光.show(圖示.HEART)",
                 "code_display" : "燈光.show(圖示.HEART)",
@@ -334,36 +346,78 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
+        "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "圖示 單一字元",
-                "code" : "圖示('S')",
-                "code_display" : "圖示('S')",
-                "note" : "單一字元",
+                "menu_display" : "點鐘元組(唯讀清單)",
+                "code" : "圖示.ALL_CLOCKS",
+                "code_display" : "圖示.ALL_CLOCKS",
+                "note" : "點鐘元組(唯讀清單)",
                 "long_note" : true
             },
+            {
+                "menu_display" : "方向元組(唯讀清單)",
+                "code" : "圖示.ALL_ARROWS",
+                "code_display" : "圖示.ALL_ARROWS",
+                "note" : "方向元組(唯讀清單)",
+                "long_note" : true
+            }           
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 圖示自訂與運算",
+        "off_label" : "圖示自訂與運算 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
             {
                 "menu_display" : "圖示 自訂",
                 "code" : "自訂圖示 = 圖示(\n'99999:'\n'99999:'\n'99999:'\n'99999:'\n'99999:'\n)",
                 "code_display" : "自訂圖示 = 圖示(\n    '99999:'\n    '99999:'\n    '99999:'\n    '99999:'\n    '99999:'\n    )",
                 "note" : "亮度0~9",
                 "long_note" : true
-            },
+            }     
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            
             {
                 "menu_display" : "燈光 顯示 自訂圖示",
                 "code" : "燈光.show(自訂圖示)",
                 "code_display" : "燈光.show(自訂圖示)",
                 "note" : "顯示 自訂圖示(需先自訂)",
                 "long_note" : true
-            },
+            }        
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
             {
-                "menu_display" : "圖示 亮度調整 除法(或乘法)",
+                "menu_display" : "圖示 亮度調整 除法",
                 "code" : "圖示('S') / 9",
                 "code_display" : "圖示('S') / 9",
                 "note" : "亮度調整 除法(或乘法)",
                 "long_note" : true
-            }     
+            },
+            {
+                "menu_display" : "圖示 亮度調整 乘法",
+                "code" : "圖示('S') / 9 * 3",
+                "code_display" : "圖示('S') / 9 * 3",
+                "note" : "亮度調整 除法(或乘法)",
+                "long_note" : true
+            }           
         ]
     }
 ]

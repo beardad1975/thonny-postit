@@ -214,7 +214,7 @@ class DropdownPopup:
         # button popup menu
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
-        self.popup_menu.add_checkbutton(label="加上Enter換行", onvalue=1, offvalue=0, 
+        self.popup_menu.add_checkbutton(label="切換 Enter換行", onvalue=1, offvalue=0, 
                 variable=self.var_postfix_enter,
                 command=self.toggle_postfix_enter,
                 )

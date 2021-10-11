@@ -569,6 +569,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol("r''"," r' '  原始字串 "))
         self.string_menu.add_command( label=".format() 格式替換", 
                 command=lambda:self.change_symbol('.format()',".format() 格式替換"))
+        self.string_menu.add_command( label=" repr() 表示字串", 
+                command=lambda:self.change_symbol('repr()',"repr() 表示字串"))
 
 
 
