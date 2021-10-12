@@ -20,8 +20,14 @@
     },
     {
         "tab_name" : "music",
-        "tab_label" : " 音效 ",
-        "tab_title" : "音效與音樂"
+        "tab_label" : " 音樂 ",
+        "tab_title" : "音樂與音高"
+        
+    },
+    {
+        "tab_name" : "speaker",
+        "tab_label" : " 喇叭 ",
+        "tab_title" : "內建喇叭(限V2)"
         
     },
     {

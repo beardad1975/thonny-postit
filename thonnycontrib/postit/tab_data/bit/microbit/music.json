@@ -17,8 +17,8 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "import music as 音效",
-                "code_display" : "import music as 音效",
+                "code" : "import music as 音樂",
+                "code_display" : "import music as 音樂",
                 "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            
@@ -39,15 +39,15 @@
         "items" :[
             {
                 "menu_display" : "演奏",
-                "code" : "音效.play(音效.BIRTHDAY)",
-                "code_display" : "音效.play(音效.BIRTHDAY)",
-                "note" : "演奏",
+                "code" : "音樂.play(音樂.BIRTHDAY)",
+                "code_display" : "音樂.play(音樂.BIRTHDAY)",
+                "note" : "音樂",
                 "long_note" : true
             },
             {
                 "menu_display" : "演奏 等待 重複",
-                "code" : "音效.play(音效.BIRTHDAY,\nwait=True,\nloop=False,\n)",
-                "code_display" : "音效.play(音效.BIRTHDAY,\n    wait=True,\n    loop=False,\n    )",
+                "code" : "音樂.play(音樂.BIRTHDAY,\nwait=True,\nloop=False,\n)",
+                "code_display" : "音樂.play(音樂.BIRTHDAY,\n    wait=True,\n    loop=False,\n    )",
                 "note" : "演奏 (旋律, 等待, 重複)",
                 "long_note" : true
             }          
@@ -59,57 +59,57 @@
         "items" :[
             {
                 "menu_display" : "旋律 命運交響曲 貝多芬",
-                "code" : "音效.DADADADUM",
-                "code_display" : "音效.DADADADUM",
+                "code" : "音樂.DADADADUM",
+                "code_display" : "音樂.DADADADUM",
                 "note" : "旋律 命運交響曲 貝多芬",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 演藝人 喬普林",
-                "code" : "音效.ENTERTAINER",
-                "code_display" : "音效.ENTERTAINER",
+                "code" : "音樂.ENTERTAINER",
+                "code_display" : "音樂.ENTERTAINER",
                 "note" : "旋律 演藝人 喬普林",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 C大調前奏曲 巴哈",
-                "code" : "音效.PRELUDE",
-                "code_display" : "音效.PRELUDE",
+                "code" : "音樂.PRELUDE",
+                "code_display" : "音樂.PRELUDE",
                 "note" : "旋律 C大調前奏曲 巴哈",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 歡樂頌 貝多芬",
-                "code" : "音效.ODE",
-                "code_display" : "音效.ODE",
+                "code" : "音樂.ODE",
+                "code_display" : "音樂.ODE",
                 "note" : "旋律 歡樂頌 貝多芬",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 結婚進行曲 華格納",
-                "code" : "音效.WEDDING",
-                "code_display" : "音效.WEDDING",
+                "code" : "音樂.WEDDING",
+                "code_display" : "音樂.WEDDING",
                 "note" : "旋律 結婚進行曲 華格納",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 蒙提·派森的飛行馬戲團",
-                "code" : "音效.PYTHON",
-                "code_display" : "音效.PYTHON",
+                "code" : "音樂.PYTHON",
+                "code_display" : "音樂.PYTHON",
                 "note" : "旋律 蒙提·派森的飛行馬戲團",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 升級",
-                "code" : "音效.POWER_UP",
-                "code_display" : "音效.POWER_UP",
+                "code" : "音樂.POWER_UP",
+                "code_display" : "音樂.POWER_UP",
                 "note" : "旋律 升級",
                 "long_note" : true
             } ,
             {
                 "menu_display" : "旋律 降級",
-                "code" : "音效.POWER_DOWN",
-                "code_display" : "音效.POWER_DOWN",
+                "code" : "音樂.POWER_DOWN",
+                "code_display" : "音樂.POWER_DOWN",
                 "note" : "旋律 降級",
                 "long_note" : true
             }        
@@ -121,15 +121,15 @@
         "items" :[
             {
                 "menu_display" : "演奏 音階",
-                "code" : "音效.play([\n'c',\n'd',\n'e',\n])",
-                "code_display" : "音效.play([\n    'c',\n    'd',\n    'e',\n    ])",
+                "code" : "音樂.play([\n'c',\n'd',\n'e',\n])",
+                "code_display" : "音樂.play([\n    'c',\n    'd',\n    'e',\n    ])",
                 "note" : "音階 c d e f g a b",
                 "long_note" : true
             },
             {
                 "menu_display" : "演奏 音階 八度:拍子",
-                "code" : "音效.play([\n'c4:4',\n'd4:4',\n'e4:4',\n])",
-                "code_display" : "音效.play([\n    'c4:4',\n    'd4:4',\n    'e4:4',\n    ])",
+                "code" : "音樂.play([\n'c4:4',\n'd4:4',\n'e4:4',\n])",
+                "code_display" : "音樂.play([\n    'c4:4',\n    'd4:4',\n    'e4:4',\n    ])",
                 "note" : "音階 c d e f g a b \n八度:拍子(4表示1拍)\nr休止符 b降半音 #升半音",
                 "long_note" : true
             }          
@@ -141,15 +141,15 @@
         "items" :[
             {
                 "menu_display" : "速度 每分鐘幾拍",
-                "code" : "音效.set_tempo(bpm=120)",
-                "code_display" : "音效.set_tempo(bpm=120)",
+                "code" : "音樂.set_tempo(bpm=120)",
+                "code_display" : "音樂.set_tempo(bpm=120)",
                 "note" : "速度 每分鐘幾拍",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 回復預設值",
-                "code" : "音效.reset()",
-                "code_display" : "音效.reset()",
+                "code" : "音樂.reset()",
+                "code_display" : "音樂.reset()",
                 "note" : "速度 每分鐘幾拍",
                 "long_note" : true
             }       
@@ -170,15 +170,15 @@
         "items" :[
             {
                 "menu_display" : "音高 頻率 時間",
-                "code" : "音效.pitch(440, duration=500)",
-                "code_display" : "音效.pitch(440, duration=500)",
+                "code" : "音樂.pitch(440, duration=500)",
+                "code_display" : "音樂.pitch(440, duration=500)",
                 "note" : "音高 (頻率, 時間)",
                 "long_note" : true
             },
             {
                 "menu_display" : "音高 頻率 等待",
-                "code" : "音效.pitch(440, wait=False)",
-                "code_display" : "音效.pitch(440, wait=False)",
+                "code" : "音樂.pitch(440, wait=False)",
+                "code_display" : "音樂.pitch(440, wait=False)",
                 "note" : "音高 (頻率, 等待)",
                 "long_note" : true
             }       
@@ -190,8 +190,8 @@
         "items" :[
             {
                 "menu_display" : "聲音停止",
-                "code" : "音效.stop()",
-                "code_display" : "音效.stop()",
+                "code" : "音樂.stop()",
+                "code_display" : "音樂.stop()",
                 "note" : "聲音停止",
                 "long_note" : true
             }       

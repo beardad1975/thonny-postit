@@ -1,0 +1,193 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import speaker as 喇叭, \\\naudio as 聲音, Sound as 音效",
+                "code_display" : "from microbit import \\\n    speaker as 喇叭, \\\n    audio as 聲音, \\\n    Sound as 音效",
+                "note" : "### 限用micro:bit 2.0",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 聲音與音效",
+        "off_label" : "聲音與音效 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "播放",
+                "code" : "聲音.play(音效.GIGGLE)",
+                "code_display" : "聲音.play(音效.GIGGLE)",
+                "note" : "播放 音效",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "播放 等待 重複",
+                "code" : "聲音.play(音效.GIGGLE, wait=True )",
+                "code_display" : "聲音.play(音效.GIGGLE,\n    wait=True,\n  )",
+                "note" : "播放 (音效, 等待)",
+                "long_note" : true
+            }          
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "音效 傻笑",
+                "code" : "音效.GIGGLE",
+                "code_display" : "音效.GIGGLE",
+                "note" : "音效 傻笑",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 快樂",
+                "code" : "音效.HAPPY",
+                "code_display" : "音效.HAPPY",
+                "note" : "音效 快樂",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 哈囉",
+                "code" : "音效.HELLO",
+                "code_display" : "音效.HELLO",
+                "note" : "音效 哈囉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 神祕",
+                "code" : "音效.MYSTERIOUS",
+                "code_display" : "音效.MYSTERIOUS",
+                "note" : "音效 神祕",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 傷心",
+                "code" : "音效.SAD",
+                "code_display" : "音效.SAD",
+                "note" : "音效 傷心",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 滑行",
+                "code" : "音效.SLIDE",
+                "code_display" : "音效.SLIDE",
+                "note" : "音效 滑行",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 滑翔",
+                "code" : "音效.SOARING",
+                "code_display" : "音效.SOARING",
+                "note" : "音效 滑翔",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 泉水",
+                "code" : "音效.SPRING",
+                "code_display" : "音效.SPRING",
+                "note" : "音效 泉水",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 閃耀",
+                "code" : "音效.TWINKLE",
+                "code_display" : "音效.TWINKLE",
+                "note" : "音效 閃耀",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 呵欠",
+                "code" : "音效.YAWN",
+                "code_display" : "音效.YAWN",
+                "note" : "音效 呵欠",
+                "long_note" : true
+            }  
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "正在播放嗎",
+                "code" : "聲音.is_playing()",
+                "code_display" : "聲音.is_playing()",
+                "note" : "正在播放嗎",
+                "long_note" : true
+            }         
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "停止播放",
+                "code" : "聲音.stop()",
+                "code_display" : "聲音.stop()",
+                "note" : "停止播放",
+                "long_note" : true
+            }         
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 內建喇叭開關",
+        "off_label" : "內建喇叭開關 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "關閉喇叭",
+                "code" : "喇叭.off()",
+                "code_display" : "喇叭.off()",
+                "note" : "關閉喇叭",
+                "long_note" : true
+            }         
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "開啟喇叭",
+                "code" : "喇叭.on()",
+                "code_display" : "喇叭.on()",
+                "note" : "開啟喇叭",
+                "long_note" : true
+            }         
+        ]
+    }
+]
