@@ -1,7 +1,7 @@
 import os 
 import datetime
 import webbrowser
-from pathlib import Path
+import shutil
 import json
 from collections import OrderedDict
 
@@ -13,7 +13,7 @@ from pathlib import Path
 from PIL import Image, ImageTk
 
 from thonny import get_workbench, get_shell, get_runner 
-from thonny.ui_utils import show_dialog, CommonDialog, create_tooltip
+from thonny.ui_utils import show_dialog, CommonDialog, create_tooltip, QueryDialog
 
 
 
@@ -43,7 +43,7 @@ from .tools.symbol_tool_postit import SymbolToolPostit
 
 
 #for test
-from tkinter.messagebox import showinfo
+#from tkinter.messagebox import showinfo
 
 #  tab data level
 #  Mode(contain notebook) ----> TabGoup ----> Tab 
@@ -281,7 +281,7 @@ class Tab:
             s = s + i + '\n'
         s += '\n'
 
-        ans = messagebox.askokcancel('範例變數匯入',s)
+        ans = messagebox.askokcancel('範例變數匯入',s, master=get_workbench())
         #print(ans)
         if ans: # import vars into vars_menu
             vars_counter = common.share_vars_postit.vars_counter
@@ -654,8 +654,8 @@ class PythonPostitView(ttk.Frame):
             elif postit_data['postit_type'] == 'in_para_dropdown_postit':
                 self.build_in_para_dropdown_postit(tab, postit_data)
               
-            elif postit_data['postit_type'] == 'bit_install_lib_postit':
-                self.build_bit_install_lib_postit(tab, postit_data)
+            #elif postit_data['postit_type'] == 'bit_install_lib_postit':
+            #    self.build_bit_install_lib_postit(tab, postit_data)
 
         # end vertical spacer for end space scrolling
         tk.Label(tab.tab_frame.interior, text='',
@@ -719,69 +719,69 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
             #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)  
 
-    def build_bit_install_lib_postit(self, tab, postit_data):
-        logo_path = Path(__file__).parent / 'images' / 'install.png'
-        im = Image.open(logo_path)       
-        self.install_image = ImageTk.PhotoImage(im) 
+    # def build_bit_install_lib_postit(self, tab, postit_data):
+    #     logo_path = Path(__file__).parent / 'images' / 'install.png'
+    #     im = Image.open(logo_path)       
+    #     self.install_image = ImageTk.PhotoImage(im) 
 
-        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+    #     f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
-        def install_lib():
-            ready = get_runner().ready_for_remote_file_operations(show_message=False)
+    #     def install_lib():
+    #         ready = get_runner().ready_for_remote_file_operations(show_message=False)
             
-            if not ready:
-                messagebox.showwarning(
-                    '連線問題',
-                    '未連接microbit，請接上硬體並連線',
-                    master=self,
-                )
-                return
+    #         if not ready:
+    #             messagebox.showwarning(
+    #                 '連線問題',
+    #                 '未連接microbit，請接上硬體並連線',
+    #                 master=self,
+    #             )
+    #             return
 
-            answer = messagebox.askyesno(
-                '安裝模組',
-                '是否在microbit上安裝模組？\n(至少需安裝一次，才可使用中文模組)',
-                master=self,
-            )
+    #         answer = messagebox.askyesno(
+    #             '安裝模組',
+    #             '是否在microbit上安裝模組？\n(至少需安裝一次，才可使用中文模組)',
+    #             master=self,
+    #         )
 
-            if answer:
-                lib_path = Path(__file__).parent / 'microbit_lib' / 'microbit模組.py'
-                #lib_path = Path(__file__).parent / 'microbit_lib' / 'boot.py'
-                with open(lib_path, 'rb') as f:
-                    content_bytes = f.read()
+    #         if answer:
+    #             lib_path = Path(__file__).parent / 'microbit_lib' / 'microbit模組.py'
+    #             #lib_path = Path(__file__).parent / 'microbit_lib' / 'boot.py'
+    #             with open(lib_path, 'rb') as f:
+    #                 content_bytes = f.read()
 
-                get_runner().send_command_and_wait(
-                InlineCommand(
-                    "write_file",
-                    path="microbit模組.py",
-                    #path="boot.py",
-                    content_bytes=content_bytes,
-                    editor_id=id(tab),
-                    blocking=True,
-                    description="安裝boot.py模組",
-                ),
-                dialog_title="安裝...",
-            )
-            else:
-                return
+    #             get_runner().send_command_and_wait(
+    #             InlineCommand(
+    #                 "write_file",
+    #                 path="microbit模組.py",
+    #                 #path="boot.py",
+    #                 content_bytes=content_bytes,
+    #                 editor_id=id(tab),
+    #                 blocking=True,
+    #                 description="安裝boot.py模組",
+    #             ),
+    #             dialog_title="安裝...",
+    #         )
+    #         else:
+    #             return
 
 
 
-        tk.Button(tab.tab_frame.interior,
-            relief='solid', 
-            borderwidth=1,
-            text=postit_data['postit_label'],
-            #fg='#333333',
-            #fg=tab.font_color, 
-            #bg=tab.fill_color,
-            #bg='#aaaaff',
-            justify='left',
-            font=f,  
-            image=self.install_image,  
-            compound=tk.LEFT, 
-            padx=0,
-            pady=0,
-            command=install_lib,
-        ).grid( sticky='e',padx=20, pady=8)
+    #     tk.Button(tab.tab_frame.interior,
+    #         relief='solid', 
+    #         borderwidth=1,
+    #         text=postit_data['postit_label'],
+    #         #fg='#333333',
+    #         #fg=tab.font_color, 
+    #         #bg=tab.fill_color,
+    #         #bg='#aaaaff',
+    #         justify='left',
+    #         font=f,  
+    #         image=self.install_image,  
+    #         compound=tk.LEFT, 
+    #         padx=0,
+    #         pady=0,
+    #         command=install_lib,
+    #     ).grid( sticky='e',padx=20, pady=8)
 
     def hide_tab(self, tab):
         mode = tab.group.mode
@@ -1755,20 +1755,16 @@ class AboutDialog(CommonDialog):
         heading_font = tk.font.nametofont("TkHeadingFont").copy()
         heading_font.configure(size=19, weight="bold")
         heading_label = ttk.Label(
-            main_frame, text="Py4t " + get_version(), font=heading_font
+            main_frame, text="Py4t(版本:{})".format(get_version()), font=heading_font
         )
         heading_label.grid()
 
+        
+
         text_font = font.Font(size=14, weight=font.NORMAL, family='Consolas')
 
-        url = "https://beardad1975.github.io/py4t/"
-        url_font = tk.font.nametofont("TkDefaultFont").copy()
-        url_font.configure(underline=1)
-        url_label = ttk.Label(
-            main_frame, text=url, style="Url.TLabel", cursor="hand2", font=url_font
-        )
-        url_label.grid()
-        url_label.bind("<Button-1>", lambda _: webbrowser.open(url))
+        
+        
 
 
 
@@ -1776,20 +1772,19 @@ class AboutDialog(CommonDialog):
             main_frame,
             font = text_font,
             text=
-                "\nPy4t是個由中小學教師發起的計畫\n"
+                "由中小學教師發起的計畫\n"
                 + "採用多個開放原始碼套件\n"
-                + "整合成簡易的python程式環境\n"
+                + "整合成適合青少年的python編輯器\n"
                 + "\n"
-                + "目的是搭一座學習之橋\n"
-                + "從Scratch到Python\n"
-                + "讓青少年學習程式、體驗科技\n"
+                + "目的是搭一座從Scratch到Python的學習之橋\n"
+                + "讓青少年實作程式、運算思維與體驗科技\n"
                 + "\n"
-                + "【感謝】\n"
-                + "桃園市建國自造教育及科技中心\n"
-                + "新竹縣博愛自造教育及科技中心\n"
-                + "臺北市新興自造教育及科技中心\n"
-                + "桃園市南門國民小學\n"
-                + "Python、Thonny及各個函式庫的開發者\n"
+                 + "【特別感謝(詳見連結)】\n"
+                # + "桃園市建國自造教育及科技中心\n"
+                # + "新竹縣博愛自造教育及科技中心\n"
+                # + "臺北市新興自造教育及科技中心\n"
+                # + "桃園市南門國民小學\n"
+                # + "Python、Thonny及各個函式庫的開發者\n"
             ,
             #style="Url.TLabel",
             #cursor="hand2",
@@ -1801,6 +1796,49 @@ class AboutDialog(CommonDialog):
         #     "<Button-1>",
         #     lambda _: webbrowser.open("https://github.com/thonny/thonny/blob/master/CREDITS.rst"),
         # )
+
+        credit_url = "https://beardad1975.github.io/py4t/about/acknowledge/"
+        url_font = tk.font.nametofont("TkDefaultFont").copy()
+        url_font.configure(underline=1)
+        credit_url_label = ttk.Label(
+            main_frame, text=credit_url, style="Url.TLabel", cursor="hand2", font=url_font
+        )
+        credit_url_label.grid()
+        credit_url_label.bind("<Button-1>", lambda _: webbrowser.open(credit_url))
+
+        sep_label = ttk.Label(
+            main_frame, text="\n", 
+        )
+        sep_label.grid()
+
+        link_note_label = ttk.Label(
+            main_frame, text="【網站與討論區】", font=text_font
+        )
+        link_note_label.grid()
+
+
+        url = "https://beardad1975.github.io/py4t/"
+        #url_font = tk.font.nametofont("TkDefaultFont").copy()
+        #url_font.configure(underline=1)
+        url_label = ttk.Label(
+            main_frame, text=url, style="Url.TLabel", cursor="hand2", font=url_font
+        )
+        url_label.grid()
+        url_label.bind("<Button-1>", lambda _: webbrowser.open(url))
+
+        url2 = "https://www.facebook.com/groups/856789691692686"
+        #url_font = tk.font.nametofont("TkDefaultFont").copy()
+        #url_font.configure(underline=1)
+        url_label2 = ttk.Label(
+            main_frame, text=url2, style="Url.TLabel", cursor="hand2", font=url_font
+        )
+        url_label2.grid()
+        url_label2.bind("<Button-1>", lambda _: webbrowser.open(url2))
+
+        sep_label = ttk.Label(
+            main_frame, text="\n", 
+        )
+        sep_label.grid()
 
         license_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         #license_font.configure(size=12)
@@ -1815,6 +1853,8 @@ class AboutDialog(CommonDialog):
         )
         license_label.grid(pady=20)
 
+        
+
         ok_button = ttk.Button(main_frame, text="OK", command=self._ok, default="active")
         ok_button.grid(pady=(0, 15))
         ok_button.focus_set()
@@ -1825,13 +1865,114 @@ class AboutDialog(CommonDialog):
     def _ok(self, event=None):
         self.destroy()
 
-    def get_os_word_size_guess(self):
-        if "32" in platform.machine() and "64" not in platform.machine():
-            return "(32-bit)"
-        elif "64" in platform.machine() and "32" not in platform.machine():
-            return "(64-bit)"
-        else:
-            return ""
+    # def get_os_word_size_guess(self):
+    #     if "32" in platform.machine() and "64" not in platform.machine():
+    #         return "(32-bit)"
+    #     elif "64" in platform.machine() and "32" not in platform.machine():
+    #         return "(64-bit)"
+    #     else:
+    #         return ""
+
+class MicrobitCommProjectDialog(CommonDialog):
+    def __init__(self, master):
+        super().__init__(master)
+
+        main_frame = ttk.Frame(self)
+        main_frame.grid(sticky=tk.NSEW, ipadx=15, ipady=15)
+        main_frame.rowconfigure(0, weight=1)
+        main_frame.columnconfigure(0, weight=1)
+
+        self.title('Microbit無線通訊-教學程式')
+        self.resizable(height=tk.FALSE, width=tk.FALSE)
+        self.protocol("WM_DELETE_WINDOW", self._ok)
+
+        text_font = font.Font(size=13, weight=font.NORMAL, family='Consolas')
+
+        content = "【Microbit無線通訊-教學程式】\n\n"
+        content += "  簡要使用方式:\n"
+        content += "    1.教師先在microbit上安裝「接收器程式」(脫機運行需儲存為main.py)\n"
+        content += "    2.教師以電腦上python執行「伺服端程式」\n"
+        content += "    3.指導學生撰寫Microbit控制器\n\n"
+        content += "  開啟教學程式:\n"
+        content += "    (檔案會儲存在目前的位置，若需改位置請「另存新檔」)\n"
+
+        head_label = ttk.Label(
+            main_frame, text=content, font=text_font
+        )
+        head_label.grid()
+
+        # bg_frame = ttk.Frame(self) # gives proper color in aqua
+        # bg_frame.grid()
+
+        load_receiver_button = tk.Button(main_frame, 
+                                    text="開啟 接收器程式(需在Microbit執行)", 
+                                    command=self._load_receiver_file)
+        load_receiver_button.grid()        
+        
+        sep_label = ttk.Label(
+            main_frame, text="\n", 
+        )
+        sep_label.grid()
+
+        load_server_button = tk.Button(main_frame, 
+                                    text="開啟 無線通訊伺服端程式(需在電腦執行)", 
+                                    command=self._load_server_file)
+        load_server_button.grid()
+
+        sep_label = ttk.Label(
+            main_frame, text="\n", 
+        )
+        sep_label.grid()
+
+        self.bind("<Return>", self._ok, True)
+        self.bind("<Escape>", self._ok, True)
+
+    def _ok(self, event=None):
+        self.destroy()
+
+    def _load_server_file(self):
+        source_filename = 'microbit_radio_comm_pc_server.py'
+        target_filename = '無線通訊教學_伺服端程式.py'
+        self._load_file(source_filename, target_filename)
+
+    def _load_receiver_file(self):
+        source_filename = 'microbit_radio_comm_receiver.py'
+        target_filename = '無線通訊教學_Microbit接受器.py'
+        self._load_file(source_filename, target_filename)
+    
+    def _load_file(self, source_filename, target_filename):
+        # determine cwd 
+        notebook = get_workbench().get_editor_notebook()
+        cwd = get_workbench().get_local_cwd()
+        if (
+            notebook.get_current_editor() is not None
+            and notebook.get_current_editor().get_filename() is not None
+        ):
+            cwd = os.path.dirname(notebook.get_current_editor().get_filename())
+
+        # prepare path
+        source_file_path = Path(__file__).parent / 'projects' / source_filename
+        target_file_path = Path(cwd) / target_filename
+
+        # check file exists or not 
+        if target_file_path.exists():
+            question = '{}\n檔案已存在，是否要覆蓋'.format(str(target_file_path))
+            answer = messagebox.askyesno('是否覆蓋檔案', question , master=get_workbench())
+            if not answer:
+                # don't copy
+                return
+
+        # copy file
+        shutil.copyfile(source_file_path, target_file_path)
+        notebook.show_file( str(target_file_path) )
+        #print('ori :', source_file_path)
+        #print('target :', target_file_path)
+
+        # close dialog
+        self.destroy()  
+        
+
+
 
 def get_version():
     try: 
@@ -1851,7 +1992,16 @@ def load_plugin():
     def open_about(*args):
         show_dialog(AboutDialog(get_workbench()))
 
+    def open_microbit_comm_projcet(*args):
+        show_dialog(MicrobitCommProjectDialog(get_workbench()))
+
     get_workbench().add_command("aboutPy4t", "help", '關於Py4t', open_about, group=62)
+
+    get_workbench().add_command("microbit_comm_project", "Py4t", 
+                                'Microbit無線通訊-教學程式', 
+                                open_microbit_comm_projcet, 
+                                group=29)
+    get_workbench().add_command("aboutPy4t", "Py4t", '關於Py4t (版本與網站連結)', open_about, group=30)
 
 
     get_workbench().add_command(command_id="share_var_get",

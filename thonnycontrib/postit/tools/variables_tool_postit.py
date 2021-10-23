@@ -159,7 +159,7 @@ class VariableMenuPopup:
 
     def delete_all_restore_default(self):
         
-        ans = messagebox.askyesno('刪除變數','刪除所有變數，並恢復預設值嗎？')
+        ans = messagebox.askyesno('刪除變數','刪除所有變數，並恢復預設值嗎？', master=get_workbench())
         #print(ans)
         if ans:
             #print('yes ')
@@ -173,7 +173,7 @@ class VariableMenuPopup:
 
     def delete_all(self):
         if len(self.vars_counter):
-            ans = messagebox.askyesno('清空全部變數','要清空全部變數嗎？')
+            ans = messagebox.askyesno('清空全部變數','要清空全部變數嗎？',master=get_workbench())
             #print(ans)
             if ans:
                 #print('yes ')
@@ -250,7 +250,7 @@ class VariableAddToolPostit(ttk.Frame):
             content = '【 ' + target_text + ' 】 不是一個合格的變數名稱\n\n'
             content += '【說明】1.變數名稱可以用的字是文字,底線(_)或數字\n'
             content += '　　　　2.變數名稱的開頭第1個字不可以用數字'
-            messagebox.showwarning('變數名稱錯誤', content)
+            messagebox.showwarning('變數名稱錯誤', content, master=get_workbench())
             return
         # elif iskeyword(self.select_text):
         #     content = '【 ' + self.select_text + ' 】 是python的保留關鍵字\n'
