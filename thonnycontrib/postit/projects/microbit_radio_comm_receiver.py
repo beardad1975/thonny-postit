@@ -3,7 +3,7 @@
 ###  (需以Microbit上的micropython執行)
 ###
 
-import radio as 無線廣播
+import radio as 無線電
 import utime as 時間
 from microbit import uart as 序列
 from microbit import display as 燈光, Image as 圖示
@@ -11,7 +11,7 @@ from microbit import button_a as A鈕, button_b as B鈕
 
 
 序列.init(115200)
-無線廣播.on()
+無線電.on()
 
 data_format = ''
 bytes_num = 0
@@ -38,7 +38,7 @@ while True :
     
     
     if start_receiving:
-        接收位元組 = 無線廣播.receive_bytes()
+        接收位元組 = 無線電.receive_bytes()
         if 接收位元組:
             if len(接收位元組) == bytes_num:             
                 序列.write(接收位元組)

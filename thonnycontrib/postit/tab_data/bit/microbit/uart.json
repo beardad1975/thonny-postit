@@ -6,7 +6,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -22,21 +28,36 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postit_type" : "postit_para",
+        "on_label" : "<< 初始化",
+        "off_label" : "初始化 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "序列 初始化",
                 "code" : "序列.init(115200)",
                 "code_display" : "序列.init(115200)",
-                "note" : "初始化 傳輸率",
+                "note" : "初始化 傳輸率(每秒115200位元) ",
                 "long_note" : true
             }            
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 寫入與讀取",
+        "off_label" : "寫入與讀取 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "寫入 傳送位元組",
@@ -55,8 +76,8 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "有資料嗎",
@@ -68,8 +89,8 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
-        "postfix_enter" : false,
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "讀取 接收全部",

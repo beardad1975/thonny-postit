@@ -6,7 +6,13 @@
         "postit_type" : "ttk_separator"
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -19,7 +25,16 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 包裝與拆開資料",
+        "off_label" : "包裝與拆開資料 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -32,7 +47,7 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -45,13 +60,22 @@
         ]
     },
     {
-        "postit_type" : "dropdown_postit",
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 資料長度",
+        "off_label" : "資料長度 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "計算多少位元組",
-                "code" : "資料長度 = 結構.calcsize('hh')",
-                "code_display" : "資料長度 = 結構.calcsize('hh')",
+                "code" : "位元組數 = 結構.calcsize('hh')",
+                "code_display" : "位元組數 = 結構.calcsize('hh')",
                 "note" : "計算多少位元組",
                 "long_note" : true
             }            

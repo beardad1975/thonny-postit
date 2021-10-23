@@ -45,7 +45,7 @@
         "postit_type" : "postit_para",
         "on_label" : "<< while 迴圈",
         "off_label" : "while 迴圈 >>",
-        "start_on" : false
+        "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
