@@ -111,6 +111,40 @@
         ]
     },
     {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "重複幾次",
+                "code" : "for i in range(10) :\npass",
+                "code_display" : "for i in range(10) :\n    pass",
+                "note" : "逐一取出 從數列 (重複次數):\n        迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重複(開始,結尾不含)",
+                "code" : "for i in range(5, 10) :\npass",
+                "code_display" : "for i in range(5, 10) :\n    pass",
+                "note" : "逐一取出 從數列(開始,結尾不含):\n        迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重複次數(開始,結尾不含,步進)",
+                "code" : "for i in range(0, 10, 2) :\npass",
+                "code_display" : "for i in range(0, 10, 2) :\n    pass",
+                "note" : "逐一取出 從數列(開始,結尾不含,步進):\n        迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "從清單 逐一取出",
+                "code" : "for item in [1,4,5] :\npass",
+                "code_display" : "for item in [1,4,5] :\n    pass",
+                "note" : "逐一取出 從清單 :\n        迴圈區塊",
+                "long_note" : true
+            }
+        ]
+    },
+    {
         "postit_type" : "ttk_separator"
     },
     {

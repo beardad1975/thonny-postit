@@ -38,17 +38,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "睡眠 秒",
-                "code" : "時間.sleep(1)",
-                "code_display" : "時間.sleep(1)",
-                "note" : "睡眠 幾秒 ",
-                "long_note" : true
-            },
-            {
                 "menu_display" : "睡眠 毫秒",
                 "code" : "時間.sleep_ms(100)",
                 "code_display" : "時間.sleep_ms(100)",
                 "note" : "睡眠 毫秒 (1000毫秒是1秒)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "睡眠 秒",
+                "code" : "時間.sleep(1)",
+                "code_display" : "時間.sleep(1)",
+                "note" : "睡眠 幾秒 ",
                 "long_note" : true
             },
             {

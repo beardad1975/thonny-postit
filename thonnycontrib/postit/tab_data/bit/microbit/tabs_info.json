@@ -2,8 +2,8 @@
     
     {
         "tab_name" : "led",
-        "tab_label" : " 燈光 ",
-        "tab_title" : "燈光 5x5LED"
+        "tab_label" : " 顯示 ",
+        "tab_title" : "顯示 5x5LED"
         
     },
     {
@@ -14,7 +14,7 @@
     },
     {
         "tab_name" : "accelerometer",
-        "tab_label" : " 加速 ",
+        "tab_label" : " 加速度 ",
         "tab_title" : "加速度感測器"
         
     },
@@ -30,6 +30,18 @@
         "tab_title" : "內建喇叭(限V2)"
         
     },
+    {
+        "tab_name" : "microphone",
+        "tab_label" : "麥克風",
+        "tab_title" : "內建麥克風(限V2)"
+        
+    },
+    {
+        "tab_name" : "iopin",
+        "tab_label" : " 引腳 ",
+        "tab_title" : "引腳輸出與輸入"
+        
+    } ,
     {
         "tab_name" : "radio",
         "tab_label" : " 無線 ",
@@ -53,5 +65,5 @@
         "tab_label" : " 系統 ",
         "tab_title" : "基本系統功能"
         
-    }     
+    }    
 ]

@@ -1,0 +1,247 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "### 需先匯入才能使用",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 電阻式引腳觸碰",
+        "off_label" : "電阻式引腳觸碰 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "觸碰了嗎 pin0",
+                "code" : "pin0.is_touched()",
+                "code_display" : "pin0.is_touched()",
+                "note" : "觸碰了嗎\n(另一手需按住GND)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "觸碰了嗎 pin1",
+                "code" : "pin1.is_touched()",
+                "code_display" : "pin1.is_touched()",
+                "note" : "觸碰了嗎\n(另一手需按住GND)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "觸碰了嗎 pin2",
+                "code" : "pin2.is_touched()",
+                "code_display" : "pin2.is_touched()",
+                "note" : "觸碰了嗎\n(另一手需按住GND)",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 電容式引腳觸碰(限V2)",
+        "off_label" : "電容式引腳觸碰(限V2) >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "觸碰了嗎 logo",
+                "code" : "pin_logo.is_touched()",
+                "code_display" : "pin_logo.is_touched()",
+                "note" : "觸碰了嗎 LOGO圖案",
+                "long_note" : true
+            }     
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 數位輸出輸入",
+        "off_label" : "數位輸出輸入 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "讀取數位輸入 pin0",
+                "code" : "pin0.read_digital()",
+                "code_display" : "pin0.read_digital()",
+                "note" : "讀取數位輸入(0或1)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "讀取數位輸入 pin1",
+                "code" : "pin1.read_digital()",
+                "code_display" : "pin1.read_digital()",
+                "note" : "讀取數位輸入(0或1)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "讀取數位輸入 pin2",
+                "code" : "pin2.read_digital()",
+                "code_display" : "pin2.read_digital()",
+                "note" : "讀取數位輸入(0或1)",
+                "long_note" : true
+            }         
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "數位輸出 pin0",
+                "code" : "pin0.write_digital(1)",
+                "code_display" : "pin0.write_digital(1)",
+                "note" : "數位輸出(0或1)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "數位輸出 pin1",
+                "code" : "pin1.write_digital(1)",
+                "code_display" : "pin1.write_digital(1)",
+                "note" : "數位輸出(0或1)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "數位輸出 pin2",
+                "code" : "pin2.write_digital(1)",
+                "code_display" : "pin2.write_digital(1)",
+                "note" : "數位輸出(0或1)",
+                "long_note" : true
+            }           
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 類比輸出輸入",
+        "off_label" : "類比輸出輸入 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "讀取類比輸入 pin0",
+                "code" : "pin0.read_analog()",
+                "code_display" : "pin0.read_analog()",
+                "note" : "讀取類比輸入(0~1023)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "讀取類比輸入 pin1",
+                "code" : "pin1.read_analog()",
+                "code_display" : "pin1.read_analog()",
+                "note" : "讀取類比輸入(0~1023)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "讀取類比輸入 pin2",
+                "code" : "pin2.read_analog()",
+                "code_display" : "pin2.read_analog()",
+                "note" : "讀取類比輸入(0~1023)",
+                "long_note" : true
+            }           
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "pwm類比輸出 pin0",
+                "code" : "pin0.write_analog(512)",
+                "code_display" : "pin0.write_analog(512)",
+                "note" : "pwm類比輸出(0~1023)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "pwm類比輸出 pin1",
+                "code" : "pin1.write_analog(512)",
+                "code_display" : "pin1.write_analog(512)",
+                "note" : "pwm類比輸出(0~1023)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "pwm類比輸出 pin2",
+                "code" : "pin2.write_analog(512)",
+                "code_display" : "pin0.write_analog(512)",
+                "note" : "pwm類比輸出(0~1023)",
+                "long_note" : true
+            }           
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 引腳模式",
+        "off_label" : "引腳模式 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "取得引腳模式 pin0",
+                "code" : "pin0.get_mode()",
+                "code_display" : "pin0.get_mode()",
+                "note" : "取得引腳模式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取得引腳模式 pin1",
+                "code" : "pin1.get_mode()",
+                "code_display" : "pin1.get_mode()",
+                "note" : "取得引腳模式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取得引腳模式 pin2",
+                "code" : "pin2.get_mode()",
+                "code_display" : "pin2.get_mode()",
+                "note" : "取得引腳模式",
+                "long_note" : true
+            }     
+        ]
+    }
+]

@@ -25,7 +25,7 @@ setup (
         
         platforms=["Windows"],
         python_requires=">=3.5",
-        package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*'] + files,
+        package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*','projects/*'] + files,
                 },
         install_requires=["thonny >= 3.3.7","pillow >= 8.2.0"],
         packages=["thonnycontrib.postit"],

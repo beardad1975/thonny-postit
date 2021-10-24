@@ -1888,7 +1888,7 @@ class MicrobitCommProjectDialog(CommonDialog):
 
         text_font = font.Font(size=13, weight=font.NORMAL, family='Consolas')
 
-        content = "【Microbit無線通訊-教學程式】\n\n"
+        content = "【Microbit無線通訊-教學程式】 即時回饋 與 取號叫號模擬\n\n"
         content += "  簡要使用方式:\n"
         content += "    1.教師先在microbit上安裝「接收器程式」(脫機運行需儲存為main.py)\n"
         content += "    2.教師以電腦上python執行「伺服端程式」\n"

@@ -41,14 +41,14 @@
                 "menu_display" : "演奏",
                 "code" : "音樂.play(音樂.BIRTHDAY)",
                 "code_display" : "音樂.play(音樂.BIRTHDAY)",
-                "note" : "音樂",
+                "note" : "演奏旋律",
                 "long_note" : true
             },
             {
                 "menu_display" : "演奏 等待 重複",
                 "code" : "音樂.play(音樂.BIRTHDAY,\nwait=True,\nloop=False,\n)",
                 "code_display" : "音樂.play(音樂.BIRTHDAY,\n    wait=True,\n    loop=False,\n    )",
-                "note" : "演奏 (旋律, 等待, 重複)",
+                "note" : "演奏旋律 (旋律, 等待, 重複)",
                 "long_note" : true
             }          
         ]

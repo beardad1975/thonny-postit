@@ -1,0 +1,132 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 匯入模組",
+        "off_label" : "匯入模組 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import microphone as 麥克風, SoundEvent as 聲音事件",
+                "code_display" : "from microbit import \\\n  microphone as 麥克風,\\\n  SoundEvent as 聲音事件",
+                "note" : "### 限用micro:bit 2.0",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 聲音值",
+        "off_label" : "聲音值 >>",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "讀取麥克風聲音值",
+                "code" : "麥克風.sound_level()",
+                "code_display" : "麥克風.sound_level()",
+                "note" : "讀取麥克風聲音值",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設值 讀取麥克風聲音值",
+                "code" : "聲音值 = 麥克風.sound_level()",
+                "code_display" : "聲音值 = 麥克風.sound_level()",
+                "note" : "設值 讀取麥克風聲音值",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : "<< 聲音事件",
+        "off_label" : "聲音事件 >>",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "目前聲音事件",
+                "code" : "麥克風.current_event()",
+                "code_display" : "麥克風.current_event()",
+                "note" : "目前聲音事件",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "是大聲事件嗎",
+                "code" : "麥克風.current_event() == 聲音事件.LOUD",
+                "code_display" : "麥克風.current_event()\\\n   == 聲音事件.LOUD",
+                "note" : "是大聲事件嗎",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "是小聲事件嗎",
+                "code" : "麥克風.current_event() == 聲音事件.QUIET",
+                "code_display" : "麥克風.current_event()\\\n   == 聲音事件.QUIET",
+                "note" : "是小聲事件嗎",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "發生過大聲事件嗎",
+                "code" : "麥克風.was_event(聲音事件.LOUD)",
+                "code_display" : "麥克風.was_event(\n  聲音事件.LOUD)",
+                "note" : "發生過大聲事件嗎",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "發生過小聲事件嗎",
+                "code" : "麥克風.was_event(聲音事件.QUIET)",
+                "code_display" : "麥克風.was_event(\n  聲音事件.QUIET)",
+                "note" : "發生過小聲事件嗎",
+                "long_note" : true
+            }  
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定門檻 大聲事件",
+                "code" : "麥克風.set_threshold(聲音事件.LOUD, 200)",
+                "code_display" : "麥克風.set_threshold(\n  聲音事件.LOUD, 200)",
+                "note" : "設定門檻 大聲事件",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定門檻 小聲事件",
+                "code" : "麥克風.set_threshold(聲音事件.QUIET, 200)",
+                "code_display" : "麥克風.set_threshold(\n  聲音事件.QUIET, 200)",
+                "note" : "設定門檻 小聲事件",
+                "long_note" : true
+            }    
+        ]
+    }
+]

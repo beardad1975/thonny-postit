@@ -18,7 +18,7 @@
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import uart as 序列",
-                "code_display" : "from microbit import \n  uart as 序列",
+                "code_display" : "from microbit import\\\n  uart as 序列",
                 "note" : "### 需先匯入才能使用",
                 "long_note" : true
             }            

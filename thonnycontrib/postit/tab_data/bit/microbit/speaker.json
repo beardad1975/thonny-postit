@@ -17,7 +17,7 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "from microbit import speaker as 喇叭, \\\naudio as 聲音, Sound as 音效",
+                "code" : "from microbit import speaker as 喇叭, audio as 聲音, Sound as 音效",
                 "code_display" : "from microbit import \\\n    speaker as 喇叭, \\\n    audio as 聲音, \\\n    Sound as 音效",
                 "note" : "### 限用micro:bit 2.0",
                 "long_note" : true
@@ -58,10 +58,10 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "音效 傻笑",
+                "menu_display" : "音效 咯咯笑",
                 "code" : "音效.GIGGLE",
                 "code_display" : "音效.GIGGLE",
-                "note" : "音效 傻笑",
+                "note" : "音效 咯咯笑",
                 "long_note" : true
             },
             {
@@ -72,10 +72,10 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "音效 哈囉",
+                "menu_display" : "音效 你好",
                 "code" : "音效.HELLO",
                 "code_display" : "音效.HELLO",
-                "note" : "音效 哈囉",
+                "note" : "音效 你好",
                 "long_note" : true
             },
             {
@@ -86,31 +86,31 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "音效 傷心",
+                "menu_display" : "音效 悲傷",
                 "code" : "音效.SAD",
                 "code_display" : "音效.SAD",
-                "note" : "音效 傷心",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "音效 滑行",
-                "code" : "音效.SLIDE",
-                "code_display" : "音效.SLIDE",
-                "note" : "音效 滑行",
+                "note" : "音效 悲傷",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 滑翔",
-                "code" : "音效.SOARING",
-                "code_display" : "音效.SOARING",
+                "code" : "音效.SLIDE",
+                "code_display" : "音效.SLIDE",
                 "note" : "音效 滑翔",
                 "long_note" : true
             },
             {
-                "menu_display" : "音效 泉水",
+                "menu_display" : "音效 飛翔",
+                "code" : "音效.SOARING",
+                "code_display" : "音效.SOARING",
+                "note" : "音效 飛翔",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "音效 春天",
                 "code" : "音效.SPRING",
                 "code_display" : "音效.SPRING",
-                "note" : "音效 泉水",
+                "note" : "音效 春天",
                 "long_note" : true
             },
             {
@@ -121,10 +121,10 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "音效 呵欠",
+                "menu_display" : "音效 打哈欠",
                 "code" : "音效.YAWN",
                 "code_display" : "音效.YAWN",
-                "note" : "音效 呵欠",
+                "note" : "音效 打哈欠",
                 "long_note" : true
             }  
         ]
