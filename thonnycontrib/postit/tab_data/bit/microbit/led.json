@@ -138,14 +138,14 @@
                 "menu_display" : "設定LED像素",
                 "code" : "顯示.set_pixel(0, 0, 5)",
                 "code_display" : "顯示.set_pixel(0, 0, 5)",
-                "note" : "設定LED像素 x(0~4) y(0~4) 亮度(0~9)",
+                "note" : "設定LED像素 \nx(0~4) y(0~4) 亮度(0~9)",
                 "long_note" : true
             },
             {
                 "menu_display" : "取得LED像素亮度值",
                 "code" : "顯示.get_pixel(0, 0)",
                 "code_display" : "顯示.get_pixel(0, 0)",
-                "note" : "取得LED像素亮度值 x(0~4) y(0~4)",
+                "note" : "取得LED像素亮度值 \nx(0~4) y(0~4)",
                 "long_note" : true
             }           
         ]
