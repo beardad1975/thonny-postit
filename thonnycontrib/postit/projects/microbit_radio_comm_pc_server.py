@@ -48,10 +48,10 @@ def init():
     
     Data.answer_to_char_dict ={
             0 : '',
-            1 : '1',
-            2 : '2',
-            3 : '3',
-            4 : '4',
+            1 : 'A',
+            2 : 'B',
+            3 : 'C',
+            4 : 'D',
             5 : '是',
             6 : '否',
         }
@@ -67,13 +67,14 @@ def init():
     Data.msg_deque = deque(maxlen=Data.msg_max)
     Data.client_deque = deque(maxlen=Data.client_max)
     
-    
-    
     Data.tts_start = False
     Data.序列連線 = None
     
     sound_init()
     load_data()
+    Data.序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)
+
+
 
 def sound_init():
     # prepare call sound
@@ -181,7 +182,7 @@ def make_window_feedback():
                     sg.Button('重新作答', key='-CLEAR_ALL-'),
                     sg.Button('鎖定答案', key='-LOCK_ANSWER-'),
                     sg.Text('   正確答案:'),
-                    sg.Combo(('1','2','3','4','是','否'),key='-ANSWER_COMBO-',default_value='1', readonly=True),
+                    sg.Combo(('A','B','C','D','是','否'),key='-ANSWER_COMBO-',default_value='A', readonly=True),
                     sg.Button('對答案', key='-CHECK_ANSWER-'),
                     sg.Button('檢視成績', key='-VIEW_SCORE-'),
                     sg.Button('TEST'),
@@ -238,7 +239,7 @@ def make_window_feedback():
         )
     
     # 底部區塊
-    feedback_format = "[h]apikey [h]0~6(0無 1 2 3 4 5是 6否)"
+    feedback_format = "[h]apikey [h]0無 1A 2B 3C 4D 5是 6否"
     
     bottom_layout = [
               [
@@ -315,8 +316,8 @@ def make_window_callnum():
 
     # 左區塊
     left_col = sg.Column(
-        [[sg.Text('等待0人',key='-WAIT_TITLE-',font=Data.font,background_color=Data.title_color)],
-         [sg.Multiline('',key='-CLIENT_DEQUE-',font=Data.font_small, size=(18, 15), disabled=True,background_color=Data.readonly_color)],
+        [[sg.Text('取號:等待0人',key='-WAIT_TITLE-',font=Data.font,background_color=Data.title_color)],
+         [sg.Multiline('',key='-CLIENT_DEQUE-',font=Data.font_small, size=(20, 15), disabled=True,background_color=Data.readonly_color)],
          ],
         size=(350, 600),
         )
@@ -446,9 +447,11 @@ def init_feedback():
     Data.window_feedback['-LOCK_ANSWER_TXT-'].update(Data.fill_answer_content,background_color=Data.highlight_color2)
     Data.window_feedback['-CHECK_ANSWER_TXT-'].update('',background_color=Data.theme_background_color)
 
-    # microbit connect
-    Data.序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)
+    ## microbit connect
+    #Data.序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)
+    Data.序列連線.清除緩除區()
     sleep(0.3)
+    print('更改訊息格式: hh')
     Data.序列連線.傳送(b'hh')
 
 def lock_answer():
@@ -613,9 +616,12 @@ def init_callnum():
     update_msg_called_ui()
     
     # microbit connect
-    Data.序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)
+    #Data.序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)
+    Data.序列連線.清除緩除區()
     sleep(0.3)
+    print('更改訊息格式: hhh')
     Data.序列連線.傳送(b'hhh')
+    
     
 def update_client_ui():
     result = ''
@@ -627,7 +633,7 @@ def update_client_ui():
     Data.window_callnum['-CLIENT_DEQUE-'].update(result)
     
     wait_num = len(Data.client_deque)
-    Data.window_callnum['-WAIT_TITLE-'].update(f'等待{wait_num}人')
+    Data.window_callnum['-WAIT_TITLE-'].update(f'取號:等待{wait_num}人')
 
 def update_msg_called_ui():
     total_called_num = len(Data.msg_called_list)
@@ -780,7 +786,7 @@ def event_loop():
         if window == Data.window_feedback and (event == sg.WIN_CLOSED) and sg.popup_yes_no('要離開即時回饋功能嗎?') == 'Yes':
             Data.window_feedback.close()
             Data.window_feedback = None
-            Data.序列連線.關閉()
+            #Data.序列連線.關閉()
             Data.window_main.un_hide()
             
         if window == Data.window_feedback and event == '-LOCK_ANSWER-':
@@ -813,7 +819,7 @@ def event_loop():
         if window == Data.window_callnum and (event == sg.WIN_CLOSED) and sg.popup_yes_no('要離開取號叫號功能嗎?') == 'Yes':
             Data.window_callnum.close()
             Data.window_callnum = None
-            Data.序列連線.關閉()
+            #Data.序列連線.關閉()
             Data.window_main.un_hide()
             
         if window == Data.window_callnum and event == '取號':
@@ -837,6 +843,7 @@ def event_loop():
 def main():
     init()
     event_loop()
+    Data.序列連線.關閉()
 
 if __name__ == '__main__':
     main()

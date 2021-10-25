@@ -14,7 +14,7 @@
     },
     {
         "tab_name" : "accelerometer",
-        "tab_label" : " 加速度 ",
+        "tab_label" : "加速度",
         "tab_title" : "加速度感測器"
         
     },
