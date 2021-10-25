@@ -348,6 +348,13 @@
                 "long_note" : true
             },
             {
+                "menu_display" : "畫筆顏色 RGB文字",
+                "code" : "畫筆顏色('#ffffff')",
+                "code_display" : "畫筆顏色('#ffffff')",
+                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
+                "long_note" : true
+            },
+            {
                 "menu_display" : "畫筆顏色 白",
                 "code" : "畫筆顏色('white')",
                 "code_display" : "畫筆顏色('white')",
@@ -456,6 +463,13 @@
                 "code" : "填充顏色(0,0,0)",
                 "code_display" : "填充顏色(0,0,0)",
                 "note" : "顏色 (RGB紅綠藍 0~255)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 RGB文字",
+                "code" : "填充顏色('#ffffff')",
+                "code_display" : "填充顏色('#ffffff')",
+                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
                 "long_note" : true
             },
             {
