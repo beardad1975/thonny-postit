@@ -7,6 +7,10 @@ from collections import OrderedDict, Counter, deque
 from random import randint, seed, choice
 from time import sleep
 import json
+import serial
+import serial.tools.list_ports
+import os.path
+import platform
 
 import PySimpleGUI as sg
 
@@ -22,6 +26,10 @@ class Data:pass
 # ---------------初始設定程式-------------------
 
 def init():
+    Data.port = '無連接'
+    Data.序列連線 = None
+    serial_init()
+
     Data.font = '標楷體 32 normal'
     Data.font_small = '標楷體 20 normal'
     Data.title_color = '#484d54'
@@ -68,12 +76,66 @@ def init():
     Data.client_deque = deque(maxlen=Data.client_max)
     
     Data.tts_start = False
-    Data.序列連線 = None
-    
+        
     sound_init()
     load_data()
-    Data.序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)
 
+    
+
+
+    
+
+
+def serial_init():
+    # one shot window
+    potential = detect_potential_ports()
+    #print(potential)
+    microbit_num = len(potential)
+    
+    if microbit_num == 0:
+        # test mode
+        test_mode_layout = [  
+                    [sg.Text("偵測不到microbit, 只能使用測試功能")],    
+                
+                    [sg.Button('Ok')] 
+                ]
+        test_mode_window = sg.Window('無線通訊伺服端程式', test_mode_layout)
+        event, values = test_mode_window.read()  
+        test_mode_window.close() 
+        Data.序列連線 = 連接microbit(例外錯誤=False, 讀取等待=0)
+    else: 
+        ports, _ = zip(*potential)
+
+        ask_serial_layout = [  
+                [   sg.Text("請選擇microbit接收器的連接埠"),
+                    sg.Combo(ports,key='-PORT-',default_value=ports[0], readonly=True),
+                ],    
+                
+                [sg.Button('Ok')] ]
+
+        ask_serial_window = sg.Window('接受器序列埠', ask_serial_layout)
+
+        event, values = ask_serial_window.read()
+        Data.port = values['-PORT-']  
+        #print('port is : ', values['-PORT-'])
+        ask_serial_window.close() 
+        
+        Data.序列連線 = 連接microbit(埠=Data.port, 例外錯誤=False, 讀取等待=0)
+
+
+def detect_potential_ports():
+    # code from list_serial_ports 
+    
+    try:
+        old_islink = os.path.islink
+        if platform.system() == "Windows":
+            os.path.islink = lambda _: False
+        all_ports = list(serial.tools.list_ports.comports())
+    finally:
+        os.path.islink = old_islink
+
+    return [(p.device, p.description) for p in all_ports 
+                    if (p.vid, p.pid) in {(0x0D28, 0x0204)} ]
 
 
 def sound_init():
@@ -157,7 +219,7 @@ def make_window_main():
                      ]]
     
     layout=[
-                [ sg.Text('Micro:bit與無線通訊 伺服端程式\n')],
+                [ sg.Text(f'Micro:bit與無線通訊 伺服端程式 -- 控制器連接埠:({Data.port})\n')],
                 [ sg.TabGroup(tab_group_layout)],                
             ]
     
