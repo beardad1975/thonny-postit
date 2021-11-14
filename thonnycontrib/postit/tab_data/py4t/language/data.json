@@ -176,6 +176,26 @@
         ]
     },
     {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "編碼方法 字串->位元組",
+                "code" : ".encode()",
+                "code_display" : ".encode()",
+                "note" : "編碼方法 字串->位元組",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        字串->位元組 utf-8",
+                "code" : ".encode()",
+                "code_display" : ".encode('utf-8')",
+                "note" : "編碼方法 字串->位元組 utf-8",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
         "postit_type" : "postit_para",
         "on_label" : "<< 位元組類型",
         "off_label" : "位元組類型 >>",
@@ -203,6 +223,26 @@
                 "code" : "bytes('文字', 'utf8')",
                 "code_display" : "bytes('文字', 'utf8')",
                 "note" : "轉成位元組 utf8編碼",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "解碼方法 位元組->字串",
+                "code" : ".decode()",
+                "code_display" : ".decode()",
+                "note" : "解碼方法 位元組->字串",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        位元組->字串 utf-8",
+                "code" : ".decode()",
+                "code_display" : ".decode('utf-8')",
+                "note" : "解碼方法 位元組->字串 utf-8",
                 "long_note" : true
             }       
         ]

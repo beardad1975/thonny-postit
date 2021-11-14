@@ -221,10 +221,10 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "呼叫函式(使用新功能)",
-                "code" : "新功能(5)",
-                "code_display" : "新功能(5)",
-                "note" : "呼叫函式(使用新功能)",
+                "menu_display" : "引用全域變數",
+                "code" : "global ",
+                "code_display" : "global",
+                "note" : "全域變數 變數名稱",
                 "long_note" : true
             }
         ]

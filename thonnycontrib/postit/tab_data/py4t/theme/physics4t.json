@@ -184,6 +184,9 @@
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
         "postit_type" : "postit_para",
         "on_label" : "<< 物體屬性與運動",
         "off_label" : "物體屬性與運動 >>",
@@ -194,10 +197,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "位置",
+                "menu_display" : "位置 變數xy",
+                "code" : "物體.位置 = [x, y]",
+                "code_display" : "物體.位置 = [x, y]",
+                "note" : "設定左右x與上下y位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "位置 常數",
                 "code" : "物體.位置 = [300, 300]",
                 "code_display" : "物體.位置 = [300, 300]",
-                "note" : "設定左右x與上下y位置",
+                "note" : "設定左右與上下位置",
                 "long_note" : true
             },
             {
@@ -404,6 +414,32 @@
                 "code" : "if 按鍵 == key.LEFT :\npass",
                 "code_display" : "if 按鍵 == key.LEFT :\n    pass",
                 "note" : "是向左鍵?",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "當更新時",
+                "code" : "def 當更新時(時間差):\npass\n",
+                "code_display" : "def 當更新時(時間差):\n    pass",
+                "note" : "當更新時(時間差)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "點擊物體時",
+                "code" : "def 點擊物體時(物體, x, y):\npass\n",
+                "code_display" : "def 點擊物體時(物體,x,y):\n    pass",
+                "note" : "點擊物體時(物體,左右,上下)",
                 "long_note" : true
             }
         ]
