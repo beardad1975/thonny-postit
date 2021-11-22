@@ -22,6 +22,7 @@ from thonny.common import ToplevelCommand, InlineCommand
 from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
+from .block_enclosed_postit import BlockEnclosedPostit
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH
                      )
 from . import common
@@ -653,6 +654,9 @@ class PythonPostitView(ttk.Frame):
 
             elif postit_data['postit_type'] == 'in_para_dropdown_postit':
                 self.build_in_para_dropdown_postit(tab, postit_data)
+
+            elif postit_data['postit_type'] == 'in_para_block_enclosed_postit':
+                self.build_in_para_block_enclosed_postit(tab, postit_data)
               
             #elif postit_data['postit_type'] == 'bit_install_lib_postit':
             #    self.build_bit_install_lib_postit(tab, postit_data)
@@ -719,6 +723,19 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
             #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)  
 
+    def build_in_para_block_enclosed_postit(self, tab, postit_data):
+        temp_code_list = []
+        for i in postit_data["items"]:
+            temp_code_list.append(CodeNTuple(
+                menu_display=i['menu_display'],
+                code=i['code'],
+                code_display=i['code_display'],
+                note=i['note'],
+                long_note=i['long_note'] ))
+
+        parent = tab.current_postit_para.para_frame
+        BlockEnclosedPostit(parent, tab, code_list = temp_code_list,
+            postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
     # def build_bit_install_lib_postit(self, tab, postit_data):
     #     logo_path = Path(__file__).parent / 'images' / 'install.png'
     #     im = Image.open(logo_path)       

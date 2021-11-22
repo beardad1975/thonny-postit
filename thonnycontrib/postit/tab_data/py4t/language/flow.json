@@ -19,21 +19,21 @@
                 "menu_display" : "如果",
                 "code" : "if 1 > 0 : \npass",
                 "code_display" : "if 1 > 0 :\n    pass",
-                "note" : "如果 條件:\n        成立區塊",
+                "note" : "如果 條件:\n    成立區塊",
                 "long_note" : false
             },
             {
                 "menu_display" : "如果 不然(否則)",
                 "code" : "if 1 > 0 :\npass\nelse :\npass",
                 "code_display" : "if 1 > 0 :\n    pass\nelse :\n    pass",
-                "note" : "如果 條件 :\n        成立區塊\n不然(否則) :\n        不成立區塊",
+                "note" : "如果 條件 :\n    成立區塊\n不然(否則) :\n    不成立區塊",
                 "long_note" : false
             },
             {
                 "menu_display" : "不然如果",
                 "code" : "if 1 > 0 :\npass\nelif 0 < 1 :\npass\nelse :\npass",
                 "code_display" : "if 1 > 0 :\n    pass\nelif 0 < 1 :\n    pass\nelse :\n    pass",
-                "note" : "如果 條件:\n        成立區塊\n不然如果 條件:\n        成立區塊\n不然(否則):\n        都不成立區塊",
+                "note" : "如果 條件:\n    成立區塊\n不然如果 條件:\n    成立區塊\n不然(否則):\n        都不成立區塊",
                 "long_note" : false
             }        
         ]
@@ -48,21 +48,21 @@
         "start_on" : true
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
+        "postit_type" : "in_para_block_enclosed_postit",
         "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "重複無限次",
                 "code" : "while True :\npass",
                 "code_display" : "while True :\n    pass",
-                "note" : "重複無限次:\n        迴圈區塊",
+                "note" : "重複無限次:\n    迴圈區塊",
                 "long_note" : false
             },
             {
                 "menu_display" : "有條件重複",
                 "code" : "while 1 > 0 :\npass",
                 "code_display" : "while 1 > 0 :\n    pass",
-                "note" : "當條件成立時:\n        迴圈區塊",
+                "note" : "當條件成立時:\n    迴圈區塊",
                 "long_note" : false
             }
         ]
@@ -84,28 +84,28 @@
                 "menu_display" : "重複幾次",
                 "code" : "for 數 in range(10) :\npass",
                 "code_display" : "for 數 in range(10) :\n    pass",
-                "note" : "逐一取出 從數列 (重複次數):\n        迴圈區塊",
+                "note" : "逐一取出 從數列 (重複次數):\n    迴圈區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "重複(開始,結尾不含)",
                 "code" : "for 數 in range(5, 10) :\npass",
                 "code_display" : "for 數 in range(5, 10) :\n    pass",
-                "note" : "逐一取出 從數列(開始,結尾不含):\n        迴圈區塊",
+                "note" : "逐一取出 從數列(開始,結尾不含):\n    迴圈區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "重複次數(開始,結尾不含,步進)",
                 "code" : "for 數 in range(0, 10, 2):\npass",
                 "code_display" : "for 數 in range(0, 10, 2):\n    pass",
-                "note" : "逐一取出 從數列(開始,結尾不含,步進):\n        迴圈區塊",
+                "note" : "逐一取出 從數列(開始,結尾不含,步進):\n    迴圈區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "從清單 逐一取出",
                 "code" : "for 項目 in [1,4,5] :\npass",
                 "code_display" : "for 項目 in [1,4,5] :\n    pass",
-                "note" : "逐一取出 從清單 :\n        迴圈區塊",
+                "note" : "逐一取出 從清單 :\n    迴圈區塊",
                 "long_note" : true
             }
         ]
