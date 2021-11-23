@@ -93,7 +93,7 @@ class DropdownPostMixin:
 
         x_root, y_root = event.x_root, event.y_root
         
-        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+10))
+        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+2))
 
         #change insert over editor or shell (but not postit button)
         
@@ -114,7 +114,7 @@ class DropdownPostMixin:
                 if editor_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
                     editor_text.compare(mouse_index, "<=", tk.SEL_LAST):
                     self.drag_hover_selection = True
-                    self.drag_button.config(text='【取代】'+self.hover_text_backup)
+                    self.drag_button.config(text=' 【取代成】\n'+self.hover_text_backup)
                     
                 else:
                     self.drag_hover_selection = False
@@ -138,7 +138,7 @@ class DropdownPostMixin:
                     if shell_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
                         shell_text.compare(mouse_index, "<=", tk.SEL_LAST):
                         self.drag_hover_selection = True
-                        self.drag_button.config(text='【取代】'+self.hover_text_backup)
+                        self.drag_button.config(text=' 【取代成】\n'+self.hover_text_backup)
                         
                     else:
                         self.drag_hover_selection = False

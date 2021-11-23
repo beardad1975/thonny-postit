@@ -33,23 +33,296 @@ class BlockEnclosedCodeMixin:
             code_display = code
 
         # check colon and pass in code
-        if not ':' in code or not 'pass' in code:
+        if not ':' in code or not '\npass' in code:
             raise MissingColonOrPass
 
+        code_split = code.split('\n', 2)
+        #print(code_split)
+        if len(code_split) == 2:
+            # nothing remains after pass
+            self.block_enclosed_colon_part_code = code_split[0]
+            self.block_enclosed_after_pass_code = None
+        elif len(code_split) == 3:
+            # something remains after pass
+            self.block_enclosed_colon_part_code = code_split[0]
+            self.block_enclosed_after_pass_code = code_split[2]
+
+        display_split = code_display.split('\n', 2)
+        #print(display_split)
+        if len(display_split) == 2:
+            # nothing remains after pass
+            self.block_enclosed_colon_part_display = display_split[0]
+            self.block_enclosed_after_pass_display = None
+        elif len(display_split) == 3:
+            # something remains after pass
+            self.block_enclosed_colon_part_display = display_split[0]
+            self.block_enclosed_after_pass_display = display_split[2]
+        
+        #print(self.block_enclosed_colon_part)
+        #print(self.block_enclosed_after_pass)
         self.code = code
         self.code_display = code_display 
-        self.note = note
+        self.note = note        
+        
         if postfix_enter:
             self.var_postfix_enter.set(True)
         
         self.update_postit_code()
 
 
+class BlockEnclosedPostMixin:
+    def on_mouse_drag(self, event):
+        ###print('drag ...')
+        #create drag window
+        if not self.drag_window: 
+            self.create_drag_window()
+            self.postit_button.config(cursor='hand2')
+
+        x_root, y_root = event.x_root, event.y_root
+        
+        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+2))
+
+        #change insert over editor or shell (but not postit button)
+        
+        hover_widget = event.widget.winfo_containing(x_root, y_root)
+        
+        if isinstance(hover_widget, CodeViewText):
+            # hover editor
+            editor_text = hover_widget
+            relative_x = x_root - editor_text.winfo_rootx()
+            relative_y =  y_root - editor_text.winfo_rooty()
+            mouse_index = editor_text.index(f"@{relative_x},{relative_y}")
+            # set cursor in editor
+            editor_text.focus_set()
+            editor_text.mark_set(tk.INSERT, mouse_index)
+
+            if editor_text.tag_ranges(tk.SEL):
+                #check darg hover selection
+                if editor_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                    editor_text.compare(mouse_index, "<=", tk.SEL_LAST):
+
+                    block_text = editor_text.get("sel.first linestart", "sel.last lineend")
+                    
+                    block_enclosed_text = self.enclosed_in_drag(block_text)
+
+                    self.drag_hover_selection = True
+                    self.drag_button.config(text=' 【包含區塊】\n'+ block_enclosed_text)
+                    
+                else:
+                    self.drag_hover_selection = False
+                    self.drag_button.config(text=self.hover_text_backup)
+                    
+                    
+        elif isinstance(hover_widget, ShellText):
+            # hover shell 
+            shell_text = hover_widget
+            relative_x = x_root - shell_text.winfo_rootx()
+            relative_y = y_root - shell_text.winfo_rooty()
+            # set cursor in shell
+            shell_text.focus_set()
+            mouse_index = shell_text.index(f"@{relative_x},{relative_y}")
+            input_start_index = shell_text.index('input_start')
+            if shell_text.compare(mouse_index, '>=', input_start_index):
+                shell_text.mark_set(tk.INSERT, mouse_index)
+
+                if shell_text.tag_ranges(tk.SEL):
+                    #check darg hover selection
+                    if shell_text.compare(tk.SEL_FIRST, "<=", mouse_index) and \
+                        shell_text.compare(mouse_index, "<=", tk.SEL_LAST):
+                        self.drag_hover_selection = True
+                        self.drag_button.config(text=' 【取代成】\n'+self.hover_text_backup)
+                        
+                    else:
+                        self.drag_hover_selection = False
+                        self.drag_button.config(text=self.hover_text_backup)
+
+    def enclosed_in_drag(self, block_text):
+        lines = block_text.split('\n')
+
+        # count leading spaces in first line
+        first_spaces_num = len(lines[0]) - len(lines[0].lstrip(' '))
+
+        block_enclosed_text = ' ' * first_spaces_num + self.block_enclosed_colon_part_display + '\n'
+        block_enclosed_text += '    ' + lines[0] + '\n'
+
+        is_block_end =  False
+        for line in lines[1:]:
+            temp_spaces_num = len(line) - len(line.lstrip(' '))
+            if not is_block_end and temp_spaces_num >= first_spaces_num: 
+                # indent block when necessary
+                block_enclosed_text += '    ' + line + '\n'
+            else:
+                # no indent
+                is_block_end = True
+                block_enclosed_text += line + '\n'
+
+        if self.block_enclosed_after_pass_display:
+            lines = self.block_enclosed_after_pass_display.split('\n')
+            for line in lines:
+                block_enclosed_text += ' ' * first_spaces_num + line + '\n'
+
+        return block_enclosed_text
+
+    def insert_into_editor(self, editor_text, 
+                           pressing=False, dragging=False,
+                           selecting=False, hovering=False):
+        if pressing and not selecting:
+            self.content_insert(editor_text, self.code)
+            if self.var_postfix_enter.get():
+                editor_text.event_generate("<Return>")
+
+        elif pressing and selecting:
+            editor_text.event_generate("<BackSpace>")
+            self.content_insert(editor_text, self.code)
+            if self.var_postfix_enter.get():
+                editor_text.event_generate("<Return>")
+
+        elif dragging and not hovering:
+            # cancel selection
+ 
+            if editor_text.tag_ranges(tk.SEL):
+                ori_sel_first = editor_text.index(tk.SEL_FIRST)
+                ori_sel_last = editor_text.index(tk.SEL_LAST)
+                editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+            
+            self.content_insert(editor_text, self.code)
+            if self.var_postfix_enter.get():
+                editor_text.event_generate("<Return>")
+
+
+
+        elif dragging and hovering:
+            #editor_text.event_generate("<BackSpace>")
+            #self.content_insert(editor_text, self.code)
+            
+            self.block_enclosed_content_insert(editor_text)
+            
+            #if self.var_postfix_enter.get():
+            #    editor_text.event_generate("<Return>")
+
+    def block_enclosed_content_insert(self, text_widget):
+        #print('block_enclosed insert')
+        #text_widget.event_generate("<BackSpace>")
+
+        # get block_text in selection
+
+        index1 = text_widget.index("sel.first linestart")
+        index2 = text_widget.index("sel.last lineend")
+
+        block_text = text_widget.get(index1, index2)
+        #print(block_text)
+        # delete all selection lines
+        text_widget.tag_add(tk.SEL, index1, index2)
+        text_widget.event_generate("<BackSpace>")
+        
+        lines = block_text.split('\n')
+
+        # count leading spaces in first line
+        first_spaces_num = len(lines[0]) - len(lines[0].lstrip(' '))
+
+        temp_text = ' ' * first_spaces_num + self.block_enclosed_colon_part_code
+        text_widget.insert(tk.INSERT,temp_text)
+        text_widget.event_generate("<Return>")
+        
+
+        
+        temp_text = '    ' + lines[0] 
+        text_widget.event_generate("<Home>")
+        text_widget.insert(tk.INSERT,temp_text)
+        text_widget.event_generate("<Return>")
+        
+
+        is_block_end =  False
+        for line in lines[1:]:
+            temp_spaces_num = len(line) - len(line.lstrip(' '))
+            if not is_block_end and temp_spaces_num >= first_spaces_num: 
+                # indent block when necessary
+                temp_text = '    ' + line
+                text_widget.event_generate("<Home>")
+                text_widget.insert(tk.INSERT,temp_text)
+                text_widget.event_generate("<Return>")
+                
+            else:
+                # no indent
+                is_block_end = True
+                temp_text = line
+                text_widget.event_generate("<Home>")
+                text_widget.insert(tk.INSERT,temp_text)
+                text_widget.event_generate("<Return>")
+                
+        if self.block_enclosed_after_pass_code:
+            text_widget.event_generate("<BackSpace>")
+            lines = self.block_enclosed_after_pass_code.split('\n')
+            #print(lines)
+            line_num = len(lines)          
+            if line_num == 1 :
+                # one line (no newline)
+                    #print('co chi')
+                    text_widget.insert(tk.INSERT,lines[0])
+            elif line_num > 1 :
+                #multi lines 
+                line_count = len(lines)
+                for i, line in enumerate(lines):
+
+                    #if else else and except, need to add a extra backspack
+                    # pass is special case
+                    #if not line.startswith('pass'):
+                    
+                    #if line[:4] in ('else', 'elif', 'exce')  :
+                    #    text_widget.event_generate("<BackSpace>")
+
+                    text_widget.insert(tk.INSERT,line)
+
+                    #  generate enter if not last item
+                    if i < line_count - 1 :
+                        text_widget.event_generate("<Return>")
+
+
+
+
+class BlockEnclosedPopup:
+    def switch_postit(self, code_index):
+        code_item = self.code_list[code_index]
+
+        # check colon and pass in code
+        if not ':' in code_item.code or not '\npass' in code_item.code:
+            raise MissingColonOrPass
+
+        code_split = code_item.code.split('\n', 2)
+        #print(code_split)
+        if len(code_split) == 2:
+            # nothing remains after pass
+            self.block_enclosed_colon_part_code = code_split[0]
+            self.block_enclosed_after_pass_code = None
+        elif len(code_split) == 3:
+            # something remains after pass
+            self.block_enclosed_colon_part_code = code_split[0]
+            self.block_enclosed_after_pass_code = code_split[2]
+
+        display_split = code_item.code_display.split('\n', 2)
+        #print(display_split)
+        if len(display_split) == 2:
+            # nothing remains after pass
+            self.block_enclosed_colon_part_display = display_split[0]
+            self.block_enclosed_after_pass_display = None
+        elif len(display_split) == 3:
+            # something remains after pass
+            self.block_enclosed_colon_part_display = display_split[0]
+            self.block_enclosed_after_pass_display = display_split[2]
+
+        self.code = code_item.code
+        self.code_display = code_item.code_display
+        self.note = code_item.note
+        self.long_note = code_item.long_note
+
+        self.set_code_display(self.code_display)
+        self.set_note(self.note)
+        self.update_button_enter_sign()
 
 class BlockEnclosedPostit( DropdownWidget, 
                       BlockEnclosedCodeMixin, BaseCode, 
-                      DropdownPostMixin, BasePost, 
-                      DropdownPopup):
+                      BlockEnclosedPostMixin, DropdownPostMixin, BasePost, 
+                      BlockEnclosedPopup, DropdownPopup):
     """   """
     def __init__(self, parent, tab, code_list, postfix_enter=False):
         # store code name tuple list
