@@ -1602,25 +1602,25 @@ class PythonPostitView(ttk.Frame):
         common.share_vars_postit = VariableMenuPostit(self.code_toolbar)
 
         comment = CommentToolPostit(self.code_toolbar)
-        comment.pack(side=tk.LEFT,padx=8, pady=3)
-        create_tooltip(comment, '註解(滑鼠右鍵選單)')
+        comment.pack(side=tk.LEFT,padx=3, pady=3)
+        create_tooltip(comment, '註解 (右鍵選單)')
 
         common.share_var_add_postit = VariableAddToolPostit(self.code_toolbar)
         common.share_var_add_postit.pack(side=tk.LEFT,padx=0, pady=3)
-        create_tooltip(common.share_var_add_postit, '加入變數')
+        create_tooltip(common.share_var_add_postit, '把選取文字加到變數')
 
         share_var = common.share_vars_postit
         share_var.pack(side=tk.LEFT,padx=0, pady=3)
-        create_tooltip(share_var, '變數清單(滑鼠右鍵選單)')
+        create_tooltip(share_var, '變數清單 (右鍵選單)')
         
         var_get = common.share_var_get_postit
         var_get.pack(side=tk.LEFT,padx=0, pady=3)
-        create_tooltip(var_get, '貼上變數')
+        create_tooltip(var_get, '貼上目前變數')
         #common.share_var_assign_postit.pack(side=tk.LEFT,padx=2, pady=3)
         
         symbol = SymbolToolPostit(self.code_toolbar)
         symbol.pack(side=tk.LEFT,padx=8, pady=3)
-        create_tooltip(symbol, '保留字、內建函式與符號(滑鼠右鍵選單)')
+        create_tooltip(symbol, '保留字、內建函式與符號 (右鍵可換)')
 
         # edit_toolbar
         #self.edit_toolbar = ttk.Frame(self.interior)
@@ -2023,7 +2023,7 @@ def load_plugin():
 
     get_workbench().add_command(command_id="share_var_get",
                                 menu_name="edit",
-                                command_label="貼上變數",
+                                command_label="貼上目前變數",
                                 handler=_cmd_share_var_get,
                                 group=5,
                                 #default_sequence="<F2>"
@@ -2031,7 +2031,7 @@ def load_plugin():
 
     get_workbench().add_command(command_id="share_var_add",
                                 menu_name="edit",
-                                command_label="加入變數",
+                                command_label="把選取文字加到變數",
                                 handler=_cmd_share_var_add,
                                 group=5,
                                 #default_sequence="<F2>"

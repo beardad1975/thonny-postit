@@ -104,16 +104,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="-1413.5742"
-     inkscape:cy="2534.034"
+     inkscape:zoom="0.5"
+     inkscape:cx="-2026.6419"
+     inkscape:cy="2736.1923"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:snap-global="false"
      showguides="false"
@@ -4195,5 +4195,83 @@
        id="path1316"
        d="M -353.27374,680.91579 -384.627,681.0515"
        style="fill:#ffffff;stroke:#575757;stroke-width:10.186;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="10.443242"
+       inkscape:export-xdpi="10.443242"
+       d="m -261.85179,852.71046 -125.52395,11.5995 -1.87089,20.52618 c -0.1424,1.56229 2.31707,2.83186 5.19501,2.83186 h 104.52106 c 2.87803,0 5.61244,-2.48591 6.89531,-3.89019 l 10.86302,-30.92937 z"
+       style="opacity:0.98;fill:#ffaaaa;fill-opacity:1;stroke:none;stroke-width:2.18202;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path1312"
+       sodipodi:nodetypes="ccsssccc" />
+    <path
+       sodipodi:nodetypes="sscccss"
+       inkscape:export-ydpi="10.443242"
+       inkscape:export-xdpi="10.443242"
+       d="m -384.37168,817.37721 c -2.70063,0 -4.87495,1.26309 -4.87495,2.83188 l 1.87089,44.84922 124.74258,-12.34785 -18.72348,-32.50137 c -0.86206,-1.59766 -2.17362,-2.83188 -4.87434,-2.83188 z"
+       style="opacity:0.98;fill:#ffff00;fill-opacity:1;stroke:none;stroke-width:2.11373;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path1320" />
+    <text
+       inkscape:export-ydpi="10.443242"
+       inkscape:export-xdpi="10.443242"
+       transform="matrix(0.91475085,-0.10968074,0.12607713,1.0780769,0,0)"
+       id="text1324"
+       y="741.84039"
+       x="-521.60107"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:39.0856px;line-height:1.25;font-family:DFYuanBold-B5;-inkscape-font-specification:'DFYuanBold-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5a5353;fill-opacity:0.980392;stroke:none;stroke-width:0.977234;stroke-miterlimit:4;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="fill:#5a5353;fill-opacity:0.980392;stroke-width:0.977234;stroke-miterlimit:4;stroke-dasharray:none"
+         y="741.84039"
+         x="-521.60107"
+         id="tspan1322"
+         sodipodi:role="line">變</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:35.5462px;line-height:1.25;font-family:DFYuanBold-B5;-inkscape-font-specification:'DFYuanBold-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5d5651;fill-opacity:1;stroke:none;stroke-width:0.888656"
+       x="-461.15652"
+       y="770.22913"
+       id="text1328"
+       transform="matrix(0.95549493,-0.12392651,0.12518787,1.0303413,0,0)"
+       inkscape:export-xdpi="10.443242"
+       inkscape:export-ydpi="10.443242"><tspan
+         sodipodi:role="line"
+         id="tspan1326"
+         x="-461.15652"
+         y="770.22913"
+         style="fill:#5d5651;fill-opacity:1;stroke-width:0.888656">數</tspan></text>
+    <path
+       inkscape:export-ydpi="10.443242"
+       inkscape:export-xdpi="10.443242"
+       sodipodi:nodetypes="ssssssscss"
+       inkscape:connector-curvature="0"
+       id="path1330"
+       d="m -285.99506,817.46251 h -96.4015 c -2.86822,0 -5.1773,1.25988 -5.1773,2.82484 v 64.47047 c 0,1.56496 2.30908,2.82484 5.1773,2.82484 h 104.1686 c 2.86833,0 3.89884,-1.42397 5.17741,-2.82484 l 10.7548,-31.9104 -18.5219,-32.56007 c -0.90831,-1.59672 -2.30907,-2.82484 -5.17741,-2.82484 z"
+       style="opacity:0.98;fill:none;fill-opacity:1;stroke:#575757;stroke-width:2.17568;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.1438px;line-height:1.25;font-family:DFYuanBold-B5;-inkscape-font-specification:'DFYuanBold-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5858f7;fill-opacity:1;stroke:none;stroke-width:0.728594"
+       x="-464.74481"
+       y="808.7063"
+       id="text1334"
+       transform="matrix(0.97608926,-0.16251217,0.15783892,0.99821737,0,0)"
+       inkscape:export-xdpi="10.443242"
+       inkscape:export-ydpi="10.443242"><tspan
+         sodipodi:role="line"
+         id="tspan1332"
+         x="-464.74481"
+         y="808.7063"
+         style="fill:#5858f7;fill-opacity:1;stroke-width:0.728594">貼</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.3493px;line-height:1.25;font-family:DFYuanBold-B5;-inkscape-font-specification:'DFYuanBold-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#5858f7;fill-opacity:1;stroke:none;stroke-width:0.633733"
+       x="-448.86697"
+       y="839.61194"
+       id="text1338"
+       transform="matrix(1.0099187,-0.1524568,0.1865547,0.96201649,0,0)"
+       inkscape:export-xdpi="10.443242"
+       inkscape:export-ydpi="10.443242"><tspan
+         sodipodi:role="line"
+         id="tspan1336"
+         x="-448.86697"
+         y="839.61194"
+         style="fill:#5858f7;fill-opacity:1;stroke-width:0.633733">上</tspan></text>
   </g>
 </svg>

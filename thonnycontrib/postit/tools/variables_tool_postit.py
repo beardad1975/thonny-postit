@@ -55,9 +55,15 @@ class VariableMenuWidget(ttk.Frame):
 
         self.vars_combobox.bind('<<ComboboxSelected>>', self.on_combo_select)
         #self.vars_combobox.bind('<<Selection>>', self.on_select)
+        
         self.vars_combobox.bind('<Button-1>',self.on_combo_click)
 
+        
         #get_workbench().bind("ToplevelResponse", self._handle_toplevel_response, True)
+
+    
+
+
 
     # def empty_vars(self):
     #     self.vars_counter = Counter()
@@ -293,7 +299,7 @@ class VariableFetchToolPostMixin:
         font = self.postit_button.cget('font')
 
         if self.tool_name == 'variable_get':
-            text = '    ' + common.share_vars_postit.tk_var.get() + ' '
+            text = '      【目前變數】 ' + common.share_vars_postit.tk_var.get() + ' '
         elif self.tool_name == 'variable_assign':
             text = '  ' + common.share_vars_postit.tk_var.get() + ' = '
         elif self.tool_name == 'variable_plus_assign':
@@ -309,7 +315,7 @@ class VariableFetchToolPostMixin:
         elif self.tool_name == 'variable_square':
             text = '  ' + common.share_vars_postit.tk_var.get() + '[] '
         else:
-            text = '  '
+            text = '    '
 
         if self.tool_name == 'variable_get':
             color = '#ffff00'
@@ -317,7 +323,7 @@ class VariableFetchToolPostMixin:
             color = '#5acef8'
 
         self.drag_button = tk.Button(self.drag_window, text=text, bg=color, 
-                    font=font, fg='black', relief='solid', bd=0 )
+                    font=font, fg='black', relief='solid', bd=0, justify='left')
         self.drag_button.pack()
         self.drag_window.overrideredirect(True)
         self.drag_window.attributes('-topmost', 'true')

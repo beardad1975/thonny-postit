@@ -23,7 +23,7 @@ class SymbolWidget(ttk.Frame):
         ttk.Frame.__init__(self, master)
         f = font.Font(size=10, weight=font.NORMAL, family='Consolas')        
         self.postit_button = tk.Button(self,  
-                                        relief='solid',
+                                        relief='raised',
                                         borderwidth=1,
                                         text = '*',
                                         font = f,
@@ -36,6 +36,7 @@ class SymbolWidget(ttk.Frame):
                                         image=common_images['empty'],
                                         padx=0,
                                         pady=0, 
+                                        bg='#bcfabb',
                                         )
         self.postit_button.pack(side=tk.LEFT, anchor='w')
 
