@@ -324,7 +324,7 @@
         "start_on" : false
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
+        "postit_type" : "in_para_block_enclosed_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -351,7 +351,7 @@
         ]
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
+        "postit_type" : "in_para_block_enclosed_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -371,7 +371,7 @@
         ]
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
+        "postit_type" : "in_para_block_enclosed_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -419,7 +419,7 @@
         ]
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
+        "postit_type" : "in_para_block_enclosed_postit",
         "postfix_enter" : true,
         "items" :[
             {
@@ -432,7 +432,7 @@
         ]
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
+        "postit_type" : "in_para_block_enclosed_postit",
         "postfix_enter" : true,
         "items" :[
             {
