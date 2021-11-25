@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 重複結構 迴圈",
-        "off_label" : "重複結構 迴圈 >>",
+        "on_label" : "<< 迴圈： 重複結構",
+        "off_label" : "迴圈： 重複結構 >>",
         "start_on" : true
     },
     {
@@ -17,8 +17,8 @@
         "items" :[
             {
                 "menu_display" : "重複幾次",
-                "code" : "for 數 in range(10) :\npass",
-                "code_display" : "for 數 in range(10) :\n    pass",
+                "code" : "for 數 in range(5) :\npass",
+                "code_display" : "for 數 in range(5) :\n    pass",
                 "note" : "從數列取出 (重複幾次):\n    迴圈區塊",
                 "long_note" : true
             },
@@ -90,8 +90,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 選擇結構 條件分支",
-        "off_label" : "選擇結構 條件分支 >>",
+        "on_label" : "<< 條件分支： 選擇結構",
+        "off_label" : "條件分支： 選擇結構 >>",
         "start_on" : false
     },
     {
@@ -140,8 +140,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 可反覆使用 函式",
-        "off_label" : "可反覆使用 函式 >>",
+        "on_label" : "<< 函式： 模組化設計",
+        "off_label" : "函式： 模組化設計 >>",
         "start_on" : false
     },
     {
