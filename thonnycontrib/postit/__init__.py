@@ -1620,7 +1620,7 @@ class PythonPostitView(ttk.Frame):
         
         symbol = SymbolToolPostit(self.code_toolbar)
         symbol.pack(side=tk.LEFT,padx=8, pady=3)
-        create_tooltip(symbol, '保留字、內建函式與符號 (右鍵可換)')
+        create_tooltip(symbol, '符號、關鍵字與內建函式 (右鍵可換)')
 
         # edit_toolbar
         #self.edit_toolbar = ttk.Frame(self.interior)
