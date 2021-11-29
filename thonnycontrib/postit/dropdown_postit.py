@@ -67,6 +67,8 @@ class DropdownWidget(ttk.Frame):
                                         #underline = 0, 
                                         state='normal',
                                         )
+        
+        self.enter_label = tk.Label(self.main_frame, text='', image=self.enter_image, compound='center')
 
         # two notes
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
@@ -76,13 +78,34 @@ class DropdownWidget(ttk.Frame):
 
         # 1st row sub-frame
         self.postit_button.pack(side=tk.LEFT, anchor='w')
-        self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=5)
+        self.enter_label.pack(side=tk.LEFT, anchor='w')
+        
+        self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=2)
         # 2nd row sub-frame
         
         self.bottom_note_label.pack(side=tk.LEFT,padx=15)
 
 
+class DropdownCodeMixin:
+    def update_button_enter_sign(self):
+        if self.var_postfix_enter.get():
+            self.enter_label.config(image=self.enter_image)
+        else:
+            self.enter_label.config(image='')
+
 class DropdownPostMixin:
+    # def post_init(self):
+    #     self.drag_window = None
+    #     self.drag_button = None
+    #     self.drag_hover_selection = False
+    #     self.hover_text_backup = ''
+    #     #self.mouse_dragging = False
+    #     # drag and press event
+    #     self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
+    #     self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
+    #     self.postit_button.bind("<Double-Button-1>", self.on_mouse_double_click)
+    #     self.postit_button.config(cursor='arrow')
+
 
     def on_mouse_drag(self, event):
         ###print('drag ...')
@@ -207,6 +230,30 @@ class DropdownPostMixin:
                                     dragging=True, hovering=False)
 
 
+    def post_hover_button(self, event=None):
+        # postit button double clicked (paste code)
+        workbench = get_workbench()
+        focus_widget = workbench.focus_get()
+        if isinstance(focus_widget, CodeViewText):
+            # cursor in editor
+            editor_text = focus_widget 
+            if editor_text.tag_ranges(tk.SEL)  :
+                # has selection
+                self.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                self.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=False)
+        elif isinstance(focus_widget, ShellText):
+            # cusor in shell
+            shell_text = focus_widget
+            if shell_text.tag_ranges(tk.SEL):
+                # has selection
+                self.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                self.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=False)
 
 
 class DropdownPopup:
@@ -214,7 +261,10 @@ class DropdownPopup:
         # button popup menu
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
-        self.popup_menu.add_checkbutton(label="切換 Enter換行", onvalue=1, offvalue=0, 
+        self.popup_menu.add_command(label="貼上便利貼", command=self.post_hover_button)
+        self.popup_menu.add_separator()
+
+        self.popup_menu.add_checkbutton(label="切換Enter換行", onvalue=1, offvalue=0, 
                 variable=self.var_postfix_enter,
                 command=self.toggle_postfix_enter,
                 )
@@ -247,7 +297,7 @@ class DropdownPopup:
         self.update_button_enter_sign()
 
 class DropdownPostit( DropdownWidget, 
-                      BaseCode, 
+                      DropdownCodeMixin, BaseCode, 
                       DropdownPostMixin, BasePost, 
                       DropdownPopup):
     """   """

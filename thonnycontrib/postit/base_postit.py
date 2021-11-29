@@ -106,6 +106,7 @@ class BaseCode:
         pass
 
     def set_note(self, help_text):
+
         if not self.long_note:
             # use main note
             self.main_note_label.config(text=help_text)

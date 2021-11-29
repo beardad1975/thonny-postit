@@ -7,7 +7,7 @@ from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
 from .base_postit import BaseCode, BasePost
-from .dropdown_postit import DropdownWidget,DropdownPostMixin, DropdownPopup, CodeListEmpty
+from .dropdown_postit import DropdownWidget,DropdownCodeMixin,DropdownPostMixin, DropdownPopup, CodeListEmpty
 from .common import common_images
 from . import common
 
@@ -320,7 +320,7 @@ class BlockEnclosedPopup:
         self.update_button_enter_sign()
 
 class BlockEnclosedPostit( DropdownWidget, 
-                      BlockEnclosedCodeMixin, BaseCode, 
+                      BlockEnclosedCodeMixin, DropdownCodeMixin, BaseCode, 
                       BlockEnclosedPostMixin, DropdownPostMixin, BasePost, 
                       BlockEnclosedPopup, DropdownPopup):
     """   """
