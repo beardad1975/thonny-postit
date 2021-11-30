@@ -61,6 +61,7 @@ load_image('dropdown_empty')
 load_image('empty')
 load_image('enclosed_right') 
 load_image('enclosed_left') 
+load_image('block_enclosed') 
 
 
 load_image('gear')

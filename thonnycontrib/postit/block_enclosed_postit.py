@@ -1,6 +1,6 @@
 import tkinter as tk
 import tkinter.font as font
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 from thonny.codeview import CodeViewText
 from thonny.shell import ShellText
@@ -18,6 +18,81 @@ class CodeListEmpty(Exception): pass
 class MissingColonOrPass(Exception): pass
 # first line end in colon
 # second line must be pass
+
+
+class BlockEnclosedWidget(ttk.Frame):
+
+    def widget_init(self, parent, tab):
+        # store tab
+        
+        self.parent = parent
+        self.tab = tab
+        
+        
+        # image
+        self.enter_image = common_images['enter_small']
+        self.block_enclosed_image = common_images['block_enclosed']
+
+        # frame init
+        #ttk.Frame.__init__(self, self.tab.frame)
+        ttk.Frame.__init__(self, self.parent)
+
+        # main and bottom sub-frame
+        self.main_frame = ttk.Frame(self)
+        self.main_frame.pack(side=tk.TOP, anchor='w')
+        self.bottom_frame = ttk.Frame(self)
+        self.bottom_frame.pack(side=tk.TOP, anchor='w')
+
+        # dropdown list button
+        if len(self.code_list) > 1:
+            self.dropdown_image = common_images['dropdown']
+        else:
+            self.dropdown_image = common_images['dropdown_empty']
+        self.dropdown_button = tk.Button(self.main_frame, 
+                                        relief='flat',
+                                        borderwidth=0,
+                                        image=self.dropdown_image, 
+                                        padx=0,
+                                        justify='left',
+                                        )
+        self.dropdown_button.pack(side=tk.LEFT, anchor='w',padx=0)
+        
+
+        # postit button 
+        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        #self.postit_button = ttk.Button(self.main_frame, text='1234')
+        self.postit_button = tk.Button(self.main_frame,  
+                                        relief='solid',
+                                        borderwidth=1,
+                                        text='***' , 
+                                        fg=self.tab.font_color, 
+                                        bg=self.tab.fill_color,
+                                        justify='left', 
+                                        font=f,
+                                        compound='right',
+                                        image=self.block_enclosed_image,
+                                        padx=0,
+                                        pady=0,
+                                        #underline = 0, 
+                                        state='normal',
+                                        )
+        
+        self.enter_label = tk.Label(self.main_frame, text='', image=self.enter_image, compound='center')
+
+        # two notes
+        f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        self.main_note_label = tk.Label(self.main_frame, text='',justify='left', font=f2  ) 
+        self.bottom_note_label = tk.Label(self.bottom_frame, text='',justify='left', font=f2)
+        
+
+        # 1st row sub-frame
+        self.postit_button.pack(side=tk.LEFT, anchor='w')
+        self.enter_label.pack(side=tk.LEFT, anchor='w')
+        
+        self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=2)
+        # 2nd row sub-frame
+        
+        self.bottom_note_label.pack(side=tk.LEFT,padx=15)
 
 
 class BlockEnclosedCodeMixin:
@@ -172,6 +247,7 @@ class BlockEnclosedPostMixin:
                 editor_text.event_generate("<Return>")
 
         elif pressing and selecting:
+            
             editor_text.event_generate("<BackSpace>")
             self.content_insert(editor_text, self.code)
             if self.var_postfix_enter.get():
@@ -199,6 +275,7 @@ class BlockEnclosedPostMixin:
             
             #if self.var_postfix_enter.get():
             #    editor_text.event_generate("<Return>")
+
 
     def block_enclosed_content_insert(self, text_widget):
         #print('block_enclosed insert')
@@ -280,7 +357,45 @@ class BlockEnclosedPostMixin:
 
 
 
-class BlockEnclosedPopup:
+class BlockEnclosedPopupMixin:
+    def popup_init(self):
+        # button popup menu
+        f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
+        self.popup_menu.add_command(label="貼上便利貼", command=self.post_hover_button)
+        self.popup_menu.add_command(label="包含區塊(需先選取文字)", command=self.block_enclosed_hover_button)
+        self.popup_menu.add_separator()
+
+        self.popup_menu.add_checkbutton(label="切換Enter換行", onvalue=1, offvalue=0, 
+                variable=self.var_postfix_enter,
+                command=self.toggle_postfix_enter,
+                )
+        self.postit_button.bind("<Button-3>", self.popup)
+
+        # dropdown popup menu
+        if len(self.code_list) > 1:
+            self.dropdown_menu = tk.Menu(self, tearoff=0, font=f2)
+            for i, code_item in enumerate(self.code_list):
+                text = code_item.menu_display
+                f = lambda index=i: self.switch_postit(index)
+                self.dropdown_menu.add_command(label=text, command=f)
+            self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
+
+
+    def block_enclosed_hover_button(self, event=None):
+        workbench = get_workbench()
+        focus_widget = workbench.focus_get()
+        if isinstance(focus_widget, CodeViewText):
+            # cursor in editor
+            editor_text = focus_widget 
+            if editor_text.tag_ranges(tk.SEL)  :
+                # has selection
+                self.block_enclosed_content_insert(editor_text)
+            else:# no selection
+                messagebox.showinfo('無選取範圍','請先在編輯區選取文字，才能包含區塊', master=get_workbench())
+        elif isinstance(focus_widget, ShellText):
+            messagebox.showinfo('限在文字編輯區','包含區塊只限在文字編輯區，無法在互動環境下使用', master=get_workbench())
+
     def switch_postit(self, code_index):
         code_item = self.code_list[code_index]
 
@@ -319,10 +434,10 @@ class BlockEnclosedPopup:
         self.set_note(self.note)
         self.update_button_enter_sign()
 
-class BlockEnclosedPostit( DropdownWidget, 
+class BlockEnclosedPostit( BlockEnclosedWidget, 
                       BlockEnclosedCodeMixin, DropdownCodeMixin, BaseCode, 
                       BlockEnclosedPostMixin, DropdownPostMixin, BasePost, 
-                      BlockEnclosedPopup, DropdownPopup):
+                      BlockEnclosedPopupMixin, DropdownPopup):
     """   """
     def __init__(self, parent, tab, code_list, postfix_enter=False):
         # store code name tuple list

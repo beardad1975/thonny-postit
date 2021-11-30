@@ -230,30 +230,7 @@ class DropdownPostMixin:
                                     dragging=True, hovering=False)
 
 
-    def post_hover_button(self, event=None):
-        # postit button double clicked (paste code)
-        workbench = get_workbench()
-        focus_widget = workbench.focus_get()
-        if isinstance(focus_widget, CodeViewText):
-            # cursor in editor
-            editor_text = focus_widget 
-            if editor_text.tag_ranges(tk.SEL)  :
-                # has selection
-                self.insert_into_editor(editor_text, 
-                                        pressing=True, selecting=True)
-            else:# no selection
-                self.insert_into_editor(editor_text, 
-                                        pressing=True, selecting=False)
-        elif isinstance(focus_widget, ShellText):
-            # cusor in shell
-            shell_text = focus_widget
-            if shell_text.tag_ranges(tk.SEL):
-                # has selection
-                self.insert_into_shell(shell_text, 
-                                        pressing=True, selecting=True)
-            else:# no selection
-                self.insert_into_shell(shell_text, 
-                                        pressing=True, selecting=False)
+
 
 
 class DropdownPopup:
@@ -278,6 +255,31 @@ class DropdownPopup:
                 f = lambda index=i: self.switch_postit(index)
                 self.dropdown_menu.add_command(label=text, command=f)
             self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
+
+    def post_hover_button(self, event=None):
+        # postit button double clicked (paste code)
+        workbench = get_workbench()
+        focus_widget = workbench.focus_get()
+        if isinstance(focus_widget, CodeViewText):
+            # cursor in editor
+            editor_text = focus_widget 
+            if editor_text.tag_ranges(tk.SEL)  :
+                # has selection
+                self.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                self.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=False)
+        elif isinstance(focus_widget, ShellText):
+            # cusor in shell
+            shell_text = focus_widget
+            if shell_text.tag_ranges(tk.SEL):
+                # has selection
+                self.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                self.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=False)
 
     def popup(self, event):
         self.popup_menu.tk_popup(event.x_root, event.y_root)
