@@ -32,6 +32,7 @@ class BlockEnclosedWidget(ttk.Frame):
         # image
         self.enter_image = common_images['enter_small']
         self.block_enclosed_image = common_images['block_enclosed']
+        self.block_enclosed_small_image = common_images['block_enclosed_small']
 
         # frame init
         #ttk.Frame.__init__(self, self.tab.frame)
@@ -362,13 +363,20 @@ class BlockEnclosedPopupMixin:
         # button popup menu
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
+        self.popup_menu.add_command(label="包含區塊 (需選取文字)",
+                                    command=self.block_enclosed_hover_button,
+                                    image=self.block_enclosed_small_image,
+                                    compound='right',
+                                    )
         self.popup_menu.add_command(label="貼上便利貼", command=self.post_hover_button)
-        self.popup_menu.add_command(label="包含區塊(需先選取文字)", command=self.block_enclosed_hover_button)
+        
         self.popup_menu.add_separator()
 
         self.popup_menu.add_checkbutton(label="切換Enter換行", onvalue=1, offvalue=0, 
                 variable=self.var_postfix_enter,
                 command=self.toggle_postfix_enter,
+                image=self.enter_image,
+                compound='right',
                 )
         self.postit_button.bind("<Button-3>", self.popup)
 

@@ -62,6 +62,7 @@ load_image('empty')
 load_image('enclosed_right') 
 load_image('enclosed_left') 
 load_image('block_enclosed') 
+load_image('block_enclosed_small') 
 
 
 load_image('gear')

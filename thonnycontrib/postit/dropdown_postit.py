@@ -244,6 +244,8 @@ class DropdownPopup:
         self.popup_menu.add_checkbutton(label="切換Enter換行", onvalue=1, offvalue=0, 
                 variable=self.var_postfix_enter,
                 command=self.toggle_postfix_enter,
+                image=self.enter_image,
+                compound='right',
                 )
         self.postit_button.bind("<Button-3>", self.popup)
 
