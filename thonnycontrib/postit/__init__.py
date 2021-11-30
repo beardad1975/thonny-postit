@@ -716,7 +716,10 @@ class PythonPostitView(ttk.Frame):
                 code=i['code'],
                 code_display=i['code_display'],
                 note=i['note'],
-                long_note=i['long_note'] ))
+                #long_note=i['long_note'] ))
+                long_note=i.get('long_note', True),
+                start_hide_note=i.get('start_hide_note', False),
+                ))
 
         parent = tab.current_postit_para.para_frame
         DropdownPostit(parent, tab, code_list = temp_code_list,
@@ -731,7 +734,10 @@ class PythonPostitView(ttk.Frame):
                 code=i['code'],
                 code_display=i['code_display'],
                 note=i['note'],
-                long_note=i['long_note'] ))
+                #long_note=i['long_note'] ))
+                long_note=i.get('long_note', True),
+                start_hide_note=i.get('start_hide_note', False),
+                ))
 
         parent = tab.current_postit_para.para_frame
         BlockEnclosedPostit(parent, tab, code_list = temp_code_list,

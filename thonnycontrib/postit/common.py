@@ -21,7 +21,7 @@ postit_view = None
 
 ### code namedtuple
 
-CodeNTuple = namedtuple('CodeNTuple','menu_display code code_display note long_note')
+CodeNTuple = namedtuple('CodeNTuple','menu_display code code_display note long_note start_hide_note')
 
 # image dict
 def load_image(name):

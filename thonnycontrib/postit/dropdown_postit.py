@@ -87,6 +87,30 @@ class DropdownWidget(ttk.Frame):
 
 
 class DropdownCodeMixin:
+    def code_init(self, code, code_display=None, note=None, postfix_enter=None,
+                     long_note=False, start_hide_note=False):
+        # tk var
+        self.var_postfix_enter = tk.BooleanVar()
+        self.var_postfix_enter.set(False)
+
+        self.long_note = long_note
+        
+        self.start_hide_note = start_hide_note
+        # if self.start_hide_note :
+        #     print('start_hide_note')
+        
+
+        if code_display is None:
+            code_display = code
+        self.code = code
+        self.code_display = code_display 
+        self.note = note
+        if postfix_enter:
+            self.var_postfix_enter.set(True)
+        
+        self.update_postit_code()
+
+
     def update_button_enter_sign(self):
         if self.var_postfix_enter.get():
             self.enter_label.config(image=self.enter_image)
@@ -315,8 +339,8 @@ class DropdownPostit( DropdownWidget,
 
         self.widget_init(parent, tab)
         # use first item as default code
-        _, code, code_display, note, long_note = self.code_list[0]
-        self.code_init(code, code_display, note, postfix_enter, long_note)
+        _, code, code_display, note, long_note, start_hide_note = self.code_list[0]
+        self.code_init(code, code_display, note, postfix_enter, long_note, start_hide_note )
         
         self.post_init()
         self.popup_init()

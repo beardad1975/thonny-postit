@@ -98,12 +98,13 @@ class BlockEnclosedWidget(ttk.Frame):
 
 class BlockEnclosedCodeMixin:
     def code_init(self, code, code_display=None, note=None, postfix_enter=None,
-                     long_note=False):
+                     long_note=False, start_hide_note=False):
         # tk var
         self.var_postfix_enter = tk.BooleanVar()
         self.var_postfix_enter.set(False)
 
         self.long_note = long_note
+        self.start_hide_note = start_hide_note
 
         if code_display is None:
             code_display = code
@@ -457,8 +458,8 @@ class BlockEnclosedPostit( BlockEnclosedWidget,
 
         self.widget_init(parent, tab)
         # use first item as default code
-        _, code, code_display, note, long_note = self.code_list[0]
-        self.code_init(code, code_display, note, postfix_enter, long_note)
+        _, code, code_display, note, long_note, start_hide_note = self.code_list[0]
+        self.code_init(code, code_display, note, postfix_enter, long_note, start_hide_note)
         
         self.post_init()
         self.popup_init()

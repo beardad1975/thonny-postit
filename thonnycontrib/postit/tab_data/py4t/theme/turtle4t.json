@@ -62,7 +62,8 @@
                 "code" : "右轉(90)",
                 "code_display" : "右轉(90)",
                 "note" : "右轉(順時針)",
-                "long_note" : false
+                "long_note" : false,
+                "start_hide_note" : true
             },
             {
                 "menu_display" : "左轉",

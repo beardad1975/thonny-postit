@@ -76,6 +76,9 @@ class BaseCode:
         self.var_postfix_enter.set(False)
 
         self.long_note = long_note
+        
+
+        
 
         if code_display is None:
             code_display = code
