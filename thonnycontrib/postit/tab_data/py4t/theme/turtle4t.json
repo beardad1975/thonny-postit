@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
@@ -19,7 +19,7 @@
                 "menu_display" : "匯入海龜模組",
                 "code" : "from 海龜模組 import *",
                 "code_display" : "from 海龜模組 import *",
-                "note" : "### 需先匯入才能使用",
+                "note" : "### 需先匯入模組, 才能使用",
                 "long_note" : true
             }
         ]
@@ -29,26 +29,27 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 位置、方向與速度",
-        "off_label" : "位置、方向與速度 >>",
+        "on_label" : "< 位置 方向 速度",
+        "off_label" : "位置 方向 速度 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "向前",
                 "code" : "向前(50)",
                 "code_display" : "向前(50)",
-                "note" : "向前 點",
+                "note" : "海龜前進(點)",
                 "long_note" : false
             },
             {
                 "menu_display" : "向後",
                 "code" : "向後(50)",
                 "code_display" : "向後(50)",
-                "note" : "向後 點",
+                "note" : "海龜後退(點)",
                 "long_note" : false
             }
         ]
@@ -56,20 +57,20 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "右轉",
                 "code" : "右轉(90)",
                 "code_display" : "右轉(90)",
-                "note" : "右轉(順時針)",
-                "long_note" : false,
-                "start_hide_note" : true
+                "note" : "海龜向右轉(角度)",
+                "long_note" : false
             },
             {
                 "menu_display" : "左轉",
                 "code" : "左轉(90)",
                 "code_display" : "左轉(90)",
-                "note" : "左轉(逆時針)",
+                "note" : "海龜向左轉(角度)",
                 "long_note" : false
             }
         ]
@@ -77,55 +78,56 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "回出發點",
                 "code" : "回出發點()",
                 "code_display" : "回出發點()",
-                "note" : "",
-                "long_note" : false
+                "note" : "海龜回到原點(0, 0)",
+                "long_note" : true
             },
             {
                 "menu_display" : "走到 座標",
                 "code" : "走到(0,0)",
                 "code_display" : "走到(0,0)",
-                "note" : "走到(x座標, y座標)",
-                "long_note" : false
+                "note" : "海龜走到(x座標, y座標)",
+                "long_note" : true
             },
             {
                 "menu_display" : "x座標",
                 "code" : "x設為(0)",
                 "code_display" : "x設為(0)",
-                "note" : "x座標設為",
-                "long_note" : false
+                "note" : "把海龜的x座標設為",
+                "long_note" : true
             },
             {
                 "menu_display" : "y座標",
                 "code" : "y設為(0)",
                 "code_display" : "y設為(0)",
-                "note" : "y座標設為",
-                "long_note" : false
+                "note" : "把海龜的y座標設為",
+                "long_note" : true
             },
             {
                 "menu_display" : "位置 查詢目前座標",
                 "code" : "位置()",
                 "code_display" : "位置()",
                 "note" : "查詢目前座標",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "x座標 查詢",
                 "code" : "x座標()",
                 "code_display" : "x座標()",
-                "note" : "查詢x座標",
-                "long_note" : false
+                "note" : "查詢目前x座標",
+                "long_note" : true
             },
             {
                 "menu_display" : "y座標 查詢",
                 "code" : "y座標()",
                 "code_display" : "y座標()",
-                "note" : "查詢y座標",
-                "long_note" : false
+                "note" : "查詢目前y座標",
+                "long_note" : true
             }
             
         ]
@@ -133,12 +135,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "設定方向",
                 "code" : "設定方向(0)",
                 "code_display" : "設定方向(0)",
-                "note" : "角度右方0度 逆時針",
+                "note" : "逆時針旋轉角度 右方為0度",
                 "long_note" : true
             },
             {
@@ -153,40 +156,41 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "速度 正常",
                 "code" : "速度('normal')",
                 "code_display" : "速度('normal')",
-                "note" : "移動速度 正常",
+                "note" : "海龜移動速度 正常",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 慢",
                 "code" : "速度('slow')",
                 "code_display" : "速度('slow')",
-                "note" : "移動速度 慢",
+                "note" : "海龜移動速度 慢",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 最慢",
                 "code" : "速度('slowest')",
                 "code_display" : "速度('slowest')",
-                "note" : "移動速度 最慢",
+                "note" : "海龜移動速度 最慢",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 快",
                 "code" : "速度('fast')",
                 "code_display" : "速度('fast')",
-                "note" : "移動速度 快",
+                "note" : "海龜移動速度 快",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 最快",
                 "code" : "速度('fastest')",
                 "code_display" : "速度('fastest')",
-                "note" : "移動速度 最快",
+                "note" : "海龜移動速度 最快",
                 "long_note" : true
             }
         ]
@@ -196,8 +200,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 游標、視窗與完成",
-        "off_label" : "游標、視窗與完成 >>",
+        "on_label" : "< 游標 視窗 完成",
+        "off_label" : "游標 視窗 完成 >",
         "start_on" : false
     },
     {

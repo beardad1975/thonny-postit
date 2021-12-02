@@ -97,8 +97,8 @@ class BaseCode:
             self.postit_button.config(image='')
 
     def toggle_postfix_enter(self):
-        r = self.var_postfix_enter.get()
-        self.var_postfix_enter.set(r)
+        #r = self.var_postfix_enter.get()
+        #self.var_postfix_enter.set(r)
         self.update_button_enter_sign()
         
 

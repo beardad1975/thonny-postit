@@ -718,12 +718,14 @@ class PythonPostitView(ttk.Frame):
                 note=i['note'],
                 #long_note=i['long_note'] ))
                 long_note=i.get('long_note', True),
-                start_hide_note=i.get('start_hide_note', False),
+                #start_hide_note=i.get('start_hide_note', False),
                 ))
 
         parent = tab.current_postit_para.para_frame
         DropdownPostit(parent, tab, code_list = temp_code_list,
-            postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
+            postfix_enter=postit_data['postfix_enter'],
+            start_hide_note=postit_data.get('start_hide_note',False)
+            ).grid(sticky='w', padx=4, pady=5)                
             #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)  
 
     def build_in_para_block_enclosed_postit(self, tab, postit_data):
@@ -736,12 +738,14 @@ class PythonPostitView(ttk.Frame):
                 note=i['note'],
                 #long_note=i['long_note'] ))
                 long_note=i.get('long_note', True),
-                start_hide_note=i.get('start_hide_note', False),
+                #start_hide_note=i.get('start_hide_note', False),
                 ))
 
         parent = tab.current_postit_para.para_frame
         BlockEnclosedPostit(parent, tab, code_list = temp_code_list,
-            postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=4, pady=5)                
+            postfix_enter=postit_data['postfix_enter'],
+            start_hide_note=postit_data.get('start_hide_note',False)
+            ).grid(sticky='w', padx=4, pady=5)                
     # def build_bit_install_lib_postit(self, tab, postit_data):
     #     logo_path = Path(__file__).parent / 'images' / 'install.png'
     #     im = Image.open(logo_path)       

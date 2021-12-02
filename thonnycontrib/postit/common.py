@@ -21,7 +21,7 @@ postit_view = None
 
 ### code namedtuple
 
-CodeNTuple = namedtuple('CodeNTuple','menu_display code code_display note long_note start_hide_note')
+CodeNTuple = namedtuple('CodeNTuple','menu_display code code_display note long_note ')
 
 # image dict
 def load_image(name):
@@ -34,6 +34,7 @@ common_images = {}
 # images for tools
 load_image('enter')
 load_image('enter_small')
+load_image('enter_key')
 load_image('backspace')
 load_image('pilcrow')
 load_image('undo')
@@ -63,8 +64,8 @@ load_image('enclosed_right')
 load_image('enclosed_left') 
 load_image('block_enclosed') 
 load_image('block_enclosed_small') 
-
-
+load_image('note') 
+load_image('paste_postit')
 load_image('gear')
 
 #  

@@ -33,6 +33,9 @@ class BlockEnclosedWidget(ttk.Frame):
         self.enter_image = common_images['enter_small']
         self.block_enclosed_image = common_images['block_enclosed']
         self.block_enclosed_small_image = common_images['block_enclosed_small']
+        self.enter_key_image = common_images['enter_key']
+        self.note_image = common_images['note']
+        self.paste_postit_image = common_images['paste_postit']
 
         # frame init
         #ttk.Frame.__init__(self, self.tab.frame)
@@ -40,9 +43,11 @@ class BlockEnclosedWidget(ttk.Frame):
 
         # main and bottom sub-frame
         self.main_frame = ttk.Frame(self)
-        self.main_frame.pack(side=tk.TOP, anchor='w')
+        #self.main_frame.pack(side=tk.TOP, anchor='w')
+        self.main_frame.grid(sticky='we', padx=0, pady=0)
         self.bottom_frame = ttk.Frame(self)
-        self.bottom_frame.pack(side=tk.TOP, anchor='w')
+        #self.bottom_frame.pack(side=tk.TOP, anchor='w', pady=0)
+        self.bottom_frame.grid(sticky='we', padx=0, pady=0)
 
         # dropdown list button
         if len(self.code_list) > 1:
@@ -76,24 +81,28 @@ class BlockEnclosedWidget(ttk.Frame):
                                         pady=0,
                                         #underline = 0, 
                                         state='normal',
+                                        command=self.toggle_hide_note,
                                         )
         
         self.enter_label = tk.Label(self.main_frame, text='', image=self.enter_image, compound='center')
 
         # two notes
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
-        self.main_note_label = tk.Label(self.main_frame, text='',justify='left', font=f2  ) 
+        self.main_note_frame = ttk.Frame(self.main_frame)
+        #self.main_note_label = tk.Label(self.main_frame, text='',justify='left', font=f2  ) 
+        self.main_note_label = tk.Label(self.main_note_frame, text='',justify='left', font=f2  ) 
         self.bottom_note_label = tk.Label(self.bottom_frame, text='',justify='left', font=f2)
         
 
         # 1st row sub-frame
         self.postit_button.pack(side=tk.LEFT, anchor='w')
         self.enter_label.pack(side=tk.LEFT, anchor='w')
+        self.main_note_frame.pack(side=tk.LEFT, anchor='w')
         
-        self.main_note_label.pack(side=tk.LEFT, anchor='w',padx=2)
+        self.main_note_label.grid(sticky='we', padx=2, pady=0)
         # 2nd row sub-frame
         
-        self.bottom_note_label.pack(side=tk.LEFT,padx=15)
+        self.bottom_note_label.grid(sticky='we', padx=15, pady=0)
 
 
 class BlockEnclosedCodeMixin:
@@ -105,6 +114,8 @@ class BlockEnclosedCodeMixin:
 
         self.long_note = long_note
         self.start_hide_note = start_hide_note
+        self.var_hide_note = tk.BooleanVar()
+        self.var_hide_note.set(self.start_hide_note)
 
         if code_display is None:
             code_display = code
@@ -145,6 +156,7 @@ class BlockEnclosedCodeMixin:
             self.var_postfix_enter.set(True)
         
         self.update_postit_code()
+        self.update_hide_note()
 
 
 class BlockEnclosedPostMixin:
@@ -364,21 +376,32 @@ class BlockEnclosedPopupMixin:
         # button popup menu
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
-        self.popup_menu.add_command(label="包含區塊 (需選取文字)",
+        self.popup_menu.add_command(label="包含區塊 (需選取文字) ",
                                     command=self.block_enclosed_hover_button,
                                     image=self.block_enclosed_small_image,
                                     compound='right',
                                     )
-        self.popup_menu.add_command(label="貼上便利貼", command=self.post_hover_button)
+        self.popup_menu.add_command(label="貼上便利貼 ", 
+                                    image=self.paste_postit_image,
+                                    compound='right',
+                                    command=self.post_hover_button)
         
         self.popup_menu.add_separator()
 
-        self.popup_menu.add_checkbutton(label="切換Enter換行", onvalue=1, offvalue=0, 
-                variable=self.var_postfix_enter,
-                command=self.toggle_postfix_enter,
-                image=self.enter_image,
+        self.popup_menu.add_checkbutton(label="切換 說明文字 ", onvalue=0, offvalue=1, 
+                variable=self.var_hide_note,
+                command=self.update_hide_note,
+                image=self.note_image,
                 compound='right',
                 )
+
+        self.popup_menu.add_checkbutton(label="切換 便利貼換行 ", onvalue=1, offvalue=0, 
+                variable=self.var_postfix_enter,
+                command=self.update_button_enter_sign,
+                image=self.enter_key_image,
+                compound='right',
+                )
+
         self.postit_button.bind("<Button-3>", self.popup)
 
         # dropdown popup menu
@@ -442,13 +465,14 @@ class BlockEnclosedPopupMixin:
         self.set_code_display(self.code_display)
         self.set_note(self.note)
         self.update_button_enter_sign()
+        self.update_hide_note()
 
 class BlockEnclosedPostit( BlockEnclosedWidget, 
                       BlockEnclosedCodeMixin, DropdownCodeMixin, BaseCode, 
                       BlockEnclosedPostMixin, DropdownPostMixin, BasePost, 
                       BlockEnclosedPopupMixin, DropdownPopup):
     """   """
-    def __init__(self, parent, tab, code_list, postfix_enter=False):
+    def __init__(self, parent, tab, code_list, postfix_enter=False, start_hide_note=False):
         # store code name tuple list
         #print('block enclosed postit')
         if not  code_list:
@@ -458,7 +482,7 @@ class BlockEnclosedPostit( BlockEnclosedWidget,
 
         self.widget_init(parent, tab)
         # use first item as default code
-        _, code, code_display, note, long_note, start_hide_note = self.code_list[0]
+        _, code, code_display, note, long_note = self.code_list[0]
         self.code_init(code, code_display, note, postfix_enter, long_note, start_hide_note)
         
         self.post_init()
