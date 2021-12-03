@@ -20,7 +20,7 @@
                 "menu_display" : "匯入海龜模組",
                 "code" : "from 海龜模組 import *",
                 "code_display" : "from 海龜模組 import *",
-                "note" : "### 需先匯入模組, 才能使用",
+                "note" : "需先匯入模組, 才能使用!!",
                 "long_note" : true
             }
         ]
@@ -99,35 +99,35 @@
                 "menu_display" : "x座標",
                 "code" : "x設為(0)",
                 "code_display" : "x設為(0)",
-                "note" : "把海龜的x座標設為",
+                "note" : "設定海龜的x座標",
                 "long_note" : true
             },
             {
                 "menu_display" : "y座標",
                 "code" : "y設為(0)",
                 "code_display" : "y設為(0)",
-                "note" : "把海龜的y座標設為",
+                "note" : "設定海龜的y座標",
                 "long_note" : true
             },
             {
                 "menu_display" : "位置 查詢目前座標",
                 "code" : "位置()",
                 "code_display" : "位置()",
-                "note" : "查詢目前座標",
+                "note" : "查詢 海龜的座標",
                 "long_note" : true
             },
             {
                 "menu_display" : "x座標 查詢",
                 "code" : "x座標()",
                 "code_display" : "x座標()",
-                "note" : "查詢目前x座標",
+                "note" : "查詢 海龜的x座標",
                 "long_note" : true
             },
             {
                 "menu_display" : "y座標 查詢",
                 "code" : "y座標()",
                 "code_display" : "y座標()",
-                "note" : "查詢目前y座標",
+                "note" : "查詢 海龜的y座標",
                 "long_note" : true
             }
             
@@ -149,7 +149,7 @@
                 "menu_display" : "方向 查詢目前",
                 "code" : "方向()",
                 "code_display" : "方向()",
-                "note" : "查詢目前角度",
+                "note" : "查詢 海龜的角度",
                 "long_note" : true
             }
         ]
@@ -163,35 +163,35 @@
                 "menu_display" : "速度 正常",
                 "code" : "速度('normal')",
                 "code_display" : "速度('normal')",
-                "note" : "海龜移動速度 正常",
+                "note" : "海龜速度 正常",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 慢",
                 "code" : "速度('slow')",
                 "code_display" : "速度('slow')",
-                "note" : "海龜移動速度 慢",
+                "note" : "海龜速度 慢",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 最慢",
                 "code" : "速度('slowest')",
                 "code_display" : "速度('slowest')",
-                "note" : "海龜移動速度 最慢",
+                "note" : "海龜速度 最慢",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 快",
                 "code" : "速度('fast')",
                 "code_display" : "速度('fast')",
-                "note" : "海龜移動速度 快",
+                "note" : "海龜速度 快",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 最快",
                 "code" : "速度('fastest')",
                 "code_display" : "速度('fastest')",
-                "note" : "海龜移動速度 最快",
+                "note" : "海龜速度 最快",
                 "long_note" : true
             }
         ]
@@ -208,7 +208,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "停筆",
@@ -343,6 +343,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "畫筆顏色 黑",
@@ -425,14 +426,14 @@
                 "menu_display" : "畫筆尺寸",
                 "code" : "畫筆尺寸(1)",
                 "code_display" : "畫筆尺寸(1)",
-                "note" : "",
-                "long_note" : false
+                "note" : "設定海龜畫線的尺寸 (點)",
+                "long_note" : true
             },
             {
                 "menu_display" : "筆跡清除",
                 "code" : "筆跡清除()",
                 "code_display" : "筆跡清除()",
-                "note" : "",
+                "note" : "清除所有的筆跡",
                 "long_note" : false
             }
             
@@ -446,15 +447,15 @@
                 "menu_display" : "開始填色",
                 "code" : "開始填色()",
                 "code_display" : "開始填色()",
-                "note" : "",
-                "long_note" : false
+                "note" : "先開始填色再停止填色, 即執行填色",
+                "long_note" : true
             },
             {
                 "menu_display" : "停止填色",
                 "code" : "停止填色()",
                 "code_display" : "停止填色()",
-                "note" : "",
-                "long_note" : false
+                "note" : "先開始填色再停止填色, 即執行填色",
+                "long_note" : true
             }
         ]
     },
@@ -553,13 +554,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圓、點、輸入與文字",
-        "off_label" : "圓、點、輸入與文字 >>",
+        "on_label" : "< 圓 輸入 文字",
+        "off_label" : "圓 輸入 文字 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "畫圓",
@@ -570,9 +572,9 @@
             },
             {
                 "menu_display" : "畫弧",
-                "code" : "畫弧(50,90)",
-                "code_display" : "畫弧(50,90)",
-                "note" : "畫弧(半徑,角度)",
+                "code" : "畫弧(50, 90)",
+                "code_display" : "畫弧(50, 90)",
+                "note" : "畫弧(半徑, 角度)",
                 "long_note" : true
             }
         ]
@@ -585,7 +587,7 @@
                 "menu_display" : "畫點",
                 "code" : "畫點(50, [0,0,0])",
                 "code_display" : "畫點(50, [0,0,0])",
-                "note" : "畫點(直徑,顏色)",
+                "note" : "畫點(直徑, RGB顏色)",
                 "long_note" : true
             }
         ]
@@ -598,28 +600,28 @@
                 "menu_display" : "輸入數字",
                 "code" : "變數 = 輸入數字('標題','說明')",
                 "code_display" : "變數 = 輸入數字('標題','說明')",
-                "note" : "",
+                "note" : "輸入數字的視窗",
                 "long_note" : true
             },
             {
                 "menu_display" : "輸入數字 預設",
                 "code" : "變數 = 輸入數字('標題','說明',3)",
                 "code_display" : "變數 = 輸入數字('標題',\n    '說明',3)",
-                "note" : "預設值",
+                "note" : "輸入數字視窗 有預設值",
                 "long_note" : true
             },
             {
                 "menu_display" : "輸入數字 預設 最小 最大",
                 "code" : "變數 = 輸入數字('標題','說明',3, 1, 5)",
                 "code_display" : "變數 = 輸入數字('標題',\n    '說明',3, 1, 5)",
-                "note" : "預設值 最小值 最大值",
+                "note" : "有預設值 最小值 最大值",
                 "long_note" : true
             },
             {
                 "menu_display" : "輸入文字",
                 "code" : "文字 = 輸入文字('標題','說明')",
                 "code_display" : "文字 = 輸入文字('標題','說明')",
-                "note" : "",
+                "note" : "輸入文字的視窗",
                 "long_note" : true
             }
         ]
@@ -632,7 +634,7 @@
                 "menu_display" : "字型",
                 "code" : "字型 = ('標楷體',12,'normal')",
                 "code_display" : "字型 = ('標楷體',\n    12,'normal')",
-                "note" : "字型設定",
+                "note" : "字型設定(字體, 大小, 粗斜體)",
                 "long_note" : true
             },
             {
@@ -649,13 +651,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 海龜物件 初始(翰林9上)",
-        "off_label" : "海龜物件 初始(翰林9上) >>",
+        "on_label" : "< 海龜物件 翰林9上",
+        "off_label" : "海龜物件 翰林9上 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
@@ -725,8 +728,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 海龜物件 操作(翰林9上)",
-        "off_label" : "海龜物件 操作(翰林9上) >>",
+        "on_label" : "< 海龜操作 翰林9上",
+        "off_label" : "海龜操作 翰林9上 >",
         "start_on" : false
     },
     {

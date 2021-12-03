@@ -34,8 +34,9 @@ class BlockEnclosedWidget(ttk.Frame):
         self.block_enclosed_image = common_images['block_enclosed']
         self.block_enclosed_small_image = common_images['block_enclosed_small']
         self.enter_key_image = common_images['enter_key']
-        self.note_image = common_images['note']
+        
         self.paste_postit_image = common_images['paste_postit']
+        self.info_image = common_images['info']
 
         # frame init
         #ttk.Frame.__init__(self, self.tab.frame)
@@ -90,8 +91,14 @@ class BlockEnclosedWidget(ttk.Frame):
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.main_note_frame = ttk.Frame(self.main_frame)
         #self.main_note_label = tk.Label(self.main_frame, text='',justify='left', font=f2  ) 
-        self.main_note_label = tk.Label(self.main_note_frame, text='',justify='left', font=f2  ) 
-        self.bottom_note_label = tk.Label(self.bottom_frame, text='',justify='left', font=f2)
+        self.main_note_label = tk.Label(self.main_note_frame, text='',
+                                        justify='left', font=f2,
+                                        image=self.info_image,compound='left',
+                                        ) 
+        self.bottom_note_label = tk.Label(self.bottom_frame, text='',
+                                        justify='left', font=f2,
+                                        image=self.info_image,compound='left',
+                                        )
         
 
         # 1st row sub-frame
@@ -156,6 +163,9 @@ class BlockEnclosedCodeMixin:
             self.var_postfix_enter.set(True)
         
         self.update_postit_code()
+
+        self.bottom_frame.grid_remove()
+        self.main_note_label.grid_remove()
         self.update_hide_note()
 
 
@@ -391,7 +401,7 @@ class BlockEnclosedPopupMixin:
         self.popup_menu.add_checkbutton(label="切換 說明文字 ", onvalue=0, offvalue=1, 
                 variable=self.var_hide_note,
                 command=self.update_hide_note,
-                image=self.note_image,
+                image=self.info_image,
                 compound='right',
                 )
 
@@ -465,6 +475,9 @@ class BlockEnclosedPopupMixin:
         self.set_code_display(self.code_display)
         self.set_note(self.note)
         self.update_button_enter_sign()
+
+        self.bottom_frame.grid_remove()
+        self.main_note_label.grid_remove()
         self.update_hide_note()
 
 class BlockEnclosedPostit( BlockEnclosedWidget, 

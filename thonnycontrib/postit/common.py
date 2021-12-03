@@ -67,6 +67,7 @@ load_image('block_enclosed_small')
 load_image('note') 
 load_image('paste_postit')
 load_image('gear')
+load_image('info')
 
 #  
 # setup vars counter and default

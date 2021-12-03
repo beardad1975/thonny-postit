@@ -24,8 +24,9 @@ class DropdownWidget(ttk.Frame):
         # image
         self.enter_image = common_images['enter_small']
         self.enter_key_image = common_images['enter_key']
-        self.note_image = common_images['note']
+        
         self.paste_postit_image = common_images['paste_postit']
+        self.info_image = common_images['info']
         
 
         # frame init
@@ -81,8 +82,14 @@ class DropdownWidget(ttk.Frame):
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.main_note_frame = ttk.Frame(self.main_frame)
         #self.main_note_label = tk.Label(self.main_frame, text='',justify='left', font=f2  ) 
-        self.main_note_label = tk.Label(self.main_note_frame, text='',justify='left', font=f2  ) 
-        self.bottom_note_label = tk.Label(self.bottom_frame, text='',justify='left', font=f2)
+        self.main_note_label = tk.Label(self.main_note_frame, text='',
+                                        justify='left', font=f2,
+                                        image=self.info_image,compound='left',
+                                        ) 
+        self.bottom_note_label = tk.Label(self.bottom_frame, text='',
+                                        justify='left', font=f2,
+                                        image=self.info_image,compound='left',
+                                        )
         
 
         # 1st row sub-frame
@@ -118,6 +125,9 @@ class DropdownCodeMixin:
             self.var_postfix_enter.set(True)
         
         self.update_postit_code()
+
+        self.bottom_frame.grid_remove()
+        self.main_note_label.grid_remove()
         self.update_hide_note()
 
     def update_button_enter_sign(self):
@@ -125,6 +135,11 @@ class DropdownCodeMixin:
             self.enter_label.config(image=self.enter_image)
         else:
             self.enter_label.config(image='')
+
+    # def toggle_button_enter_sign(self, event=None):
+    #     is_enter = self.var_postfix_enter.get()
+    #     self.var_postfix_enter.set(not is_enter)
+    #     self.update_button_enter_sign()
 
     def set_note(self, help_text):
 
@@ -145,6 +160,7 @@ class DropdownCodeMixin:
             # use main note
             if not hide_note :
                 self.main_note_label.grid()
+                
             else:
                 self.main_note_label.grid_remove()
 
@@ -152,6 +168,7 @@ class DropdownCodeMixin:
             if not hide_note :
                 #self.bottom_note_label.grid()
                 self.bottom_frame.grid()
+                
             else:
                 #self.bottom_note_label.grid_remove()
                 self.bottom_frame.grid_remove()
@@ -171,7 +188,7 @@ class DropdownPostMixin:
     #     # drag and press event
     #     self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
     #     self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
-    #     self.postit_button.bind("<Double-Button-1>", self.on_mouse_double_click)
+    #     self.postit_button.bind("<Double-Button-1>", self.toggle_button_enter_sign)
     #     self.postit_button.config(cursor='arrow')
 
 
@@ -312,10 +329,10 @@ class DropdownPopup:
                                     command=self.post_hover_button)
         self.popup_menu.add_separator()
 
-        self.popup_menu.add_checkbutton(label="切換 說明文字 ", onvalue=0, offvalue=1, 
+        self.popup_menu.add_checkbutton(label="切換 說明文字(左鍵點擊) ", onvalue=0, offvalue=1, 
                 variable=self.var_hide_note,
                 command=self.update_hide_note,
-                image=self.note_image,
+                image=self.info_image,
                 compound='right',
                 )
 
@@ -378,6 +395,9 @@ class DropdownPopup:
         self.set_code_display(self.code_display)
         self.set_note(self.note)
         self.update_button_enter_sign()
+
+        self.bottom_frame.grid_remove()
+        self.main_note_label.grid_remove()
         self.update_hide_note()
 
 class DropdownPostit( DropdownWidget, 
