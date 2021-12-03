@@ -14,6 +14,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入海龜模組",
@@ -42,14 +43,14 @@
                 "menu_display" : "向前",
                 "code" : "向前(50)",
                 "code_display" : "向前(50)",
-                "note" : "海龜前進(點)",
+                "note" : "海龜向前進(點)",
                 "long_note" : false
             },
             {
                 "menu_display" : "向後",
                 "code" : "向後(50)",
                 "code_display" : "向後(50)",
-                "note" : "海龜後退(點)",
+                "note" : "海龜向後退(點)",
                 "long_note" : false
             }
         ]
@@ -141,7 +142,7 @@
                 "menu_display" : "設定方向",
                 "code" : "設定方向(0)",
                 "code_display" : "設定方向(0)",
-                "note" : "逆時針旋轉角度 右方為0度",
+                "note" : "設定方向(角度) 右方0度 逆時針旋轉",
                 "long_note" : true
             },
             {
@@ -156,7 +157,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "速度 正常",
@@ -207,19 +208,20 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "停筆",
                 "code" : "停筆()",
                 "code_display" : "停筆()",
-                "note" : "游標停止畫線",
+                "note" : "海龜停止畫線",
                 "long_note" : false
             },
             {
                 "menu_display" : "下筆",
                 "code" : "下筆()",
                 "code_display" : "下筆()",
-                "note" : "游標繼續畫線",
+                "note" : "海龜繼續畫線",
                 "long_note" : false
             }
         ]
@@ -227,19 +229,20 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "隱藏游標",
                 "code" : "隱藏游標()",
                 "code_display" : "隱藏游標()",
-                "note" : "",
+                "note" : "將海龜隱藏",
                 "long_note" : false
             },
             {
                 "menu_display" : "顯示游標",
                 "code" : "顯示游標()",
                 "code_display" : "顯示游標()",
-                "note" : "",
+                "note" : "將海龜顯示",
                 "long_note" : false
             }
         ]
@@ -247,40 +250,41 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "游標形狀 海龜",
                 "code" : "游標形狀('turtle')",
                 "code_display" : "游標形狀('turtle')",
-                "note" : "海龜游標",
+                "note" : "海龜形狀",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 傳統 箭頭",
                 "code" : "游標形狀('classic')",
                 "code_display" : "游標形狀('classic')",
-                "note" : "傳統游標 箭頭",
+                "note" : "箭頭形狀 傳統",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 圓形",
                 "code" : "游標形狀('circle')",
                 "code_display" : "游標形狀('circle')",
-                "note" : "圓形游標",
+                "note" : "圓形",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 方形",
                 "code" : "游標形狀('square')",
                 "code_display" : "游標形狀('square')",
-                "note" : "方形游標",
+                "note" : "方形",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 三角形",
                 "code" : "游標形狀('triangle')",
                 "code_display" : "游標形狀('triangle')",
-                "note" : "三角形游標",
+                "note" : "三角形",
                 "long_note" : true
             },
             {
@@ -295,6 +299,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "視窗大小設定",
@@ -308,19 +313,20 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "完成",
                 "code" : "完成()",
                 "code_display" : "完成()",
-                "note" : "進入主迴圈,減少無回應情形",
+                "note" : "加在程式最後 可避免視窗無回應",
                 "long_note" : true
             },
             {
                 "menu_display" : "點擊後離開",
                 "code" : "點擊後離開()",
                 "code_display" : "點擊後離開()",
-                "note" : "進入主迴圈，點擊後關閉視窗",
+                "note" : "加在程式最後 點擊後關閉視窗",
                 "long_note" : true
             }
         ]
@@ -330,8 +336,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 畫筆、填充與顏色",
-        "off_label" : "畫筆、填充與顏色 >>",
+        "on_label" : "< 畫筆 填充 顏色",
+        "off_label" : "畫筆 填充 顏色 >",
         "start_on" : false
     },
     {
