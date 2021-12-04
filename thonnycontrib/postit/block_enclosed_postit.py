@@ -106,7 +106,7 @@ class BlockEnclosedWidget(ttk.Frame):
         self.enter_label.pack(side=tk.LEFT, anchor='w')
         self.main_note_frame.pack(side=tk.LEFT, anchor='w')
         
-        self.main_note_label.grid(sticky='we', padx=2, pady=0)
+        self.main_note_label.grid(sticky='we', padx=7, pady=0)
         # 2nd row sub-frame
         
         self.bottom_note_label.grid(sticky='we', padx=15, pady=0)
@@ -398,7 +398,7 @@ class BlockEnclosedPopupMixin:
         
         self.popup_menu.add_separator()
 
-        self.popup_menu.add_checkbutton(label="切換 說明文字 ", onvalue=0, offvalue=1, 
+        self.popup_menu.add_checkbutton(label="切換 說明文字(左鍵點擊) ", onvalue=0, offvalue=1, 
                 variable=self.var_hide_note,
                 command=self.update_hide_note,
                 image=self.info_image,

@@ -97,7 +97,7 @@ class DropdownWidget(ttk.Frame):
         self.enter_label.pack(side=tk.LEFT, anchor='w')
         self.main_note_frame.pack(side=tk.LEFT, anchor='w')
 
-        self.main_note_label.grid(sticky='we', padx=2, pady=0)
+        self.main_note_label.grid(sticky='we', padx=7, pady=0)
         # 2nd row sub-frame
         
         self.bottom_note_label.grid(sticky='we', padx=15, pady=0)
