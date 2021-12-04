@@ -743,7 +743,9 @@ class PythonPostitView(ttk.Frame):
 
         parent = tab.current_postit_para.para_frame
         BlockEnclosedPostit(parent, tab, code_list = temp_code_list,
-            postfix_enter=postit_data['postfix_enter'],
+            #postfix_enter=postit_data.get('postfix_enter',True),
+            # postfix_enter always True
+            postfix_enter=True,
             start_hide_note=postit_data.get('start_hide_note',True)
             ).grid(sticky='w', padx=4, pady=5)                
     # def build_bit_install_lib_postit(self, tab, postit_data):

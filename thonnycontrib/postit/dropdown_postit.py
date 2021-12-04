@@ -197,11 +197,11 @@ class DropdownPostMixin:
         #create drag window
         if not self.drag_window: 
             self.create_drag_window()
-            self.postit_button.config(cursor='hand2')
+            #self.postit_button.config(cursor='hand2')
 
         x_root, y_root = event.x_root, event.y_root
         
-        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+2))
+        self.drag_window.geometry('+{}+{}'.format(x_root+2, y_root-5))
 
         #change insert over editor or shell (but not postit button)
         
@@ -261,7 +261,7 @@ class DropdownPostMixin:
             font = self.postit_button.cget('font')
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
-            text = '  ' + self.postit_button.cget('text')
+            text = ' ' + self.postit_button.cget('text')
             self.hover_text_backup = text
             justify = self.postit_button.cget('justify')
             self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 
@@ -329,7 +329,7 @@ class DropdownPopup:
                                     command=self.post_hover_button)
         self.popup_menu.add_separator()
 
-        self.popup_menu.add_checkbutton(label="切換 說明文字(左鍵點擊) ", onvalue=0, offvalue=1, 
+        self.popup_menu.add_checkbutton(label="切換 重點提示 ", onvalue=0, offvalue=1, 
                 variable=self.var_hide_note,
                 command=self.update_hide_note,
                 image=self.info_image,

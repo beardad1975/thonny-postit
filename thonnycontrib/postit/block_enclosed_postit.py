@@ -85,7 +85,8 @@ class BlockEnclosedWidget(ttk.Frame):
                                         command=self.toggle_hide_note,
                                         )
         
-        self.enter_label = tk.Label(self.main_frame, text='', image=self.enter_image, compound='center')
+        #self.enter_label = tk.Label(self.main_frame, text='', image=self.enter_image, compound='center')
+        self.enter_label = tk.Label(self.main_frame, text='', )
 
         # two notes
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
@@ -168,6 +169,10 @@ class BlockEnclosedCodeMixin:
         self.main_note_label.grid_remove()
         self.update_hide_note()
 
+    def update_button_enter_sign(self):
+        # postfix_enter always True
+        # don't need enter sign
+        pass
 
 class BlockEnclosedPostMixin:
     def on_mouse_drag(self, event):
@@ -175,11 +180,11 @@ class BlockEnclosedPostMixin:
         #create drag window
         if not self.drag_window: 
             self.create_drag_window()
-            self.postit_button.config(cursor='hand2')
+            #self.postit_button.config(cursor='hand2')
 
         x_root, y_root = event.x_root, event.y_root
         
-        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+2))
+        self.drag_window.geometry('+{}+{}'.format(x_root+2, y_root-5))
 
         #change insert over editor or shell (but not postit button)
         
@@ -266,16 +271,31 @@ class BlockEnclosedPostMixin:
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
         if pressing and not selecting:
+            # self.content_insert(editor_text, self.code)
+            # if self.var_postfix_enter.get():
+            #     editor_text.event_generate("<Return>")
+
+                        # cancel selection
+ 
+            if editor_text.tag_ranges(tk.SEL):
+                ori_sel_first = editor_text.index(tk.SEL_FIRST)
+                ori_sel_last = editor_text.index(tk.SEL_LAST)
+                editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
+            
             self.content_insert(editor_text, self.code)
-            if self.var_postfix_enter.get():
-                editor_text.event_generate("<Return>")
+            
+            self.select_first_insert_pass(editor_text, self.code)
+
+
 
         elif pressing and selecting:
             
             editor_text.event_generate("<BackSpace>")
+
             self.content_insert(editor_text, self.code)
-            if self.var_postfix_enter.get():
-                editor_text.event_generate("<Return>")
+            # if self.var_postfix_enter.get():
+            #     editor_text.event_generate("<Return>")
+            self.select_first_insert_pass(editor_text, self.code)
 
         elif dragging and not hovering:
             # cancel selection
@@ -286,19 +306,40 @@ class BlockEnclosedPostMixin:
                 editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
             
             self.content_insert(editor_text, self.code)
-            if self.var_postfix_enter.get():
-                editor_text.event_generate("<Return>")
-
+            
+            self.select_first_insert_pass(editor_text, self.code)
 
 
         elif dragging and hovering:
             #editor_text.event_generate("<BackSpace>")
             #self.content_insert(editor_text, self.code)
+            #print('by drag')
+            inserted_text = self.block_enclosed_content_insert(editor_text)
             
-            self.block_enclosed_content_insert(editor_text)
-            
+            #print(inserted_text)
+
+            if inserted_text.count('pass') > 0 :
+                self.select_first_insert_pass(editor_text, inserted_text)
+
             #if self.var_postfix_enter.get():
             #    editor_text.event_generate("<Return>")
+
+    def select_first_insert_pass(self, editor_text, code):
+        # count pass
+        pass_num = code.count('pass')
+        #print('pass_num: ', pass_num)
+        
+        # find first pass index
+        pass_index = editor_text.index(tk.INSERT)
+        for i in range(pass_num):
+            pass_index = editor_text.search('pass', pass_index, backwards=True)
+        
+        #if self.var_postfix_enter.get():
+        #    editor_text.event_generate("<Return>")
+
+        # select first pass
+        editor_text.tag_add(tk.SEL, pass_index, pass_index + ' + 4 chars')
+        editor_text.mark_set(tk.INSERT, pass_index )
 
 
     def block_enclosed_content_insert(self, text_widget):
@@ -316,13 +357,18 @@ class BlockEnclosedPostMixin:
         text_widget.tag_add(tk.SEL, index1, index2)
         text_widget.event_generate("<BackSpace>")
         
+        
         lines = block_text.split('\n')
+
+        # keep all inserted text for later processing
+        inserted_text = ''
 
         # count leading spaces in first line
         first_spaces_num = len(lines[0]) - len(lines[0].lstrip(' '))
 
         temp_text = ' ' * first_spaces_num + self.block_enclosed_colon_part_code
         text_widget.insert(tk.INSERT,temp_text)
+        inserted_text += temp_text
         text_widget.event_generate("<Return>")
         
 
@@ -330,6 +376,7 @@ class BlockEnclosedPostMixin:
         temp_text = '    ' + lines[0] 
         text_widget.event_generate("<Home>")
         text_widget.insert(tk.INSERT,temp_text)
+        inserted_text += temp_text
         text_widget.event_generate("<Return>")
         
 
@@ -341,6 +388,7 @@ class BlockEnclosedPostMixin:
                 temp_text = '    ' + line
                 text_widget.event_generate("<Home>")
                 text_widget.insert(tk.INSERT,temp_text)
+                inserted_text += temp_text
                 text_widget.event_generate("<Return>")
                 
             else:
@@ -349,10 +397,17 @@ class BlockEnclosedPostMixin:
                 temp_text = line
                 text_widget.event_generate("<Home>")
                 text_widget.insert(tk.INSERT,temp_text)
+                inserted_text += temp_text
                 text_widget.event_generate("<Return>")
+
+            
                 
         if self.block_enclosed_after_pass_code:
-            text_widget.event_generate("<BackSpace>")
+            #   if last code is not  pass, break, continue, return, need extra backsapce
+            last_code = temp_text.strip()
+            if not last_code in ('pass', 'break', 'continue', 'return'):
+                text_widget.event_generate("<BackSpace>")
+
             lines = self.block_enclosed_after_pass_code.split('\n')
             #print(lines)
             line_num = len(lines)          
@@ -360,6 +415,7 @@ class BlockEnclosedPostMixin:
                 # one line (no newline)
                     #print('co chi')
                     text_widget.insert(tk.INSERT,lines[0])
+                    inserted_text += lines[0]
             elif line_num > 1 :
                 #multi lines 
                 line_count = len(lines)
@@ -373,12 +429,13 @@ class BlockEnclosedPostMixin:
                     #    text_widget.event_generate("<BackSpace>")
 
                     text_widget.insert(tk.INSERT,line)
+                    inserted_text += line
 
                     #  generate enter if not last item
                     if i < line_count - 1 :
                         text_widget.event_generate("<Return>")
 
-
+        return inserted_text
 
 
 class BlockEnclosedPopupMixin:
@@ -386,31 +443,32 @@ class BlockEnclosedPopupMixin:
         # button popup menu
         f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
-        self.popup_menu.add_command(label="包含區塊 (需選取文字) ",
-                                    command=self.block_enclosed_hover_button,
-                                    image=self.block_enclosed_small_image,
-                                    compound='right',
-                                    )
+        
         self.popup_menu.add_command(label="貼上便利貼 ", 
                                     image=self.paste_postit_image,
                                     compound='right',
                                     command=self.post_hover_button)
+        self.popup_menu.add_command(label="包含區塊 需選取文字 ",
+                                    command=self.block_enclosed_hover_button,
+                                    image=self.block_enclosed_small_image,
+                                    compound='right',
+                                    )
         
         self.popup_menu.add_separator()
 
-        self.popup_menu.add_checkbutton(label="切換 說明文字(左鍵點擊) ", onvalue=0, offvalue=1, 
+        self.popup_menu.add_checkbutton(label="切換 重點提示 ", onvalue=0, offvalue=1, 
                 variable=self.var_hide_note,
                 command=self.update_hide_note,
                 image=self.info_image,
                 compound='right',
                 )
 
-        self.popup_menu.add_checkbutton(label="切換 便利貼換行 ", onvalue=1, offvalue=0, 
-                variable=self.var_postfix_enter,
-                command=self.update_button_enter_sign,
-                image=self.enter_key_image,
-                compound='right',
-                )
+        # self.popup_menu.add_checkbutton(label="切換 便利貼換行 ", onvalue=1, offvalue=0, 
+        #         variable=self.var_postfix_enter,
+        #         command=self.update_button_enter_sign,
+        #         image=self.enter_key_image,
+        #         compound='right',
+        #         )
 
         self.postit_button.bind("<Button-3>", self.popup)
 
@@ -432,7 +490,12 @@ class BlockEnclosedPopupMixin:
             editor_text = focus_widget 
             if editor_text.tag_ranges(tk.SEL)  :
                 # has selection
-                self.block_enclosed_content_insert(editor_text)
+                #self.block_enclosed_content_insert(editor_text)
+                #print('from menu')
+                inserted_text = self.block_enclosed_content_insert(editor_text)
+                if inserted_text.count('pass') > 0 :
+                    self.select_first_insert_pass(editor_text, inserted_text)
+
             else:# no selection
                 messagebox.showinfo('無選取範圍','請先在編輯區選取文字，才能包含區塊', master=get_workbench())
         elif isinstance(focus_widget, ShellText):

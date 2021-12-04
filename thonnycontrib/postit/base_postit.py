@@ -136,18 +136,18 @@ class BasePost:
         # drag and press event
         self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
         self.postit_button.bind("<ButtonRelease-1>", self.on_mouse_release)
-        self.postit_button.config(cursor='arrow')
+        #self.postit_button.config(cursor='arrow')
 
     def on_mouse_drag(self, event):
         ###print('drag ...')
         #create drag window
         if not self.drag_window: 
             self.create_drag_window()
-            self.postit_button.config(cursor='hand2')
+            #self.postit_button.config(cursor='hand2')
 
         x_root, y_root = event.x_root, event.y_root
 
-        self.drag_window.geometry('+{}+{}'.format(x_root-10, y_root+2))
+        self.drag_window.geometry('+{}+{}'.format(x_root+2, y_root-5))
 
         #change insert over editor or shell (but not postit button)
         
@@ -207,7 +207,7 @@ class BasePost:
             font = self.postit_button.cget('font')
             bg = self.postit_button.cget('bg')
             fg = self.postit_button.cget('fg')
-            text = '  ' + self.postit_button.cget('text')
+            text = ' ' + self.postit_button.cget('text')
             #self.hover_text_backup = text
             justify = self.postit_button.cget('justify')
             self.drag_button = tk.Button(self.drag_window, text=text, bg=bg, 
@@ -222,7 +222,7 @@ class BasePost:
         if self.drag_window:
             self.drag_window.destroy()
             self.drag_window = None
-            self.postit_button.config(cursor='arrow')
+            #self.postit_button.config(cursor='arrow')
             
         # restore mouse cursor 
 
