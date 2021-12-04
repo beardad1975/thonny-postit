@@ -13,6 +13,8 @@ from ..base_postit import BaseCode, BasePost, BasePopup
 
 from ..common import common_images
 
+from .. import common
+
 class SymbolWidget(ttk.Frame):
 
     def widget_init(self, master):
@@ -21,12 +23,12 @@ class SymbolWidget(ttk.Frame):
         #self.tool_image = common_images[tool_name]
 
         ttk.Frame.__init__(self, master)
-        f = font.Font(size=10, weight=font.NORMAL, family='Consolas')        
+        #f = font.Font(size=10, weight=font.NORMAL, family='Consolas')        
         self.postit_button = tk.Button(self,  
                                         relief='raised',
                                         borderwidth=1,
                                         text = '*',
-                                        font = f,
+                                        font = common.symbol_font,
                                         #fg=self.tab.font_color, 
                                         height=24,
                                         #width=40,
@@ -435,7 +437,8 @@ class SymbolToolPostMixin:
 
 class SymbolToolPopup:
     def popup_init(self):
-        f = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        #f = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        f = common.popup_menu_font
         self.popup_menu = tk.Menu(self, tearoff=0, font=f)
 
         # submenu

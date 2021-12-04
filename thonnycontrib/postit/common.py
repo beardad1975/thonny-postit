@@ -7,7 +7,7 @@ from keyword import iskeyword
 
 from collections import Counter, namedtuple
 
-
+import tkinter.font as font
 
 # 
 TAB_DATA_PATH = Path(__file__).parent / 'tab_data'
@@ -93,6 +93,13 @@ def disable_var_buttons():
     #share_var_assign_postit.postit_button.config(state='disable')
 
 
-
+# font
+postit_font = font.Font(size=12, weight=font.NORMAL, family='Consolas') 
+note_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+popup_menu_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+symbol_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+postit_para_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+tab_title = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+tab_label = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
 

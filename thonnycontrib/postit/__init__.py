@@ -337,7 +337,7 @@ class PostitPara:
         # else:
         #     text = off_label
 
-        button_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        button_font = common.postit_para_font
         self.para_button = tk.Button(tab.tab_frame.interior,
                 command=self.on_button_pressed, 
                 text=on_label, relief='flat', font=button_font)
@@ -527,7 +527,7 @@ class PythonPostitView(ttk.Frame):
         more_tab_frame = mode.more_tab.tab_frame
         
         # title label
-        title_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        title_font = common.tab_title
         tk.Label(more_tab_frame.interior, 
                 text='更多便利貼', font=title_font,
         ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
@@ -540,7 +540,7 @@ class PythonPostitView(ttk.Frame):
         #print(names_of_group)
         
         # group and tab buttons
-        label_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        label_font = common.tab_label
         for g in mode.groups.values():
             text = '{}'.format(g.group_label)
             ttk.Label(more_tab_frame.interior,
@@ -634,7 +634,7 @@ class PythonPostitView(ttk.Frame):
         #                 )
 
         # parse json data
-        self.label_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        #self.label_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
         for postit_data in postit_list:
             if postit_data['postit_type'] == 'dropdown_postit':
@@ -682,7 +682,7 @@ class PythonPostitView(ttk.Frame):
     def build_ttk_label(self, tab, postit_data):
         ttk.Label(tab.tab_frame.interior, 
             text=postit_data['text'],
-            font=self.label_font,    
+            font=common.tab_label,    
             compound=tk.LEFT, 
         ).grid( sticky='w',padx=0, pady=8)
         #).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
@@ -690,7 +690,7 @@ class PythonPostitView(ttk.Frame):
     def build_postit_title(self, tab, postit_data):
         ttk.Label(tab.tab_frame.interior, 
             text=tab.tab_title,
-            font=self.label_font,
+            font=common.tab_label,
             image=tab.icon_image,
             compound='left',
         ).grid( padx=0, pady=8)

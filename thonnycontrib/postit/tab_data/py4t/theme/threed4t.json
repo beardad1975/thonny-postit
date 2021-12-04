@@ -673,8 +673,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 文字",
-        "off_label" : "文字 >>",
+        "on_label" : "< 文字",
+        "off_label" : "文字 >",
         "start_on" : false
     },
     {
@@ -818,8 +818,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 自訂動畫",
-        "off_label" : "自訂動畫 >>",
+        "on_label" : "< 自訂動畫",
+        "off_label" : "自訂動畫 >",
         "start_on" : false
     },
     {
@@ -1025,8 +1025,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 聲音",
-        "off_label" : "聲音 >>",
+        "on_label" : "< 聲音",
+        "off_label" : "聲音 >",
         "start_on" : false
     },
     {
@@ -1096,8 +1096,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 介面與場景",
-        "off_label" : "介面與場景 >>",
+        "on_label" : "< 介面 場景",
+        "off_label" : "介面 場景 >",
         "start_on" : false
     },
     {
@@ -1128,63 +1128,63 @@
                 "menu_display" : "介面中心",
                 "code" : "物體.位置 = 舞台.介面中心",
                 "code_display" : "物體.位置 = 舞台.介面中心",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　上邊",
                 "code" : "物體.位置 = 舞台.介面上邊",
                 "code_display" : "物體.位置 = 舞台.介面上邊",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　下邊",
                 "code" : "物體.位置 = 舞台.介面下邊",
                 "code_display" : "物體.位置 = 舞台.介面下邊",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　右邊",
                 "code" : "物體.位置 = 舞台.介面右邊",
                 "code_display" : "物體.位置 = 舞台.介面右邊",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　左邊",
                 "code" : "物體.位置 = 舞台.介面左邊",
                 "code_display" : "物體.位置 = 舞台.介面左邊",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　右上",
                 "code" : "物體.位置 = 舞台.介面右上",
                 "code_display" : "物體.位置 = 舞台.介面右上",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　右下",
                 "code" : "物體.位置 = 舞台.介面右下",
                 "code_display" : "物體.位置 = 舞台.介面右下",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　左上",
                 "code" : "物體.位置 = 舞台.介面左上",
                 "code_display" : "物體.位置 = 舞台.介面左上",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "　　左下",
                 "code" : "物體.位置 = 舞台.介面左下",
                 "code_display" : "物體.位置 = 舞台.介面左下",
-                "note" : "## 物體位於介面時使用",
+                "note" : "物體位於介面時使用",
                 "long_note" : true
             }
 

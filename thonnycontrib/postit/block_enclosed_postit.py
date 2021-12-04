@@ -66,7 +66,7 @@ class BlockEnclosedWidget(ttk.Frame):
         
 
         # postit button 
-        f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
+        #f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         #self.postit_button = ttk.Button(self.main_frame, text='1234')
         self.postit_button = tk.Button(self.main_frame,  
                                         relief='solid',
@@ -75,7 +75,7 @@ class BlockEnclosedWidget(ttk.Frame):
                                         fg=self.tab.font_color, 
                                         bg=self.tab.fill_color,
                                         justify='left', 
-                                        font=f,
+                                        font=common.postit_font,
                                         compound='right',
                                         image=self.block_enclosed_image,
                                         padx=0,
@@ -89,15 +89,15 @@ class BlockEnclosedWidget(ttk.Frame):
         self.enter_label = tk.Label(self.main_frame, text='', )
 
         # two notes
-        f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        #f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
         self.main_note_frame = ttk.Frame(self.main_frame)
         #self.main_note_label = tk.Label(self.main_frame, text='',justify='left', font=f2  ) 
         self.main_note_label = tk.Label(self.main_note_frame, text='',
-                                        justify='left', font=f2,
+                                        justify='left', font=common.note_font,
                                         image=self.info_image,compound='left',
                                         ) 
         self.bottom_note_label = tk.Label(self.bottom_frame, text='',
-                                        justify='left', font=f2,
+                                        justify='left', font=common.note_font,
                                         image=self.info_image,compound='left',
                                         )
         
@@ -441,8 +441,8 @@ class BlockEnclosedPostMixin:
 class BlockEnclosedPopupMixin:
     def popup_init(self):
         # button popup menu
-        f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
-        self.popup_menu = tk.Menu(self, tearoff=0, font=f2)
+        #f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        self.popup_menu = tk.Menu(self, tearoff=0, font=common.popup_menu_font)
         
         self.popup_menu.add_command(label="貼上便利貼 ", 
                                     image=self.paste_postit_image,
@@ -474,7 +474,7 @@ class BlockEnclosedPopupMixin:
 
         # dropdown popup menu
         if len(self.code_list) > 1:
-            self.dropdown_menu = tk.Menu(self, tearoff=0, font=f2)
+            self.dropdown_menu = tk.Menu(self, tearoff=0, font=common.popup_menu_font)
             for i, code_item in enumerate(self.code_list):
                 text = code_item.menu_display
                 f = lambda index=i: self.switch_postit(index)

@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "從視覺模組匯入全部",
                 "code" : "from 視覺模組 import *",
                 "code_display" : "from 視覺模組 import *",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入才能使用!!",
                 "long_note" : true
             }
         ]
@@ -29,40 +30,41 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 攝影機擷取",
-        "off_label" : "攝影機擷取 >>",
+        "on_label" : "< 攝影機擷取",
+        "off_label" : "攝影機擷取 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "設置影像擷取 640x480",
                 "code" : "攝影機 = 設置影像擷取()",
                 "code_display" : "攝影機 = 設置影像擷取()",
-                "note" : "",
+                "note" : "設置影像擷取 640x480",
                 "long_note" : true
             },
             {
                 "menu_display" : "設置影像擷取 720p",
                 "code" : "攝影機 = 設置影像擷取(解析度='720p')",
-                "code_display" : "攝影機 = 設置影像擷取(解析度='720p')",
-                "note" : "",
+                "code_display" : "攝影機 = 設置影像擷取(\n    解析度='720p')",
+                "note" : "設置影像擷取 720p",
                 "long_note" : true
             },
             {
                 "menu_display" : "設置影像擷取 1080p",
                 "code" : "攝影機 = 設置影像擷取(解析度='1080p')",
-                "code_display" : "攝影機 = 設置影像擷取(解析度='1080p')",
-                "note" : "",
+                "code_display" : "攝影機 = 設置影像擷取(\n    解析度='1080p')",
+                "note" : "設置影像擷取 1080p",
                 "long_note" : true
             },
             {
                 "menu_display" : "設置影像擷取 後端DSHOW",
                 "code" : "攝影機 = 設置影像擷取(後端='DSHOW')",
-                "code_display" : "攝影機 = 設置影像擷取(後端='DSHOW')",
-                "note" : "",
+                "code_display" : "攝影機 = 設置影像擷取(\n    後端='DSHOW')",
+                "note" : "後端DSHOW (DirectX)\n若攝影機啟動很慢時，可使用",
                 "long_note" : true
             },
             {
@@ -82,7 +84,7 @@
                 "menu_display" : "擷取影像",
                 "code" : "陣列 = 擷取影像(攝影機)",
                 "code_display" : "陣列 = 擷取影像(攝影機)",
-                "note" : "影像為彩色",
+                "note" : "從攝影機取得彩色影像",
                 "long_note" : true
             }
         ]
