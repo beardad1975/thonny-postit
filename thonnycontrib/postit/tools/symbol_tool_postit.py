@@ -557,6 +557,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('str()'," str() 字串"))
         self.data_menu.add_command( label=" type() 查詢類型 ", 
                 command=lambda:self.change_symbol('type()'," type() 查詢類型 "))
+        self.data_menu.add_command( label=" None 空值 ", 
+                command=lambda:self.change_symbol('None'," None 空值 "))
  
 
         self.string_menu.add_command( label=" str() 字串", 

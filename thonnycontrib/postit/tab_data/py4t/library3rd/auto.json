@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "dropdown_postit",
-        "postfix_enter" : true,
+        "postfix_enter" : true, 
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入pyautogui模組",
                 "code" : "import pyautogui as 自動",
                 "code_display" : "import pyautogui as 自動",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]

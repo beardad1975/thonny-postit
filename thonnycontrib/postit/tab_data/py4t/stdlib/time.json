@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入時間模組",
                 "code" : "import time as 時間",
                 "code_display" : "import time as 時間",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }        
         ]
@@ -29,13 +30,13 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 累計秒數",
-        "off_label" : "累計秒數 >>",
+        "on_label" : "< 累計秒數",
+        "off_label" : "累計秒數 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "累計秒數",
@@ -72,13 +73,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 暫停控制",
-        "off_label" : "暫停控制 >>",
+        "on_label" : "< 暫停控制",
+        "off_label" : "暫停控制 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "睡眠(幾秒)",

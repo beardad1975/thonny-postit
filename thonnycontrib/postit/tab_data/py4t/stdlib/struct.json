@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "import struct as 結構",
                 "code_display" : "import struct\n    as 結構",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }            
         ]
@@ -29,13 +30,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 包裝與拆開資料",
-        "off_label" : "包裝與拆開資料 >>",
+        "on_label" : "< 資料包裝 拆開",
+        "off_label" : "資料包裝 拆開 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "包裝資料",
@@ -64,19 +66,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 資料長度",
-        "off_label" : "資料長度 >>",
+        "on_label" : "< 資料長度",
+        "off_label" : "資料長度 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "計算多少位元組",
                 "code" : "位元組數 = 結構.calcsize('hh')",
                 "code_display" : "位元組數 = 結構.calcsize('hh')",
-                "note" : "計算多少位元組",
+                "note" : "計算資料有多少位元組",
                 "long_note" : true
             }            
         ]

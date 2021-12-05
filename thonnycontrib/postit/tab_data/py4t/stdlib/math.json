@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入數學模組",
                 "code" : "import math as 數學",
                 "code_display" : "import math as 數學",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }        
         ]
@@ -29,19 +30,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 常數",
-        "off_label" : "常數 >>",
+        "on_label" : "< 常數",
+        "off_label" : "常數 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "圓周率 pi",
                 "code" : "數學.pi",
                 "code_display" : "數學.pi",
-                "note" : "圓周率 pi",
+                "note" : "pi 圓周率",
                 "long_note" : true
             }
             
@@ -52,13 +54,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 基本算術",
-        "off_label" : "基本算術 >>",
+        "on_label" : "< 基本算術",
+        "off_label" : "基本算術 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "最大公因數",
@@ -74,13 +77,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 指數、方根與對數",
-        "off_label" : "指數、方根與對數 >>",
+        "on_label" : "< 指數 方根 對數",
+        "off_label" : "指數 方根 對數 >>",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "次方",
@@ -135,13 +139,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 三角函數",
-        "off_label" : "三角函數 >>",
+        "on_label" : "< 三角函數",
+        "off_label" : "三角函數 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "三角函數 sin",

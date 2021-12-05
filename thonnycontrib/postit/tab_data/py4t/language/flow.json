@@ -154,22 +154,22 @@
             {
                 "menu_display" : "定義函式 無參數",
                 "code" : "def 新功能() :\npass",
-                "code_display" : "def 新功能() : \n    pass",
-                "note" : "定義函式 無參數",
+                "code_display" : "def 新功能() :\n    pass",
+                "note" : "定義 新功能():\n    函式區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "定義函式 有參數",
-                "code" : "def 新功能(參數) :\npass",
-                "code_display" : "def 新功能(參數) : \n    pass",
-                "note" : "定義函式 有參數",
+                "code" : "def 新功能(x) :\npass",
+                "code_display" : "def 新功能(x) :\n    pass",
+                "note" : "定義 新功能(參數):\n    函式區塊",
                 "long_note" : true
             },
             {
-                "menu_display" : "定義函式 參數預設值",
-                "code" : "def 新功能(參數=0) :\npass",
-                "code_display" : "def 新功能(參數=0) : \n    pass",
-                "note" : "定義函式 參數預設值",
+                "menu_display" : "定義函式 參數有預設值",
+                "code" : "def 新功能(x=0) :\npass",
+                "code_display" : "def 新功能(x=0) :\n    pass",
+                "note" : "定義 新功能(參數有預設值):\n    函式區塊",
                 "long_note" : true
             }
         ]
@@ -183,14 +183,14 @@
                 "code" : "global ",
                 "code_display" : "global",
                 "note" : "引用全域變數 變數名稱",
-                "long_note" : true
+                "long_note" : false
             },
             {
                 "menu_display" : "引用局部變數 nonlocal",
                 "code" : "nonlocal ",
                 "code_display" : "nonlocal",
                 "note" : "引用局部變數 變數名稱",
-                "long_note" : true
+                "long_note" : false
             },
             {
                 "menu_display" : "定義匿名函式 lambda",
@@ -209,15 +209,15 @@
                 "menu_display" : "函式返回(跳出)",
                 "code" : "return",
                 "code_display" : "return",
-                "note" : "跳出函式 返回原呼叫程式",
-                "long_note" : true
+                "note" : "跳出函式 返回",
+                "long_note" : false
             },
             {
                 "menu_display" : "跳出函式並傳回值",
                 "code" : "return 10",
                 "code_display" : "return 10",
-                "note" : "跳出函式並傳回值(可傳變數)",
-                "long_note" : true
+                "note" : "跳出函式並傳回值",
+                "long_note" : false
             }
         ]
     },
@@ -230,7 +230,7 @@
                 "code" : "pass",
                 "code_display" : "pass",
                 "note" : "不做任何動作 區塊佔位",
-                "long_note" : true
+                "long_note" : false
             }
         ]
     }
