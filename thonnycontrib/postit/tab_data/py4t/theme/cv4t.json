@@ -94,13 +94,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 影像顯示、屬性與切片",
-        "off_label" : "影像顯示、屬性與切片 >>",
+        "on_label" : "< 顯示 屬性 切片",
+        "off_label" : "顯示 屬性 切片 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "顯示影像",
@@ -210,13 +211,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 灰階轉換、亮度對比",
-        "off_label" : "灰階轉換、亮度對比 >>",
+        "on_label" : "< 灰階 亮度 對比",
+        "off_label" : "灰階 亮度 對比 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "彩色轉灰階",
@@ -267,33 +269,34 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 翻轉、旋轉、平移與縮放",
-        "off_label" : "翻轉、旋轉、平移與縮放 >>",
+        "on_label" : "< 翻轉 旋轉 平移 縮放",
+        "off_label" : "翻轉 旋轉 平移 縮放 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "左右翻轉",
                 "code" : "陣列 = 左右翻轉(陣列)",
                 "code_display" : "陣列 = 左右翻轉(陣列)",
-                "note" : "",
+                "note" : "影像左右翻轉",
                 "long_note" : true
             },
             {
                 "menu_display" : "上下翻轉",
                 "code" : "陣列 = 上下翻轉(陣列)",
                 "code_display" : "陣列 =上下翻轉(陣列)",
-                "note" : "",
+                "note" : "影像上下翻轉",
                 "long_note" : true
             },
             {
                 "menu_display" : "上下左右翻轉",
                 "code" : "陣列 = 上下左右翻轉(陣列)",
                 "code_display" : "陣列 =上下左右翻轉(陣列)",
-                "note" : "",
+                "note" : "影像上下左右翻轉",
                 "long_note" : true
             }
         ]
@@ -306,7 +309,7 @@
                 "menu_display" : "旋轉影像",
                 "code" : "陣列 = 旋轉影像(陣列, 角度=90)",
                 "code_display" : "陣列 = 旋轉影像(陣列,\n    角度=90)",
-                "note" : "",
+                "note" : "旋轉影像",
                 "long_note" : true
             }
         ]
@@ -319,7 +322,7 @@
                 "menu_display" : "平移影像",
                 "code" : "陣列 = 平移影像(陣列, 水平=50, 垂直=50)",
                 "code_display" : "陣列 = 平移影像(陣列,\n   水平=50, 垂直=50)",
-                "note" : "",
+                "note" : "平移影像",
                 "long_note" : true
             }
         ]
@@ -332,14 +335,14 @@
                 "menu_display" : "縮放影像 依寬度",
                 "code" : "陣列 = 縮放影像(陣列, 寬度=300)",
                 "code_display" : "陣列 = 縮放影像(陣列, \n    寬度=300)",
-                "note" : "",
+                "note" : "縮放影像 依寬度",
                 "long_note" : true
             },
             {
                 "menu_display" : "縮放影像 依高度",
                 "code" : "陣列 = 縮放影像(陣列, 高度=300)",
                 "code_display" : "陣列 = 縮放影像(陣列, \n    高度=300)",
-                "note" : "",
+                "note" : "縮放影像 依高度",
                 "long_note" : true
             }
         ]
@@ -349,26 +352,27 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 影像模糊與邊緣偵測",
-        "off_label" : "影像模糊與邊緣偵測 >>",
+        "on_label" : "< 模糊 邊緣偵測",
+        "off_label" : "模糊 邊緣偵測 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "模糊",
                 "code" : "陣列 = 模糊(陣列, 核心=5)",
                 "code_display" : "陣列 = 模糊(陣列, 核心=5)",
-                "note" : "",
+                "note" : "影像模糊 去噪",
                 "long_note" : true
             },
             {
                 "menu_display" : "高斯模糊",
                 "code" : "陣列 = 高斯模糊(陣列, 核心=5)",
                 "code_display" : "陣列 = 高斯模糊(陣列, 核心=5)",
-                "note" : "## 核心需為單數",
+                "note" : "高斯模糊 核心需為單數",
                 "long_note" : true
             }
         ]
@@ -381,7 +385,7 @@
                 "menu_display" : "Canny邊緣偵測",
                 "code" : "陣列 = Canny邊緣偵測(陣列)",
                 "code_display" : "陣列 = Canny邊緣偵測(陣列)",
-                "note" : "# 需傳入灰階影像",
+                "note" : "Canny邊緣偵測 需灰階影像",
                 "long_note" : true
             }
         ]
@@ -391,33 +395,47 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 深度學習人臉偵測",
-        "off_label" : "深度學習人臉偵測 >>",
+        "on_label" : "< 人臉偵測",
+        "off_label" : "人臉偵測 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "載入 類神經網路 人臉模型",
                 "code" : "類神經網路 = 深度學習人臉模型()",
                 "code_display" : "類神經網路 = 深度學習人臉模型()",
-                "note" : "",
+                "note" : "載入 類神經網路 人臉模型",
                 "long_note" : true
             },
             {
                 "menu_display" : "類神經網路 設定輸入",
                 "code" : "類神經網路.設定輸入(陣列)",
                 "code_display" : "類神經網路.設定輸入(陣列)",
-                "note" : "",
+                "note" : "類神經網路 設定輸入",
                 "long_note" : true
             },
             {
                 "menu_display" : "類神經網路 正向傳播",
                 "code" : "人臉清單 = 類神經網路.正向傳播()",
                 "code_display" : "人臉清單 = 類神經網路.正向傳播()",
-                "note" : "",
+                "note" : "類神經網路 正向傳播",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "從人臉清單 逐一取出",
+                "code" : "for 臉 in 人臉清單 :\npass",
+                "code_display" : "for 臉 in 人臉清單 :\n    pass",
+                "note" : "從人臉清單 逐一取出 :\n        迴圈區塊",
                 "long_note" : true
             }
         ]
@@ -426,67 +444,61 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
-            {
-                "menu_display" : "從人臉清單 逐一取出",
-                "code" : "for 臉 in 人臉清單 :\npass",
-                "code_display" : "for 臉 in 人臉清單 :\n    pass",
-                "note" : "逐一取出 從清單 :\n        迴圈區塊",
-                "long_note" : true
-            },
+            
             {
                 "menu_display" : "臉 矩形左上點",
                 "code" : "臉.矩形左上點",
                 "code_display" : "臉.矩形左上點",
-                "note" : "",
+                "note" : "臉 矩形左上點",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形左下點",
                 "code" : "臉.矩形左下點",
                 "code_display" : "臉.矩形左下點",
-                "note" : "",
+                "note" : "臉 矩形左下點",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形右上點",
                 "code" : "臉.矩形右上點",
                 "code_display" : "臉.矩形右上點",
-                "note" : "",
+                "note" : "臉 矩形右上點",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形右下點",
                 "code" : "臉.矩形右下點",
                 "code_display" : "臉.矩形右下點",
-                "note" : "",
+                "note" : "臉 矩形右下點",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形中心點",
                 "code" : "臉.矩形中心點",
                 "code_display" : "臉.矩形中心點",
-                "note" : "",
+                "note" : "臉 矩形中心點",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 信心值",
                 "code" : "臉.信心值",
                 "code_display" : "臉.信心值",
-                "note" : "",
+                "note" : "臉 信心值",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 陣列",
                 "code" : "臉.陣列",
                 "code_display" : "臉.陣列",
-                "note" : "",
+                "note" : "臉 陣列",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 寬度",
                 "code" : "臉.寬度",
                 "code_display" : "臉.寬度",
-                "note" : "",
+                "note" : "臉 寬度",
                 "long_note" : true
             }
             
@@ -500,7 +512,20 @@
                 "menu_display" : "臉 偵測特徵點",
                 "code" : "臉部特徵點 = 臉.偵測特徵點() ",
                 "code_display" : "臉部特徵點 = 臉.偵測特徵點() ",
-                "note" : "",
+                "note" : "臉 偵測特徵點",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "從臉部特徵點 逐一取出",
+                "code" : "for 點 in 臉部特徵點 :\npass",
+                "code_display" : "for 點 in 臉部特徵點 :\n    pass",
+                "note" : "從臉部特徵點 逐一取出 :\n        迴圈區塊",
                 "long_note" : true
             }
         ]
@@ -510,94 +535,87 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "從臉部特徵點 逐一取出",
-                "code" : "for 點 in 臉部特徵點 :\npass",
-                "code_display" : "for 點 in 臉部特徵點 :\n    pass",
-                "note" : "逐一取出 從清單 :\n        迴圈區塊",
-                "long_note" : true
-            },
-            {
                 "menu_display" : "下巴清單",
                 "code" : "臉部特徵點.下巴清單",
                 "code_display" : "臉部特徵點.下巴清單",
-                "note" : "",
+                "note" : "下巴清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "眉毛清單",
                 "code" : "臉部特徵點.眉毛清單",
                 "code_display" : "臉部特徵點.眉毛清單",
-                "note" : "",
+                "note" : "眉毛清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "    左眉毛清單",
                 "code" : "臉部特徵點.左眉毛清單",
                 "code_display" : "臉部特徵點.左眉毛清單",
-                "note" : "",
+                "note" : "    左眉毛清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "    右眉毛清單",
                 "code" : "臉部特徵點.右眉毛清單",
                 "code_display" : "臉部特徵點.右眉毛清單",
-                "note" : "",
+                "note" : "    右眉毛清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "鼻清單",
                 "code" : "臉部特徵點.鼻清單",
                 "code_display" : "臉部特徵點.鼻清單",
-                "note" : "",
+                "note" : "鼻清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "    鼻梁清單",
                 "code" : "臉部特徵點.鼻梁清單",
                 "code_display" : "臉部特徵點.鼻梁清單",
-                "note" : "",
+                "note" : "    鼻梁清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "    鼻翼清單",
                 "code" : "臉部特徵點.鼻翼清單",
                 "code_display" : "臉部特徵點.鼻翼清單",
-                "note" : "",
+                "note" : "    鼻翼清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "眼清單",
                 "code" : "臉部特徵點.眼清單",
                 "code_display" : "臉部特徵點.眼清單",
-                "note" : "",
+                "note" : "眼清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "    左眼清單",
                 "code" : "臉部特徵點.左眼清單",
                 "code_display" : "臉部特徵點.左眼清單",
-                "note" : "",
+                "note" : "    左眼清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "    右眼清單",
                 "code" : "臉部特徵點.右眼清單",
                 "code_display" : "臉部特徵點.右眼清單",
-                "note" : "",
+                "note" : "    右眼清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "脣清單",
                 "code" : "臉部特徵點.脣清單",
                 "code_display" : "臉部特徵點.脣清單",
-                "note" : "",
+                "note" : "脣清單",
                 "long_note" : true
             },
             {
                 "menu_display" : "口清單",
                 "code" : "臉部特徵點.口清單",
                 "code_display" : "臉部特徵點.口清單",
-                "note" : "",
+                "note" : "口清單",
                 "long_note" : true
             }
         ]
@@ -607,34 +625,56 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 幾何繪圖與顏色",
-        "off_label" : "幾何繪圖與顏色 >>",
+        "on_label" : "< 幾何繪圖 顏色",
+        "off_label" : "幾何繪圖 顏色 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "直線 點1 點2",
                 "code" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n)",
                 "code_display" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "直線 點1 點2",
+                "long_note" : true
             },
             {
                 "menu_display" : "直線 點1 點2 顏色",
                 "code" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n)",
                 "code_display" : "畫直線( 陣列 , \n    點1 = (0,0),\n    點2 = (50,50),\n    顏色 = color.紅 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "直線 點1 點2 顏色",
+                "long_note" : true
             },
             {
                 "menu_display" : "直線 點1 點2 顏色 寬度",
                 "code" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
                 "code_display" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "直線 點1 點2 顏色 寬度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "折線 點清單 封閉",
+                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n)",
+                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    )",
+                "note" : "折線 點清單 封閉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "折線 點清單 封閉 顏色",
+                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
+                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
+                "note" : "折線 點清單 封閉 顏色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "折線 點清單 封閉 顏色 線寬",
+                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
+                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
+                "note" : "折線 點清單 封閉 顏色 線寬",
+                "long_note" : true
             }
         ]
     },
@@ -646,104 +686,71 @@
                 "menu_display" : "矩形 點1 點2",
                 "code" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n)",
                 "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "矩形 點1 點2",
+                "long_note" : true
             },
             {
                 "menu_display" : "矩形 點1 點2 顏色",
                 "code" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n)",
                 "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0),\n    點2 = (50,50),\n    顏色 = color.紅 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "矩形 點1 點2 顏色",
+                "long_note" : true
             },
             {
                 "menu_display" : "矩形 點1 點2 顏色 寬度",
                 "code" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
                 "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "矩形 點1 點2 顏色 寬度",
+                "long_note" : true
             },
             {
                 "menu_display" : "矩形實心 點1 點2",
                 "code" : "畫矩形實心( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n)",
                 "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "矩形實心 點1 點2",
+                "long_note" : true
             },
             {
                 "menu_display" : "矩形實心 點1 點2 顏色",
                 "code" : "畫矩形實心( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n)",
                 "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0),\n    點2 = (50,50),\n    顏色 = color.紅 ,\n    )",
-                "note" : "",
-                "long_note" : false
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
+                "note" : "矩形實心 點1 點2 顏色",
+                "long_note" : true
+            },
             {
                 "menu_display" : "圓形 圓心 半徑",
                 "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n)",
                 "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "圓形 圓心 半徑",
+                "long_note" : true
             },
             {
                 "menu_display" : "圓形 圓心 半徑 顏色",
                 "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n)",
                 "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10),\n    半徑 = 2,\n    顏色 = color.紅 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "圓形 圓心 半徑 顏色",
+                "long_note" : true
             },
             {
                 "menu_display" : "圓形 圓心 半徑 顏色 寬度",
                 "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
                 "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "圓形 圓心 半徑 顏色 寬度",
+                "long_note" : true
             },
             {
                 "menu_display" : "圓形實心 圓心 半徑",
                 "code" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n)",
                 "code_display" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    )",
-                "note" : "",
-                "long_note" : false
+                "note" : "圓形實心 圓心 半徑",
+                "long_note" : true
             },
             {
                 "menu_display" : "圓形實心 圓心 半徑 顏色",
                 "code" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n)",
                 "code_display" : "畫圓形實心( 陣列 , \n    圓心 = (10,10),\n    半徑 = 2,\n    顏色 = color.紅 ,\n    )",
-                "note" : "",
-                "long_note" : false
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "折線 點清單 封閉",
-                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n)",
-                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    )",
-                "note" : "",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "折線 點清單 封閉 顏色",
-                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
-                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
-                "note" : "",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "折線 點清單 封閉 顏色 線寬",
-                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
-                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
-                "note" : "",
-                "long_note" : false
+                "note" : "圓形實心 圓心 半徑 顏色",
+                "long_note" : true
             }
         ]
     },
@@ -776,61 +783,48 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "畫透明圖",
-                "code" : "畫透明圖(陣列, 透明圖陣列, 0, 0)",
-                "code_display" : "畫透明圖(陣列,\n   透明圖陣列, 0, 0)",
-                "note" : "",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
                 "menu_display" : "紅",
                 "code" : "color.紅",
                 "code_display" : "color.紅",
-                "note" : "",
+                "note" : "紅",
                 "long_note" : true
             },
             {
                 "menu_display" : "綠",
                 "code" : "color.綠",
                 "code_display" : "color.綠",
-                "note" : "",
+                "note" : "綠",
                 "long_note" : true
             },
             {
                 "menu_display" : "藍",
                 "code" : "color.藍",
                 "code_display" : "color.藍",
-                "note" : "",
+                "note" : "藍",
                 "long_note" : true
             },
             {
                 "menu_display" : "黃",
                 "code" : "color.黃",
                 "code_display" : "color.黃",
-                "note" : "",
+                "note" : "黃",
                 "long_note" : true
             },
             {
                 "menu_display" : "橘",
                 "code" : "color.橘",
                 "code_display" : "color.橘",
-                "note" : "",
+                "note" : "橘",
                 "long_note" : true
             },
             {
                 "menu_display" : "粉紅",
                 "code" : "color.粉紅",
                 "code_display" : "color.粉紅",
-                "note" : "",
+                "note" : "粉紅",
                 "long_note" : true
             },
             {
@@ -850,30 +844,44 @@
         ]
     },
     {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "畫透明圖",
+                "code" : "畫透明圖(陣列, 透明圖陣列, 0, 0)",
+                "code_display" : "畫透明圖(陣列,\n   透明圖陣列, 0, 0)",
+                "note" : "畫透明圖",
+                "long_note" : true
+            }
+        ]
+    },
+    {
         "postit_type" : "ttk_separator"
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 影像讀取與儲存",
-        "off_label" : "影像讀取與儲存 >>",
+        "on_label" : "< 影讀取 儲存",
+        "off_label" : "讀取 儲存 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "讀取影像灰階",
                 "code" : "陣列 = 讀取影像灰階('檔名.類型')",
                 "code_display" : "陣列 = 讀取影像灰階(\n    '檔名.類型')",
-                "note" : "### 需改為實際檔名(需英文數字)",
+                "note" : "需改為實際檔名(需英文數字)",
                 "long_note" : true
             },
             {
                 "menu_display" : "讀取影像彩色",
                 "code" : "陣列 = 讀取影像彩色('檔名.類型')",
                 "code_display" : "陣列 = 讀取影像彩色(\n    '檔名.類型')",
-                "note" : "### 需改為實際檔名(需英文數字)",
+                "note" : "需改為實際檔名(需英文數字)",
                 "long_note" : true
             }
         ]
@@ -886,7 +894,7 @@
                 "menu_display" : "讀取影像PNG",
                 "code" : "透明圖陣列 = 讀取影像PNG('檔名.png')",
                 "code_display" : "透明圖陣列 = 讀取影像PNG(\n    '檔名.png')",
-                "note" : "### 需改為實際檔名(需英文數字)",
+                "note" : "需改為實際檔名(需英文數字)",
                 "long_note" : true
             }
         ]
@@ -909,13 +917,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 螢幕擷取",
-        "off_label" : "螢幕擷取 >>",
+        "on_label" : "< 螢幕擷取",
+        "off_label" : "螢幕擷取 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "擷取螢幕",
@@ -944,13 +953,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 等待與輸入",
-        "off_label" : "等待與輸入 >>",
+        "on_label" : "< 等待 輸入",
+        "off_label" : "等待 輸入 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "無限等待",
