@@ -30,13 +30,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 設定與資訊",
-        "off_label" : "設定與資訊 >>",
+        "on_label" : "< 設定 資訊",
+        "off_label" : "設定 資訊 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "螢幕尺寸",
@@ -120,13 +121,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 滑鼠操作",
-        "off_label" : "滑鼠操作 >>",
+        "on_label" : "< 滑鼠操作",
+        "off_label" : "滑鼠操作 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "滑鼠 移動到位置",
@@ -203,13 +205,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 鍵盤操作",
-        "off_label" : "鍵盤操作 >>",
+        "on_label" : "< 鍵盤操作",
+        "off_label" : "鍵盤操作 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             
             {
@@ -336,19 +339,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 剪貼簿",
-        "off_label" : "剪貼簿 >>",
+        "on_label" : "< 剪貼簿",
+        "off_label" : "剪貼簿 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入pyperclip模組",
                 "code" : "import pyperclip as 剪貼簿",
                 "code_display" : "import pyperclip as 剪貼簿",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]

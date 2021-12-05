@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : "<< 模組",
+        "off_label" : ">> 模組",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 攝影機擷取",
-        "off_label" : "攝影機擷取 >",
+        "on_label" : "<< 攝影機擷取",
+        "off_label" : ">> 攝影機擷取",
         "start_on" : true
     },
     {
@@ -94,8 +94,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 顯示 屬性 切片",
-        "off_label" : "顯示 屬性 切片 >",
+        "on_label" : "<< 顯示 屬性 切片",
+        "off_label" : ">> 顯示 屬性 切片",
         "start_on" : false
     },
     {
@@ -211,8 +211,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 灰階 亮度 對比",
-        "off_label" : "灰階 亮度 對比 >",
+        "on_label" : "<< 灰階 亮度 對比",
+        "off_label" : ">> 灰階 亮度 對比",
         "start_on" : false
     },
     {
@@ -269,8 +269,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 翻轉 旋轉 平移 縮放",
-        "off_label" : "翻轉 旋轉 平移 縮放 >",
+        "on_label" : "<< 翻轉 旋轉 平移 縮放",
+        "off_label" : ">> 翻轉 旋轉 平移 縮放",
         "start_on" : false
     },
     {
@@ -352,8 +352,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模糊 邊緣偵測",
-        "off_label" : "模糊 邊緣偵測 >",
+        "on_label" : "<< 模糊 邊緣偵測",
+        "off_label" : ">> 模糊 邊緣偵測",
         "start_on" : false
     },
     {
@@ -395,8 +395,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 人臉偵測",
-        "off_label" : "人臉偵測 >",
+        "on_label" : "<< 人臉偵測",
+        "off_label" : ">> 人臉偵測",
         "start_on" : false
     },
     {
@@ -625,8 +625,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 幾何繪圖 顏色",
-        "off_label" : "幾何繪圖 顏色 >",
+        "on_label" : "<< 幾何繪圖 顏色",
+        "off_label" : ">> 幾何繪圖 顏色",
         "start_on" : false
     },
     {
@@ -861,8 +861,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 影讀取 儲存",
-        "off_label" : "讀取 儲存 >",
+        "on_label" : "<< 讀取 儲存",
+        "off_label" : ">> 讀取 儲存",
         "start_on" : false
     },
     {
@@ -917,8 +917,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 螢幕擷取",
-        "off_label" : "螢幕擷取 >",
+        "on_label" : "<< 螢幕擷取",
+        "off_label" : ">> 螢幕擷取",
         "start_on" : false
     },
     {
@@ -953,8 +953,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 等待 輸入",
-        "off_label" : "等待 輸入 >",
+        "on_label" : "<< 等待 輸入",
+        "off_label" : ">> 等待 輸入",
         "start_on" : false
     },
     {

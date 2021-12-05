@@ -47,7 +47,7 @@ class DropdownWidget(ttk.Frame):
         else:
             self.dropdown_image = common_images['dropdown_empty']
         self.dropdown_button = tk.Button(self.main_frame, 
-                                        relief='flat',
+                                        #relief='flat',
                                         borderwidth=0,
                                         image=self.dropdown_image,
                                         compound=tk.TOP,  
@@ -64,7 +64,9 @@ class DropdownWidget(ttk.Frame):
         #self.postit_button = ttk.Button(self.main_frame, text='1234')
         self.postit_button = tk.Button(self.main_frame,  
                                         relief='solid',
-                                        borderwidth=1,
+                                        #relief='flat',
+                                        #borderwidth=1,
+                                        borderwidth=0,
                                         text='***' , 
                                         fg=self.tab.font_color, 
                                         bg=self.tab.fill_color,

@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : "<< 模組",
+        "off_label" : ">> 模組",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 移動 位置 方向 速度",
-        "off_label" : "移動 位置 方向 速度 >",
+        "on_label" : "<< 移動 位置 方向 速度",
+        "off_label" : ">> 移動 位置 方向 速度",
         "start_on" : true
     },
     {
@@ -194,8 +194,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 游標 視窗 完成",
-        "off_label" : "游標 視窗 完成 >",
+        "on_label" : "<< 游標 視窗 完成",
+        "off_label" : ">> 游標 視窗 完成",
         "start_on" : false
     },
     {
@@ -329,8 +329,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 畫筆 填充 顏色",
-        "off_label" : "畫筆 填充 顏色 >",
+        "on_label" : "<< 畫筆 填充 顏色",
+        "off_label" : ">> 畫筆 填充 顏色",
         "start_on" : false
     },
     {
@@ -547,8 +547,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 圓 輸入 文字",
-        "off_label" : "圓 輸入 文字 >",
+        "on_label" : "<< 圓 輸入 文字",
+        "off_label" : ">> 圓 輸入 文字",
         "start_on" : false
     },
     {
@@ -644,8 +644,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 海龜物件 翰林9上",
-        "off_label" : "海龜物件 翰林9上 >",
+        "on_label" : "<< 海龜物件 翰林9上",
+        "off_label" : ">> 海龜物件 翰林9上",
         "start_on" : false
     },
     {
@@ -721,8 +721,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 海龜操作 翰林9上",
-        "off_label" : "海龜操作 翰林9上 >",
+        "on_label" : "<< 海龜操作 翰林9上",
+        "off_label" : ">> 海龜操作 翰林9上",
         "start_on" : false
     },
     {

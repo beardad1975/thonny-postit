@@ -345,7 +345,7 @@ class PostitPara:
         #self.para_button.pack(side=tk.TOP, anchor='w', padx=2, pady=2)
 
         self.ori_bg_color = self.para_button.cget('bg')
-        self.para_button.config(bg="#ffffff")
+        #self.para_button.config(bg="#ffffff")
         
 
         self.para_frame = ttk.Frame(tab.tab_frame.interior,
@@ -358,12 +358,15 @@ class PostitPara:
 
     def on_button_pressed(self):
         if self.para_visible :
-            self.para_button.config(text=self.off_label, bg=self.ori_bg_color)
+            #self.para_button.config(text=self.off_label, bg=self.ori_bg_color)
+            self.para_button.config(text=self.off_label, fg='#a0a0a0')
+            #self.para_button.config(text=self.off_label, bg="#e5e5e5")
             self.para_visible = False
             self.para_frame.grid_remove()
             #self.para_frame.pack_forget()
         else:
-            self.para_button.config(text=self.on_label, bg="#ffffff")
+            #self.para_button.config(text=self.on_label, bg="#ffffff")
+            self.para_button.config(text=self.on_label, fg="black")
             self.para_visible = True
             self.para_frame.grid()
             #self.para_frame.grid_propagate(0)
@@ -637,6 +640,9 @@ class PythonPostitView(ttk.Frame):
         # parse json data
         #self.label_font = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
+        # set seperator style
+        
+
         for postit_data in postit_list:
             if postit_data['postit_type'] == 'dropdown_postit':
                 self.build_dropdown_postit(tab, postit_data)
@@ -697,9 +703,11 @@ class PythonPostitView(ttk.Frame):
         ).grid( padx=0, pady=8)
 
     def build_ttk_separator(self, tab, postit_data):
-        ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL
-            ).grid(sticky='ew', padx=0, pady=5)
-            #).pack(side=tk.TOP, fill=tk.X, padx=0, pady=10)
+        #ttk.Separator(tab.tab_frame.interior, orient=tk.HORIZONTAL, style="Line.TSeparator",
+        #    ).grid(sticky='ew', padx=0, pady=5)
+
+        separator = tk.Frame(tab.tab_frame.interior, bg="#cccccc", height=1, bd=0)
+        separator.grid(sticky='ew', padx=0, pady=5)   
 
     def build_postit_para(self, tab, postit_data):
         on_label = postit_data['on_label']

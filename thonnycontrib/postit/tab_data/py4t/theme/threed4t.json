@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : "<< 模組",
+        "off_label" : ">> 模組",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 主迴圈 舞台",
-        "off_label" : "主迴圈 舞台 >",
+        "on_label" : "<< 主迴圈 舞台",
+        "off_label" : ">> 主迴圈 舞台",
         "start_on" : true
     },
     {
@@ -108,8 +108,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 物體建立 刪除",
-        "off_label" : "物體建立 刪除 >",
+        "on_label" : "<< 物體建立 刪除",
+        "off_label" : ">> 物體建立 刪除",
         "start_on" : false
     },
     {
@@ -185,8 +185,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 位置 縮放 旋轉",
-        "off_label" : "位置 縮放 旋轉 >",
+        "on_label" : "<< 位置 縮放 旋轉",
+        "off_label" : ">> 位置 縮放 旋轉",
         "start_on" : false
     },
     {
@@ -297,8 +297,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 顏色 模型 材質 屬性",
-        "off_label" : "顏色 模型 材質 屬性 >",
+        "on_label" : "<< 顏色 模型 材質 屬性",
+        "off_label" : ">> 顏色 模型 材質 屬性",
         "start_on" : false
     },
     {
@@ -471,8 +471,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 事件 互動",
-        "off_label" : "事件 互動 >",
+        "on_label" : "<< 事件 互動",
+        "off_label" : ">> 事件 互動",
         "start_on" : false
     },
     {
@@ -673,8 +673,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 文字",
-        "off_label" : "文字 >",
+        "on_label" : "<< 文字",
+        "off_label" : ">> 文字",
         "start_on" : false
     },
     {
@@ -818,8 +818,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 自訂動畫",
-        "off_label" : "自訂動畫 >",
+        "on_label" : "<< 自訂動畫",
+        "off_label" : ">>自訂動畫",
         "start_on" : false
     },
     {
@@ -1025,8 +1025,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 聲音",
-        "off_label" : "聲音 >",
+        "on_label" : "<< 聲音",
+        "off_label" : ">> 聲音",
         "start_on" : false
     },
     {
@@ -1096,8 +1096,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 介面 場景",
-        "off_label" : "介面 場景 >",
+        "on_label" : "<< 介面 場景",
+        "off_label" : ">> 介面 場景",
         "start_on" : false
     },
     {

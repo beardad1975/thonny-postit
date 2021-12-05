@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : "<< 模組",
+        "off_label" : ">> 模組",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 設定範圍 題目",
-        "off_label" : "設定範圍 題目 >",
+        "on_label" : "<< 設定範圍 題目",
+        "off_label" : ">> 設定範圍 題目",
         "start_on" : true
     },
     {
@@ -101,8 +101,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 搜尋",
-        "off_label" : "搜尋 >",
+        "on_label" : "<< 搜尋",
+        "off_label" : ">> 搜尋",
         "start_on" : false
     },
     {
@@ -150,8 +150,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 上下範圍 上下限",
-        "off_label" : "上下範圍 上下限 >",
+        "on_label" : "<< 上下範圍 上下限",
+        "off_label" : ">> 上下範圍 上下限",
         "start_on" : false
     },
     {
@@ -222,8 +222,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 列印 統計 提交 ",
-        "off_label" : "列印 統計 提交 >",
+        "on_label" : "<< 列印 統計 提交 ",
+        "off_label" : ">> 列印 統計 提交",
         "start_on" : false
     },
     {

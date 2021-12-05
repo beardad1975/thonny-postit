@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入numpy模組",
                 "code" : "import numpy as 多維陣列",
                 "code_display" : "import numpy as 多維陣列",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]
@@ -29,13 +30,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 建立多維陣列",
-        "off_label" : "建立多維陣列 >>",
+        "on_label" : "< 建立",
+        "off_label" : "建立 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "建立陣列 arange",
@@ -98,20 +100,21 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 陣列屬性",
-        "off_label" : "陣列屬性 >>",
+        "on_label" : "< 屬性",
+        "off_label" : "屬性 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "陣列的維度 ndim",
                 "code" : "陣列.ndim",
                 "code_display" : "陣列.ndim",
-                "note" : "陣列的維度 ndim",
-                "long_note" : true
+                "note" : "陣列的維度",
+                "long_note" : false
             }
         ]
     },
@@ -123,8 +126,8 @@
                 "menu_display" : "陣列的形狀 shape",
                 "code" : "陣列.shape",
                 "code_display" : "陣列.shape",
-                "note" : "陣列的形狀 shape",
-                "long_note" : true
+                "note" : "陣列的形狀",
+                "long_note" : false
             }
         ]
     },
@@ -136,8 +139,8 @@
                 "menu_display" : "資料類型 dtype",
                 "code" : "陣列.dtype",
                 "code_display" : "陣列.dtype",
-                "note" : "資料類型 dtype",
-                "long_note" : true
+                "note" : "資料類型",
+                "long_note" : false
             }
         ]
     },
@@ -149,8 +152,8 @@
                 "menu_display" : "資料數量 size",
                 "code" : "陣列.size",
                 "code_display" : "陣列.size",
-                "note" : "資料數量 size",
-                "long_note" : true
+                "note" : "資料數量",
+                "long_note" : false
             }
         ]
     },
@@ -159,13 +162,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 形狀、類型與拼貼",
-        "off_label" : "形狀、類型與拼貼 >>",
+        "on_label" : "< 形狀 類型 拼貼",
+        "off_label" : "形狀 類型 拼貼 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "改變陣列形狀 reshape",
@@ -235,13 +239,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 陣列運算",
-        "off_label" : "陣列運算 >>",
+        "on_label" : "< 運算",
+        "off_label" : "運算 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "平均 average",
@@ -283,13 +288,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 陣列切片",
-        "off_label" : "陣列切片 >>",
+        "on_label" : "< 切片",
+        "off_label" : "切片 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "1D元素",
