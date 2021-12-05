@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "從模組匯入搜尋猜數",
                 "code" : "from 演算法 import guess",
                 "code_display" : "from 演算法 import guess",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!! (guess 猜)",
                 "long_note" : true
             }
         ]
@@ -29,19 +30,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 設定與產生題目",
-        "off_label" : "設定與產生題目 >>",
+        "on_label" : "< 設定範圍 題目",
+        "off_label" : "設定範圍 題目 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "產生題目 0~上範圍 隨機",
                 "code" : "guess.產生題目(100)",
                 "code_display" : "guess.產生題目(100)",
-                "note" : "0~上範圍(少1) 隨機",
+                "note" : "0~上範圍 (不含)\n隨機產生題目",
                 "long_note" : true
             },
             {
@@ -55,7 +57,7 @@
                 "menu_display" : "產生題目 下範圍~上範圍 隨機",
                 "code" : "guess.產生題目(50, 100)",
                 "code_display" : "guess.產生題目(50, 100)",
-                "note" : "下範圍~上範圍(少1) 隨機",
+                "note" : "下範圍~上範圍(少1)\n隨機產生題目",
                 "long_note" : true
             },
             {
@@ -75,21 +77,21 @@
                 "menu_display" : "正常速度",
                 "code" : "guess.設定速度('normal')",
                 "code_display" : "guess.設定速度('normal')",
-                "note" : "正常速度 normal",
+                "note" : "normal 正常 ",
                 "long_note" : true
             },
             {
                 "menu_display" : "快速",
                 "code" : "guess.設定速度('fast')",
                 "code_display" : "guess.設定速度('fast')",
-                "note" : "快速 fast",
+                "note" : "fast 快速",
                 "long_note" : true
             },
             {
                 "menu_display" : "慢速",
                 "code" : "guess.設定速度('slow')",
                 "code_display" : "guess.設定速度('slow')",
-                "note" : "慢速 slow",
+                "note" : "slow 慢速",
                 "long_note" : true
             }
         ]
@@ -99,13 +101,14 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 搜尋(與答案比較)",
-        "off_label" : "搜尋(與答案比較) >>",
+        "on_label" : "< 搜尋",
+        "off_label" : "搜尋 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "搜尋比較 等於",
@@ -147,26 +150,27 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 題目範圍與上下限",
-        "off_label" : "題目範圍與上下限 >>",
+        "on_label" : "< 上下範圍 上下限",
+        "off_label" : "上下範圍 上下限 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "題目上範圍",
                 "code" : "guess.題目上範圍",
                 "code_display" : "guess.題目上範圍",
-                "note" : "",
+                "note" : "題目上範圍",
                 "long_note" : true
             },
             {
                 "menu_display" : "題目下範圍",
                 "code" : "guess.題目下範圍",
                 "code_display" : "guess.題目下範圍",
-                "note" : "",
+                "note" : "題目下範圍",
                 "long_note" : true
             }
         ]
@@ -186,7 +190,7 @@
                 "menu_display" : "上限 取值",
                 "code" : "guess.上限",
                 "code_display" : "guess.上限",
-                "note" : "",
+                "note" : "上限 取值",
                 "long_note" : true
             }
             
@@ -207,7 +211,7 @@
                 "menu_display" : "下限 取值",
                 "code" : "guess.下限",
                 "code_display" : "guess.下限",
-                "note" : "",
+                "note" : "下限 取值",
                 "long_note" : true
             }
             
@@ -218,19 +222,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 印出、統計與提交 ",
-        "off_label" : "印出、統計與提交 >>",
+        "on_label" : "< 列印 統計 提交 ",
+        "off_label" : "列印 統計 提交 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "印出猜數狀況",
+                "menu_display" : "列印猜數狀況",
                 "code" : "print(guess)",
                 "code_display" : "print(guess)",
-                "note" : "印出猜數狀況",
+                "note" : "列印猜數狀況",
                 "long_note" : true
             }
             
@@ -264,7 +269,7 @@
                 "menu_display" : "提交搜尋",
                 "code" : "guess.提交搜尋()",
                 "code_display" : "guess.提交搜尋()",
-                "note" : "將目前搜尋提交\n(進入主迴圈, 暫無互動環境)",
+                "note" : "將目前搜尋提交\n(進入主迴圈, 無法單行執行)",
                 "long_note" : true
             }
         ]

@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : "< 模組",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "從模組匯入",
                 "code" : "from 演算法 import poker",
                 "code_display" : "from 演算法 import poker",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!! (poker 撲克)",
                 "long_note" : true
             }
         ]
@@ -29,47 +30,48 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 設定、產生與發牌",
-        "off_label" : "設定、產生與發牌 >>",
+        "on_label" : "< 牌組 設定 發牌",
+        "off_label" : "牌組 設定 發牌 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
+            {
+                "menu_display" : "選擇花色 隨機",
+                "code" : "poker.選擇花色('random')",
+                "code_display" : "poker.選擇花色('random')",
+                "note" : "random 隨機",
+                "long_note" : true
+            },
             {
                 "menu_display" : "選擇花色 黑桃",
                 "code" : "poker.選擇花色('spade')",
                 "code_display" : "poker.選擇花色('spade')",
-                "note" : "黑桃 spade",
+                "note" : "spade 黑桃",
                 "long_note" : true
             },
             {
                 "menu_display" : "選擇花色 紅心",
                 "code" : "poker.選擇花色('heart')",
                 "code_display" : "poker.選擇花色('heart')",
-                "note" : "紅心 heart",
+                "note" : "heart 紅心",
                 "long_note" : true
             },
             {
                 "menu_display" : "選擇花色 方塊",
                 "code" : "poker.選擇花色('diamond')",
                 "code_display" : "poker.選擇花色('diamond')",
-                "note" : "方塊 diamond",
+                "note" : "diamond 鑽石(菱形 方塊 紅磚)",
                 "long_note" : true
             },
             {
                 "menu_display" : "選擇花色 梅花",
                 "code" : "poker.選擇花色('club')",
                 "code_display" : "poker.選擇花色('club')",
-                "note" : "梅花 club",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "選擇花色 隨機",
-                "code" : "poker.選擇花色('random')",
-                "code_display" : "poker.選擇花色('random')",
-                "note" : "隨機 random",
+                "note" : "club 梅花",
                 "long_note" : true
             }
         ]
@@ -124,14 +126,14 @@
                 "menu_display" : "未發牌數",
                 "code" : "poker.未發牌數",
                 "code_display" : "poker.未發牌數",
-                "note" : "",
+                "note" : "尚未發牌的數量",
                 "long_note" : true
             },
             {
                 "menu_display" : "手上牌數",
                 "code" : "len(poker)",
                 "code_display" : "len(poker)",
-                "note" : "手上牌數",
+                "note" : "手上牌的數量",
                 "long_note" : true
             }
         ]
@@ -144,21 +146,21 @@
                 "menu_display" : "發牌 正常速度",
                 "code" : "poker.設定速度('normal')",
                 "code_display" : "poker.設定速度('normal')",
-                "note" : "正常速度 normal",
+                "note" : "normal 正常",
                 "long_note" : true
             },
             {
                 "menu_display" : "發牌 快速",
                 "code" : "poker.設定速度('fast')",
                 "code_display" : "poker.設定速度('fast')",
-                "note" : "快速 fast",
+                "note" : "fast 快速",
                 "long_note" : true
             },
             {
                 "menu_display" : "發牌 慢速",
                 "code" : "poker.設定速度('slow')",
                 "code_display" : "poker.設定速度('slow')",
-                "note" : "慢速 slow",
+                "note" : "slow 慢速",
                 "long_note" : true
             }
         ]
@@ -168,14 +170,22 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 索引位置與牌操作 ",
-        "off_label" : "索引位置與牌操作 >>",
+        "on_label" : "< 索引方式 牌操作",
+        "off_label" : "索引方式 牌操作 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
+            {
+                "menu_display" : "點數 依索引值",
+                "code" : "poker[2].點數",
+                "code_display" : "poker[2].點數",
+                "note" : "某一張牌的點數(依索引)",
+                "long_note" : true
+            },
             {
                 "menu_display" : "取得牌 依索引值",
                 "code" : "poker[2]",
@@ -215,19 +225,6 @@
                 "code" : "poker[2].掀牌()",
                 "code_display" : "poker[2].掀牌()",
                 "note" : "某一張掀牌(依索引)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "點數 依索引值",
-                "code" : "poker[2].點數",
-                "code_display" : "poker[2].點數",
-                "note" : "某一張牌的點數(依索引)",
                 "long_note" : true
             }
         ]
@@ -311,19 +308,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 指定物件與牌操作 ",
-        "off_label" : "指定物件與牌操作 >>",
+        "on_label" : "< 物件方式 牌操作 ",
+        "off_label" : "物件方式 牌操作 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "指定物件 依索引值",
+                "menu_display" : "取得物件 依索引值",
                 "code" : "牌 = poker[2]",
                 "code_display" : "牌 = poker[2]",
-                "note" : "指定物件 依索引值",
+                "note" : "取得物件 依索引值",
                 "long_note" : true
             }
         ]
@@ -333,14 +331,14 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "蓋牌 指定牌物件",
+                "menu_display" : "蓋牌",
                 "code" : "牌.蓋牌()",
                 "code_display" : "牌.蓋牌()",
                 "note" : "某一張蓋牌(指定物件)",
                 "long_note" : true
             },
             {
-                "menu_display" : "掀牌 指定牌物件",
+                "menu_display" : "掀牌 ",
                 "code" : "牌.掀牌()",
                 "code_display" : "牌.掀牌()",
                 "note" : "某一張掀牌(指定物件)",
@@ -353,14 +351,14 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "點數 指定物件",
+                "menu_display" : "點數",
                 "code" : "牌.點數",
                 "code_display" : "牌.點數",
                 "note" : "某一張牌的點數(指定物件)",
                 "long_note" : true
             },
             {
-                "menu_display" : "索引值 指定物件",
+                "menu_display" : "索引值",
                 "code" : "牌.索引值",
                 "code_display" : "牌.索引值",
                 "note" : "某一張牌的索引值(指定物件)",
@@ -462,33 +460,34 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 印出、統計與結算 ",
-        "off_label" : "印出、統計與結算 >>",
+        "on_label" : "< 列印 統計 結算 ",
+        "off_label" : "列印 統計 結算 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "印出所有手牌",
+                "menu_display" : "列印所有手牌",
                 "code" : "print(poker)",
                 "code_display" : "print(poker)",
-                "note" : "印出所有手牌",
+                "note" : "列印所有手牌",
                 "long_note" : true
             },
             {
-                "menu_display" : "印出單張牌 索引值",
+                "menu_display" : "列印單張牌 索引值",
                 "code" : "print(poker[2])",
                 "code_display" : "print(poker[2])",
-                "note" : "印出牌的點數與索引值",
+                "note" : "列印牌的點數與索引值",
                 "long_note" : true
             },
             {
-                "menu_display" : "印出單張牌 指定物件",
+                "menu_display" : "列印單張牌 指定物件",
                 "code" : "print(牌)",
                 "code_display" : "print(牌)",
-                "note" : "印出牌的點數與索引值",
+                "note" : "列印牌的點數與索引值",
                 "long_note" : true
             }
         ]
@@ -521,7 +520,7 @@
                 "menu_display" : "排序結算",
                 "code" : "poker.排序結算()",
                 "code_display" : "poker.排序結算()",
-                "note" : "結算已排序張數\n(進入主迴圈, 暫無互動環境)",
+                "note" : "結算已排序張數\n(進入主迴圈, 無單行執行)",
                 "long_note" : true
             }
         ]

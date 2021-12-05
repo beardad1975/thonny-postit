@@ -20,7 +20,7 @@
                 "menu_display" : "from 模擬3D模組 import *",
                 "code" : "from 模擬3D模組 import *",
                 "code_display" : "from 模擬3D模組 import *",
-                "note" : "需先匯入才能使用!!",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]
@@ -43,8 +43,8 @@
                 "menu_display" : "模擬主迴圈",
                 "code" : "模擬主迴圈()",
                 "code_display" : "模擬主迴圈()",
-                "note" : "框架程式主迴圈 需放最後!!",
-                "long_note" : true
+                "note" : "需放最後!!",
+                "long_note" : false
             }
         ]
     },
@@ -482,9 +482,9 @@
         "items" :[
             {
                 "menu_display" : "事件 當更新時",
-                "code" : "def 當更新時(時間差):\npass",
-                "code_display" : "def 當更新時(時間差):\n    pass",
-                "note" : "事件 當更新時",
+                "code" : "def 當更新時(dt):\npass",
+                "code_display" : "def 當更新時(dt):\n    pass",
+                "note" : "當更新時(時間差):\n    事件區塊",
                 "long_note" : true
             },
             {
@@ -537,16 +537,16 @@
         "items" :[
             {
                 "menu_display" : "事件 當按下時",
-                "code" : "def 當按下時(按鍵):\npass",
-                "code_display" : "def 當按下時(按鍵):\n    pass",
-                "note" : "事件 當按下時",
+                "code" : "def 當按下時(key):\npass",
+                "code_display" : "def 當按下時(key):\n    pass",
+                "note" : "當按下時(按鍵)\n    事件區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "事件 當放開時",
-                "code" : "def 當放開時(按鍵):\npass",
-                "code_display" : "def 當放開時(按鍵):\n    pass",
-                "note" : "事件 當放開時",
+                "code" : "def 當放開時(key):\npass",
+                "code_display" : "def 當放開時(key):\n    pass",
+                "note" : "當放開時(按鍵)\n    事件區塊",
                 "long_note" : true
             },
             {

@@ -20,7 +20,7 @@
                 "menu_display" : "從視覺模組匯入全部",
                 "code" : "from 視覺模組 import *",
                 "code_display" : "from 視覺模組 import *",
-                "note" : "需先匯入才能使用!!",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]
@@ -43,21 +43,21 @@
                 "menu_display" : "設置影像擷取 640x480",
                 "code" : "攝影機 = 設置影像擷取()",
                 "code_display" : "攝影機 = 設置影像擷取()",
-                "note" : "設置影像擷取 640x480",
+                "note" : "影像大小 寬640x高480",
                 "long_note" : true
             },
             {
                 "menu_display" : "設置影像擷取 720p",
                 "code" : "攝影機 = 設置影像擷取(解析度='720p')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    解析度='720p')",
-                "note" : "設置影像擷取 720p",
+                "note" : "影像大小 寬1280x高720",
                 "long_note" : true
             },
             {
                 "menu_display" : "設置影像擷取 1080p",
                 "code" : "攝影機 = 設置影像擷取(解析度='1080p')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    解析度='1080p')",
-                "note" : "設置影像擷取 1080p",
+                "note" : "影像大小 寬1920x高1080",
                 "long_note" : true
             },
             {

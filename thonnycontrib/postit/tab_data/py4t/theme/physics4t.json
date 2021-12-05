@@ -20,7 +20,7 @@
                 "menu_display" : "from 物理模組 import *",
                 "code" : "from 物理模組 import *",
                 "code_display" : "from 物理模組 import *",
-                "note" : "需先匯入才能使用!!",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]
@@ -43,8 +43,8 @@
                 "menu_display" : "模擬主迴圈",
                 "code" : "模擬主迴圈()",
                 "code_display" : "模擬主迴圈()",
-                "note" : "框架程式主迴圈 需放最後!!",
-                "long_note" : true
+                "note" : "需放最後!!",
+                "long_note" : false
             }
             
         ]
@@ -54,14 +54,14 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "建立舞台 設定寬高",
+                "menu_display" : "建立舞台 ",
                 "code" : "舞台 = 物理引擎(400,600)",
                 "code_display" : "舞台 = 物理引擎(400, 600)",
                 "note" : "建立模擬舞台 (寬度,高度)",
                 "long_note" : true
             },
             {
-                "menu_display" : "重力",
+                "menu_display" : "重力加速度",
                 "code" : "舞台.重力 = [0, -800]",
                 "code_display" : "舞台.重力 = [0, -800]",
                 "note" : "設定重力加速度 [左右x, 上下y]",
@@ -311,21 +311,21 @@
                 "menu_display" : "按下滑鼠時",
                 "code" : "def 按下滑鼠時(x, y):\npass\n",
                 "code_display" : "def 按下滑鼠時(x, y):\n    pass",
-                "note" : "事件 按下滑鼠時(左右,上下)",
+                "note" : "按下滑鼠時(左右,上下):\n    事件區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "拖曳滑鼠時",
                 "code" : "def 拖曳滑鼠時(x, y, dx, dy):\npass\n",
                 "code_display" : "def 拖曳滑鼠時(x,y,dx,dy):\n    pass",
-                "note" : "事件 拖曳滑鼠時(左右,上下,\n    左右差,上下差)",
+                "note" : "拖曳滑鼠時(x, y, x差值, y差值):\n    事件區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "放開滑鼠時",
                 "code" : "def 放開滑鼠時(x, y):\npass\n",
                 "code_display" : "def 放開滑鼠時(x, y):\n    pass",
-                "note" : "事件 放開滑鼠時(左右,上下)",
+                "note" : "放開滑鼠時(左右,上下):\n    事件區塊",
                 "long_note" : true
             }
         ]
@@ -338,14 +338,14 @@
                 "menu_display" : "按下鍵盤時",
                 "code" : "def 按下鍵盤時(按鍵, x, y):\npass\n",
                 "code_display" : "def 按下鍵盤時(按鍵,x,y):\n    pass",
-                "note" : "事件 按下鍵盤時(按鍵,左右,上下)",
+                "note" : "按下鍵盤時(按鍵,左右,上下):\n    事件區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "放開鍵盤時",
                 "code" : "def 放開鍵盤時(按鍵, x, y):\npass\n",
                 "code_display" : "def 放開鍵盤時(按鍵,x,y):\n    pass",
-                "note" : "事件 放開鍵盤時(按鍵,左右,上下)",
+                "note" : "放開鍵盤時(按鍵,左右,上下):\n    事件區塊",
                 "long_note" : true
             },
             {
@@ -400,14 +400,14 @@
                 "menu_display" : "當更新時",
                 "code" : "def 當更新時(時間差):\npass\n",
                 "code_display" : "def 當更新時(時間差):\n    pass",
-                "note" : "事件 當更新時(時間差)",
+                "note" : "當更新時(時間差):\n    事件區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "點擊物體時",
                 "code" : "def 點擊物體時(物體, x, y):\npass\n",
                 "code_display" : "def 點擊物體時(物體,x,y):\n    pass",
-                "note" : "事件 點擊物體時(物體,左右,上下)",
+                "note" : "點擊物體時(物體,左右,上下):\n    事件區塊",
                 "long_note" : true
             }
         ]

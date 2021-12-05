@@ -345,7 +345,8 @@ class PostitPara:
         #self.para_button.pack(side=tk.TOP, anchor='w', padx=2, pady=2)
 
         self.ori_bg_color = self.para_button.cget('bg')
-        self.para_button.config(bg="#fefefe")
+        self.para_button.config(bg="#ffffff")
+        
 
         self.para_frame = ttk.Frame(tab.tab_frame.interior,
                 )
@@ -362,7 +363,7 @@ class PostitPara:
             self.para_frame.grid_remove()
             #self.para_frame.pack_forget()
         else:
-            self.para_button.config(text=self.on_label, bg="#fefefe")
+            self.para_button.config(text=self.on_label, bg="#ffffff")
             self.para_visible = True
             self.para_frame.grid()
             #self.para_frame.grid_propagate(0)

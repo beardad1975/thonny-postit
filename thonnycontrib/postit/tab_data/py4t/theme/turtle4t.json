@@ -20,7 +20,7 @@
                 "menu_display" : "匯入海龜模組",
                 "code" : "from 海龜模組 import *",
                 "code_display" : "from 海龜模組 import *",
-                "note" : "需先匯入模組, 才能使用!!",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 位置 方向 速度",
-        "off_label" : "位置 方向 速度 >",
+        "on_label" : "< 移動 位置 方向 速度",
+        "off_label" : "移動 位置 方向 速度 >",
         "start_on" : true
     },
     {
@@ -129,15 +129,7 @@
                 "code_display" : "y座標()",
                 "note" : "查詢 海龜的y座標",
                 "long_note" : true
-            }
-            
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : true,
-        "items" :[
+            },
             {
                 "menu_display" : "設定方向",
                 "code" : "設定方向(0)",
@@ -152,6 +144,7 @@
                 "note" : "查詢 海龜的角度",
                 "long_note" : true
             }
+            
         ]
     },
     {
@@ -163,35 +156,35 @@
                 "menu_display" : "速度 正常",
                 "code" : "速度('normal')",
                 "code_display" : "速度('normal')",
-                "note" : "海龜速度 正常",
+                "note" : "normal 正常",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 慢",
                 "code" : "速度('slow')",
                 "code_display" : "速度('slow')",
-                "note" : "海龜速度 慢",
+                "note" : "slow 慢",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 最慢",
                 "code" : "速度('slowest')",
                 "code_display" : "速度('slowest')",
-                "note" : "海龜速度 最慢",
+                "note" : "slowest 最慢",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 快",
                 "code" : "速度('fast')",
                 "code_display" : "速度('fast')",
-                "note" : "海龜速度 快",
+                "note" : "fast 快",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 最快",
                 "code" : "速度('fastest')",
                 "code_display" : "速度('fastest')",
-                "note" : "海龜速度 最快",
+                "note" : "fastest 最快",
                 "long_note" : true
             }
         ]
@@ -256,35 +249,35 @@
                 "menu_display" : "游標形狀 海龜",
                 "code" : "游標形狀('turtle')",
                 "code_display" : "游標形狀('turtle')",
-                "note" : "海龜形狀",
+                "note" : "turtle 海龜",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 傳統 箭頭",
                 "code" : "游標形狀('classic')",
                 "code_display" : "游標形狀('classic')",
-                "note" : "箭頭形狀 傳統",
+                "note" : "classic 傳統",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 圓形",
                 "code" : "游標形狀('circle')",
                 "code_display" : "游標形狀('circle')",
-                "note" : "圓形",
+                "note" : "circle 圓形",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 方形",
                 "code" : "游標形狀('square')",
                 "code_display" : "游標形狀('square')",
-                "note" : "方形",
+                "note" : "square 方形",
                 "long_note" : true
             },
             {
                 "menu_display" : "游標形狀 三角形",
                 "code" : "游標形狀('triangle')",
                 "code_display" : "游標形狀('triangle')",
-                "note" : "三角形",
+                "note" : "triangle 三角形",
                 "long_note" : true
             },
             {
@@ -349,7 +342,7 @@
                 "menu_display" : "畫筆顏色 黑",
                 "code" : "畫筆顏色('black')",
                 "code_display" : "畫筆顏色('black')",
-                "note" : "黑色",
+                "note" : "black 黑色",
                 "long_note" : true
             },
             {
@@ -370,49 +363,49 @@
                 "menu_display" : "畫筆顏色 白",
                 "code" : "畫筆顏色('white')",
                 "code_display" : "畫筆顏色('white')",
-                "note" : "白色",
+                "note" : "white 白色",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫筆顏色 紅",
                 "code" : "畫筆顏色('red')",
                 "code_display" : "畫筆顏色('red')",
-                "note" : "紅色",
+                "note" : "red 紅色",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫筆顏色 綠",
                 "code" : "畫筆顏色('green')",
                 "code_display" : "畫筆顏色('green')",
-                "note" : "綠色",
+                "note" : "green 綠色",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫筆顏色 藍",
                 "code" : "畫筆顏色('blue')",
                 "code_display" : "畫筆顏色('blue')",
-                "note" : "藍色",
+                "note" : "blue 藍色",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫筆顏色 黃",
                 "code" : "畫筆顏色('yellow')",
                 "code_display" : "畫筆顏色('yellow')",
-                "note" : "黃色",
+                "note" : "yellow 黃色",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫筆顏色 橘",
                 "code" : "畫筆顏色('orange')",
                 "code_display" : "畫筆顏色('orange')",
-                "note" : "橘色",
+                "note" : "orange 橘色",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫筆顏色 粉紅",
                 "code" : "畫筆顏色('pink')",
                 "code_display" : "畫筆顏色('pink')",
-                "note" : "粉紅",
+                "note" : "pink 粉紅",
                 "long_note" : true
             }
             
@@ -467,7 +460,7 @@
                 "menu_display" : "填充顏色 紅",
                 "code" : "填充顏色('red')",
                 "code_display" : "填充顏色('red')",
-                "note" : "紅色",
+                "note" : "red 紅色",
                 "long_note" : true
             },
             {
@@ -488,49 +481,49 @@
                 "menu_display" : "填充顏色 黑",
                 "code" : "填充顏色('black')",
                 "code_display" : "填充顏色('black')",
-                "note" : "黑色",
+                "note" : "black 黑色",
                 "long_note" : true
             },
             {
                 "menu_display" : "填充顏色 白",
                 "code" : "填充顏色('white')",
                 "code_display" : "填充顏色('white')",
-                "note" : "白色",
+                "note" : "white 白色",
                 "long_note" : true
             },
             {
                 "menu_display" : "填充顏色 綠",
                 "code" : "填充顏色('green')",
                 "code_display" : "填充顏色('green')",
-                "note" : "綠色",
+                "note" : "green 綠色",
                 "long_note" : true
             },
             {
                 "menu_display" : "填充顏色 藍",
                 "code" : "填充顏色('blue')",
                 "code_display" : "填充顏色('blue')",
-                "note" : "藍色",
+                "note" : "blue 藍色",
                 "long_note" : true
             },
             {
                 "menu_display" : "填充顏色 黃",
                 "code" : "填充顏色('yellow')",
                 "code_display" : "填充顏色('yellow')",
-                "note" : "黃色",
+                "note" : "yellow 黃色",
                 "long_note" : true
             },
             {
                 "menu_display" : "填充顏色 橘",
                 "code" : "填充顏色('orange')",
                 "code_display" : "填充顏色('orange')",
-                "note" : "橘色",
+                "note" : "orange 橘色",
                 "long_note" : true
             },
             {
                 "menu_display" : "填充顏色 粉紅",
                 "code" : "填充顏色('pink')",
                 "code_display" : "填充顏色('pink')",
-                "note" : "粉紅",
+                "note" : "pink 粉紅",
                 "long_note" : true
             }
             
