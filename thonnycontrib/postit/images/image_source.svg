@@ -187,6 +187,26 @@
          stdDeviation="1.348548"
          id="feGaussianBlur3394" />
     </filter>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2457"
+       id="linearGradient1380"
+       gradientUnits="userSpaceOnUse"
+       x1="-2304.9922"
+       y1="1357.814"
+       x2="-2312.5549"
+       y2="1315.9062"
+       gradientTransform="matrix(1,0,0,-1,55.033333,2754.7229)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2457"
+       id="linearGradient1396"
+       gradientUnits="userSpaceOnUse"
+       x1="-2304.9922"
+       y1="1357.814"
+       x2="-2312.5549"
+       y2="1315.9062"
+       gradientTransform="translate(0,149.67094)" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -195,9 +215,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.35355339"
-     inkscape:cx="-6103.3516"
-     inkscape:cy="1465.1971"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="-8569.3873"
+     inkscape:cy="5119.8256"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"

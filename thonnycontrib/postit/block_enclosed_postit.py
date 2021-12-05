@@ -479,8 +479,8 @@ class BlockEnclosedPopupMixin:
                 text = code_item.menu_display
                 f = lambda index=i: self.switch_postit(index)
                 self.dropdown_menu.add_command(label=text, command=f)
-            self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
-
+            #self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
+            self.dropdown_button.config(command=self.dropdown_popup)
 
     def block_enclosed_hover_button(self, event=None):
         workbench = get_workbench()

@@ -49,11 +49,14 @@ class DropdownWidget(ttk.Frame):
         self.dropdown_button = tk.Button(self.main_frame, 
                                         relief='flat',
                                         borderwidth=0,
-                                        image=self.dropdown_image, 
+                                        image=self.dropdown_image,
+                                        compound=tk.TOP,  
+                                        pady=0,
                                         padx=0,
-                                        justify='left',
+                                        
+                                        #justify='left',
                                         )
-        self.dropdown_button.pack(side=tk.LEFT, anchor='w',padx=0)
+        self.dropdown_button.pack(side=tk.LEFT, anchor='e',padx=0)
         
 
         # postit button 
@@ -352,7 +355,8 @@ class DropdownPopup:
                 text = code_item.menu_display
                 f = lambda index=i: self.switch_postit(index)
                 self.dropdown_menu.add_command(label=text, command=f)
-            self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
+            #self.dropdown_button.bind("<Button-1>", self.dropdown_popup)
+            self.dropdown_button.config(command=self.dropdown_popup)
 
     def post_hover_button(self, event=None):
         # postit button double clicked (paste code)
@@ -382,8 +386,16 @@ class DropdownPopup:
     def popup(self, event):
         self.popup_menu.tk_popup(event.x_root, event.y_root)
 
-    def dropdown_popup(self, event):
-        self.dropdown_menu.tk_popup(event.x_root, event.y_root)
+    def dropdown_popup(self, event=None):
+        #self.dropdown_menu.tk_popup(event.x_root, event.y_root)
+
+        #x_root = get_workbench().winfo_rootx()
+        #y_root = get_workbench().winfo_rooty()
+        x = get_workbench().winfo_pointerx()
+        y = get_workbench().winfo_pointery()
+        self.dropdown_menu.tk_popup(x, y)
+        
+
 
     def switch_postit(self, code_index):
         code_item = self.code_list[code_index]
