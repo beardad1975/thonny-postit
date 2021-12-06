@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 電阻式引腳觸碰",
-        "off_label" : "電阻式引腳觸碰 >>",
+        "on_label" : " 電阻式 觸碰  ",
+        "off_label" : " 電阻式 觸碰 >",
         "start_on" : true
     },
     {
@@ -65,8 +65,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 電容式引腳觸碰(限V2)",
-        "off_label" : "電容式引腳觸碰(限V2) >>",
+        "on_label" : " 電容式 觸碰(限V2)  ",
+        "off_label" : " 電容式 觸碰(限V2) >",
         "start_on" : true
     },
     {
@@ -87,8 +87,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 數位輸出輸入",
-        "off_label" : "數位輸出輸入 >>",
+        "on_label" : " 數位 輸出 輸入  ",
+        "off_label" : " 數位 輸出 輸入 >",
         "start_on" : false
     },
     {
@@ -150,8 +150,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 類比輸出輸入",
-        "off_label" : "類比輸出輸入 >>",
+        "on_label" : " 類比 輸出 輸入  ",
+        "off_label" : " 類比 輸出 輸入 >",
         "start_on" : false
     },
     {
@@ -213,8 +213,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 引腳模式",
-        "off_label" : "引腳模式 >>",
+        "on_label" : " 引腳模式  ",
+        "off_label" : " 引腳模式 >",
         "start_on" : false
     },
     {

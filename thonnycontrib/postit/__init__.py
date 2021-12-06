@@ -263,6 +263,7 @@ class Tab:
                           text = self.tab_label,
                           image = self.icon_image,
                           compound="top",
+                          padding=0,
                         )
         mode.tab_notebook.hide(self.tab_frame)
 
@@ -317,10 +318,11 @@ class MoreTab:
         self.tab_frame = CustomVerticallyScrollableFrame(notebook)
         self.tab_frame.tab = self
         notebook.insert('end',self.tab_frame,
-                          text = ' ',
+                          text = '      ',
                           image = self.icon_image,
                           compound=tk.CENTER,
-                          #padding='3',
+                          #sticky='we',
+                          padding='0',
                         )
 
 class PostitPara:
@@ -359,7 +361,7 @@ class PostitPara:
     def on_button_pressed(self):
         if self.para_visible :
             #self.para_button.config(text=self.off_label, bg=self.ori_bg_color)
-            self.para_button.config(text=self.off_label, fg='#808080', bg=self.ori_bg_color)
+            self.para_button.config(text=self.off_label, fg='#a0a0a0', bg=self.ori_bg_color)
             #self.para_button.config(text=self.off_label, bg="#e5e5e5")
             self.para_visible = False
             self.para_frame.grid_remove()

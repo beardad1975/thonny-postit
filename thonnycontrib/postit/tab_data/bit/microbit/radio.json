@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 啟用與設定",
-        "off_label" : "啟用與設定 >>",
+        "on_label" : " 啟用 設定  ",
+        "off_label" : " 啟用 設定 >",
         "start_on" : true
     },
     {
@@ -120,8 +120,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 廣播文字訊息",
-        "off_label" : "廣播文字訊息 >>",
+        "on_label" : " 廣播 文字  ",
+        "off_label" : " 廣播 文字 >",
         "start_on" : false
     },
     {
@@ -156,8 +156,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 廣播位元組訊息",
-        "off_label" : "廣播位元組訊息 >>",
+        "on_label" : " 廣播 位元組  ",
+        "off_label" : " 廣播 位元組 >",
         "start_on" : false
     },
     {

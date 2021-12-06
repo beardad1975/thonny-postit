@@ -14,8 +14,8 @@
     },
     {
         "tab_name" : "accelerometer",
-        "tab_label" : "加速度",
-        "tab_title" : "加速度感測器"
+        "tab_label" : " 體感 ",
+        "tab_title" : "體感 加速度感測"
         
     },
     {
@@ -32,8 +32,8 @@
     },
     {
         "tab_name" : "microphone",
-        "tab_label" : "麥克風",
-        "tab_title" : "內建麥克風(限V2)"
+        "tab_label" : " 收音 ",
+        "tab_title" : "收音 內建麥克風(限V2)"
         
     },
     {

@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : "模組 >",
         "start_on" : true
     },
     {
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 基本設定",
-        "off_label" : "基本設定 >>",
+        "on_label" : " 設定  ",
+        "off_label" : " 設定 >",
         "start_on" : true
     },
     {
@@ -85,8 +85,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 內建喇叭(限V2版)",
-        "off_label" : "內建喇叭(限V2版) >>",
+        "on_label" : " 內建喇叭(限V2)  ",
+        "off_label" : " 內建喇叭(限V2) >",
         "start_on" : false
     },
     {

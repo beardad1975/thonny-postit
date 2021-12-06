@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組(限V2)  ",
+        "off_label" : " 模組(限V2) >",
         "start_on" : true
     },
     {
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 聲音與音效",
-        "off_label" : "聲音與音效 >>",
+        "on_label" : " 聲音 音效  ",
+        "off_label" : " 聲音 音效 >",
         "start_on" : false
     },
     {
@@ -160,8 +160,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 內建喇叭開關",
-        "off_label" : "內建喇叭開關 >>",
+        "on_label" : " 內建喇叭 開關  ",
+        "off_label" : " 內建喇叭 開關 >",
         "start_on" : false
     },
     {

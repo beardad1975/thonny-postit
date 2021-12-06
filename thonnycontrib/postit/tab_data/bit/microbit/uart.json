@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 初始化",
-        "off_label" : "初始化 >>",
+        "on_label" : " 初始化  ",
+        "off_label" : " 初始化 >",
         "start_on" : true
     },
     {
@@ -51,8 +51,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 寫入與讀取",
-        "off_label" : "寫入與讀取 >>",
+        "on_label" : " 寫入 讀取  ",
+        "off_label" : " 寫入 讀取 >",
         "start_on" : false
     },
     {

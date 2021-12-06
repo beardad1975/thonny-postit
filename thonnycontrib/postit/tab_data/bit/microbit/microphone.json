@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組(限V2)  ",
+        "off_label" : " 模組(限V2) >",
         "start_on" : true
     },
     {
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 聲音值",
-        "off_label" : "聲音值 >>",
+        "on_label" : " 聲音值  ",
+        "off_label" : " 聲音值 >",
         "start_on" : true
     },
     {
@@ -58,8 +58,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 聲音事件",
-        "off_label" : "聲音事件 >>",
+        "on_label" : " 聲音事件  ",
+        "off_label" : " 聲音事件 >",
         "start_on" : false
     },
     {

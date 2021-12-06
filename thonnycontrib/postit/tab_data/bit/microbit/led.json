@@ -7,19 +7,20 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import display as 顯示, Image as 圖示",
                 "code_display" : "from microbit import \\\n    display as 顯示, \\\n    Image as 圖示",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!(顯示 圖示)",
                 "long_note" : true
             }            
         ]
@@ -29,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< LED燈光控制",
-        "off_label" : "LED燈光控制 >>",
+        "on_label" : " LED燈光 控制  ",
+        "off_label" : " LED燈光 控制 >",
         "start_on" : true
     },
     {
@@ -126,8 +127,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< LED像素與感光",
-        "off_label" : "LED像素與感光 >>",
+        "on_label" : " LED像素 感光  ",
+        "off_label" : " LED像素 感光 >",
         "start_on" : false
     },
     {
@@ -175,8 +176,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖示顯示",
-        "off_label" : "圖示顯示 >>",
+        "on_label" : " 圖示  ",
+        "off_label" : " 圖示 >",
         "start_on" : false
     },
     {
@@ -376,8 +377,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖示自訂與運算",
-        "off_label" : "圖示自訂與運算 >>",
+        "on_label" : " 圖示自訂 運算  ",
+        "off_label" : " 圖示自訂 運算 >",
         "start_on" : false
     },
     {
