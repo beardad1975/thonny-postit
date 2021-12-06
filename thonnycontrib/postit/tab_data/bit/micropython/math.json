@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入數學模組",
                 "code" : "import math as 數學",
                 "code_display" : "import math as 數學",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!(數學)",
                 "long_note" : true
             }        
         ]

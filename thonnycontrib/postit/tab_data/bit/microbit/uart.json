@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import uart as 序列",
                 "code_display" : "from microbit import\\\n  uart as 序列",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!(序列)",
                 "long_note" : true
             }            
         ]
@@ -36,6 +37,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "序列 初始化",
@@ -58,6 +60,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "寫入 傳送位元組",

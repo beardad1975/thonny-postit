@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "import radio as 無線電",
                 "code_display" : "import radio as 無線電",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!(無線電)",
                 "long_note" : true
             }
         ]
@@ -36,6 +37,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "啟用無線電",
@@ -127,6 +129,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "傳送文字",
@@ -163,6 +166,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             
             {

@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "import music as 音樂",
                 "code_display" : "import music as 音樂",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!(音樂)",
                 "long_note" : true
             }            
         ]
@@ -36,6 +37,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "演奏",
@@ -167,19 +169,28 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "音高 頻率 時間",
                 "code" : "音樂.pitch(440, duration=500)",
                 "code_display" : "音樂.pitch(440, duration=500)",
-                "note" : "音高 (頻率, 時間)",
+                "note" : "音高 (頻率, 持續時間)",
                 "long_note" : true
-            },
+            }      
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        
+        "items" :[
+            
             {
                 "menu_display" : "音高 頻率 等待",
                 "code" : "音樂.pitch(440, wait=False)",
                 "code_display" : "音樂.pitch(440, wait=False)",
-                "note" : "音高 (頻率, 等待)",
+                "note" : "音高 (頻率, 不等待)",
                 "long_note" : true
             }       
         ]

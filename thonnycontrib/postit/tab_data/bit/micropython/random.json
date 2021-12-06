@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "import random as 隨機",
                 "code_display" : "import random as 隨機",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!(隨機)",
                 "long_note" : true
             }        
         ]
@@ -36,6 +37,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "範圍內隨機整數",
@@ -73,6 +75,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "清單內隨機項目 範例",

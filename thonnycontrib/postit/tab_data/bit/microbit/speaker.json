@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import speaker as 喇叭, audio as 聲音, Sound as 音效",
                 "code_display" : "from microbit import \\\n    speaker as 喇叭, \\\n    audio as 聲音, \\\n    Sound as 音效",
-                "note" : "### 限用micro:bit 2.0",
+                "note" : "需先匯入!!(喇叭,聲音,音效)",
                 "long_note" : true
             }            
         ]
@@ -36,6 +37,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "播放",

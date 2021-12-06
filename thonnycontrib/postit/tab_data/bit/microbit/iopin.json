@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import *",
                 "code_display" : "from microbit import *",
-                "note" : "### 需先匯入才能使用",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }            
         ]
@@ -36,6 +37,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "觸碰了嗎 pin0",
@@ -72,6 +74,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "觸碰了嗎 logo",
@@ -94,6 +97,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "讀取數位輸入 pin0",
@@ -157,6 +161,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "讀取類比輸入 pin0",
@@ -220,6 +225,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "取得引腳模式 pin0",

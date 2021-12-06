@@ -37,26 +37,27 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "LED清除",
                 "code" : "顯示.clear()",
                 "code_display" : "顯示.clear()",
-                "note" : "LED清除",
+                "note" : "clear 清除",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED關閉",
                 "code" : "顯示.off()",
                 "code_display" : "顯示.off()",
-                "note" : "LED關閉",
+                "note" : "off 關閉",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED開啟",
                 "code" : "顯示.on()",
                 "code_display" : "顯示.on()",
-                "note" : "LED開啟",
+                "note" : "on 開啟",
                 "long_note" : true
             },
             {
@@ -71,26 +72,27 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        
         "items" :[
             {
                 "menu_display" : "LED 數字",
                 "code" : "顯示.show(123)",
                 "code_display" : "顯示.show(123)",
-                "note" : "LED呈現數字",
+                "note" : "呈現數字",
                 "long_note" : true
             },
             {
                 "menu_display" : "燈光 顯示 文字",
                 "code" : "顯示.show('ABC')",
                 "code_display" : "顯示.show('ABC')",
-                "note" : "LED呈現文字 限英文符號",
+                "note" : "呈現文字 限英文符號",
                 "long_note" : true
             },
             {
                 "menu_display" : "燈光 顯示 文字 延遲 清除 等待 重複",
                 "code" : "顯示.show('abc',\ndelay=400,\nclear=False,\nwait=True,\nloop=False,\n)",
                 "code_display" : "顯示.show('abc',\n    delay=400,\n    clear=False,\n    wait=True,\n    loop=False,\n    )",
-                "note" : "LED呈現 (文字, 延遲, 清除,\n    等待, 重複)",
+                "note" : "LED呈現 (文字,\n        延遲,\n        清除,\n        等待,\n        重複)",
                 "long_note" : true
             }         
         ]
@@ -103,21 +105,21 @@
                 "menu_display" : "LED捲動 數字",
                 "code" : "顯示.scroll(12345)",
                 "code_display" : "顯示.scroll(12345)",
-                "note" : "LED捲動 數字",
+                "note" : "捲動數字",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED捲動文字",
                 "code" : "顯示.scroll('Hello')",
                 "code_display" : "顯示.scroll('Hello')",
-                "note" : "LED捲動文字 限英文符號",
+                "note" : "捲動文字 限英文符號",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED捲動 文字 延遲 等待 重複",
                 "code" : "顯示.scroll('Hello',\ndelay=150,\nwait=True,\nloop=False,\n)",
                 "code_display" : "顯示.scroll('Hello',\n    delay=150,\n    wait=True,\n    loop=False,\n    )",
-                "note" : "LED捲動 (英文字, 延遲, 等待, 重複)",
+                "note" : "LED捲動 (英文字,\n         延遲,\n         等待,\n         重複)",
                 "long_note" : true
             }           
         ]
@@ -127,33 +129,44 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " LED像素 感光  ",
-        "off_label" : " LED像素 感光 >",
+        "on_label" : " LED像素  ",
+        "off_label" : " LED像素 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "設定LED像素",
                 "code" : "顯示.set_pixel(0, 0, 5)",
                 "code_display" : "顯示.set_pixel(0, 0, 5)",
-                "note" : "設定LED像素 \nx(0~4) y(0~4) 亮度(0~9)",
+                "note" : "設定像素(x, y, 亮度) \n    x:0~4 y:0~4 亮度0~9",
                 "long_note" : true
             },
             {
                 "menu_display" : "取得LED像素亮度值",
                 "code" : "顯示.get_pixel(0, 0)",
                 "code_display" : "顯示.get_pixel(0, 0)",
-                "note" : "取得LED像素亮度值 \nx(0~4) y(0~4)",
+                "note" : "取得像素亮度(x, y) \n    x:0~4 y:0~4",
                 "long_note" : true
             }           
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " LED感光  ",
+        "off_label" : " LED感光 >",
+        "start_on" : false
+    },
+    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "讀取感光值",
@@ -183,6 +196,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "LED呈現 圖示",
@@ -384,6 +398,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "圖示 自訂",

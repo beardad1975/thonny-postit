@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "匯入模組",
                 "code" : "from microbit import microphone as 麥克風, SoundEvent as 聲音事件",
                 "code_display" : "from microbit import \\\n  microphone as 麥克風,\\\n  SoundEvent as 聲音事件",
-                "note" : "### 限用micro:bit 2.0",
+                "note" : "需先匯入!!(麥克風, 聲音事件)",
                 "long_note" : true
             }            
         ]
@@ -36,6 +37,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "讀取麥克風聲音值",
@@ -65,6 +67,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "目前聲音事件",
