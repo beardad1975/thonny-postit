@@ -32,7 +32,7 @@
     {
         "icon_filename" : "microbit_icon6.png",
         "fill_color" : "#40bf4a",
-        "font_color" : "black"        
+        "font_color" : "white"        
     },
     {
         "icon_filename" : "microbit_icon7.png",

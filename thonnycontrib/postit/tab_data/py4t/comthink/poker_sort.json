@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 模組",
-        "off_label" : ">>模組",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 牌組 設定 發牌",
-        "off_label" : ">> 牌組 設定 發牌",
+        "on_label" : " 牌組 設定 發牌  ",
+        "off_label" : " 牌組 設定 發牌 >",
         "start_on" : true
     },
     {
@@ -170,8 +170,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 索引方式 牌操作",
-        "off_label" : ">> 索引方式 牌操作",
+        "on_label" : " 索引方式 牌操作  ",
+        "off_label" : " 索引方式 牌操作 >",
         "start_on" : false
     },
     {
@@ -308,8 +308,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 物件方式 牌操作 ",
-        "off_label" : ">> 物件方式 牌操作",
+        "on_label" : " 物件方式 牌操作  ",
+        "off_label" : " 物件方式 牌操作 >",
         "start_on" : false
     },
     {
@@ -460,8 +460,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 列印 統計 結算 ",
-        "off_label" : ">> 列印 統計 結算",
+        "on_label" : " 列印 統計 結算  ",
+        "off_label" : " 列印 統計 結算 >",
         "start_on" : false
     },
     {

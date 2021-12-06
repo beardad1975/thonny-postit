@@ -60,9 +60,11 @@ class BlockEnclosedWidget(ttk.Frame):
                                         borderwidth=0,
                                         image=self.dropdown_image, 
                                         padx=0,
-                                        justify='left',
+                                        pady=0,
+                                        
+                                        compound=tk.TOP,
                                         )
-        self.dropdown_button.pack(side=tk.LEFT, anchor='w',padx=0)
+        self.dropdown_button.pack(side=tk.LEFT, anchor='e',padx=0)
         
 
         # postit button 
@@ -78,8 +80,8 @@ class BlockEnclosedWidget(ttk.Frame):
                                         font=common.postit_font,
                                         compound='right',
                                         image=self.block_enclosed_image,
-                                        padx=0,
-                                        pady=0,
+                                        padx=8,
+                                        pady=1,
                                         #underline = 0, 
                                         state='normal',
                                         command=self.toggle_hide_note,

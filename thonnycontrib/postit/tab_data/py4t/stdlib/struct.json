@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 資料包裝 拆開",
-        "off_label" : "資料包裝 拆開 >",
+        "on_label" : " 資料包裝 拆開  ",
+        "off_label" : " 資料包裝 拆開 >",
         "start_on" : true
     },
     {
@@ -66,8 +66,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 資料長度",
-        "off_label" : "資料長度 >",
+        "on_label" : " 資料長度  ",
+        "off_label" : " 資料長度 >",
         "start_on" : false
     },
     {

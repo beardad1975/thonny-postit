@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 常數",
-        "off_label" : "常數 >",
+        "on_label" : " 常數  ",
+        "off_label" : " 常數 >",
         "start_on" : true
     },
     {
@@ -54,8 +54,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 基本算術",
-        "off_label" : "基本算術 >",
+        "on_label" : " 基本算術  ",
+        "off_label" : " 基本算術 >",
         "start_on" : true
     },
     {
@@ -77,8 +77,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 指數 方根 對數",
-        "off_label" : "指數 方根 對數 >>",
+        "on_label" : " 指數 方根 對數  ",
+        "off_label" : " 指數 方根 對數 >",
         "start_on" : false
     },
     {
@@ -139,8 +139,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 三角函數",
-        "off_label" : "三角函數 >",
+        "on_label" : " 三角函數  ",
+        "off_label" : " 三角函數 >",
         "start_on" : false
     },
     {

@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -19,7 +19,7 @@
                 "menu_display" : "從圖表模組匯入全部",
                 "code" : "from 圖表模組 import *",
                 "code_display" : "from 圖表模組 import *",
-                "note" : "### 需先匯入模組",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖表繪製與顯示",
-        "off_label" : "圖表繪製與顯示 >>",
+        "on_label" : " 圖表繪製與顯示  ",
+        "off_label" : " 圖表繪製與顯示 >",
         "start_on" : true
     },
     {
@@ -112,8 +112,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖表設定",
-        "off_label" : "圖表設定 >>",
+        "on_label" : " 圖表設定  ",
+        "off_label" : " 圖表設定 >",
         "start_on" : false
     },
     {
@@ -187,8 +187,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 圖表動畫",
-        "off_label" : "圖表動畫 >>",
+        "on_label" : " 圖表動畫  ",
+        "off_label" : " 圖表動畫 >",
         "start_on" : false
     },
     {

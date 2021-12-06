@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -19,7 +19,7 @@
                 "menu_display" : "從語音模組匯入全部",
                 "code" : "from 語音模組 import *",
                 "code_display" : "from 語音模組 import *",
-                "note" : "### 需先匯入模組",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }
         ]
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 文字轉語音",
-        "off_label" : "文字轉語音 >>",
+        "on_label" : " 文字轉語音  ",
+        "off_label" : " 文字轉語音 >",
         "start_on" : true
     },
     {
@@ -105,8 +105,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 語音轉文字",
-        "off_label" : "語音轉文字 >>",
+        "on_label" : " 語音轉文字  ",
+        "off_label" : " 語音轉文字 >",
         "start_on" : false
     },
     {

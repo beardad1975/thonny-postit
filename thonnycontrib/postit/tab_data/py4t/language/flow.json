@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 迴圈 重複結構",
-        "off_label" : "迴圈 重複結構 >",
+        "on_label" : " 迴圈 重複結構  ",
+        "off_label" : " 迴圈 重複結構 >",
         "start_on" : true
     },
     {
@@ -91,8 +91,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 條件分支 選擇結構",
-        "off_label" : "條件分支 選擇結構 >",
+        "on_label" : " 條件分支 選擇結構  ",
+        "off_label" : " 條件分支 選擇結構 >",
         "start_on" : false
     },
     {
@@ -142,8 +142,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 函式 模組化設計",
-        "off_label" : "函式 模組化設計 >",
+        "on_label" : " 函式 模組化設計  ",
+        "off_label" : " 函式 模組化設計 >",
         "start_on" : false
     },
     {

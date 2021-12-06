@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -44,8 +44,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 隨機數值",
-        "off_label" : "隨機數值 >",
+        "on_label" : " 隨機數值  ",
+        "off_label" : " 隨機數值 >",
         "start_on" : true
     },
     {
@@ -82,10 +82,10 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "範圍0到1隨機浮點數",
+                "menu_display" : "0到1隨機浮點數",
                 "code" : "隨機.random()",
                 "code_display" : "隨機.random()",
-                "note" : "範圍0到1隨機浮點數",
+                "note" : "0到1隨機浮點數",
                 "long_note" : true
             }
             
@@ -96,8 +96,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 隨機清單",
-        "off_label" : "隨機清單 >",
+        "on_label" : " 隨機清單  ",
+        "off_label" : " 隨機清單 >",
         "start_on" : false
     },
     {

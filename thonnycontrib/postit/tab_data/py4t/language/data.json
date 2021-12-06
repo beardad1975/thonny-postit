@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 數值",
-        "off_label" : "數值 >",
+        "on_label" : " 數值  ",
+        "off_label" : " 數值 >",
         "start_on" : true
     },
     {
@@ -77,8 +77,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 數值運算",
-        "off_label" : "數值運算 >",
+        "on_label" : " 數值運算  ",
+        "off_label" : " 數值運算 >",
         "start_on" : false
     },
     {
@@ -128,8 +128,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 字串",
-        "off_label" : "字串 >",
+        "on_label" : " 字串  ",
+        "off_label" : " 字串 >",
         "start_on" : false
     },
     {
@@ -206,8 +206,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 位元組",
-        "off_label" : "位元組 >",
+        "on_label" : " 位元組  ",
+        "off_label" : " 位元組 >",
         "start_on" : false
     },
     {
@@ -262,8 +262,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 清單(串列)",
-        "off_label" : "清單(串列) >",
+        "on_label" : " 清單(串列)  ",
+        "off_label" : " 清單(串列) >",
         "start_on" : false
     },
     {
@@ -413,8 +413,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 空值",
-        "off_label" : "空值 >",
+        "on_label" : " 空值  ",
+        "off_label" : " 空值 >",
         "start_on" : false
     },
     {

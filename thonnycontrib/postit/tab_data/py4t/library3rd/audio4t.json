@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 匯入模組",
-        "off_label" : "匯入模組 >>",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -29,8 +29,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 基本音源與轉換聲音",
-        "off_label" : "基本音源與轉換聲音 >>",
+        "on_label" : " 音源 轉換  ",
+        "off_label" : " 音源轉換 >",
         "start_on" : true
     },
     {
@@ -160,8 +160,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 播放、屬性與檔案",
-        "off_label" : "播放、屬性與檔案 >>",
+        "on_label" : " 播放 屬性 檔案  ",
+        "off_label" : " 播放 屬性 檔案 >",
         "start_on" : false
     },
     {
@@ -243,8 +243,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 聲音處理",
-        "off_label" : "聲音處理 >>",
+        "on_label" : " 聲音處理  ",
+        "off_label" : " 聲音處理 >",
         "start_on" : false
     },
     {
@@ -359,8 +359,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 聲音與多維陣列",
-        "off_label" : "聲音與多維陣列 >>",
+        "on_label" : " 聲音 多維陣列  ",
+        "off_label" : " 聲音 多維陣列 >",
         "start_on" : false
     },
     {
@@ -381,8 +381,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "<< 聲音擷取",
-        "off_label" : "聲音擷取 >>",
+        "on_label" : " 聲音擷取  ",
+        "off_label" : " 聲音擷取 >",
         "start_on" : false
     },
     {

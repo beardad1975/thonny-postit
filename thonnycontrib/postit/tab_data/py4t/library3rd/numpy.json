@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -18,9 +18,9 @@
         "items" :[
             {
                 "menu_display" : "匯入numpy模組",
-                "code" : "import numpy as 多維陣列",
-                "code_display" : "import numpy as 多維陣列",
-                "note" : "需先匯入!!",
+                "code" : "import numpy as np",
+                "code_display" : "import numpy as np",
+                "note" : "需先匯入!!(模組取別名為np)",
                 "long_note" : true
             }
         ]
@@ -30,33 +30,33 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 建立",
-        "off_label" : "建立 >",
+        "on_label" : " 建立  ",
+        "off_label" : " 建立 >",
         "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        
         "items" :[
             {
                 "menu_display" : "建立陣列 arange",
-                "code" : "陣列 = 多維陣列.arange(10)",
-                "code_display" : "陣列=多維陣列.arange(10)",
+                "code" : "陣列 = np.arange(10)",
+                "code_display" : "陣列=np.arange(10)",
                 "note" : "數列陣列 同range用法",
                 "long_note" : true
             },
             {
                 "menu_display" : "建立陣列 array",
-                "code" : "陣列 = 多維陣列.array([1,2,3,4])",
-                "code_display" : "陣列=多維陣列.array([1,2,\n    3,4])",
+                "code" : "陣列 = np.array([1,2,3,4])",
+                "code_display" : "陣列=np.array([1,2,\n    3,4])",
                 "note" : "建立陣列 從清單 ",
                 "long_note" : true
             },
             {
                 "menu_display" : "建立陣列 linspace",
-                "code" : "陣列 = 多維陣列.linspace(0, 10, 100)",
-                "code_display" : "陣列 = 多維陣列.linspace(\n    0, 10, 100)",
+                "code" : "陣列 = np.linspace(0, 10, 100)",
+                "code_display" : "陣列 = np.linspace(\n    0, 10, 100)",
                 "note" : "開始 結尾(含) 分成幾個數 ",
                 "long_note" : true
             }
@@ -68,15 +68,15 @@
         "items" :[
             {
                 "menu_display" : "建立均零陣列 zeros",
-                "code" : "陣列 = 多維陣列.zeros([4,4])",
-                "code_display" : "陣列=多維陣列.zeros([4,4])",
+                "code" : "陣列 = np.zeros([4,4])",
+                "code_display" : "陣列=np.zeros([4,4])",
                 "note" : "都是0的陣列(行列形狀)",
                 "long_note" : true
             },
             {
                 "menu_display" : "建立均一陣列 ones",
-                "code" : "陣列 = 多維陣列.ones([5,5])",
-                "code_display" : "陣列=多維陣列.ones([5,5])",
+                "code" : "陣列 = np.ones([5,5])",
+                "code_display" : "陣列=np.ones([5,5])",
                 "note" : "都是1的陣列(行列形狀)",
                 "long_note" : true
             }
@@ -88,8 +88,8 @@
         "items" :[
             {
                 "menu_display" : "建立隨機陣列 randint",
-                "code" : "陣列 = 多維陣列.random.randint(10,50,size=[5,5])",
-                "code_display" : "陣列=多維陣列.random.randint(10,\n    50,size=[5,5])",
+                "code" : "陣列 = np.random.randint(10,50,size=[5,5])",
+                "code_display" : "陣列=np.random.randint(\n    10,50,size=[5,5])",
                 "note" : "隨機陣列(開始, 結束, 大小)",
                 "long_note" : true
             }
@@ -100,8 +100,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 屬性",
-        "off_label" : "屬性 >",
+        "on_label" : " 屬性  ",
+        "off_label" : " 屬性 >",
         "start_on" : false
     },
     {
@@ -162,8 +162,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 形狀 類型 拼貼",
-        "off_label" : "形狀 類型 拼貼 >",
+        "on_label" : " 形狀 類型 拼貼  ",
+        "off_label" : " 形狀 類型 拼貼 >",
         "start_on" : false
     },
     {
@@ -207,7 +207,7 @@
             },
             {
                 "menu_display" : "改變類型 32位元浮點數",
-                "code" : "陣列 = 多維陣列.tile(陣列)",
+                "code" : "陣列 = np.tile(陣列)",
                 "code_display" : "陣列 = 陣列.astype('float32')",
                 "note" : "改變類型 32位元浮點數",
                 "long_note" : true
@@ -220,15 +220,15 @@
         "items" :[
             {
                 "menu_display" : "拼貼 2D陣列",
-                "code" : "拼貼陣列 = 多維陣列.tile(陣列, (2,2))",
-                "code_display" : "拼貼陣列 = 多維陣列.tile(陣列,\n    (2,2))",
+                "code" : "拼貼陣列 = np.tile(陣列, (2,2))",
+                "code_display" : "拼貼陣列 = np.tile(\n    陣列,(2,2))",
                 "note" : "拼貼 2D陣列",
                 "long_note" : true
             },
             {
                 "menu_display" : "拼貼 3D陣列",
-                "code" : "拼貼陣列 = 多維陣列.tile(陣列, (2,2,1))",
-                "code_display" : "拼貼陣列 = 多維陣列.tile(陣列,\n    (2,2,1))",
+                "code" : "拼貼陣列 = np.tile(陣列, (2,2,1))",
+                "code_display" : "拼貼陣列 = np.tile(\n    陣列,(2,2,1))",
                 "note" : "拼貼 3D陣列",
                 "long_note" : true
             }
@@ -239,8 +239,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 運算",
-        "off_label" : "運算 >",
+        "on_label" : " 運算  ",
+        "off_label" : " 運算 >",
         "start_on" : false
     },
     {
@@ -250,8 +250,8 @@
         "items" :[
             {
                 "menu_display" : "平均 average",
-                "code" : "平均 = 多維陣列.average(陣列)",
-                "code_display" : "平均 = 多維陣列.average(陣列)",
+                "code" : "平均 = np.average(陣列)",
+                "code_display" : "平均 = np.average(陣列)",
                 "note" : "平均 average",
                 "long_note" : true
             }
@@ -263,8 +263,8 @@
         "items" :[
             {
                 "menu_display" : "加總 sum",
-                "code" : "總和 = 多維陣列.sum(陣列)",
-                "code_display" : "總和 = 多維陣列.sum(陣列)",
+                "code" : "總和 = np.sum(陣列)",
+                "code_display" : "總和 = np.sum(陣列)",
                 "note" : "加總 sum",
                 "long_note" : true
             }
@@ -276,8 +276,8 @@
         "items" :[
             {
                 "menu_display" : "唯一值 去除重複 unique",
-                "code" : "唯一值 = 多維陣列.unique(陣列)",
-                "code_display" : "唯一值=多維陣列.unique(陣列)",
+                "code" : "唯一值 = np.unique(陣列)",
+                "code_display" : "唯一值=np.unique(陣列)",
                 "note" : "唯一值 去除重複",
                 "long_note" : true
             }
@@ -288,8 +288,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 切片",
-        "off_label" : "切片 >",
+        "on_label" : " 切片  ",
+        "off_label" : " 切片 >",
         "start_on" : false
     },
     {

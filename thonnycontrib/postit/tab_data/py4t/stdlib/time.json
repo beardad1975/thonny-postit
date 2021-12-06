@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 累計秒數",
-        "off_label" : "累計秒數 >",
+        "on_label" : " 累計秒數  ",
+        "off_label" : " 累計秒數 >",
         "start_on" : true
     },
     {
@@ -73,8 +73,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 暫停控制",
-        "off_label" : "暫停控制 >",
+        "on_label" : " 暫停控制  ",
+        "off_label" : " 暫停控制 >",
         "start_on" : false
     },
     {

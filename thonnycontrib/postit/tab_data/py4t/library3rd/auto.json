@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 模組",
-        "off_label" : "模組 >",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
         "start_on" : true
     },
     {
@@ -20,7 +20,7 @@
                 "menu_display" : "匯入pyautogui模組",
                 "code" : "import pyautogui as 自動",
                 "code_display" : "import pyautogui as 自動",
-                "note" : "需先匯入!!",
+                "note" : "需先匯入!!(模組取別名為自動)",
                 "long_note" : true
             }
         ]
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 設定 資訊",
-        "off_label" : "設定 資訊 >",
+        "on_label" : " 設定 資訊  ",
+        "off_label" : " 設定 資訊 >",
         "start_on" : false
     },
     {
@@ -121,8 +121,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 滑鼠操作",
-        "off_label" : "滑鼠操作 >",
+        "on_label" : " 滑鼠操作  ",
+        "off_label" : " 滑鼠操作 >",
         "start_on" : true
     },
     {
@@ -205,8 +205,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 鍵盤操作",
-        "off_label" : "鍵盤操作 >",
+        "on_label" : " 鍵盤操作  ",
+        "off_label" : " 鍵盤操作 >",
         "start_on" : false
     },
     {
@@ -339,8 +339,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : "< 剪貼簿",
-        "off_label" : "剪貼簿 >",
+        "on_label" : " 剪貼簿  ",
+        "off_label" : " 剪貼簿 >",
         "start_on" : false
     },
     {

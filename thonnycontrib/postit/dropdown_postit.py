@@ -54,6 +54,7 @@ class DropdownWidget(ttk.Frame):
                                         pady=0,
                                         padx=0,
                                         
+                                        
                                         #justify='left',
                                         )
         self.dropdown_button.pack(side=tk.LEFT, anchor='e',padx=0)
@@ -63,7 +64,7 @@ class DropdownWidget(ttk.Frame):
         #f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
         #self.postit_button = ttk.Button(self.main_frame, text='1234')
         self.postit_button = tk.Button(self.main_frame,  
-                                        relief='solid',
+                                        #relief='solid',
                                         #relief='flat',
                                         #borderwidth=1,
                                         borderwidth=0,
@@ -74,8 +75,8 @@ class DropdownWidget(ttk.Frame):
                                         font=common.postit_font,
                                         compound='right',
                                         #image=self.enter_image,
-                                        padx=0,
-                                        pady=0,
+                                        padx=3,
+                                        pady=1,
                                         #underline = 0, 
                                         state='normal',
                                         command=self.toggle_hide_note,
