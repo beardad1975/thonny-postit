@@ -7,7 +7,7 @@ files = ['tab_data\\' + str(p.relative_to(datadir)) for p in datadir.rglob('*')]
 
 setup (
         name="thonny-postit",
-        version="0.11",
+        version="0.12",
         description="Program Post-it for Thonny IDE",
         long_description="""Program Post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
@@ -24,9 +24,9 @@ setup (
         ],
         
         platforms=["Windows"],
-        python_requires=">=3.5",
+        python_requires=">=3.6",
         package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*','projects/*'] + files,
                 },
-        install_requires=["thonny >= 3.3.7","pillow >= 8.2.0"],
+        install_requires=["thonny >= 3.3.7","pillow ~= 8.2.0"],
         packages=["thonnycontrib.postit"],
 )
