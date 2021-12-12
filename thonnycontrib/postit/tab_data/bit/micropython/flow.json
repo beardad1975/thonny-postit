@@ -18,8 +18,8 @@
         "items" :[
             {
                 "menu_display" : "重複幾次",
-                "code" : "for 數 in range(4) :\npass",
-                "code_display" : "for 數 in range(4) : \n    pass",
+                "code" : "for 數 in range(5) :\npass",
+                "code_display" : "for 數 in range(5) : \n    pass",
                 "note" : "從數列取出 (重複幾次):\n    迴圈區塊",
                 "long_note" : true
             },
