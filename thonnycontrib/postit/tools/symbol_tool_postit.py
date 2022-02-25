@@ -158,6 +158,9 @@ class SymbolToolPostMixin:
                            selecting=False, hovering=False):
         if pressing and not selecting:
             self.content_insert(editor_text, self.code)
+            if self.code in self.enclosed_symbols or self.code[-2:] == '()':
+               editor_text.event_generate("<Left>")
+
             if self.var_postfix_enter.get():
                 editor_text.event_generate("<Return>")
 
@@ -171,7 +174,7 @@ class SymbolToolPostMixin:
                 stored_index = editor_text.index(tk.SEL_LAST)
                 editor_text.insert(tk.SEL_LAST, tail)
                 #keep insert cursor in the stored_index 
-                editor_text.mark_set(tk.INSERT, stored_index)
+                editor_text.mark_set(tk.INSERT, stored_index + '+1c')
                 editor_text.tag_remove(tk.SEL,'0.0', tk.END)
             elif self.code[-2:] == '()':
                 # builtin function
@@ -200,6 +203,9 @@ class SymbolToolPostMixin:
                 editor_text.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
             
             self.content_insert(editor_text, self.code)
+            if self.code in self.enclosed_symbols or self.code[-2:] == '()':
+                editor_text.event_generate("<Left>")
+
             if self.var_postfix_enter.get():
                 editor_text.event_generate("<Return>")
 
@@ -215,7 +221,7 @@ class SymbolToolPostMixin:
                 stored_index = editor_text.index(tk.SEL_LAST)
                 editor_text.insert(tk.SEL_LAST, tail)
                 #keep insert cursor in the stored_index 
-                editor_text.mark_set(tk.INSERT, stored_index)
+                editor_text.mark_set(tk.INSERT, stored_index + '+1c')
                 editor_text.tag_remove(tk.SEL,'0.0', tk.END)
 
             elif self.code[-2:] == '()':
@@ -243,12 +249,18 @@ class SymbolToolPostMixin:
             if shell_text.compare(tk.INSERT, '>=', 'input_start'):
                 # cursor after input_start
                 self.content_insert(shell_text, self.code)
+                if self.code in self.enclosed_symbols or self.code[-2:] == '()':
+                    shell_text.event_generate("<Left>")
+
                 if self.var_postfix_enter.get():
                     shell_text.event_generate("<Return>")
             else: # cursor before input_start
                 # append last line
                 shell_text.mark_set(tk.INSERT, 'end-1c')
                 self.content_insert(shell_text, self.code)
+                if self.code in self.enclosed_symbols or self.code[-2:] == '()':
+                    shell_text.event_generate("<Left>")
+
                 if self.var_postfix_enter.get():
                     shell_text.event_generate("<Return>")
         elif pressing and selecting:
@@ -263,7 +275,7 @@ class SymbolToolPostMixin:
                         stored_index = shell_text.index(tk.SEL_LAST)
                         #keep insert cursor in the last of selection
                         shell_text.insert(tk.SEL_LAST, tail) 
-                        shell_text.mark_set(tk.INSERT, stored_index)
+                        shell_text.mark_set(tk.INSERT, stored_index + '+1c')
                         shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)
                     elif self.code[-2:] == '()':
                         # builtin function
@@ -293,7 +305,7 @@ class SymbolToolPostMixin:
                         stored_index = shell_text.index(tk.SEL_LAST)
                         #keep insert cursor in the last of selection
                         shell_text.insert(tk.SEL_LAST, tail) 
-                        shell_text.mark_set(tk.INSERT, stored_index)
+                        shell_text.mark_set(tk.INSERT, stored_index + '+1c')
                         shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)
                     elif self.code[-2:] == '()':
                         # builtin function
@@ -321,6 +333,9 @@ class SymbolToolPostMixin:
             if shell_text.compare(tk.INSERT, '>=', 'input_start'):
                 # cursor after input_start
                 self.content_insert(shell_text, self.code)
+                if self.code in self.enclosed_symbols or self.code[-2:] == '()':
+                    shell_text.event_generate("<Left>")
+
                 if self.var_postfix_enter.get():
                     shell_text.event_generate("<Return>")
 
@@ -336,7 +351,7 @@ class SymbolToolPostMixin:
                         stored_index = shell_text.index(tk.SEL_LAST)
                         #keep insert cursor in the last of selection
                         shell_text.insert(tk.SEL_LAST, tail) 
-                        shell_text.mark_set(tk.INSERT, stored_index)
+                        shell_text.mark_set(tk.INSERT, stored_index + '+1c')
                         shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)
 
                     elif self.code[-2:] == '()':
@@ -366,7 +381,7 @@ class SymbolToolPostMixin:
                         stored_index = shell_text.index(tk.SEL_LAST)
                         #keep insert cursor in the last of selection
                         shell_text.insert(tk.SEL_LAST, tail) 
-                        shell_text.mark_set(tk.INSERT, stored_index)
+                        shell_text.mark_set(tk.INSERT, stored_index + '+1c')
                         shell_text.tag_remove(tk.SEL,tk.SEL_FIRST, tk.SEL_LAST)
                     elif self.code[-2:] == '()':
                         # builtin function
@@ -460,41 +475,58 @@ class SymbolToolPopup:
 
         # cascade submenu
         self.popup_menu.add_cascade(label='常用', menu=self.common_menu)
-        self.popup_menu.add_cascade(label='運算', menu=self.arithmetic_menu)
+        self.popup_menu.add_separator()
+        self.popup_menu.add_cascade(label='算術', menu=self.arithmetic_menu)
         self.popup_menu.add_cascade(label='設值', menu=self.assign_menu)
         self.popup_menu.add_cascade(label='比較', 
                 menu=self.comparison_menu)
         self.popup_menu.add_cascade(label='邏輯', 
                 menu=self.logic_menu)
+        self.popup_menu.add_separator()
         self.popup_menu.add_cascade(label='資料類型', menu=self.data_menu)
         self.popup_menu.add_cascade(label='字串', menu=self.string_menu)
         
         self.popup_menu.add_cascade(label='群集', menu=self.collection_menu)
+        self.popup_menu.add_separator()
         #self.popup_menu.add_cascade(label='括號引號',
         #        menu=self.bracket_quote_menu)
         self.popup_menu.add_cascade(label='流程', menu=self.flow_menu)
         self.popup_menu.add_cascade(label='模組', menu=self.module_menu)
         self.popup_menu.add_cascade(label='內建函式', menu=self.builtin_menu)
+        self.popup_menu.add_separator()
         self.popup_menu.add_cascade(label='標點符號', menu=self.punctuation_menu)
 
         # common menu command
         self.common_menu.add_command( label='print() 列印', 
                 command=lambda:self.change_symbol('print()','print() 列印'))
-        self.common_menu.add_command( label=" = 設值 ", 
-                command=lambda:self.change_symbol(' = '," = 設值 "))
         self.common_menu.add_command( label="input() 鍵盤輸入 ", 
                 command=lambda:self.change_symbol('input()'," input() 鍵盤輸入 "))
+        self.common_menu.add_command( label=" = 設值 ", 
+                command=lambda:self.change_symbol(' = '," = 設值 "))
+
+        self.common_menu.add_separator()
+
+        self.common_menu.add_command( label=" int() 整數 ", 
+                command=lambda:self.change_symbol('int()'," int() 整數 "))
+        self.common_menu.add_command( label=" str() 字串", 
+                command=lambda:self.change_symbol('str()'," str() 字串"))
+
+        self.common_menu.add_separator()
+        
         self.common_menu.add_command( label="True 真(成立) ", 
-                command=lambda:self.change_symbol('True'," True 真(成立) "))
+                command=lambda:self.change_symbol('True'," True 真 "))
         self.common_menu.add_command( label="False 假(不成立) ", 
-                command=lambda:self.change_symbol('False'," False 假(不成立) "))
-        self.common_menu.add_command( label="len() 長度 ", 
-                command=lambda:self.change_symbol('len()'," len() 長度 "))
+                command=lambda:self.change_symbol('False'," False 假 "))
+
+        self.common_menu.add_separator()        
+        
         self.common_menu.add_command( label=" ' ' 單引號 ", 
                 command=lambda:self.change_symbol("''"," ' ' 單引號 "))
+        self.common_menu.add_command( label=" , 逗號 ", 
+                command=lambda:self.change_symbol(', '," , 逗號 "))
         self.common_menu.add_command( label=" ( ) 圓括號 ", 
                 command=lambda:self.change_symbol('()'," ( ) 圓括號 "))
-        self.common_menu.add_command( label=" [ ] 方括號)", 
+        self.common_menu.add_command( label=" [ ] 方括號 ", 
                 command=lambda:self.change_symbol('[]'," [ ]  方括號"))
 
 
@@ -561,12 +593,14 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('None'," None 空值 "))
  
 
-        self.string_menu.add_command( label=" str() 字串", 
-                command=lambda:self.change_symbol('str()'," str() 字串"))
+        
         self.string_menu.add_command( label=" ' ' 單引號(字串) ", 
                 command=lambda:self.change_symbol("''"," ' ' 單引號(字串) "))
         self.string_menu.add_command( label=' " " 雙引號(字串) ', 
                 command=lambda:self.change_symbol('""',' " " 雙引號(字串) '))
+
+        self.string_menu.add_command( label=" str() 字串", 
+                command=lambda:self.change_symbol('str()'," str() 字串"))
         self.string_menu.add_command( label="\\n  換行(需在字串中) ", 
                 command=lambda:self.change_symbol('\\n',"\\n  換行(需在字串中) "))
         self.string_menu.add_command( label="{}  替換(需在字串中)", 
@@ -754,6 +788,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('divmod()',"divmod() 商與餘數"))
         self.builtin_menu.add_command( label="round() 4捨6入5成雙", 
                 command=lambda:self.change_symbol('round()',"round() 4捨6入5成雙"))
+        self.builtin_menu.add_command( label="len() 長度 ", 
+                command=lambda:self.change_symbol('len()'," len() 長度 "))
         self.builtin_menu.add_command( label="help() 說明 ", 
                 command=lambda:self.change_symbol('help()'," help() 說明 "))
         self.builtin_menu.add_command( label="dir() 查看內部 ", 
