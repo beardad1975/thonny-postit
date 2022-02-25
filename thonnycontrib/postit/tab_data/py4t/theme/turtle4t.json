@@ -534,10 +534,31 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "背景顏色",
+                "menu_display" : "背景顏色 白",
+                "code" : "背景顏色('white')",
+                "code_display" : "背景顏色('white')",
+                "note" : "white 白色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 RGB",
                 "code" : "背景顏色(255,255,255)",
                 "code_display" : "背景顏色(255,255,255)",
-                "note" : "顏色 (RGB紅綠藍)",
+                "note" : "顏色 (RGB紅綠藍 0~255)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 RGB文字",
+                "code" : "背景顏色('#ffffff')",
+                "code_display" : "背景顏色('#ffffff')",
+                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 黑",
+                "code" : "背景顏色('black')",
+                "code_display" : "背景顏色('black')",
+                "note" : "black 黑色",
                 "long_note" : true
             }
         ]
@@ -577,10 +598,73 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "畫點",
+                "menu_display" : "畫點 紅",
+                "code" : "畫點(50, 'red')",
+                "code_display" : "畫點(50, 'red')",
+                "note" : "實心圓 (直徑, 紅色) ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 RGB",
                 "code" : "畫點(50, [0,0,0])",
                 "code_display" : "畫點(50, [0,0,0])",
-                "note" : "畫點(直徑, RGB顏色)",
+                "note" : "實心圓 (直徑, RGB顏色)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 RGB文字",
+                "code" : "畫點(50, '#ff0000')",
+                "code_display" : "畫點(50, '#ff0000')",
+                "note" : "實心圓 (直徑, #RRGGBB顏色)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 黑",
+                "code" : "畫點(50, 'black')",
+                "code_display" : "畫點(50, 'black')",
+                "note" : "實心圓 (直徑, 黑色) ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 白",
+                "code" : "畫點(50, 'white')",
+                "code_display" : "畫點(50, 'white')",
+                "note" : "實心圓 (直徑, 白色) ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 綠",
+                "code" : "畫點(50, 'green')",
+                "code_display" : "畫點(50, 'green')",
+                "note" : "實心圓 (直徑, 綠色) ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 藍",
+                "code" : "畫點(50, 'blue')",
+                "code_display" : "畫點(50, 'blue')",
+                "note" : "實心圓 (直徑, 藍色) ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 黃",
+                "code" : "畫點(50, 'yellow')",
+                "code_display" : "畫點(50, 'yellow')",
+                "note" : "實心圓 (直徑, 黃色) ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 橘",
+                "code" : "畫點(50, 'orange')",
+                "code_display" : "畫點(50, 'orange')",
+                "note" : "實心圓 (直徑, 橘色) ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫點 粉紅",
+                "code" : "畫點(50, 'pink')",
+                "code_display" : "畫點(50, 'pink')",
+                "note" : "實心圓 (直徑, 粉紅色) ",
                 "long_note" : true
             }
         ]

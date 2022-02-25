@@ -108,7 +108,7 @@ class Mode:
     def tab_popup_init(self):
         self.tab_popup_menu = tk.Menu(self.tab_notebook, tearoff=0)
 
-        self.tab_popup_menu.add_command(label="更多便利貼…",
+        self.tab_popup_menu.add_command(label="便利貼設定",
             command=self.select_more_tab)
 
         self.tab_notebook.bind("<Button-3>", self.popup)
@@ -535,7 +535,7 @@ class PythonPostitView(ttk.Frame):
         # title label
         title_font = common.tab_title
         tk.Label(more_tab_frame.interior, 
-                text='更多便利貼', font=title_font,
+                text='便利貼設定', font=title_font,
         ).pack(side=tk.TOP, padx=5, pady=8, anchor='center')
 
         ttk.Separator(more_tab_frame.interior, orient=tk.HORIZONTAL 
