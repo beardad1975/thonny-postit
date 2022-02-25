@@ -109,15 +109,44 @@ class VariableMenuWidget(ttk.Frame):
 
 
     def on_combo_select(self, event):
+        #print('on select')
+        
+        self.selection_clear()
+        
         if self.last_focus is not '':
             self.last_focus.focus_set()
-            
-        self.selection_clear()
+
+        # insert at the same time
+        workbench = get_workbench()
+        focus_widget = workbench.focus_get()
+        if isinstance(focus_widget, CodeViewText):
+            # cursor in editor
+            editor_text = focus_widget 
+            if editor_text.tag_ranges(tk.SEL)  :
+                # has selection
+                common.share_var_get_postit.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                common.share_var_get_postit.insert_into_editor(editor_text, 
+                                        pressing=True, selecting=False)
+        elif isinstance(focus_widget, ShellText):
+            # cusor in shell
+            shell_text = focus_widget
+            if shell_text.tag_ranges(tk.SEL):
+                # has selection
+                common.share_var_get_postit.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=True)
+            else:# no selection
+                common.share_var_get_postit.insert_into_shell(shell_text, 
+                                        pressing=True, selecting=False) 
+
+        
 
     def on_combo_click(self, event):
   
         workbench = get_workbench()
         self.last_focus = workbench.focus_get()
+        #print('last_focus: ',self.last_focus )
         #self.selection_clear()
         
     # def _handle_toplevel_response(self, event):
@@ -275,6 +304,17 @@ class VariableAddToolPostit(ttk.Frame):
 
 
 class VariableFetchToolPostMixin:
+    def post_init(self):
+        self.drag_window = None
+        self.drag_button = None
+        self.drag_hover_selection = False
+        self.hover_text_backup = ''
+        #self.mouse_dragging = False
+        # drag and press event
+        #self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
+        self.postit_button.bind("<Button-1>", self.on_mouse_release)
+        #self.postit_button.config(cursor='arrow')
+
     def on_mouse_drag(self, event):
         state = self.postit_button.cget('state')
         if  state in ('normal', 'active') :

@@ -9,6 +9,17 @@ from .tool_postit import ToolWidget, ToolCodeMixin
 from ..base_postit import BaseCode, BasePost, BasePopup
 
 class IndentToolPostMixin:
+    def post_init(self):
+        self.drag_window = None
+        self.drag_button = None
+        self.drag_hover_selection = False
+        self.hover_text_backup = ''
+        #self.mouse_dragging = False
+        # drag and press event
+        #self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
+        self.postit_button.bind("<Button-1>", self.on_mouse_release)
+        #self.postit_button.config(cursor='arrow')
+
     def insert_into_editor(self, editor_text, 
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
@@ -33,6 +44,17 @@ class IndentToolPostMixin:
             pass
 
 class DedentToolPostMixin:
+    def post_init(self):
+        self.drag_window = None
+        self.drag_button = None
+        self.drag_hover_selection = False
+        self.hover_text_backup = ''
+        #self.mouse_dragging = False
+        # drag and press event
+        #self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
+        self.postit_button.bind("<Button-1>", self.on_mouse_release)
+        #self.postit_button.config(cursor='arrow')
+        
     def insert_into_editor(self, editor_text, 
                            pressing=False, dragging=False,
                            selecting=False, hovering=False):
