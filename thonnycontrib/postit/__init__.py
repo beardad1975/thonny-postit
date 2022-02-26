@@ -14,7 +14,7 @@ from PIL import Image, ImageTk
 
 from thonny import get_workbench, get_shell, get_runner 
 from thonny.ui_utils import show_dialog, CommonDialog, create_tooltip, QueryDialog
-
+from thonny.codeview import CodeView
 
 
 from thonny.common import ToplevelCommand, InlineCommand
@@ -1154,7 +1154,7 @@ class PythonPostitView(ttk.Frame):
 
         pilcrow_postit = PilcrowToolPostit(self.edit_toolbar)
         pilcrow_postit.pack(side=tk.LEFT,padx=1, pady=3)
-        create_tooltip(pilcrow_postit, '顯示空白鍵與換行')
+        create_tooltip(pilcrow_postit, '顯示空白鍵與換行(7秒內復原)')
         
         dedent_postit = DedentToolPostit(self.edit_toolbar)
         dedent_postit.pack(side=tk.LEFT,padx=3, pady=3)

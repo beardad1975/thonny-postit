@@ -1,3 +1,4 @@
+from http.client import NotConnected
 import tkinter as tk
 from tkinter import ttk
 
@@ -6,21 +7,12 @@ from thonny.shell import ShellText
 from thonny import get_workbench, get_shell
 
 from ..base_postit import BaseCode, BasePost, BasePopup
-from .tool_postit import ToolWidget, ToolCodeMixin
+from .tool_postit import ToolWidget, ToolCodeMixin, ToolPostMixin
 from ..common import common_images
 
 
 class PilcrowPostMixin:
-    def post_init(self):
-        self.drag_window = None
-        self.drag_button = None
-        self.drag_hover_selection = False
-        self.hover_text_backup = ''
-        #self.mouse_dragging = False
-        # drag and press event
-        #self.postit_button.bind("<B1-Motion>", self.on_mouse_drag)
-        self.postit_button.bind("<Button-1>", self.on_mouse_release)
-        #self.postit_button.config(cursor='arrow')
+    
 
     def insert_into_editor(self, editor_text, 
                             pressing=False, dragging=False,
@@ -38,6 +30,10 @@ class PilcrowPostMixin:
 
         if not self.show_pilcrow_mode:
             #  turning on  show_pilcrow_mode
+
+            # backup modified_flag
+            self.last_modified_flag = code_text_widget.edit_modified()
+
             s = code_text_widget.get('1.0', 'end-1c')
             s = s.replace('\n', '¶\n')
             s = s.replace(' ', '·')
@@ -53,29 +49,49 @@ class PilcrowPostMixin:
             
             code_text_widget.config(cursor="left_side")
             #register event to failsafe back to read-write mode 
+            # and 6 secs timer, see which come first
             code_text_widget.bind('<Button-1>', self.clickedWhenReadOnlyMode)
-            #print("register failsafe event")
+            self.last_text_widget = code_text_widget
+            # clean modified flag , then update toolbar
+            
+            #print('last modified flag: ', self.last_modified_flag)
+
+            code_text_widget.edit_modified(False)
+            get_workbench()._update_toolbar()
+
+            # set 7 secs timer
+            self.timer_id = self.after(7000, self.restorePilcrow)
 
 
-        else: # turning off  show_pilcrow_mode
+        elif self.last_text_widget: # turning off  show_pilcrow_mode
             # unset read-only
-            code_text_widget.config(state=tk.NORMAL)
-            s = code_text_widget.get('1.0', 'end-1c')
+            self.last_text_widget.config(state=tk.NORMAL)
+            s = self.last_text_widget.get('1.0', 'end-1c')
             s = s.replace('¶\n', '\n')
             s = s.replace('·', ' ')
-            code_text_widget.delete('1.0', 'end-1c')
-            code_text_widget.insert('1.0', s)
+            self.last_text_widget.delete('1.0', 'end-1c')
+            self.last_text_widget.insert('1.0', s)
             
-            code_text_widget.yview_moveto(y_scroll_pos)
-            code_text_widget.xview_moveto(x_scroll_pos)
+            self.last_text_widget.yview_moveto(y_scroll_pos)
+            self.last_text_widget.xview_moveto(x_scroll_pos)
             self.show_pilcrow_mode = False
             #restore button
             self.postit_button.config(bg='SystemButtonFace')
             
-            code_text_widget.config(cursor="xterm")
+            self.last_text_widget.config(cursor="xterm")
             #unregister failsafe event   
-            code_text_widget.unbind('<Button-1>')
-            #print("cancel failsafe event")
+            self.last_text_widget.unbind('<Button-1>')
+
+            if self.timer_id is not None:
+                self.after_cancel(self.timer_id)
+                self.timer_id = None
+                #print('timer cancelled')
+
+            # restore last modified flag , then update toolbar
+            self.last_text_widget.edit_modified(self.last_modified_flag)
+            get_workbench()._update_toolbar()    
+            
+            self.last_text_widget = None
 
     def insert_into_shell(self, shell_text, 
                             pressing=False, dragging=False,
@@ -86,14 +102,22 @@ class PilcrowPostMixin:
     def clickedWhenReadOnlyMode(self, event):
         self.insert_into_editor(event.widget, selecting=False, dragging=False)
 
+    def restorePilcrow(self):
+        self.timer_id = None
+        #print('restore pilcrow')
+        self.insert_into_editor(None, selecting=False, dragging=False)
+
 
 class PilcrowToolPostit(ToolWidget, 
                  ToolCodeMixin, BaseCode,
-                 PilcrowPostMixin, BasePost, 
+                 PilcrowPostMixin, ToolPostMixin,BasePost, 
                  BasePopup):
     """ composite and mixin approach postit"""
     def __init__(self, master):
         self.show_pilcrow_mode = False
+        self.timer_id = None
+        self.last_modified_flag = None
+        self.last_text_widget = None
 
         self.widget_init(master, 'pilcrow')
         self.code_init()
