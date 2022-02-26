@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 主迴圈 舞台  ",
-        "off_label" : " 主迴圈 舞台 >",
+        "on_label" : " 主迴圈 舞台設定  ",
+        "off_label" : " 主迴圈 舞台設定 >",
         "start_on" : true
     },
     {
@@ -172,8 +172,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 屬性 運動  ",
-        "off_label" : " 屬性 運動 >",
+        "on_label" : " 物理量 運動性質  ",
+        "off_label" : " 物理量 運動性質 >",
         "start_on" : false
     },
     {
@@ -298,8 +298,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 事件 互動  ",
-        "off_label" : " 事件 互動 >",
+        "on_label" : " 事件函式 互動  ",
+        "off_label" : " 事件函式 互動 >",
         "start_on" : false
     },
     {
