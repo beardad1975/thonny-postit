@@ -43,6 +43,34 @@
                 "code_display" : "for 項目 in [1,4,5] : \n    pass",
                 "note" : "從清單逐一取出 :\n    迴圈區塊",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "i 重複幾次",
+                "code" : "for i in range(4) :\npass",
+                "code_display" : "for i in range(4) : \n    pass",
+                "note" : "從數列取出 (重複幾次):\n    迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "i 重複幾次 (開始,結尾不含)",
+                "code" : "for i in range(5, 10) :\npass",
+                "code_display" : "for i in range(5, 10) : \n    pass",
+                "note" : "從數列取出 (開始,結尾不含):\n    迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "i 重複幾次 (開始,結尾不含,步進)",
+                "code" : "for i in range(0, 10, 2) :\npass",
+                "code_display" : "for i in range(0, 10, 2) : \n    pass",
+                "note" : "從數列取出 (開始,結尾不含,步進):\n    迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "i 從清單逐一取出",
+                "code" : "for i in [1,4,5] :\npass",
+                "code_display" : "for i in [1,4,5] : \n    pass",
+                "note" : "從清單逐一取出 :\n    迴圈區塊",
+                "long_note" : true
             }
         ]
     },
@@ -55,14 +83,14 @@
                 "code" : "while True :\npass",
                 "code_display" : "while True : \n    pass",
                 "note" : "重複無限次:\n    迴圈區塊",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "有條件重複 while",
                 "code" : "while 1 > 0 :\npass",
                 "code_display" : "while 1 > 0 : \n    pass",
                 "note" : "當條件成立時:\n    迴圈區塊",
-                "long_note" : false
+                "long_note" : true
             }
         ]
     },
@@ -93,7 +121,7 @@
         "postit_type" : "postit_para",
         "on_label" : " 條件分支 選擇結構  ",
         "off_label" : " 條件分支 選擇結構 >",
-        "start_on" : false
+        "start_on" : true
     },
     {
         "postit_type" : "in_para_block_enclosed_postit",
@@ -105,35 +133,35 @@
                 "code" : "if 1 > 0 :\npass",
                 "code_display" : "if 1 > 0 : \n    pass",
                 "note" : "如果 條件:\n    成立區塊",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "如果 不然(否則) if else",
                 "code" : "if 1 > 0 :\npass\nelse :\npass",
                 "code_display" : "if 1 > 0 : \n    pass\nelse : \n    pass",
                 "note" : "如果 條件 :\n    成立區塊\n\n不然(否則) :\n    不成立區塊",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "不然如果 if elif else",
                 "code" : "if 1 > 0 :\npass\nelif 0 < 1 :\npass\nelse :\npass",
                 "code_display" : "if 1 > 0 : \n    pass\nelif 0 < 1 : \n    pass\nelse : \n    pass",
                 "note" : "如果 條件:\n    成立區塊\n\n不然如果 條件:\n    成立區塊\n\n不然(否則):\n    都不成立區塊",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "  elif, 需搭配if",
                 "code" : "elif 1 > 0 :\npass",
                 "code_display" : "elif 1 > 0 : \n    pass",
                 "note" : "elif, 需搭配if",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "  else, 需搭配if",
                 "code" : "else :\npass",
                 "code_display" : "else : \n    pass",
                 "note" : "else, 需搭配if",
-                "long_note" : false
+                "long_note" : true
             }        
         ]
     },

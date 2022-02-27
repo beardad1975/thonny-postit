@@ -510,7 +510,7 @@ class SymbolToolPopup:
         self.common_menu.add_command( label='print() 列印', 
                 command=lambda:self.change_symbol('print()','print() 列印'))
         self.common_menu.add_command( label="input() 鍵盤輸入 ", 
-                command=lambda:self.change_symbol('input()'," input() 鍵盤輸入 "))
+                command=lambda:self.change_symbol("input()"," input() 鍵盤輸入 "))
         self.common_menu.add_command( label=" = 設值 ", 
                 command=lambda:self.change_symbol(' = '," = 設值 "))
 
@@ -611,6 +611,10 @@ class SymbolToolPopup:
 
         self.string_menu.add_command( label=" str() 字串", 
                 command=lambda:self.change_symbol('str()'," str() 字串"))
+
+        self.string_menu.add_command( label=' + 字串組合 ', 
+                command=lambda:self.change_symbol(' + ',' + 字串組合 '))
+
         self.string_menu.add_command( label="\\n  換行(需在字串中) ", 
                 command=lambda:self.change_symbol('\\n',"\\n  換行(需在字串中) "))
         self.string_menu.add_command( label="{}  替換(需在字串中)", 

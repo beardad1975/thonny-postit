@@ -42,7 +42,7 @@ class VariableMenuWidget(ttk.Frame):
 
         get_workbench().option_add('*TCombobox*Listbox.font', text_font)
 
-        self.vars_combobox = ttk.Combobox(self, width=10, state="readonly", font=text_font,
+        self.vars_combobox = ttk.Combobox(self, width=12, state="readonly", font=text_font,
                 justify=tk.CENTER,textvariable=self.tk_var,takefocus=0,
                 values=[],style="V.TLabel")
 
@@ -92,6 +92,7 @@ class VariableMenuWidget(ttk.Frame):
     def update_vars_menu(self):
         if len(self.vars_counter):
             vars_list =[v for v,_ in self.vars_counter.most_common(self.vars_limit)]
+            vars_list = sorted(vars_list)
             self.vars_combobox.config(values=vars_list)
             self.vars_combobox.current(0)
             #
@@ -105,6 +106,7 @@ class VariableMenuWidget(ttk.Frame):
 
     def update_vars_option_from_counter(self):
         vars_list =[v for v,_ in self.vars_counter.most_common(self.vars_limit)]
+        vars_list = sorted(vars_list)
         get_workbench().set_option(self.option_name, vars_list)
 
 

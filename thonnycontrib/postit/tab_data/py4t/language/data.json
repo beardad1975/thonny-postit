@@ -77,57 +77,6 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 數值運算  ",
-        "off_label" : " 數值運算 >",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "start_hide_note" : false,
-        "items" :[
-            {
-                "menu_display" : "大於",
-                "code" : "3 > 0",
-                "code_display" : "3 > 0",
-                "note" : "大於",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "大於等於",
-                "code" : "3 >= 0",
-                "code_display" : "3 >= 0",
-                "note" : "大於或等於",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "小於",
-                "code" : "1 < 4",
-                "code_display" : "1 < 4",
-                "note" : "小於",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "小於等於",
-                "code" : "1 <= 4",
-                "code_display" : "1 <= 4",
-                "note" : "小於或等於",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "不等於",
-                "code" : "3 != 6",
-                "code_display" : "3 != 6",
-                "note" : "不等於",
-                "long_note" : false
-            }        
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
         "on_label" : " 字串  ",
         "off_label" : " 字串 >",
         "start_on" : false
@@ -206,62 +155,6 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 位元組  ",
-        "off_label" : " 位元組 >",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "start_hide_note" : false,
-        "items" :[
-            {
-                "menu_display" : "位元組",
-                "code" : "b'abc'",
-                "code_display" : "b'abc'",
-                "note" : "位元組 英數字",
-                "long_note" : true
-            }       
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "文字轉位元組",
-                "code" : "bytes('文字', 'utf8')",
-                "code_display" : "bytes('文字', 'utf8')",
-                "note" : "轉成位元組 utf8編碼",
-                "long_note" : true
-            }       
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "解碼方法 位元組->字串",
-                "code" : ".decode()",
-                "code_display" : ".decode()",
-                "note" : "解碼方法 位元組->字串",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "        位元組->字串 utf-8",
-                "code" : ".decode()",
-                "code_display" : ".decode('utf-8')",
-                "note" : "解碼方法 位元組->字串 utf-8",
-                "long_note" : true
-            }       
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
         "on_label" : " 清單(串列)  ",
         "off_label" : " 清單(串列) >",
         "start_on" : false
@@ -287,8 +180,8 @@
             },
             {
                 "menu_display" : "list清單 混合類型",
-                "code" : "清單 = [100,'水果',3.14]",
-                "code_display" : "清單 = [100,'水果',3.14]",
+                "code" : "清單 = [100,'a',3.14]",
+                "code_display" : "清單 = [100,'a',3.14]",
                 "note" : "list清單 混合類型",
                 "long_note" : true
             }        
@@ -366,17 +259,24 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "附加項目 到最後",
+                "menu_display" : "附加 到最後 append",
                 "code" : "清單.append(3)",
                 "code_display" : "清單.append(3)",
                 "note" : "附加項目 從最後",
                 "long_note" : true
             },
             {
-                "menu_display" : "插入項目 到索引位置",
-                "code" : "清單.insert(0, '蘋果')",
-                "code_display" : "清單.insert(0, '蘋果')",
+                "menu_display" : "插入 到索引位置 insert",
+                "code" : "清單.insert(0, 'd')",
+                "code_display" : "清單.insert(0, 'd')",
                 "note" : "插入項目 到索引位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "移除項目 remove ",
+                "code" : "清單.remove('a')",
+                "code_display" : "清單.remove('a')",
+                "note" : "移除 項目需在清單中",
                 "long_note" : true
             }     
         ]
@@ -413,21 +313,55 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 空值  ",
-        "off_label" : " 空值 >",
+        "on_label" : " 位元組  ",
+        "off_label" : " 位元組 >",
         "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "位元組",
+                "code" : "b'abc'",
+                "code_display" : "b'abc'",
+                "note" : "位元組 英數字",
+                "long_note" : true
+            }       
+        ]
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "空值",
-                "code" : "None",
-                "code_display" : "None",
-                "note" : "空值",
-                "long_note" : false
-            }        
+                "menu_display" : "文字轉位元組",
+                "code" : "bytes('文字', 'utf8')",
+                "code_display" : "bytes('文字', 'utf8')",
+                "note" : "轉成位元組 utf8編碼",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "解碼方法 位元組->字串",
+                "code" : ".decode()",
+                "code_display" : ".decode()",
+                "note" : "解碼方法 位元組->字串",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "        位元組->字串 utf-8",
+                "code" : ".decode()",
+                "code_display" : ".decode('utf-8')",
+                "note" : "解碼方法 位元組->字串 utf-8",
+                "long_note" : true
+            }       
         ]
     }
 ]
