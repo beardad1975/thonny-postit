@@ -30,6 +30,78 @@
     },
     {
         "postit_type" : "postit_para",
+        "on_label" : " 完成 視窗設定  ",
+        "off_label" : " 完成 視窗設定 >",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "完成",
+                "code" : "完成()",
+                "code_display" : "完成()",
+                "note" : "需放最後!!",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "點擊後離開",
+                "code" : "點擊後離開()",
+                "code_display" : "點擊後離開()",
+                "note" : "需放最後!! 點擊後關閉視窗",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "視窗大小設定",
+                "code" : "視窗設定(400, 600)",
+                "code_display" : "視窗設定(400, 600)",
+                "note" : "視窗設定(寬度, 高度)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 白",
+                "code" : "背景顏色('white')",
+                "code_display" : "背景顏色('white')",
+                "note" : "white 白色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 RGB",
+                "code" : "背景顏色(255,255,255)",
+                "code_display" : "背景顏色(255,255,255)",
+                "note" : "顏色 (RGB紅綠藍 0~255)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 RGB文字",
+                "code" : "背景顏色('#ffffff')",
+                "code_display" : "背景顏色('#ffffff')",
+                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 黑",
+                "code" : "背景顏色('black')",
+                "code_display" : "背景顏色('black')",
+                "note" : "black 黑色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
         "on_label" : " 移動 位置 方向 速度  ",
         "off_label" : " 移動 位置 方向 速度 >",
         "start_on" : true
@@ -79,56 +151,49 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
+        "start_hide_note" : false,
         "items" :[
-            {
-                "menu_display" : "回出發點",
-                "code" : "回出發點()",
-                "code_display" : "回出發點()",
-                "note" : "海龜回到原點(0, 0)",
-                "long_note" : true
-            },
             {
                 "menu_display" : "走到 座標",
                 "code" : "走到(0,0)",
                 "code_display" : "走到(0,0)",
-                "note" : "海龜走到(x座標, y座標)",
-                "long_note" : true
+                "note" : "走到x, y座標",
+                "long_note" : false
             },
             {
                 "menu_display" : "x座標",
                 "code" : "x設為(0)",
                 "code_display" : "x設為(0)",
-                "note" : "設定海龜的x座標",
-                "long_note" : true
+                "note" : "設定x座標",
+                "long_note" : false
             },
             {
                 "menu_display" : "y座標",
                 "code" : "y設為(0)",
                 "code_display" : "y設為(0)",
-                "note" : "設定海龜的y座標",
-                "long_note" : true
+                "note" : "設定y座標",
+                "long_note" : false
             },
             {
                 "menu_display" : "位置 查詢目前座標",
                 "code" : "位置()",
                 "code_display" : "位置()",
-                "note" : "查詢 海龜的座標",
-                "long_note" : true
+                "note" : "查詢 座標",
+                "long_note" : false
             },
             {
                 "menu_display" : "x座標 查詢",
                 "code" : "x座標()",
                 "code_display" : "x座標()",
-                "note" : "查詢 海龜的x座標",
-                "long_note" : true
+                "note" : "查詢 x座標",
+                "long_note" : false
             },
             {
                 "menu_display" : "y座標 查詢",
                 "code" : "y座標()",
                 "code_display" : "y座標()",
-                "note" : "查詢 海龜的y座標",
-                "long_note" : true
+                "note" : "查詢 y座標",
+                "long_note" : false
             },
             {
                 "menu_display" : "設定方向",
@@ -141,8 +206,15 @@
                 "menu_display" : "方向 查詢目前",
                 "code" : "方向()",
                 "code_display" : "方向()",
-                "note" : "查詢 海龜的角度",
-                "long_note" : true
+                "note" : "查詢 角度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "回出發點",
+                "code" : "回出發點()",
+                "code_display" : "回出發點()",
+                "note" : "回到原點(0, 0)",
+                "long_note" : false
             }
             
         ]
@@ -194,8 +266,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 游標 視窗 完成  ",
-        "off_label" : " 游標 視窗 完成 >",
+        "on_label" : " 顏色 填充 畫筆  ",
+        "off_label" : " 顏色 填充 畫筆 >",
         "start_on" : false
     },
     {
@@ -204,18 +276,101 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "停筆",
-                "code" : "停筆()",
-                "code_display" : "停筆()",
-                "note" : "海龜停止畫線",
-                "long_note" : false
+                "menu_display" : "填充顏色 紅",
+                "code" : "填充顏色('red')",
+                "code_display" : "填充顏色('red')",
+                "note" : "red 紅色",
+                "long_note" : true
             },
             {
-                "menu_display" : "下筆",
-                "code" : "下筆()",
-                "code_display" : "下筆()",
-                "note" : "海龜繼續畫線",
-                "long_note" : false
+                "menu_display" : "填充顏色 RGB",
+                "code" : "填充顏色(0,0,0)",
+                "code_display" : "填充顏色(0,0,0)",
+                "note" : "顏色 (RGB紅綠藍 0~255)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 RGB文字",
+                "code" : "填充顏色('#ffffff')",
+                "code_display" : "填充顏色('#ffffff')",
+                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 黑",
+                "code" : "填充顏色('black')",
+                "code_display" : "填充顏色('black')",
+                "note" : "black 黑色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 白",
+                "code" : "填充顏色('white')",
+                "code_display" : "填充顏色('white')",
+                "note" : "white 白色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 綠",
+                "code" : "填充顏色('green')",
+                "code_display" : "填充顏色('green')",
+                "note" : "green 綠色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 藍",
+                "code" : "填充顏色('blue')",
+                "code_display" : "填充顏色('blue')",
+                "note" : "blue 藍色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 黃",
+                "code" : "填充顏色('yellow')",
+                "code_display" : "填充顏色('yellow')",
+                "note" : "yellow 黃色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 橘",
+                "code" : "填充顏色('orange')",
+                "code_display" : "填充顏色('orange')",
+                "note" : "orange 橘色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "填充顏色 粉紅",
+                "code" : "填充顏色('pink')",
+                "code_display" : "填充顏色('pink')",
+                "note" : "pink 粉紅",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "開始填色",
+                "code" : "開始填色()",
+                "code_display" : "開始填色()",
+                "note" : "填色順序: 開始>畫線>停止",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "停止填色",
+                "code" : "停止填色()",
+                "code_display" : "停止填色()",
+                "note" : "填色順序: 開始>畫線>停止",
+                "long_note" : true
             }
         ]
     },
@@ -223,120 +378,6 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "start_hide_note" : true,
-        "items" :[
-            {
-                "menu_display" : "隱藏游標",
-                "code" : "隱藏游標()",
-                "code_display" : "隱藏游標()",
-                "note" : "將海龜隱藏",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "顯示游標",
-                "code" : "顯示游標()",
-                "code_display" : "顯示游標()",
-                "note" : "將海龜顯示",
-                "long_note" : false
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : true,
-        "items" :[
-            {
-                "menu_display" : "游標形狀 海龜",
-                "code" : "游標形狀('turtle')",
-                "code_display" : "游標形狀('turtle')",
-                "note" : "turtle 海龜",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "游標形狀 傳統 箭頭",
-                "code" : "游標形狀('classic')",
-                "code_display" : "游標形狀('classic')",
-                "note" : "classic 傳統",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "游標形狀 圓形",
-                "code" : "游標形狀('circle')",
-                "code_display" : "游標形狀('circle')",
-                "note" : "circle 圓形",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "游標形狀 方形",
-                "code" : "游標形狀('square')",
-                "code_display" : "游標形狀('square')",
-                "note" : "square 方形",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "游標形狀 三角形",
-                "code" : "游標形狀('triangle')",
-                "code_display" : "游標形狀('triangle')",
-                "note" : "triangle 三角形",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "游標大小",
-                "code" : "游標大小(1, 1, 1)",
-                "code_display" : "游標大小(1, 1, 1)",
-                "note" : "寬倍數, 高倍數, 框線倍數",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : true,
-        "items" :[
-            {
-                "menu_display" : "視窗大小設定",
-                "code" : "視窗設定(400, 600)",
-                "code_display" : "視窗設定(400, 600)",
-                "note" : "視窗設定(寬度, 高度)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : true,
-        "items" :[
-            {
-                "menu_display" : "完成",
-                "code" : "完成()",
-                "code_display" : "完成()",
-                "note" : "加在程式最後 可避免視窗無回應",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "點擊後離開",
-                "code" : "點擊後離開()",
-                "code_display" : "點擊後離開()",
-                "note" : "加在程式最後 點擊後關閉視窗",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : " 畫筆 填充 顏色  ",
-        "off_label" : " 畫筆 填充 顏色 >",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "畫筆顏色 黑",
@@ -433,132 +474,101 @@
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 停筆 游標  ",
+        "off_label" : " 停筆 游標 >",
+        "start_on" : false
+    },
+    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "開始填色",
-                "code" : "開始填色()",
-                "code_display" : "開始填色()",
-                "note" : "先開始填色再停止填色, 即執行填色",
-                "long_note" : true
+                "menu_display" : "停筆",
+                "code" : "停筆()",
+                "code_display" : "停筆()",
+                "note" : "海龜停止畫線",
+                "long_note" : false
             },
             {
-                "menu_display" : "停止填色",
-                "code" : "停止填色()",
-                "code_display" : "停止填色()",
-                "note" : "先開始填色再停止填色, 即執行填色",
-                "long_note" : true
+                "menu_display" : "下筆",
+                "code" : "下筆()",
+                "code_display" : "下筆()",
+                "note" : "海龜繼續畫線",
+                "long_note" : false
             }
         ]
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "填充顏色 紅",
-                "code" : "填充顏色('red')",
-                "code_display" : "填充顏色('red')",
-                "note" : "red 紅色",
-                "long_note" : true
+                "menu_display" : "隱藏游標",
+                "code" : "隱藏游標()",
+                "code_display" : "隱藏游標()",
+                "note" : "將海龜隱藏",
+                "long_note" : false
             },
             {
-                "menu_display" : "填充顏色 RGB",
-                "code" : "填充顏色(0,0,0)",
-                "code_display" : "填充顏色(0,0,0)",
-                "note" : "顏色 (RGB紅綠藍 0~255)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 RGB文字",
-                "code" : "填充顏色('#ffffff')",
-                "code_display" : "填充顏色('#ffffff')",
-                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 黑",
-                "code" : "填充顏色('black')",
-                "code_display" : "填充顏色('black')",
-                "note" : "black 黑色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 白",
-                "code" : "填充顏色('white')",
-                "code_display" : "填充顏色('white')",
-                "note" : "white 白色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 綠",
-                "code" : "填充顏色('green')",
-                "code_display" : "填充顏色('green')",
-                "note" : "green 綠色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 藍",
-                "code" : "填充顏色('blue')",
-                "code_display" : "填充顏色('blue')",
-                "note" : "blue 藍色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 黃",
-                "code" : "填充顏色('yellow')",
-                "code_display" : "填充顏色('yellow')",
-                "note" : "yellow 黃色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 橘",
-                "code" : "填充顏色('orange')",
-                "code_display" : "填充顏色('orange')",
-                "note" : "orange 橘色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "填充顏色 粉紅",
-                "code" : "填充顏色('pink')",
-                "code_display" : "填充顏色('pink')",
-                "note" : "pink 粉紅",
-                "long_note" : true
+                "menu_display" : "顯示游標",
+                "code" : "顯示游標()",
+                "code_display" : "顯示游標()",
+                "note" : "將海龜顯示",
+                "long_note" : false
             }
-            
         ]
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "背景顏色 白",
-                "code" : "背景顏色('white')",
-                "code_display" : "背景顏色('white')",
-                "note" : "white 白色",
+                "menu_display" : "游標形狀 海龜",
+                "code" : "游標形狀('turtle')",
+                "code_display" : "游標形狀('turtle')",
+                "note" : "turtle 海龜",
                 "long_note" : true
             },
             {
-                "menu_display" : "背景顏色 RGB",
-                "code" : "背景顏色(255,255,255)",
-                "code_display" : "背景顏色(255,255,255)",
-                "note" : "顏色 (RGB紅綠藍 0~255)",
+                "menu_display" : "游標形狀 傳統 箭頭",
+                "code" : "游標形狀('classic')",
+                "code_display" : "游標形狀('classic')",
+                "note" : "classic 傳統",
                 "long_note" : true
             },
             {
-                "menu_display" : "背景顏色 RGB文字",
-                "code" : "背景顏色('#ffffff')",
-                "code_display" : "背景顏色('#ffffff')",
-                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
+                "menu_display" : "游標形狀 圓形",
+                "code" : "游標形狀('circle')",
+                "code_display" : "游標形狀('circle')",
+                "note" : "circle 圓形",
                 "long_note" : true
             },
             {
-                "menu_display" : "背景顏色 黑",
-                "code" : "背景顏色('black')",
-                "code_display" : "背景顏色('black')",
-                "note" : "black 黑色",
+                "menu_display" : "游標形狀 方形",
+                "code" : "游標形狀('square')",
+                "code_display" : "游標形狀('square')",
+                "note" : "square 方形",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "游標形狀 三角形",
+                "code" : "游標形狀('triangle')",
+                "code_display" : "游標形狀('triangle')",
+                "note" : "triangle 三角形",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "游標大小",
+                "code" : "游標大小(1, 1, 1)",
+                "code_display" : "游標大小(1, 1, 1)",
+                "note" : "寬倍數, 高倍數, 框線倍數",
                 "long_note" : true
             }
         ]
@@ -576,26 +586,6 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "start_hide_note" : false,
-        "items" :[
-            {
-                "menu_display" : "畫圓",
-                "code" : "畫圓(50)",
-                "code_display" : "畫圓(50)",
-                "note" : "畫圓(半徑)",
-                "long_note" : false
-            },
-            {
-                "menu_display" : "畫弧",
-                "code" : "畫弧(50, 90)",
-                "code_display" : "畫弧(50, 90)",
-                "note" : "畫弧(半徑, 角度)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
         "items" :[
             {
                 "menu_display" : "畫點 紅",
@@ -667,6 +657,28 @@
                 "note" : "實心圓 (直徑, 粉紅色) ",
                 "long_note" : true
             }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "畫弧",
+                "code" : "畫弧(50, 90)",
+                "code_display" : "畫弧(50, 90)",
+                "note" : "畫弧(半徑, 角度)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫圓",
+                "code" : "畫圓(50)",
+                "code_display" : "畫圓(50)",
+                "note" : "畫圓周 半徑",
+                "long_note" : false
+            }
+            
         ]
     },
     {
