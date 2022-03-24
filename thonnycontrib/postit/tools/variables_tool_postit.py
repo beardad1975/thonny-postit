@@ -241,6 +241,7 @@ class VariableAddToolPostit(ttk.Frame):
         self.tool_name = 'variable_add'
         self.tool_image = common_images[self.tool_name]
         self.select_text = ''
+        self.select_editor = None
 
         ttk.Frame.__init__(self, master)        
         self.postit_button = tk.Button(self,  
@@ -265,6 +266,7 @@ class VariableAddToolPostit(ttk.Frame):
                         
             # only select within a line
             self.select_text = widget.get(tk.SEL_FIRST,tk.SEL_LAST)
+            self.select_editor = event.widget
             if len(self.select_text) and '\n' not in self.select_text:
                 #print(self.select_text)
                 self.postit_button.config(state='normal')
@@ -302,8 +304,10 @@ class VariableAddToolPostit(ttk.Frame):
             vars_postit.update_vars_menu()
             vars_postit.update_vars_option_from_counter()
             vars_postit.tk_var.set(target_text)
-
-
+            
+            # move cursor to var end and cancel selection
+            self.select_editor.mark_set(tk.INSERT, tk.SEL_LAST )
+            self.select_editor.tag_remove(tk.SEL, tk.SEL_FIRST, tk.SEL_LAST)
 
 class VariableFetchToolPostMixin:
     def post_init(self):

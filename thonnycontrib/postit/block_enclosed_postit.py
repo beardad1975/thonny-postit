@@ -379,7 +379,7 @@ class BlockEnclosedPostMixin:
         text_widget.event_generate("<Home>")
         text_widget.insert(tk.INSERT,temp_text)
         inserted_text += temp_text
-        text_widget.event_generate("<Return>")
+        ###text_widget.event_generate("<Return>")
         
 
         is_block_end =  False
@@ -388,19 +388,21 @@ class BlockEnclosedPostMixin:
             if not is_block_end and temp_spaces_num >= first_spaces_num: 
                 # indent block when necessary
                 temp_text = '    ' + line
+                text_widget.event_generate("<Return>") ###
                 text_widget.event_generate("<Home>")
                 text_widget.insert(tk.INSERT,temp_text)
                 inserted_text += temp_text
-                text_widget.event_generate("<Return>")
+                ###text_widget.event_generate("<Return>")
                 
             else:
                 # no indent
                 is_block_end = True
                 temp_text = line
+                text_widget.event_generate("<Return>") ###
                 text_widget.event_generate("<Home>")
                 text_widget.insert(tk.INSERT,temp_text)
                 inserted_text += temp_text
-                text_widget.event_generate("<Return>")
+                ###text_widget.event_generate("<Return>")
 
             
                 
@@ -408,6 +410,7 @@ class BlockEnclosedPostMixin:
             #   if last code is not  pass, break, continue, return, need extra backsapce
             last_code = temp_text.strip()
             if not last_code in ('pass', 'break', 'continue', 'return'):
+                text_widget.event_generate("<Return>") ###
                 text_widget.event_generate("<BackSpace>")
 
             lines = self.block_enclosed_after_pass_code.split('\n')
