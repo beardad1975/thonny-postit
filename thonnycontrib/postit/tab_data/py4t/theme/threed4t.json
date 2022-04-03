@@ -96,8 +96,8 @@
             },
             {
                 "menu_display" : "背景顏色",
-                "code" : "舞台.背景顏色 = color.rgb(0, 0, 0)",
-                "code_display" : "舞台.背景顏色 = color.rgb(0, 0, 0)",
+                "code" : "舞台.背景顏色 = 色彩.rgb(0, 0, 0)",
+                "code_display" : "舞台.背景顏色 = 色彩.rgb(0, 0, 0)",
                 "note" : "設定背景顏色",
                 "long_note" : true
             }
@@ -108,8 +108,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 物體建立 刪除  ",
-        "off_label" : " 物體建立 刪除 >",
+        "on_label" : " 物體建立 刪除 複製  ",
+        "off_label" : " 物體建立 刪除 複製 >",
         "start_on" : false
     },
     {
@@ -177,6 +177,13 @@
                 "code_display" : "刪除物體(物體)",
                 "note" : "刪除指定物體",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "複製物體",
+                "code" : "物體2 = 複製物體(物體)",
+                "code_display" : "物體2 = 複製物體(物體)",
+                "note" : "",
+                "long_note" : true
             }
         ]
     },
@@ -185,8 +192,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 位置 縮放 旋轉  ",
-        "off_label" : " 位置 縮放 旋轉 >",
+        "on_label" : " 位置 縮放 旋轉 母物件  ",
+        "off_label" : " 位置 縮放 旋轉 母物件  >",
         "start_on" : false
     },
     {
@@ -216,10 +223,38 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "同時設定xyz位置",
+                "menu_display" : "  同時設定xyz位置",
                 "code" : "物體.位置 = [0,0,0]",
                 "code_display" : "物體.位置 = [0,0,0]",
                 "note" : "設定位置 xyz",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定全域位置x",
+                "code" : "物體.全域位置x = 0",
+                "code_display" : "物體.全域位置x = 0",
+                "note" : "全域位置: 父母+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定全域位置y",
+                "code" : "物體.全域位置y = 0",
+                "code_display" : "物體.全域位置y = 0",
+                "note" : "全域位置: 父母+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定全域位置z",
+                "code" : "物體.全域位置z = 0",
+                "code_display" : "物體.全域位置z = 0",
+                "note" : "全域位置: 父母+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  同時設定全域xyz位置",
+                "code" : "物體.全域位置 = [0,0,0]",
+                "code_display" : "物體.全域位置 = [0,0,0]",
+                "note" : "全域位置: 父母+自己位置",
                 "long_note" : true
             }
         ]
@@ -293,12 +328,47 @@
         ]
     },
     {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            
+            {
+                "menu_display" : "母物件(同上層物件)",
+                "code" : "物體.母物件 = ",
+                "code_display" : "物體.母物件 = ",
+                "note" : "全域位置: 父母+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "父物件(同上層物件)",
+                "code" : "物體.父物件 = ",
+                "code_display" : "物體.父物件 = ",
+                "note" : "全域位置: 父母+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  設定上層物件",
+                "code" : "物體.上層物件 = ",
+                "code_display" : "物體.上層物件 = ",
+                "note" : "即 父(母)物件\n全域位置: 父母+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定中心點偏移",
+                "code" : "物體.中心點偏移 = [0,0,0]",
+                "code_display" : "物體.中心點偏移 = [0,0,0]",
+                "note" : "中心點(物體的實際位置點)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
         "postit_type" : "ttk_separator"
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 顏色 模型 材質 屬性  ",
-        "off_label" : " 顏色 模型 材質 屬性 >",
+        "on_label" : " 顏色 模型 材質 其他  ",
+        "off_label" : " 顏色 模型 材質 其他 >",
         "start_on" : false
     },
     {
@@ -434,20 +504,6 @@
                 "code" : "物體.有效狀態 = False",
                 "code_display" : "物體.有效狀態 = False",
                 "note" : "物體不顯示",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定中心點偏移",
-                "code" : "物體.中心點偏移 = [0,0,0]",
-                "code_display" : "物體.中心點偏移 = [0,0,0]",
-                "note" : "設定中心點偏移",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定上層物件",
-                "code" : "物體.上層物件 = ",
-                "code_display" : "物體.上層物件 = ",
-                "note" : "設定上層物件",
                 "long_note" : true
             },
             {
@@ -1106,15 +1162,15 @@
         "items" :[
             {
                 "menu_display" : "置於介面",
-                "code" : "物體.上層物件 = 舞台.介面",
-                "code_display" : "物體.上層物件 = 舞台.介面",
-                "note" : "置於最上層介面 不隨鏡頭旋轉",
+                "code" : "物體.母物件 = 舞台.使用者介面",
+                "code_display" : "物體.母物件 = 舞台.使用者介面",
+                "note" : "最上層介面 不隨鏡頭旋轉",
                 "long_note" : true
             },
             {
                 "menu_display" : "置於空間場景",
-                "code" : "物體.上層物件 = 舞台.空間場景",
-                "code_display" : "物體.上層物件 = 舞台.空間場景",
+                "code" : "物體.母物件 = 舞台.空間場景",
+                "code_display" : "物體.母物件 = 舞台.空間場景",
                 "note" : "置於空間場景 會隨鏡頭旋轉",
                 "long_note" : true
             }
