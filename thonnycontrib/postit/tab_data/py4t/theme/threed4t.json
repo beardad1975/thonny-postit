@@ -54,8 +54,8 @@
         "items" :[
             {
                 "menu_display" : "舞台 設定尺寸 ",
-                "code" : "舞台 = 模擬3D引擎(400,600)",
-                "code_display" : "舞台 = 模擬3D引擎(400,600)",
+                "code" : "舞台 = 模擬3D引擎(1000,800)",
+                "code_display" : "舞台 = 模擬3D引擎(1000,800)",
                 "note" : "建立3D舞台 (寬度,高度)",
                 "long_note" : true
             },
@@ -74,10 +74,24 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "第1人稱視角",
-                "code" : "第1人稱視角()",
-                "code_display" : "第1人稱視角()",
-                "note" : "前後左右wsad 滑鼠控制視角\n空白鍵跳(無法移動時請先跳躍)",
+                "menu_display" : "第1人稱視角操作",
+                "code" : "第1人稱視角操作()",
+                "code_display" : "第1人稱視角操作()",
+                "note" : "前後左右wsad 滑鼠控制視角\n空白鍵跳",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "平台跳躍2D操作 方塊",
+                "code" : "平台跳躍2D操作()",
+                "code_display" : "平台跳躍2D操作()",
+                "note" : "左右ad移動  空白鍵跳",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "平台跳躍2D操作 圖片",
+                "code" : "平台跳躍2D操作(圖片='')",
+                "code_display" : "平台跳躍2D操作(圖片='')",
+                "note" : "左右ad移動  空白鍵跳",
                 "long_note" : true
             },
             {
@@ -96,8 +110,8 @@
             },
             {
                 "menu_display" : "背景顏色",
-                "code" : "舞台.背景顏色 = 色彩.rgb(0, 0, 0)",
-                "code_display" : "舞台.背景顏色 = 色彩.rgb(0, 0, 0)",
+                "code" : "舞台.背景顏色 = color.rgb(0, 0, 0)",
+                "code_display" : "舞台.背景顏色 = color.rgb(0, 0, 0)",
                 "note" : "設定背景顏色",
                 "long_note" : true
             }
@@ -108,41 +122,83 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 物體建立 刪除 複製  ",
-        "off_label" : " 物體建立 刪除 複製 >",
+        "on_label" : " 物體 建立 刪除 複製  ",
+        "off_label" : " 物體 建立 刪除 複製 >",
         "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "新增立方體",
+                "menu_display" : "立方體",
                 "code" : "物體 = 新增立方體()",
                 "code_display" : "物體 = 新增立方體()",
-                "note" : "新增立方體 ",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "新增球體",
+                "menu_display" : "球體",
                 "code" : "物體 = 新增球體()",
                 "code_display" : "物體 = 新增球體()",
-                "note" : "新增圓球體",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "新增平面",
-                "code" : "物體 = 新增平面()",
-                "code_display" : "物體 = 新增平面()",
-                "note" : "新增平面",
+                "menu_display" : "方形 平面",
+                "code" : "物體 = 新增方形平面()",
+                "code_display" : "物體 = 新增方形平面()",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "新增物體 無模型材質",
-                "code" : "物體 = 新增物體()",
-                "code_display" : "物體 = 新增物體()",
-                "note" : "無模型與材質 需設定",
+                "menu_display" : "圓形 平面",
+                "code" : "物體 = 新增圓形平面()",
+                "code_display" : "物體 = 新增圓形平面()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "箭頭",
+                "code" : "物體 = 新增箭頭()",
+                "code_display" : "物體 = 新增箭頭()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "菱形體",
+                "code" : "物體 = 新增菱形體()",
+                "code_display" : "物體 = 新增菱形體()",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "立方體 線框",
+                "code" : "物體 = 新增立方體線框()",
+                "code_display" : "物體 = 新增立方體線框()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "方形 線框",
+                "code" : "物體 = 新增方形線框()",
+                "code_display" : "物體 = 新增方形線框()",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "直線",
+                "code" : "物體 = 新增直線()",
+                "code_display" : "物體 = 新增直線()",
+                "note" : "",
                 "long_note" : true
             }
         ]
@@ -163,6 +219,20 @@
                 "code" : "物體 = 新增內面貼圖球體()",
                 "code_display" : "物體 = 新增內面貼圖球體()",
                 "note" : "新增球體 內面貼圖",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "物體 無模型材質",
+                "code" : "物體 = 新增物體()",
+                "code_display" : "物體 = 新增物體()",
+                "note" : "無模型與材質 不顯示",
                 "long_note" : true
             }
         ]
@@ -192,8 +262,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 位置 縮放 旋轉 母物件  ",
-        "off_label" : " 位置 縮放 旋轉 母物件  >",
+        "on_label" : " 位置 縮放 旋轉 面朝 中心點  ",
+        "off_label" : " 位置 縮放 旋轉 面朝 中心點  >",
         "start_on" : false
     },
     {
@@ -223,38 +293,10 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "  同時設定xyz位置",
+                "menu_display" : "同時設定xyz位置",
                 "code" : "物體.位置 = [0,0,0]",
                 "code_display" : "物體.位置 = [0,0,0]",
                 "note" : "設定位置 xyz",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定全域位置x",
-                "code" : "物體.全域位置x = 0",
-                "code_display" : "物體.全域位置x = 0",
-                "note" : "全域位置: 父母+自己位置",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定全域位置y",
-                "code" : "物體.全域位置y = 0",
-                "code_display" : "物體.全域位置y = 0",
-                "note" : "全域位置: 父母+自己位置",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設定全域位置z",
-                "code" : "物體.全域位置z = 0",
-                "code_display" : "物體.全域位置z = 0",
-                "note" : "全域位置: 父母+自己位置",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "  同時設定全域xyz位置",
-                "code" : "物體.全域位置 = [0,0,0]",
-                "code_display" : "物體.全域位置 = [0,0,0]",
-                "note" : "全域位置: 父母+自己位置",
                 "long_note" : true
             }
         ]
@@ -331,33 +373,66 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
-            
             {
-                "menu_display" : "母物件(同上層物件)",
-                "code" : "物體.母物件 = ",
-                "code_display" : "物體.母物件 = ",
-                "note" : "全域位置: 父母+自己位置",
+                "menu_display" : "朝向",
+                "code" : "物體.面朝(目標)",
+                "code_display" : "物體.面朝(目標)",
+                "note" : "#需先產生目標物體",
                 "long_note" : true
             },
             {
-                "menu_display" : "父物件(同上層物件)",
-                "code" : "物體.父物件 = ",
-                "code_display" : "物體.父物件 = ",
-                "note" : "全域位置: 父母+自己位置",
+                "menu_display" : "前面 朝向",
+                "code" : "物體.面朝(目標, 'forward')",
+                "code_display" : "物體.面朝(目標, 'forward')",
+                "note" : "前面 朝向",
                 "long_note" : true
             },
             {
-                "menu_display" : "  設定上層物件",
-                "code" : "物體.上層物件 = ",
-                "code_display" : "物體.上層物件 = ",
-                "note" : "即 父(母)物件\n全域位置: 父母+自己位置",
+                "menu_display" : "後面 朝向",
+                "code" : "物體.面朝(目標, 'back')",
+                "code_display" : "物體.面朝(目標, 'back')",
+                "note" : "後面 朝向",
                 "long_note" : true
             },
+            {
+                "menu_display" : "上面 朝向",
+                "code" : "物體.面朝(目標, 'up')",
+                "code_display" : "物體.面朝(目標, 'up')",
+                "note" : "上面 朝向",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "下面 朝向",
+                "code" : "物體.面朝(目標, 'down')",
+                "code_display" : "物體.面朝(目標, 'down')",
+                "note" : "下面 朝向",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "右面 朝向",
+                "code" : "物體.面朝(目標, 'right')",
+                "code_display" : "物體.面朝(目標, 'right')",
+                "note" : "右面 朝向",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "左面 朝向",
+                "code" : "物體.面朝(目標, 'left')",
+                "code_display" : "物體.面朝(目標, 'left')",
+                "note" : "左面 朝向",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "設定中心點偏移",
                 "code" : "物體.中心點偏移 = [0,0,0]",
                 "code_display" : "物體.中心點偏移 = [0,0,0]",
-                "note" : "中心點(物體的實際位置點)",
+                "note" : "中心點(物體的有效位置點)",
                 "long_note" : true
             }
         ]
@@ -367,8 +442,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 顏色 模型 材質 其他  ",
-        "off_label" : " 顏色 模型 材質 其他 >",
+        "on_label" : " 顏色 模型 材質 其他屬性  ",
+        "off_label" : " 顏色 模型 材質 其他屬性 >",
         "start_on" : false
     },
     {
@@ -378,50 +453,50 @@
         "items" :[
             {
                 "menu_display" : "紅色",
-                "code" : "物體.顏色 = 色彩.red",
-                "code_display" : "物體.顏色 = 色彩.red",
+                "code" : "物體.顏色 = color.red",
+                "code_display" : "物體.顏色 = color.red",
                 "note" : "紅色",
                 "long_note" : true
             },
             {
                 "menu_display" : "綠色",
-                "code" : "物體.顏色 = 色彩.green",
-                "code_display" : "物體.顏色 = 色彩.green",
+                "code" : "物體.顏色 = color.green",
+                "code_display" : "物體.顏色 = color.green",
                 "note" : "綠色",
                 "long_note" : true
             },
             {
                 "menu_display" : "橘色",
-                "code" : "物體.顏色 = 色彩.orange",
-                "code_display" : "物體.顏色 = 色彩.orange",
+                "code" : "物體.顏色 = color.orange",
+                "code_display" : "物體.顏色 = color.orange",
                 "note" : "橘色",
                 "long_note" : true
             },
             {
                 "menu_display" : "hsv色彩空間",
-                "code" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
-                "code_display" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
+                "code" : "物體.顏色 = color.hsv(0, 1, 1)",
+                "code_display" : "物體.顏色 = color.hsv(0, 1, 1)",
                 "note" : "色相0~360 飽和0~1 亮度0~1",
                 "long_note" : true
             },
             {
                 "menu_display" : "hsv色彩空間 透明度",
-                "code" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
-                "code_display" : "物體.顏色 = 色彩.hsv(0, 1, 1)",
+                "code" : "物體.顏色 = color.hsv(0, 1, 1)",
+                "code_display" : "物體.顏色 = color.hsv(0, 1, 1)",
                 "note" : "色相0~360 飽和0~1\n亮度0~1 透明度0~1",
                 "long_note" : true
             },
             {
                 "menu_display" : "rgb 紅綠藍 色彩空間",
-                "code" : "物體.顏色 = 色彩.rgb(255,255,255)",
-                "code_display" : "物體.顏色 = 色彩.rgb(255,255,255)",
+                "code" : "物體.顏色 = color.rgb(255,255,255)",
+                "code_display" : "物體.顏色 = color.rgb(255,255,255)",
                 "note" : "rgb 紅綠藍",
                 "long_note" : true
             },
             {
                 "menu_display" : "rgba紅綠藍與不透明度",
-                "code" : "物體.顏色 = 色彩.rgba(255,255,255,255)",
-                "code_display" : "物體.顏色 = 色彩.rgba(255,255,255,255)",
+                "code" : "物體.顏色 = color.rgba(255,255,255,255)",
+                "code_display" : "物體.顏色 = color.rgba(255,255,255,255)",
                 "note" : "rgba紅綠藍與不透明度",
                 "long_note" : true
             }
@@ -466,33 +541,6 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "預設著色器",
-                "code" : "物體.著色器 = None",
-                "code_display" : "物體.著色器 = None",
-                "note" : "預設著色器",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "光影著色器",
-                "code" : "物體.著色器 = 光影著色器",
-                "code_display" : "物體.著色器 = 光影著色器",
-                "note" : "光影著色器",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "法線著色器",
-                "code" : "物體.著色器 = 法線著色器",
-                "code_display" : "物體.著色器 = 法線著色器",
-                "note" : "法線著色器",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
                 "menu_display" : "有效狀態 成立",
                 "code" : "物體.有效狀態 = True",
                 "code_display" : "物體.有效狀態 = True",
@@ -527,8 +575,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 事件 互動  ",
-        "off_label" : " 事件 互動 >",
+        "on_label" : " 事件 互動 滑鼠  ",
+        "off_label" : " 事件 互動 滑鼠 >",
         "start_on" : false
     },
     {
@@ -720,6 +768,143 @@
                 "code" : "預約執行(函式, 時間=5)",
                 "code_display" : "預約執行(函式, 時間=5)",
                 "note" : "需先自行定義函式",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 親代 結合 全域  ",
+        "off_label" : " 親代 結合 全域 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            
+            {
+                "menu_display" : "親代",
+                "code" : "物體.親代 = 母物體",
+                "code_display" : "物體.親代 = 母物體",
+                "note" : "#需先有母物體",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "  上層物件(同親代)",
+                "code" : "物體.上層物件 = ",
+                "code_display" : "物體.上層物件 = 母物體",
+                "note" : "同 親代 #需先有母物體",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "結合子代",
+                "code" : "母物體.結合子代()",
+                "code_display" : "母物體.結合子代()",
+                "note" : "#需先設定親代",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "設定全域位置x",
+                "code" : "物體.全域位置x = 0",
+                "code_display" : "物體.全域位置x = 0",
+                "note" : "全域位置: 親代+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定全域位置y",
+                "code" : "物體.全域位置y = 0",
+                "code_display" : "物體.全域位置y = 0",
+                "note" : "全域位置: 親代+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定全域位置z",
+                "code" : "物體.全域位置z = 0",
+                "code_display" : "物體.全域位置z = 0",
+                "note" : "全域位置: 親代+自己位置",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "同時設定全域xyz位置",
+                "code" : "物體.全域位置 = [0,0,0]",
+                "code_display" : "物體.全域位置 = [0,0,0]",
+                "note" : "全域位置: 親代+自己位置",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 燈光 著色器  ",
+        "off_label" : " 燈光 著色器 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "點光源",
+                "code" : "光 = 點光源()",
+                "code_display" : "光 = 點光源()",
+                "note" : "可設位置與顏色, 會衰減",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "平行光",
+                "code" : "光 = 平行光()",
+                "code_display" : "光 = 平行光()",
+                "note" : "可設顏色與角度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "環境光",
+                "code" : "光 = 環境光()",
+                "code_display" : "光 = 環境光()",
+                "note" : "全域光 可設顏色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "光影著色器",
+                "code" : "物體.著色器 = 光影著色器",
+                "code_display" : "物體.著色器 = 光影著色器",
+                "note" : "光影著色器(需使用平行光)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "法線著色器",
+                "code" : "物體.著色器 = 法線著色器",
+                "code_display" : "物體.著色器 = 法線著色器",
+                "note" : "法線著色器(顏色與法線方向相關)",
                 "long_note" : true
             }
         ]
