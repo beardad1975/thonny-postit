@@ -222,8 +222,15 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        "start_hide_note" :true,
         "items" :[
+            {
+                "menu_display" : "速度 快",
+                "code" : "速度('fast')",
+                "code_display" : "速度('fast')",
+                "note" : "fast 快",
+                "long_note" : true
+            },
             {
                 "menu_display" : "速度 正常",
                 "code" : "速度('normal')",
@@ -243,13 +250,6 @@
                 "code" : "速度('slowest')",
                 "code_display" : "速度('slowest')",
                 "note" : "slowest 最慢",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "速度 快",
-                "code" : "速度('fast')",
-                "code_display" : "速度('fast')",
-                "note" : "fast 快",
                 "long_note" : true
             },
             {
@@ -351,12 +351,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "開始填色",
                 "code" : "開始填色()",
                 "code_display" : "開始填色()",
-                "note" : "填色順序: 開始>畫線>停止",
+                "note" : "順序: 開始填色->畫線->停止填色",
                 "long_note" : true
             }
         ]
@@ -369,7 +370,7 @@
                 "menu_display" : "停止填色",
                 "code" : "停止填色()",
                 "code_display" : "停止填色()",
-                "note" : "填色順序: 開始>畫線>停止",
+                "note" : "順序: 開始填色->畫線->停止填色",
                 "long_note" : true
             }
         ]
@@ -662,7 +663,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "畫弧",
