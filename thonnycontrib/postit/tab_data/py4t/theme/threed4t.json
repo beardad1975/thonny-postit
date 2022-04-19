@@ -641,8 +641,8 @@
         "items" :[
             {
                 "menu_display" : "事件 當按下時",
-                "code" : "def 當按下時(key):\npass",
-                "code_display" : "def 當按下時(key):\n    pass",
+                "code" : "def 當按下時(按鍵):\npass",
+                "code_display" : "def 當按下時(按鍵):\n    pass",
                 "note" : "當按下時(按鍵)\n    事件區塊",
                 "long_note" : true
             },
