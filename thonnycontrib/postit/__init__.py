@@ -23,6 +23,7 @@ from .base_postit import BasePostit
 from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
+from .asset_copy import AssetCopyBtn, AssetGroup
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH
                      )
 from . import common
@@ -397,6 +398,7 @@ class PythonPostitView(ttk.Frame):
         self.spacer_image= ImageTk.PhotoImage(im) 
 
         self.toolbar_init()
+        self.all_assets_init()
         self.all_modes_init()
         self.switch_mode_by_backend()
 
@@ -457,6 +459,30 @@ class PythonPostitView(ttk.Frame):
                 self.current_mode = 'py4t'              
 
             self.last_backend = backend_in_option
+
+    def all_assets_init(self):
+        """
+        load all assets folder into asset_groups (ordered dict)
+
+        asset structure : groups - categories - files
+        """
+
+        # all asset groups
+        self.asset_groups = OrderedDict()
+
+        # prepare asset groups
+        assets_path = Path(__file__).parent / 'assets'
+        
+        with open(assets_path / 'groups_info.json', encoding='utf8') as fp:
+            groups_info = json.load(fp)
+        
+        for g in groups_info:
+            asset_group = g['asset_group']
+            group_title = g['group_title']
+            self.asset_groups[asset_group] = AssetGroup(asset_group, group_title)
+        
+    
+
 
     def all_modes_init(self):        
 
@@ -666,6 +692,9 @@ class PythonPostitView(ttk.Frame):
 
             elif postit_data['postit_type'] == 'in_para_block_enclosed_postit':
                 self.build_in_para_block_enclosed_postit(tab, postit_data)
+
+            elif postit_data['postit_type'] == 'asset_copy_btn':
+                self.build_asset_copy_btn(tab, postit_data)
               
             #elif postit_data['postit_type'] == 'bit_install_lib_postit':
             #    self.build_bit_install_lib_postit(tab, postit_data)
@@ -687,6 +716,12 @@ class PythonPostitView(ttk.Frame):
         DropdownPostit(tab.tab_frame.interior, tab, code_list = temp_code_list,
             postfix_enter=postit_data['postfix_enter']).grid(sticky='w', padx=5, pady=8)    
             #postfix_enter=p['postfix_enter']).pack(side=tk.TOP, anchor='w', padx=5, pady=8)    
+
+    def build_asset_copy_btn(self, tab, postit_data):
+        parent = tab.current_postit_para.para_frame
+        asset_group = self.asset_groups[postit_data['asset_group']]
+        AssetCopyBtn(parent, asset_group,  
+        ).grid( sticky='w',padx=30, pady=8)
 
     def build_ttk_label(self, tab, postit_data):
         ttk.Label(tab.tab_frame.interior, 

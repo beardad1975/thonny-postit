@@ -1,0 +1,16 @@
+[
+    {
+        "asset_file" : "empty_6face.png",
+        "thumbnail" : "empty_6face_thumbnail.png",
+        "file_title" : "空白6面",
+        "file_type" : "png",
+        "file_info" : "800x800"
+    },
+    {
+        "asset_file" : "rubik_6face.png",
+        "thumbnail" : "rubik_6face_thumbnail.png",
+        "file_title" : "魔方6面",
+        "file_type" : "png",
+        "file_info" : "800x800"
+    }
+]

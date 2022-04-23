@@ -1,0 +1,11 @@
+[
+    {
+        "asset_group" : "3d_example_texture",
+        "group_title" : "貼圖材質 範例圖片"    
+    },
+    {
+        "asset_group" : "cube_6_face_texture",
+        "group_title" : "6面貼圖 範例圖片"    
+    }
+
+]

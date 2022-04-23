@@ -537,6 +537,10 @@
         ]
     },
     {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "3d_example_texture"
+    },
+    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
