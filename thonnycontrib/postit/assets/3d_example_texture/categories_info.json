@@ -1,10 +1,10 @@
 [
     {
         "asset_category" : "general",
-        "category_title" : "一般材質",
+        "category_title" : "一般材質"
     },
     {
         "asset_category" : "planet",
-        "category_title" : "星球材質", 
+        "category_title" : "星球材質" 
     }
 ]
