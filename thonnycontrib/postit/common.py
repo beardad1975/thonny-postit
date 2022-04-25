@@ -97,6 +97,11 @@ def disable_var_buttons():
 postit_font = font.Font(size=12, weight=font.NORMAL, family='Consolas') 
 note_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
 popup_menu_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+
+
+dialog_title_font = font.Font(size=14, weight=font.NORMAL, family='Consolas')
+dialog_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+
 symbol_font = font.Font(size=10, weight=font.NORMAL, family='Consolas')
 postit_para_font = font.Font(size=11, weight=font.NORMAL, family='Consolas')
 tab_title = font.Font(size=12, weight=font.NORMAL, family='Consolas')

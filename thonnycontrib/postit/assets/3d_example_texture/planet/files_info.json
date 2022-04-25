@@ -4,62 +4,62 @@
         "thumbnail" : "earth_thumbnail.jpg",
         "file_title" : "地球",
         "file_type" : "jpg",
-        "file_info" : "5400x2700"
+        "file_info" : "寬5400 x 高2700"
     },
     {
         "asset_file" : "sun.jpg",
         "thumbnail" : "sun_thumbnail.jpg",
         "file_title" : "太陽",
         "file_type" : "jpg",
-        "file_info" : "3072x1536"
+        "file_info" : "寬3072 x 高1536"
     },
     {
         "asset_file" : "moon.jpg",
         "thumbnail" : "moon_thumbnail.jpg",
         "file_title" : "月球",
         "file_type" : "jpg",
-        "file_info" : "2048x1024"
+        "file_info" : "寬2048 x 高1024"
     },
     {
         "asset_file" : "mars.jpg",
         "thumbnail" : "mars_thumbnail.jpg",
         "file_title" : "火星",
         "file_type" : "jpg",
-        "file_info" : "2048x1024"
+        "file_info" : "寬2048 x 高1024"
     },
     {
         "asset_file" : "star.jpg",
         "thumbnail" : "star_thumbnail.jpg",
         "file_title" : "星空",
         "file_type" : "jpg",
-        "file_info" : "4096x2048"
+        "file_info" : "寬4096 x 高2048"
     },
     {
         "asset_file" : "venus.jpg",
         "thumbnail" : "venus_thumbnail.jpg",
         "file_title" : "金星",
         "file_type" : "jpg",
-        "file_info" : "2048x1024"
+        "file_info" : "寬2048 x 高1024"
     },
     {
         "asset_file" : "jupiter.jpg",
         "thumbnail" : "jupiter_thumbnail.jpg",
         "file_title" : "木星",
         "file_type" : "jpg",
-        "file_info" : "2048x1024"
+        "file_info" : "寬2048 x 高1024"
     },
     {
         "asset_file" : "saturn.jpg",
         "thumbnail" : "saturn_thumbnail.jpg",
         "file_title" : "土星",
         "file_type" : "jpg",
-        "file_info" : "2048x1024"
+        "file_info" : "寬2048 x 高1024"
     },
     {
         "asset_file" : "saturn_ring.png",
         "thumbnail" : "saturn_ring_thumbnail.png",
         "file_title" : "土星環",
         "file_type" : "png",
-        "file_info" : "512x512"
+        "file_info" : "寬512 x 高512"
     }
 ]

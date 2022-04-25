@@ -719,8 +719,8 @@ class PythonPostitView(ttk.Frame):
 
     def build_asset_copy_btn(self, tab, postit_data):
         parent = tab.current_postit_para.para_frame
-        asset_group = self.asset_groups[postit_data['asset_group']]
-        AssetCopyBtn(parent, asset_group,  
+        group_obj = self.asset_groups[postit_data['asset_group']]
+        AssetCopyBtn(parent, group_obj,  
         ).grid( sticky='w',padx=30, pady=8)
 
     def build_ttk_label(self, tab, postit_data):

@@ -4,27 +4,27 @@
         "thumbnail" : "test_grid_thumbnail.png",
         "file_title" : "測試",
         "file_type" : "png",
-        "file_info" : "1024x1024"
+        "file_info" : "寬1024 x 高1024"
     },
     {
         "asset_file" : "box.jpg",
         "thumbnail" : "box_thumbnail.jpg",
         "file_title" : "箱子",
         "file_type" : "jpg",
-        "file_info" : "225x225"
+        "file_info" : "寬225 x 高225"
     },
     {
         "asset_file" : "white.png",
         "thumbnail" : "white_thumbnail.png",
         "file_title" : "空白",
         "file_type" : "png",
-        "file_info" : "512x512"
+        "file_info" : "寬512 x 高512"
     },
     {
         "asset_file" : "fire.mp4",
         "thumbnail" : "fire_thumbnail.jpg",
         "file_title" : "火焰",
         "file_type" : "mp4",
-        "file_info" : "720x720, 7秒"
+        "file_info" : "寬720 x 高720, 7秒"
     }
 ]
