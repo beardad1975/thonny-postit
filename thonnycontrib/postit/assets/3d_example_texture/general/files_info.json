@@ -16,7 +16,7 @@
     {
         "asset_file" : "white.png",
         "thumbnail" : "white_thumbnail.png",
-        "file_title" : "空白",
+        "file_title" : "自訂",
         "file_type" : "png",
         "file_info" : "寬512 x 高512"
     },

@@ -510,7 +510,7 @@
                 "menu_display" : "設定模型",
                 "code" : "物體.模型 = ''",
                 "code_display" : "物體.模型 = ''",
-                "note" : "設定模型",
+                "note" : "設定模型 '檔案路徑'",
                 "long_note" : true
             }
         ]
@@ -524,7 +524,7 @@
                 "menu_display" : "設定材質貼圖",
                 "code" : "物體.材質貼圖 = ''",
                 "code_display" : "物體.材質貼圖 = ''",
-                "note" : "設定材質貼圖",
+                "note" : "設定材質貼圖  '檔案路徑'",
                 "long_note" : true
             },
             {
