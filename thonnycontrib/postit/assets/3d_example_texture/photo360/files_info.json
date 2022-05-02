@@ -1,0 +1,30 @@
+[
+    {
+        "asset_file" : "classroom360.jpg",
+        "thumbnail" : "classroom360_thumbnail.jpg",
+        "file_title" : "教室360",
+        "file_type" : "jpg",
+        "file_info" : "寬5120 x 高2560"
+    },
+    {
+        "asset_file" : "sportsfield360.jpg",
+        "thumbnail" : "sportsfield360_thumbnail.jpg",
+        "file_title" : "操場360",
+        "file_type" : "jpg",
+        "file_info" : "寬5120 x 高2560"
+    },
+    {
+        "asset_file" : "library360.jpg",
+        "thumbnail" : "library360_thumbnail.jpg",
+        "file_title" : "圖書館360",
+        "file_type" : "jpg",
+        "file_info" : "寬5120 x 高2560"
+    },
+    {
+        "asset_file" : "crystal_ball.png",
+        "thumbnail" : "crystal_ball_thumbnail.jpg",
+        "file_title" : "水晶球",
+        "file_type" : "png",
+        "file_info" : "寬900 x 高900"
+    }
+]

@@ -2,10 +2,6 @@
     {
         "asset_group" : "3d_example_texture",
         "group_title" : "匯入 範例貼圖"    
-    },
-    {
-        "asset_group" : "cube_6face_texture",
-        "group_title" : "匯入 範例6面貼圖"    
     }
 
 ]

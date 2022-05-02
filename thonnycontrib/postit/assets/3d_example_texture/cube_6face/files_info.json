@@ -12,5 +12,12 @@
         "file_title" : "魔方6面",
         "file_type" : "png",
         "file_info" : "寬800 x 高800"
+    },
+    {
+        "asset_file" : "head_6face.png",
+        "thumbnail" : "head_6face_thumbnail.png",
+        "file_title" : "頭6面",
+        "file_type" : "png",
+        "file_info" : "寬800 x 高800"
     }
 ]

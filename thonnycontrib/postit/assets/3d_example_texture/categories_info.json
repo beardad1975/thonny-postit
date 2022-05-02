@@ -6,5 +6,14 @@
     {
         "asset_category" : "planet",
         "category_title" : "星球材質" 
+    },
+    {
+        "asset_category" : "cube_6face",
+        "category_title" : "立方體6面材質" 
+    },
+    {
+        "asset_category" : "photo360",
+        "category_title" : "360度環景照片" 
     }
+    
 ]

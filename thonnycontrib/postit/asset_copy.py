@@ -1,11 +1,16 @@
 import tkinter as tk
 import tkinter.font as font
 from tkinter import ttk
+from tkinter import messagebox
 from collections import OrderedDict
 from pathlib import Path
+import subprocess
 import os
 import json
+import shutil
+
 from PIL import Image, ImageTk
+import pyperclip
 
 from thonny import get_workbench
 from thonny.ui_utils import show_dialog, CommonDialog
@@ -206,10 +211,58 @@ class AssetDialog(CommonDialog):
 
         # button
         self.copy_button = ttk.Button(destination_frame, 
-                                    text=" 複製「檔案及檔名」", 
+                                    text=" 複製「檔案 與 檔名」", 
                                     width=20 ,
+                                    command=self.on_button_click,
                                     )
         self.copy_button.pack(side=tk.LEFT) 
+
+    def on_button_click(self):
+
+        # find group andcategory
+        group = self.group_obj.asset_group
+
+        index = self.categories_combo.current()
+        category = self.asset_category_list[index]        
+
+        # handle multiple files copy
+        selections = self.file_view.selection()
+
+        # prompt if no selections
+        if len(selections) == 0:
+            messagebox.showinfo('注意', '請至少選擇一個要複製的檔案' , master=get_workbench())
+            return
+
+        is_copied = False
+        for file_name in selections:
+            # prepare path
+            source_file_path = Path(__file__).parent / 'assets' / group / category / file_name
+            
+            file_obj = self.group_obj.categories[category].files[file_name]
+            target_file_path = Path(self.cwd) / "{}.{}".format(file_obj.file_title, file_obj.file_type)
+            #print('ori :', source_file_path)
+            #print('target :', target_file_path)
+            # check file exists or not 
+            
+
+            if target_file_path.exists():
+                question = '{}\n檔案已存在，是否要覆蓋'.format(str(target_file_path))
+                answer = messagebox.askyesno('是否覆蓋檔案', question , master=get_workbench())
+                if not answer:
+                    # don't copy
+                    continue
+
+            # copy file
+            shutil.copyfile(source_file_path, target_file_path)
+            is_copied = True
+            last_copied_path = target_file_path
+            last_filename = "{}.{}".format(file_obj.file_title, file_obj.file_type)
+            
+        # close dialog
+        if is_copied:
+            self.destroy()
+            pyperclip.copy(last_filename)
+            subprocess.Popen(r'explorer /select,"{}"'.format(last_copied_path))
 
     def on_combo_select(self, event=None):
         # delete all element
