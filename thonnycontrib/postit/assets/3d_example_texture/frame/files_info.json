@@ -1,0 +1,37 @@
+[
+    {
+        "asset_file" : "pad_frame_4_3.png",
+        "thumbnail" : "pad_frame_4_3_thumbnail.jpg",
+        "file_title" : "平板",
+        "file_type" : "png",
+        "file_info" : "寬高比例4:3"
+    },
+    {
+        "asset_file" : "frame1_4_3.png",
+        "thumbnail" : "frame1_4_3_thumbnail.jpg",
+        "file_title" : "畫框",
+        "file_type" : "png",
+        "file_info" : "寬高比例4:3"
+    },
+    {
+        "asset_file" : "frame2_16_9.png",
+        "thumbnail" : "frame2_16_9_thumbnail.jpg",
+        "file_title" : "畫框2",
+        "file_type" : "png",
+        "file_info" : "寬高比例16:9"
+    },
+    {
+        "asset_file" : "frame3_16_9.png",
+        "thumbnail" : "frame3_16_9_thumbnail.jpg",
+        "file_title" : "畫框3",
+        "file_type" : "png",
+        "file_info" : "寬高比例16:9"
+    },
+    {
+        "asset_file" : "phone_frame_8_16.png",
+        "thumbnail" : "phone_frame_8_16_thumbnail.jpg",
+        "file_title" : "手機",
+        "file_type" : "png",
+        "file_info" : "寬高比例8:16"
+    }
+]
