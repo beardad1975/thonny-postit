@@ -2,14 +2,19 @@ from setuptools import setup
 
 from pathlib import Path
 
-datadir = Path(__file__).parent / 'thonnycontrib' / 'postit' / 'tab_data'
-files = ['tab_data\\' + str(p.relative_to(datadir)) for p in datadir.rglob('*')]
+tab_dir = Path(__file__).parent / 'thonnycontrib' / 'postit' / 'tab_data'
+tab_files = ['tab_data\\' + str(p.relative_to(tab_dir)) for p in tab_dir.rglob('*')]
+
+assets_dir = Path(__file__).parent / 'thonnycontrib' / 'postit' / 'assets'
+assets_files = ['assets\\' + str(p.relative_to(assets_dir)) for p in assets_dir.rglob('*')]
+
+files = tab_files + assets_files
 
 ### todo :需加上 assets 內所有檔案
 
 setup (
         name="thonny-postit",
-        version="0.14" ,
+        version="0.15" ,
         description="Program Post-it for Thonny IDE",
         long_description="""Program Post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
