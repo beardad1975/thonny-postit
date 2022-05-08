@@ -129,48 +129,75 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "立方體",
                 "code" : "物體 = 新增立方體()",
                 "code_display" : "物體 = 新增立方體()",
-                "note" : "",
+                "note" : " #可換顏色及材質",
                 "long_note" : true
             },
             {
                 "menu_display" : "球體",
                 "code" : "物體 = 新增球體()",
                 "code_display" : "物體 = 新增球體()",
-                "note" : "",
+                "note" : " #可換顏色及材質",
                 "long_note" : true
             },
             {
-                "menu_display" : "方形 平面",
-                "code" : "物體 = 新增方形平面()",
-                "code_display" : "物體 = 新增方形平面()",
-                "note" : "",
+                "menu_display" : "圓柱",
+                "code" : "物體 = 新增圓柱()",
+                "code_display" : "物體 = 新增圓柱()",
+                "note" : " #僅可換顏色",
                 "long_note" : true
             },
             {
-                "menu_display" : "圓形 平面",
-                "code" : "物體 = 新增圓形平面()",
-                "code_display" : "物體 = 新增圓形平面()",
-                "note" : "",
+                "menu_display" : "角柱",
+                "code" : "物體 = 新增角柱(5)",
+                "code_display" : "物體 = 新增角柱(5)",
+                "note" : "幾個角 #僅可換顏色",
                 "long_note" : true
             },
             {
                 "menu_display" : "箭頭",
                 "code" : "物體 = 新增箭頭()",
                 "code_display" : "物體 = 新增箭頭()",
-                "note" : "",
+                "note" : " #僅可換顏色",
                 "long_note" : true
             },
             {
                 "menu_display" : "菱形體",
                 "code" : "物體 = 新增菱形體()",
                 "code_display" : "物體 = 新增菱形體()",
-                "note" : "",
+                "note" : " (僅可換顏色)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "方形 平面",
+                "code" : "物體 = 新增方形平面()",
+                "code_display" : "物體 = 新增方形平面()",
+                "note" : " #可換顏色及材質",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "圓形 平面",
+                "code" : "物體 = 新增圓形平面()",
+                "code_display" : "物體 = 新增圓形平面()",
+                "note" : " #可換顏色及材質",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "多邊形 平面",
+                "code" : "物體 = 新增多邊形平面(5)",
+                "code_display" : "物體 = 新增多邊形平面(5)",
+                "note" : "幾個邊 #僅可換顏色",
                 "long_note" : true
             }
         ]
@@ -184,21 +211,28 @@
                 "menu_display" : "立方體 線框",
                 "code" : "物體 = 新增立方體線框()",
                 "code_display" : "物體 = 新增立方體線框()",
-                "note" : "",
+                "note" : " #僅可換顏色",
                 "long_note" : true
             },
             {
                 "menu_display" : "方形 線框",
                 "code" : "物體 = 新增方形線框()",
                 "code_display" : "物體 = 新增方形線框()",
-                "note" : "",
+                "note" : " #僅可換顏色",
                 "long_note" : true
             },
             {
                 "menu_display" : "直線",
                 "code" : "物體 = 新增直線()",
                 "code_display" : "物體 = 新增直線()",
-                "note" : "",
+                "note" : " #僅可換顏色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "多邊形線 ",
+                "code" : "物體 = 新增多邊形線(5)",
+                "code_display" : "物體 = 新增多邊形線(5)",
+                "note" : "  #僅可換顏色",
                 "long_note" : true
             }
         ]
@@ -211,14 +245,14 @@
                 "menu_display" : "新增方塊 6面貼圖",
                 "code" : "物體 = 新增6面貼圖方塊()",
                 "code_display" : "物體 = 新增6面貼圖方塊()",
-                "note" : "新增方塊 6面貼圖",
+                "note" : " #可換顏色及材質",
                 "long_note" : true
             },
             {
                 "menu_display" : "新增球體 內面貼圖",
                 "code" : "物體 = 新增內面貼圖球體()",
                 "code_display" : "物體 = 新增內面貼圖球體()",
-                "note" : "新增球體 內面貼圖",
+                "note" : " #可換顏色及材質",
                 "long_note" : true
             }
         ]
@@ -455,21 +489,35 @@
                 "menu_display" : "紅色",
                 "code" : "物體.顏色 = color.red",
                 "code_display" : "物體.顏色 = color.red",
-                "note" : "紅色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "綠色",
-                "code" : "物體.顏色 = color.green",
-                "code_display" : "物體.顏色 = color.green",
-                "note" : "綠色",
+                "note" : "red 紅",
                 "long_note" : true
             },
             {
                 "menu_display" : "橘色",
                 "code" : "物體.顏色 = color.orange",
                 "code_display" : "物體.顏色 = color.orange",
-                "note" : "橘色",
+                "note" : "orange 橘",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "黃色",
+                "code" : "物體.顏色 = color.yellow",
+                "code_display" : "物體.顏色 = color.yellow",
+                "note" : "yellow 黃",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "綠色",
+                "code" : "物體.顏色 = color.green",
+                "code_display" : "物體.顏色 = color.green",
+                "note" : "green 綠",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "藍色",
+                "code" : "物體.顏色 = color.blue",
+                "code_display" : "物體.顏色 = color.blue",
+                "note" : "blue 藍色",
                 "long_note" : true
             },
             {

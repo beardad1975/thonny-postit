@@ -4,7 +4,21 @@
         "thumbnail" : "earth_thumbnail.jpg",
         "file_title" : "地球",
         "file_type" : "jpg",
-        "file_info" : "寬5400 x 高2700"
+        "file_info" : "寬5400 x 高2700\n陸地, 海底測深"
+    },
+    {
+        "asset_file" : "earth_with_cloud.jpg",
+        "thumbnail" : "earth_with_cloud_thumbnail.jpg",
+        "file_title" : "地球2",
+        "file_type" : "jpg",
+        "file_info" : "寬2048 x 高1024\n陸地, 雲層"
+    },
+    {
+        "asset_file" : "world_time_zone.jpg",
+        "thumbnail" : "world_time_zone_thumbnail.jpg",
+        "file_title" : "全球時區",
+        "file_type" : "jpg",
+        "file_info" : "寬5400 x 高2700\n全球時區"
     },
     {
         "asset_file" : "sun.jpg",

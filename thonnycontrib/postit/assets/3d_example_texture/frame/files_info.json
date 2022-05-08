@@ -2,7 +2,7 @@
     {
         "asset_file" : "pad_frame_4_3.png",
         "thumbnail" : "pad_frame_4_3_thumbnail.jpg",
-        "file_title" : "平板",
+        "file_title" : "平板外框",
         "file_type" : "png",
         "file_info" : "寬高比例4:3"
     },
@@ -30,8 +30,15 @@
     {
         "asset_file" : "phone_frame_8_16.png",
         "thumbnail" : "phone_frame_8_16_thumbnail.jpg",
-        "file_title" : "手機",
+        "file_title" : "手機外框",
         "file_type" : "png",
         "file_info" : "寬高比例8:16"
+    },
+    {
+        "asset_file" : "globe_frame.png",
+        "thumbnail" : "globe_frame_thumbnail.jpg",
+        "file_title" : "地球儀外框",
+        "file_type" : "png",
+        "file_info" : "寬900 x 高900"
     }
 ]

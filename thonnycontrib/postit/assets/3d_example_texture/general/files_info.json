@@ -1,10 +1,10 @@
 [
     {
-        "asset_file" : "test_grid.png",
-        "thumbnail" : "test_grid_thumbnail.png",
+        "asset_file" : "test_grid.jpg",
+        "thumbnail" : "test_grid_thumbnail.jpg",
         "file_title" : "測試",
-        "file_type" : "png",
-        "file_info" : "寬1024 x 高1024"
+        "file_type" : "jpg",
+        "file_info" : "寬900 x 高900"
     },
     {
         "asset_file" : "box.jpg",
