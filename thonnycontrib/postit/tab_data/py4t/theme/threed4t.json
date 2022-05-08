@@ -362,6 +362,13 @@
             },
             {
                 "menu_display" : "3軸同時縮放",
+                "code" : "物體.縮放 = 1",
+                "code_display" : "物體.縮放 = 1",
+                "note" : "縮放倍率 3軸同時",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "3軸分別縮放",
                 "code" : "物體.縮放 = [1, 1, 1]",
                 "code_display" : "物體.縮放 = [1, 1, 1]",
                 "note" : "縮放倍率 xyz",
@@ -476,8 +483,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 顏色 模型 材質 其他屬性  ",
-        "off_label" : " 顏色 模型 材質 其他屬性 >",
+        "on_label" : " 顏色 材質 模型 屬性  ",
+        "off_label" : " 顏色 材質 模型 屬性 >",
         "start_on" : false
     },
     {
@@ -554,19 +561,6 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
-            {
-                "menu_display" : "設定模型",
-                "code" : "物體.模型 = ''",
-                "code_display" : "物體.模型 = ''",
-                "note" : "設定模型 '檔案路徑'",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
            
             {
                 "menu_display" : "設定材質貼圖",
@@ -587,6 +581,19 @@
     {
         "postit_type" : "asset_copy_btn",
         "asset_group" : "3d_example_texture"
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定模型",
+                "code" : "物體.模型 = ''",
+                "code_display" : "物體.模型 = ''",
+                "note" : "設定模型 '檔案路徑'",
+                "long_note" : true
+            }
+        ]
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -1399,15 +1406,15 @@
         "items" :[
             {
                 "menu_display" : "置於介面",
-                "code" : "物體.母物件 = 舞台.使用者介面",
-                "code_display" : "物體.母物件 = 舞台.使用者介面",
+                "code" : "物體.親代 = 舞台.使用者介面",
+                "code_display" : "物體.親代 = 舞台.使用者介面",
                 "note" : "最上層介面 不隨鏡頭旋轉",
                 "long_note" : true
             },
             {
                 "menu_display" : "置於空間場景",
-                "code" : "物體.母物件 = 舞台.空間場景",
-                "code_display" : "物體.母物件 = 舞台.空間場景",
+                "code" : "物體.親代 = 舞台.空間場景",
+                "code_display" : "物體.親代 = 舞台.空間場景",
                 "note" : "置於空間場景 會隨鏡頭旋轉",
                 "long_note" : true
             }

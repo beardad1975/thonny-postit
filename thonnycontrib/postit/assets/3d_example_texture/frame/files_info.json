@@ -40,5 +40,12 @@
         "file_title" : "地球儀外框",
         "file_type" : "png",
         "file_info" : "寬900 x 高900"
+    },
+    {
+        "asset_file" : "crystal_ball.png",
+        "thumbnail" : "crystal_ball_thumbnail.jpg",
+        "file_title" : "水晶球外框",
+        "file_type" : "png",
+        "file_info" : "寬900 x 高900"
     }
 ]

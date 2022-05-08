@@ -26,5 +26,12 @@
         "file_title" : "火焰",
         "file_type" : "mp4",
         "file_info" : "寬720 x 高720, 7秒"
+    },
+    {
+        "asset_file" : "smoke.mp4",
+        "thumbnail" : "smoke_thumbnail.jpg",
+        "file_title" : "煙",
+        "file_type" : "mp4",
+        "file_info" : "寬720 x 高720, 8秒"
     }
 ]
