@@ -14,12 +14,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "從聲音模組匯入全部",
                 "code" : "from 聲音模組 import *",
                 "code_display" : "from 聲音模組 import *",
-                "note" : "### 需先匯入模組",
+                "note" : "需先匯入",
                 "long_note" : true
             }
         ]
@@ -29,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 音源 轉換  ",
-        "off_label" : " 音源轉換 >",
+        "on_label" : " 音源 轉成聲音  ",
+        "off_label" : " 音源 轉成聲音 >",
         "start_on" : true
     },
     {
@@ -138,12 +139,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "轉成聲音",
                 "code" : "聲音 = 音源.轉成聲音()",
                 "code_display" : "聲音 = 音源.轉成聲音()",
-                "note" : "",
+                "note" : "預設轉1000毫秒(1秒)",
                 "long_note" : true
             },
             {
@@ -167,6 +169,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "播放聲音",
@@ -189,10 +192,10 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "聲音 位元深度",
+                "menu_display" : "聲音 位元深度(傳回bytes)",
                 "code" : "聲音.位元深度",
                 "code_display" : "聲音.位元深度",
-                "note" : "音量的位元解析度",
+                "note" : "位元解析度(傳回bytes)",
                 "long_note" : true
             },
             {
@@ -223,16 +226,16 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "儲存wav檔",
-                "code" : "聲音.儲存wav檔('檔名.wav')",
-                "code_display" : "聲音.儲存wav檔('檔名.wav')",
+                "menu_display" : "開啟wav檔",
+                "code" : "聲音 = 開啟wav檔('檔名.wav')",
+                "code_display" : "聲音 = 開啟wav檔('檔名.wav')",
                 "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "開啟wav檔",
-                "code" : "聲音 = 開啟wav檔('檔名.wav')",
-                "code_display" : "聲音 = 開啟wav檔('檔名.wav')",
+                "menu_display" : "儲存wav檔",
+                "code" : "聲音.儲存wav檔('檔名.wav')",
+                "code_display" : "聲音.儲存wav檔('檔名.wav')",
                 "note" : "",
                 "long_note" : true
             }
@@ -273,15 +276,15 @@
         "items" :[
             {
                 "menu_display" : "淡出",
-                "code" : "聲音 = 聲音.淡出(500)",
-                "code_display" : "聲音 = 聲音.淡出(500)",
+                "code" : "聲音 = 聲音.fade_out(200)",
+                "code_display" : "聲音 = 聲音.fade_out(200)",
                 "note" : "淡出 毫秒",
                 "long_note" : true
             },
             {
                 "menu_display" : "淡入",
-                "code" : "聲音 = 聲音.淡入(500)",
-                "code_display" : "聲音 = 聲音.淡入(500)",
+                "code" : "聲音 = 聲音.fade_in(200)",
+                "code_display" : "聲音 = 聲音.fade_in(200)",
                 "note" : "淡入 毫秒",
                 "long_note" : true
             }
@@ -293,15 +296,15 @@
         "items" :[
             {
                 "menu_display" : "串接",
-                "code" : "聲音 = 聲音 + 聲音2",
-                "code_display" : "聲音 = 聲音 + 聲音2",
+                "code" : "聲音 = 聲音1 + 聲音2",
+                "code_display" : "聲音 = 聲音1 + 聲音2",
                 "note" : "串接",
                 "long_note" : true
             },
             {
                 "menu_display" : "串接 交叉淡化",
-                "code" : "聲音 = 聲音.串接(聲音2, 交叉淡化=100)",
-                "code_display" : "聲音 = 聲音.串接(聲音2, \n    交叉淡化=100)",
+                "code" : "聲音 = 聲音1.串接(聲音2, 交叉淡化=100)",
+                "code_display" : "聲音 = 聲音1.串接(聲音2, \n    交叉淡化=100)",
                 "note" : "串接 交叉淡化",
                 "long_note" : true
             },
@@ -346,10 +349,30 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "混合",
+                "code" : "聲音 = 聲音1.overlay(聲音2)",
+                "code_display" : "聲音 = 聲音1.overlay(聲音2)",
+                "note" : "混合",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "混合 重複聲音2",
+                "code" : "聲音 = 聲音1.overlay(聲音2, loop=True)",
+                "code_display" : "聲音 = 聲音1.overlay(聲音2, loop=True)",
+                "note" : "混合 重複聲音2",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
                 "menu_display" : "反轉",
-                "code" : "聲音 = 聲音.反轉()",
-                "code_display" : "聲音 = 聲音.反轉()",
-                "note" : "",
+                "code" : "聲音 = 聲音.reverse()",
+                "code_display" : "聲音 = 聲音.reverse()",
+                "note" : "反轉",
                 "long_note" : true
             }
         ]

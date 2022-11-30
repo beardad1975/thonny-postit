@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 建立  ",
-        "off_label" : " 建立 >",
+        "on_label" : " 建立 類型轉換  ",
+        "off_label" : " 建立 類型轉換 >",
         "start_on" : true
     },
     {
@@ -91,6 +91,54 @@
                 "code" : "陣列 = np.random.randint(10,50,size=[5,5])",
                 "code_display" : "陣列=np.random.randint(\n    10,50,size=[5,5])",
                 "note" : "隨機陣列(開始, 結束, 大小)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "轉換類型 8位元正整數(影像使用)",
+                "code" : "陣列 = 陣列.astype('uint8')",
+                "code_display" : "陣列 = 陣列.astype('uint8')",
+                "note" : "轉成 8位元正整數(影像使用)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "轉換類型 16位元正整數",
+                "code" : "陣列 = 陣列.astype('uint16')",
+                "code_display" : "陣列 = 陣列.astype('uint16')",
+                "note" : "轉成 16位元正整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "轉換類型 16位元整數",
+                "code" : "陣列 = 陣列.astype('int16')",
+                "code_display" : "陣列 = 陣列.astype('int16')",
+                "note" : "轉成 16位元整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "轉換類型 32位元浮點數",
+                "code" : "陣列 = np.tile(陣列)",
+                "code_display" : "陣列 = 陣列.astype('float32')",
+                "note" : "轉成 32位元浮點數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "items" :[
+            {
+                "menu_display" : "陣列複製",
+                "code" : "陣列2 = 陣列.copy()",
+                "code_display" : "陣列2 = 陣列.copy()",
+                "note" : "陣列複製",
                 "long_note" : true
             }
         ]
@@ -162,8 +210,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 形狀 類型 拼貼  ",
-        "off_label" : " 形狀 類型 拼貼 >",
+        "on_label" : " 形狀 拼貼  ",
+        "off_label" : " 形狀 拼貼 >",
         "start_on" : false
     },
     {
@@ -176,40 +224,6 @@
                 "code" : "陣列 = 陣列.reshape([2,2])",
                 "code_display" : "陣列=陣列.reshape([2,2])",
                 "note" : "改變陣列的行列形狀",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "改變類型 8位元正整數",
-                "code" : "陣列 = 陣列.astype('uint8')",
-                "code_display" : "陣列 = 陣列.astype('uint8')",
-                "note" : "改變類型 8位元正整數",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "改變類型 16位元正整數",
-                "code" : "陣列 = 陣列.astype('uint16')",
-                "code_display" : "陣列 = 陣列.astype('uint16')",
-                "note" : "改變類型 16位元正整數",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "改變類型 16位元整數",
-                "code" : "陣列 = 陣列.astype('int16')",
-                "code_display" : "陣列 = 陣列.astype('int16')",
-                "note" : "改變類型 16位元整數",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "改變類型 32位元浮點數",
-                "code" : "陣列 = np.tile(陣列)",
-                "code_display" : "陣列 = 陣列.astype('float32')",
-                "note" : "改變類型 32位元浮點數",
                 "long_note" : true
             }
         ]
@@ -275,6 +289,32 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "最大值 max",
+                "code" : "最大值 = np.max(陣列)",
+                "code_display" : "最大值 = np.max(陣列)",
+                "note" : "最大值 max",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "最小值 min",
+                "code" : "最小值 = np.min(陣列)",
+                "code_display" : "最小值 = np.min(陣列)",
+                "note" : "最小值 min",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
                 "menu_display" : "唯一值 去除重複 unique",
                 "code" : "唯一值 = np.unique(陣列)",
                 "code_display" : "唯一值=np.unique(陣列)",
@@ -288,8 +328,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 切片  ",
-        "off_label" : " 切片 >",
+        "on_label" : " 元素 切片  ",
+        "off_label" : " 元素 切片 >",
         "start_on" : false
     },
     {
@@ -298,31 +338,31 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "1D元素",
+                "menu_display" : "1維元素",
                 "code" : "陣列[0]",
                 "code_display" : "陣列[0]",
-                "note" : "1D元素",
+                "note" : "1維元素",
                 "long_note" : true
             },
             {
-                "menu_display" : "1D切片",
+                "menu_display" : "1維切片",
                 "code" : "陣列[0:2]",
                 "code_display" : "陣列[0:2]",
-                "note" : "1D切片",
+                "note" : "1維切片",
                 "long_note" : true
             },
             {
-                "menu_display" : "1D間隔切片",
+                "menu_display" : "1維間隔切片",
                 "code" : "陣列[::2]",
                 "code_display" : "陣列[::2]",
-                "note" : "1D間隔切片",
+                "note" : "1維間隔切片",
                 "long_note" : true
             },
             {
-                "menu_display" : "1D相反切片",
+                "menu_display" : "1維相反切片",
                 "code" : "陣列[::-1]",
                 "code_display" : "陣列[::-1]",
-                "note" : "1D相反切片",
+                "note" : "1維相反切片",
                 "long_note" : true
             }
         ]
@@ -332,31 +372,31 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "2D元素",
+                "menu_display" : "2維元素",
                 "code" : "陣列[0, 0]",
                 "code_display" : "陣列[0, 0]",
-                "note" : "2D元素",
+                "note" : "2維元素",
                 "long_note" : true
             },
             {
-                "menu_display" : "2D切片",
+                "menu_display" : "2維切片",
                 "code" : "陣列[0:5, :]",
                 "code_display" : "陣列[0:5, :]",
-                "note" : "2D切片",
+                "note" : "2維切片",
                 "long_note" : true
             },
             {
-                "menu_display" : "2D間隔切片",
+                "menu_display" : "2維間隔切片",
                 "code" : "陣列[::2, ::]",
                 "code_display" : "陣列[::2, ::]",
-                "note" : "2D間隔切片",
+                "note" : "2維間隔切片",
                 "long_note" : true
             },
             {
-                "menu_display" : "2D相反切片",
+                "menu_display" : "2維相反切片",
                 "code" : "陣列[::-1, ::]",
                 "code_display" : "陣列[::-1, ::]",
-                "note" : "2D相反切片",
+                "note" : "2維相反切片",
                 "long_note" : true
             }
         ]
@@ -366,31 +406,31 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "3D元素",
+                "menu_display" : "3維元素",
                 "code" : "陣列[0, 0, 0]",
                 "code_display" : "陣列[0, 0, 0]",
-                "note" : "3D元素",
+                "note" : "3維元素",
                 "long_note" : true
             },
             {
-                "menu_display" : "3D切片",
+                "menu_display" : "3維切片",
                 "code" : "陣列[0:5, :, :]",
                 "code_display" : "陣列[0:5, :, :]",
-                "note" : "3D切片",
+                "note" : "3維切片",
                 "long_note" : true
             },
             {
-                "menu_display" : "3D間隔切片",
+                "menu_display" : "3維間隔切片",
                 "code" : "陣列[::2, ::, :: ]",
                 "code_display" : "陣列[::2, ::, ::]",
-                "note" : "3D間隔切片",
+                "note" : "3維間隔切片",
                 "long_note" : true
             },
             {
-                "menu_display" : "3D相反切片",
+                "menu_display" : "3維相反切片",
                 "code" : "陣列[::-1, ::, ::]",
                 "code_display" : "陣列[::-1, ::, ::]",
-                "note" : "3D相反切片",
+                "note" : "3維相反切片",
                 "long_note" : true
             }
         ]

@@ -3,7 +3,7 @@
         "group_name" : "theme",
         "group_label" : "學習主題",
         "default_tabs":[
-            "turtle4t", "physics4t","threed4t","poker_sort"
+            "turtle4t", "physics4t","threed4t"
         ]
     },
     {
@@ -22,7 +22,7 @@
     },
     {
         "group_name" : "library3rd",
-        "group_label" : "協力函式庫",
+        "group_label" : "第3方函式庫",
         "default_tabs":[
             
         ]

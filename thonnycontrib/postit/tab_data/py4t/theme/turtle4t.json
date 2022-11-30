@@ -62,8 +62,8 @@
         "items" :[
             {
                 "menu_display" : "視窗大小設定",
-                "code" : "視窗設定(400, 600)",
-                "code_display" : "視窗設定(400, 600)",
+                "code" : "視窗設定(800, 600)",
+                "code_display" : "視窗設定(800, 600)",
                 "note" : "視窗設定(寬度, 高度)",
                 "long_note" : true
             },
@@ -145,6 +145,20 @@
                 "code_display" : "左轉(90)",
                 "note" : "海龜向左轉(角度)",
                 "long_note" : false
+            },
+            {
+                "menu_display" : "設定方向",
+                "code" : "設定方向(0)",
+                "code_display" : "設定方向(0)",
+                "note" : "設定方向(角度) 右方0度 逆時針旋轉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "方向 查詢目前",
+                "code" : "方向()",
+                "code_display" : "方向()",
+                "note" : "查詢 角度",
+                "long_note" : false
             }
         ]
     },
@@ -196,20 +210,6 @@
                 "long_note" : false
             },
             {
-                "menu_display" : "設定方向",
-                "code" : "設定方向(0)",
-                "code_display" : "設定方向(0)",
-                "note" : "設定方向(角度) 右方0度 逆時針旋轉",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "方向 查詢目前",
-                "code" : "方向()",
-                "code_display" : "方向()",
-                "note" : "查詢 角度",
-                "long_note" : false
-            },
-            {
                 "menu_display" : "回出發點",
                 "code" : "回出發點()",
                 "code_display" : "回出發點()",
@@ -224,6 +224,13 @@
         "postfix_enter" : true,
         "start_hide_note" :true,
         "items" :[
+            {
+                "menu_display" : "速度 最快",
+                "code" : "速度('fastest')",
+                "code_display" : "速度('fastest')",
+                "note" : "fastest 最快",
+                "long_note" : true
+            },
             {
                 "menu_display" : "速度 快",
                 "code" : "速度('fast')",
@@ -253,10 +260,17 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "速度 最快",
-                "code" : "速度('fastest')",
-                "code_display" : "速度('fastest')",
-                "note" : "fastest 最快",
+                "menu_display" : "動畫開關 ",
+                "code" : "tracer(0, 0)",
+                "code_display" : "tracer(0, 0)",
+                "note" : "動畫開關 (更新間隔數 延遲)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手動更新 ",
+                "code" : "update()",
+                "code_display" : "update()",
+                "note" : "手動更新",
                 "long_note" : true
             }
         ]
@@ -273,7 +287,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "填充顏色 紅",
@@ -351,7 +365,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "開始填色",
@@ -463,7 +477,14 @@
                 "code_display" : "畫筆尺寸(1)",
                 "note" : "設定海龜畫線的尺寸 (點)",
                 "long_note" : true
-            },
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "筆跡清除",
                 "code" : "筆跡清除()",
@@ -586,7 +607,7 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        "start_hide_note" : true,
         "items" :[
             {
                 "menu_display" : "畫點 紅",
@@ -663,22 +684,23 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
+        "start_hide_note" : false,
         "items" :[
-            {
-                "menu_display" : "畫弧",
-                "code" : "畫弧(50, 90)",
-                "code_display" : "畫弧(50, 90)",
-                "note" : "畫弧(半徑, 角度)",
-                "long_note" : true
-            },
             {
                 "menu_display" : "畫圓",
                 "code" : "畫圓(50)",
                 "code_display" : "畫圓(50)",
                 "note" : "畫圓周 半徑",
                 "long_note" : false
+            },
+            {
+                "menu_display" : "畫弧",
+                "code" : "畫弧(50, 90)",
+                "code_display" : "畫弧(50, 90)",
+                "note" : "畫弧(半徑, 角度)",
+                "long_note" : true
             }
+            
             
         ]
     },

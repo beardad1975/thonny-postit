@@ -1,0 +1,208 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "匯入圖表模組",
+                "code" : "import matplotlib.pyplot as plt",
+                "code_display" : "import matplotlib.pyplot\n  as plt",
+                "note" : "需先匯入",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 圖表繪製 顯示  ",
+        "off_label" : " 圖表繪製 顯示 >",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "折線圖",
+                "code" : "plt.plot(陣列)",
+                "code_display" : "plt.plot(陣列)",
+                "note" : "折線圖",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫圖 格式",
+                "code" : "plt.plot(陣列, '.')",
+                "code_display" : "plt.plot(陣列, '.')",
+                "note" : ".小點 o點 -實線 --虛線 ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫圖 格式 顏色",
+                "code" : "plt.plot(陣列, '-og')",
+                "code_display" : "plt.plot(陣列, '-og')",
+                "note" : "rgb cymk (顏色開頭字母)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "折線圖 xy陣列",
+                "code" : "plt.plot(x, y)",
+                "code_display" : "plt.plot(x, y)",
+                "note" : "## 需建立x y陣列且個數相同",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫圖 xy陣列 格式",
+                "code" : "plt.plot(x, y, '-o')",
+                "code_display" : "plt.plot(x, y, '-o')",
+                "note" : "xy陣列 -實線 o點 --虛線 ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫圖 xy陣列 格式 顏色",
+                "code" : "plt.plot(x, y, '-og')",
+                "code_display" : "plt.plot(x, y, '-og')",
+                "note" : "xy陣列 rgb cymk",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "畫灰階影像 ",
+                "code" : "plt.imshow(陣列, cmap='gray')",
+                "code_display" : "plt.imshow(陣列,\n  cmap='gray')",
+                "note" : "畫灰階影像",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "畫陣列影像 ",
+                "code" : "plt.imshow(陣列)",
+                "code_display" : "plt.imshow(陣列)",
+                "note" : "畫陣列影像",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "顯示圖表",
+                "code" : "plt.show()",
+                "code_display" : "plt.show()",
+                "note" : "顯示圖表 #必要",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "顯示圖表 等待",
+                "code" : "plt.show(block=True)",
+                "code_display" : "plt.show(block=True)",
+                "note" : "顯示圖表 等待",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 圖表設定  ",
+        "off_label" : " 圖表設定 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "XY尺度相同",
+                "code" : "plt.axis('equal')",
+                "code_display" : "plt.axis('equal')",
+                "note" : "XY尺度相同",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "X軸顯示範圍",
+                "code" : "plt.xlim(0, 100)",
+                "code_display" : "plt.xlim(0, 100)",
+                "note" : "X軸顯示範圍",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "Y軸顯示範圍",
+                "code" : "plt.ylim(0, 100)",
+                "code_display" : "plt.ylim(0, 100)",
+                "note" : "Y軸顯示範圍",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定圖表標題",
+                "code" : "plt.title('abc')",
+                "code_display" : "plt.title('abc')",
+                "note" : "圖表標題 #使用英文數字",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "設定X軸標籤",
+                "code" : "plt.xlabel('X')",
+                "code_display" : "plt.xlabel('X')",
+                "note" : "設定X軸標籤",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設定Y軸標籤",
+                "code" : "plt.ylabel('Y')",
+                "code_display" : "plt.ylabel('Y')",
+                "note" : "設定Y軸標籤",
+                "long_note" : true
+            }
+        ]
+    }
+]

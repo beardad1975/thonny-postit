@@ -15,6 +15,26 @@
         "tab_title" :   "3D程式"  
     },
     {
+        "tab_name" : "cv4t",
+        "tab_label" : " 視覺 ",
+        "tab_title" :   "視覺影像"  
+    },
+    {
+        "tab_name" : "audio4t",
+        "tab_label" : " 聲音 ",
+        "tab_title" : "聲音訊號"       
+    },
+    {
+        "tab_name" : "numpy",
+        "tab_label" : " 陣列 ",
+        "tab_title" : "多維陣列numpy"  
+    },
+    {
+        "tab_name" : "matplotlib",
+        "tab_label" : " 圖表 ",
+        "tab_title" : "圖表matplotlib"       
+    },
+    {
         "tab_name" : "poker_sort",
         "tab_label" : " 排序 ",
         "tab_title" :   "排序撲克"  
@@ -23,10 +43,5 @@
         "tab_name" : "search_guess",
         "tab_label" : " 搜尋 ",
         "tab_title" :   "搜尋猜數"  
-    },
-    {
-        "tab_name" : "cv4t",
-        "tab_label" : " 視覺 ",
-        "tab_title" :   "視覺影像"  
     }
 ]
