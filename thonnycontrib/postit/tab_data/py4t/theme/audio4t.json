@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 音源 轉成聲音  ",
-        "off_label" : " 音源 轉成聲音 >",
+        "on_label" : " 音源 轉成聲音 播放  ",
+        "off_label" : " 音源 轉成聲音 播放 >",
         "start_on" : true
     },
     {
@@ -107,31 +107,31 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "白雜訊",
-                "code" : "音源 = 白雜訊()",
-                "code_display" : "音源 = 白雜訊()",
+                "menu_display" : "白噪音",
+                "code" : "音源 = 白噪音()",
+                "code_display" : "音源 = 白噪音()",
                 "note" : "隨機數 平均為0",
                 "long_note" : true
             },
             {
-                "menu_display" : "白雜訊 CD音質取樣率",
-                "code" : "音源 = 白雜訊(取樣率=44100)",
-                "code_display" : "音源 = 白雜訊(取樣率=44100)",
-                "note" : "白雜訊 CD音質取樣率",
+                "menu_display" : "白噪音 CD音質取樣率",
+                "code" : "音源 = 白噪音(取樣率=44100)",
+                "code_display" : "音源 = 白噪音(取樣率=44100)",
+                "note" : "白噪音 CD音質取樣率",
                 "long_note" : true
             },
             {
-                "menu_display" : "白雜訊 取樣率 8000",
-                "code" : "音源 = 白雜訊(取樣率=8000)",
-                "code_display" : "音源 = 白雜訊(取樣率=8000)",
-                "note" : "白雜訊 取樣率",
+                "menu_display" : "白噪音 取樣率 8000",
+                "code" : "音源 = 白噪音(取樣率=8000)",
+                "code_display" : "音源 = 白噪音(取樣率=8000)",
+                "note" : "白噪音 取樣率",
                 "long_note" : true
             },
             {
-                "menu_display" : "白雜訊 取樣率 位元深度",
-                "code" : "音源 = 白雜訊(取樣率=44100 , \n    位元深度=16 , \n    )",
-                "code_display" : "音源 = 白雜訊(取樣率=44100 , \n    位元深度=16 ,\n    )",
-                "note" : "白雜訊 取樣率 位元深度",
+                "menu_display" : "白噪音 取樣率 位元深度",
+                "code" : "音源 = 白噪音(取樣率=44100 , \n    位元深度=16 , \n    )",
+                "code_display" : "音源 = 白噪音(取樣率=44100 , \n    位元深度=16 ,\n    )",
+                "note" : "白噪音 取樣率 位元深度",
                 "long_note" : true
             }
         ]
@@ -158,27 +158,27 @@
         ]
     },
     {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : " 播放 屬性 檔案  ",
-        "off_label" : " 播放 屬性 檔案 >",
-        "start_on" : false
-    },
-    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "播放聲音",
-                "code" : "播放聲音(聲音)",
-                "code_display" : "播放聲音(聲音)",
+                "code" : "play(聲音)",
+                "code_display" : "play(聲音)",
                 "note" : "播放並等待",
                 "long_note" : true
             }
         ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 屬性 聲音檔  ",
+        "off_label" : " 屬性 聲音檔 >",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -192,10 +192,10 @@
                 "long_note" : true
             },
             {
-                "menu_display" : "聲音 位元深度(傳回bytes)",
+                "menu_display" : "聲音 位元深度(傳回byte數)",
                 "code" : "聲音.位元深度",
                 "code_display" : "聲音.位元深度",
-                "note" : "位元解析度(傳回bytes)",
+                "note" : "位元解析度(傳回byte數)",
                 "long_note" : true
             },
             {
@@ -242,6 +242,10 @@
         ]
     },
     {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "audio_example"
+    },
+    {
         "postit_type" : "ttk_separator"
     },
     {
@@ -253,19 +257,47 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
+            {
+                "menu_display" : "增加音量",
+                "code" : "聲音 = 聲音 + 5",
+                "code_display" : "聲音 = 聲音 + 5",
+                "note" : "增加dBFS音量",
+                "long_note" : true
+            },
             {
                 "menu_display" : "減少音量",
                 "code" : "聲音 = 聲音 - 5",
                 "code_display" : "聲音 = 聲音 - 5",
                 "note" : "減少dBFS音量",
                 "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "串接",
+                "code" : "聲音 = 聲音1 + 聲音2",
+                "code_display" : "聲音 = 聲音1 + 聲音2",
+                "note" : "串接",
+                "long_note" : true
             },
             {
-                "menu_display" : "增加音量",
-                "code" : "聲音 = 聲音 + 5",
-                "code_display" : "聲音 = 聲音 + 5",
-                "note" : "增加dBFS音量",
+                "menu_display" : "串接 交叉淡化",
+                "code" : "聲音 = 聲音1.append(聲音2, crossfade=100)",
+                "code_display" : "聲音 = 聲音1.append(聲音2, \n    crossfade=100)",
+                "note" : "串接 交叉淡化",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "重複",
+                "code" : "聲音 = 聲音 * 3",
+                "code_display" : "聲音 = 聲音 * 3",
+                "note" : "重複多次聲音",
                 "long_note" : true
             }
         ]
@@ -295,24 +327,30 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "串接",
-                "code" : "聲音 = 聲音1 + 聲音2",
-                "code_display" : "聲音 = 聲音1 + 聲音2",
-                "note" : "串接",
+                "menu_display" : "混合",
+                "code" : "聲音 = 聲音1.overlay(聲音2)",
+                "code_display" : "聲音 = 聲音1.overlay(聲音2)",
+                "note" : "混合",
                 "long_note" : true
             },
             {
-                "menu_display" : "串接 交叉淡化",
-                "code" : "聲音 = 聲音1.串接(聲音2, 交叉淡化=100)",
-                "code_display" : "聲音 = 聲音1.串接(聲音2, \n    交叉淡化=100)",
-                "note" : "串接 交叉淡化",
+                "menu_display" : "混合 重複聲音拉齊長度",
+                "code" : "聲音 = 聲音1.overlay(聲音2, loop=True)",
+                "code_display" : "聲音 = 聲音1.overlay(聲音2, loop=True)",
+                "note" : "混合 重複聲音拉齊長度",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
-                "menu_display" : "重複",
-                "code" : "聲音 = 聲音 * 3",
-                "code_display" : "聲音 = 聲音 * 3",
-                "note" : "重複多次聲音",
+                "menu_display" : "反轉",
+                "code" : "聲音 = 聲音.reverse()",
+                "code_display" : "聲音 = 聲音.reverse()",
+                "note" : "反轉",
                 "long_note" : true
             }
         ]
@@ -345,45 +383,12 @@
         ]
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "混合",
-                "code" : "聲音 = 聲音1.overlay(聲音2)",
-                "code_display" : "聲音 = 聲音1.overlay(聲音2)",
-                "note" : "混合",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "混合 重複聲音2",
-                "code" : "聲音 = 聲音1.overlay(聲音2, loop=True)",
-                "code_display" : "聲音 = 聲音1.overlay(聲音2, loop=True)",
-                "note" : "混合 重複聲音2",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "反轉",
-                "code" : "聲音 = 聲音.reverse()",
-                "code_display" : "聲音 = 聲音.reverse()",
-                "note" : "反轉",
-                "long_note" : true
-            }
-        ]
-    },
-    {
         "postit_type" : "ttk_separator"
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 聲音 多維陣列  ",
-        "off_label" : " 聲音 多維陣列 >",
+        "on_label" : " 聲音轉陣列  ",
+        "off_label" : " 聲音轉陣列 >",
         "start_on" : false
     },
     {
@@ -391,10 +396,10 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "聲音 轉 多維陣列",
-                "code" : "陣列 = 多維陣列轉換(聲音)",
-                "code_display" : "陣列 = 多維陣列轉換(聲音)",
-                "note" : "聲音 轉 多維陣列",
+                "menu_display" : "轉成 多維陣列",
+                "code" : "陣列 = 聲音轉陣列(聲音)",
+                "code_display" : "陣列 = 聲音轉陣列(聲音)",
+                "note" : "轉成 多維陣列",
                 "long_note" : true
             }
         ]

@@ -94,6 +94,66 @@
     },
     {
         "postit_type" : "postit_para",
+        "on_label" : " 圖檔讀取 儲存  ",
+        "off_label" : " 圖檔讀取 儲存 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "讀取影像灰階",
+                "code" : "陣列 = 讀取影像灰階('name.type')",
+                "code_display" : "陣列 = 讀取影像灰階(\n    'name.type')",
+                "note" : "檔名需英文",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "讀取影像彩色",
+                "code" : "陣列 = 讀取影像彩色('name.type')",
+                "code_display" : "陣列 = 讀取影像彩色(\n    'name.type')",
+                "note" : "檔名需英文",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "cv_example_pic"
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "讀取影像PNG",
+                "code" : "透明圖陣列 = 讀取影像PNG('name.png')",
+                "code_display" : "透明圖陣列 = 讀取影像PNG(\n    'name.png')",
+                "note" : "需改為實際檔名(需英文數字)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "儲存影像",
+                "code" : "儲存影像('name.jpg',陣列)",
+                "code_display" : "儲存影像('name.jpg',陣列)",
+                "note" : "儲存影像(檔名字串, 陣列)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
         "on_label" : " 顯示 屬性 切片  ",
         "off_label" : " 顯示 屬性 切片 >",
         "start_on" : false
@@ -852,62 +912,6 @@
                 "code" : "畫透明圖(陣列, 透明圖陣列, 0, 0)",
                 "code_display" : "畫透明圖(陣列,\n   透明圖陣列, 0, 0)",
                 "note" : "畫透明圖",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : " 讀取 儲存  ",
-        "off_label" : " 讀取 儲存 >",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : false,
-        "items" :[
-            {
-                "menu_display" : "讀取影像灰階",
-                "code" : "陣列 = 讀取影像灰階('檔名.類型')",
-                "code_display" : "陣列 = 讀取影像灰階(\n    '檔名.類型')",
-                "note" : "需改為實際檔名(需英文數字)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "讀取影像彩色",
-                "code" : "陣列 = 讀取影像彩色('檔名.類型')",
-                "code_display" : "陣列 = 讀取影像彩色(\n    '檔名.類型')",
-                "note" : "需改為實際檔名(需英文數字)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "讀取影像PNG",
-                "code" : "透明圖陣列 = 讀取影像PNG('檔名.png')",
-                "code_display" : "透明圖陣列 = 讀取影像PNG(\n    '檔名.png')",
-                "note" : "需改為實際檔名(需英文數字)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "儲存影像",
-                "code" : "儲存影像('檔名.jpg',陣列)",
-                "code_display" : "儲存影像('檔名.jpg',陣列)",
-                "note" : "儲存影像(檔名字串, 陣列)",
                 "long_note" : true
             }
         ]

@@ -66,34 +66,6 @@
                 "code_display" : "視窗設定(800, 600)",
                 "note" : "視窗設定(寬度, 高度)",
                 "long_note" : true
-            },
-            {
-                "menu_display" : "背景顏色 白",
-                "code" : "背景顏色('white')",
-                "code_display" : "背景顏色('white')",
-                "note" : "white 白色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "背景顏色 RGB",
-                "code" : "背景顏色(255,255,255)",
-                "code_display" : "背景顏色(255,255,255)",
-                "note" : "顏色 (RGB紅綠藍 0~255)",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "背景顏色 RGB文字",
-                "code" : "背景顏色('#ffffff')",
-                "code_display" : "背景顏色('#ffffff')",
-                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "背景顏色 黑",
-                "code" : "背景顏色('black')",
-                "code_display" : "背景顏色('black')",
-                "note" : "black 黑色",
-                "long_note" : true
             }
         ]
     },
@@ -500,8 +472,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 停筆 游標  ",
-        "off_label" : " 停筆 游標 >",
+        "on_label" : " 停筆 游標 背景  ",
+        "off_label" : " 停筆 游標 背景 >",
         "start_on" : false
     },
     {
@@ -594,6 +566,59 @@
                 "long_note" : true
             }
         ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "背景顏色 白",
+                "code" : "背景顏色('white')",
+                "code_display" : "背景顏色('white')",
+                "note" : "white 白色",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 RGB",
+                "code" : "背景顏色(255,255,255)",
+                "code_display" : "背景顏色(255,255,255)",
+                "note" : "顏色 (RGB紅綠藍 0~255)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 RGB文字",
+                "code" : "背景顏色('#ffffff')",
+                "code_display" : "背景顏色('#ffffff')",
+                "note" : "顏色 #RRGGBB 紅綠藍\n16進位 0~f",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "背景顏色 黑",
+                "code" : "背景顏色('black')",
+                "code_display" : "背景顏色('black')",
+                "note" : "black 黑色",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "背景圖片 限gif檔",
+                "code" : "bgpic('name.gif')",
+                "code_display" : "bgpic('name.gif')",
+                "note" : "背景圖片 限gif檔",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "turtle_example_pic"
     },
     {
         "postit_type" : "ttk_separator"

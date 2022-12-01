@@ -1,0 +1,11 @@
+[
+    {
+        "asset_category" : "instrument",
+        "category_title" : "樂器"
+    },
+    {
+        "asset_category" : "human_voice",
+        "category_title" : "人聲" 
+    }
+    
+]

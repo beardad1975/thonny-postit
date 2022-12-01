@@ -1,0 +1,16 @@
+[
+    {
+        "asset_file" : "kirun.jpg",
+        "thumbnail" : "kirun_thumbnail.png",
+        "file_title" : "kirun",
+        "file_type" : "jpg",
+        "file_info" : "869 x 697\n日治基隆港"
+    },
+    {
+        "asset_file" : "olympic.jpg",
+        "thumbnail" : "olympic_thumbnail.png",
+        "file_title" : "olympic",
+        "file_type" : "jpg",
+        "file_info" : "300 x 531\n東京奧運"
+    }
+]

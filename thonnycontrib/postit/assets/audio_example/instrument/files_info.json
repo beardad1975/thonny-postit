@@ -1,0 +1,16 @@
+[
+    {
+        "asset_file" : "violin.wav",
+        "thumbnail" : "wav_thumbnail.png",
+        "file_title" : "小提琴聲音",
+        "file_type" : "wav",
+        "file_info" : "7秒"
+    },
+    {
+        "asset_file" : "piano.wav",
+        "thumbnail" : "wav_thumbnail.png",
+        "file_title" : "鋼琴聲音",
+        "file_type" : "wav",
+        "file_info" : "7秒"
+    }
+]

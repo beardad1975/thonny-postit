@@ -2,6 +2,18 @@
     {
         "asset_group" : "3d_example_texture",
         "group_title" : "匯入 範例材質貼圖"    
+    },
+    {
+        "asset_group" : "audio_example",
+        "group_title" : "匯入 範例聲音檔"    
+    },
+    {
+        "asset_group" : "cv_example_pic",
+        "group_title" : "匯入 範例圖片檔"    
+    },
+    {
+        "asset_group" : "turtle_example_pic",
+        "group_title" : "匯入 範例圖片檔"    
     }
 
 ]

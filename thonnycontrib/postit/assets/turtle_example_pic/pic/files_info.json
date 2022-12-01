@@ -1,0 +1,23 @@
+[
+    {
+        "asset_file" : "sunset1.gif",
+        "thumbnail" : "sunset1_thumbnail.png",
+        "file_title" : "sunset1",
+        "file_type" : "gif",
+        "file_info" : "1921 x 1272\n夕陽照1"
+    },
+    {
+        "asset_file" : "sunset2.gif",
+        "thumbnail" : "sunset2_thumbnail.png",
+        "file_title" : "sunset2",
+        "file_type" : "gif",
+        "file_info" : "1920 x 1280\n夕陽照2"
+    },
+    {
+        "asset_file" : "sunset3.gif",
+        "thumbnail" : "sunset3_thumbnail.png",
+        "file_title" : "sunset3",
+        "file_type" : "gif",
+        "file_info" : "1920 x 1279\n夕陽照3"
+    }
+]
