@@ -14,7 +14,7 @@ files = tab_files + assets_files
 
 setup (
         name="thonny-postit",
-        version="0.16" ,
+        version="0.16.1" ,
         description="Program Post-it for Thonny IDE",
         long_description="""Program Post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
@@ -34,6 +34,6 @@ setup (
         python_requires=">=3.6",
         package_data={'thonnycontrib.postit': ['VERSION','images/*','tools/*','projects/*'] + files,
                 },
-        install_requires=["thonny >= 3.3.7","pillow ~= 9.0.1", "pyperclip ~= 1.8.2"],
+        install_requires=["thonny >= 3.3.7","pillow ~= 9.1.1", "pyperclip ~= 1.8.2"],
         packages=["thonnycontrib.postit"],
 )
