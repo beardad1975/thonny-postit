@@ -47,6 +47,13 @@
                 "long_note" : true
             },
             {
+                "menu_display" : "設置影像擷取 後端DSHOW",
+                "code" : "攝影機 = 設置影像擷取(後端='DSHOW')",
+                "code_display" : "攝影機 = 設置影像擷取(\n    後端='DSHOW')",
+                "note" : "後端DSHOW (DirectX)\n若攝影機啟動很慢時，可使用",
+                "long_note" : true
+            },
+            {
                 "menu_display" : "設置影像擷取 720p",
                 "code" : "攝影機 = 設置影像擷取(解析度='720p')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    解析度='720p')",
@@ -58,13 +65,6 @@
                 "code" : "攝影機 = 設置影像擷取(解析度='1080p')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    解析度='1080p')",
                 "note" : "影像大小 寬1920x高1080",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設置影像擷取 後端DSHOW",
-                "code" : "攝影機 = 設置影像擷取(後端='DSHOW')",
-                "code_display" : "攝影機 = 設置影像擷取(\n    後端='DSHOW')",
-                "note" : "後端DSHOW (DirectX)\n若攝影機啟動很慢時，可使用",
                 "long_note" : true
             },
             {
@@ -695,26 +695,87 @@
         "start_hide_note" : false,
         "items" :[
             {
+                "menu_display" : "圓形 圓心 半徑",
+                "code" : "畫圓形(image=陣列,\ncenter=(10,10),\nradius=2)",
+                "code_display" : "畫圓形(image=陣列,\n    center=(10,10),\n    radius=2)",
+                "note" : "image 影像\ncenter 圓心點\nradius 半徑",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "圓形 圓心 半徑 顏色",
+                "code" : "畫圓形(image=陣列, \ncenter=(10,10),\nradius=2,\ncolor=(0,0,255))",
+                "code_display" : "畫圓形(image=陣列,\n    center=(10,10),\n    radius=2,\n    color=(0,0,255))",
+                "note" : "image 影像\ncenter 圓心點\nradius 半徑\ncolor 顏色(順序:BGR)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "圓形 圓心 半徑 顏色 線的粗細",
+                "code" : "畫圓形(image=陣列,\ncenter=(10,10),\nradius=2,\ncolor=(0,0,255),\nthickness=2)",
+                "code_display" : "畫圓形(image=陣列,\n    center=(10,10),\n    radius=2,\n    color=(0,0,255),\n    thickness=2)",
+                "note" : "image 影像\ncenter 圓心點\nradius 半徑\ncolor 顏色(順序:BGR)\nthickness 線的粗細",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "矩形 點1 點2",
+                "code" : "畫矩形(image=陣列,\npt1=(0,0),\npt2=(50,50))",
+                "code_display" : "畫矩形(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50))",
+                "note" : "image 影像\npt1 點1\npt2 點2",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "矩形 點1 點2 顏色",
+                "code" : "畫矩形(image=陣列,\npt1=(0,0),\npt2=(50,50),\ncolor=(0,0,255))",
+                "code_display" : "畫矩形(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50),\n    color=(0,0,255))",
+                "note" : "image 影像\npt1 點1\npt2 點2\ncolor 顏色(順序:BGR)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "矩形 點1 點2 顏色 線的粗細",
+                "code" : "畫矩形(image=陣列,\npt1=(0,0),\npt2=(50,50),\ncolor=(0,0,255),\nthickness=1)",
+                "code_display" : "畫矩形(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50),\n    color=(0,0,255),\n    thickness=1)",
+                "note" : "image 影像\npt1 點1\npt2 點2\ncolor 顏色(順序:BGR)\nthickness 線的粗細",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
                 "menu_display" : "直線 點1 點2",
-                "code" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n)",
-                "code_display" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    )",
-                "note" : "直線 點1 點2",
+                "code" : "畫直線(image=陣列,\npt1=(0,0),\npt2=(50,50))",
+                "code_display" : "畫直線(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50))",
+                "note" : "image 影像\npt1 點1\npt2 點2",
                 "long_note" : true
             },
             {
                 "menu_display" : "直線 點1 點2 顏色",
-                "code" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n)",
-                "code_display" : "畫直線( 陣列 , \n    點1 = (0,0),\n    點2 = (50,50),\n    顏色 = color.紅 ,\n    )",
-                "note" : "直線 點1 點2 顏色",
+                "code" : "畫直線(image=陣列,\npt1=(0,0),\npt2=(50,50),\ncolor=(0,0,255))",
+                "code_display" : "畫直線(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50),\n    color=(0,0,255))",
+                "note" : "image 影像\npt1 點1\npt2 點2\ncolor 顏色(順序:BGR)",
                 "long_note" : true
             },
             {
                 "menu_display" : "直線 點1 點2 顏色 寬度",
-                "code" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
-                "code_display" : "畫直線( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n    )",
-                "note" : "直線 點1 點2 顏色 寬度",
+                "code" : "畫直線(image=陣列,\npt1=(0,0),\npt2=(50,50),\ncolor=(0,0,255),\nthickness=2)",
+                "code_display" : "畫直線(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50),\n    color=(0,0,255),\n    thickness=2)",
+                "note" : "image 影像\npt1 點1\npt2 點2\ncolor 顏色(順序:BGR)\nthickness 線的粗細",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
                 "menu_display" : "折線 點清單 封閉",
                 "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n)",
@@ -734,82 +795,6 @@
                 "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
                 "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
                 "note" : "折線 點清單 封閉 顏色 線寬",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "矩形 點1 點2",
-                "code" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n)",
-                "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    )",
-                "note" : "矩形 點1 點2",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "矩形 點1 點2 顏色",
-                "code" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n)",
-                "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0),\n    點2 = (50,50),\n    顏色 = color.紅 ,\n    )",
-                "note" : "矩形 點1 點2 顏色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "矩形 點1 點2 顏色 寬度",
-                "code" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
-                "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n    )",
-                "note" : "矩形 點1 點2 顏色 寬度",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "矩形實心 點1 點2",
-                "code" : "畫矩形實心( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n)",
-                "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    )",
-                "note" : "矩形實心 點1 點2",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "矩形實心 點1 點2 顏色",
-                "code" : "畫矩形實心( 陣列 , \n    點1 = (0,0) ,\n    點2 = (50,50) ,\n    顏色 = color.紅 ,\n)",
-                "code_display" : "畫矩形( 陣列 , \n    點1 = (0,0),\n    點2 = (50,50),\n    顏色 = color.紅 ,\n    )",
-                "note" : "矩形實心 點1 點2 顏色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "圓形 圓心 半徑",
-                "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n)",
-                "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    )",
-                "note" : "圓形 圓心 半徑",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "圓形 圓心 半徑 顏色",
-                "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n)",
-                "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10),\n    半徑 = 2,\n    顏色 = color.紅 ,\n    )",
-                "note" : "圓形 圓心 半徑 顏色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "圓形 圓心 半徑 顏色 寬度",
-                "code" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
-                "code_display" : "畫圓形( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n    )",
-                "note" : "圓形 圓心 半徑 顏色 寬度",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "圓形實心 圓心 半徑",
-                "code" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n)",
-                "code_display" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    )",
-                "note" : "圓形實心 圓心 半徑",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "圓形實心 圓心 半徑 顏色",
-                "code" : "畫圓形實心( 陣列 , \n    圓心 = (10,10) ,\n    半徑 = 2 ,\n    顏色 = color.紅 ,\n)",
-                "code_display" : "畫圓形實心( 陣列 , \n    圓心 = (10,10),\n    半徑 = 2,\n    顏色 = color.紅 ,\n    )",
-                "note" : "圓形實心 圓心 半徑 顏色",
                 "long_note" : true
             }
         ]

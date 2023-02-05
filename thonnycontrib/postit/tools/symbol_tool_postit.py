@@ -813,6 +813,8 @@ class SymbolToolPopup:
                 command=lambda:self.change_symbol('sorted()'," sorted() 排序 "))
         self.builtin_menu.add_command( label="reversed() 反轉 ", 
                 command=lambda:self.change_symbol('reversed()',"reversed() 反轉 "))
+        self.builtin_menu.add_command( label="enumerate() 加上元素索引 ", 
+                command=lambda:self.change_symbol('enumerate()'," enumerate() 加上元素索引 "))
 
 
         # punctuation menu command 
