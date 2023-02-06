@@ -465,24 +465,59 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "載入 類神經網路 人臉模型",
-                "code" : "類神經網路 = 深度學習人臉模型()",
-                "code_display" : "類神經網路 = 深度學習人臉模型()",
-                "note" : "載入 類神經網路 人臉模型",
+                "menu_display" : "設置 人臉偵測",
+                "code" : "偵測器 = 設置FaceDetection()",
+                "code_display" : "偵測器 = 設置FaceDetection()",
+                "note" : "face 臉\ndetection 偵測",
                 "long_note" : true
             },
             {
-                "menu_display" : "類神經網路 設定輸入",
-                "code" : "類神經網路.設定輸入(陣列)",
-                "code_display" : "類神經網路.設定輸入(陣列)",
-                "note" : "類神經網路 設定輸入",
+                "menu_display" : "設置 人臉偵測 模型選擇",
+                "code" : "偵測器 = 設置FaceDetection(模型選擇=1)",
+                "code_display" : "偵測器 = 設置FaceDetection(\n    模型選擇=1)",
+                "note" : "0 偵測距離適2米內\n1 偵測距離適5公尺內",
                 "long_note" : true
             },
             {
-                "menu_display" : "類神經網路 正向傳播",
-                "code" : "人臉清單 = 類神經網路.正向傳播()",
-                "code_display" : "人臉清單 = 類神經網路.正向傳播()",
-                "note" : "類神經網路 正向傳播",
+                "menu_display" : "設置 人臉偵測 最小信心值",
+                "code" : "偵測器 = 設置FaceDetection(最小信心值=0.5)",
+                "code_display" : "偵測器 = 設置FaceDetection(\n    最小信心值=0.5)",
+                "note" : "face 臉\ndetection 偵測",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "處理 人臉偵測",
+                "code" : "結果 = 偵測器.process(陣列)",
+                "code_display" : "結果 = 偵測器.process(陣列)",
+                "note" : "process 處理",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "偵測人臉數",
+                "code" : "len(結果)",
+                "code_display" : "len(結果)",
+                "note" : "len 長度函數",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "標記 人臉",
+                "code" : "標記全部Face(陣列, 結果)",
+                "code_display" : "標記全部Face(陣列, 結果)",
+                "note" : "",
                 "long_note" : true
             }
         ]
@@ -492,10 +527,38 @@
         
         "items" :[
             {
-                "menu_display" : "從人臉清單 逐一取出",
-                "code" : "for 臉 in 人臉清單 :\npass",
-                "code_display" : "for 臉 in 人臉清單 :\n    pass",
-                "note" : "從人臉清單 逐一取出 :\n        迴圈區塊",
+                "menu_display" : "如果 有偵測結果",
+                "code" : "if 結果:\npass",
+                "code_display" : "if 結果:\n    pass",
+                "note" : "如果 有偵測結果",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "從臉清單 逐一取出",
+                "code" : "for 臉 in 臉清單 :\npass",
+                "code_display" : "for 臉 in 臉清單 :\n    pass",
+                "note" : "從臉清單 逐一取出 :\n        迴圈區塊",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "取出 開頭Face",
+                "code" : "臉 = 取出開頭Face(結果)",
+                "code_display" : "臉 = 取出開頭Face(結果)",
+                "note" : "第1張臉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 Face清單",
+                "code" : "臉清單 = 取出Face清單(結果)",
+                "code_display" : "臉清單 = 取出Face清單(結果)",
+                "note" : "所有臉",
                 "long_note" : true
             }
         ]
@@ -504,180 +567,84 @@
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : false,
         "items" :[
-            
+            {
+                "menu_display" : "臉 信心值",
+                "code" : "臉.信心值",
+                "code_display" : "臉.信心值",
+                "note" : "",
+                "long_note" : true
+            },
             {
                 "menu_display" : "臉 矩形左上點",
                 "code" : "臉.矩形左上點",
                 "code_display" : "臉.矩形左上點",
-                "note" : "臉 矩形左上點",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 矩形左下點",
-                "code" : "臉.矩形左下點",
-                "code_display" : "臉.矩形左下點",
-                "note" : "臉 矩形左下點",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 矩形右上點",
-                "code" : "臉.矩形右上點",
-                "code_display" : "臉.矩形右上點",
-                "note" : "臉 矩形右上點",
+                "note" : "",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形右下點",
                 "code" : "臉.矩形右下點",
                 "code_display" : "臉.矩形右下點",
-                "note" : "臉 矩形右下點",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "臉 矩形中心點",
-                "code" : "臉.矩形中心點",
-                "code_display" : "臉.矩形中心點",
-                "note" : "臉 矩形中心點",
+                "menu_display" : "臉 矩形右上點",
+                "code" : "臉.矩形右上點",
+                "code_display" : "臉.矩形右上點",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "臉 信心值",
-                "code" : "臉.信心值",
-                "code_display" : "臉.信心值",
-                "note" : "臉 信心值",
+                "menu_display" : "臉 矩形左下點",
+                "code" : "臉.矩形左下點",
+                "code_display" : "臉.矩形左下點",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "臉 陣列",
-                "code" : "臉.陣列",
-                "code_display" : "臉.陣列",
-                "note" : "臉 陣列",
+                "menu_display" : "臉 右眼",
+                "code" : "臉.右眼",
+                "code_display" : "臉.右眼",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "臉 寬度",
-                "code" : "臉.寬度",
-                "code_display" : "臉.寬度",
-                "note" : "臉 寬度",
+                "menu_display" : "臉 左眼",
+                "code" : "臉.左眼",
+                "code_display" : "臉.左眼",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 鼻尖",
+                "code" : "臉.鼻尖",
+                "code_display" : "臉.鼻尖",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 嘴中心",
+                "code" : "臉.嘴中心",
+                "code_display" : "臉.嘴中心",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 右耳珠",
+                "code" : "臉.右耳珠",
+                "code_display" : "臉.右耳珠",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 左耳珠",
+                "code" : "臉.左耳珠",
+                "code_display" : "臉.左耳珠",
+                "note" : "",
                 "long_note" : true
             }
             
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "臉 偵測特徵點",
-                "code" : "臉部特徵點 = 臉.偵測特徵點() ",
-                "code_display" : "臉部特徵點 = 臉.偵測特徵點() ",
-                "note" : "臉 偵測特徵點",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_block_enclosed_postit",
-        
-        "items" :[
-            {
-                "menu_display" : "從臉部特徵點 逐一取出",
-                "code" : "for 點 in 臉部特徵點 :\npass",
-                "code_display" : "for 點 in 臉部特徵點 :\n    pass",
-                "note" : "從臉部特徵點 逐一取出 :\n        迴圈區塊",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "下巴清單",
-                "code" : "臉部特徵點.下巴清單",
-                "code_display" : "臉部特徵點.下巴清單",
-                "note" : "下巴清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "眉毛清單",
-                "code" : "臉部特徵點.眉毛清單",
-                "code_display" : "臉部特徵點.眉毛清單",
-                "note" : "眉毛清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "    左眉毛清單",
-                "code" : "臉部特徵點.左眉毛清單",
-                "code_display" : "臉部特徵點.左眉毛清單",
-                "note" : "    左眉毛清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "    右眉毛清單",
-                "code" : "臉部特徵點.右眉毛清單",
-                "code_display" : "臉部特徵點.右眉毛清單",
-                "note" : "    右眉毛清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "鼻清單",
-                "code" : "臉部特徵點.鼻清單",
-                "code_display" : "臉部特徵點.鼻清單",
-                "note" : "鼻清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "    鼻梁清單",
-                "code" : "臉部特徵點.鼻梁清單",
-                "code_display" : "臉部特徵點.鼻梁清單",
-                "note" : "    鼻梁清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "    鼻翼清單",
-                "code" : "臉部特徵點.鼻翼清單",
-                "code_display" : "臉部特徵點.鼻翼清單",
-                "note" : "    鼻翼清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "眼清單",
-                "code" : "臉部特徵點.眼清單",
-                "code_display" : "臉部特徵點.眼清單",
-                "note" : "眼清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "    左眼清單",
-                "code" : "臉部特徵點.左眼清單",
-                "code_display" : "臉部特徵點.左眼清單",
-                "note" : "    左眼清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "    右眼清單",
-                "code" : "臉部特徵點.右眼清單",
-                "code_display" : "臉部特徵點.右眼清單",
-                "note" : "    右眼清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "脣清單",
-                "code" : "臉部特徵點.脣清單",
-                "code_display" : "臉部特徵點.脣清單",
-                "note" : "脣清單",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "口清單",
-                "code" : "臉部特徵點.口清單",
-                "code_display" : "臉部特徵點.口清單",
-                "note" : "口清單",
-                "long_note" : true
-            }
         ]
     },
     {
@@ -685,8 +652,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 幾何繪圖 顏色  ",
-        "off_label" : " 幾何繪圖 顏色 >",
+        "on_label" : " 繪圖 文字 顏色 透明圖  ",
+        "off_label" : " 繪圖 文字 顏色 透明圖 >",
         "start_on" : false
     },
     {
@@ -805,23 +772,23 @@
         "items" :[
             {
                 "menu_display" : "畫出文字",
-                "code" : "畫出文字(陣列, '你好', 0, 0)",
-                "code_display" : "畫出文字(陣列, '你好', 0, 0)",
-                "note" : "文字, x, y",
+                "code" : "畫出文字(image=陣列,\ntext='你好',\npos=(0, 0))",
+                "code_display" : "畫出文字(image=陣列,\n    text='你好',\n    pos=(0, 0))",
+                "note" : "image 影像\ntext 文字\npos 位置",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫出文字 大小",
-                "code" : "畫出文字(陣列, '你好', 0, 0, 大小=30)",
-                "code_display" : "畫出文字(陣列,\n    '你好', 0, 0, 大小=30)",
-                "note" : "文字, x, y, 大小",
+                "code" : "畫出文字(image=陣列,\ntext='你好',\npos=(0, 0),\nsize=30)",
+                "code_display" : "畫出文字(image=陣列,\n    text='你好',\n    pos=(0, 0),\n    size=30)",
+                "note" : "image 影像\ntext 文字\npos 位置\nsize 大小",
                 "long_note" : true
             },
             {
                 "menu_display" : "畫出文字 大小 顏色",
-                "code" : "畫出文字(陣列, '你好', 0, 0, 大小=30, 顏色=color.紅)",
-                "code_display" : "畫出文字(陣列, \n    '你好', 0, 0, 大小=30, \n    顏色=color.紅)",
-                "note" : "文字, x, y, 大小, 顏色",
+                "code" : "畫出文字(image=陣列,\ntext='你好',\npos=(0, 0),\nsize=30,\ncolor=(0,0,255))",
+                "code_display" : "畫出文字(image=陣列,\n    text='你好',\n    pos=(0, 0),\n    size=30,\n    color=(0,0,255))",
+                "note" : "image 影像\ntext 文字\npos 位置\nsize 大小\ncolor 顏色(順序:BGR)",
                 "long_note" : true
             }
         ]
@@ -835,55 +802,6 @@
                 "code" : "color.紅",
                 "code_display" : "color.紅",
                 "note" : "紅",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "綠",
-                "code" : "color.綠",
-                "code_display" : "color.綠",
-                "note" : "綠",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "藍",
-                "code" : "color.藍",
-                "code_display" : "color.藍",
-                "note" : "藍",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "黃",
-                "code" : "color.黃",
-                "code_display" : "color.黃",
-                "note" : "黃",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "橘",
-                "code" : "color.橘",
-                "code_display" : "color.橘",
-                "note" : "橘",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "粉紅",
-                "code" : "color.粉紅",
-                "code_display" : "color.粉紅",
-                "note" : "粉紅",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "rgb",
-                "code" : "color.rgb(255,0,0)",
-                "code_display" : "color.rgb(255,0,0)",
-                "note" : "紅綠藍",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "bgr",
-                "code" : "color.bgr(255,0,0)",
-                "code_display" : "color.bgr(255,0,0)",
-                "note" : "藍綠紅",
                 "long_note" : true
             }
         ]
