@@ -18,9 +18,9 @@
         "items" :[
             {
                 "menu_display" : "匯入時間模組",
-                "code" : "import time as 時間",
-                "code_display" : "import time as 時間",
-                "note" : "需先匯入!!",
+                "code" : "import time",
+                "code_display" : "import time",
+                "note" : "需先匯入!! (time 時間)",
                 "long_note" : true
             }        
         ]
@@ -40,8 +40,8 @@
         "items" :[
             {
                 "menu_display" : "累計秒數",
-                "code" : "時間.time()",
-                "code_display" : "時間.time()",
+                "code" : "time.time()",
+                "code_display" : "time.time()",
                 "note" : "取得累計秒數",
                 "long_note" : true
             }
@@ -54,15 +54,15 @@
         "items" :[
             {
                 "menu_display" : "印出 累計秒數",
-                "code" : "print(時間.time())",
-                "code_display" : "print(時間.time())",
+                "code" : "print(time.time())",
+                "code_display" : "print(time.time())",
                 "note" : "印出累計秒數",
                 "long_note" : true
             },
             {
                 "menu_display" : "累計秒數設定變數",
-                "code" : "目前時間 = 時間.time()",
-                "code_display" : "目前時間 = 時間.time()",
+                "code" : "目前時間 = time.time()",
+                "code_display" : "目前時間 = time.time()",
                 "note" : "累計秒數設定變數",
                 "long_note" : true
             }
@@ -84,8 +84,8 @@
         "items" :[
             {
                 "menu_display" : "睡眠(幾秒)",
-                "code" : "時間.sleep(2)",
-                "code_display" : "時間.sleep(2)",
+                "code" : "time.sleep(2)",
+                "code_display" : "time.sleep(2)",
                 "note" : "睡眠(幾秒)",
                 "long_note" : true
             }

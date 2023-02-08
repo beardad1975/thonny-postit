@@ -18,9 +18,9 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "import random as 隨機",
-                "code_display" : "import random as 隨機",
-                "note" : "需先匯入!!",
+                "code" : "import random",
+                "code_display" : "import random",
+                "note" : "需先匯入!! (random 隨機)",
                 "long_note" : true
             }        
         ]
@@ -31,9 +31,9 @@
         "items" :[
             {
                 "menu_display" : "設定隨機種子",
-                "code" : "隨機.seed(1)",
-                "code_display" : "隨機.seed(1)",
-                "note" : "種子相同, 隨機數字也相同",
+                "code" : "random.seed(1)",
+                "code_display" : "random.seed(1)",
+                "note" : "種子相同, 隨機數也相同\nseed 種子",
                 "long_note" : true
             }
             
@@ -46,7 +46,7 @@
         "postit_type" : "postit_para",
         "on_label" : " 隨機數值  ",
         "off_label" : " 隨機數值 >",
-        "start_on" : true
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -55,9 +55,9 @@
         "items" :[
             {
                 "menu_display" : "範圍內 隨機整數",
-                "code" : "隨機.randint(1,10)",
-                "code_display" : "隨機.randint(1,10)",
-                "note" : "範圍內 隨機整數",
+                "code" : "random.randint(1,10)",
+                "code_display" : "random.randint(1,10)",
+                "note" : "範圍內 隨機整數\n random 隨機\ninteger 整數",
                 "long_note" : true
             }
             
@@ -69,9 +69,9 @@
         "items" :[
             {
                 "menu_display" : "範圍內 隨機小數",
-                "code" : "隨機.uniform(0.8, 1)",
-                "code_display" : "隨機.uniform(0.8, 1)",
-                "note" : "範圍內 隨機小數",
+                "code" : "random.uniform(0.8, 1)",
+                "code_display" : "random.uniform(0.8, 1)",
+                "note" : "範圍內 隨機小數\nuniform 均勻的",
                 "long_note" : true
             }
             
@@ -83,9 +83,9 @@
         "items" :[
             {
                 "menu_display" : "0到1隨機浮點數",
-                "code" : "隨機.random()",
-                "code_display" : "隨機.random()",
-                "note" : "0到1隨機浮點數",
+                "code" : "random.random()",
+                "code_display" : "random.random()",
+                "note" : "0到1隨機浮點數\nrandom 隨機",
                 "long_note" : true
             }
             
@@ -106,17 +106,17 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "清單內隨機項目 範例",
-                "code" : "隨機.choice([3,5,9])",
-                "code_display" : "隨機.choice([3,5,9])",
-                "note" : "清單內隨機項目",
+                "menu_display" : "清單內隨機項目",
+                "code" : "random.choice([3,5,9])",
+                "code_display" : "random.choice([3,5,9])",
+                "note" : "清單內隨機項目\nchoice 選擇",
                 "long_note" : true
             },
             {
                 "menu_display" : "清單內隨機項目 變數",
-                "code" : "隨機.choice(清單)",
-                "code_display" : "隨機.choice(清單)",
-                "note" : "清單內隨機項目 清單需先設值",
+                "code" : "random.choice(清單)",
+                "code_display" : "random.choice(清單)",
+                "note" : "清單內隨機項目 清單需先設值\nchoice 選擇",
                 "long_note" : true
             }
             
@@ -124,20 +124,14 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
+            
             {
-                "menu_display" : "清單項目洗牌 範例",
-                "code" : "清單 = [0,1,2,3,4]\n隨機.shuffle(清單)",
-                "code_display" : "清單 = [0,1,2,3,4]\n隨機.shuffle(清單)",
-                "note" : "清單項目洗牌 原地演算",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "清單項目洗牌 變數",
-                "code" : "隨機.shuffle(清單)",
-                "code_display" : "隨機.shuffle(清單)",
-                "note" : "清單項目洗牌 清單需先設值",
+                "menu_display" : "清單洗牌 變數",
+                "code" : "random.shuffle(清單)",
+                "code_display" : "random.shuffle(清單)",
+                "note" : "清單洗牌 原地演算 清單需先設值\nshuffle 洗牌",
                 "long_note" : true
             }
             
