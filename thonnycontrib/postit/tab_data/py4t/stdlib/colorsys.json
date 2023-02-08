@@ -1,0 +1,68 @@
+[
+    {
+        "postit_type" : "postit_title"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 模組  ",
+        "off_label" : " 模組 >",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "匯入顏色轉換模組",
+                "code" : "import colorsys",
+                "code_display" : "import colorsys",
+                "note" : "需先匯入!! (color 顏色)",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 轉換  ",
+        "off_label" : " 常數 >",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "hsv 轉 rgb",
+                "code" : "colorsys.hsv_to_rgb(1,1,1)",
+                "code_display" : "colorsys.hsv_to_rgb(1,1,1)",
+                "note" : "hsv 轉 rgb\n顏色值為0~1的小數",
+                "long_note" : true
+            }
+            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "hsv 轉 rgb",
+                "code" : "colorsys.rgb_to_hsv(1,1,1)",
+                "code_display" : "colorsys.rgb_to_hsv(1,1,1)",
+                "note" : "rgb 轉 hsv",
+                "long_note" : true
+            }
+            
+        ]
+    }
+
+]

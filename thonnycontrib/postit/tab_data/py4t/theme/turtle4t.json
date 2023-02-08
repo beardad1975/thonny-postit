@@ -233,8 +233,8 @@
             },
             {
                 "menu_display" : "動畫開關 ",
-                "code" : "tracer(0, 0)",
-                "code_display" : "tracer(0, 0)",
+                "code" : "tracer(10, 0)",
+                "code_display" : "tracer(10, 0)",
                 "note" : "動畫開關 (更新間隔數 延遲)",
                 "long_note" : true
             },
@@ -437,6 +437,26 @@
                 "long_note" : true
             }
             
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "顏色模式",
+                "code" : "colormode(255)",
+                "code_display" : "colormode(255)",
+                "note" : "顏色模式\nrgb顏色值為0~255整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "顏色模式",
+                "code" : "colormode(1)",
+                "code_display" : "colormode(1)",
+                "note" : "顏色模式\nrgb顏色值為0~1小數",
+                "long_note" : true
+            }
         ]
     },
     {
