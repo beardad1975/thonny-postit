@@ -455,8 +455,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 人臉偵測  ",
-        "off_label" : " 人臉偵測 >",
+        "on_label" : " 螢幕擷取  ",
+        "off_label" : " 螢幕擷取 >",
         "start_on" : false
     },
     {
@@ -465,24 +465,10 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "設置 人臉偵測",
-                "code" : "偵測器 = 設置FaceDetection()",
-                "code_display" : "偵測器 = 設置FaceDetection()",
-                "note" : "face 臉\ndetection 偵測",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設置 人臉偵測 模型選擇",
-                "code" : "偵測器 = 設置FaceDetection(模型選擇=1)",
-                "code_display" : "偵測器 = 設置FaceDetection(\n    模型選擇=1)",
-                "note" : "0 偵測距離適2米內\n1 偵測距離適5公尺內",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設置 人臉偵測 最小信心值",
-                "code" : "偵測器 = 設置FaceDetection(最小信心值=0.5)",
-                "code_display" : "偵測器 = 設置FaceDetection(\n    最小信心值=0.5)",
-                "note" : "face 臉\ndetection 偵測",
+                "menu_display" : "擷取螢幕",
+                "code" : "陣列 = 擷取螢幕(0,100,0,100)",
+                "code_display" : "陣列 = 擷取螢幕(\n    0, 100, 0, 100)",
+                "note" : "列1,列2,行1,行2",
                 "long_note" : true
             }
         ]
@@ -490,75 +476,56 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "處理 人臉偵測",
-                "code" : "結果 = 偵測器.process(陣列)",
-                "code_display" : "結果 = 偵測器.process(陣列)",
-                "note" : "process 處理",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "偵測人臉數",
-                "code" : "len(結果)",
-                "code_display" : "len(結果)",
-                "note" : "len 長度函數",
+                "menu_display" : "擷取螢幕灰階",
+                "code" : "陣列 = 擷取螢幕灰階(0,100,0,100)",
+                "code_display" : "陣列 = 擷取螢幕灰階(\n    0, 100, 0, 100)",
+                "note" : "列1,列2,行1,行2",
                 "long_note" : true
             }
         ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 等待 輸入  ",
+        "off_label" : " 等待 輸入 >",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
+        "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "標記 人臉",
-                "code" : "標記全部Face(陣列, 結果)",
-                "code_display" : "標記全部Face(陣列, 結果)",
-                "note" : "",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_block_enclosed_postit",
-        
-        "items" :[
-            {
-                "menu_display" : "如果 有偵測結果",
-                "code" : "if 結果:\npass",
-                "code_display" : "if 結果:\n    pass",
-                "note" : "如果 有偵測結果",
+                "menu_display" : "無限等待",
+                "code" : "等待按鍵()",
+                "code_display" : "等待按鍵()",
+                "note" : "無限等待",
                 "long_note" : true
             },
             {
-                "menu_display" : "從臉清單 逐一取出",
-                "code" : "for 臉 in 臉清單 :\npass",
-                "code_display" : "for 臉 in 臉清單 :\n    pass",
-                "note" : "從臉清單 逐一取出 :\n        迴圈區塊",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : true,
-        "items" :[
-            {
-                "menu_display" : "取出 開頭Face",
-                "code" : "臉 = 取出開頭Face(結果)",
-                "code_display" : "臉 = 取出開頭Face(結果)",
-                "note" : "第1張臉",
+                "menu_display" : "等待毫秒",
+                "code" : "等待按鍵(25)",
+                "code_display" : "等待按鍵(25)",
+                "note" : "等待 毫秒",
                 "long_note" : true
             },
             {
-                "menu_display" : "取出 Face清單",
-                "code" : "臉清單 = 取出Face清單(結果)",
-                "code_display" : "臉清單 = 取出Face清單(結果)",
-                "note" : "所有臉",
+                "menu_display" : "無限等待 傳回按鍵",
+                "code" : "按鍵 = 等待按鍵()",
+                "code_display" : "按鍵 = 等待按鍵()",
+                "note" : "無限等待 傳回按鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "等待毫秒 傳回按鍵",
+                "code" : "按鍵 = 等待按鍵(25)",
+                "code_display" : "按鍵 = 等待按鍵(25)",
+                "note" : "等待毫秒 傳回按鍵",
                 "long_note" : true
             }
         ]
@@ -568,83 +535,26 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "臉 信心值",
-                "code" : "臉.信心值",
-                "code_display" : "臉.信心值",
-                "note" : "",
+                "menu_display" : "字母按鍵",
+                "code" : "'a'",
+                "code_display" : "'a'",
+                "note" : "字母按鍵",
                 "long_note" : true
             },
             {
-                "menu_display" : "臉 矩形左上點",
-                "code" : "臉.矩形左上點",
-                "code_display" : "臉.矩形左上點",
-                "note" : "",
+                "menu_display" : "數字按鍵",
+                "code" : "'1'",
+                "code_display" : "'1'",
+                "note" : "數字按鍵",
                 "long_note" : true
             },
             {
-                "menu_display" : "臉 矩形右下點",
-                "code" : "臉.矩形右下點",
-                "code_display" : "臉.矩形右下點",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 矩形右上點",
-                "code" : "臉.矩形右上點",
-                "code_display" : "臉.矩形右上點",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 矩形左下點",
-                "code" : "臉.矩形左下點",
-                "code_display" : "臉.矩形左下點",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 右眼",
-                "code" : "臉.右眼",
-                "code_display" : "臉.右眼",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 左眼",
-                "code" : "臉.左眼",
-                "code_display" : "臉.左眼",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 鼻尖",
-                "code" : "臉.鼻尖",
-                "code_display" : "臉.鼻尖",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 嘴中心",
-                "code" : "臉.嘴中心",
-                "code_display" : "臉.嘴中心",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 右耳珠",
-                "code" : "臉.右耳珠",
-                "code_display" : "臉.右耳珠",
-                "note" : "",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "臉 左耳珠",
-                "code" : "臉.左耳珠",
-                "code_display" : "臉.左耳珠",
-                "note" : "",
+                "menu_display" : "符號按鍵",
+                "code" : "'='",
+                "code_display" : "'='",
+                "note" : "符號按鍵",
                 "long_note" : true
             }
-            
         ]
     },
     {
@@ -824,8 +734,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 螢幕擷取  ",
-        "off_label" : " 螢幕擷取 >",
+        "on_label" : " 人臉偵測  ",
+        "off_label" : " 人臉偵測 >",
         "start_on" : false
     },
     {
@@ -834,10 +744,24 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "擷取螢幕",
-                "code" : "陣列 = 擷取螢幕(0,100,0,100)",
-                "code_display" : "陣列 = 擷取螢幕(\n    0, 100, 0, 100)",
-                "note" : "列1,列2,行1,行2",
+                "menu_display" : "設置 人臉偵測",
+                "code" : "偵測器 = 設置FaceDetection()",
+                "code_display" : "偵測器 = 設置FaceDetection()",
+                "note" : "face 臉\ndetection 偵測",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 人臉偵測 模型選擇",
+                "code" : "偵測器 = 設置FaceDetection(模型選擇=1)",
+                "code_display" : "偵測器 = 設置FaceDetection(\n    模型選擇=1)",
+                "note" : "0 偵測距離適2米內\n1 偵測距離適5公尺內",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 人臉偵測 最小偵測信心",
+                "code" : "偵測器 = 設置FaceDetection(最小偵測信心=0.5)",
+                "code_display" : "偵測器 = 設置FaceDetection(\n    最小偵測信心=0.5)",
+                "note" : "face 臉\ndetection 偵測",
                 "long_note" : true
             }
         ]
@@ -845,56 +769,75 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "擷取螢幕灰階",
-                "code" : "陣列 = 擷取螢幕灰階(0,100,0,100)",
-                "code_display" : "陣列 = 擷取螢幕灰階(\n    0, 100, 0, 100)",
-                "note" : "列1,列2,行1,行2",
+                "menu_display" : "處理 人臉偵測",
+                "code" : "結果 = 偵測器.process(陣列)",
+                "code_display" : "結果 = 偵測器.process(陣列)",
+                "note" : "process 處理",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "偵測人臉數",
+                "code" : "len(結果)",
+                "code_display" : "len(結果)",
+                "note" : "len 長度函數",
                 "long_note" : true
             }
         ]
     },
     {
-        "postit_type" : "ttk_separator"
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "標記 人臉",
+                "code" : "標記全部Face(陣列, 結果)",
+                "code_display" : "標記全部Face(陣列, 結果)",
+                "note" : "",
+                "long_note" : true
+            }
+        ]
     },
     {
-        "postit_type" : "postit_para",
-        "on_label" : " 等待 輸入  ",
-        "off_label" : " 等待 輸入 >",
-        "start_on" : false
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "如果 有偵測結果",
+                "code" : "if 結果:\npass",
+                "code_display" : "if 結果:\n    pass",
+                "note" : "如果 有偵測結果",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "從臉清單 逐一取出",
+                "code" : "for 臉 in 臉清單 :\npass",
+                "code_display" : "for 臉 in 臉清單 :\n    pass",
+                "note" : "從臉清單 逐一取出 :\n        迴圈區塊",
+                "long_note" : true
+            }
+        ]
     },
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : false,
+        "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "無限等待",
-                "code" : "等待按鍵()",
-                "code_display" : "等待按鍵()",
-                "note" : "無限等待",
+                "menu_display" : "取出 第1個Face",
+                "code" : "臉 = 取出Face(結果)",
+                "code_display" : "臉 = 取出Face(結果)",
+                "note" : "第1張臉",
                 "long_note" : true
             },
             {
-                "menu_display" : "等待毫秒",
-                "code" : "等待按鍵(25)",
-                "code_display" : "等待按鍵(25)",
-                "note" : "等待 毫秒",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "無限等待 傳回按鍵",
-                "code" : "按鍵 = 等待按鍵()",
-                "code_display" : "按鍵 = 等待按鍵()",
-                "note" : "無限等待 傳回按鍵",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "等待毫秒 傳回按鍵",
-                "code" : "按鍵 = 等待按鍵(25)",
-                "code_display" : "按鍵 = 等待按鍵(25)",
-                "note" : "等待毫秒 傳回按鍵",
+                "menu_display" : "取出 Face清單",
+                "code" : "臉清單 = 取出Face清單(結果)",
+                "code_display" : "臉清單 = 取出Face清單(結果)",
+                "note" : "所有臉",
                 "long_note" : true
             }
         ]
@@ -904,26 +847,83 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "字母按鍵",
-                "code" : "'a'",
-                "code_display" : "'a'",
-                "note" : "字母按鍵",
+                "menu_display" : "臉 信心值",
+                "code" : "臉.信心值",
+                "code_display" : "臉.信心值",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "數字按鍵",
-                "code" : "'1'",
-                "code_display" : "'1'",
-                "note" : "數字按鍵",
+                "menu_display" : "臉 矩形左上點",
+                "code" : "臉.矩形左上點",
+                "code_display" : "臉.矩形左上點",
+                "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "符號按鍵",
-                "code" : "'='",
-                "code_display" : "'='",
-                "note" : "符號按鍵",
+                "menu_display" : "臉 矩形右下點",
+                "code" : "臉.矩形右下點",
+                "code_display" : "臉.矩形右下點",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 矩形右上點",
+                "code" : "臉.矩形右上點",
+                "code_display" : "臉.矩形右上點",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 矩形左下點",
+                "code" : "臉.矩形左下點",
+                "code_display" : "臉.矩形左下點",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 右眼",
+                "code" : "臉.右眼",
+                "code_display" : "臉.右眼",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 左眼",
+                "code" : "臉.左眼",
+                "code_display" : "臉.左眼",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 鼻尖",
+                "code" : "臉.鼻尖",
+                "code_display" : "臉.鼻尖",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 嘴中心",
+                "code" : "臉.嘴中心",
+                "code_display" : "臉.嘴中心",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 右耳珠",
+                "code" : "臉.右耳珠",
+                "code_display" : "臉.右耳珠",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉 左耳珠",
+                "code" : "臉.左耳珠",
+                "code_display" : "臉.左耳珠",
+                "note" : "",
                 "long_note" : true
             }
+            
         ]
     }
 
