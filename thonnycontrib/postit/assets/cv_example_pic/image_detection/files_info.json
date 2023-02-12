@@ -1,0 +1,9 @@
+[
+    {
+        "asset_file" : "face_mesh.png",
+        "thumbnail" : "face_mesh_thumbnail.jpg",
+        "file_title" : "face_mesh",
+        "file_type" : "png",
+        "file_info" : "4096 x 4096\n臉部網格 索引編號"
+    }
+]

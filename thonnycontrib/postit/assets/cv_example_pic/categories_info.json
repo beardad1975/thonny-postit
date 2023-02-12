@@ -2,6 +2,10 @@
     {
         "asset_category" : "pic",
         "category_title" : "圖片"
+    },
+    {
+        "asset_category" : "image_detection",
+        "category_title" : "影像偵測"
     }
     
 ]

@@ -128,19 +128,6 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "讀取影像PNG",
-                "code" : "透明圖陣列 = 讀取影像PNG('name.png')",
-                "code_display" : "透明圖陣列 = 讀取影像PNG(\n    'name.png')",
-                "note" : "需改為實際檔名(需英文數字)",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
                 "menu_display" : "儲存影像",
                 "code" : "儲存影像('name.jpg',陣列)",
                 "code_display" : "儲存影像('name.jpg',陣列)",
@@ -569,8 +556,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 幾何繪圖 文字 顏色 透明圖  ",
-        "off_label" : " 幾何繪圖 文字 顏色 透明圖 >",
+        "on_label" : " 幾何繪圖 文字 顏色 去背圖  ",
+        "off_label" : " 幾何繪圖 文字 顏色 去背圖 >",
         "start_on" : false
     },
     {
@@ -661,33 +648,6 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "折線 點清單 封閉",
-                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n)",
-                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    )",
-                "note" : "折線 點清單 封閉",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "折線 點清單 封閉 顏色",
-                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
-                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n)",
-                "note" : "折線 點清單 封閉 顏色",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "折線 點清單 封閉 顏色 線寬",
-                "code" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
-                "code_display" : "畫折線( 陣列 , \n    點清單 = [(0,0),(10,10)] ,\n    封閉 = False ,\n    顏色 = color.紅 ,\n    線寬 = 2 ,\n)",
-                "note" : "折線 點清單 封閉 顏色 線寬",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
                 "menu_display" : "畫出文字",
                 "code" : "畫出文字(image=陣列,\ntext='你好',\npos=(0, 0))",
                 "code_display" : "畫出文字(image=陣列,\n    text='你好',\n    pos=(0, 0))",
@@ -712,26 +672,20 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "紅",
-                "code" : "color.紅",
-                "code_display" : "color.紅",
-                "note" : "紅",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "畫透明圖",
-                "code" : "畫透明圖(陣列, 透明圖陣列, 0, 0)",
-                "code_display" : "畫透明圖(陣列,\n   透明圖陣列, 0, 0)",
-                "note" : "畫透明圖",
+                "menu_display" : "讀取影像PNG 有alpha通道(透明)",
+                "code" : "去背陣列 = 讀取影像PNG('name.png')",
+                "code_display" : "去背陣列 = 讀取影像PNG(\n    'name.png')",
+                "note" : "PNG需去背圖 檔名需英文數字 ",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "貼上去背影像",
+                "code" : "貼上去背影像(陣列,去背陣列,(0,0))",
+                "code_display" : "貼上去背影像(陣列,去背陣列,(0,0))",
+                "note" : "依去背影像中心點",
                 "long_note" : true
             }
         ]
@@ -783,13 +737,6 @@
                 "code" : "結果 = 偵測器.process(陣列)",
                 "code_display" : "結果 = 偵測器.process(陣列)",
                 "note" : "process 處理",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "偵測人臉數",
-                "code" : "len(結果)",
-                "code_display" : "len(結果)",
-                "note" : "len 長度函數",
                 "long_note" : true
             }
         ]
@@ -864,73 +811,295 @@
                 "menu_display" : "臉 矩形左上點",
                 "code" : "臉.矩形左上點",
                 "code_display" : "臉.矩形左上點",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形右下點",
                 "code" : "臉.矩形右下點",
                 "code_display" : "臉.矩形右下點",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形右上點",
                 "code" : "臉.矩形右上點",
                 "code_display" : "臉.矩形右上點",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形左下點",
                 "code" : "臉.矩形左下點",
                 "code_display" : "臉.矩形左下點",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 右眼",
                 "code" : "臉.右眼",
                 "code_display" : "臉.右眼",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 左眼",
                 "code" : "臉.左眼",
                 "code_display" : "臉.左眼",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 鼻尖",
                 "code" : "臉.鼻尖",
                 "code_display" : "臉.鼻尖",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 嘴中心",
                 "code" : "臉.嘴中心",
                 "code_display" : "臉.嘴中心",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 右耳珠",
                 "code" : "臉.右耳珠",
                 "code_display" : "臉.右耳珠",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 左耳珠",
                 "code" : "臉.左耳珠",
                 "code_display" : "臉.左耳珠",
-                "note" : "",
+                "note" : "傳回(x,y)",
                 "long_note" : true
             }
             
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 臉部網格  ",
+        "off_label" : " 臉部網格 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "設置 臉部網格",
+                "code" : "偵測器 = 設置FaceMesh()",
+                "code_display" : "偵測器 = 設置FaceMesh()",
+                "note" : "face mesh 臉部網格",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 臉部網格 靜態影像模式",
+                "code" : "偵測器 = 設置FaceMesh(靜態影像模式=False)",
+                "code_display" : "偵測器 = 設置FaceMesh(\n    靜態影像模式=False)",
+                "note" : "照片模式",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 臉部網格 最大偵測數",
+                "code" : "偵測器 = 設置FaceMesh(最大偵測數=1)",
+                "code_display" : "偵測器 = 設置FaceMesh(\n    最大偵測數=1)",
+                "note" : "偵測臉數 效能考量建議1",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 臉部網格 精細特徵點",
+                "code" : "偵測器 = 設置FaceMesh(精細特徵點=True)",
+                "code_display" : "偵測器 = 設置FaceMesh(\n    精細特徵點=True)",
+                "note" : "增加虹膜偵測",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 臉部網格 最小偵測信心",
+                "code" : "偵測器 = 設置FaceMesh(最小偵測信心=0.5)",
+                "code_display" : "偵測器 = 設置FaceMesh(\n    最小偵測信心=0.5)",
+                "note" : "0~1之間小數(偵測臉)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 臉部網格 最小追蹤信心",
+                "code" : "偵測器 = 設置FaceMesh(最小追蹤信心=0.5)",
+                "code_display" : "偵測器 = 設置FaceMesh(\n    最小追蹤信心=0.5)",
+                "note" : "0~1之間小數(追蹤特徵點)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "處理 臉部網格",
+                "code" : "結果 = 偵測器.process(陣列)",
+                "code_display" : "結果 = 偵測器.process(陣列)",
+                "note" : "process 處理",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "標記 臉部網格",
+                "code" : "標記FaceMesh(陣列, 結果)",
+                "code_display" : "標記FaceMesh(陣列, 結果)",
+                "note" : "face mesh 臉部網格",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "標記 臉部特徵點",
+                "code" : "標記FaceMesh(陣列, 結果, 'FACE_LANDMARKS')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'FACE_LANDMARKS')",
+                "note" : "face lankmark 臉部特徵點",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "標記 臉部輪廓",
+                "code" : "標記FaceMesh(陣列, 結果, 'CONTOURS')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'CONTOURS')",
+                "note" : "contour 輪廓",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     臉型",
+                "code" : "標記FaceMesh(陣列, 結果, 'FACE_OVAL')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'FACE_OVAL')",
+                "note" : "oval 橢圓形\noval face 鵝蛋臉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     嘴脣",
+                "code" : "標記FaceMesh(陣列, 結果, 'LIPS')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'LIPS')",
+                "note" : "lip 嘴脣",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     左眼",
+                "code" : "標記FaceMesh(陣列, 結果, 'LEFT_EYE')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'LEFT_EYE')",
+                "note" : "left eye 左眼",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     左眉",
+                "code" : "標記FaceMesh(陣列, 結果, 'LEFT_EYEBROW')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'LEFT_EYEBROW')",
+                "note" : "left eyebrow 左眉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     左虹膜",
+                "code" : "標記FaceMesh(陣列, 結果, 'LEFT_IRIS')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'LEFT_IRIS')",
+                "note" : "left iris 左虹膜",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     右眼",
+                "code" : "標記FaceMesh(陣列, 結果, 'RIGHT_EYE')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'RIGHT_EYE')",
+                "note" : "right eye 右眼",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     右眉",
+                "code" : "標記FaceMesh(陣列, 結果, 'RIGHT_EYEBROW')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'RIGHT_EYEBROW')",
+                "note" : "right eyebrow 右眉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "     右虹膜",
+                "code" : "標記FaceMesh(陣列, 結果, 'RIGHT_IRIS')",
+                "code_display" : "標記FaceMesh(陣列, 結果,\n    'RIGHT_IRIS')",
+                "note" : "right iris 右虹膜",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "如果 有偵測結果",
+                "code" : "if 結果:\npass",
+                "code_display" : "if 結果:\n    pass",
+                "note" : "如果 有偵測結果",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "取出 臉部 特徵點清單",
+                "code" : "特徵清單 = 取出Landmarks(結果)",
+                "code_display" : "特徵清單 = 取出Landmarks(結果)",
+                "note" : "第1張臉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 臉部 3D特徵點 清單",
+                "code" : "特徵3D清單 = 取出3DLandmarks(結果)",
+                "code_display" : "特徵3D清單 = 取出3DLandmarks(結果)",
+                "note" : "第1張臉 3D特徵點",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "cv_example_pic"
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "取出 特徵點 索引值",
+                "code" : "特徵清單[6]",
+                "code_display" : "特徵清單[6]",
+                "note" : "依索引值  傳回特徵點(x,y)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 x座標",
+                "code" : "特徵清單[6][0]",
+                "code_display" : "特徵清單[6][0]",
+                "note" : "傳回特徵點x座標",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 y座標",
+                "code" : "特徵清單[6][1]",
+                "code_display" : "特徵清單[6][1]",
+                "note" : "傳回特徵點y座標",
+                "long_note" : true
+            }
         ]
     }
 
