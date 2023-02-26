@@ -449,42 +449,6 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 螢幕擷取  ",
-        "off_label" : " 螢幕擷取 >",
-        "start_on" : false
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : false,
-        "items" :[
-            {
-                "menu_display" : "擷取螢幕",
-                "code" : "陣列 = 擷取螢幕(0,100,0,100)",
-                "code_display" : "陣列 = 擷取螢幕(\n    0, 100, 0, 100)",
-                "note" : "列1,列2,行1,行2",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "items" :[
-            {
-                "menu_display" : "擷取螢幕灰階",
-                "code" : "陣列 = 擷取螢幕灰階(0,100,0,100)",
-                "code_display" : "陣列 = 擷取螢幕灰階(\n    0, 100, 0, 100)",
-                "note" : "列1,列2,行1,行2",
-                "long_note" : true
-            }
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
         "on_label" : " 等待 輸入  ",
         "off_label" : " 等待 輸入 >",
         "start_on" : false
@@ -556,8 +520,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 幾何繪圖 文字 顏色 去背圖  ",
-        "off_label" : " 幾何繪圖 文字 顏色 去背圖 >",
+        "on_label" : " 幾何繪圖 文字 png圖  ",
+        "off_label" : " 幾何繪圖 文字 png圖 >",
         "start_on" : false
     },
     {
@@ -675,17 +639,31 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "讀取影像PNG 有alpha通道(透明)",
-                "code" : "去背陣列 = 讀取影像PNG('name.png')",
-                "code_display" : "去背陣列 = 讀取影像PNG(\n    'name.png')",
-                "note" : "PNG需去背圖 檔名需英文數字 ",
+                "menu_display" : "讀取png影像 可有alpha通道(透明)",
+                "code" : "png陣列 = 讀取png影像('name.png')",
+                "code_display" : "png陣列 = 讀取png影像(\n    'name.png')",
+                "note" : "去背圖 檔名需英文數字 ",
                 "long_note" : true
             },
             {
-                "menu_display" : "貼上去背影像",
-                "code" : "貼上去背影像(陣列,去背陣列,(0,0))",
-                "code_display" : "貼上去背影像(陣列,去背陣列,(0,0))",
-                "note" : "依去背影像中心點",
+                "menu_display" : "貼上png影像 依位置",
+                "code" : "陣列 = 貼上png影像(陣列,png陣列,(0,0))",
+                "code_display" : "陣列 = 貼上png影像(\n    陣列,png陣列,(100,0))",
+                "note" : "依位置",
+                "long_note" : true  
+            },
+            {
+                "menu_display" : "貼上png影像 在原點",
+                "code" : "陣列 = 貼上png影像(陣列,png陣列)",
+                "code_display" : "陣列 = 貼上png影像(\n    陣列,png陣列)",
+                "note" : "在原點",
+                "long_note" : true  
+            },
+            {
+                "menu_display" : "兩點 幾何轉換",
+                "code" : "轉換陣列 = 兩點transform(\n來源影像=png陣列,\n來源pt1=(100,200),\n來源pt2=(300,200),\n目標影像=陣列,\n目標pt1=(100,200),\n目標pt2=(300,200))",
+                "code_display" : "轉換陣列 = 兩點transform(\n    來源影像=png陣列,\n    來源pt1=(100,200),\n    來源pt2=(300,200),\n    目標影像=陣列,\n    目標pt1=(100,200),\n    目標pt2=(300,200))",
+                "note" : "來源影像幾何轉換 依對應兩點   ",
                 "long_note" : true
             }
         ]
@@ -801,80 +779,80 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "臉 信心值",
-                "code" : "臉.信心值",
-                "code_display" : "臉.信心值",
-                "note" : "",
+                "menu_display" : "臉 信心分數",
+                "code" : "臉.score",
+                "code_display" : "臉.score",
+                "note" : "信心分數\nscore 分數",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形左上點",
-                "code" : "臉.矩形左上點",
-                "code_display" : "臉.矩形左上點",
-                "note" : "傳回(x,y)",
+                "code" : "臉.upper_left",
+                "code_display" : "臉.upper_left",
+                "note" : "矩形左上點\nupper left 左上方",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形右下點",
-                "code" : "臉.矩形右下點",
-                "code_display" : "臉.矩形右下點",
-                "note" : "傳回(x,y)",
+                "code" : "臉.bottom_right",
+                "code_display" : "臉.bottom_right",
+                "note" : "矩形右下點\nbottom right 右下方",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形右上點",
-                "code" : "臉.矩形右上點",
-                "code_display" : "臉.矩形右上點",
-                "note" : "傳回(x,y)",
+                "code" : "臉.upper_right",
+                "code_display" : "臉.upper_right",
+                "note" : "矩形右上點\nupper right 右上方",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 矩形左下點",
-                "code" : "臉.矩形左下點",
-                "code_display" : "臉.矩形左下點",
-                "note" : "傳回(x,y)",
+                "code" : "臉.bottom_left",
+                "code_display" : "臉.bottom_left",
+                "note" : "矩形左下點\nbottom left 左下方",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 右眼",
-                "code" : "臉.右眼",
-                "code_display" : "臉.右眼",
-                "note" : "傳回(x,y)",
+                "code" : "臉.right_eye",
+                "code_display" : "臉.right_eye",
+                "note" : "右眼",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 左眼",
-                "code" : "臉.左眼",
-                "code_display" : "臉.左眼",
-                "note" : "傳回(x,y)",
+                "code" : "臉.left_eye",
+                "code_display" : "臉.left_eye",
+                "note" : "左眼",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 鼻尖",
-                "code" : "臉.鼻尖",
-                "code_display" : "臉.鼻尖",
-                "note" : "傳回(x,y)",
+                "code" : "臉.nose_tip",
+                "code_display" : "臉.nose_tip",
+                "note" : "鼻尖",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 嘴中心",
-                "code" : "臉.嘴中心",
-                "code_display" : "臉.嘴中心",
-                "note" : "傳回(x,y)",
+                "code" : "臉.mouth_center",
+                "code_display" : "臉.mouth_center",
+                "note" : "嘴中心",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 右耳珠",
-                "code" : "臉.右耳珠",
-                "code_display" : "臉.右耳珠",
-                "note" : "傳回(x,y)",
+                "code" : "臉.right_ear_tragion",
+                "code_display" : "臉.right_ear_tragion",
+                "note" : "右耳珠",
                 "long_note" : true
             },
             {
                 "menu_display" : "臉 左耳珠",
-                "code" : "臉.左耳珠",
-                "code_display" : "臉.左耳珠",
-                "note" : "傳回(x,y)",
+                "code" : "臉.left_ear_tragion",
+                "code_display" : "臉.left_ear_tragion",
+                "note" : "左耳珠",
                 "long_note" : true
             }
             
@@ -1098,6 +1076,42 @@
                 "code" : "特徵清單[6][1]",
                 "code_display" : "特徵清單[6][1]",
                 "note" : "傳回特徵點y座標",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 螢幕擷取  ",
+        "off_label" : " 螢幕擷取 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "擷取螢幕",
+                "code" : "陣列 = 擷取螢幕(0,100,0,100)",
+                "code_display" : "陣列 = 擷取螢幕(\n    0, 100, 0, 100)",
+                "note" : "列1,列2,行1,行2",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            {
+                "menu_display" : "擷取螢幕灰階",
+                "code" : "陣列 = 擷取螢幕灰階(0,100,0,100)",
+                "code_display" : "陣列 = 擷取螢幕灰階(\n    0, 100, 0, 100)",
+                "note" : "列1,列2,行1,行2",
                 "long_note" : true
             }
         ]
