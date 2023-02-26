@@ -700,6 +700,13 @@ class PythonPostitView(ttk.Frame):
             #    self.build_bit_install_lib_postit(tab, postit_data)
 
         # end vertical spacer for end space scrolling
+        # add 4 times to make more spaces
+        tk.Label(tab.tab_frame.interior, text='',
+                image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
+        tk.Label(tab.tab_frame.interior, text='',
+                image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
+        tk.Label(tab.tab_frame.interior, text='',
+                image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
         tk.Label(tab.tab_frame.interior, text='',
                 image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
 

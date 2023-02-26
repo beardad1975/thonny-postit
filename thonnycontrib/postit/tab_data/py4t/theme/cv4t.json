@@ -647,24 +647,24 @@
             },
             {
                 "menu_display" : "貼上png影像 依位置",
-                "code" : "陣列 = 貼上png影像(陣列,png陣列,(0,0))",
-                "code_display" : "陣列 = 貼上png影像(\n    陣列,png陣列,(100,0))",
+                "code" : "貼上png影像(陣列,png陣列,(0,0))",
+                "code_display" : "貼上png影像(\n    陣列,png陣列,(100,0))",
                 "note" : "依位置",
                 "long_note" : true  
             },
             {
-                "menu_display" : "貼上png影像 在原點",
-                "code" : "陣列 = 貼上png影像(陣列,png陣列)",
-                "code_display" : "陣列 = 貼上png影像(\n    陣列,png陣列)",
-                "note" : "在原點",
-                "long_note" : true  
+                "menu_display" : "兩點 幾何轉換",
+                "code" : "轉換png陣列 = 兩點transform(\n來源影像=png陣列,\n來源pt1=(100,200),\n來源pt2=(300,200),\n目標影像=陣列,\n目標pt1=(100,200),\n目標pt2=(300,200))",
+                "code_display" : "轉換陣列 = 兩點transform(\n    來源影像=png陣列,\n    來源pt1=(100,200),\n    來源pt2=(300,200),\n    目標影像=陣列,\n    目標pt1=(100,200),\n    目標pt2=(300,200))",
+                "note" : "png影像幾何轉換 依對應兩點   ",
+                "long_note" : true
             },
             {
-                "menu_display" : "兩點 幾何轉換",
-                "code" : "轉換陣列 = 兩點transform(\n來源影像=png陣列,\n來源pt1=(100,200),\n來源pt2=(300,200),\n目標影像=陣列,\n目標pt1=(100,200),\n目標pt2=(300,200))",
-                "code_display" : "轉換陣列 = 兩點transform(\n    來源影像=png陣列,\n    來源pt1=(100,200),\n    來源pt2=(300,200),\n    目標影像=陣列,\n    目標pt1=(100,200),\n    目標pt2=(300,200))",
-                "note" : "來源影像幾何轉換 依對應兩點   ",
-                "long_note" : true
+                "menu_display" : "貼上png轉換影像 在原點",
+                "code" : "貼上png影像(陣列,轉換png陣列)",
+                "code_display" : "貼上png影像(\n    陣列,轉換png陣列)",
+                "note" : "在原點",
+                "long_note" : true  
             }
         ]
     },
