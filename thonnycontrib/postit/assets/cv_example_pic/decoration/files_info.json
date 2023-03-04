@@ -1,0 +1,58 @@
+[
+    {
+        "asset_file" : "dog_ears.png",
+        "thumbnail" : "dog_ears_thumbnail.jpg",
+        "file_title" : "dog_ears",
+        "file_type" : "png",
+        "file_info" : "600 x 233\n狗耳朵 去背圖"
+    },
+    {
+        "asset_file" : "dog_nose.png",
+        "thumbnail" : "dog_nose_thumbnail.jpg",
+        "file_title" : "dog_nose",
+        "file_type" : "png",
+        "file_info" : "315 x 192\n狗鼻子 去背圖"
+    },
+    {
+        "asset_file" : "cat_ears.png",
+        "thumbnail" : "cat_ears_thumbnail.jpg",
+        "file_title" : "cat_ears",
+        "file_type" : "png",
+        "file_info" : "599 x 244\n貓耳朵 去背圖"
+    },
+    {
+        "asset_file" : "cat_nose.png",
+        "thumbnail" : "cat_nose_thumbnail.jpg",
+        "file_title" : "cat_nose",
+        "file_type" : "png",
+        "file_info" : "599 x 213\n貓鼻子 去背圖"
+    },
+    {
+        "asset_file" : "glasses.png",
+        "thumbnail" : "glasses_thumbnail.jpg",
+        "file_title" : "glasses",
+        "file_type" : "png",
+        "file_info" : "500 x 280\n眼鏡 去背圖"
+    },
+    {
+        "asset_file" : "eye_mask.png",
+        "thumbnail" : "eye_mask_thumbnail.jpg",
+        "file_title" : "eye_mask",
+        "file_type" : "png",
+        "file_info" : "600 x 261\n眼罩 去背圖"
+    },
+    {
+        "asset_file" : "flower_crown.png",
+        "thumbnail" : "flower_crown_thumbnail.jpg",
+        "file_title" : "flower_crown",
+        "file_type" : "png",
+        "file_info" : "500 x 283\n花冠 去背圖"
+    },
+    {
+        "asset_file" : "mustache.png",
+        "thumbnail" : "mustache_thumbnail.jpg",
+        "file_title" : "mustache",
+        "file_type" : "png",
+        "file_info" : "300 x 81\n鬍子 去背圖"
+    }
+]

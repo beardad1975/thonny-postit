@@ -40,31 +40,24 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "設置影像擷取 640x480",
-                "code" : "攝影機 = 設置影像擷取()",
-                "code_display" : "攝影機 = 設置影像擷取()",
-                "note" : "影像大小 寬640x高480",
-                "long_note" : true
-            },
-            {
                 "menu_display" : "設置影像擷取 後端DSHOW",
                 "code" : "攝影機 = 設置影像擷取(後端='DSHOW')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    後端='DSHOW')",
-                "note" : "後端DSHOW (DirectX)\n若攝影機啟動很慢時，可使用",
+                "note" : "影像640x480 後端DirectX",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置影像擷取 640x480",
+                "code" : "攝影機 = 設置影像擷取()",
+                "code_display" : "攝影機 = 設置影像擷取()",
+                "note" : "影像640x480\n若攝影機啟動很慢時，可使用",
                 "long_note" : true
             },
             {
                 "menu_display" : "設置影像擷取 720p",
                 "code" : "攝影機 = 設置影像擷取(解析度='720p')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    解析度='720p')",
-                "note" : "影像大小 寬1280x高720",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "設置影像擷取 1080p",
-                "code" : "攝影機 = 設置影像擷取(解析度='1080p')",
-                "code_display" : "攝影機 = 設置影像擷取(\n    解析度='1080p')",
-                "note" : "影像大小 寬1920x高1080",
+                "note" : "影像1280x720",
                 "long_note" : true
             },
             {
@@ -520,8 +513,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 幾何繪圖 文字 png圖  ",
-        "off_label" : " 幾何繪圖 文字 png圖 >",
+        "on_label" : " 幾何繪圖 文字  ",
+        "off_label" : " 幾何繪圖 文字 >",
         "start_on" : false
     },
     {
@@ -635,6 +628,15 @@
         ]
     },
     {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " png 轉換 貼上  ",
+        "off_label" : " png 轉換 貼上 >",
+        "start_on" : false
+    },
+    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "items" :[
@@ -644,26 +646,49 @@
                 "code_display" : "png陣列 = 讀取png影像(\n    'name.png')",
                 "note" : "去背圖 檔名需英文數字 ",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "cv_example_pic"
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
-                "menu_display" : "貼上png影像 依位置",
-                "code" : "貼上png影像(陣列,png陣列,(0,0))",
-                "code_display" : "貼上png影像(\n    陣列,png陣列,(100,0))",
+                "menu_display" : "置中貼上png 依位置",
+                "code" : "置中貼上png(陣列,png陣列,(0,0))",
+                "code_display" : "置中貼上png(\n    陣列,png陣列,(100,0))",
                 "note" : "依位置",
                 "long_note" : true  
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            
             {
                 "menu_display" : "兩點 幾何轉換",
-                "code" : "轉換png陣列 = 兩點transform(\n來源影像=png陣列,\n來源pt1=(100,200),\n來源pt2=(300,200),\n目標影像=陣列,\n目標pt1=(100,200),\n目標pt2=(300,200))",
-                "code_display" : "轉換陣列 = 兩點transform(\n    來源影像=png陣列,\n    來源pt1=(100,200),\n    來源pt2=(300,200),\n    目標影像=陣列,\n    目標pt1=(100,200),\n    目標pt2=(300,200))",
+                "code" : "轉換png陣列 = 兩點transform(\n來源影像=png陣列,\n來源pt1=(100,150),\n來源pt2=(150,150),\n目標影像=陣列,\n目標pt1=特徵清單[109],\n目標pt2=特徵清單[338])",
+                "code_display" : "轉換陣列 = 兩點transform(\n    來源影像=png陣列,\n    來源pt1=(100,150),\n    來源pt2=(150,150),\n    目標影像=陣列,\n    目標pt1=特徵清單[109],\n    目標pt2=特徵清單[338])",
                 "note" : "png影像幾何轉換 依對應兩點   ",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
             {
-                "menu_display" : "貼上png轉換影像 在原點",
-                "code" : "貼上png影像(陣列,轉換png陣列)",
-                "code_display" : "貼上png影像(\n    陣列,轉換png陣列)",
-                "note" : "在原點",
+                "menu_display" : "貼上 轉換png影像 在原點",
+                "code" : "貼上png(陣列,轉換png陣列)",
+                "code_display" : "貼上png(\n    陣列,轉換png陣列)",
+                "note" : "依左上點",
                 "long_note" : true  
             }
         ]
@@ -720,20 +745,6 @@
         ]
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : true,
-        "items" :[
-            {
-                "menu_display" : "標記 人臉 矩形區域",
-                "code" : "標記Face(陣列, 結果)",
-                "code_display" : "標記Face(陣列, 結果)",
-                "note" : "標記 矩形及6關鍵點",
-                "long_note" : true
-            }
-        ]
-    },
-    {
         "postit_type" : "in_para_block_enclosed_postit",
         
         "items" :[
@@ -749,6 +760,20 @@
                 "code" : "for 臉 in 臉清單 :\npass",
                 "code_display" : "for 臉 in 臉清單 :\n    pass",
                 "note" : "從臉清單 逐一取出 :\n        迴圈區塊",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "標記 人臉 矩形區域",
+                "code" : "標記Face(陣列, 結果)",
+                "code_display" : "標記Face(陣列, 結果)",
+                "note" : "標記 矩形及6關鍵點",
                 "long_note" : true
             }
         ]
@@ -931,6 +956,19 @@
         ]
     },
     {
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "如果 有偵測結果",
+                "code" : "if 結果:\npass",
+                "code_display" : "if 結果:\n    pass",
+                "note" : "如果 有偵測結果",
+                "long_note" : true
+            }
+        ]
+    },
+    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "start_hide_note" : true,
@@ -1015,19 +1053,6 @@
         ]
     },
     {
-        "postit_type" : "in_para_block_enclosed_postit",
-        
-        "items" :[
-            {
-                "menu_display" : "如果 有偵測結果",
-                "code" : "if 結果:\npass",
-                "code_display" : "if 結果:\n    pass",
-                "note" : "如果 有偵測結果",
-                "long_note" : true
-            }
-        ]
-    },
-    {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
         "start_hide_note" : true,
@@ -1059,22 +1084,22 @@
         "items" :[
             {
                 "menu_display" : "取出 特徵點 索引值",
-                "code" : "特徵清單[6]",
-                "code_display" : "特徵清單[6]",
+                "code" : "特徵清單[10]",
+                "code_display" : "特徵清單[10]",
                 "note" : "依索引值  傳回特徵點(x,y)",
                 "long_note" : true
             },
             {
                 "menu_display" : "取出 特徵點 x座標",
-                "code" : "特徵清單[6][0]",
-                "code_display" : "特徵清單[6][0]",
+                "code" : "特徵清單[10][0]",
+                "code_display" : "特徵清單[10][0]",
                 "note" : "傳回特徵點x座標",
                 "long_note" : true
             },
             {
                 "menu_display" : "取出 特徵點 y座標",
-                "code" : "特徵清單[6][1]",
-                "code_display" : "特徵清單[6][1]",
+                "code" : "特徵清單[10][1]",
+                "code_display" : "特徵清單[10][1]",
                 "note" : "傳回特徵點y座標",
                 "long_note" : true
             }

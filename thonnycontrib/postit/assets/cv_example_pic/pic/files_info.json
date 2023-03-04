@@ -12,5 +12,19 @@
         "file_title" : "olympic",
         "file_type" : "jpg",
         "file_info" : "300 x 531\n東京奧運"
+    },
+    {
+        "asset_file" : "lenna.jpg",
+        "thumbnail" : "lenna_thumbnail.jpg",
+        "file_title" : "lenna",
+        "file_type" : "jpg",
+        "file_info" : "316 x 316\n"
+    },
+    {
+        "asset_file" : "baboon.jpg",
+        "thumbnail" : "baboon_thumbnail.jpg",
+        "file_title" : "baboon",
+        "file_type" : "jpg",
+        "file_info" : "512 x 512\n"
     }
 ]

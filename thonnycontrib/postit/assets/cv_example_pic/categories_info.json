@@ -4,8 +4,16 @@
         "category_title" : "圖片"
     },
     {
-        "asset_category" : "image_detection",
-        "category_title" : "影像偵測"
+        "asset_category" : "face_detection",
+        "category_title" : "臉部偵測"
+    },
+    {
+        "asset_category" : "decoration",
+        "category_title" : "裝飾(兩點對應)"
+    },
+    {
+        "asset_category" : "mask",
+        "category_title" : "面具"
     }
     
 ]
