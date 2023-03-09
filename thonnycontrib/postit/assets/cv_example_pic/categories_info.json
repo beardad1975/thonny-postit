@@ -9,11 +9,11 @@
     },
     {
         "asset_category" : "decoration",
-        "category_title" : "裝飾(兩點對應)"
+        "category_title" : "裝飾(兩點轉換)"
     },
     {
         "asset_category" : "mask",
-        "category_title" : "面具"
+        "category_title" : "面具(臉型轉換)"
     }
     
 ]

@@ -5,5 +5,26 @@
         "file_title" : "anonymous",
         "file_type" : "png",
         "file_info" : "542 x 739\n匿名者 去背圖"
+    },
+    {
+        "asset_file" : "anonymous.csv",
+        "thumbnail" : "csv_thumbnail.jpg",
+        "file_title" : "anonymous",
+        "file_type" : "csv",
+        "file_info" : "匿名者 臉型轉換資料"
+    },
+    {
+        "asset_file" : "opera_red.png",
+        "thumbnail" : "opera_red_thumbnail.jpg",
+        "file_title" : "opera_red",
+        "file_type" : "png",
+        "file_info" : "395 x 515\n川劇紅臉 去背圖"
+    },
+    {
+        "asset_file" : "opera_red.csv",
+        "thumbnail" : "csv_thumbnail.jpg",
+        "file_title" : "opera_red",
+        "file_type" : "csv",
+        "file_info" : "川劇紅臉 臉型轉換資料"
     }
 ]

@@ -98,15 +98,15 @@
         "items" :[
             {
                 "menu_display" : "讀取影像灰階",
-                "code" : "陣列 = 讀取影像灰階('name.type')",
-                "code_display" : "陣列 = 讀取影像灰階(\n    'name.type')",
+                "code" : "陣列 = 讀取影像灰階('*.type')",
+                "code_display" : "陣列 = 讀取影像灰階(\n    '*.type')",
                 "note" : "檔名需英文",
                 "long_note" : true
             },
             {
                 "menu_display" : "讀取影像彩色",
                 "code" : "陣列 = 讀取影像彩色('name.type')",
-                "code_display" : "陣列 = 讀取影像彩色(\n    'name.type')",
+                "code_display" : "陣列 = 讀取影像彩色(\n    '*.type')",
                 "note" : "檔名需英文",
                 "long_note" : true
             }
@@ -122,8 +122,8 @@
         "items" :[
             {
                 "menu_display" : "儲存影像",
-                "code" : "儲存影像('name.jpg',陣列)",
-                "code_display" : "儲存影像('name.jpg',陣列)",
+                "code" : "儲存影像('*.jpg',陣列)",
+                "code_display" : "儲存影像('*.jpg',陣列)",
                 "note" : "儲存影像(檔名字串, 陣列)",
                 "long_note" : true
             }
@@ -152,16 +152,23 @@
             },
             {
                 "menu_display" : "顯示影像 視窗名稱",
-                "code" : "顯示影像(陣列, 視窗名稱='1')",
-                "code_display" : "顯示影像(陣列, \n    視窗名稱='1')",
+                "code" : "顯示影像(陣列, 視窗名稱='Image 2')",
+                "code_display" : "顯示影像(陣列, \n    視窗名稱='Image 2')",
                 "note" : "",
                 "long_note" : true
             },
             {
-                "menu_display" : "關閉所有影像",
-                "code" : "關閉所有影像()",
-                "code_display" : "關閉所有影像()",
-                "note" : "關閉所有影像",
+                "menu_display" : "關閉視窗 依名稱",
+                "code" : "關閉視窗(視窗名稱='Image 2')",
+                "code_display" : "關閉視窗(視窗名稱='Image 2')",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "關閉全部視窗",
+                "code" : "關閉全部視窗()",
+                "code_display" : "關閉全部視窗()",
+                "note" : "",
                 "long_note" : true
             }
         ]
@@ -642,8 +649,8 @@
         "items" :[
             {
                 "menu_display" : "讀取png影像 可有alpha通道(透明)",
-                "code" : "png陣列 = 讀取png影像('name.png')",
-                "code_display" : "png陣列 = 讀取png影像(\n    'name.png')",
+                "code" : "png陣列 = 讀取png影像('*.png')",
+                "code_display" : "png陣列 = 讀取png影像(\n    '*.png')",
                 "note" : "去背圖 檔名需英文數字 ",
                 "long_note" : true
             }
@@ -658,10 +665,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "置中貼上png 依位置",
-                "code" : "置中貼上png(陣列,png陣列,(0,0))",
-                "code_display" : "置中貼上png(\n    陣列,png陣列,(100,0))",
-                "note" : "依位置",
+                "menu_display" : "貼上png中心點 特徵清單",
+                "code" : "貼上png中心點(陣列,png陣列,特徵清單[10])",
+                "code_display" : "貼上png中心點(\n    陣列,png陣列,特徵清單[10])",
+                "note" : "png中心點 貼到陣列 特徵點",
+                "long_note" : true  
+            },
+            {
+                "menu_display" : "貼上png中心點 座標",
+                "code" : "貼上png中心點(陣列,png陣列,(200,200))",
+                "code_display" : "貼上png中心點(\n    陣列,png陣列,(200,200))",
+                "note" : "從png的中心點 貼到陣列 座標",
                 "long_note" : true  
             }
         ]
@@ -672,10 +686,17 @@
         "items" :[
             
             {
-                "menu_display" : "兩點 幾何轉換",
+                "menu_display" : "兩點幾何轉換 特徵點",
                 "code" : "轉換png陣列 = 兩點transform(\n來源影像=png陣列,\n來源pt1=(100,150),\n來源pt2=(150,150),\n目標影像=陣列,\n目標pt1=特徵清單[109],\n目標pt2=特徵清單[338])",
                 "code_display" : "轉換陣列 = 兩點transform(\n    來源影像=png陣列,\n    來源pt1=(100,150),\n    來源pt2=(150,150),\n    目標影像=陣列,\n    目標pt1=特徵清單[109],\n    目標pt2=特徵清單[338])",
-                "note" : "png影像幾何轉換 依對應兩點   ",
+                "note" : "transform 轉換\npoint 點",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "兩點幾何轉換 座標",
+                "code" : "轉換png陣列 = 兩點transform(\n來源影像=png陣列,\n來源pt1=(100,150),\n來源pt2=(150,150),\n目標影像=陣列,\n目標pt1=(100,150),\n目標pt2=(150,150))",
+                "code_display" : "轉換陣列 = 兩點transform(\n    來源影像=png陣列,\n    來源pt1=(100,150),\n    來源pt2=(150,150),\n    目標影像=陣列,\n    目標pt1=(100,150),\n    目標pt2=(150,150))",
+                "note" : "transform 轉換\npoint 點",
                 "long_note" : true
             }
         ]
@@ -685,10 +706,17 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "貼上 轉換png影像 在原點",
+                "menu_display" : "貼上 轉換png影像 左上點",
                 "code" : "貼上png(陣列,轉換png陣列)",
                 "code_display" : "貼上png(\n    陣列,轉換png陣列)",
-                "note" : "依左上點",
+                "note" : "從png的左上點 貼到陣列",
+                "long_note" : true  
+            },
+            {
+                "menu_display" : "貼上 png影像 左上點",
+                "code" : "貼上png(陣列,png陣列)",
+                "code_display" : "貼上png(\n    陣列,png陣列)",
+                "note" : "從png的左上點 貼到陣列",
                 "long_note" : true  
             }
         ]
@@ -753,6 +781,13 @@
                 "code" : "if 結果:\npass",
                 "code_display" : "if 結果:\n    pass",
                 "note" : "如果 有偵測結果",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "如果 有偵測結果 否則",
+                "code" : "if 結果 :\npass\nelse :\npass",
+                "code_display" : "if 結果 : \n    pass\nelse : \n    pass",
+                "note" : "如果 有偵測結果 否則",
                 "long_note" : true
             },
             {
@@ -965,6 +1000,13 @@
                 "code_display" : "if 結果:\n    pass",
                 "note" : "如果 有偵測結果",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "如果 有偵測結果 否則",
+                "code" : "if 結果 :\npass\nelse :\npass",
+                "code_display" : "if 結果 : \n    pass\nelse : \n    pass",
+                "note" : "如果 有偵測結果 否則",
+                "long_note" : true
             }
         ]
     },
@@ -1101,6 +1143,27 @@
                 "code" : "特徵清單[10][1]",
                 "code_display" : "特徵清單[10][1]",
                 "note" : "傳回特徵點y座標",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "items" :[
+            
+            {
+                "menu_display" : "讀取臉型",
+                "code" : "面具臉型 = 讀取面具臉型('*.csv', png陣列)",
+                "code_display" : "面具臉型 = 讀取面具臉型(\n    '*.csv', png陣列)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "面具幾何轉換",
+                "code" : "轉換png陣列 = 面具transform(\n來源影像=png陣列,\n臉型對應=面具臉型,\n目標影像=陣列,\n偵測結果=結果)",
+                "code_display" : "轉換png陣列 = 面具transform(\n    來源影像=png陣列,\n    臉型對應=面具臉型,\n    目標影像=陣列,\n    偵測結果=結果)",
+                "note" : "transform 轉換",
                 "long_note" : true
             }
         ]
