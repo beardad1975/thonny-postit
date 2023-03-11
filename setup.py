@@ -14,7 +14,7 @@ files = tab_files + assets_files
 
 setup (
         name="thonny-postit",
-        version="1.0alpha1" ,
+        version="1.0" ,
         description="Program Post-it for Thonny IDE",
         long_description="""Program Post-it for Thonny IDE""",
         url="https://github.com/beardad1975/thonny-postit",
