@@ -467,8 +467,8 @@
             },
             {
                 "menu_display" : "等待毫秒",
-                "code" : "等待按鍵(25)",
-                "code_display" : "等待按鍵(25)",
+                "code" : "等待按鍵(50)",
+                "code_display" : "等待按鍵(50)",
                 "note" : "等待 毫秒",
                 "long_note" : true
             },
@@ -481,8 +481,8 @@
             },
             {
                 "menu_display" : "等待毫秒 傳回按鍵",
-                "code" : "按鍵 = 等待按鍵(25)",
-                "code_display" : "按鍵 = 等待按鍵(25)",
+                "code" : "按鍵 = 等待按鍵(50)",
+                "code_display" : "按鍵 = 等待按鍵(50)",
                 "note" : "等待毫秒 傳回按鍵",
                 "long_note" : true
             }
@@ -511,6 +511,26 @@
                 "code" : "'='",
                 "code_display" : "'='",
                 "note" : "符號按鍵",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "如果 有按鍵",
+                "code" : "if 按鍵:\npass",
+                "code_display" : "if 按鍵:\n    pass",
+                "note" : "如果 有按鍵",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "如果 有按鍵 否則",
+                "code" : "if 按鍵 :\npass\nelse :\npass",
+                "code_display" : "if 按鍵 : \n    pass\nelse : \n    pass",
+                "note" : "如果 有按鍵 否則",
                 "long_note" : true
             }
         ]
@@ -726,8 +746,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 人臉偵測  ",
-        "off_label" : " 人臉偵測 >",
+        "on_label" : " 基本人臉偵測  ",
+        "off_label" : " 基本人臉偵測 >",
         "start_on" : false
     },
     {
@@ -923,8 +943,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 臉部網格  ",
-        "off_label" : " 臉部網格 >",
+        "on_label" : " 更多臉部特徵  ",
+        "off_label" : " 更多臉部特徵 >",
         "start_on" : false
     },
     {

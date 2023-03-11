@@ -4,16 +4,16 @@
         "category_title" : "圖片"
     },
     {
-        "asset_category" : "face_detection",
-        "category_title" : "臉部偵測"
+        "asset_category" : "face_landmark",
+        "category_title" : "臉部特徵"
     },
     {
         "asset_category" : "decoration",
-        "category_title" : "裝飾(兩點轉換)"
+        "category_title" : "裝飾"
     },
     {
         "asset_category" : "mask",
-        "category_title" : "面具(臉型轉換)"
+        "category_title" : "面具"
     }
     
 ]

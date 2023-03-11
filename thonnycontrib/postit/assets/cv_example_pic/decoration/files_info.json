@@ -1,5 +1,12 @@
 [
     {
+        "asset_file" : "crown.png",
+        "thumbnail" : "crown_thumbnail.jpg",
+        "file_title" : "crown",
+        "file_type" : "png",
+        "file_info" : "250 x 250\n皇冠 去背圖"
+    },
+    {
         "asset_file" : "dog_ears.png",
         "thumbnail" : "dog_ears_thumbnail.jpg",
         "file_title" : "dog_ears",

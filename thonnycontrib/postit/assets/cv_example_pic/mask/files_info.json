@@ -14,17 +14,45 @@
         "file_info" : "匿名者 臉型轉換資料"
     },
     {
+        "asset_file" : "anime.png",
+        "thumbnail" : "anime_thumbnail.jpg",
+        "file_title" : "anime",
+        "file_type" : "png",
+        "file_info" : "172 x 234\n動畫 去背圖"
+    },
+    {
+        "asset_file" : "anime.csv",
+        "thumbnail" : "csv_thumbnail.jpg",
+        "file_title" : "anime",
+        "file_type" : "csv",
+        "file_info" : "動畫 臉型轉換資料"
+    },
+    {
+        "asset_file" : "white_mask.png",
+        "thumbnail" : "white_mask_thumbnail.jpg",
+        "file_title" : "white_mask",
+        "file_type" : "png",
+        "file_info" : "465 x 580\n空白 去背圖"
+    },
+    {
+        "asset_file" : "white_mask.csv",
+        "thumbnail" : "csv_thumbnail.jpg",
+        "file_title" : "white_mask",
+        "file_type" : "csv",
+        "file_info" : "空白 臉型轉換資料"
+    },
+    {
         "asset_file" : "opera_red.png",
         "thumbnail" : "opera_red_thumbnail.jpg",
         "file_title" : "opera_red",
         "file_type" : "png",
-        "file_info" : "395 x 515\n川劇紅臉 去背圖"
+        "file_info" : "395 x 515\n川劇 去背圖"
     },
     {
         "asset_file" : "opera_red.csv",
         "thumbnail" : "csv_thumbnail.jpg",
         "file_title" : "opera_red",
         "file_type" : "csv",
-        "file_info" : "川劇紅臉 臉型轉換資料"
+        "file_info" : "川劇 臉型轉換資料"
     }
 ]

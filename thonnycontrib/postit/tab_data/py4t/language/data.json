@@ -363,5 +363,63 @@
                 "long_note" : true
             }       
         ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 迭代工具  ",
+        "off_label" : " 迭代工具 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "迭代工具 匯入",
+                "code" : "import itertools",
+                "code_display" : "import itertools",
+                "note" : "迭代工具 匯入",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "迭代工具 清單",
+                "code" : "循環 = itertools.cycle(清單)",
+                "code_display" : "循環 = itertools.cycle(清單)",
+                "note" : "",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "迭代工具 字串",
+                "code" : "循環 = itertools.cycle('ABC')",
+                "code_display" : "循環 = itertools.cycle('ABC')",
+                "note" : "",
+                "long_note" : true
+            }        
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "迭代工具 清單",
+                "code" : "項目 = next(循環)",
+                "code_display" : "項目 = next(循環)",
+                "note" : "next 下一個",
+                "long_note" : true
+            }        
+        ]
     }
 ]
