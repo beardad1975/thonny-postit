@@ -54,5 +54,19 @@
         "file_title" : "opera_red",
         "file_type" : "csv",
         "file_info" : "川劇 臉型轉換資料"
+    },
+    {
+        "asset_file" : "mask_annotation.jpg",
+        "thumbnail" : "mask_annotation_thumbnail.jpg",
+        "file_title" : "自訂面具對應點_順序",
+        "file_type" : "jpg",
+        "file_info" : "782 x 977\n自訂面具對應"
+    },
+    {
+        "asset_file" : "landmark_label.txt",
+        "thumbnail" : "txt_thumbnail.jpg",
+        "file_title" : "landmark_label",
+        "file_type" : ".txt",
+        "file_info" : "自訂面具對應資料\nMakeSense用標籤檔"
     }
 ]

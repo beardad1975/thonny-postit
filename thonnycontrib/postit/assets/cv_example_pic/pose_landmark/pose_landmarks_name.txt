@@ -1,0 +1,33 @@
+0 - 鼻子  nose  
+1 - 左眼(內)  left eye (inner)
+2 - 左眼  left eye
+3 - 左眼(外)  left eye (outer)
+4 - 右眼(內)  right eye (inner)
+5 - 右眼  right eye
+6 - 右眼(外)  right eye (outer)
+7 - 左耳  left ear
+8 - 右耳  right ear
+9 - 嘴巴(左)  mouth (left)
+10 - 嘴巴(右)  mouth (right)
+11 - 左肩  left shoulder
+12 - 右肩  right shoulder
+13 - 左手肘  left elbow
+14 - 右手肘  right elbow
+15 - 左手腕  left wrist
+16 - 右手腕  right wrist
+17 - 左小指  left pinky
+18 - 右小指  right pinky
+19 - 左食指  left index
+20 - 右食指  right index
+21 - 左拇指  left thumb
+22 - 右拇指  right thumb
+23 - 左髖關節  left hip
+24 - 右髖關節  right hip
+25 - 左膝蓋  left knee
+26 - 右膝蓋  right knee
+27 - 左踝關節  left ankle
+28 - 右踝關節  right ankle
+29 - 左腳後跟  left heel
+30 - 右腳後跟  right heel
+31 - 左二腳趾  left foot index
+32 - 右二腳趾  right foot index

@@ -1,0 +1,16 @@
+[
+    {
+        "asset_file" : "pose_landmarks_index.png",
+        "thumbnail" : "pose_landmarks_index_thumbnail.jpg",
+        "file_title" : "姿勢特徵點_索引編號",
+        "file_type" : "png",
+        "file_info" : "1446 x 1712\n姿勢特徵 索引資料"
+    },
+    {
+        "asset_file" : "pose_landmarks_name.txt",
+        "thumbnail" : "txt_thumbnail.jpg",
+        "file_title" : "姿勢特徵點_名稱",
+        "file_type" : "txt",
+        "file_info" : "姿勢特徵 名稱資料"
+    }
+]

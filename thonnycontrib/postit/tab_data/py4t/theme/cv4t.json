@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 攝影機擷取  ",
-        "off_label" : " 攝影機擷取 >",
+        "on_label" : " 攝影機 設置 擷取  ",
+        "off_label" : " 攝影機 設置 擷取 >",
         "start_on" : true
     },
     {
@@ -40,28 +40,42 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "設置影像擷取 後端DSHOW",
+                "menu_display" : "設置 DirectX驅動",
                 "code" : "攝影機 = 設置影像擷取(後端='DSHOW')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    後端='DSHOW')",
-                "note" : "影像640x480 後端DirectX",
+                "note" : "影像640x480 DirectX驅動",
                 "long_note" : true
             },
             {
-                "menu_display" : "設置影像擷取 640x480",
+                "menu_display" : "設置 自動偵測",
                 "code" : "攝影機 = 設置影像擷取()",
                 "code_display" : "攝影機 = 設置影像擷取()",
-                "note" : "影像640x480\n若攝影機啟動很慢時，可使用",
+                "note" : "影像640x480\n若攝影機啟動很慢,可試試看",
                 "long_note" : true
             },
             {
-                "menu_display" : "設置影像擷取 720p",
+                "menu_display" : "設置 切換攝影機 DirectX驅動",
+                "code" : "攝影機 = 設置影像擷取(id=0, 後端='DSHOW')",
+                "code_display" : "攝影機 = 設置影像擷取(\n    id=0, 後端='DSHOW')",
+                "note" : "攝影機id編號 DirectX驅動",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 切換攝影機 自動偵測",
+                "code" : "攝影機 = 設置影像擷取(id=0)",
+                "code_display" : "攝影機 = 設置影像擷取(id=0)",
+                "note" : "攝影機id編號\n若攝影機啟動很慢,可試試看",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 720p",
                 "code" : "攝影機 = 設置影像擷取(解析度='720p')",
                 "code_display" : "攝影機 = 設置影像擷取(\n    解析度='720p')",
                 "note" : "影像1280x720",
                 "long_note" : true
             },
             {
-                "menu_display" : "關閉影像擷取",
+                "menu_display" : "關閉 影像擷取",
                 "code" : "攝影機.release()",
                 "code_display" : "攝影機.release()",
                 "note" : "關閉影像擷取",
@@ -98,16 +112,23 @@
         "items" :[
             {
                 "menu_display" : "讀取影像灰階",
-                "code" : "陣列 = 讀取影像灰階('*.type')",
-                "code_display" : "陣列 = 讀取影像灰階(\n    '*.type')",
-                "note" : "檔名需英文",
+                "code" : "陣列 = 讀取影像灰階('*.jpg')",
+                "code_display" : "陣列 = 讀取影像灰階(\n    '*.jpg')",
+                "note" : "格式jpg或bmp",
                 "long_note" : true
-            },
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
             {
                 "menu_display" : "讀取影像彩色",
-                "code" : "陣列 = 讀取影像彩色('name.type')",
-                "code_display" : "陣列 = 讀取影像彩色(\n    '*.type')",
-                "note" : "檔名需英文",
+                "code" : "陣列 = 讀取影像彩色('*.jpg')",
+                "code_display" : "陣列 = 讀取影像彩色(\n    '*.jpg')",
+                "note" : "格式jpg或bmp",
                 "long_note" : true
             }
         ]
@@ -659,8 +680,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " png 轉換 貼上  ",
-        "off_label" : " png 轉換 貼上 >",
+        "on_label" : " png透明圖 轉換 貼上  ",
+        "off_label" : " png透明圖 轉換 貼上 >",
         "start_on" : false
     },
     {

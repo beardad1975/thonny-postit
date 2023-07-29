@@ -206,7 +206,15 @@ class AssetDialog(CommonDialog):
             cwd = os.path.dirname(notebook.get_current_editor().get_filename())
         self.cwd = cwd
         font = common.dialog_font
-        category_label = ttk.Label(destination_frame, text='目的地： ' + self.cwd + '  ', font=font)
+
+        # target_path text can not too long
+        if len(self.cwd) > 50:
+            target_path = '目的地: ...' + self.cwd[-50:] + ' '
+        else: 
+            target_path = '目的地: ' + self.cwd + ' '
+
+        #print('target_paht length: ',len(target_path) )
+        category_label = ttk.Label(destination_frame, text=target_path, font=font)
         category_label.pack(side=tk.LEFT)
 
         # button

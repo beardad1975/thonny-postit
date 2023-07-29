@@ -2,22 +2,22 @@
     {
         "asset_file" : "face_mesh.png",
         "thumbnail" : "face_mesh_thumbnail.jpg",
-        "file_title" : "face_mesh",
+        "file_title" : "臉部網格_索引編號",
         "file_type" : "png",
         "file_info" : "4096 x 4096\n臉部網格 索引編號"
     },
     {
         "asset_file" : "mask_annotation.jpg",
         "thumbnail" : "mask_annotation_thumbnail.jpg",
-        "file_title" : "mask_annotation",
+        "file_title" : "自訂面具對應點_順序",
         "file_type" : "jpg",
-        "file_info" : "782 x 977\n臉型特徵點順序"
+        "file_info" : "782 x 977\n自訂面具對應"
     },
     {
         "asset_file" : "landmark_label.txt",
         "thumbnail" : "txt_thumbnail.jpg",
         "file_title" : "landmark_label",
         "file_type" : ".txt",
-        "file_info" : "臉型對應資料\nMakeSense用標籤檔"
+        "file_info" : "自訂面具對應資料\nMakeSense用標籤檔"
     }
 ]
