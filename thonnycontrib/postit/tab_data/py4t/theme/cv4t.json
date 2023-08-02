@@ -590,6 +590,13 @@
                 "code_display" : "畫圓形(image=陣列,\n    center=(10,10),\n    radius=2,\n    color=(0,0,255),\n    thickness=2)",
                 "note" : "image 影像\ncenter 圓心點\nradius 半徑\ncolor 顏色(順序:BGR)\nthickness 線的粗細",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "實心圓 圓心 半徑 顏色",
+                "code" : "畫圓形(image=陣列,\ncenter=(10,10),\nradius=2,\ncolor=(0,0,255),\nthickness=-1)",
+                "code_display" : "畫圓形(image=陣列,\n    center=(10,10),\n    radius=2,\n    color=(0,0,255),\n    thickness=-1)",
+                "note" : "thickness為-1是實心填滿",
+                "long_note" : true
             }
         ]
     },
@@ -616,6 +623,13 @@
                 "code" : "畫矩形(image=陣列,\npt1=(0,0),\npt2=(50,50),\ncolor=(0,0,255),\nthickness=1)",
                 "code_display" : "畫矩形(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50),\n    color=(0,0,255),\n    thickness=1)",
                 "note" : "image 影像\npt1 點1\npt2 點2\ncolor 顏色(順序:BGR)\nthickness 線的粗細",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "實心矩形 點1 點2 顏色",
+                "code" : "畫矩形(image=陣列,\npt1=(0,0),\npt2=(50,50),\ncolor=(0,0,255),\nthickness=-1)",
+                "code_display" : "畫矩形(image=陣列,\n    pt1=(0,0),\n    pt2=(50,50),\n    color=(0,0,255),\n    thickness=-1)",
+                "note" : "",
                 "long_note" : true
             }
         ]
@@ -1146,13 +1160,6 @@
                 "code_display" : "特徵清單 = 取出Landmarks(結果)",
                 "note" : "第1張臉",
                 "long_note" : true
-            },
-            {
-                "menu_display" : "取出 臉部 3D特徵點 清單",
-                "code" : "特徵3D清單 = 取出3DLandmarks(結果)",
-                "code_display" : "特徵3D清單 = 取出3DLandmarks(結果)",
-                "note" : "第1張臉 3D特徵點",
-                "long_note" : true
             }
         ]
     },
@@ -1174,16 +1181,23 @@
             },
             {
                 "menu_display" : "取出 特徵點 x座標",
-                "code" : "特徵清單[10][0]",
-                "code_display" : "特徵清單[10][0]",
-                "note" : "傳回特徵點x座標",
+                "code" : "特徵清單.x(索引=10)",
+                "code_display" : "特徵清單.x(索引=10)",
+                "note" : "傳回特徵點 x座標",
                 "long_note" : true
             },
             {
                 "menu_display" : "取出 特徵點 y座標",
-                "code" : "特徵清單[10][1]",
-                "code_display" : "特徵清單[10][1]",
-                "note" : "傳回特徵點y座標",
+                "code" : "特徵清單.y(索引=10)",
+                "code_display" : "特徵清單.y(索引=10)",
+                "note" : "傳回特徵點 y座標",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 座標3D",
+                "code" : "特徵清單.座標3D(索引=10)",
+                "code_display" : "特徵清單.座標3D(索引=10)",
+                "note" : "傳回特徵點 座標3D",
                 "long_note" : true
             }
         ]
@@ -1205,6 +1219,151 @@
                 "code" : "轉換png陣列 = 面具transform(\n來源影像=png陣列,\n臉型對應=面具臉型,\n目標影像=陣列,\n偵測結果=結果)",
                 "code_display" : "轉換png陣列 = 面具transform(\n    來源影像=png陣列,\n    臉型對應=面具臉型,\n    目標影像=陣列,\n    偵測結果=結果)",
                 "note" : "transform 轉換",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 人體姿勢偵測  ",
+        "off_label" : " 人體姿勢偵測 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "設置 人體姿勢",
+                "code" : "偵測器 = 設置Pose()",
+                "code_display" : "偵測器 = 設置Pose()",
+                "note" : "pose 姿勢",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 人體姿勢 最小偵測信心",
+                "code" : "偵測器 = 設置Pose(最小偵測信心=0.5)",
+                "code_display" : "偵測器 = 設置Pose(\n    最小偵測信心=0.5)",
+                "note" : "0~1之間小數(偵測姿勢)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "處理 人體姿勢",
+                "code" : "結果 = 偵測器.process(陣列)",
+                "code_display" : "結果 = 偵測器.process(陣列)",
+                "note" : "process 處理",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "如果 有偵測結果",
+                "code" : "if 結果:\npass",
+                "code_display" : "if 結果:\n    pass",
+                "note" : "如果 有偵測結果",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "如果 有偵測結果 否則",
+                "code" : "if 結果 :\npass\nelse :\npass",
+                "code_display" : "if 結果 : \n    pass\nelse : \n    pass",
+                "note" : "如果 有偵測結果 否則",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "標記 人體姿勢",
+                "code" : "標記Pose(陣列, 結果)",
+                "code_display" : "標記Pose(陣列, 結果)",
+                "note" : "pose 姿勢",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "取出 人體姿勢 特徵點清單",
+                "code" : "特徵清單 = 取出PoseLandmarks(結果)",
+                "code_display" : "特徵清單 = 取出PoseLandmarks(結果)",
+                "note" : " pose 姿勢\nlandmark 特徵",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "cv_example_pic"
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "取出 特徵點 (x,y)",
+                "code" : "特徵清單[0]",
+                "code_display" : "特徵清單[0]",
+                "note" : "依索引值 傳回特徵點(x,y)",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 x座標",
+                "code" : "特徵清單.x(索引=0)",
+                "code_display" : "特徵清單.x(索引=0)",
+                "note" : "傳回特徵點 x座標",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 y座標",
+                "code" : "特徵清單.y(索引=0)",
+                "code_display" : "特徵清單.y(索引=0)",
+                "note" : "傳回特徵點 y座標",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 能見度",
+                "code" : "特徵清單.visibility(索引=19)",
+                "code_display" : "特徵清單.visibility(索引=19)",
+                "note" : "visibility 能見度",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 座標3D",
+                "code" : "特徵清單.座標3D(索引=19)",
+                "code_display" : "特徵清單.座標3D(索引=19)",
+                "note" : "傳回特徵點 座標3D",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "特徵點 是否在影像範圍內",
+                "code" : "特徵清單.在範圍內嗎(索引=19)",
+                "code_display" : "特徵清單.在範圍內嗎(索引=19)",
+                "note" : "是否在影像範圍內",
                 "long_note" : true
             }
         ]
