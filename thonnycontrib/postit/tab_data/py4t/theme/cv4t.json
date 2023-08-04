@@ -1228,6 +1228,81 @@
     },
     {
         "postit_type" : "postit_para",
+        "on_label" : " 手部偵測與手勢辦識  ",
+        "off_label" : " 手部偵測與手勢辦識 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "設置 手部偵測",
+                "code" : "偵測器 = 設置HandDetection()",
+                "code_display" : "偵測器 = 設置HandDetection()",
+                "note" : "hand 手\ndetection 偵測",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "偵測 手部",
+                "code" : "結果 = 偵測器.process(陣列)",
+                "code_display" : "結果 = 偵測器.process(陣列)",
+                "note" : "process 處理",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_block_enclosed_postit",
+        
+        "items" :[
+            {
+                "menu_display" : "如果 有偵測結果",
+                "code" : "if 結果:\npass",
+                "code_display" : "if 結果:\n    pass",
+                "note" : "如果 有偵測結果",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "如果 有偵測結果 否則",
+                "code" : "if 結果 :\npass\nelse :\npass",
+                "code_display" : "if 結果 : \n    pass\nelse : \n    pass",
+                "note" : "如果 有偵測結果 否則",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "標記 手部",
+                "code" : "標記Hand(陣列, 結果)",
+                "code_display" : "標記Hand(陣列, 結果)",
+                "note" : "hand 手",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "asset_copy_btn",
+        "asset_group" : "cv_example_pic"
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
         "on_label" : " 人體姿勢偵測  ",
         "off_label" : " 人體姿勢偵測 >",
         "start_on" : false
@@ -1239,15 +1314,15 @@
         "items" :[
             {
                 "menu_display" : "設置 人體姿勢",
-                "code" : "偵測器 = 設置Pose()",
-                "code_display" : "偵測器 = 設置Pose()",
-                "note" : "pose 姿勢",
+                "code" : "偵測器 = 設置PoseDetection()",
+                "code_display" : "偵測器 = 設置PoseDetection()",
+                "note" : "pose 姿勢\ndetection 偵測",
                 "long_note" : true
             },
             {
                 "menu_display" : "設置 人體姿勢 最小偵測信心",
-                "code" : "偵測器 = 設置Pose(最小偵測信心=0.5)",
-                "code_display" : "偵測器 = 設置Pose(\n    最小偵測信心=0.5)",
+                "code" : "偵測器 = 設置PoseDetection(最小偵測信心=0.5)",
+                "code_display" : "偵測器 = 設置PoseDetection(\n    最小偵測信心=0.5)",
                 "note" : "0~1之間小數(偵測姿勢)",
                 "long_note" : true
             }
@@ -1259,7 +1334,7 @@
         "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "處理 人體姿勢",
+                "menu_display" : "偵測 人體姿勢",
                 "code" : "結果 = 偵測器.process(陣列)",
                 "code_display" : "結果 = 偵測器.process(陣列)",
                 "note" : "process 處理",

@@ -16,6 +16,10 @@
         "category_title" : "面具"
     },
     {
+        "asset_category" : "hand_landmark",
+        "category_title" : "手部特徵"
+    },
+    {
         "asset_category" : "pose_landmark",
         "category_title" : "姿勢特徵"
     }
