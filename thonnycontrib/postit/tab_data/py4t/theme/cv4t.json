@@ -874,17 +874,24 @@
         "start_hide_note" : true,
         "items" :[
             {
-                "menu_display" : "取出 第1個Face",
+                "menu_display" : "取出 第1個臉",
                 "code" : "臉 = 取出Face(結果)",
                 "code_display" : "臉 = 取出Face(結果)",
                 "note" : "第1張臉",
                 "long_note" : true
             },
             {
-                "menu_display" : "取出 Face清單",
+                "menu_display" : "取出 臉清單",
                 "code" : "臉清單 = 取出Face清單(結果)",
                 "code_display" : "臉清單 = 取出Face清單(結果)",
                 "note" : "所有臉",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "臉的數量",
+                "code" : "臉數量 = len(臉清單)",
+                "code_display" : "臉數量 = len(臉清單)",
+                "note" : "臉的數量",
                 "long_note" : true
             }
         ]
@@ -1228,8 +1235,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 手部偵測與手勢辦識  ",
-        "off_label" : " 手部偵測與手勢辦識 >",
+        "on_label" : " 手與手勢偵測  ",
+        "off_label" : " 手與手勢偵測 >",
         "start_on" : false
     },
     {
@@ -1238,10 +1245,17 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "設置 手部偵測",
-                "code" : "偵測器 = 設置HandDetection()",
-                "code_display" : "偵測器 = 設置HandDetection()",
-                "note" : "hand 手\ndetection 偵測",
+                "menu_display" : "設置 手與手勢偵測",
+                "code" : "偵測器 = 設置HandAndGesture()",
+                "code_display" : "偵測器 = 設置HandAndGesture()",
+                "note" : "hand 手\ngesture 手勢",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "設置 手部偵測 手數量",
+                "code" : "偵測器 = 設置HandDetection(手數量=2)",
+                "code_display" : "偵測器 = 設置HandDetection(\n    手數量=2)",
+                "note" : "偵測手數量 1~5",
                 "long_note" : true
             }
         ]
@@ -1277,6 +1291,34 @@
                 "code_display" : "if 結果 : \n    pass\nelse : \n    pass",
                 "note" : "如果 有偵測結果 否則",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "如果 是某一手",
+                "code" : "if 手.handedness == 'Right':\npass",
+                "code_display" : "if 手.handedness == 'Right':\n    pass",
+                "note" : "如果 是某一手",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "如果 是某個手勢",
+                "code" : "if 手.gesture == 'Closed_Fist':\npass",
+                "code_display" : "if 手.gesture == 'Closed_Fist':\n    pass",
+                "note" : "如果 是某個手勢",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "從手清單 逐一取出",
+                "code" : "for 手 in 手清單 :\npass",
+                "code_display" : "for 手 in 手清單 :\n    pass",
+                "note" : "從手清單 逐一取出 :\n        迴圈區塊",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "如果 手的數量",
+                "code" : "if len(手清單) == 2:\npass",
+                "code_display" : "if len(手清單) == 2:\n    pass",
+                "note" : "如果 手的數量",
+                "long_note" : true
             }
         ]
     },
@@ -1289,7 +1331,7 @@
                 "menu_display" : "標記 手部",
                 "code" : "標記Hand(陣列, 結果)",
                 "code_display" : "標記Hand(陣列, 結果)",
-                "note" : "hand 手",
+                "note" : "hand 手\n標記手部關鍵點",
                 "long_note" : true
             }
         ]
@@ -1297,6 +1339,153 @@
     {
         "postit_type" : "asset_copy_btn",
         "asset_group" : "cv_example_pic"
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "取出 第1隻手",
+                "code" : "手 = 取出Hand(結果)",
+                "code_display" : "手 = 取出Hand(結果)",
+                "note" : "第1隻手",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "手 左手或右手",
+                "code" : "手.handedness",
+                "code_display" : "手.handedness",
+                "note" : "左手或右手\nleft 左\nright 右",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手 常見手勢",
+                "code" : "手.gesture",
+                "code_display" : "手.gesture",
+                "note" : "gesture 手勢",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手 特徵點 xy座標",
+                "code" : "手.特徵點(索引=8)",
+                "code_display" : "手.特徵點(索引=8)",
+                "note" : "特徵點 xy座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手 x座標",
+                "code" : "手.x(索引=8)",
+                "code_display" : "手.x(索引=8)",
+                "note" : "x座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手 y座標",
+                "code" : "手.y(索引=8)",
+                "code_display" : "手.y(索引=8)",
+                "note" : "y座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手 z座標",
+                "code" : "手.z(索引=8)",
+                "code_display" : "手.z(索引=8)",
+                "note" : "z座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手 座標3D",
+                "code" : "手.座標3D(索引=8)",
+                "code_display" : "手.座標3D(索引=8)",
+                "note" : "座標3D 依索引",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "取出 手清單",
+                "code" : "手清單 = 取出Hand清單(結果)",
+                "code_display" : "手清單 = 取出Hand清單(結果)",
+                "note" : "所有手",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手的數量",
+                "code" : "手數量 = len(手清單)",
+                "code_display" : "手數量 = len(手清單)",
+                "note" : "手的數量",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "手清單 左手或右手",
+                "code" : "手清單[0].handedness",
+                "code_display" : "手清單[0].handedness",
+                "note" : "左手或右手\nleft 左\nright 右",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手清單 常見手勢",
+                "code" : "手清單[0].gesture",
+                "code_display" : "手清單[0].gesture",
+                "note" : "gesture 手勢",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手清單 特徵點 xy座標",
+                "code" : "手清單[0].特徵點(索引=8)",
+                "code_display" : "手清單[0].特徵點(索引=8)",
+                "note" : "特徵點 xy座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手清單 x座標",
+                "code" : "手清單[0].x(索引=8)",
+                "code_display" : "手清單[0].x(索引=8)",
+                "note" : "x座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手清單 y座標",
+                "code" : "手清單[0].y(索引=8)",
+                "code_display" : "手清單[0].y(索引=8)",
+                "note" : "y座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手清單 z座標",
+                "code" : "手清單[0].z(索引=8)",
+                "code_display" : "手清單[0].z(索引=8)",
+                "note" : "z座標 依索引",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "手清單 座標3D",
+                "code" : "手清單[0].座標3D(索引=8)",
+                "code_display" : "手清單[0].座標3D(索引=8)",
+                "note" : "座標3D 依索引",
+                "long_note" : true
+            }
+        ]
     },
     {
         "postit_type" : "ttk_separator"

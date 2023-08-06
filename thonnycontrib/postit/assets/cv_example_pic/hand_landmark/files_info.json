@@ -5,5 +5,12 @@
         "file_title" : "手部特徵點_索引編號",
         "file_type" : "png",
         "file_info" : "2146 x 744\n手部特徵 索引資料"
+    },
+    {
+        "asset_file" : "gesture_name.txt",
+        "thumbnail" : "txt_thumbnail.jpg",
+        "file_title" : "手勢_中英文名稱",
+        "file_type" : "txt",
+        "file_info" : "手勢_中英文名稱"
     }
 ]

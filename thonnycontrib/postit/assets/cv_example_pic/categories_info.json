@@ -17,7 +17,7 @@
     },
     {
         "asset_category" : "hand_landmark",
-        "category_title" : "手部特徵"
+        "category_title" : "手與手勢"
     },
     {
         "asset_category" : "pose_landmark",

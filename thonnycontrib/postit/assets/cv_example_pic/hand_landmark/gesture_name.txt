@@ -1,0 +1,8 @@
+"None"         無手勢
+"Closed_Fist"  握拳(石頭)
+"Open_Palm"    開掌(布)
+"Pointing_Up"  食指向上
+"Thumb_Down"   拇指向下(倒讚)
+"Thumb_Up"     拇指向上(讚)
+"Victory"      勝利(剪刀)
+"ILoveYou"     我愛你(伸出拇指、食指與小指)
