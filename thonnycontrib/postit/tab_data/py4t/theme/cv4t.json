@@ -1363,7 +1363,7 @@
                 "menu_display" : "手 左手或右手",
                 "code" : "手.handedness",
                 "code_display" : "手.handedness",
-                "note" : "左手或右手\nleft 左\nright 右",
+                "note" : "Left 或 Right",
                 "long_note" : true
             },
             {
@@ -1421,13 +1421,6 @@
                 "code_display" : "手清單 = 取出Hand清單(結果)",
                 "note" : "所有手",
                 "long_note" : true
-            },
-            {
-                "menu_display" : "手的數量",
-                "code" : "手數量 = len(手清單)",
-                "code_display" : "手數量 = len(手清單)",
-                "note" : "手的數量",
-                "long_note" : true
             }
         ]
     },
@@ -1437,10 +1430,17 @@
         "start_hide_note" : true,
         "items" :[
             {
+                "menu_display" : "手清單 數量",
+                "code" : "len(手清單)",
+                "code_display" : "len(手清單)",
+                "note" : "手的數量",
+                "long_note" : true
+            },
+            {
                 "menu_display" : "手清單 左手或右手",
                 "code" : "手清單[0].handedness",
                 "code_display" : "手清單[0].handedness",
-                "note" : "左手或右手\nleft 左\nright 右",
+                "note" : "Left 或 Right",
                 "long_note" : true
             },
             {
@@ -1607,6 +1607,13 @@
                 "code" : "特徵清單.y(索引=0)",
                 "code_display" : "特徵清單.y(索引=0)",
                 "note" : "傳回特徵點 y座標",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "取出 特徵點 z座標",
+                "code" : "特徵清單.z(索引=0)",
+                "code_display" : "特徵清單.z(索引=0)",
+                "note" : "傳回特徵點 z座標",
                 "long_note" : true
             },
             {

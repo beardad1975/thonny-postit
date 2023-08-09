@@ -1,0 +1,30 @@
+[
+    {
+        "asset_file" : "baseball.png",
+        "thumbnail" : "baseball_thumbnail.jpg",
+        "file_title" : "baseball",
+        "file_type" : "png",
+        "file_info" : "600 x 572\n棒球 去背圖"
+    },
+    {
+        "asset_file" : "basketball.png",
+        "thumbnail" : "basketball_thumbnail.jpg",
+        "file_title" : "basketball",
+        "file_type" : "png",
+        "file_info" : "654 x 662\n籃球 去背圖"
+    },
+    {
+        "asset_file" : "soccer.png",
+        "thumbnail" : "soccer_thumbnail.jpg",
+        "file_title" : "soccer",
+        "file_type" : "png",
+        "file_info" : "660 x 657\n足球 去背圖"
+    },
+    {
+        "asset_file" : "racket.png",
+        "thumbnail" : "racket_thumbnail.jpg",
+        "file_title" : "racket",
+        "file_type" : "png",
+        "file_info" : "600 x 604\n羽球拍 去背圖"
+    }
+]

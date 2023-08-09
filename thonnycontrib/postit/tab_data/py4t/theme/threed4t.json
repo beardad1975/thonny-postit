@@ -340,6 +340,13 @@
         "postfix_enter" : true,
         "items" :[
             {
+                "menu_display" : "3軸同時縮放",
+                "code" : "物體.縮放 = 1",
+                "code_display" : "物體.縮放 = 1",
+                "note" : "縮放倍率 3軸同時",
+                "long_note" : true
+            },
+            {
                 "menu_display" : "縮放倍率 左右x",
                 "code" : "物體.縮放x = 1",
                 "code_display" : "物體.縮放x = 1",
@@ -358,13 +365,6 @@
                 "code" : "物體.縮放z = 1",
                 "code_display" : "物體.縮放z = 1",
                 "note" : "縮放倍率 前後z",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "3軸同時縮放",
-                "code" : "物體.縮放 = 1",
-                "code_display" : "物體.縮放 = 1",
-                "note" : "縮放倍率 3軸同時",
                 "long_note" : true
             },
             {

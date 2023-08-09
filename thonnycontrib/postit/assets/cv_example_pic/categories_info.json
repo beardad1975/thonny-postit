@@ -22,6 +22,10 @@
     {
         "asset_category" : "pose_landmark",
         "category_title" : "姿勢特徵"
+    },
+    {
+        "asset_category" : "sport",
+        "category_title" : "球類運動"
     }
     
 ]
