@@ -18,9 +18,9 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "from microbit import display as 顯示, Image as 圖示",
-                "code_display" : "from microbit import \\\n    display as 顯示, \\\n    Image as 圖示",
-                "note" : "需先匯入!!(顯示 圖示)",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "需先匯入!!",
                 "long_note" : true
             }            
         ]
@@ -30,8 +30,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " LED燈光 控制  ",
-        "off_label" : " LED燈光 控制 >",
+        "on_label" : " LED 清除 顯示 捲動  ",
+        "off_label" : " LED 清除 顯示 捲動 >",
         "start_on" : true
     },
     {
@@ -41,30 +41,30 @@
         "items" :[
             {
                 "menu_display" : "LED清除",
-                "code" : "顯示.clear()",
-                "code_display" : "顯示.clear()",
-                "note" : "clear 清除",
+                "code" : "display.clear()",
+                "code_display" : "display.clear()",
+                "note" : "顯示器 清除",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED關閉",
-                "code" : "顯示.off()",
-                "code_display" : "顯示.off()",
-                "note" : "off 關閉",
+                "code" : "display.off()",
+                "code_display" : "display.off()",
+                "note" : "顯示器 關閉",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED開啟",
-                "code" : "顯示.on()",
-                "code_display" : "顯示.on()",
-                "note" : "on 開啟",
+                "code" : "display.on()",
+                "code_display" : "display.on()",
+                "note" : "顯示器 開啟",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED有開啟嗎",
-                "code" : "顯示.is_on()",
-                "code_display" : "顯示.is_on()",
-                "note" : "LED有開啟嗎",
+                "code" : "display.is_on()",
+                "code_display" : "display.is_on()",
+                "note" : "顯示器 有開啟嗎",
                 "long_note" : true
             }           
         ]
@@ -76,23 +76,23 @@
         "items" :[
             {
                 "menu_display" : "LED 數字",
-                "code" : "顯示.show(123)",
-                "code_display" : "顯示.show(123)",
-                "note" : "呈現數字",
+                "code" : "display.show(123)",
+                "code_display" : "display.show(123)",
+                "note" : "顯示器 顯示 數字",
                 "long_note" : true
             },
             {
-                "menu_display" : "燈光 顯示 文字",
-                "code" : "顯示.show('ABC')",
-                "code_display" : "顯示.show('ABC')",
-                "note" : "呈現文字 限英文符號",
+                "menu_display" : "LED 顯示 文字",
+                "code" : "display.show('ABC')",
+                "code_display" : "display.show('ABC')",
+                "note" : "顯示器 顯示 文字\n(限英文或符號)",
                 "long_note" : true
             },
             {
-                "menu_display" : "燈光 顯示 文字 延遲 清除 等待 重複",
-                "code" : "顯示.show('abc',\ndelay=400,\nclear=False,\nwait=True,\nloop=False,\n)",
-                "code_display" : "顯示.show('abc',\n    delay=400,\n    clear=False,\n    wait=True,\n    loop=False,\n    )",
-                "note" : "LED呈現 (文字,\n        延遲,\n        清除,\n        等待,\n        重複)",
+                "menu_display" : "LED 顯示 文字 延遲 清除 等待 重複",
+                "code" : "display.show('abc',\ndelay=400,\nclear=False,\nwait=True,\nloop=False)",
+                "code_display" : "display.show('abc',\n    delay=400,\n    clear=False,\n    wait=True,\n    loop=False)",
+                "note" : "顯示文字\ndelay 延遲(毫秒),\nclear 清除,\nwait 等待,\nloop 循環)",
                 "long_note" : true
             }         
         ]
@@ -103,22 +103,22 @@
         "items" :[
             {
                 "menu_display" : "LED捲動 數字",
-                "code" : "顯示.scroll(12345)",
-                "code_display" : "顯示.scroll(12345)",
+                "code" : "display.scroll(12345)",
+                "code_display" : "display.scroll(12345)",
                 "note" : "捲動數字",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED捲動文字",
-                "code" : "顯示.scroll('Hello')",
-                "code_display" : "顯示.scroll('Hello')",
+                "code" : "display.scroll('Hello')",
+                "code_display" : "display.scroll('Hello')",
                 "note" : "捲動文字 限英文符號",
                 "long_note" : true
             },
             {
                 "menu_display" : "LED捲動 文字 延遲 等待 重複",
-                "code" : "顯示.scroll('Hello',\ndelay=150,\nwait=True,\nloop=False,\n)",
-                "code_display" : "顯示.scroll('Hello',\n    delay=150,\n    wait=True,\n    loop=False,\n    )",
+                "code" : "display.scroll('Hello',\ndelay=150,\nwait=True,\nloop=False,\n)",
+                "code_display" : "display.scroll('Hello',\n    delay=150,\n    wait=True,\n    loop=False,\n    )",
                 "note" : "LED捲動 (英文字,\n         延遲,\n         等待,\n         重複)",
                 "long_note" : true
             }           
@@ -140,15 +140,15 @@
         "items" :[
             {
                 "menu_display" : "設定LED像素",
-                "code" : "顯示.set_pixel(0, 0, 5)",
-                "code_display" : "顯示.set_pixel(0, 0, 5)",
+                "code" : "display.set_pixel(0, 0, 5)",
+                "code_display" : "display.set_pixel(0, 0, 5)",
                 "note" : "設定像素(x, y, 亮度) \n    x:0~4 y:0~4 亮度0~9",
                 "long_note" : true
             },
             {
                 "menu_display" : "取得LED像素亮度值",
-                "code" : "顯示.get_pixel(0, 0)",
-                "code_display" : "顯示.get_pixel(0, 0)",
+                "code" : "display.get_pixel(0, 0)",
+                "code_display" : "display.get_pixel(0, 0)",
                 "note" : "取得像素亮度(x, y) \n    x:0~4 y:0~4",
                 "long_note" : true
             }           
@@ -170,15 +170,15 @@
         "items" :[
             {
                 "menu_display" : "讀取感光值",
-                "code" : "顯示.read_light_level()",
-                "code_display" : "顯示.read_light_level()",
+                "code" : "display.read_light_level()",
+                "code_display" : "display.read_light_level()",
                 "note" : "讀取感光值 0~255",
                 "long_note" : true
             },
             {
                 "menu_display" : "設值 讀取感光值",
-                "code" : "感光 = 顯示.read_light_level()",
-                "code_display" : "感光 = 顯示.read_light_level()",
+                "code" : "感光 = display.read_light_level()",
+                "code_display" : "感光 = display.read_light_level()",
                 "note" : "設值 讀取感光值 0~255",
                 "long_note" : true
             }           
@@ -200,8 +200,8 @@
         "items" :[
             {
                 "menu_display" : "LED呈現 圖示",
-                "code" : "顯示.show(圖示.HEART)",
-                "code_display" : "顯示.show(圖示.HEART)",
+                "code" : "display.show(圖示.HEART)",
+                "code_display" : "display.show(圖示.HEART)",
                 "note" : "LED呈現 圖示",
                 "long_note" : true
             }      
@@ -213,78 +213,78 @@
         "items" :[
             {
                 "menu_display" : "圖示 愛心",
-                "code" : "圖示.HEART",
-                "code_display" : "圖示.HEART",
+                "code" : "Image.HEART",
+                "code_display" : "Image.HEART",
                 "note" : "圖示 愛心",
                 "long_note" : true
             },
             {
                 "menu_display" : "    小愛心",
-                "code" : "圖示.HEART_SMALL",
-                "code_display" : "圖示.HEART_SMALL",
+                "code" : "Image.HEART_SMALL",
+                "code_display" : "Image.HEART_SMALL",
                 "note" : "圖示 小愛心",
                 "long_note" : true
             },
             {
                 "menu_display" : "    快樂",
-                "code" : "圖示.HAPPY",
-                "code_display" : "圖示.HAPPY",
+                "code" : "Image.HAPPY",
+                "code_display" : "Image.HAPPY",
                 "note" : "圖示 快樂",
                 "long_note" : true
             },
             {
                 "menu_display" : "    傷心",
-                "code" : "圖示.SAD",
-                "code_display" : "圖示.SAD",
+                "code" : "Image.SAD",
+                "code_display" : "Image.SAD",
                 "note" : "圖示 傷心",
                 "long_note" : true
             },
             {
                 "menu_display" : "    打勾",
-                "code" : "圖示.YES",
-                "code_display" : "圖示.YES",
+                "code" : "Image.YES",
+                "code_display" : "Image.YES",
                 "note" : "圖示 打勾",
                 "long_note" : true
             },
             {
                 "menu_display" : "    打叉",
-                "code" : "圖示.NO",
-                "code_display" : "圖示.NO",
+                "code" : "Image.NO",
+                "code_display" : "Image.NO",
                 "note" : "圖示 打叉",
                 "long_note" : true
             } ,
             {
                 "menu_display" : "    三角形",
-                "code" : "圖示.TRIANGLE",
-                "code_display" : "圖示.TRIANGLE",
+                "code" : "Image.TRIANGLE",
+                "code_display" : "Image.TRIANGLE",
                 "note" : "圖示 三角形",
                 "long_note" : true
             },
             {
                 "menu_display" : "    鑽石",
-                "code" : "圖示.DIAMOND",
-                "code_display" : "圖示.DIAMOND",
+                "code" : "Image.DIAMOND",
+                "code_display" : "Image.DIAMOND",
                 "note" : "圖示 鑽石",
                 "long_note" : true
             },
             {
                 "menu_display" : "    正方形",
-                "code" : "圖示.SQUARE",
-                "code_display" : "圖示.SQUARE",
+                "code" : "Image.SQUARE",
+                "code_display" : "Image.SQUARE",
                 "note" : "圖示 正方形",
                 "long_note" : true
             },
             {
                 "menu_display" : "    小正方形",
-                "code" : "圖示.SQUARE_SMALL",
-                "code_display" : "圖示.SQUARE_SMALL",
+                "code" : "Image.SQUARE_SMALL",
+                "code_display" : "Image.SQUARE_SMALL",
                 "note" : "圖示 小正方形",
                 "long_note" : true
             },
             {
                 "menu_display" : "    音符",
-                "code" : "圖示.MUSIC_QUAVER",
-                "code_display" : "圖示.MUSIC_QUAVER",
+                "code" : "Image.MUSIC_QUAVER",
+                "code_display" : "Image.MUSIC_QUAVER",
                 "note" : "圖示 音符",
                 "long_note" : true
             }            
@@ -297,57 +297,57 @@
             
             {
                 "menu_display" : "    箭頭 北",
-                "code" : "圖示.ARROW_N",
-                "code_display" : "圖示.ARROW_N",
+                "code" : "Image.ARROW_N",
+                "code_display" : "Image.ARROW_N",
                 "note" : "圖示 箭頭 北",
                 "long_note" : true
             },
             {
                 "menu_display" : "    箭頭 東北",
-                "code" : "圖示.ARROW_NE",
-                "code_display" : "圖示.ARROW_NE",
+                "code" : "Image.ARROW_NE",
+                "code_display" : "Image.ARROW_NE",
                 "note" : "圖示 箭頭 東北",
                 "long_note" : true
             },
             {
                 "menu_display" : "    箭頭 東",
-                "code" : "圖示.ARROW_E",
-                "code_display" : "圖示.ARROW_E",
+                "code" : "Image.ARROW_E",
+                "code_display" : "Image.ARROW_E",
                 "note" : "圖示 箭頭 東",
                 "long_note" : true
             },
             {
                 "menu_display" : "    箭頭 東南",
-                "code" : "圖示.ARROW_SE",
-                "code_display" : "圖示.ARROW_SE",
+                "code" : "Image.ARROW_SE",
+                "code_display" : "Image.ARROW_SE",
                 "note" : "圖示 箭頭 東南",
                 "long_note" : true
             },
             {
                 "menu_display" : "    箭頭 南",
-                "code" : "圖示.ARROW_S",
-                "code_display" : "圖示.ARROW_S",
+                "code" : "Image.ARROW_S",
+                "code_display" : "Image.ARROW_S",
                 "note" : "圖示 箭頭 南",
                 "long_note" : true
             },
             {
                 "menu_display" : "    箭頭 西南",
-                "code" : "圖示.ARROW_SW",
-                "code_display" : "圖示.ARROW_SW",
+                "code" : "Image.ARROW_SW",
+                "code_display" : "Image.ARROW_SW",
                 "note" : "圖示 箭頭 西南",
                 "long_note" : true
             },
             {
                 "menu_display" : "    箭頭 西",
-                "code" : "圖示.ARROW_W",
-                "code_display" : "圖示.ARROW_W",
+                "code" : "Image.ARROW_W",
+                "code_display" : "Image.ARROW_W",
                 "note" : "圖示 箭頭 西",
                 "long_note" : true
             },
             {
                 "menu_display" : "    箭頭 西北",
-                "code" : "圖示.ARROW_NW",
-                "code_display" : "圖示.ARROW_NW",
+                "code" : "Image.ARROW_NW",
+                "code_display" : "Image.ARROW_NW",
                 "note" : "圖示 箭頭 西北",
                 "long_note" : true
             }     
@@ -359,8 +359,8 @@
         "items" :[
             {
                 "menu_display" : "圖示 單一字元",
-                "code" : "圖示('S')",
-                "code_display" : "圖示('S')",
+                "code" : "Image('S')",
+                "code_display" : "Image('S')",
                 "note" : "單一字元",
                 "long_note" : true
             }    
@@ -372,15 +372,15 @@
         "items" :[
             {
                 "menu_display" : "點鐘元組(唯讀清單)",
-                "code" : "圖示.ALL_CLOCKS",
-                "code_display" : "圖示.ALL_CLOCKS",
+                "code" : "Image.ALL_CLOCKS",
+                "code_display" : "Image.ALL_CLOCKS",
                 "note" : "點鐘元組(唯讀清單)",
                 "long_note" : true
             },
             {
                 "menu_display" : "方向元組(唯讀清單)",
-                "code" : "圖示.ALL_ARROWS",
-                "code_display" : "圖示.ALL_ARROWS",
+                "code" : "Image.ALL_ARROWS",
+                "code_display" : "Image.ALL_ARROWS",
                 "note" : "方向元組(唯讀清單)",
                 "long_note" : true
             }           
@@ -402,8 +402,8 @@
         "items" :[
             {
                 "menu_display" : "圖示 自訂",
-                "code" : "自訂圖示 = 圖示(\n'99999:'\n'99999:'\n'99999:'\n'99999:'\n'99999:'\n)",
-                "code_display" : "自訂圖示 = 圖示(\n    '99999:'\n    '99999:'\n    '99999:'\n    '99999:'\n    '99999:'\n    )",
+                "code" : "自訂圖示 = Image(\n'99999:'\n'99999:'\n'99999:'\n'99999:'\n'99999:'\n)",
+                "code_display" : "自訂圖示 = Image(\n    '99999:'\n    '99999:'\n    '99999:'\n    '99999:'\n    '99999:'\n    )",
                 "note" : "亮度0~9",
                 "long_note" : true
             }     
@@ -416,8 +416,8 @@
             
             {
                 "menu_display" : "LED呈現 自訂圖示",
-                "code" : "顯示.show(自訂圖示)",
-                "code_display" : "顯示.show(自訂圖示)",
+                "code" : "display.show(自訂圖示)",
+                "code_display" : "display.show(自訂圖示)",
                 "note" : "LED呈現 自訂圖示(需先自訂)",
                 "long_note" : true
             }        
@@ -429,15 +429,15 @@
         "items" :[
             {
                 "menu_display" : "圖示 亮度調整 除法",
-                "code" : "圖示('S') / 9",
-                "code_display" : "圖示('S') / 9",
+                "code" : "Image('S') / 9",
+                "code_display" : "Image('S') / 9",
                 "note" : "亮度調整 除法(或乘法)",
                 "long_note" : true
             },
             {
                 "menu_display" : "圖示 亮度調整 乘法",
-                "code" : "圖示('S') / 9 * 3",
-                "code_display" : "圖示('S') / 9 * 3",
+                "code" : "Image('S') / 9 * 3",
+                "code_display" : "Image('S') / 9 * 3",
                 "note" : "亮度調整 除法(或乘法)",
                 "long_note" : true
             }           
