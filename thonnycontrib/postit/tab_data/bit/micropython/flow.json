@@ -18,29 +18,29 @@
         "items" :[
             {
                 "menu_display" : "重複幾次",
-                "code" : "for 數 in range(5) :\npass",
-                "code_display" : "for 數 in range(5) : \n    pass",
+                "code" : "for i in range(5) :\npass",
+                "code_display" : "for i in range(5) : \n    pass",
                 "note" : "從數列取出 (重複幾次):\n    迴圈區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "重複幾次 (開始,結尾不含)",
-                "code" : "for 數 in range(5, 10) :\npass",
-                "code_display" : "for 數 in range(5, 10) : \n    pass",
+                "code" : "for i in range(5, 10) :\npass",
+                "code_display" : "for i in range(5, 10) : \n    pass",
                 "note" : "從數列取出 (開始,結尾不含):\n    迴圈區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "重複幾次 (開始,結尾不含,步進)",
-                "code" : "for 數 in range(0, 10, 2) :\npass",
-                "code_display" : "for 數 in range(0, 10, 2) : \n    pass",
+                "code" : "for i in range(0, 10, 2) :\npass",
+                "code_display" : "for i in range(0, 10, 2) : \n    pass",
                 "note" : "從數列取出 (開始,結尾不含,步進):\n    迴圈區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "從清單逐一取出",
-                "code" : "for 項目 in [1,4,5] :\npass",
-                "code_display" : "for 項目 in [1,4,5] : \n    pass",
+                "code" : "for i in [1,4,5] :\npass",
+                "code_display" : "for i in [1,4,5] : \n    pass",
                 "note" : "從清單逐一取出 :\n    迴圈區塊",
                 "long_note" : true
             }
@@ -55,14 +55,14 @@
                 "code" : "while True :\npass",
                 "code_display" : "while True : \n    pass",
                 "note" : "重複無限次:\n    迴圈區塊",
-                "long_note" : false
+                "long_note" : true
             },
             {
                 "menu_display" : "有條件重複 while",
                 "code" : "while 1 > 0 :\npass",
                 "code_display" : "while 1 > 0 : \n    pass",
                 "note" : "當條件成立時:\n    迴圈區塊",
-                "long_note" : false
+                "long_note" : true
             }
         ]
     },
@@ -153,22 +153,22 @@
         "items" :[
             {
                 "menu_display" : "定義函式 無參數",
-                "code" : "def 新功能() :\npass",
-                "code_display" : "def 新功能() :\n    pass",
+                "code" : "def f() :\npass",
+                "code_display" : "def f() :\n    pass",
                 "note" : "定義 新功能():\n    函式區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "定義函式 有參數",
-                "code" : "def 新功能(x) :\npass",
-                "code_display" : "def 新功能(x) :\n    pass",
+                "code" : "def f(x) :\npass",
+                "code_display" : "def f(x) :\n    pass",
                 "note" : "定義 新功能(參數):\n    函式區塊",
                 "long_note" : true
             },
             {
                 "menu_display" : "定義函式 參數有預設值",
-                "code" : "def 新功能(x=0) :\npass",
-                "code_display" : "def 新功能(x=0) :\n    pass",
+                "code" : "def f(x=0) :\npass",
+                "code_display" : "def f(x=0) :\n    pass",
                 "note" : "定義 新功能(參數有預設值):\n    函式區塊",
                 "long_note" : true
             }

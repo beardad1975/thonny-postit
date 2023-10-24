@@ -3,7 +3,7 @@
         "group_name" : "microbit",
         "group_label" : "microbit",
         "default_tabs":[
-            "led"
+            "led", "buttons"
         ]
         
     },
@@ -11,7 +11,7 @@
         "group_name" : "micropython",
         "group_label" : "micropython與函式庫",
         "default_tabs":[
-            "flow", "utime"
+            "flow"
         ]
         
     }
