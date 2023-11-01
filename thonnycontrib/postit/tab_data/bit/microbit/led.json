@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " microbit模組 函式  ",
-        "off_label" : " microbit模組 函式 >",
+        "on_label" : " 模組 常用函式  ",
+        "off_label" : " 模組 常用函式 >",
         "start_on" : true
     },
     {
@@ -28,15 +28,36 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
-        "start_hide_note" : true,
+        "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "等待",
-                "code" : "sleep(200)",
-                "code_display" : "sleep(200)",
+                "code" : "sleep(500)",
+                "code_display" : "sleep(500)",
                 "note" : "等待(毫秒)",
                 "long_note" : false
-            }            
+            },
+            {
+                "menu_display" : "比率轉換 整數",
+                "code" : "scale(0, from_=(-2000,2000), to=(0,255))",
+                "code_display" : "scale(0, from_=(-2000,2000),\n    to=(0,255))",
+                "note" : "比率轉換 整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "比率轉換 浮點數",
+                "code" : "scale(30, from_=(0,100), to=(32.0,212.0))",
+                "code_display" : "scale(30, from_=(0,100),\n    to=(32.0,212.0))",
+                "note" : "比率轉換 浮點數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "溫度",
+                "code" : "temperature()",
+                "code_display" : "temperature()",
+                "note" : "溫度",
+                "long_note" : false
+            }
         ]
     },
     {
@@ -374,6 +395,20 @@
                 "code_display" : "Image.ARROW_NW",
                 "note" : "圖像 箭頭 西北",
                 "long_note" : true
+            },
+            {
+                "menu_display" : "點鐘清單 唯讀",
+                "code" : "Image.ALL_CLOCKS",
+                "code_display" : "Image.ALL_CLOCKS",
+                "note" : "點鐘清單 唯讀",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "方向清單 唯讀",
+                "code" : "Image.ALL_ARROWS",
+                "code_display" : "Image.ALL_ARROWS",
+                "note" : "方向清單 唯讀",
+                "long_note" : true
             }     
         ]
     },
@@ -391,26 +426,6 @@
         ]
     },
     {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
-            {
-                "menu_display" : "點鐘清單 唯讀",
-                "code" : "Image.ALL_CLOCKS",
-                "code_display" : "Image.ALL_CLOCKS",
-                "note" : "點鐘清單 唯讀",
-                "long_note" : true
-            },
-            {
-                "menu_display" : "方向清單 唯讀",
-                "code" : "Image.ALL_ARROWS",
-                "code_display" : "Image.ALL_ARROWS",
-                "note" : "方向清單 唯讀",
-                "long_note" : true
-            }           
-        ]
-    },
-    {
         "postit_type" : "ttk_separator"
     },
     {
@@ -421,14 +436,14 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "start_hide_note" : false,
         "items" :[
             {
                 "menu_display" : "自訂圖像 全暗",
                 "code" : "img = Image(\n'00000:'\n'00000:'\n'00000:'\n'00000:'\n'00000:')",
                 "code_display" : "img = Image(\n    '00000:'\n    '00000:'\n    '00000:'\n    '00000:'\n    '00000:')",
-                "note" : "自訂圖像\n亮度 0~9",
+                "note" : "自訂圖像 亮度 0~9",
                 "long_note" : true
             },
             {
@@ -449,7 +464,7 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
+        "postfix_enter" : true,
         "items" :[
             
             {
@@ -526,8 +541,8 @@
            
             {
                 "menu_display" : "取得像素",
-                "code" : "p = display.get_pixel(0, 0)",
-                "code_display" : "p = display.get_pixel(0, 0)",
+                "code" : "display.get_pixel(0, 0)",
+                "code_display" : "display.get_pixel(0, 0)",
                 "note" : "取得像素(x, y)\nx座標 0~4\ny座標 0~4\n傳回亮度",
                 "long_note" : true
             }           
@@ -538,8 +553,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 感光 讀取  ",
-        "off_label" : " 感光 讀取 >",
+        "on_label" : " 感光  ",
+        "off_label" : " 感光 >",
         "start_on" : false
     },
     {
@@ -553,14 +568,7 @@
                 "code_display" : "display.read_light_level()",
                 "note" : "讀取感光值 0~255",
                 "long_note" : true
-            },
-            {
-                "menu_display" : "設值 讀取感光值",
-                "code" : "light = display.read_light_level()",
-                "code_display" : "light = display.read_light_level()",
-                "note" : "設值 讀取感光值 0~255",
-                "long_note" : true
-            }           
+            }            
         ]
     }
 ]

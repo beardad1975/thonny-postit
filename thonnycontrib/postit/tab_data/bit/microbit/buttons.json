@@ -7,9 +7,9 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 模組  ",
-        "off_label" : " 模組 >",
-        "start_on" : true
+        "on_label" : " 模組 常用函式  ",
+        "off_label" : " 模組 常用函式 >",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -18,11 +18,46 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "from microbit import button_a as A鈕, button_b as B鈕",
-                "code_display" : "from microbit import \\\n    button_a as A鈕, \\\n    button_b as B鈕",
-                "note" : "需先匯入!!(A鈕 B鈕)",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "匯入(一次即可)",
                 "long_note" : true
             }            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "等待",
+                "code" : "sleep(500)",
+                "code_display" : "sleep(500)",
+                "note" : "等待(毫秒)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "比率轉換 整數",
+                "code" : "scale(0, from_=(-2000,2000), to=(0,255))",
+                "code_display" : "scale(0, from_=(-2000,2000),\n    to=(0,255))",
+                "note" : "比率轉換 整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "比率轉換 浮點數",
+                "code" : "scale(30, from_=(0,100), to=(32.0,212.0))",
+                "code_display" : "scale(30, from_=(0,100),\n    to=(32.0,212.0))",
+                "note" : "比率轉換 浮點數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "溫度",
+                "code" : "temperature()",
+                "code_display" : "temperature()",
+                "note" : "溫度",
+                "long_note" : false
+            }
         ]
     },
     {
@@ -41,52 +76,67 @@
         "items" :[
             {
                 "menu_display" : "A鈕 按住了嗎",
-                "code" : "A鈕.is_pressed()",
-                "code_display" : "A鈕.is_pressed()",
+                "code" : "button_a.is_pressed()",
+                "code_display" : "button_a.is_pressed()",
                 "note" : "A鈕 按住了嗎",
                 "long_note" : true
             },
             {
-                "menu_display" : "A鈕 按過了嗎",
-                "code" : "A鈕.was_pressed()",
-                "code_display" : "A鈕.was_pressed()",
+                "menu_display" : "    按過了嗎",
+                "code" : "button_a.was_pressed()",
+                "code_display" : "button_a.was_pressed()",
                 "note" : "A鈕 按過了嗎(執行後狀態重設)",
                 "long_note" : true
             },
             {
-                "menu_display" : "A鈕 取得按下次數",
-                "code" : "A鈕.get_presses()",
-                "code_display" : "A鈕.get_presses()",
+                "menu_display" : "    取得按下次數",
+                "code" : "button_a.get_presses()",
+                "code_display" : "button_a.get_presses()",
                 "note" : "A鈕 取得按下次數(執行後次數重設)",
                 "long_note" : true
-            }          
-        ]
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : false,
-        "items" :[
+            },
             {
                 "menu_display" : "B鈕 按住了嗎",
-                "code" : "B鈕.is_pressed()",
-                "code_display" : "B鈕.is_pressed()",
+                "code" : "button_b.is_pressed()",
+                "code_display" : "button_b.is_pressed()",
                 "note" : "B鈕 按住了嗎",
                 "long_note" : true
             },
             {
-                "menu_display" : "B鈕 按過了嗎",
-                "code" : "B鈕.was_pressed()",
-                "code_display" : "B鈕.was_pressed()",
+                "menu_display" : "    按過了嗎",
+                "code" : "button_b.was_pressed()",
+                "code_display" : "button_b.was_pressed()",
                 "note" : "B鈕 按過了嗎(執行後狀態重設)",
                 "long_note" : true
             },
             {
-                "menu_display" : "B鈕 取得按下次數",
-                "code" : "B鈕.get_presses()",
-                "code_display" : "B鈕.get_presses()",
+                "menu_display" : "    取得按下次數",
+                "code" : "button_b.get_presses()",
+                "code_display" : "button_b.get_presses()",
                 "note" : "B鈕 取得按下次數(執行後次數重設)",
                 "long_note" : true
-            }          
+            }           
+        ]
+    },
+    {
+        "postit_type" : "in_para_block_enclosed_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "如果 按下 if",
+                "code" : "if button_a.is_pressed():\npass",
+                "code_display" : "if button_a.is_pressed():\n    pass",
+                "note" : "如果 按下按鈕",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "如果 按下 不然(否則) if else",
+                "code" : "if button_a.is_pressed():\npass\nelse :\npass",
+                "code_display" : "if button_a.is_pressed():\n    pass\nelse : \n    pass",
+                "note" : "如果 按下按鈕 不然(否則)",
+                "long_note" : true
+            }        
         ]
     }
 ]
