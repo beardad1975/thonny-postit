@@ -233,22 +233,22 @@
         "items" :[
             {
                 "menu_display" : "list清單 數字",
-                "code" : "清單 = [3,1,2]",
-                "code_display" : "清單 = [3,1,2]",
+                "code" : "li = [3,1,2]",
+                "code_display" : "li = [3,1,2]",
                 "note" : "list清單 數字",
                 "long_note" : true
             },
             {
                 "menu_display" : "list清單 文字",
-                "code" : "清單 = ['a','b','c']",
-                "code_display" : "清單 = ['a','b','c']",
+                "code" : "li = ['a','b','c']",
+                "code_display" : "li = ['a','b','c']",
                 "note" : "list清單 文字",
                 "long_note" : true
             },
             {
                 "menu_display" : "list清單 混合類型",
-                "code" : "清單 = [100,'水果',3.14]",
-                "code_display" : "清單 = [100,'水果',3.14]",
+                "code" : "li = [100,'水果',3.14]",
+                "code_display" : "li = [100,'水果',3.14]",
                 "note" : "list清單 混合類型",
                 "long_note" : true
             }        
@@ -260,15 +260,15 @@
         "items" :[
             {
                 "menu_display" : "索引 從0開始算",
-                "code" : "清單[0]",
-                "code_display" : "清單[0]",
+                "code" : "li[0]",
+                "code_display" : "li[0]",
                 "note" : "索引 從0開始算",
                 "long_note" : true
             },
             {
                 "menu_display" : "索引 倒過來算",
-                "code" : "清單[-1]",
-                "code_display" : "清單[-1]",
+                "code" : "li[-1]",
+                "code_display" : "li[-1]",
                 "note" : "索引 倒過來算",
                 "long_note" : true
             }     
@@ -280,29 +280,29 @@
         "items" :[
             {
                 "menu_display" : "切片 索引開頭 索引結尾(不含)",
-                "code" : "清單[0:2]",
-                "code_display" : "清單[0:2]",
+                "code" : "li[0:2]",
+                "code_display" : "li[0:2]",
                 "note" : "切片 索引開頭 索引結尾(不含)",
                 "long_note" : true
             },
             {
                 "menu_display" : "切片 索引開頭 清單結尾(:後省略)",
-                "code" : "清單[1:]",
-                "code_display" : "清單[1:]",
+                "code" : "li[1:]",
+                "code_display" : "li[1:]",
                 "note" : "切片 索引開頭 清單結尾(:後省略)",
                 "long_note" : true
             },
             {
                 "menu_display" : "切片 清單開頭(:前省略) 索引結尾(不含)",
-                "code" : "清單[:2]",
-                "code_display" : "清單[:2]",
+                "code" : "li[:2]",
+                "code_display" : "li[:2]",
                 "note" : "切片 清單開頭(:前省略) 索引結尾(不含)",
                 "long_note" : true
             },
             {
                 "menu_display" : "切片 全部(:前後都省略)",
-                "code" : "清單[:]",
-                "code_display" : "清單[:]",
+                "code" : "li[:]",
+                "code_display" : "li[:]",
                 "note" : "切片 全部(:前後都省略)",
                 "long_note" : true
             }      
@@ -314,8 +314,8 @@
         "items" :[
             {
                 "menu_display" : "清單長度(項目個數)",
-                "code" : "len(清單)",
-                "code_display" : "len(清單)",
+                "code" : "len(li)",
+                "code_display" : "len(li)",
                 "note" : "清單長度(項目個數)",
                 "long_note" : true
             } 
@@ -327,15 +327,15 @@
         "items" :[
             {
                 "menu_display" : "附加項目 到最後",
-                "code" : "清單.append(3)",
-                "code_display" : "清單.append(3)",
+                "code" : "li.append(3)",
+                "code_display" : "li.append(3)",
                 "note" : "附加項目 從最後",
                 "long_note" : true
             },
             {
                 "menu_display" : "插入項目 到索引位置",
-                "code" : "清單.insert(0, '蘋果')",
-                "code_display" : "清單.insert(0, '蘋果')",
+                "code" : "li.insert(0, '蘋果')",
+                "code_display" : "li.insert(0, '蘋果')",
                 "note" : "插入項目 到索引位置",
                 "long_note" : true
             }     
@@ -347,22 +347,22 @@
         "items" :[
             {
                 "menu_display" : "移除並取出項目 從最後",
-                "code" : "項目 = 清單.pop()",
-                "code_display" : "項目 = 清單.pop()",
+                "code" : "item = li.pop()",
+                "code_display" : "item = li.pop()",
                 "note" : "移除並取出項目 從最後",
                 "long_note" : true
             },
             {
                 "menu_display" : "移除並取出項目 從索引位置",
-                "code" : "項目 = 清單.pop(0)",
-                "code_display" : "項目 = 清單.pop(0)",
+                "code" : "item = li.pop(0)",
+                "code_display" : "item = li.pop(0)",
                 "note" : "移除並取出項目 從索引位置",
                 "long_note" : true
             },
             {
                 "menu_display" : "移除項目 依項目值",
-                "code" : "清單.remove(1)",
-                "code_display" : "清單.remove(1)",
+                "code" : "li.remove(1)",
+                "code_display" : "li.remove(1)",
                 "note" : "移除項目 依項目值",
                 "long_note" : true
             }     

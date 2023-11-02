@@ -18,8 +18,8 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "import random as 隨機",
-                "code_display" : "import random as 隨機",
+                "code" : "import random",
+                "code_display" : "import random",
                 "note" : "需先匯入!!(隨機)",
                 "long_note" : true
             }        
@@ -41,8 +41,8 @@
         "items" :[
             {
                 "menu_display" : "範圍內隨機整數",
-                "code" : "隨機.randint(1,10)",
-                "code_display" : "隨機.randint(1,10)",
+                "code" : "random.randint(1,10)",
+                "code_display" : "random.randint(1,10)",
                 "note" : "隨機範圍內整數",
                 "long_note" : true
             }
@@ -55,8 +55,8 @@
         "items" :[
             {
                 "menu_display" : "範圍0到1隨機浮點數",
-                "code" : "隨機.random()",
-                "code_display" : "隨機.random()",
+                "code" : "random.random()",
+                "code_display" : "random.random()",
                 "note" : "範圍0到1隨機浮點數",
                 "long_note" : true
             }
@@ -79,15 +79,15 @@
         "items" :[
             {
                 "menu_display" : "清單內隨機項目 範例",
-                "code" : "隨機.choice([3,5,9])",
-                "code_display" : "隨機.choice([3,5,9])",
+                "code" : "random.choice([3,5,9])",
+                "code_display" : "random.choice([3,5,9])",
                 "note" : "清單內隨機項目",
                 "long_note" : true
             },
             {
                 "menu_display" : "清單內隨機項目 ",
-                "code" : "隨機.choice(清單)",
-                "code_display" : "隨機.choice(清單)",
+                "code" : "random.choice(清單)",
+                "code_display" : "random.choice(清單)",
                 "note" : "清單內隨機項目 清單需先設值",
                 "long_note" : true
             }

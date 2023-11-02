@@ -93,7 +93,7 @@
         "postit_type" : "postit_para",
         "on_label" : " 條件分支 選擇結構  ",
         "off_label" : " 條件分支 選擇結構 >",
-        "start_on" : false
+        "start_on" : true
     },
     {
         "postit_type" : "in_para_block_enclosed_postit",

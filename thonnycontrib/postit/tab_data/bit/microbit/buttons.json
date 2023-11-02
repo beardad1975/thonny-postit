@@ -39,8 +39,8 @@
             },
             {
                 "menu_display" : "比率轉換 整數",
-                "code" : "scale(0, from_=(-2000,2000), to=(0,255))",
-                "code_display" : "scale(0, from_=(-2000,2000),\n    to=(0,255))",
+                "code" : "scale(0, from_=(0,255), to=(0,1000))",
+                "code_display" : "scale(0, from_=(0,255),\n    to=(0,1000))",
                 "note" : "比率轉換 整數",
                 "long_note" : true
             },

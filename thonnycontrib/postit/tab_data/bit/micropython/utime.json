@@ -18,8 +18,8 @@
         "items" :[
             {
                 "menu_display" : "匯入時間模組",
-                "code" : "import utime as 時間",
-                "code_display" : "import utime as 時間",
+                "code" : "import time",
+                "code_display" : "import time",
                 "note" : "需先匯入!!(時間)",
                 "long_note" : true
             }        
@@ -41,22 +41,22 @@
         "items" :[
             {
                 "menu_display" : "睡眠 毫秒",
-                "code" : "時間.sleep_ms(100)",
-                "code_display" : "時間.sleep_ms(100)",
+                "code" : "time.sleep_ms(100)",
+                "code_display" : "time.sleep_ms(100)",
                 "note" : "睡眠 毫秒 (1000毫秒是1秒)",
                 "long_note" : true
             },
             {
                 "menu_display" : "睡眠 秒",
-                "code" : "時間.sleep(1)",
-                "code_display" : "時間.sleep(1)",
+                "code" : "time.sleep(1)",
+                "code_display" : "time.sleep(1)",
                 "note" : "睡眠 幾秒 ",
                 "long_note" : true
             },
             {
                 "menu_display" : "睡眠 微秒",
-                "code" : "時間.sleep_us(1000)",
-                "code_display" : "時間.sleep_us(1000)",
+                "code" : "time.sleep_us(1000)",
+                "code_display" : "time.sleep_us(1000)",
                 "note" : "睡眠 微秒 (1000微秒是1毫秒)",
                 "long_note" : true
             }
@@ -68,15 +68,15 @@
         "items" :[
             {
                 "menu_display" : "計時器 毫秒",
-                "code" : "時間.ticks_ms()",
-                "code_display" : "時間.ticks_ms()",
+                "code" : "time.ticks_ms()",
+                "code_display" : "time.ticks_ms()",
                 "note" : "毫秒 計時器(開機累計到現在)",
                 "long_note" : true
             },
             {
                 "menu_display" : "計時器 微秒",
-                "code" : "時間.ticks_us()",
-                "code_display" : "時間.ticks_us()",
+                "code" : "time.ticks_us()",
+                "code_display" : "time.ticks_us()",
                 "note" : "微秒 計時器(開機累計到現在)",
                 "long_note" : true
             }

@@ -39,8 +39,8 @@
             },
             {
                 "menu_display" : "比率轉換 整數",
-                "code" : "scale(0, from_=(-2000,2000), to=(0,255))",
-                "code_display" : "scale(0, from_=(-2000,2000),\n    to=(0,255))",
+                "code" : "scale(0, from_=(0,255), to=(0,1000))",
+                "code_display" : "scale(0, from_=(0,255),\n    to=(0,1000))",
                 "note" : "比率轉換 整數",
                 "long_note" : true
             },
@@ -559,7 +559,7 @@
     },
     {
         "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
+        "postfix_enter" : false,
         "start_hide_note" : false,
         "items" :[
             {
@@ -567,6 +567,20 @@
                 "code" : "display.read_light_level()",
                 "code_display" : "display.read_light_level()",
                 "note" : "讀取感光值 0~255",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : true,
+        "items" :[
+            {
+                "menu_display" : "感光值 設定變數",
+                "code" : "n = display.read_light_level()",
+                "code_display" : "n = display.read_light_level()",
+                "note" : "感光值  設定變數",
                 "long_note" : true
             }            
         ]
