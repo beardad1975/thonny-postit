@@ -7,9 +7,9 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 模組(限V2)  ",
-        "off_label" : " 模組(限V2) >",
-        "start_on" : true
+        "on_label" : " microbit模組 常用函式  ",
+        "off_label" : " microbit模組 常用函式 >",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -18,21 +18,12 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "from microbit import microphone as 麥克風, SoundEvent as 聲音事件",
-                "code_display" : "from microbit import \\\n  microphone as 麥克風,\\\n  SoundEvent as 聲音事件",
-                "note" : "需先匯入!!(麥克風, 聲音事件)",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "匯入(一次即可)",
                 "long_note" : true
             }            
         ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : " 聲音值  ",
-        "off_label" : " 聲音值 >",
-        "start_on" : true
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -40,16 +31,74 @@
         "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "讀取麥克風聲音值",
-                "code" : "麥克風.sound_level()",
-                "code_display" : "麥克風.sound_level()",
-                "note" : "讀取麥克風聲音值",
+                "menu_display" : "等待",
+                "code" : "sleep(500)",
+                "code_display" : "sleep(500)",
+                "note" : "等待(毫秒)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "比率轉換 整數",
+                "code" : "scale(0, from_=(0,255), to=(0,1000))",
+                "code_display" : "scale(0, from_=(0,255),\n    to=(0,1000))",
+                "note" : "比率轉換 整數",
                 "long_note" : true
             },
             {
-                "menu_display" : "設值 讀取麥克風聲音值",
-                "code" : "聲音值 = 麥克風.sound_level()",
-                "code_display" : "聲音值 = 麥克風.sound_level()",
+                "menu_display" : "比率轉換 浮點數",
+                "code" : "scale(30, from_=(0,100), to=(32.0,212.0))",
+                "code_display" : "scale(30, from_=(0,100),\n    to=(32.0,212.0))",
+                "note" : "比率轉換 浮點數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "溫度",
+                "code" : "temperature()",
+                "code_display" : "temperature()",
+                "note" : "溫度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "調整音量 (限V2)",
+                "code" : "set_volume(128)",
+                "code_display" : "set_volume(128)",
+                "note" : "調整音量 0~255 (限V2)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 收音值  ",
+        "off_label" : " 收音值 >",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : false,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "讀取麥克風聲音值",
+                "code" : "microphone.sound_level()",
+                "code_display" : "microphone.sound_level()",
+                "note" : "讀取麥克風聲音值 0~255",
+                "long_note" : true
+            }       
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "麥克風聲音值 設定變數",
+                "code" : "n = microphone.sound_level()",
+                "code_display" : "n = microphone.sound_level()",
                 "note" : "設值 讀取麥克風聲音值",
                 "long_note" : true
             }        
@@ -71,22 +120,22 @@
         "items" :[
             {
                 "menu_display" : "目前聲音事件",
-                "code" : "麥克風.current_event()",
-                "code_display" : "麥克風.current_event()",
+                "code" : "microphone.current_event()",
+                "code_display" : "microphone.current_event()",
                 "note" : "目前聲音事件",
                 "long_note" : true
             },
             {
-                "menu_display" : "是大聲事件嗎",
-                "code" : "麥克風.current_event() == 聲音事件.LOUD",
-                "code_display" : "麥克風.current_event()\\\n   == 聲音事件.LOUD",
+                "menu_display" : "是大聲嗎",
+                "code" : "microphone.current_event() == SoundEvent.LOUD",
+                "code_display" : "microphone.current_event()\\\n   == SoundEvent.LOUD",
                 "note" : "是大聲事件嗎",
                 "long_note" : true
             },
             {
-                "menu_display" : "是小聲事件嗎",
-                "code" : "麥克風.current_event() == 聲音事件.QUIET",
-                "code_display" : "麥克風.current_event()\\\n   == 聲音事件.QUIET",
+                "menu_display" : "是小聲嗎",
+                "code" : "microphone.current_event() == SoundEvent.QUIET",
+                "code_display" : "microphone.current_event()\\\n   == SoundEvent.QUIET",
                 "note" : "是小聲事件嗎",
                 "long_note" : true
             }        
@@ -97,16 +146,16 @@
         "postfix_enter" : false,
         "items" :[
             {
-                "menu_display" : "發生過大聲事件嗎",
-                "code" : "麥克風.was_event(聲音事件.LOUD)",
-                "code_display" : "麥克風.was_event(\n  聲音事件.LOUD)",
+                "menu_display" : "發生過大聲嗎",
+                "code" : "microphone.was_event(SoundEvent.LOUD)",
+                "code_display" : "microphone.was_event(\n  SoundEvent.LOUD)",
                 "note" : "發生過大聲事件嗎",
                 "long_note" : true
             },
             {
-                "menu_display" : "發生過小聲事件嗎",
-                "code" : "麥克風.was_event(聲音事件.QUIET)",
-                "code_display" : "麥克風.was_event(\n  聲音事件.QUIET)",
+                "menu_display" : "發生過小聲嗎",
+                "code" : "microphone.was_event(SoundEvent.QUIET)",
+                "code_display" : "microphone.was_event(\n  SoundEvent.QUIET)",
                 "note" : "發生過小聲事件嗎",
                 "long_note" : true
             }  
@@ -118,15 +167,15 @@
         "items" :[
             {
                 "menu_display" : "設定門檻 大聲事件",
-                "code" : "麥克風.set_threshold(聲音事件.LOUD, 200)",
-                "code_display" : "麥克風.set_threshold(\n  聲音事件.LOUD, 200)",
+                "code" : "microphone.set_threshold(SoundEvent.LOUD, 200)",
+                "code_display" : "microphone.set_threshold(\n  SoundEvent.LOUD, 200)",
                 "note" : "設定門檻 大聲事件",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定門檻 小聲事件",
-                "code" : "麥克風.set_threshold(聲音事件.QUIET, 200)",
-                "code_display" : "麥克風.set_threshold(\n  聲音事件.QUIET, 200)",
+                "code" : "microphone.set_threshold(SoundEvent.QUIET, 200)",
+                "code_display" : "microphone.set_threshold(\n  SoundEvent.QUIET, 200)",
                 "note" : "設定門檻 小聲事件",
                 "long_note" : true
             }    

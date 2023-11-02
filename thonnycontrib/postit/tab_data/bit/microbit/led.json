@@ -7,8 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 模組 常用函式  ",
-        "off_label" : " 模組 常用函式 >",
+        "on_label" : " microbit模組 常用函式  ",
+        "off_label" : " microbit模組 常用函式 >",
         "start_on" : true
     },
     {
@@ -57,6 +57,13 @@
                 "code_display" : "temperature()",
                 "note" : "溫度",
                 "long_note" : false
+            },
+            {
+                "menu_display" : "調整音量 (限V2)",
+                "code" : "set_volume(128)",
+                "code_display" : "set_volume(128)",
+                "note" : "調整音量 0~255 (限V2)",
+                "long_note" : true
             }
         ]
     },

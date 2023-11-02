@@ -7,8 +7,73 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 模組  ",
-        "off_label" : " 模組 >",
+        "on_label" : " microbit模組 常用函式  ",
+        "off_label" : " microbit模組 常用函式 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "匯入(一次即可)",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "等待",
+                "code" : "sleep(500)",
+                "code_display" : "sleep(500)",
+                "note" : "等待(毫秒)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "比率轉換 整數",
+                "code" : "scale(0, from_=(0,255), to=(0,1000))",
+                "code_display" : "scale(0, from_=(0,255),\n    to=(0,1000))",
+                "note" : "比率轉換 整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "比率轉換 浮點數",
+                "code" : "scale(30, from_=(0,100), to=(32.0,212.0))",
+                "code_display" : "scale(30, from_=(0,100),\n    to=(32.0,212.0))",
+                "note" : "比率轉換 浮點數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "溫度",
+                "code" : "temperature()",
+                "code_display" : "temperature()",
+                "note" : "溫度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "調整音量 (限V2)",
+                "code" : "set_volume(128)",
+                "code_display" : "set_volume(128)",
+                "note" : "調整音量 0~255 (限V2)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " radio模組  ",
+        "off_label" : " radio模組 >",
         "start_on" : true
     },
     {
@@ -18,8 +83,8 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "import radio as 無線電",
-                "code_display" : "import radio as 無線電",
+                "code" : "import radio",
+                "code_display" : "import radio",
                 "note" : "需先匯入!!(無線電)",
                 "long_note" : true
             }
@@ -41,15 +106,15 @@
         "items" :[
             {
                 "menu_display" : "啟用無線電",
-                "code" : "無線電.on()",
-                "code_display" : "無線電.on()",
+                "code" : "radio.on()",
+                "code_display" : "radio.on()",
                 "note" : "啟用無線電",
                 "long_note" : true
             },
             {
                 "menu_display" : "關閉無線電",
-                "code" : "無線電.off()",
-                "code_display" : "無線電.off()",
+                "code" : "radio.off()",
+                "code_display" : "radio.off()",
                 "note" : "關閉無線電",
                 "long_note" : true
             }
@@ -61,57 +126,57 @@
         "items" :[
             {
                 "menu_display" : "設定 群組",
-                "code" : "無線電.config(group=0)",
-                "code_display" : "無線電.config(group=0)",
+                "code" : "radio.config(group=0)",
+                "code_display" : "radio.config(group=0)",
                 "note" : "設定群組(0~255)",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定 頻道",
-                "code" : "無線電.config(channel=7)",
-                "code_display" : "無線電.config(channel=7)",
+                "code" : "radio.config(channel=7)",
+                "code_display" : "radio.config(channel=7)",
                 "note" : "設定頻道(0~83)\n(從2400MHz開始,一次跳1MHz)",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定 位址",
-                "code" : "無線電.config(address=0x75626974)",
-                "code_display" : "無線電.config(address=0x75626974)",
+                "code" : "radio.config(address=0x75626974)",
+                "code_display" : "radio.config(address=0x75626974)",
                 "note" : "設定位址(32位元長度)",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定 佇列訊息數量",
-                "code" : "無線電.config(queue=3)",
-                "code_display" : "無線電.config(queue=3)",
+                "code" : "radio.config(queue=3)",
+                "code_display" : "radio.config(queue=3)",
                 "note" : "佇列訊息數量",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定 訊息位元長度",
-                "code" : "無線電.config(length=32)",
-                "code_display" : "無線電.config(length=32)",
+                "code" : "radio.config(length=32)",
+                "code_display" : "radio.config(length=32)",
                 "note" : "訊息位元長度(~251)",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定 訊息強度",
-                "code" : "無線電.config(power=6)",
-                "code_display" : "無線電.config(power=6)",
+                "code" : "radio.config(power=6)",
+                "code_display" : "radio.config(power=6)",
                 "note" : "設定訊息強度(0~7)",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定 傳輸速度",
-                "code" : "無線電.config(data_rate=無線電.RATE_1MBIT)",
-                "code_display" : "無線電.config(\n    data_rate=無線電.RATE_1MBIT)",
+                "code" : "radio.config(data_rate=radio.RATE_1MBIT)",
+                "code_display" : "radio.config(\n    data_rate=radio.RATE_1MBIT)",
                 "note" : "設定 傳輸速度 RATE_250KBIT\nRATE_1MBIT, RATE_2MBIT",
                 "long_note" : true
             },
             {
                 "menu_display" : "設定 恢復預設",
-                "code" : "無線電.reset()",
-                "code_display" : "無線電.reset()",
+                "code" : "radio.reset()",
+                "code_display" : "radio.reset()",
                 "note" : "設定 恢復預設",
                 "long_note" : true
             }
@@ -133,8 +198,8 @@
         "items" :[
             {
                 "menu_display" : "傳送文字",
-                "code" : "無線電.send('文字')",
-                "code_display" : "無線電.send('文字')",
+                "code" : "radio.send('文字')",
+                "code_display" : "radio.send('文字')",
                 "note" : "傳送文字",
                 "long_note" : true
             }
@@ -147,8 +212,8 @@
             
             {
                 "menu_display" : "接收文字",
-                "code" : "接收文字 = 無線電.receive()",
-                "code_display" : "接收文字 = 無線電.receive()",
+                "code" : "t = radio.receive()",
+                "code_display" : "t = radio.receive()",
                 "note" : "接收 文字",
                 "long_note" : true
             }
@@ -171,8 +236,8 @@
             
             {
                 "menu_display" : "傳送位元組",
-                "code" : "無線電.send_bytes(b'abc')",
-                "code_display" : "無線電.send_bytes(b'abc')",
+                "code" : "radio.send_bytes(b'abc')",
+                "code_display" : "radio.send_bytes(b'abc')",
                 "note" : "傳送位元組",
                 "long_note" : true
             }
@@ -185,8 +250,8 @@
             
             {
                 "menu_display" : "接收位元組",
-                "code" : "接收位元組 = 無線電.receive_bytes()",
-                "code_display" : "接收位元組 = \n    無線電.receive_bytes()",
+                "code" : "b = radio.receive_bytes()",
+                "code_display" : "b = radio.receive_bytes()",
                 "note" : "接收 位元組",
                 "long_note" : true
             }

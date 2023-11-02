@@ -7,8 +7,73 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 模組  ",
-        "off_label" : " 模組 >",
+        "on_label" : " microbit模組 常用函式  ",
+        "off_label" : " microbit模組 常用函式 >",
+        "start_on" : false
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "匯入(一次即可)",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "等待",
+                "code" : "sleep(500)",
+                "code_display" : "sleep(500)",
+                "note" : "等待(毫秒)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "比率轉換 整數",
+                "code" : "scale(0, from_=(0,255), to=(0,1000))",
+                "code_display" : "scale(0, from_=(0,255),\n    to=(0,1000))",
+                "note" : "比率轉換 整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "比率轉換 浮點數",
+                "code" : "scale(30, from_=(0,100), to=(32.0,212.0))",
+                "code_display" : "scale(30, from_=(0,100),\n    to=(32.0,212.0))",
+                "note" : "比率轉換 浮點數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "溫度",
+                "code" : "temperature()",
+                "code_display" : "temperature()",
+                "note" : "溫度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "調整音量 (限V2)",
+                "code" : "set_volume(128)",
+                "code_display" : "set_volume(128)",
+                "note" : "調整音量 0~255 (限V2)",
+                "long_note" : true
+            }
+        ]
+    },
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " music模組  ",
+        "off_label" : " music模組 >",
         "start_on" : true
     },
     {
@@ -18,8 +83,8 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "import music as 音樂",
-                "code_display" : "import music as 音樂",
+                "code" : "import music",
+                "code_display" : "import music",
                 "note" : "需先匯入!!(音樂)",
                 "long_note" : true
             }            
@@ -41,15 +106,15 @@
         "items" :[
             {
                 "menu_display" : "演奏",
-                "code" : "音樂.play(音樂.BIRTHDAY)",
-                "code_display" : "音樂.play(音樂.BIRTHDAY)",
+                "code" : "music.play(music.BIRTHDAY)",
+                "code_display" : "music.play(music.BIRTHDAY)",
                 "note" : "演奏旋律",
                 "long_note" : true
             },
             {
                 "menu_display" : "演奏 等待 重複",
-                "code" : "音樂.play(音樂.BIRTHDAY,\nwait=True,\nloop=False,\n)",
-                "code_display" : "音樂.play(音樂.BIRTHDAY,\n    wait=True,\n    loop=False,\n    )",
+                "code" : "music.play(music.BIRTHDAY,\nwait=True,\nloop=False)",
+                "code_display" : "music.play(music.BIRTHDAY,\n    wait=True,\n    loop=False)",
                 "note" : "演奏旋律 (旋律, 等待, 重複)",
                 "long_note" : true
             }          
@@ -61,57 +126,57 @@
         "items" :[
             {
                 "menu_display" : "旋律 命運交響曲 貝多芬",
-                "code" : "音樂.DADADADUM",
-                "code_display" : "音樂.DADADADUM",
+                "code" : "music.DADADADUM",
+                "code_display" : "music.DADADADUM",
                 "note" : "旋律 命運交響曲 貝多芬",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 演藝人 喬普林",
-                "code" : "音樂.ENTERTAINER",
-                "code_display" : "音樂.ENTERTAINER",
+                "code" : "music.ENTERTAINER",
+                "code_display" : "music.ENTERTAINER",
                 "note" : "旋律 演藝人 喬普林",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 C大調前奏曲 巴哈",
-                "code" : "音樂.PRELUDE",
-                "code_display" : "音樂.PRELUDE",
+                "code" : "music.PRELUDE",
+                "code_display" : "music.PRELUDE",
                 "note" : "旋律 C大調前奏曲 巴哈",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 歡樂頌 貝多芬",
-                "code" : "音樂.ODE",
-                "code_display" : "音樂.ODE",
+                "code" : "music.ODE",
+                "code_display" : "music.ODE",
                 "note" : "旋律 歡樂頌 貝多芬",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 結婚進行曲 華格納",
-                "code" : "音樂.WEDDING",
-                "code_display" : "音樂.WEDDING",
+                "code" : "music.WEDDING",
+                "code_display" : "music.WEDDING",
                 "note" : "旋律 結婚進行曲 華格納",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 蒙提·派森的飛行馬戲團",
-                "code" : "音樂.PYTHON",
-                "code_display" : "音樂.PYTHON",
+                "code" : "music.PYTHON",
+                "code_display" : "music.PYTHON",
                 "note" : "旋律 蒙提·派森的飛行馬戲團",
                 "long_note" : true
             },
             {
                 "menu_display" : "旋律 升級",
-                "code" : "音樂.POWER_UP",
-                "code_display" : "音樂.POWER_UP",
+                "code" : "music.POWER_UP",
+                "code_display" : "music.POWER_UP",
                 "note" : "旋律 升級",
                 "long_note" : true
             } ,
             {
                 "menu_display" : "旋律 降級",
-                "code" : "音樂.POWER_DOWN",
-                "code_display" : "音樂.POWER_DOWN",
+                "code" : "music.POWER_DOWN",
+                "code_display" : "music.POWER_DOWN",
                 "note" : "旋律 降級",
                 "long_note" : true
             }        
@@ -123,15 +188,15 @@
         "items" :[
             {
                 "menu_display" : "演奏 音階",
-                "code" : "音樂.play([\n'c',\n'd',\n'e',\n])",
-                "code_display" : "音樂.play([\n    'c',\n    'd',\n    'e',\n    ])",
+                "code" : "music.play([\n'c',\n'd',\n'e',\n])",
+                "code_display" : "music.play([\n    'c',\n    'd',\n    'e',\n    ])",
                 "note" : "音階 c d e f g a b",
                 "long_note" : true
             },
             {
                 "menu_display" : "演奏 音階 八度:拍子",
-                "code" : "音樂.play([\n'c4:4',\n'd4:4',\n'e4:4',\n])",
-                "code_display" : "音樂.play([\n    'c4:4',\n    'd4:4',\n    'e4:4',\n    ])",
+                "code" : "music.play([\n'c4:4',\n'd4:4',\n'e4:4',\n])",
+                "code_display" : "music.play([\n    'c4:4',\n    'd4:4',\n    'e4:4',\n    ])",
                 "note" : "音階 c d e f g a b \n八度:拍子(4表示1拍)\nr休止符 b降半音 #升半音",
                 "long_note" : true
             }          
@@ -143,15 +208,15 @@
         "items" :[
             {
                 "menu_display" : "速度 每分鐘幾拍",
-                "code" : "音樂.set_tempo(bpm=120)",
-                "code_display" : "音樂.set_tempo(bpm=120)",
+                "code" : "music.set_tempo(bpm=120)",
+                "code_display" : "music.set_tempo(bpm=120)",
                 "note" : "速度 每分鐘幾拍",
                 "long_note" : true
             },
             {
                 "menu_display" : "速度 回復預設值",
-                "code" : "音樂.reset()",
-                "code_display" : "音樂.reset()",
+                "code" : "music.reset()",
+                "code_display" : "music.reset()",
                 "note" : "速度 每分鐘幾拍",
                 "long_note" : true
             }       
@@ -173,8 +238,8 @@
         "items" :[
             {
                 "menu_display" : "音高 頻率 時間",
-                "code" : "音樂.pitch(440, duration=500)",
-                "code_display" : "音樂.pitch(440, duration=500)",
+                "code" : "music.pitch(440, duration=500)",
+                "code_display" : "music.pitch(440, duration=500)",
                 "note" : "音高 (頻率, 持續時間)",
                 "long_note" : true
             }      
@@ -188,8 +253,8 @@
             
             {
                 "menu_display" : "音高 頻率 等待",
-                "code" : "音樂.pitch(440, wait=False)",
-                "code_display" : "音樂.pitch(440, wait=False)",
+                "code" : "music.pitch(440, wait=False)",
+                "code_display" : "music.pitch(440, wait=False)",
                 "note" : "音高 (頻率, 不等待)",
                 "long_note" : true
             }       
@@ -201,8 +266,8 @@
         "items" :[
             {
                 "menu_display" : "聲音停止",
-                "code" : "音樂.stop()",
-                "code_display" : "音樂.stop()",
+                "code" : "music.stop()",
+                "code_display" : "music.stop()",
                 "note" : "聲音停止",
                 "long_note" : true
             }       

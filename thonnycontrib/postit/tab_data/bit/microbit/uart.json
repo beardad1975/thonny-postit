@@ -7,9 +7,9 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 模組  ",
-        "off_label" : " 模組 >",
-        "start_on" : true
+        "on_label" : " microbit模組 常用函式  ",
+        "off_label" : " microbit模組 常用函式 >",
+        "start_on" : false
     },
     {
         "postit_type" : "in_para_dropdown_postit",
@@ -18,11 +18,53 @@
         "items" :[
             {
                 "menu_display" : "匯入模組",
-                "code" : "from microbit import uart as 序列",
-                "code_display" : "from microbit import\\\n  uart as 序列",
-                "note" : "需先匯入!!(序列)",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "匯入(一次即可)",
                 "long_note" : true
             }            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "等待",
+                "code" : "sleep(500)",
+                "code_display" : "sleep(500)",
+                "note" : "等待(毫秒)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "比率轉換 整數",
+                "code" : "scale(0, from_=(0,255), to=(0,1000))",
+                "code_display" : "scale(0, from_=(0,255),\n    to=(0,1000))",
+                "note" : "比率轉換 整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "比率轉換 浮點數",
+                "code" : "scale(30, from_=(0,100), to=(32.0,212.0))",
+                "code_display" : "scale(30, from_=(0,100),\n    to=(32.0,212.0))",
+                "note" : "比率轉換 浮點數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "溫度",
+                "code" : "temperature()",
+                "code_display" : "temperature()",
+                "note" : "溫度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "調整音量 (限V2)",
+                "code" : "set_volume(128)",
+                "code_display" : "set_volume(128)",
+                "note" : "調整音量 0~255 (限V2)",
+                "long_note" : true
+            }
         ]
     },
     {
@@ -41,8 +83,8 @@
         "items" :[
             {
                 "menu_display" : "序列 初始化",
-                "code" : "序列.init(115200)",
-                "code_display" : "序列.init(115200)",
+                "code" : "uart.init(115200)",
+                "code_display" : "uart.init(115200)",
                 "note" : "初始化 傳輸率(每秒115200位元) ",
                 "long_note" : true
             }            
@@ -64,15 +106,15 @@
         "items" :[
             {
                 "menu_display" : "寫入 傳送位元組",
-                "code" : "序列.write(b'abc')",
-                "code_display" : "序列.write(b'abc')",
+                "code" : "uart.write(b'abc')",
+                "code_display" : "uart.write(b'abc')",
                 "note" : "寫入 傳送位元組",
                 "long_note" : true
             }, 
             {
                 "menu_display" : "寫入 傳送文字",
-                "code" : "序列.write('你好')",
-                "code_display" : "序列.write('你好')",
+                "code" : "uart.write('你好')",
+                "code_display" : "uart.write('你好')",
                 "note" : "寫入 傳送文字(自動轉成位元組)",
                 "long_note" : true
             }           
@@ -84,8 +126,8 @@
         "items" :[
             {
                 "menu_display" : "有資料嗎",
-                "code" : "序列.any()",
-                "code_display" : "序列.any()",
+                "code" : "uart.any()",
+                "code_display" : "uart.any()",
                 "note" : "有傳入的資料嗎",
                 "long_note" : true
             }            
@@ -97,15 +139,15 @@
         "items" :[
             {
                 "menu_display" : "讀取 接收全部",
-                "code" : "序列.read()",
-                "code_display" : "序列.read()",
+                "code" : "uart.read()",
+                "code_display" : "uart.read()",
                 "note" : "讀取 接收全部",
                 "long_note" : true
             },
             {
                 "menu_display" : "讀取 接收多少位元組",
-                "code" : "序列.read(5)",
-                "code_display" : "序列.read(5)",
+                "code" : "uart.read(5)",
+                "code_display" : "uart.read(5)",
                 "note" : "讀取 接收多少位元組",
                 "long_note" : true
             }            

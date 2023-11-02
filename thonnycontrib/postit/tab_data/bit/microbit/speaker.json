@@ -7,31 +7,8 @@
     },
     {
         "postit_type" : "postit_para",
-        "on_label" : " 模組(限V2)  ",
-        "off_label" : " 模組(限V2) >",
-        "start_on" : true
-    },
-    {
-        "postit_type" : "in_para_dropdown_postit",
-        "postfix_enter" : true,
-        "start_hide_note" : false,
-        "items" :[
-            {
-                "menu_display" : "匯入模組",
-                "code" : "from microbit import speaker as 喇叭, audio as 聲音, Sound as 音效",
-                "code_display" : "from microbit import \\\n    speaker as 喇叭, \\\n    audio as 聲音, \\\n    Sound as 音效",
-                "note" : "需先匯入!!(喇叭,聲音,音效)",
-                "long_note" : true
-            }            
-        ]
-    },
-    {
-        "postit_type" : "ttk_separator"
-    },
-    {
-        "postit_type" : "postit_para",
-        "on_label" : " 聲音 音效  ",
-        "off_label" : " 聲音 音效 >",
+        "on_label" : " microbit模組 常用函式  ",
+        "off_label" : " microbit模組 常用函式 >",
         "start_on" : false
     },
     {
@@ -40,16 +17,81 @@
         "start_hide_note" : false,
         "items" :[
             {
+                "menu_display" : "匯入模組",
+                "code" : "from microbit import *",
+                "code_display" : "from microbit import *",
+                "note" : "匯入(一次即可)",
+                "long_note" : true
+            }            
+        ]
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
+                "menu_display" : "等待",
+                "code" : "sleep(500)",
+                "code_display" : "sleep(500)",
+                "note" : "等待(毫秒)",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "比率轉換 整數",
+                "code" : "scale(0, from_=(0,255), to=(0,1000))",
+                "code_display" : "scale(0, from_=(0,255),\n    to=(0,1000))",
+                "note" : "比率轉換 整數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "比率轉換 浮點數",
+                "code" : "scale(30, from_=(0,100), to=(32.0,212.0))",
+                "code_display" : "scale(30, from_=(0,100),\n    to=(32.0,212.0))",
+                "note" : "比率轉換 浮點數",
+                "long_note" : true
+            },
+            {
+                "menu_display" : "溫度",
+                "code" : "temperature()",
+                "code_display" : "temperature()",
+                "note" : "溫度",
+                "long_note" : false
+            },
+            {
+                "menu_display" : "調整音量 (限V2)",
+                "code" : "set_volume(128)",
+                "code_display" : "set_volume(128)",
+                "note" : "調整音量 0~255 (限V2)",
+                "long_note" : true
+            }
+        ]
+    } ,
+    {
+        "postit_type" : "ttk_separator"
+    },
+    {
+        "postit_type" : "postit_para",
+        "on_label" : " 聲音 音效  ",
+        "off_label" : " 聲音 音效 >",
+        "start_on" : true
+    },
+    {
+        "postit_type" : "in_para_dropdown_postit",
+        "postfix_enter" : true,
+        "start_hide_note" : false,
+        "items" :[
+            {
                 "menu_display" : "播放",
-                "code" : "聲音.play(音效.GIGGLE)",
-                "code_display" : "聲音.play(音效.GIGGLE)",
+                "code" : "audio.play(Sound.GIGGLE)",
+                "code_display" : "audio.play(Sound.GIGGLE)",
                 "note" : "播放 音效",
                 "long_note" : true
             },
             {
                 "menu_display" : "播放 等待 重複",
-                "code" : "聲音.play(音效.GIGGLE, wait=True )",
-                "code_display" : "聲音.play(音效.GIGGLE,\n    wait=True,\n  )",
+                "code" : "audio.play(Sound.GIGGLE, wait=True )",
+                "code_display" : "audio.play(Sound.GIGGLE,\n    wait=True)",
                 "note" : "播放 (音效, 等待)",
                 "long_note" : true
             }          
@@ -61,71 +103,71 @@
         "items" :[
             {
                 "menu_display" : "音效 咯咯笑",
-                "code" : "音效.GIGGLE",
-                "code_display" : "音效.GIGGLE",
+                "code" : "Sound.GIGGLE",
+                "code_display" : "Sound.GIGGLE",
                 "note" : "音效 咯咯笑",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 快樂",
-                "code" : "音效.HAPPY",
-                "code_display" : "音效.HAPPY",
+                "code" : "Sound.HAPPY",
+                "code_display" : "Sound.HAPPY",
                 "note" : "音效 快樂",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 你好",
-                "code" : "音效.HELLO",
-                "code_display" : "音效.HELLO",
+                "code" : "Sound.HELLO",
+                "code_display" : "Sound.HELLO",
                 "note" : "音效 你好",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 神祕",
-                "code" : "音效.MYSTERIOUS",
-                "code_display" : "音效.MYSTERIOUS",
+                "code" : "Sound.MYSTERIOUS",
+                "code_display" : "Sound.MYSTERIOUS",
                 "note" : "音效 神祕",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 悲傷",
-                "code" : "音效.SAD",
-                "code_display" : "音效.SAD",
+                "code" : "Sound.SAD",
+                "code_display" : "Sound.SAD",
                 "note" : "音效 悲傷",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 滑翔",
-                "code" : "音效.SLIDE",
-                "code_display" : "音效.SLIDE",
+                "code" : "Sound.SLIDE",
+                "code_display" : "Sound.SLIDE",
                 "note" : "音效 滑翔",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 飛翔",
-                "code" : "音效.SOARING",
-                "code_display" : "音效.SOARING",
+                "code" : "Sound.SOARING",
+                "code_display" : "Sound.SOARING",
                 "note" : "音效 飛翔",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 春天",
-                "code" : "音效.SPRING",
-                "code_display" : "音效.SPRING",
+                "code" : "Sound.SPRING",
+                "code_display" : "Sound.SPRING",
                 "note" : "音效 春天",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 閃耀",
-                "code" : "音效.TWINKLE",
-                "code_display" : "音效.TWINKLE",
+                "code" : "Sound.TWINKLE",
+                "code_display" : "Sound.TWINKLE",
                 "note" : "音效 閃耀",
                 "long_note" : true
             },
             {
                 "menu_display" : "音效 打哈欠",
-                "code" : "音效.YAWN",
-                "code_display" : "音效.YAWN",
+                "code" : "Sound.YAWN",
+                "code_display" : "Sound.YAWN",
                 "note" : "音效 打哈欠",
                 "long_note" : true
             }  
@@ -137,8 +179,8 @@
         "items" :[
             {
                 "menu_display" : "正在播放嗎",
-                "code" : "聲音.is_playing()",
-                "code_display" : "聲音.is_playing()",
+                "code" : "audio.is_playing()",
+                "code_display" : "audio.is_playing()",
                 "note" : "正在播放嗎",
                 "long_note" : true
             }         
@@ -150,8 +192,8 @@
         "items" :[
             {
                 "menu_display" : "停止播放",
-                "code" : "聲音.stop()",
-                "code_display" : "聲音.stop()",
+                "code" : "audio.stop()",
+                "code_display" : "audio.stop()",
                 "note" : "停止播放",
                 "long_note" : true
             }         
@@ -169,12 +211,13 @@
     {
         "postit_type" : "in_para_dropdown_postit",
         "postfix_enter" : true,
+        "start_hide_note" : false,
         "items" :[
             {
-                "menu_display" : "關閉喇叭",
-                "code" : "喇叭.off()",
-                "code_display" : "喇叭.off()",
-                "note" : "關閉喇叭",
+                "menu_display" : "關閉內建喇叭",
+                "code" : "speaker.off()",
+                "code_display" : "speaker.off()",
+                "note" : "關閉內建喇叭",
                 "long_note" : true
             }         
         ]
@@ -184,10 +227,10 @@
         "postfix_enter" : true,
         "items" :[
             {
-                "menu_display" : "開啟喇叭",
-                "code" : "喇叭.on()",
-                "code_display" : "喇叭.on()",
-                "note" : "開啟喇叭",
+                "menu_display" : "開啟內建喇叭",
+                "code" : "speaker.on()",
+                "code_display" : "speaker.on()",
+                "note" : "開啟內建喇叭",
                 "long_note" : true
             }         
         ]
