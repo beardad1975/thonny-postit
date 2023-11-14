@@ -40,6 +40,7 @@ from .tools.variables_tool_postit import ( VariableMenuPostit,
 from .tools.copy_tool_postit import ( CopyToolPostit, PasteToolPostit,
         CutToolPostit )     
 from .tools.symbol_tool_postit import SymbolToolPostit
+from .tools.keyin_display_tool_postit import KeyinDisplayToolPostit
 
 
 
@@ -78,8 +79,13 @@ class Mode:
     def gui_init(self):
         # make notebook
         self.notebook_frame = ttk.Frame(common.postit_view)
-        self.notebook_frame.pack(side=tk.TOP, fill=tk.BOTH)
-        #self.notebook_frame.pack(side=tk.TOP, fill=tk.Y)
+        #self.notebook_frame.pack(side=tk.TOP, fill=tk.BOTH)
+        ###self.notebook_frame.rowconfigure(3, weight=1)
+        ###common.postit_view.rowconfigure(3, weight=1)
+        ###common.postit_view.columnconfigure(0, weight=0)
+        
+        ###self.notebook_frame.grid(row=3, column=0, sticky='w')
+        self.notebook_frame.pack(side=tk.TOP, fill=tk.Y, expand=tk.Y)
         #style = ttk.Style(self.interior)
         #style = ttk.Style(notebook_frame.interior)
         
@@ -91,7 +97,7 @@ class Mode:
         #self.notebook = ttk.Notebook(self.interior, style='lefttab.TNotebook')
         #self.notebook = ttk.Notebook(notebook_frame.interior, style='lefttab.TNotebook')
         self.tab_notebook = ttk.Notebook(self.notebook_frame, style='lefttab.TNotebook')
-        self.tab_notebook.pack(side='top',fill=tk.Y)
+        self.tab_notebook.pack(side='top',fill=tk.Y, expand=tk.Y)
 
         #notebook event (keep cursor intact in editor)
         self.tab_notebook.bind('<<NotebookTabChanged>>',common.postit_view.on_tab_changed)
@@ -440,9 +446,13 @@ class PythonPostitView(ttk.Frame):
                 #self.all_modes['bit'].tab_notebook.pack()
                 self.all_modes['py4t'].notebook_frame.pack_forget()
                 self.all_modes['py4t'].tab_notebook.pack_forget()
+                ###self.all_modes['py4t'].notebook_frame.grid_remove()
+                ###self.all_modes['py4t'].tab_notebook.grid_remove()
                 #self.all_modes['py4t'].notebook_frame.config(expand=False)
                 self.all_modes['bit'].notebook_frame.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
                 self.all_modes['bit'].tab_notebook.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
+                ###self.all_modes['bit'].notebook_frame.grid()
+                ###self.all_modes['bit'].tab_notebook.grid()
                 #self.all_modes['bit'].notebook_frame.config(expand=True)
                 #self.all_modes['py4t'].tab_notebook.pack_forget()
                 self.current_mode = 'bit'
@@ -451,9 +461,13 @@ class PythonPostitView(ttk.Frame):
                 #self.all_modes['py4t'].tab_notebook.pack()   
                 self.all_modes['bit'].notebook_frame.pack_forget()
                 self.all_modes['bit'].tab_notebook.pack_forget()
+                ###self.all_modes['bit'].notebook_frame.grid_remove()
+                ###self.all_modes['bit'].tab_notebook.grid_remove()
                 #self.all_modes['bit'].notebook_frame.config(expand=False)
                 self.all_modes['py4t'].notebook_frame.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
                 self.all_modes['py4t'].tab_notebook.pack(side=tk.TOP, fill=tk.BOTH,expand=True)
+                ###self.all_modes['py4t'].notebook_frame.grid()
+                ###self.all_modes['py4t'].tab_notebook.grid()
                 #self.all_modes['py4t'].notebook_frame.config(expand=True)
                 #self.all_modes['bit'].tab_notebook.pack_forget()
                 self.current_mode = 'py4t'              
@@ -1159,7 +1173,7 @@ class PythonPostitView(ttk.Frame):
         #self.var_toolbar = ttk.Frame(self.interior)
         self.code_toolbar = ttk.Frame(self)
         self.code_toolbar.pack(side=tk.TOP, fill=tk.X)
-
+        ###self.code_toolbar.grid(row=0, column=0, sticky='w')
 
 
         common.share_var_get_postit = VariableFetchToolPostit(
@@ -1193,6 +1207,16 @@ class PythonPostitView(ttk.Frame):
         #self.edit_toolbar = ttk.Frame(self.interior)
         self.edit_toolbar = ttk.Frame(self)
         self.edit_toolbar.pack(side=tk.TOP, fill=tk.X)
+        ###self.edit_toolbar.grid(row=1, column=0, sticky='w')
+
+        self.keyin_display_frame = ttk.Frame(self)
+        self.keyin_display_frame.pack(side=tk.TOP, fill=tk.X)
+        ###self.keyin_display_frame.grid(row=2, column=0, sticky='w')
+
+        keyin_display_postit = KeyinDisplayToolPostit(self.edit_toolbar,
+                                   self.keyin_display_frame)
+        keyin_display_postit.pack(side=tk.LEFT,padx=1, pady=3)
+        create_tooltip(keyin_display_postit, '英文打字顯示器')
 
         pilcrow_postit = PilcrowToolPostit(self.edit_toolbar)
         pilcrow_postit.pack(side=tk.LEFT,padx=1, pady=3)
@@ -1281,7 +1305,9 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
         self.canvas.xview_moveto(0)
         self.canvas.yview_moveto(0)
         self.canvas.grid(row=0, column=0, sticky=tk.NSEW)
+        ###self.canvas.grid(row=0, column=0, sticky=tk.NS)
         vscrollbar.grid(row=0, column=1, sticky=tk.NSEW)
+        ###vscrollbar.grid(row=0, column=1, sticky=tk.NS)
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
 

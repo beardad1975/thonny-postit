@@ -68,7 +68,7 @@ load_image('note')
 load_image('paste_postit')
 load_image('gear')
 load_image('info')
-
+load_image('keyin_display')
 #  
 # setup vars counter and default
 
