@@ -1216,7 +1216,7 @@ class PythonPostitView(ttk.Frame):
         keyin_display_postit = KeyinDisplayToolPostit(self.edit_toolbar,
                                    self.keyin_display_frame)
         keyin_display_postit.pack(side=tk.LEFT,padx=1, pady=3)
-        create_tooltip(keyin_display_postit, '英文打字顯示器')
+        create_tooltip(keyin_display_postit, '英打顯示器(右鍵可換位置)')
 
         pilcrow_postit = PilcrowToolPostit(self.edit_toolbar)
         pilcrow_postit.pack(side=tk.LEFT,padx=1, pady=3)

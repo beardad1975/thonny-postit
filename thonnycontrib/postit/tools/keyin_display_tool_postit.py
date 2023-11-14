@@ -166,13 +166,16 @@ def get_keyboard(frame,
     
     return keyboard_widget   
 
-class KeyinDisplayToolWidget(ToolWidget):
+class KeyinDisplayToolWidget:
 
     def keyin_display_init(self, keyin_display_frame):
         self.keyin_display_frame = keyin_display_frame
-        self.keyboard_visible = True
+        self.is_keyboard_visible = True
         self.is_keyin_playing = False
         self.keyin_playing_cycle = []
+
+        self.var_is_anchored_top = tk.BooleanVar()
+        self.var_is_anchored_top.set(1)
 
         key_info = keyboardlayout.KeyInfo(
         margin=3,
@@ -188,29 +191,37 @@ class KeyinDisplayToolWidget(ToolWidget):
         txt_font=font.Font(family='Arial', size=6),
         txt_padding=(1,1))
 
+        # already packed inside 
         self.keyin_display = get_keyboard(keyin_display_frame,
                keyboardlayout.LayoutName.QWERTY, key_info)
         
-        # hide keyboard frame
+        # switch keyin display status
         self.switch_keyin_display()
     
     def switch_keyin_display(self):
-        if self.keyboard_visible:
+        if self.is_keyboard_visible:
             
             self.keyin_display_frame.pack_forget()
             #self.keyin_display.grid_remove()
-            self.keyboard_visible = False
+            self.is_keyboard_visible = False
+            #restore button
+            self.postit_button.config(bg='SystemButtonFace')
         else:
-            current_mode = common.postit_view.current_mode
-            common.postit_view.all_modes[current_mode].notebook_frame.pack_forget()
-            common.postit_view.all_modes[current_mode].tab_notebook.pack_forget()
-            #common.postit_view.update_idletasks()
-            self.keyin_display_frame.pack(side=tk.TOP, fill=tk.X)
-            common.postit_view.all_modes[current_mode].notebook_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-            common.postit_view.all_modes[current_mode].tab_notebook.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
-            #self.keyin_display.grid()
-            self.keyboard_visible = True
-    
+            if self.var_is_anchored_top.get():
+                # re-pack keyin_display and notebook_frame
+                current_mode = common.postit_view.current_mode
+                common.postit_view.all_modes[current_mode].notebook_frame.pack_forget()
+                common.postit_view.all_modes[current_mode].tab_notebook.pack_forget()
+                self.keyin_display_frame.pack(side=tk.TOP, fill=tk.X)
+                common.postit_view.all_modes[current_mode].notebook_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+                common.postit_view.all_modes[current_mode].tab_notebook.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+            else:
+                self.keyin_display_frame.pack(side=tk.TOP, fill=tk.X)
+
+            self.is_keyboard_visible = True
+            # highlight button
+            self.postit_button.config(bg='green')
+
 # class EnterToolPostMixin:
 #     def insert_into_editor(self, editor_text, 
 #                            pressing=False, dragging=False,
@@ -292,14 +303,60 @@ class KeyinDisplayToolPostMixin:
     #         #shell_text.event_generate("<BackSpace>")
     #         shell_text.event_generate("<Return>")
 
-class KeyinDisplayToolPostit(KeyinDisplayToolWidget, 
+class KeyinDisplayToolPopup:
+    def popup_init(self):
+        # button popup menu
+        #f2 = font.Font(size=10, weight=font.NORMAL, family='Consolas')
+        self.popup_menu = tk.Menu(self, tearoff=0, font=common.popup_menu_font)
+
+        self.popup_menu.add_command(label="鍵盤在上", #value=1, 
+                #variable=self.var_is_anchored_top,
+                command=lambda top_pos=True: self.rearrange_keyin_display(top_pos))
+
+        self.popup_menu.add_command(label="鍵盤在下", #value=0,  
+                #variable=self.var_is_anchored_top,
+                command=lambda top_pos=False: self.rearrange_keyin_display(top_pos))
+
+        self.postit_button.bind("<Button-3>", self.popup)
+
+    def popup(self, event):
+        self.popup_menu.tk_popup(event.x_root, event.y_root)
+
+
+    def rearrange_keyin_display(self, top_pos):
+        if top_pos:
+            self.var_is_anchored_top.set(1)
+        else:
+            self.var_is_anchored_top.set(0)
+
+
+        if not self.is_keyboard_visible:
+            # highlight button
+            self.postit_button.config(bg='green')
+            self.is_keyboard_visible = True
+
+        self.keyin_display_frame.pack_forget()
+
+        if self.var_is_anchored_top.get():
+            # re-pack keyin_display and notebook_frame
+            current_mode = common.postit_view.current_mode
+            common.postit_view.all_modes[current_mode].notebook_frame.pack_forget()
+            common.postit_view.all_modes[current_mode].tab_notebook.pack_forget()
+            self.keyin_display_frame.pack(side=tk.TOP, fill=tk.X)
+            common.postit_view.all_modes[current_mode].notebook_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+            common.postit_view.all_modes[current_mode].tab_notebook.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
+        else:
+            self.keyin_display_frame.pack(side=tk.TOP, fill=tk.X)
+
+
+class KeyinDisplayToolPostit(KeyinDisplayToolWidget, ToolWidget,
                  ToolCodeMixin, BaseCode,
                  KeyinDisplayToolPostMixin, BasePost, 
-                 BasePopup):
+                 KeyinDisplayToolPopup):
     """ composite and mixin approach postit"""
     def __init__(self, master, keyin_display_frame):
         self.widget_init(master, 'keyin_display')
         self.keyin_display_init(keyin_display_frame)
         self.code_init()
         self.post_init()
-        #self.popup_init()
+        self.popup_init()
