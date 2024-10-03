@@ -213,8 +213,8 @@ class KeyinDisplayToolWidget:
         self.fade_key_set = set()
         self.fade_key_time_dict = dict()
         self.startup_time = time.time() # time dict default value
-        self.fade_total_seconds = 1
-        self.fade_levels_num = 2
+        self.fade_total_seconds = 5
+        self.fade_levels_num = 1
         self.fade_time_unit = self.fade_total_seconds/self.fade_levels_num
         self.fade_grey_lowbound = 150
         self.fade_grey_upbound = 220

@@ -1,5 +1,11 @@
 [
     {
+        "group_name" : "aicoding",
+        "group_label" : "AI輔助",
+        "default_tabs":[
+            
+        ]
+    },{
         "group_name" : "theme",
         "group_label" : "學習主題",
         "default_tabs":[

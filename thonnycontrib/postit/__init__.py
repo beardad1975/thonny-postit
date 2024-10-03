@@ -709,7 +709,12 @@ class PythonPostitView(ttk.Frame):
 
             elif postit_data['postit_type'] == 'asset_copy_btn':
                 self.build_asset_copy_btn(tab, postit_data)
-              
+
+            elif postit_data['postit_type'] == 'ai_coding_assistant':
+                pass
+                print('ai coding assistant building .....')
+                
+
             #elif postit_data['postit_type'] == 'bit_install_lib_postit':
             #    self.build_bit_install_lib_postit(tab, postit_data)
 
@@ -1213,10 +1218,11 @@ class PythonPostitView(ttk.Frame):
         self.keyin_display_frame.pack(side=tk.TOP, fill=tk.X)
         ###self.keyin_display_frame.grid(row=2, column=0, sticky='w')
 
-        keyin_display_postit = KeyinDisplayToolPostit(self.edit_toolbar,
-                                   self.keyin_display_frame)
-        keyin_display_postit.pack(side=tk.LEFT,padx=1, pady=3)
-        create_tooltip(keyin_display_postit, '英打顯示器(右鍵可換位置)')
+        ### todo
+        #keyin_display_postit = KeyinDisplayToolPostit(self.edit_toolbar,
+        #                           self.keyin_display_frame)
+        #keyin_display_postit.pack(side=tk.LEFT,padx=1, pady=3)
+        #create_tooltip(keyin_display_postit, '英打顯示器(右鍵可換位置)')
 
         pilcrow_postit = PilcrowToolPostit(self.edit_toolbar)
         pilcrow_postit.pack(side=tk.LEFT,padx=1, pady=3)
