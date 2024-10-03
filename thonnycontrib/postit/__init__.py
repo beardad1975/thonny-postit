@@ -3,6 +3,7 @@ import datetime
 import webbrowser
 import shutil
 import json
+import queue
 from collections import OrderedDict
 
 import tkinter as tk
@@ -24,6 +25,7 @@ from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
+from .aiassist import AiassistThread
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH
                      )
 from . import common
@@ -327,6 +329,16 @@ class AiassistTab:
         self.button_tkvar.trace('w', self.on_button_change)
         #print('mode name:', mode_name, 'group name:', group_name)
 
+        # record ai_tab in common
+        common.aiassist_tab = self
+
+        self.question_queue = queue.Queue()
+        self.answer_queue = queue.Queue()
+        self.closing_queue = queue.Queue()
+        self.is_chatting = False
+        self.provider_name = False
+         
+
 
     def do_para_start_on(self):
         if self.para_start_on_done:
@@ -358,8 +370,7 @@ class AiassistTab:
         self.loaded = False
         self.visible = False
 
-        # record ai_tab in common
-        common.aiassist_tab = self
+        
 
         # insert empty frame and hide
         
@@ -401,7 +412,9 @@ class AiassistTab:
                                      command=self.on_connect_btn)
         self.connect_btn.pack(fill='x')
 
-        self.close_btn = tk.Button(self.status_frame, text='結束')
+        self.close_btn = tk.Button(self.status_frame, 
+                                   text='結束',
+                                   command=self.on_disconnect_btn)
         self.close_btn.pack(side='right', padx=10)
 
         self.status_label = ttk.Label(self.status_frame, text='AUTO')
@@ -411,9 +424,9 @@ class AiassistTab:
             ttk.Label(self.chat_frame.interior, text='chat'+str(i)).pack()
 
         self.asking_btn = tk.Button(self.asking_frame, text='詢問')
-        self.asking_btn.pack(side='right')
+        self.asking_btn.pack(side='right',padx=5)
 
-        self.asking_text = tk.Text(self.asking_frame, height=1)
+        self.asking_text = tk.Text(self.asking_frame, height=2)
         self.asking_text.pack(side='right', fill='x', expand=1)
         
         # only show connect frame
@@ -436,19 +449,44 @@ class AiassistTab:
         if to_chat:
             self.connect_frame.pack_forget()
 
-            self.status_frame.pack(fill='x')
-            self.chat_frame.pack(fill='both', expand=1)
-            self.asking_frame.pack(fill='x')
+            self.status_frame.pack(fill='x', pady=5)
+            self.chat_frame.pack(fill='both', expand=1, pady=5)
+            self.asking_frame.pack(fill='x', pady=5)
             
         else: # to connect
             self.status_frame.pack_forget()
             self.chat_frame.pack_forget()
             self.asking_frame.pack_forget()
 
-            self.connect_frame.pack(fill='both', expand=1)
+            self.connect_frame.pack(expand=1)
 
     def on_connect_btn(self):
-            self.switch_connect_or_chat(to_chat=True)
+            service_name = self.service_combo.get()
+            aiassist_thread = AiassistThread(service_name)
+            aiassist_thread.start()
+            get_workbench().after(500, self.check_connection)
+
+    def check_connection(self):
+            if self.is_chatting :
+                self.status_label.config(text=f"{self.provider_name} 服務")
+                self.switch_connect_or_chat(to_chat=True)
+            else:
+                print('waiting for connection ...')
+                get_workbench().after(500, self.check_connection)
+
+    def on_disconnect_btn(self):
+        ans = messagebox.askyesno(title='離開？', 
+                                    message='要停止AI程式助理嗎？',
+                                    master=get_workbench())
+        if ans:
+            self.closing_queue.put(True)
+            get_workbench().after(500, self.delay_disconnect)
+
+    def delay_disconnect(self):
+        if self.closing_queue.empty():
+            self.switch_connect_or_chat(to_chat=False)
+        else:
+            get_workbench().after(500, self.delay_disconnect)
 
     def popup_init(self, example_vars):
         self.example_vars = example_vars
