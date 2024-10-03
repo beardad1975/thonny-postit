@@ -213,20 +213,6 @@ class Tab:
         self.button_tkvar.trace('w', self.on_button_change)
         #print('mode name:', mode_name, 'group name:', group_name)
 
-        
-
-        # #pick a color
-        # color = self.pick_color()
-        # self.fill_color = color['fill_color']
-        # self.font_color = color['font_color']
-
-        # #load image
-        # if tab_type == 'more':
-        #     abs_image_path =Path(__file__).parent/'images'/ 'more.png'
-        # else:
-        #     abs_image_path =Path(__file__).parent/'images'/color[tab_type+'_filename']
-        # im = Image.open(abs_image_path)       
-        # self.image = ImageTk.PhotoImage(im) 
 
     def do_para_start_on(self):
         if self.para_start_on_done:
@@ -273,6 +259,83 @@ class Tab:
                           padding=0,
                         )
         mode.tab_notebook.hide(self.tab_frame)
+
+    def aiassist_gui_init(self):
+        mode = self.group.mode
+        group = self.group
+
+        self.icon_image, self.fill_color, self.font_color =  group.next_icon_color()
+        self.loaded = False
+        self.visible = False
+
+        # record ai_tab in common
+        common.ai_tab = self
+
+        # insert empty frame and hide
+        
+
+        
+        self.tab_frame =  ttk.Frame(mode.notebook_frame)
+        #checking on_mousewheel scroll
+        self.tab_frame.ai_assistant_exists = True 
+
+        # add ai assistant related frames
+        self.aiassist_connect_frame = ttk.Frame(self.tab_frame)
+        self.aiassist_connect_frame.pack(fill='both', expand=1)
+
+        self.aiassist_status_frame = ttk.Frame(self.tab_frame)
+        self.aiassist_status_frame.pack(fill='x')
+
+        self.aiassist_chat_frame = CustomVerticallyScrollableFrame(self.tab_frame)
+        self.aiassist_chat_frame.pack(fill='both', expand=1)
+
+        self.aiassist_asking_frame = ttk.Frame(self.tab_frame)
+        self.aiassist_asking_frame.pack(fill='x')
+
+        self.aiassist_services = ('AUTO','Phind', 'Perplexity','Blackboxai','Koboldai')
+        self.aiassist_service_combo = ttk.Combobox(
+                self.aiassist_connect_frame,
+                width=10,
+                state="readonly",
+                takefocus=0, 
+                justify=tk.CENTER,
+                values=self.aiassist_services)
+        self.aiassist_service_combo.current(0)
+        self.aiassist_service_combo.pack(pady=12)
+
+        self.aiassist_connect_btn = tk.Button(self.aiassist_connect_frame, text=' 連接 ')
+        self.aiassist_connect_btn.pack()
+
+        self.aiassist_close_btn = tk.Button(self.aiassist_status_frame, text='結束')
+        self.aiassist_close_btn.pack(side='right', padx=10)
+
+        self.aiassist_status_label = ttk.Label(self.aiassist_status_frame, text='AUTO')
+        self.aiassist_status_label.pack(side='right')
+
+        for i in range(40):
+            ttk.Label(self.aiassist_chat_frame.interior, text='chat'+str(i)).pack()
+
+        self.aiassist_asking_btn = tk.Button(self.aiassist_asking_frame, text='詢問')
+        self.aiassist_asking_btn.pack(side='right')
+        
+        self.aiassist_asking_text = tk.Text(self.aiassist_asking_frame, height=1)
+        self.aiassist_asking_text.pack(side='right', fill='x', expand=1)
+        
+
+         
+
+        # add tab ref
+        self.tab_frame.tab = self
+        mode.tab_notebook.insert('end',self.tab_frame,
+                          text = self.tab_label,
+                          image = self.icon_image,
+                          compound="top",
+                          padding=0,
+                        )
+        mode.tab_notebook.hide(self.tab_frame)
+
+
+
 
     def popup_init(self, example_vars):
         self.example_vars = example_vars
@@ -424,8 +487,11 @@ class PythonPostitView(ttk.Frame):
         tab_widget_name = tab_notebook.select()
         if tab_widget_name:
             tab_frame = tab_notebook.nametowidget(tab_widget_name)
-            #print(type(tab),tab)
-            tab_frame._on_mousewheel(event)
+            if hasattr(tab_frame, 'ai_assistant_exists'):
+                common.ai_tab.aiassist_chat_frame._on_mousewheel(event)
+                
+            else:
+                tab_frame._on_mousewheel(event)
         
 
     def switch_mode_by_backend(self, event=None):
@@ -526,7 +592,10 @@ class PythonPostitView(ttk.Frame):
             for group in mode.groups.values():
                 group.gui_init()
                 for tab in group.tabs.values():
-                    tab.gui_init()
+                    if tab.tab_name == 'aiassist':
+                        tab.aiassist_gui_init()
+                    else:
+                        tab.gui_init()
             
 
         # build more tab content, set visible if needed
@@ -646,7 +715,10 @@ class PythonPostitView(ttk.Frame):
         if not tab.visible:
             mode.tab_notebook.add(tab.tab_frame)
             if not tab.loaded:
-                self.load_tab_json(tab)
+                if tab.tab_name == 'aiassist':
+                    self.aiassist_load_tab_json(tab)
+                else:
+                    self.load_tab_json(tab)
                 tab.loaded = True
             tab.visible = True
 
@@ -709,11 +781,7 @@ class PythonPostitView(ttk.Frame):
 
             elif postit_data['postit_type'] == 'asset_copy_btn':
                 self.build_asset_copy_btn(tab, postit_data)
-
-            elif postit_data['postit_type'] == 'ai_coding_assistant':
-                pass
-                print('ai coding assistant building .....')
-                
+    
 
             #elif postit_data['postit_type'] == 'bit_install_lib_postit':
             #    self.build_bit_install_lib_postit(tab, postit_data)
@@ -728,6 +796,9 @@ class PythonPostitView(ttk.Frame):
                 image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
         tk.Label(tab.tab_frame.interior, text='',
                 image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
+
+    def aiassist_load_tab_json(self, tab):
+        print('ai coding assistant building .....')
 
     def build_dropdown_postit(self, tab, postit_data):
         temp_code_list = []
@@ -820,69 +891,7 @@ class PythonPostitView(ttk.Frame):
             postfix_enter=True,
             start_hide_note=postit_data.get('start_hide_note',True)
             ).grid(sticky='w', padx=4, pady=5)                
-    # def build_bit_install_lib_postit(self, tab, postit_data):
-    #     logo_path = Path(__file__).parent / 'images' / 'install.png'
-    #     im = Image.open(logo_path)       
-    #     self.install_image = ImageTk.PhotoImage(im) 
 
-    #     f = font.Font(size=12, weight=font.NORMAL, family='Consolas')
-
-    #     def install_lib():
-    #         ready = get_runner().ready_for_remote_file_operations(show_message=False)
-            
-    #         if not ready:
-    #             messagebox.showwarning(
-    #                 '連線問題',
-    #                 '未連接microbit，請接上硬體並連線',
-    #                 master=self,
-    #             )
-    #             return
-
-    #         answer = messagebox.askyesno(
-    #             '安裝模組',
-    #             '是否在microbit上安裝模組？\n(至少需安裝一次，才可使用中文模組)',
-    #             master=self,
-    #         )
-
-    #         if answer:
-    #             lib_path = Path(__file__).parent / 'microbit_lib' / 'microbit模組.py'
-    #             #lib_path = Path(__file__).parent / 'microbit_lib' / 'boot.py'
-    #             with open(lib_path, 'rb') as f:
-    #                 content_bytes = f.read()
-
-    #             get_runner().send_command_and_wait(
-    #             InlineCommand(
-    #                 "write_file",
-    #                 path="microbit模組.py",
-    #                 #path="boot.py",
-    #                 content_bytes=content_bytes,
-    #                 editor_id=id(tab),
-    #                 blocking=True,
-    #                 description="安裝boot.py模組",
-    #             ),
-    #             dialog_title="安裝...",
-    #         )
-    #         else:
-    #             return
-
-
-
-    #     tk.Button(tab.tab_frame.interior,
-    #         relief='solid', 
-    #         borderwidth=1,
-    #         text=postit_data['postit_label'],
-    #         #fg='#333333',
-    #         #fg=tab.font_color, 
-    #         #bg=tab.fill_color,
-    #         #bg='#aaaaff',
-    #         justify='left',
-    #         font=f,  
-    #         image=self.install_image,  
-    #         compound=tk.LEFT, 
-    #         padx=0,
-    #         pady=0,
-    #         command=install_lib,
-    #     ).grid( sticky='e',padx=20, pady=8)
 
     def hide_tab(self, tab):
         mode = tab.group.mode
@@ -899,277 +908,6 @@ class PythonPostitView(ttk.Frame):
                 selected_group_tabs.remove(tab.tab_name)
                 #print('hide_tab: ',option_name, selected_group_tabs)
             get_workbench().set_option(option_name, selected_group_tabs)
-
-
-
-    # def threed_tab_init(self):
-    #     # title and setup tool
-    #     tab = common_postit_tabs['threed']
-    #     #example_vars = ['長','角度','邊','小海龜','Turtle','海龜模組'] 
-    #     example_vars = ['x','y','z','物體','物體父' ,'物體母','座標','角度' ] 
-    #     tab.popup_init(example_vars)
-
-    #     f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-    #     label =ttk.Label(common_postit_tabs['threed'].frame.interior, 
-    #             text='【模擬3D】', 
-    #             image= common_images['gear'],
-    #             font=f,
-    #             compound=tk.RIGHT,
-    #             )                
-    #     label.pack(side=tk.TOP, padx=5, pady=8, anchor='w')
-    #     label.bind("<Button-1>", common_postit_tabs['threed'].popup)
-
-
-
-    #     temp_code_list = []
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定縮放x ',
-    #             code="物體.縮放x = 1",
-    #             code_display="物體.縮放x = 1",
-    #             note='設定縮放x ',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定縮放y ',
-    #             code="物體.縮放y = 1",
-    #             code_display="物體.縮放y = 1",
-    #             note='設定縮放y ',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定縮放z ',
-    #             code="物體.縮放z = 1",
-    #             code_display="物體.縮放z = 1",
-    #             note='設定縮放z ',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定縮放 (3軸同時)',
-    #             code="物體.縮放 = 1, 1, 1",
-    #             code_display="物體.縮放 = 1, 1, 1",
-    #             note='設定縮放 (3軸同時)',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定全域縮放 (3軸同時)',
-    #             code="物體.全域縮放 = 1, 1, 1",
-    #             code_display="物體.全域縮放 = 1, 1, 1",
-    #             note='設定全域縮放 (3軸同時)',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定縮放動畫(持續)',
-    #             code="物體.縮放動畫([2,1,1], 持續=1)",
-    #             code_display="物體.縮放動畫([2,1,1], 持續=1)",
-    #             note='設定縮放動畫',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定縮放動畫(延遲與持續)',
-    #             code="比例 = 2,1,1\n物體.縮放動畫(比例, 延遲=0, 持續=1)",
-    #             code_display="比例 = 2,1,1\n物體.縮放動畫(比例, 延遲=0, 持續=1)",
-    #             note='設定縮放動畫(延遲與持續)',
-    #             long_note=True))
-    #     DropdownPostit(tab_name='threed', code_list = temp_code_list,
-    #         postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-
-    #     temp_code_list = []
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定旋轉x (x軸順逆時針)',
-    #             code="物體.旋轉x = 0",
-    #             code_display="物體.旋轉x = 0",
-    #             note='設定旋轉x (x軸順逆時針)',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定旋轉y (y軸順逆時針)',
-    #             code="物體.旋轉y = 0",
-    #             code_display="物體.旋轉y = 0",
-    #             note='設定旋轉y (y軸順逆時針)',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定旋轉z (z軸順逆時針)',
-    #             code="物體.旋轉z = 0",
-    #             code_display="物體.旋轉z = 0",
-    #             note='設定旋轉z (z軸順逆時針)',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定旋轉 (3軸)',
-    #             code="物體.旋轉 = 0, 0, 0",
-    #             code_display="物體.旋轉 = 0, 0, 0",
-    #             note='設定旋轉 (3軸)',
-    #             long_note=True))
-    #     # temp_code_list.append(CodeNTuple(
-    #     #         menu_display='設定全域旋轉x (x軸順逆時針)',
-    #     #         code="物體.全域旋轉x = 0",
-    #     #         code_display="物體.全域旋轉x = 0",
-    #     #         note='設定全域旋轉x (x軸順逆時針)',
-    #     #         long_note=True))
-    #     # temp_code_list.append(CodeNTuple(
-    #     #         menu_display='設定全域旋轉y (y軸順逆時針)',
-    #     #         code="物體.全域旋轉y = 0",
-    #     #         code_display="物體.全域旋轉y = 0",
-    #     #         note='設定全域旋轉y (y軸順逆時針)',
-    #     #         long_note=True))
-    #     # temp_code_list.append(CodeNTuple(
-    #     #         menu_display='設定全域旋轉z (z軸順逆時針)',
-    #     #         code="物體.全域旋轉z = 0",
-    #     #         code_display="物體.全域旋轉z = 0",
-    #     #         note='設定全域旋轉z (z軸順逆時針)',
-    #     #         long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定全域旋轉 (3軸)',
-    #             code="物體.全域旋轉 = 0, 0, 0",
-    #             code_display="物體.全域旋轉 = 0, 0, 0",
-    #             note='設定全域旋轉 (3軸)',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定旋轉動畫(持續)',
-    #             code="物體.旋轉動畫([90,0,0], 持續=1)",
-    #             code_display="物體.旋轉動畫([2,0,0], 持續=1)",
-    #             note='設定旋轉動畫',
-    #             long_note=True))
-    #     temp_code_list.append(CodeNTuple(
-    #             menu_display='設定旋轉動畫(延遲與持續)',
-    #             code="角度 = 90,0,0\n物體.旋轉動畫(角度, 延遲=0, 持續=1)",
-    #             code_display="角度 = 90,0,0\n物體.旋轉動畫(角度, 延遲=0, 持續=1)",
-    #             note='設定旋轉動畫(延遲與持續)',
-    #             long_note=True))
-    #     DropdownPostit(tab_name='threed', code_list = temp_code_list,
-    #         postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-
-
-
-        # #separator and note
-        # ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
-        #     ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
-        # f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        # ttk.Label(common_postit_tabs['flow'].frame.interior, 
-        #             #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-        #             text=' >> 例外(錯誤)處理',
-        #             font=f,    
-        #             compound=tk.LEFT, 
-        #         ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
-
-        # # dropdown list postit
-        # temp_code_list = []
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='捕捉例外(錯誤)',
-        #         code='try:\npass\nexcept Exception:\npass',
-        #         code_display='try:\n    pass\nexcept Exception:\n    pass',
-        #         note='測試:\n        測試區塊\n例外發生:\n        錯誤處理區塊',
-        #         long_note=True))
-        # DropdownPostit(tab_name='flow', code_list = temp_code_list,
-        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-
-
-        # #separator and note
-        # ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
-        #     ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
-        # f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        # ttk.Label(common_postit_tabs['flow'].frame.interior, 
-        #             #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-        #             text=' >> 物件類別',
-        #             font=f,    
-        #             compound=tk.LEFT, 
-        #         ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
-
-        # # dropdown list postit
-        # temp_code_list = []
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='定義新類別',
-        #         code='class 類別:\n屬性 = 1\ndef 方法(self):\npass',
-        #         code_display='class 類別:\n    屬性 = 1\n    def 方法(self):\n    pass',
-        #         note='定義新類別',
-        #         long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='繼承類別',
-        #         code='class 子類別(父母類別):\n屬性 = 1\ndef 方法(self):\npass',
-        #         code_display='class 子類別(父母類別):\n    屬性 = 1\n    def 方法(self):\n    pass',
-        #         note='繼承類別',
-        #         long_note=True))                
-        # DropdownPostit(tab_name='flow', code_list = temp_code_list,
-        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-
-        # #separator and note
-        # ttk.Separator(common_postit_tabs['flow'].frame.interior, orient=tk.HORIZONTAL
-        #     ).pack(side=tk.TOP, fill=tk.X, padx=5, pady=10)
-        # f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
-        # ttk.Label(common_postit_tabs['flow'].frame.interior, 
-        #             #text='='*6 +' 【 條 件 分 支 】 '+'='*6,
-        #             text=' >> 有限狀態機',
-        #             font=f,    
-        #             compound=tk.LEFT, 
-        #         ).pack(side=tk.TOP, padx=5, pady=8, anchor='w')
-
-        # # dropdown list postit
-        # temp_code_list = []
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='匯入狀態機模組',
-        #         code='from transitions import Machine as 狀態機',
-        #         code_display='from transitions import Machine as 狀態機',
-        #         note='匯入狀態機模組',
-        #         long_note=True))
-        # DropdownPostit(tab_name='flow', code_list = temp_code_list,
-        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-        # # dropdown list postit
-        # temp_code_list = []
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='階段清單',
-        #         code="階段清單 = ['開頭','關卡','結尾']",
-        #         code_display="階段清單 = ['開頭','關卡','結尾']",
-        #         note='階段清單',
-        #         long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='程式狀態類別',
-        #         code="class 程式狀態(狀態機):\ndef on_enter_開頭(self):\nprint('進入 開頭階段')",
-        #         code_display="class 程式狀態(狀態機)):\n    def on_enter_開頭(self):\n        print('進入 開頭')",
-        #         note='繼承類別',
-        #         long_note=True)) 
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='程式狀態方法(離開)',
-        #         code="    def on_exit_開頭(self):\nprint('離開 開頭階段')",
-        #         code_display="def on_exit_開頭(self):\n    print('離開 開頭階段')",
-        #         note='程式狀態方法(離開)',
-        #         long_note=True))  
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='主流程物件',
-        #         code="主流程 = 程式狀態(states=階段清單, initial='開頭')",
-        #         code_display="主流程 = 程式狀態(states=階段清單, initial='開頭')",
-        #         note='主流程物件',
-        #         long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='依序轉換',
-        #         code="主流程.add_ordered_transitions()",
-        #         code_display="主流程.add_ordered_transitions()",
-        #         note='依序轉換',
-        #         long_note=True))    
-        # DropdownPostit(tab_name='flow', code_list = temp_code_list,
-        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-        # # dropdown list postit
-        # temp_code_list = []
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='目前階段',
-        #         code='主流程.state',
-        #         code_display='主流程.state',
-        #         note='目前階段',
-        #         long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='跳到階段',
-        #         code='主流程.to_開頭()',
-        #         code_display='主流程.to_開頭()',
-        #         note='跳到階段',
-        #         long_note=True))
-        # temp_code_list.append(CodeNTuple(
-        #         menu_display='下一階段(依序)',
-        #         code='主流程.next_state()',
-        #         code_display='主流程.next_state()',
-        #         note='下一階段(依序)',
-        #         long_note=True))
-        # DropdownPostit(tab_name='flow', code_list = temp_code_list,
-        #     postfix_enter=False).pack(side=tk.TOP, anchor='w', padx=2, pady=8)
-
-
-
 
 
     def toolbar_init(self):
