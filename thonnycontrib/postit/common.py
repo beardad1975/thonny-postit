@@ -108,6 +108,6 @@ tab_title = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 tab_label = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
 
-ai_tab = False
+aiassist_tab = False
 
 

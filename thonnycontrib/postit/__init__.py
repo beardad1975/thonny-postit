@@ -159,7 +159,10 @@ class TabGroup:
             tab_title = t['tab_title']
             #always_show = t['always_visible']
             tab_path = self.group_path / (tab_name+'.json')
-            self.tabs[tab_name] = Tab(tab_name, self, tab_label, tab_title,  tab_path)
+            if tab_name == 'aiassist' :
+                self.tabs[tab_name] = AiassistTab(tab_name, self, tab_label, tab_title,  tab_path)
+            else:
+                self.tabs[tab_name] = Tab(tab_name, self, tab_label, tab_title,  tab_path)
 
     def gui_init(self):
         # dummy
@@ -260,81 +263,6 @@ class Tab:
                         )
         mode.tab_notebook.hide(self.tab_frame)
 
-    def aiassist_gui_init(self):
-        mode = self.group.mode
-        group = self.group
-
-        self.icon_image, self.fill_color, self.font_color =  group.next_icon_color()
-        self.loaded = False
-        self.visible = False
-
-        # record ai_tab in common
-        common.ai_tab = self
-
-        # insert empty frame and hide
-        
-
-        
-        self.tab_frame =  ttk.Frame(mode.notebook_frame)
-        #checking on_mousewheel scroll
-        self.tab_frame.ai_assistant_exists = True 
-
-        # add ai assistant related frames
-        self.aiassist_connect_frame = ttk.Frame(self.tab_frame)
-        self.aiassist_connect_frame.pack(fill='both', expand=1)
-
-        self.aiassist_status_frame = ttk.Frame(self.tab_frame)
-        self.aiassist_status_frame.pack(fill='x')
-
-        self.aiassist_chat_frame = CustomVerticallyScrollableFrame(self.tab_frame)
-        self.aiassist_chat_frame.pack(fill='both', expand=1)
-
-        self.aiassist_asking_frame = ttk.Frame(self.tab_frame)
-        self.aiassist_asking_frame.pack(fill='x')
-
-        self.aiassist_services = ('AUTO','Phind', 'Perplexity','Blackboxai','Koboldai')
-        self.aiassist_service_combo = ttk.Combobox(
-                self.aiassist_connect_frame,
-                width=10,
-                state="readonly",
-                takefocus=0, 
-                justify=tk.CENTER,
-                values=self.aiassist_services)
-        self.aiassist_service_combo.current(0)
-        self.aiassist_service_combo.pack(pady=12)
-
-        self.aiassist_connect_btn = tk.Button(self.aiassist_connect_frame, text=' 連接 ')
-        self.aiassist_connect_btn.pack()
-
-        self.aiassist_close_btn = tk.Button(self.aiassist_status_frame, text='結束')
-        self.aiassist_close_btn.pack(side='right', padx=10)
-
-        self.aiassist_status_label = ttk.Label(self.aiassist_status_frame, text='AUTO')
-        self.aiassist_status_label.pack(side='right')
-
-        for i in range(40):
-            ttk.Label(self.aiassist_chat_frame.interior, text='chat'+str(i)).pack()
-
-        self.aiassist_asking_btn = tk.Button(self.aiassist_asking_frame, text='詢問')
-        self.aiassist_asking_btn.pack(side='right')
-        
-        self.aiassist_asking_text = tk.Text(self.aiassist_asking_frame, height=1)
-        self.aiassist_asking_text.pack(side='right', fill='x', expand=1)
-        
-
-         
-
-        # add tab ref
-        self.tab_frame.tab = self
-        mode.tab_notebook.insert('end',self.tab_frame,
-                          text = self.tab_label,
-                          image = self.icon_image,
-                          compound="top",
-                          padding=0,
-                        )
-        mode.tab_notebook.hide(self.tab_frame)
-
-
 
 
     def popup_init(self, example_vars):
@@ -376,6 +304,185 @@ class Tab:
     #     if cls.color_circular_index >= cls.color_num:
     #         cls.color_circular_index = 0
     #     return c
+
+
+class AiassistTab:
+    def __init__(self, tab_name, group, tab_label,tab_title, tab_path):
+        self.tab_name = tab_name
+        #self.group_name = group_name
+        #self.mode_name = mode_name
+        self.tab_label = tab_label
+        self.tab_title = tab_title
+        #self.always_show = always_show
+        self.tab_path = tab_path
+        self.loaded = False
+        self.group = group
+
+        self.postit_paras_list = []
+        self.current_postit_para = None
+        
+        self.visible = False
+        self.para_start_on_done = False
+        self.button_tkvar = tk.BooleanVar()
+        self.button_tkvar.trace('w', self.on_button_change)
+        #print('mode name:', mode_name, 'group name:', group_name)
+
+
+    def do_para_start_on(self):
+        if self.para_start_on_done:
+            return
+
+        for para in self.postit_paras_list:
+            if not para.start_on:
+                para.on_button_pressed()
+
+        self.para_start_on_done = True
+            
+
+    def on_button_change(self, *args):
+        value = self.button_tkvar.get()
+        if value != self.visible :
+            # make sure button value is toggled
+            #print(self.tab_name, value, args)
+            
+            if value:
+                common.postit_view.show_tab(self)
+            else:
+                common.postit_view.hide_tab(self)
+
+    def gui_init(self):
+        mode = self.group.mode
+        group = self.group
+
+        self.icon_image, self.fill_color, self.font_color =  group.next_icon_color()
+        self.loaded = False
+        self.visible = False
+
+        # record ai_tab in common
+        common.aiassist_tab = self
+
+        # insert empty frame and hide
+        
+        self.tab_frame =  ttk.Frame(mode.notebook_frame)
+        #checking on_mousewheel scroll
+        self.tab_frame.ai_assistant_exists = True
+
+
+        # ai tab frame structures
+        # tab_frame - 
+        #        connect_frame status_frame, chat_frame, asking_frame
+
+        # add ai assistant related frames
+        self.connect_frame = ttk.Frame(self.tab_frame)
+        self.connect_frame.pack(expand=1)
+
+        self.status_frame = ttk.Frame(self.tab_frame)
+        #self.status_frame.pack(fill='x')
+
+        self.chat_frame = CustomVerticallyScrollableFrame(self.tab_frame)
+        #self.chat_frame.pack(fill='both', expand=1)
+
+        self.asking_frame = ttk.Frame(self.tab_frame)
+        #self.asking_frame.pack(fill='x')
+
+        self.services = ('AUTO','Phind', 'Perplexity','Blackboxai','Koboldai')
+        self.service_combo = ttk.Combobox(
+                self.connect_frame,
+                width=12,
+                state="readonly",
+                takefocus=0, 
+                justify=tk.CENTER,
+                values=self.services)
+        self.service_combo.current(0)
+        self.service_combo.pack(fill='x',pady=12)
+
+        self.connect_btn = tk.Button(self.connect_frame, 
+                                     text='連接AI助理',
+                                     command=self.on_connect_btn)
+        self.connect_btn.pack(fill='x')
+
+        self.close_btn = tk.Button(self.status_frame, text='結束')
+        self.close_btn.pack(side='right', padx=10)
+
+        self.status_label = ttk.Label(self.status_frame, text='AUTO')
+        self.status_label.pack(side='right')
+
+        for i in range(40):
+            ttk.Label(self.chat_frame.interior, text='chat'+str(i)).pack()
+
+        self.asking_btn = tk.Button(self.asking_frame, text='詢問')
+        self.asking_btn.pack(side='right')
+
+        self.asking_text = tk.Text(self.asking_frame, height=1)
+        self.asking_text.pack(side='right', fill='x', expand=1)
+        
+        # only show connect frame
+
+
+         
+
+        # add tab ref
+        self.tab_frame.tab = self
+        mode.tab_notebook.insert('end',self.tab_frame,
+                          text = self.tab_label,
+                          image = self.icon_image,
+                          compound="top",
+                          padding=0,
+                        )
+        mode.tab_notebook.hide(self.tab_frame)
+
+
+    def switch_connect_or_chat(self, to_chat):
+        if to_chat:
+            self.connect_frame.pack_forget()
+
+            self.status_frame.pack(fill='x')
+            self.chat_frame.pack(fill='both', expand=1)
+            self.asking_frame.pack(fill='x')
+            
+        else: # to connect
+            self.status_frame.pack_forget()
+            self.chat_frame.pack_forget()
+            self.asking_frame.pack_forget()
+
+            self.connect_frame.pack(fill='both', expand=1)
+
+    def on_connect_btn(self):
+            self.switch_connect_or_chat(to_chat=True)
+
+    def popup_init(self, example_vars):
+        self.example_vars = example_vars
+        self.popup_menu = tk.Menu(self.frame, tearoff=0)
+
+        self.popup_menu.add_command(label="範例變數匯入",
+            command=self.import_example_vars)
+
+        self.frame.bind("<Button-3>", self.popup)
+
+
+    def import_example_vars(self):
+        s = '【匯入變數名稱】\n'
+        for i in self.example_vars:
+            s = s + i + '\n'
+        s += '\n'
+
+        ans = messagebox.askokcancel('範例變數匯入',s, master=get_workbench())
+        #print(ans)
+        if ans: # import vars into vars_menu
+            vars_counter = common.share_vars_postit.vars_counter
+
+            for var in self.example_vars:
+                if var not in vars_counter:
+                    vars_counter[var] = 1
+            common.share_vars_postit.update_vars_menu()            
+        else: # no
+            return
+
+    def popup(self, event):
+        #if self.tool_name != 'variable_get':
+        self.popup_menu.tk_popup(event.x_root, event.y_root)
+
+
 
 
 class MoreTab:
@@ -488,7 +595,7 @@ class PythonPostitView(ttk.Frame):
         if tab_widget_name:
             tab_frame = tab_notebook.nametowidget(tab_widget_name)
             if hasattr(tab_frame, 'ai_assistant_exists'):
-                common.ai_tab.aiassist_chat_frame._on_mousewheel(event)
+                common.aiassist_tab.chat_frame._on_mousewheel(event)
                 
             else:
                 tab_frame._on_mousewheel(event)
@@ -592,10 +699,7 @@ class PythonPostitView(ttk.Frame):
             for group in mode.groups.values():
                 group.gui_init()
                 for tab in group.tabs.values():
-                    if tab.tab_name == 'aiassist':
-                        tab.aiassist_gui_init()
-                    else:
-                        tab.gui_init()
+                    tab.gui_init()
             
 
         # build more tab content, set visible if needed
@@ -716,7 +820,8 @@ class PythonPostitView(ttk.Frame):
             mode.tab_notebook.add(tab.tab_frame)
             if not tab.loaded:
                 if tab.tab_name == 'aiassist':
-                    self.aiassist_load_tab_json(tab)
+                    # already build in AiassistTab
+                    pass
                 else:
                     self.load_tab_json(tab)
                 tab.loaded = True
@@ -797,8 +902,6 @@ class PythonPostitView(ttk.Frame):
         tk.Label(tab.tab_frame.interior, text='',
                 image=self.spacer_image).grid(sticky='ew', padx=0, pady=2)
 
-    def aiassist_load_tab_json(self, tab):
-        print('ai coding assistant building .....')
 
     def build_dropdown_postit(self, tab, postit_data):
         temp_code_list = []
