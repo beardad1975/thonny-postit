@@ -337,6 +337,9 @@ class AiassistTab:
         self.closing_queue = queue.Queue()
         self.is_chatting = False
         self.provider_name = False
+        self.first_chat = False
+
+        self.text_font = ('Consolas','11')
          
 
 
@@ -401,36 +404,40 @@ class AiassistTab:
                 self.connect_frame,
                 width=12,
                 state="readonly",
-                takefocus=0, 
+                takefocus=0,
+                font=self.text_font, 
                 justify=tk.CENTER,
                 values=self.services)
         self.service_combo.current(0)
         self.service_combo.pack(fill='x',pady=12)
 
         self.connect_btn = tk.Button(self.connect_frame, 
+                                     font=self.text_font,
                                      text='連接AI助理',
                                      command=self.on_connect_btn)
         self.connect_btn.pack(fill='x')
 
         self.close_btn = tk.Button(self.status_frame, 
+                                   font=self.text_font,
                                    text='結束',
                                    command=self.on_disconnect_btn)
         self.close_btn.pack(side='right', padx=10)
 
-        self.status_label = ttk.Label(self.status_frame, text='AUTO')
+        self.status_label = ttk.Label(self.status_frame, text='AUTO',font=self.text_font)
         self.status_label.pack(side='right')
 
-        for i in range(40):
-            ttk.Label(self.chat_frame.interior, text='chat'+str(i)).pack()
+        # for i in range(40):
+        #     ttk.Label(self.chat_frame.interior, text='chat'+str(i)).pack()
 
-        self.asking_btn = tk.Button(self.asking_frame, text='詢問')
+        self.asking_btn = tk.Button(self.asking_frame, text='詢問',font=self.text_font)
         self.asking_btn.pack(side='right',padx=5)
 
-        self.asking_text = tk.Text(self.asking_frame, height=2)
-        self.asking_text.pack(side='right', fill='x', expand=1)
+        self.asking_text = tk.Text(self.asking_frame, height=2, font=self.text_font)
+        self.asking_text.pack(side='right', fill='x', expand=1,padx=5)
         
-        # only show connect frame
-
+        # on close  , stop thread
+        # not working
+        get_workbench().bind("WorkbenchClose", self.on_aiassist_close, True)
 
          
 
@@ -444,6 +451,9 @@ class AiassistTab:
                         )
         mode.tab_notebook.hide(self.tab_frame)
 
+    def on_aiassist_close(self, event):
+        self.closing_queue.put(True)
+        
 
     def switch_connect_or_chat(self, to_chat):
         if to_chat:
@@ -463,16 +473,13 @@ class AiassistTab:
     def on_connect_btn(self):
             service_name = self.service_combo.get()
             aiassist_thread = AiassistThread(service_name)
-            aiassist_thread.start()
-            get_workbench().after(500, self.check_connection)
 
-    def check_connection(self):
-            if self.is_chatting :
-                self.status_label.config(text=f"{self.provider_name} 服務")
-                self.switch_connect_or_chat(to_chat=True)
-            else:
-                print('waiting for connection ...')
-                get_workbench().after(500, self.check_connection)
+            aiassist_thread.start()
+            get_workbench().after(200, self.delay_connection)
+
+    def delay_connection(self):
+            self.status_label.config(text=f"使用 {self.provider_name} 服務")
+            self.switch_connect_or_chat(to_chat=True)
 
     def on_disconnect_btn(self):
         ans = messagebox.askyesno(title='離開？', 
@@ -1050,6 +1057,7 @@ class PythonPostitView(ttk.Frame):
                 #print('hide_tab: ',option_name, selected_group_tabs)
             get_workbench().set_option(option_name, selected_group_tabs)
 
+    
 
     def toolbar_init(self):
 
