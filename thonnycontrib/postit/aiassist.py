@@ -1,5 +1,9 @@
 import threading
 import time
+import tkinter as tk
+import tkinter.font as font
+from tkinter import ttk
+
 import pytgpt.auto  as auto
 
 from . import common
@@ -35,6 +39,48 @@ class AiassistThread(threading.Thread):
         self.aiassist_tab.closing_queue.get()
         #del bot
         print('[ai assist thread] closing thread ....')
+
+
+try_counter = 0
+
+class TryAiassistPostit(ttk.Frame):
+    def __init__(self, parent):
+        self.parent = parent
+        ttk.Frame.__init__(self, self.parent)
+
+        global try_counter
+        try_counter += 1
+
+        if try_counter % 2 :
+            position = 'e'
+            name = '我'
+        else:
+            position = 'w'
+            name = 'AI'
+
+        self.avatar_frame = ttk.Frame(self)
+        self.avatar_frame.pack(fill='x', expand=1)
+        self.main_frame = ttk.Frame(self)
+        self.main_frame.pack(fill='x', expand=1)
+
+        self.avatar_label = ttk.Label(self.avatar_frame, text=name, borderwidth=2, relief="groove")
+        
+        
+        
+        self.avatar_label.pack(anchor=position)
+
+        #self.dialog_text = tk.Text(self.main_frame, height=7)
+        #self.dialog_text.pack()
+
+        
+        try_str = str(try_counter) * 15 + '\n'
+        try_str = try_str * 4
+        self.label = tk.Label(self.main_frame, text=try_str, borderwidth=2, relief="groove")
+        self.label.pack( anchor=position)
+        
+        
+        #self.dialog_text.insert('0.0', str(try_counter))
+        
 
 
 

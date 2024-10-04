@@ -25,7 +25,7 @@ from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
-from .aiassist import AiassistThread
+from .aiassist import AiassistThread, TryAiassistPostit
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH
                      )
 from . import common
@@ -340,6 +340,8 @@ class AiassistTab:
         self.first_chat = False
 
         self.text_font = ('Consolas','11')
+
+        
          
 
 
@@ -429,7 +431,10 @@ class AiassistTab:
         # for i in range(40):
         #     ttk.Label(self.chat_frame.interior, text='chat'+str(i)).pack()
 
-        self.asking_btn = tk.Button(self.asking_frame, text='詢問',font=self.text_font)
+        self.asking_btn = tk.Button(self.asking_frame, 
+                                    text='詢問',
+                                    font=self.text_font,
+                                    command=self.on_asking_btn)
         self.asking_btn.pack(side='right',padx=5)
 
         self.asking_text = tk.Text(self.asking_frame, height=2, font=self.text_font)
@@ -494,6 +499,19 @@ class AiassistTab:
             self.switch_connect_or_chat(to_chat=False)
         else:
             get_workbench().after(500, self.delay_disconnect)
+
+    def on_asking_btn(self):
+        # build ai assist postit
+        try_postit = TryAiassistPostit(self.chat_frame.interior)
+        try_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
+
+        
+        self.chat_frame.update_idletasks()
+        self.chat_frame.update_scrollbars()
+        self.chat_frame.scroll_to_end()
+        
+       
+
 
     def popup_init(self, example_vars):
         self.example_vars = example_vars
@@ -1237,6 +1255,8 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
             
             self.canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
+    def scroll_to_end(self):
+        self.canvas.yview_moveto(1)
 
 
 class AboutDialog(CommonDialog):
