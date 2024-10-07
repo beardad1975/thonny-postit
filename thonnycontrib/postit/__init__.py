@@ -25,7 +25,7 @@ from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
-from .aiassist import AiassistThread, TryAiassistPostit
+from .aiassist import AiassistThread, ChatTextPostit, TryAiassistPostit
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH
                      )
 from . import common
@@ -332,14 +332,21 @@ class AiassistTab:
         # record ai_tab in common
         common.aiassist_tab = self
 
-        self.question_queue = queue.Queue()
+        # for threads 
+        self.asking_queue = queue.Queue()
         self.answer_queue = queue.Queue()
         self.closing_queue = queue.Queue()
+
+        # chat widget
+        self.chat_widget_queqe = queue.Queue()
+
         self.is_chatting = False
         self.provider_name = False
         self.first_chat = False
 
-        self.text_font = ('Consolas','11')
+        self.line_length = 18
+
+        
 
         
          
@@ -407,25 +414,27 @@ class AiassistTab:
                 width=12,
                 state="readonly",
                 takefocus=0,
-                font=self.text_font, 
+                font=common.postit_para_font, 
                 justify=tk.CENTER,
                 values=self.services)
         self.service_combo.current(0)
         self.service_combo.pack(fill='x',pady=12)
 
         self.connect_btn = tk.Button(self.connect_frame, 
-                                     font=self.text_font,
+                                     font=common.postit_para_font,
                                      text='連接AI助理',
                                      command=self.on_connect_btn)
         self.connect_btn.pack(fill='x')
 
         self.close_btn = tk.Button(self.status_frame, 
-                                   font=self.text_font,
+                                   font=common.note_font,
                                    text='結束',
                                    command=self.on_disconnect_btn)
         self.close_btn.pack(side='right', padx=10)
 
-        self.status_label = ttk.Label(self.status_frame, text='AUTO',font=self.text_font)
+        self.status_label = ttk.Label(self.status_frame, 
+                                      text='AUTO',
+                                      font=common.note_font)
         self.status_label.pack(side='right')
 
         # for i in range(40):
@@ -433,11 +442,13 @@ class AiassistTab:
 
         self.asking_btn = tk.Button(self.asking_frame, 
                                     text='詢問',
-                                    font=self.text_font,
+                                    font=common.postit_para_font,
                                     command=self.on_asking_btn)
         self.asking_btn.pack(side='right',padx=5)
 
-        self.asking_text = tk.Text(self.asking_frame, height=2, font=self.text_font)
+        self.asking_text = tk.Text(self.asking_frame, 
+                                   height=2, 
+                                   font=common.postit_para_font)
         self.asking_text.pack(side='right', fill='x', expand=1,padx=5)
         
         # on close  , stop thread
@@ -475,12 +486,18 @@ class AiassistTab:
 
             self.connect_frame.pack(expand=1)
 
+            # clean all chat widget
+            while self.chat_widget_queqe.qsize() > 0:
+                item = self.chat_widget_queqe.get()
+                item.destroy()
+                del item
+
     def on_connect_btn(self):
             service_name = self.service_combo.get()
             aiassist_thread = AiassistThread(service_name)
 
             aiassist_thread.start()
-            get_workbench().after(200, self.delay_connection)
+            get_workbench().after(500, self.delay_connection)
 
     def delay_connection(self):
             self.status_label.config(text=f"使用 {self.provider_name} 服務")
@@ -492,20 +509,87 @@ class AiassistTab:
                                     master=get_workbench())
         if ans:
             self.closing_queue.put(True)
-            get_workbench().after(500, self.delay_disconnect)
+            self.close_btn['state'] = 'disabled'
+            self.asking_btn['state'] = 'disabled'
+            self.asking_text['state'] = 'disabled'
+            get_workbench().after(200, self.delay_disconnect)
+
 
     def delay_disconnect(self):
         if self.closing_queue.empty():
+            self.close_btn['state'] = 'normal'
+            self.asking_btn['state'] = 'normal'
+            self.asking_text['state'] = 'normal'
+            self.asking_text.delete('1.0', tk.END)
+
             self.switch_connect_or_chat(to_chat=False)
         else:
-            get_workbench().after(500, self.delay_disconnect)
+            get_workbench().after(200, self.delay_disconnect)
 
     def on_asking_btn(self):
         # build ai assist postit
-        try_postit = TryAiassistPostit(self.chat_frame.interior)
-        try_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
 
+        # todo : check text content , 要不要詢問按鈕？
+        # aiassist_postit = TryAiassistPostit(self.chat_frame.interior)
+
+        question = self.asking_text.get("1.0",tk.END)
+        self.asking_text.delete('1.0', tk.END)
+        question = question.strip()
+        if not question :
+            return
         
+        # split question if too long
+        
+        # lines = [ question[i:i+self.line_length] \
+        #            for i in range(0, len(question), self.line_length)]
+        # question = '\n'.join(lines)
+        formated_question = self.format_chat(question)
+
+        asking_text_postit = ChatTextPostit(self.chat_frame.interior,
+                                            message=formated_question, 
+                                            told_by_ai=False )
+        asking_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
+
+        self.chat_widget_queqe.put(asking_text_postit)
+        self.close_btn['state'] = 'disabled'
+        self.asking_btn['state'] = 'disabled'
+        self.asking_text['state'] = 'disabled'
+        self.chat_frame_update()
+
+        self.asking_queue.put(question)
+        get_workbench().after(400, self.checking_answer)
+
+    def checking_answer(self): 
+        if self.answer_queue.qsize() > 0:
+            print(' got answer .....')
+            answer = self.answer_queue.get()
+            formated_answer = self.format_chat(answer)
+
+            answer_text_postit = ChatTextPostit(self.chat_frame.interior,
+                                            message=formated_answer, 
+                                            told_by_ai=True )
+            answer_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
+
+            self.chat_widget_queqe.put(answer_text_postit)
+            self.close_btn['state'] = 'normal'
+            self.asking_btn['state'] = 'normal'
+            self.asking_text['state'] = 'normal'
+            self.chat_frame_update()
+
+        else:
+            get_workbench().after(400, self.checking_answer)
+
+
+    def format_chat(self, text):
+        """
+           break chat text into lines . Preventing too long in one line.
+        """
+        lines = [ text[i:i+self.line_length] \
+                   for i in range(0, len(text), self.line_length)]
+        return '\n'.join(lines)
+
+
+    def chat_frame_update(self):
         self.chat_frame.update_idletasks()
         self.chat_frame.update_scrollbars()
         self.chat_frame.scroll_to_end()
