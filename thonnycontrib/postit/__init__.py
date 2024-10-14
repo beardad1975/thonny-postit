@@ -4,7 +4,7 @@ import webbrowser
 import shutil
 import json
 import queue
-from collections import OrderedDict
+from collections import OrderedDict, namedtuple
 
 import tkinter as tk
 import tkinter.font as font
@@ -26,7 +26,7 @@ from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
 from .aiassist import AiassistThread, ChatTextPostit, TryAiassistPostit
-from .common import ( CodeNTuple, common_images, TAB_DATA_PATH
+from .common import ( CodeNTuple, common_images, TAB_DATA_PATH, AnswerNTuple
                      )
 from . import common
 
@@ -308,6 +308,7 @@ class Tab:
     #     return c
 
 
+
 class AiassistTab:
     def __init__(self, tab_name, group, tab_label,tab_title, tab_path):
         self.tab_name = tab_name
@@ -341,8 +342,9 @@ class AiassistTab:
         self.chat_widget_queqe = queue.Queue()
 
         self.is_chatting = False
-        self.provider_name = False
-        self.first_chat = False
+        self.service_name = ''
+        self.provider_name = ''
+        # self.chat_round_num = 0
 
         self.line_length = 18
 
@@ -408,7 +410,7 @@ class AiassistTab:
         self.asking_frame = ttk.Frame(self.tab_frame)
         #self.asking_frame.pack(fill='x')
 
-        self.services = ('AUTO','Phind', 'Perplexity','Blackboxai','Koboldai')
+        self.services = ('AUTO','Phind', 'Perplexity','Blackboxai','Koboldai','Llama2')
         self.service_combo = ttk.Combobox(
                 self.connect_frame,
                 width=12,
@@ -426,14 +428,16 @@ class AiassistTab:
                                      command=self.on_connect_btn)
         self.connect_btn.pack(fill='x')
 
+
         self.close_btn = tk.Button(self.status_frame, 
                                    font=common.note_font,
                                    text='結束',
                                    command=self.on_disconnect_btn)
+        
         self.close_btn.pack(side='right', padx=10)
 
         self.status_label = ttk.Label(self.status_frame, 
-                                      text='AUTO',
+                                      text='',
                                       font=common.note_font)
         self.status_label.pack(side='right')
 
@@ -444,11 +448,13 @@ class AiassistTab:
                                     text='詢問',
                                     font=common.postit_para_font,
                                     command=self.on_asking_btn)
+        
         self.asking_btn.pack(side='right',padx=5)
 
         self.asking_text = tk.Text(self.asking_frame, 
                                    height=2, 
                                    font=common.postit_para_font)
+        
         self.asking_text.pack(side='right', fill='x', expand=1,padx=5)
         
         # on close  , stop thread
@@ -486,11 +492,22 @@ class AiassistTab:
 
             self.connect_frame.pack(expand=1)
 
+            
             # clean all chat widget
             while self.chat_widget_queqe.qsize() > 0:
                 item = self.chat_widget_queqe.get()
                 item.destroy()
                 del item
+            # clean queue
+            while self.asking_queue.qsize() > 0:
+                self.asking_queue.get()
+
+            while self.answer_queue.qsize() > 0:
+                self.answer_queue.get()
+            
+            while self.closing_queue.qsize() > 0:
+                self.closing_queue.get()
+
 
     def on_connect_btn(self):
             service_name = self.service_combo.get()
@@ -499,8 +516,7 @@ class AiassistTab:
             aiassist_thread.start()
             get_workbench().after(500, self.delay_connection)
 
-    def delay_connection(self):
-            self.status_label.config(text=f"使用 {self.provider_name} 服務")
+    def delay_connection(self):   
             self.switch_connect_or_chat(to_chat=True)
 
     def on_disconnect_btn(self):
@@ -562,7 +578,12 @@ class AiassistTab:
     def checking_answer(self): 
         if self.answer_queue.qsize() > 0:
             print(' got answer .....')
-            answer = self.answer_queue.get()
+            ans_ntuple = self.answer_queue.get()
+            if ans_ntuple.success:
+                answer = ans_ntuple.answer
+            else:
+                answer = '服務異常，請於網頁提問!'
+
             formated_answer = self.format_chat(answer)
 
             answer_text_postit = ChatTextPostit(self.chat_frame.interior,

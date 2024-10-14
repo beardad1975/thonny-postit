@@ -4,9 +4,19 @@ import tkinter as tk
 import tkinter.font as font
 from tkinter import ttk
 
-import pytgpt.auto  as auto
+import pytgpt.auto as auto
+import pytgpt.phind as phind
+import pytgpt.perplexity as perplexity
+import pytgpt.blackboxai as blackboxai
+import pytgpt.koboldai as koboldai
+import pytgpt.llama2 as llama2
+from pytgpt.auto.errors import AllProvidersFailure
+from pytgpt.exceptions import FailedToGenerateResponseError
+from requests.exceptions import ConnectionError
+
 
 from . import common
+from .common import AnswerNTuple
 
 
 class AiassistThread(threading.Thread):
@@ -17,15 +27,49 @@ class AiassistThread(threading.Thread):
 
     def run(self):
         print("ai assist thread starting .......")
+        print("choosed service name : ", self.service_name)
+        common.aiassist_tab.provider_name = ''
+        # common.aiassist_tab.chat_round_num = 0
+        common.aiassist_tab.status_label.config(text="")
+
         if self.service_name == 'AUTO':
-            bot = auto.AUTO()
+            bot = auto.AUTO(intro=common.aiassist_intro)
+            self.aiassist_tab.provider_name = 'AUTO'
+        elif self.service_name == 'Phind':
+            bot = phind.PHIND()
+            self.aiassist_tab.provider_name = 'Phind'
+        elif self.service_name == 'Perplexity':
+            bot = perplexity.PERPLEXITY()
+            self.aiassist_tab.provider_name = 'Perplexity'
+        elif self.service_name == 'Blackboxai':
+            bot = blackboxai.BLACKBOXAI()
+            self.aiassist_tab.provider_name = 'Blackboxai'
+        elif self.service_name == 'Koboldai':
+            bot = koboldai.KOBOLDAI()
+            self.aiassist_tab.provider_name = 'Koboldai'
+        elif self.service_name == 'Llama2':
+            bot = llama2.LLAMA2()
+            self.aiassist_tab.provider_name = 'Llama2'
+        else:
+            print('Fallback to AUTO ai assist...')
+            self.service_name = 'AUTO'
+            self.aiassist_tab.provider_name = 'AUTO'
+            bot = auto.AUTO(intro=common.aiassist_intro)
+
+        # mark service label (excep AUTO)
+        if self.aiassist_tab.provider_name:
+            self.aiassist_tab.status_label.config(
+                            text=f"使用 {self.aiassist_tab.provider_name} 服務")
+
+            
+        self.aiassist_tab.is_chatting = True
         
         ### first chat
         # self.aiassist_tab.is_chatting = False
         # result = bot.chat('以下請用繁體中文回答。你好嗎？')
         # print(result)
-        self.aiassist_tab.is_chatting = True
-        self.aiassist_tab.provider_name = self.service_name
+        
+        
         # if self.service_name == 'AUTO':
         #     self.aiassist_tab.provider_name = f'{bot.provider_name}'
 
@@ -34,8 +78,30 @@ class AiassistThread(threading.Thread):
             if self.aiassist_tab.asking_queue.qsize() > 0 :
                 print('got question ...')
                 question = self.aiassist_tab.asking_queue.get()
-                answer = bot.chat(question)
-                self.aiassist_tab.answer_queue.put(answer)
+
+                try:
+                    answer = bot.chat(question)
+                    ans_ntuple = AnswerNTuple(success=True, answer=answer)
+                except (AllProvidersFailure, FailedToGenerateResponseError, ConnectionError) as e:
+                    print('Got exception when chat :', e)
+                    ans_ntuple = AnswerNTuple(success=False, answer=None)
+
+                
+                self.aiassist_tab.answer_queue.put(ans_ntuple)
+                # self.aiassist_tab.chat_round_num += 1
+
+                # if self.service_name == 'AUTO' and \
+                #     self.aiassist_tab.chat_round_num == 1:
+                #         self.aiassist_tab.provider_name = f'AUTO ({bot.provider_name})'
+                #         self.aiassist_tab.status_label.config(
+                #             text=f"使用 {self.aiassist_tab.provider_name} 服務")
+                if self.service_name == 'AUTO' :
+                    if bot.provider_name != self.aiassist_tab.provider_name:
+                        self.aiassist_tab.provider_name = f'AUTO ({bot.provider_name})'
+                        self.aiassist_tab.status_label.config(
+                            text=f"使用 {self.aiassist_tab.provider_name} 服務")
+                    
+
             time.sleep(0.1)
         
         self.aiassist_tab.is_chatting = False
