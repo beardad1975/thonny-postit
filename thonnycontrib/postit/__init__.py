@@ -12,6 +12,7 @@ from tkinter import messagebox
 from tkinter import ttk
 from pathlib import Path
 from PIL import Image, ImageTk
+import cjkwrap
 
 from thonny import get_workbench, get_shell, get_runner 
 from thonny.ui_utils import show_dialog, CommonDialog, create_tooltip, QueryDialog
@@ -340,13 +341,14 @@ class AiassistTab:
 
         # chat widget
         self.chat_widget_queqe = queue.Queue()
+        self.chat_widget_max = 50
 
         self.is_chatting = False
         self.service_name = ''
         self.provider_name = ''
         # self.chat_round_num = 0
 
-        self.line_length = 18
+        self.linewrap_length = 18
 
         
 
@@ -559,14 +561,22 @@ class AiassistTab:
         # lines = [ question[i:i+self.line_length] \
         #            for i in range(0, len(question), self.line_length)]
         # question = '\n'.join(lines)
-        formated_question = self.format_chat(question)
+        formated_question = self.wordwrap_chat(question)
 
         asking_text_postit = ChatTextPostit(self.chat_frame.interior,
                                             message=formated_question, 
                                             told_by_ai=False )
         asking_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
-
         self.chat_widget_queqe.put(asking_text_postit)
+
+        if self.chat_widget_queqe.qsize() > self.chat_widget_max:
+                # keep chat widget below max 
+                item = self.chat_widget_queqe.get() 
+                item.destroy()
+                del item
+                print('Drop old chat widget ...')
+                
+
         self.close_btn['state'] = 'disabled'
         self.asking_btn['state'] = 'disabled'
         self.asking_text['state'] = 'disabled'
@@ -584,14 +594,21 @@ class AiassistTab:
             else:
                 answer = '服務異常，請於網頁提問!'
 
-            formated_answer = self.format_chat(answer)
+            formated_answer = self.wordwrap_chat(answer)
 
             answer_text_postit = ChatTextPostit(self.chat_frame.interior,
                                             message=formated_answer, 
                                             told_by_ai=True )
             answer_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
-
             self.chat_widget_queqe.put(answer_text_postit)
+
+            if self.chat_widget_queqe.qsize() > self.chat_widget_max:
+                # keep chat widget below max 
+                item = self.chat_widget_queqe.get() 
+                item.destroy()
+                del item
+                print('Drop old chat widget ...')
+
             self.close_btn['state'] = 'normal'
             self.asking_btn['state'] = 'normal'
             self.asking_text['state'] = 'normal'
@@ -601,13 +618,25 @@ class AiassistTab:
             get_workbench().after(400, self.checking_answer)
 
 
-    def format_chat(self, text):
+    def wordwrap_chat(self, text):
         """
-           break chat text into lines . Preventing too long in one line.
+        Preventing too long in one line. Length calculating consider CJK text. 
         """
-        lines = [ text[i:i+self.line_length] \
-                   for i in range(0, len(text), self.line_length)]
-        return '\n'.join(lines)
+        
+        result_lines = []
+
+        lines = text.split('\n')
+        for line in lines:
+            line_length = cjkwrap.cjklen(line)
+            if line_length <= self.linewrap_length:
+                result_lines.append(line)
+            else:
+                result_lines += cjkwrap.wrap(line, self.linewrap_length)
+
+        # for r in result_lines:
+        #     print(cjkwrap.cjklen(r))
+            
+        return '\n'.join(result_lines)
 
 
     def chat_frame_update(self):
