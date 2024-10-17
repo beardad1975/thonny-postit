@@ -117,6 +117,7 @@ class ChatTextPostit(ttk.Frame):
         self.parent = parent
         ttk.Frame.__init__(self, self.parent)
 
+        self.original_message = message
         self.told_by_ai = told_by_ai
 
         if not told_by_ai :
@@ -148,6 +149,14 @@ class ChatTextPostit(ttk.Frame):
                               borderwidth=2, 
                               relief="groove")
         self.label.pack( anchor=position)
+
+    def get_message(self):
+        return self.original_message
+
+    def set_message(self, new_message):
+        self.label['text'] = new_message
+        
+
 
 class ChatCodePostit(ttk.Frame):
     def __init__(self, parent, code):        

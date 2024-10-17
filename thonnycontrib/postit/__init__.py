@@ -340,15 +340,18 @@ class AiassistTab:
         self.closing_queue = queue.Queue()
 
         # chat widget
-        self.chat_widget_queqe = queue.Queue()
-        self.chat_widget_max = 50
+        self.chat_widget_list = []
+        self.CHAT_WIDGET_MAX = 50
 
         self.is_chatting = False
         self.service_name = ''
         self.provider_name = ''
         # self.chat_round_num = 0
 
-        self.linewrap_length = 18
+        self.linewrap_length = 26
+        self.LINEWRAP_MIN = 20
+        self.LINEWRAP_MAX = 80
+        self.size_changed = False
 
         
 
@@ -475,6 +478,49 @@ class AiassistTab:
                         )
         mode.tab_notebook.hide(self.tab_frame)
 
+        common.postit_view.bind("<Configure>", self.on_configure_resize, "+")
+        get_workbench()._main_pw.bind("<ButtonRelease-1>", self.on_mouse_released, "+")
+
+    def on_configure_resize(self, event):
+        if not self.is_chatting:
+            return
+        # when postit view changes size, mark it.
+        mode = common.postit_view.current_mode
+        tab = common.postit_view.py4t_mode_current_tab
+        
+        if mode == 'py4t' and tab is self  :
+            self.size_changed = True
+            # print('------ size changed ------------')
+            # print(event)
+            # w = common.postit_view.winfo_width()
+            # print('postit view length ', w)
+            # print('------------------')
+
+    def on_mouse_released(self, event):
+        #  determine chat text widget wordwrap length
+        if not self.is_chatting or not self.size_changed:
+            return
+        
+        mode = common.postit_view.current_mode
+        tab = common.postit_view.py4t_mode_current_tab
+
+        if mode == 'py4t' and tab is self  :
+            w = common.postit_view.winfo_width() // 20
+            bounded_w =  min(max(w, self.LINEWRAP_MIN), self.LINEWRAP_MAX)
+            print(w, bounded_w)
+            self.linewrap_length = bounded_w
+
+            # change every chat widget in queqe
+           
+            for w in self.chat_widget_list:
+                text = w.get_message()
+                message = self.wordwrap_chat(text)
+                w.set_message(message)
+                
+
+
+
+
     def on_aiassist_close(self, event):
         self.closing_queue.put(True)
         
@@ -486,6 +532,9 @@ class AiassistTab:
             self.status_frame.pack(fill='x', pady=5)
             self.chat_frame.pack(fill='both', expand=1, pady=5)
             self.asking_frame.pack(fill='x', pady=5)
+
+            self.chatting = True
+            self.size_changed = False
             
         else: # to connect
             self.status_frame.pack_forget()
@@ -496,8 +545,8 @@ class AiassistTab:
 
             
             # clean all chat widget
-            while self.chat_widget_queqe.qsize() > 0:
-                item = self.chat_widget_queqe.get()
+            while len(self.chat_widget_list) > 0:
+                item = self.chat_widget_list.pop(0)
                 item.destroy()
                 del item
             # clean queue
@@ -509,6 +558,9 @@ class AiassistTab:
             
             while self.closing_queue.qsize() > 0:
                 self.closing_queue.get()
+
+            self.chatting = False
+            self.size_changed = False
 
 
     def on_connect_btn(self):
@@ -550,6 +602,8 @@ class AiassistTab:
         # todo : check text content , 要不要詢問按鈕？
         # aiassist_postit = TryAiassistPostit(self.chat_frame.interior)
 
+        
+
         question = self.asking_text.get("1.0",tk.END)
         self.asking_text.delete('1.0', tk.END)
         question = question.strip()
@@ -567,11 +621,11 @@ class AiassistTab:
                                             message=formated_question, 
                                             told_by_ai=False )
         asking_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
-        self.chat_widget_queqe.put(asking_text_postit)
+        self.chat_widget_list.append(asking_text_postit)
 
-        if self.chat_widget_queqe.qsize() > self.chat_widget_max:
+        if len(self.chat_widget_list) > self.CHAT_WIDGET_MAX:
                 # keep chat widget below max 
-                item = self.chat_widget_queqe.get() 
+                item = self.chat_widget_list.pop(0) 
                 item.destroy()
                 del item
                 print('Drop old chat widget ...')
@@ -600,11 +654,11 @@ class AiassistTab:
                                             message=formated_answer, 
                                             told_by_ai=True )
             answer_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
-            self.chat_widget_queqe.put(answer_text_postit)
+            self.chat_widget_list.append(answer_text_postit)
 
-            if self.chat_widget_queqe.qsize() > self.chat_widget_max:
+            if len(self.chat_widget_list) > self.CHAT_WIDGET_MAX:
                 # keep chat widget below max 
-                item = self.chat_widget_queqe.get() 
+                item = self.chat_widget_list.pop(0) 
                 item.destroy()
                 del item
                 print('Drop old chat widget ...')
@@ -766,6 +820,7 @@ class PythonPostitView(ttk.Frame):
         self.current_mode = 'py4t'
         self.last_backend = ''
         self.all_modes = OrderedDict()
+        self.py4t_mode_current_tab = None
 
         im = Image.open(Path(__file__).parent / 'images' / 'vertical_spacer.png')       
         self.spacer_image= ImageTk.PhotoImage(im) 
@@ -930,6 +985,10 @@ class PythonPostitView(ttk.Frame):
             for tab in g.tabs.values():
                 if tab.visible:
                     mode.tab_notebook.select(tab.tab_frame)
+                    
+                    if mode_name == 'py4t':
+                        self.py4t_mode_current_tab = tab
+                        print('[py4t mode ] ', tab)
                     #print(mode_name + ' mode select first visible tab: ', tab.tab_name)
                     return
 
@@ -1326,6 +1385,12 @@ class PythonPostitView(ttk.Frame):
         if tab_num > 0 and tab_widget_name:
             tab_frame = tab_notebook.nametowidget(tab_widget_name)
             tab = tab_frame.tab
+            #record current tab
+            if not isinstance(tab, MoreTab) and self.current_mode == 'py4t' \
+                            and tab.group.mode.mode_name == 'py4t':
+                #print('-----------on tab change . py4t mode current tab: ', tab.tab_name)
+                self.py4t_mode_current_tab = tab
+
             if not isinstance(tab, MoreTab) and not tab.para_start_on_done and tab.loaded:
                 tab.do_para_start_on()
                 
@@ -1368,6 +1433,7 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
 
     def _configure_interior(self, event):
         self.update_scrollbars()
+        
 
     def update_scrollbars(self):
         # update the scrollbars to match the size of the inner frame
