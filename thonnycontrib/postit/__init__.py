@@ -1436,7 +1436,8 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
             tk.Frame.__init__(self, master, bg=bg)
             # set up scrolling with canvas
             #vscrollbar = tk.Scrollbar(self, troughcolor=bg, bg=bg, orient=tk.VERTICAL)
-            _ , vstyle = self.make_scrollbar_styles(troughcolor='grey', background=bg, arrowcolor=bg)
+            ###_ , vstyle = self.make_scrollbar_styles(troughcolor='grey', background=bg, arrowcolor=bg)
+            _ , vstyle = self.make_scrollbar_styles(troughcolor=bg, background='grey', arrowcolor='grey')
             vscrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, style=vstyle)
 
             self.canvas = tk.Canvas(self,bg=bg, bd=0, highlightthickness=0, yscrollcommand=vscrollbar.set)
@@ -1530,7 +1531,7 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
                     ],
                     'sticky': 'we' if is_hori else 'ns'}),
                 ])
-            style.configure(f'CustomScrollbarStyle.{v}.TScrollbar', troughcolor=troughcolor, background=background, arrowcolor=arrowcolor)
+            style.configure(f'CustomScrollbarStyle.{v}.TScrollbar', troughcolor=troughcolor, background=background, arrowcolor=arrowcolor, borderwidth=0, relief='flat')
             # Comment in the following to customize disable/active colors, whatever that means
             # style.map(f'CustomScrollbarStyle.{v}.TScrollbar', background=[('pressed', '!disabled', disabledcolor), ('active', 'orange')])
         return "CustomScrollbarStyle.Horizontal.TScrollbar", "CustomScrollbarStyle.Vertical.TScrollbar"
