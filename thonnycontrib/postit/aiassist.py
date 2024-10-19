@@ -13,7 +13,7 @@ import pytgpt.llama2 as llama2
 from pytgpt.auto.errors import AllProvidersFailure
 from pytgpt.exceptions import FailedToGenerateResponseError
 from requests.exceptions import ConnectionError
-
+import cjkwrap
 
 from . import common
 from .common import AnswerNTuple
@@ -113,7 +113,7 @@ class AiassistThread(threading.Thread):
 
 
 class ChatTextPostit(ttk.Frame):
-    def __init__(self, parent, message, told_by_ai):
+    def __init__(self, parent, message, wrap_length, told_by_ai):
         self.parent = parent
         ttk.Frame.__init__(self, self.parent)
 
@@ -144,17 +144,41 @@ class ChatTextPostit(ttk.Frame):
 
         self.label = tk.Label(self.main_frame,
                               font=common.postit_para_font,
-                              text=message, 
+                              text='', 
                               justify='left',
                               borderwidth=2, 
                               relief="groove")
         self.label.pack( anchor=position)
+
+        self.set_wordwrap(wrap_length)
 
     def get_message(self):
         return self.original_message
 
     def set_message(self, new_message):
         self.label['text'] = new_message
+
+    def set_wordwrap(self, wrap_length):
+        """
+        Preventing too long in one line. Length calculating consider CJK text(double character). 
+        """
+        
+        result_lines = []
+
+        text = self.original_message
+        lines = text.split('\n')
+        for line in lines:
+            line_length = cjkwrap.cjklen(line)
+            if line_length <= wrap_length:
+                result_lines.append(line)
+            else:
+                result_lines += cjkwrap.wrap(line, wrap_length)
+
+        # for r in result_lines:
+        #     print(cjkwrap.cjklen(r))
+            
+        self.label['text'] =  '\n'.join(result_lines)
+        common.aiassist_tab.tab_frame.update_idletasks()
         
 
 

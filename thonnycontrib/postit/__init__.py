@@ -12,7 +12,6 @@ from tkinter import messagebox
 from tkinter import ttk
 from pathlib import Path
 from PIL import Image, ImageTk
-import cjkwrap
 
 from thonny import get_workbench, get_shell, get_runner 
 from thonny.ui_utils import show_dialog, CommonDialog, create_tooltip, QueryDialog
@@ -348,7 +347,7 @@ class AiassistTab:
         self.provider_name = ''
         # self.chat_round_num = 0
 
-        self.linewrap_length = 26
+        self.linewrap_length = 28
         self.LINEWRAP_MIN = 20
         self.LINEWRAP_MAX = 80
         self.size_changed = False
@@ -505,19 +504,31 @@ class AiassistTab:
         tab = common.postit_view.py4t_mode_current_tab
 
         if mode == 'py4t' and tab is self  :
-            w = common.postit_view.winfo_width() // 20
+            w = common.postit_view.winfo_width() // 13
+            bounded_w = w
             bounded_w =  min(max(w, self.LINEWRAP_MIN), self.LINEWRAP_MAX)
-            print(w, bounded_w)
+            print('adjust line characters :', w, bounded_w)
             self.linewrap_length = bounded_w
 
             # change every chat widget in queqe
-           
+            # re-pack every chat widget
             for w in self.chat_widget_list:
-                text = w.get_message()
-                message = self.wordwrap_chat(text)
-                w.set_message(message)
-                
+                w.pack_forget()
+                w.set_wordwrap(self.linewrap_length)
 
+                # print('--------------')
+                # print(repr(w.get_message()))
+                # print('--------------')
+
+            
+
+            for w in self.chat_widget_list:
+                w.pack(side='top', fill='x', expand=1, padx=5, pady=5)
+
+            
+            
+                
+        self.size_changed = False
 
 
 
@@ -615,10 +626,11 @@ class AiassistTab:
         # lines = [ question[i:i+self.line_length] \
         #            for i in range(0, len(question), self.line_length)]
         # question = '\n'.join(lines)
-        formated_question = self.wordwrap_chat(question)
+        
 
         asking_text_postit = ChatTextPostit(self.chat_frame.interior,
-                                            message=formated_question, 
+                                            message=question, 
+                                            wrap_length = self.linewrap_length,
                                             told_by_ai=False )
         asking_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
         self.chat_widget_list.append(asking_text_postit)
@@ -648,10 +660,11 @@ class AiassistTab:
             else:
                 answer = '服務異常，請於網頁提問!'
 
-            formated_answer = self.wordwrap_chat(answer)
+            
 
             answer_text_postit = ChatTextPostit(self.chat_frame.interior,
-                                            message=formated_answer, 
+                                            message=answer, 
+                                            wrap_length = self.linewrap_length,
                                             told_by_ai=True )
             answer_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
             self.chat_widget_list.append(answer_text_postit)
@@ -672,25 +685,7 @@ class AiassistTab:
             get_workbench().after(400, self.checking_answer)
 
 
-    def wordwrap_chat(self, text):
-        """
-        Preventing too long in one line. Length calculating consider CJK text. 
-        """
-        
-        result_lines = []
-
-        lines = text.split('\n')
-        for line in lines:
-            line_length = cjkwrap.cjklen(line)
-            if line_length <= self.linewrap_length:
-                result_lines.append(line)
-            else:
-                result_lines += cjkwrap.wrap(line, self.linewrap_length)
-
-        # for r in result_lines:
-        #     print(cjkwrap.cjklen(r))
-            
-        return '\n'.join(result_lines)
+    
 
 
     def chat_frame_update(self):
