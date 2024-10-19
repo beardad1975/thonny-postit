@@ -25,7 +25,7 @@ from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
-from .aiassist import AiassistThread, ChatTextPostit, TryAiassistPostit
+from .aiassist import AiassistThread, AiassistChatPostit, TryAiassistPostit
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH, AnswerNTuple
                      )
 from . import common
@@ -338,16 +338,14 @@ class AiassistTab:
         self.answer_queue = queue.Queue()
         self.closing_queue = queue.Queue()
 
-        # chat widget
-        self.chat_widget_list = []
-        self.CHAT_WIDGET_MAX = 50
+        
 
         self.is_chatting = False
         self.service_name = ''
         self.provider_name = ''
         # self.chat_round_num = 0
 
-        self.linewrap_length = 28
+        self.linewrap_length = 24
         self.LINEWRAP_MIN = 20
         self.LINEWRAP_MAX = 80
         self.size_changed = False
@@ -388,11 +386,38 @@ class AiassistTab:
         self.loaded = False
         self.visible = False
 
-        
+        # chat widget
+        self.chat_widget_list = []
+        self.CHAT_WIDGET_MAX = 50
+
+        self.WIDGET_TYPE_ME_TEXT = 1
+        self.WIDGET_TYPE_AI_TEXT = 2
+        self.WIDGET_TYPE_AI_TEXT_NO_AVATAR = 3
+        self.WIDGET_TYPE_AI_CODE = 4
+        self.WIDGET_TYPE_AI_CODE_NO_AVATAR = 5
+        self.WIDGET_TYPE_ABNORMAL = 6
+
+        self.BG_COLOR = '#1d1f21'
+        self.LIGHT_FG_COLOR = '#ffffff'
+        self.DARK_FG_COLOR = '#000000'
+        self.ME_BG_COLOR = '#fffd9a'
+        self.ME_BORDER_COLOR = '#40d517'
+        #self.AI_TEXT_BG_COLOR = '#ffffff'
+        self.AI_TEXT_BG_COLOR = '#f2f2f2'
+        self.AI_TEXT_BORDER_COLOR = '#5b99d6'
+        self.AI_CODE_BG_COLOR = '#0080ff'
+        self.AI_CODE_BORDER_COLOR = '#bedfff'
+        self.ABNORMAL_BG_COLOR = '#cd1616'
+        self.ABNORMAL_BORDER_COLOR = '#ffffff'
+
+        self.BORDER_THICKNESS = 7
 
         # insert empty frame and hide
         
-        self.tab_frame =  ttk.Frame(mode.notebook_frame)
+        self.tab_frame =  tk.Frame(mode.notebook_frame, 
+                                   bg=self.BG_COLOR,
+                                   
+                                   )
         #checking on_mousewheel scroll
         self.tab_frame.ai_assistant_exists = True
 
@@ -402,16 +427,16 @@ class AiassistTab:
         #        connect_frame status_frame, chat_frame, asking_frame
 
         # add ai assistant related frames
-        self.connect_frame = ttk.Frame(self.tab_frame)
+        self.connect_frame = tk.Frame(self.tab_frame, bg=self.BG_COLOR )
         self.connect_frame.pack(expand=1)
 
-        self.status_frame = ttk.Frame(self.tab_frame)
+        self.status_frame = tk.Frame(self.tab_frame, bg=self.BG_COLOR )
         #self.status_frame.pack(fill='x')
 
-        self.chat_frame = CustomVerticallyScrollableFrame(self.tab_frame)
+        self.chat_frame = CustomVerticallyScrollableFrame(self.tab_frame, bg=self.BG_COLOR)
         #self.chat_frame.pack(fill='both', expand=1)
 
-        self.asking_frame = ttk.Frame(self.tab_frame)
+        self.asking_frame = tk.Frame(self.tab_frame, bg=self.BG_COLOR )
         #self.asking_frame.pack(fill='x')
 
         self.services = ('AUTO','Phind', 'Perplexity','Blackboxai','Koboldai','Llama2')
@@ -440,8 +465,10 @@ class AiassistTab:
         
         self.close_btn.pack(side='right', padx=10)
 
-        self.status_label = ttk.Label(self.status_frame, 
+        self.status_label = tk.Label(self.status_frame, 
                                       text='',
+                                      bg=self.BG_COLOR,
+                                      fg=self.LIGHT_FG_COLOR, 
                                       font=common.note_font)
         self.status_label.pack(side='right')
 
@@ -457,6 +484,8 @@ class AiassistTab:
 
         self.asking_text = tk.Text(self.asking_frame, 
                                    height=2, 
+                                   bg=self.BG_COLOR,
+                                   fg=self.LIGHT_FG_COLOR, 
                                    font=common.postit_para_font)
         
         self.asking_text.pack(side='right', fill='x', expand=1,padx=5)
@@ -504,7 +533,7 @@ class AiassistTab:
         tab = common.postit_view.py4t_mode_current_tab
 
         if mode == 'py4t' and tab is self  :
-            w = common.postit_view.winfo_width() // 13
+            w = common.postit_view.winfo_width() // 16
             bounded_w = w
             bounded_w =  min(max(w, self.LINEWRAP_MIN), self.LINEWRAP_MAX)
             print('adjust line characters :', w, bounded_w)
@@ -525,7 +554,7 @@ class AiassistTab:
             for w in self.chat_widget_list:
                 w.pack(side='top', fill='x', expand=1, padx=5, pady=5)
 
-            
+            print('do re-pack chat widget ......')
             
                 
         self.size_changed = False
@@ -628,10 +657,10 @@ class AiassistTab:
         # question = '\n'.join(lines)
         
 
-        asking_text_postit = ChatTextPostit(self.chat_frame.interior,
+        asking_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=question, 
                                             wrap_length = self.linewrap_length,
-                                            told_by_ai=False )
+                                            widget_type=self.WIDGET_TYPE_ME_TEXT )
         asking_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
         self.chat_widget_list.append(asking_text_postit)
 
@@ -657,15 +686,16 @@ class AiassistTab:
             ans_ntuple = self.answer_queue.get()
             if ans_ntuple.success:
                 answer = ans_ntuple.answer
-            else:
-                answer = '服務異常，請於網頁提問!'
-
-            
-
-            answer_text_postit = ChatTextPostit(self.chat_frame.interior,
+                answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=answer, 
                                             wrap_length = self.linewrap_length,
-                                            told_by_ai=True )
+                                            widget_type=self.WIDGET_TYPE_AI_TEXT )
+            else:
+                answer = '服務異常，請於網頁提問!'
+                answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
+                                            message=answer, 
+                                            wrap_length = self.linewrap_length,
+                                            widget_type=self.WIDGET_TYPE_ABNORMAL )
             answer_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
             self.chat_widget_list.append(answer_text_postit)
 
@@ -983,7 +1013,7 @@ class PythonPostitView(ttk.Frame):
                     
                     if mode_name == 'py4t':
                         self.py4t_mode_current_tab = tab
-                        print('[py4t mode ] ', tab)
+                        #print('[py4t mode ] ', tab)
                     #print(mode_name + ' mode select first visible tab: ', tab.tab_name)
                     return
 
@@ -1397,15 +1427,25 @@ class PythonPostitView(ttk.Frame):
             self.last_focus = None
 
 
+
 class CustomVerticallyScrollableFrame(ttk.Frame):
     # http://tkinter.unpythonic.net/wiki/VerticalScrolledFrame
 
-    def __init__(self, master):
-        ttk.Frame.__init__(self, master)
+    def __init__(self, master, bg=''):
+        if bg:
+            tk.Frame.__init__(self, master, bg=bg)
+            # set up scrolling with canvas
+            #vscrollbar = tk.Scrollbar(self, troughcolor=bg, bg=bg, orient=tk.VERTICAL)
+            _ , vstyle = self.make_scrollbar_styles(troughcolor='grey', background=bg, arrowcolor=bg)
+            vscrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL, style=vstyle)
 
-        # set up scrolling with canvas
-        vscrollbar = ttk.Scrollbar(self, orient=tk.VERTICAL)
-        self.canvas = tk.Canvas(self, bd=0, highlightthickness=0, yscrollcommand=vscrollbar.set)
+            self.canvas = tk.Canvas(self,bg=bg, bd=0, highlightthickness=0, yscrollcommand=vscrollbar.set)
+        else:
+            tk.Frame.__init__(self, master)
+            # set up scrolling with canvas
+            vscrollbar = tk.Scrollbar(self, orient=tk.VERTICAL)
+            self.canvas = tk.Canvas(self, bd=0, highlightthickness=0, yscrollcommand=vscrollbar.set)
+
         vscrollbar.config(command=self.canvas.yview)
         self.canvas.xview_moveto(0)
         self.canvas.yview_moveto(0)
@@ -1415,8 +1455,10 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
         ###vscrollbar.grid(row=0, column=1, sticky=tk.NS)
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
-
-        self.interior = ttk.Frame(self.canvas)
+        if bg:
+            self.interior = tk.Frame(self.canvas, bg=bg)
+        else:
+            self.interior = tk.Frame(self.canvas)
         self.interior_id = self.canvas.create_window(0, 0, window=self.interior, anchor=tk.NW)
         self.bind("<Configure>", self._configure_interior, "+")
         self.bind("<Expose>", self._expose, "+")
@@ -1452,6 +1494,46 @@ class CustomVerticallyScrollableFrame(ttk.Frame):
 
     def scroll_to_end(self):
         self.canvas.yview_moveto(1)
+
+    def make_scrollbar_styles(self, 
+        troughcolor='black',
+        background='green',
+        arrowcolor='red') :
+        """
+        Style the scrollbars.  Usage:
+            parent_frame = ... # tk.Frame(...) or tk.Tk() or whatever you're using for the parent
+            hstyle, vstyle = make_scrollbar_styles()
+            self._vbar = ttk.Scrollbar(parent_frame, orient='vertical', style=vstyle)
+            self._hbar = ttk.Scrollbar(parent_frame, orient='horizontal', style=hstyle)
+        """
+        style = ttk.Style()
+
+        for is_hori in (True, False):
+            v = "Horizontal" if is_hori else "Vertical"
+            style.element_create(f'CustomScrollbarStyle.{v}.Scrollbar.trough', 'from', 'default')
+            style.element_create(f'CustomScrollbarStyle.{v}.Scrollbar.thumb', 'from', 'default')
+            style.element_create(f'CustomScrollbarStyle.{v}.Scrollbar.leftarrow', 'from', 'default')
+            style.element_create(f'CustomScrollbarStyle.{v}.Scrollbar.rightarrow', 'from', 'default')
+            style.element_create(f'CustomScrollbarStyle.{v}.Scrollbar.grip', 'from', 'default')
+            style.layout(
+                f'CustomScrollbarStyle.{v}.TScrollbar',
+                [(f'CustomScrollbarStyle.{v}.Scrollbar.trough', {
+                    'children': [
+                        # Commenting in these 2 lines adds arrows (at least horizontally)
+                        # (f'CustomScrollbarStyle.{v}.Scrollbar.leftarrow', {'side': 'left', 'sticky': ''}) if is_hori else (f'CustomScrollbarStyle.{v}.Scrollbar.uparrow', {'side': 'top', 'sticky': ''}),
+                        # (f'CustomScrollbarStyle.{v}.Scrollbar.rightarrow', {'side': 'right', 'sticky': ''})  if is_hori else (f'CustomScrollbarStyle.{v}.Scrollbar.downarrow', {'side': 'bottom', 'sticky': ''}),
+                        (f'CustomScrollbarStyle.{v}.Scrollbar.thumb', {
+                            'unit': '1',
+                            'children': [(f'CustomScrollbarStyle.{v}.Scrollbar.grip', {'sticky': ''})],
+                            'sticky': 'nswe'}
+                        )
+                    ],
+                    'sticky': 'we' if is_hori else 'ns'}),
+                ])
+            style.configure(f'CustomScrollbarStyle.{v}.TScrollbar', troughcolor=troughcolor, background=background, arrowcolor=arrowcolor)
+            # Comment in the following to customize disable/active colors, whatever that means
+            # style.map(f'CustomScrollbarStyle.{v}.TScrollbar', background=[('pressed', '!disabled', disabledcolor), ('active', 'orange')])
+        return "CustomScrollbarStyle.Horizontal.TScrollbar", "CustomScrollbarStyle.Vertical.TScrollbar"
 
 
 class AboutDialog(CommonDialog):

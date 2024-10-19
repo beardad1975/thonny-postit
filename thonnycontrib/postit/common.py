@@ -69,6 +69,8 @@ load_image('paste_postit')
 load_image('gear')
 load_image('info')
 load_image('keyin_display')
+load_image('avatar_ai')
+load_image('avatar_me')
 #  
 # setup vars counter and default
 

@@ -112,43 +112,100 @@ class AiassistThread(threading.Thread):
 
 
 
-class ChatTextPostit(ttk.Frame):
-    def __init__(self, parent, message, wrap_length, told_by_ai):
+class AiassistChatPostit(ttk.Frame):
+    def __init__(self, parent, message, wrap_length, widget_type):
         self.parent = parent
         ttk.Frame.__init__(self, self.parent)
 
         self.original_message = message
-        self.told_by_ai = told_by_ai
+        self.widget_type = widget_type
 
-        if not told_by_ai :
-            position = 'e'
-            name = '我'
-        else:
-            position = 'w'
-            name = 'AI'
+        
 
-        self.avatar_frame = ttk.Frame(self)
+        self.avatar_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
         self.avatar_frame.pack(fill='x', expand=1)
-        self.main_frame = ttk.Frame(self)
+        self.main_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
         self.main_frame.pack(fill='x', expand=1)
 
-        self.avatar_label = ttk.Label(self.avatar_frame, 
-                                      font=common.postit_para_font,
-                                      text=name, 
-                                      borderwidth=2, 
-                                      relief="groove")       
-        self.avatar_label.pack(anchor=position)
+        if widget_type == common.aiassist_tab.WIDGET_TYPE_ME_TEXT :
+            position = 'e'
+            # name = '我'
+            # self.avatar_label = tk.Label(self.avatar_frame, 
+            #                           font=common.postit_para_font,
+            #                           text=name, 
+            #                           bg=common.aiassist_tab.BG_COLOR,
+            #                           fg=common.aiassist_tab.LIGHT_FG_COLOR,
+            #                           borderwidth=2, 
+            #                           #relief="groove",
+            #                           ) 
+            avatar_me_image = common.common_images['avatar_me']   
+            self.avatar_button = tk.Button(self.avatar_frame,  
+                                        relief='groove',
+                                        borderwidth=0,
+                                        compound='right',
+                                        image=avatar_me_image,
+                                        bg=common.aiassist_tab.BG_COLOR,
+                                        padx=0,
+                                        pady=0, 
+                                        )
+            self.avatar_button.pack(anchor=position, padx=5, pady=5)
 
-        #self.dialog_text = tk.Text(self.main_frame, height=7)
-        #self.dialog_text.pack()
-
-        self.label = tk.Label(self.main_frame,
+            self.label = tk.Label(self.main_frame,
                               font=common.postit_para_font,
                               text='', 
                               justify='left',
-                              borderwidth=2, 
-                              relief="groove")
-        self.label.pack( anchor=position)
+                              bg=common.aiassist_tab.ME_BG_COLOR,
+                              fg=common.aiassist_tab.DARK_FG_COLOR,
+                              highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                              highlightbackground = common.aiassist_tab.ME_BORDER_COLOR,
+                              highlightcolor= common.aiassist_tab.ME_BORDER_COLOR,
+                              relief="flat")
+            self.label.pack( anchor=position, ipadx=5, ipady=5)     
+        elif widget_type == common.aiassist_tab.WIDGET_TYPE_AI_TEXT:
+            position = 'w'
+            name = 'AI'
+            avatar_ai_image = common.common_images['avatar_ai']   
+            self.avatar_button = tk.Button(self.avatar_frame,  
+                                        relief='groove',
+                                        borderwidth=0,
+                                        compound='right',
+                                        image=avatar_ai_image,
+                                        bg=common.aiassist_tab.BG_COLOR,
+                                        padx=0,
+                                        pady=0, 
+                                        )
+            self.avatar_button.pack(anchor=position, padx=5, pady=5)
+
+            self.label = tk.Label(self.main_frame,
+                              font=common.postit_para_font,
+                              text='', 
+                              justify='left',
+                              bg=common.aiassist_tab.AI_TEXT_BG_COLOR,
+                              fg=common.aiassist_tab.DARK_FG_COLOR,
+                              highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                              highlightbackground = common.aiassist_tab.AI_TEXT_BORDER_COLOR,
+                              highlightcolor= common.aiassist_tab.AI_TEXT_BORDER_COLOR,
+                              relief="flat")
+            self.label.pack( anchor=position, ipadx=5, ipady=5)
+                  
+        elif widget_type == common.aiassist_tab.WIDGET_TYPE_ABNORMAL:
+            # no avatar
+            position = 'w'
+            self.label = tk.Label(self.main_frame,
+                              font=common.postit_para_font,
+                              text='', 
+                              justify='left',
+                              bg=common.aiassist_tab.ABNORMAL_BG_COLOR,
+                              fg=common.aiassist_tab.LIGHT_FG_COLOR,
+                              highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                              highlightbackground = common.aiassist_tab.ABNORMAL_BORDER_COLOR,
+                              highlightcolor= common.aiassist_tab.ABNORMAL_BORDER_COLOR,
+                              relief="flat")
+            self.label.pack( anchor=position, ipadx=5, ipady=5)
+
+        else:
+            print('wrong widget type')
+            raise Exception
 
         self.set_wordwrap(wrap_length)
 

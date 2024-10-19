@@ -203,16 +203,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.5"
-     inkscape:cx="-1975"
-     inkscape:cy="575"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="-1306.0262"
+     inkscape:cy="-77.074639"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1920"
-     inkscape:window-height="974"
-     inkscape:window-x="-11"
-     inkscape:window-y="-11"
+     inkscape:window-height="982"
+     inkscape:window-x="-10"
+     inkscape:window-y="-10"
      inkscape:window-maximized="1"
      inkscape:snap-global="false"
      showguides="false"
@@ -4842,6 +4842,72 @@
          style="stroke-width:0.87827"
          x="-2959.4688"
          y="284.22681">助理</tspan></text>
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.16982;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="path43"
+       cx="-427.58997"
+       cy="-63.243618"
+       r="27.318882"
+       inkscape:export-filename="avatar_ai.png"
+       inkscape:export-xdpi="14.43924"
+       inkscape:export-ydpi="14.43924" />
+    <circle
+       style="fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:1.86667;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-opacity:1"
+       id="circle42"
+       cx="427.09464"
+       cy="-72.508133"
+       r="10.666247"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:1.86667;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -415.2661,-58.389121 -23.06906,-0.222756 c -5.88461,1.100808 -5.98155,4.067477 -6.8985,9.420504 10.66573,9.68117 22.27519,11.565647 35.53091,-0.147981 -0.39218,-5.542211 -1.54575,-7.385118 -5.56335,-9.04956 z"
+       id="path42"
+       sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:52.9755px;line-height:1.25;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:1.32439"
+       x="-389.24719"
+       y="-45.587021"
+       id="text42"
+       transform="scale(1.0014986,0.99850365)"><tspan
+         sodipodi:role="line"
+         id="tspan42"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:52.9755px;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:1.32439"
+         x="-389.24719"
+         y="-45.587021">AI</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.286px;line-height:1.25;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#fffd9a;fill-opacity:1;stroke-width:1.15715"
+       x="-316.00665"
+       y="-50.377144"
+       id="text41"
+       transform="scale(1.0014986,0.99850365)"
+       inkscape:export-filename="avatar_me.png"
+       inkscape:export-xdpi="14.43924"
+       inkscape:export-ydpi="14.43924"><tspan
+         sodipodi:role="line"
+         id="tspan41"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:46.286px;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#fffd9a;fill-opacity:1;stroke-width:1.15715"
+         x="-316.00665"
+         y="-50.377144">我</tspan></text>
+    <circle
+       style="fill:#fffd9a;fill-opacity:1;stroke:none;stroke-width:1.16273;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="circle54"
+       cx="-236.40152"
+       cy="-63.163181"
+       r="27.153351" />
+    <circle
+       style="fill:#40d517;fill-opacity:1;stroke:none;stroke-width:1.85536;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-opacity:1"
+       id="circle55"
+       cx="235.90918"
+       cy="-72.371635"
+       r="10.60162"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:#40d517;fill-opacity:1;stroke:none;stroke-width:1.85537;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -224.15217,-58.33804 -22.92932,-0.221163 c -5.84901,1.094134 -5.94527,4.042842 -6.85666,9.363421 10.60106,9.622505 22.14018,11.495546 35.31561,-0.147159 -0.38973,-5.508658 -1.53641,-7.340391 -5.52963,-8.994754 z"
+       id="path55"
+       sodipodi:nodetypes="cccccc" />
   </g>
   <script
      id="mesh_polyfill"
