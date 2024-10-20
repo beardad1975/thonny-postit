@@ -425,7 +425,7 @@ class AiassistTab:
         self.ABNORMAL_BG_COLOR = '#cd1616'
         self.ABNORMAL_BORDER_COLOR = '#ffffff'
 
-        self.BORDER_THICKNESS = 7
+        self.BORDER_THICKNESS = 5
 
         # insert empty frame and hide
         
@@ -451,12 +451,15 @@ class AiassistTab:
         self.chat_frame = CustomVerticallyScrollableFrame(self.tab_frame, bg=self.BG_COLOR)
         #self.chat_frame.pack(fill='both', expand=1)
 
+        self.separator = tk.Frame(self.tab_frame, bg="#999999", height=1, bd=0)
+
+
         self.asking_frame = tk.Frame(self.tab_frame, bg=self.BG_COLOR )
         #self.asking_frame.pack(fill='x')
 
         self.connect_btn = tk.Button(self.connect_frame, 
                                      font=common.postit_para_font,
-                                     text='連接AI服務 >>',
+                                     text='使用AI助理 >>',
                                      bg=self.BG_COLOR,
                                      fg=self.LIGHT_FG_COLOR,
                                      command=self.on_connect_btn)
@@ -479,17 +482,26 @@ class AiassistTab:
                 self.connect_frame,
                 text='生成式AI可能會發生偏誤\n請評估內容與查核重要資訊\n並遵守道德及法律規範\n',
                 bg=self.BG_COLOR,
-                fg='grey',
+                fg='#eeeeee',
                                     )
         self.ai_use_note.pack(fill='x',pady=150)
 
 
-        self.close_btn = tk.Button(self.status_frame, 
-                                   font=common.note_font,
-                                   text='結束',
-                                   command=self.on_disconnect_btn)
-        
-        self.close_btn.pack(side='right', padx=10)
+        # self.close_btn = tk.Button(self.status_frame, 
+        #                            font=common.note_font,
+        #                            text='結束',
+        #                            command=self.on_disconnect_btn)
+        # self.close_btn.pack(side='right', padx=10)
+
+        self.close_btn = tk.Button( self.status_frame,  
+                                    borderwidth=0,
+                                    compound='right',
+                                    image=common.common_images['disconnect'] ,
+                                    bg=common.aiassist_tab.BG_COLOR,
+                                    command=self.on_disconnect_btn,
+                                    padx=0,
+                                    pady=0)        
+        self.close_btn.pack(side='right',padx=10)
 
         self.status_label = tk.Label(self.status_frame, 
                                       text='',
@@ -501,20 +513,30 @@ class AiassistTab:
         # for i in range(40):
         #     ttk.Label(self.chat_frame.interior, text='chat'+str(i)).pack()
 
-        self.asking_btn = tk.Button(self.asking_frame, 
-                                    text='詢問',
-                                    font=common.postit_para_font,
-                                    command=self.on_asking_btn)
+        # self.asking_btn = tk.Button(self.asking_frame, 
+        #                             text='詢問',
+        #                             font=common.postit_para_font,
+        #                             command=self.on_asking_btn)
         
+        self.asking_btn = tk.Button(self.asking_frame,  
+                                    borderwidth=0,
+                                    compound='right',
+                                    image=common.common_images['send_msg'] ,
+                                    bg=common.aiassist_tab.BG_COLOR,
+                                    command=self.on_asking_btn,
+                                    padx=0,
+                                    pady=0)        
         self.asking_btn.pack(side='right',padx=5)
 
         self.asking_text = tk.Text(self.asking_frame, 
-                                   height=2, 
+                                   height=2,
+                                   borderwidth=0, 
                                    bg=self.BG_COLOR,
-                                   fg=self.LIGHT_FG_COLOR, 
-                                   font=common.postit_para_font)
-        
+                                   fg=self.LIGHT_FG_COLOR,
+                                   insertbackground='#999999',
+                                   font=common.postit_para_font)        
         self.asking_text.pack(side='right', fill='x', expand=1,padx=5)
+        self.asking_text.bind("<Return>", self.on_asking_btn, True)
         
         self.wait_answer = WaitAnswerPostit(self.chat_frame.interior)
 
@@ -596,6 +618,7 @@ class AiassistTab:
 
             self.status_frame.pack(fill='x', pady=5)
             self.chat_frame.pack(fill='both', expand=1, pady=5)
+            self.separator.pack(fill='x', pady=0)
             self.asking_frame.pack(fill='x', pady=5)
 
             self.chatting = True
@@ -604,6 +627,7 @@ class AiassistTab:
         else: # to connect
             self.status_frame.pack_forget()
             self.chat_frame.pack_forget()
+            self.separator.pack_forget()
             self.asking_frame.pack_forget()
 
             self.connect_frame.pack(expand=1)
@@ -661,7 +685,7 @@ class AiassistTab:
         else:
             get_workbench().after(200, self.delay_disconnect)
 
-    def on_asking_btn(self):
+    def on_asking_btn(self, event=None):
         # build ai assist postit
 
         # todo : check text content , 要不要詢問按鈕？
@@ -706,6 +730,7 @@ class AiassistTab:
 
         # wait answer 
         self.wait_answer.pack(side='top', fill='x', expand=1, padx=10, pady=10)
+        self.chat_frame_update()
         get_workbench().after(300, self.checking_answer)
 
     def checking_answer(self): 

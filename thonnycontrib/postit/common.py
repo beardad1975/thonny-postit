@@ -75,6 +75,8 @@ load_image('wait_answer0')
 load_image('wait_answer1')
 load_image('wait_answer2')
 load_image('wait_answer3')
+load_image('send_msg')
+load_image('disconnect')
 
 #  
 # setup vars counter and default
