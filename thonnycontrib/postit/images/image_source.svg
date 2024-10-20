@@ -203,9 +203,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.70710678"
-     inkscape:cx="-1306.0262"
-     inkscape:cy="-77.074639"
+     inkscape:zoom="0.25"
+     inkscape:cx="-1254"
+     inkscape:cy="-914"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -4908,6 +4908,366 @@
        d="m -224.15217,-58.33804 -22.92932,-0.221163 c -5.84901,1.094134 -5.94527,4.042842 -6.85666,9.363421 10.60106,9.622505 22.14018,11.495546 35.31561,-0.147159 -0.38973,-5.508658 -1.53641,-7.340391 -5.52963,-8.994754 z"
        id="path55"
        sodipodi:nodetypes="cccccc" />
+    <rect
+       style="fill:#1d1f21;fill-opacity:1;stroke:#fdb2b6;stroke-width:0.388192;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7"
+       id="rect1-1"
+       width="180.30672"
+       height="191.99373"
+       x="-405.53006"
+       y="-354.45706" />
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#5b99d6;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect3-6"
+       width="57.569363"
+       height="29.665848"
+       x="-395.67484"
+       y="-245.02011" />
+    <rect
+       style="fill:#0080ff;fill-opacity:1;stroke:#bedfff;stroke-width:1.466;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect4-0"
+       width="57.520988"
+       height="36.960506"
+       x="-395.65054"
+       y="-211.80542" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.59302px;line-height:1.25;font-family:sans-serif;stroke-width:0.114826"
+       x="-392.94681"
+       y="-235.73349"
+       id="text7-3"><tspan
+         sodipodi:role="line"
+         id="tspan7-9"
+         style="stroke-width:0.114826"
+         x="-392.94681"
+         y="-235.73349">What is Lorem Ipsum?</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-392.94681"
+         y="-229.99222"
+         id="tspan8" /><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-392.94681"
+         y="-224.25095"
+         id="tspan9">Lorem Ipsum is simply </tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-392.94681"
+         y="-218.50967"
+         id="tspan10">dummy text of the </tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-392.94681"
+         y="-212.7684"
+         id="tspan19" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.27546px;line-height:1.25;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#fffd9a;fill-opacity:1;stroke-width:0.231887"
+       x="-259.54703"
+       y="-335.88663"
+       id="text41-6"
+       transform="scale(1.0014986,0.99850365)"><tspan
+         sodipodi:role="line"
+         id="tspan41-0"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.27546px;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#fffd9a;fill-opacity:1;stroke-width:0.231887"
+         x="-259.54703"
+         y="-335.88663">我</tspan></text>
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.223718;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="path43-2"
+       cx="-390.69473"
+       cy="-255.09323"
+       r="5.2244997" />
+    <circle
+       style="fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:0.356985;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-opacity:1"
+       id="circle42-4"
+       cx="390.60001"
+       cy="-256.86502"
+       r="2.0398276"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:0.356986;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -388.33784,-254.16487 -4.4118,-0.0426 c -1.1254,0.21052 -1.1439,0.77787 -1.3193,1.80159 2.0398,1.85144 4.26,2.21183 6.795,-0.0283 -0.075,-1.0599 -0.2956,-1.41234 -1.0639,-1.73065 z"
+       id="path42-2"
+       sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.27546px;line-height:1.25;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.231887"
+       x="-383.03348"
+       y="-252.3448"
+       id="text42-0"
+       transform="scale(1.0014986,0.99850365)"><tspan
+         sodipodi:role="line"
+         id="tspan42-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.27546px;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.231887"
+         x="-383.03348"
+         y="-252.3448">AI</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.59302px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+       x="-392.94681"
+       y="-201.51495"
+       id="text47"><tspan
+         sodipodi:role="line"
+         id="tspan43"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-392.94681"
+         y="-201.51495">What is Lorem Ipsum?</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-392.94681"
+         y="-195.77368"
+         id="tspan44" /><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-392.94681"
+         y="-190.03241"
+         id="tspan45">Lorem Ipsum is simply </tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-392.94681"
+         y="-184.29114"
+         id="tspan46">dummy text of the </tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-392.94681"
+         y="-178.54987"
+         id="tspan47" /></text>
+    <rect
+       style="fill:#0080ff;fill-opacity:1;stroke:#bedfff;stroke-width:2.00866;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect47"
+       width="56.978325"
+       height="70.048927"
+       x="-330.99466"
+       y="-244.76486" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.59302px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+       x="-328.56216"
+       y="-234.74576"
+       id="text52"><tspan
+         sodipodi:role="line"
+         id="tspan48"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-328.56216"
+         y="-234.74576">What is Lorem Ipsum?</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-328.56216"
+         y="-229.00449"
+         id="tspan49" /><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-328.56216"
+         y="-223.26321"
+         id="tspan50">Lorem Ipsum is simply </tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-328.56216"
+         y="-217.52194"
+         id="tspan51">dummy text of the </tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.114826"
+         x="-328.56216"
+         y="-211.78067"
+         id="tspan52" /></text>
+    <path
+       style="fill:#bedfff;fill-opacity:1;stroke:#bedfff;stroke-width:1.665;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m -274.47574,-254.87212 c -2.2144,-4.5033 -4.5187,-6.9475 -10.1675,-7.47692 1.8258,2.95376 1.3889,5.46869 -0.8263,7.72277"
+       id="path52"
+       sodipodi:nodetypes="ccc" />
+    <circle
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.278075;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="circle52"
+       cx="-326.07913"
+       cy="-255.36142"
+       r="6.4938893" />
+    <circle
+       style="fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:0.443721;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-opacity:1"
+       id="circle53"
+       cx="325.96146"
+       cy="-257.56369"
+       r="2.5354419"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:#0080ff;fill-opacity:1;stroke:none;stroke-width:0.443723;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -323.14974,-254.20745 -5.4836,-0.0529 c -1.3988,0.26167 -1.4219,0.96687 -1.6399,2.23932 2.5354,2.30128 5.295,2.74923 8.446,-0.0352 -0.093,-1.31743 -0.3674,-1.7555 -1.3225,-2.15115 z"
+       id="path53"
+       sodipodi:nodetypes="cccccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.27546px;line-height:1.25;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.231887"
+       x="-317.81192"
+       y="-252.3448"
+       id="text53"
+       transform="scale(1.0014986,0.99850365)"><tspan
+         sodipodi:role="line"
+         id="tspan53"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.27546px;font-family:DFGirlW5-B5;-inkscape-font-specification:'DFGirlW5-B5, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke-width:0.231887"
+         x="-317.81192"
+         y="-252.3448">AI</tspan></text>
+    <circle
+       style="fill:#fffd9a;fill-opacity:1;stroke:none;stroke-width:0.233006;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="circle54-7"
+       cx="-243.88863"
+       cy="-337.9614"
+       r="5.4413934" />
+    <circle
+       style="fill:#40d517;fill-opacity:1;stroke:none;stroke-width:0.371805;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-opacity:1"
+       id="circle55-6"
+       cx="243.78999"
+       cy="-339.80673"
+       r="2.1245108"
+       transform="scale(-1,1)" />
+    <path
+       style="fill:#40d517;fill-opacity:1;stroke:none;stroke-width:0.371807;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m -241.43392,-336.99446 -4.59492,-0.0443 c -1.17211,0.21926 -1.1914,0.81017 -1.37404,1.87638 2.1244,1.92831 4.43678,2.30365 7.07707,-0.0295 -0.0781,-1.1039 -0.30789,-1.47097 -1.10811,-1.8025 z"
+       id="path55-7"
+       sodipodi:nodetypes="cccccc" />
+    <rect
+       style="fill:#fffd9a;fill-opacity:1;stroke:#40d517;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect55"
+       width="57.569363"
+       height="29.665848"
+       x="-294.52859"
+       y="-328.92783" />
+    <text
+       xml:space="preserve"
+       style="font-size:4.59302px;line-height:1.25;font-family:sans-serif;stroke-width:0.114826"
+       x="-291.80063"
+       y="-319.6412"
+       id="text60"><tspan
+         sodipodi:role="line"
+         id="tspan56"
+         style="stroke-width:0.114826"
+         x="-291.80063"
+         y="-319.6412">What is Lorem Ipsum?</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-291.80063"
+         y="-313.89993"
+         id="tspan57" /><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-291.80063"
+         y="-308.15866"
+         id="tspan58">Lorem Ipsum is simply </tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-291.80063"
+         y="-302.41739"
+         id="tspan59">dummy text of the </tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.114826"
+         x="-291.80063"
+         y="-296.67612"
+         id="tspan60" /></text>
+    <rect
+       style="fill:#cd1616;fill-opacity:1;stroke:#ffffff;stroke-width:1.18409;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect2"
+       width="66.802803"
+       height="13.692061"
+       x="-338.02859"
+       y="-285.4902" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.35484px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke-width:0.183872"
+       x="-335.00479"
+       y="-275.59402"
+       id="text12"><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.183872"
+         x="-335.00479"
+         y="-275.59402"
+         id="tspan11">服務異常</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.183872"
+         x="-335.00479"
+         y="-266.40048"
+         id="tspan12" /></text>
+    <rect
+       style="fill:#685e5e;fill-opacity:1;stroke:none;stroke-width:1.05346;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-opacity:1"
+       id="rect17-8"
+       width="3.9652371"
+       height="66.302971"
+       x="-229.20351"
+       y="-293.63101" />
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#5b99d6;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect7"
+       width="26.202263"
+       height="11.369346"
+       x="-397.47012"
+       y="-346.57864"
+       inkscape:export-filename="wait_answer0.png"
+       inkscape:export-xdpi="92.5772"
+       inkscape:export-ydpi="92.5772" />
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#5b99d6;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect8-1"
+       width="26.202263"
+       height="11.369346"
+       x="-397.47012"
+       y="-330.27481"
+       inkscape:export-filename="wait_answer1.png"
+       inkscape:export-xdpi="92.5772"
+       inkscape:export-ydpi="92.5772" />
+    <circle
+       style="fill:#5b99d6;fill-opacity:1;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none"
+       id="circle9"
+       cx="-391.30569"
+       cy="-324.59012"
+       r="1.8724731" />
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#5b99d6;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect11-0"
+       width="26.202263"
+       height="11.369346"
+       x="-397.47012"
+       y="-312.93253"
+       inkscape:export-filename="wait_answer2.png"
+       inkscape:export-xdpi="92.5772"
+       inkscape:export-ydpi="92.5772" />
+    <circle
+       style="fill:#5b99d6;fill-opacity:1;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none"
+       id="circle12"
+       cx="-391.30569"
+       cy="-307.24783"
+       r="1.8724731" />
+    <circle
+       style="fill:#5b99d6;fill-opacity:1;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none"
+       id="circle13"
+       cx="-384.36905"
+       cy="-307.24783"
+       r="1.8724731" />
+    <rect
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#5b99d6;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none;stroke-opacity:1"
+       id="rect14-9"
+       width="26.202263"
+       height="11.369346"
+       x="-397.47012"
+       y="-296.98233"
+       inkscape:export-filename="wait_answer3.png"
+       inkscape:export-xdpi="92.5772"
+       inkscape:export-ydpi="92.5772" />
+    <circle
+       style="fill:#5b99d6;fill-opacity:1;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none"
+       id="circle15"
+       cx="-391.30569"
+       cy="-291.29764"
+       r="1.8724731" />
+    <circle
+       style="fill:#5b99d6;fill-opacity:1;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none"
+       id="circle16"
+       cx="-384.36905"
+       cy="-291.29764"
+       r="1.8724731" />
+    <circle
+       style="fill:#5b99d6;fill-opacity:1;stroke-width:1.618;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:3.7;stroke-dasharray:none"
+       id="circle17"
+       cx="-377.98062"
+       cy="-291.29764"
+       r="1.8724731" />
   </g>
   <script
      id="mesh_polyfill"

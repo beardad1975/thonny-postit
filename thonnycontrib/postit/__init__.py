@@ -25,7 +25,7 @@ from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
-from .aiassist import AiassistThread, AiassistChatPostit, TryAiassistPostit
+from .aiassist import AiassistThread, AiassistChatPostit, WaitAnswerPostit
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH, AnswerNTuple
                      )
 from . import common
@@ -345,7 +345,22 @@ class AiassistTab:
         self.provider_name = ''
         # self.chat_round_num = 0
 
-        self.linewrap_length = 24
+        self.LINEWRAP_OPTION = 'aiassist.linewrap_length'
+        
+        length = get_workbench().get_option(self.LINEWRAP_OPTION)
+        if length is None :
+            get_workbench().set_default(self.LINEWRAP_OPTION,24)
+            get_workbench().set_option(self.LINEWRAP_OPTION,24)
+            #print('set default and set option to 24 ------')
+        else:
+            pass
+            #print('current wrap length is ----------', length)
+        
+ 
+
+        
+        #self.linewrap_length = 24
+        
         self.LINEWRAP_MIN = 20
         self.LINEWRAP_MAX = 80
         self.size_changed = False
@@ -388,7 +403,7 @@ class AiassistTab:
 
         # chat widget
         self.chat_widget_list = []
-        self.CHAT_WIDGET_MAX = 50
+        self.CHAT_WIDGET_MAX = 30
 
         self.WIDGET_TYPE_ME_TEXT = 1
         self.WIDGET_TYPE_AI_TEXT = 2
@@ -439,6 +454,15 @@ class AiassistTab:
         self.asking_frame = tk.Frame(self.tab_frame, bg=self.BG_COLOR )
         #self.asking_frame.pack(fill='x')
 
+        self.connect_btn = tk.Button(self.connect_frame, 
+                                     font=common.postit_para_font,
+                                     text='連接AI服務 >>',
+                                     bg=self.BG_COLOR,
+                                     fg=self.LIGHT_FG_COLOR,
+                                     command=self.on_connect_btn)
+        self.connect_btn.pack(fill='x',pady=12)
+
+
         self.services = ('AUTO','Phind', 'Perplexity','Blackboxai','Koboldai','Llama2')
         self.service_combo = ttk.Combobox(
                 self.connect_frame,
@@ -451,11 +475,13 @@ class AiassistTab:
         self.service_combo.current(0)
         self.service_combo.pack(fill='x',pady=12)
 
-        self.connect_btn = tk.Button(self.connect_frame, 
-                                     font=common.postit_para_font,
-                                     text='連接AI助理',
-                                     command=self.on_connect_btn)
-        self.connect_btn.pack(fill='x')
+        self.ai_use_note = tk.Label(
+                self.connect_frame,
+                text='生成式AI可能會發生偏誤\n請評估內容與查核重要資訊\n並遵守道德及法律規範\n',
+                bg=self.BG_COLOR,
+                fg='grey',
+                                    )
+        self.ai_use_note.pack(fill='x',pady=150)
 
 
         self.close_btn = tk.Button(self.status_frame, 
@@ -490,8 +516,9 @@ class AiassistTab:
         
         self.asking_text.pack(side='right', fill='x', expand=1,padx=5)
         
+        self.wait_answer = WaitAnswerPostit(self.chat_frame.interior)
+
         # on close  , stop thread
-        # not working
         get_workbench().bind("WorkbenchClose", self.on_aiassist_close, True)
 
          
@@ -510,8 +537,8 @@ class AiassistTab:
         get_workbench()._main_pw.bind("<ButtonRelease-1>", self.on_mouse_released, "+")
 
     def on_configure_resize(self, event):
-        if not self.is_chatting:
-            return
+        # if not self.is_chatting:
+        #     return
         # when postit view changes size, mark it.
         mode = common.postit_view.current_mode
         tab = common.postit_view.py4t_mode_current_tab
@@ -526,7 +553,7 @@ class AiassistTab:
 
     def on_mouse_released(self, event):
         #  determine chat text widget wordwrap length
-        if not self.is_chatting or not self.size_changed:
+        if  not self.size_changed:
             return
         
         mode = common.postit_view.current_mode
@@ -537,24 +564,22 @@ class AiassistTab:
             bounded_w = w
             bounded_w =  min(max(w, self.LINEWRAP_MIN), self.LINEWRAP_MAX)
             print('adjust line characters :', w, bounded_w)
-            self.linewrap_length = bounded_w
+            #self.linewrap_length = bounded_w
+            get_workbench().set_option(self.LINEWRAP_OPTION, bounded_w)
+            print('set linewrap length ----------: ', bounded_w)
 
-            # change every chat widget in queqe
-            # re-pack every chat widget
-            for w in self.chat_widget_list:
-                w.pack_forget()
-                w.set_wordwrap(self.linewrap_length)
+            if self.is_chatting: 
+                # change every chat widget in queqe
+                # re-pack every chat widget
+                length = get_workbench().get_option(self.LINEWRAP_OPTION)
+                for w in self.chat_widget_list:
+                    w.pack_forget()
+                    w.set_wordwrap(length)
 
-                # print('--------------')
-                # print(repr(w.get_message()))
-                # print('--------------')
+                for w in self.chat_widget_list:
+                    w.pack(side='top', fill='x', expand=1, padx=5, pady=5)
 
-            
-
-            for w in self.chat_widget_list:
-                w.pack(side='top', fill='x', expand=1, padx=5, pady=5)
-
-            print('do re-pack chat widget ......')
+                print('do re-pack chat widget ......')
             
                 
         self.size_changed = False
@@ -656,12 +681,12 @@ class AiassistTab:
         #            for i in range(0, len(question), self.line_length)]
         # question = '\n'.join(lines)
         
-
+        length = get_workbench().get_option(self.LINEWRAP_OPTION)
         asking_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=question, 
-                                            wrap_length = self.linewrap_length,
+                                            wrap_length = length,
                                             widget_type=self.WIDGET_TYPE_ME_TEXT )
-        asking_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
+        asking_text_postit.pack(side='top', fill='x', expand=1, padx=10, pady=10)
         self.chat_widget_list.append(asking_text_postit)
 
         if len(self.chat_widget_list) > self.CHAT_WIDGET_MAX:
@@ -678,25 +703,33 @@ class AiassistTab:
         self.chat_frame_update()
 
         self.asking_queue.put(question)
-        get_workbench().after(400, self.checking_answer)
+
+        # wait answer 
+        self.wait_answer.pack(side='top', fill='x', expand=1, padx=10, pady=10)
+        get_workbench().after(300, self.checking_answer)
 
     def checking_answer(self): 
         if self.answer_queue.qsize() > 0:
             print(' got answer .....')
+
+            self.wait_answer.pack_forget()
+
             ans_ntuple = self.answer_queue.get()
             if ans_ntuple.success:
                 answer = ans_ntuple.answer
+                length = get_workbench().get_option(self.LINEWRAP_OPTION)
                 answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=answer, 
-                                            wrap_length = self.linewrap_length,
+                                            wrap_length = length,
                                             widget_type=self.WIDGET_TYPE_AI_TEXT )
             else:
                 answer = '服務異常，請於網頁提問!'
+                length = get_workbench().get_option(self.LINEWRAP_OPTION)
                 answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=answer, 
-                                            wrap_length = self.linewrap_length,
+                                            wrap_length = length,
                                             widget_type=self.WIDGET_TYPE_ABNORMAL )
-            answer_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
+            answer_text_postit.pack(side='top', fill='x', expand=1, padx=10, pady=10)
             self.chat_widget_list.append(answer_text_postit)
 
             if len(self.chat_widget_list) > self.CHAT_WIDGET_MAX:
@@ -712,7 +745,10 @@ class AiassistTab:
             self.chat_frame_update()
 
         else:
-            get_workbench().after(400, self.checking_answer)
+            # wait answer effect
+            self.wait_answer.next()
+
+            get_workbench().after(300, self.checking_answer)
 
 
     

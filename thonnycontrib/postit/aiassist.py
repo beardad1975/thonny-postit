@@ -238,6 +238,39 @@ class AiassistChatPostit(ttk.Frame):
         common.aiassist_tab.tab_frame.update_idletasks()
         
 
+class WaitAnswerPostit(ttk.Frame):
+    def __init__(self, parent):
+        self.parent = parent
+        ttk.Frame.__init__(self, self.parent)
+
+        self.counter = 0
+
+        self.main_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
+        self.main_frame.pack(fill='x', expand=1)
+
+        #self.wait_answer_img0 = common.common_images['wait_answer0']   
+        
+
+        self.wait_answer_btn = tk.Button(self.main_frame,  
+                                        #relief='groove',
+                                        borderwidth=0,
+                                        compound='right',
+                                        image=common.common_images['wait_answer0'],
+                                        bg=common.aiassist_tab.BG_COLOR,
+                                        padx=0,
+                                        pady=0)
+        self.wait_answer_btn.pack(anchor='w', padx=5, pady=5)
+
+    def next(self):
+        self.counter += 1
+        img_num = self.counter % 4
+        img_name_str = f'wait_answer{img_num}'
+        #print('change wait image to --------', img_name_str)
+        self.wait_answer_btn['image'] = common.common_images[img_name_str]
+
+        
+                    
+
 
 class ChatCodePostit(ttk.Frame):
     def __init__(self, parent, code):        

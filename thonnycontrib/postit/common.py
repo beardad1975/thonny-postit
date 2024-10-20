@@ -71,6 +71,11 @@ load_image('info')
 load_image('keyin_display')
 load_image('avatar_ai')
 load_image('avatar_me')
+load_image('wait_answer0')
+load_image('wait_answer1')
+load_image('wait_answer2')
+load_image('wait_answer3')
+
 #  
 # setup vars counter and default
 
