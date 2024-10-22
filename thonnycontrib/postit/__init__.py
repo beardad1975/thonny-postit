@@ -415,17 +415,21 @@ class AiassistTab:
         self.BG_COLOR = '#1d1f21'
         self.LIGHT_FG_COLOR = '#ffffff'
         self.DARK_FG_COLOR = '#000000'
-        self.ME_BG_COLOR = '#fffd9a'
-        self.ME_BORDER_COLOR = '#40d517'
+        #self.ME_BG_COLOR = '#fffd9a'
+        # self.ME_BG_COLOR = '#40d517'
+        # self.ME_BORDER_COLOR = '#40d517'
+        self.ME_BG_COLOR = '#86d97b'
+        self.ME_BORDER_COLOR = '#86d97b'
         #self.AI_TEXT_BG_COLOR = '#ffffff'
-        self.AI_TEXT_BG_COLOR = '#f2f2f2'
+        #self.AI_TEXT_BG_COLOR = '#f2f2f2'
+        self.AI_TEXT_BG_COLOR = '#1d1f21'
         self.AI_TEXT_BORDER_COLOR = '#5b99d6'
         self.AI_CODE_BG_COLOR = '#0080ff'
         self.AI_CODE_BORDER_COLOR = '#bedfff'
         self.ABNORMAL_BG_COLOR = '#cd1616'
         self.ABNORMAL_BORDER_COLOR = '#ffffff'
 
-        self.BORDER_THICKNESS = 5
+        self.BORDER_THICKNESS = 1
 
         # insert empty frame and hide
         

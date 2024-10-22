@@ -181,7 +181,7 @@ class AiassistChatPostit(ttk.Frame):
                               text='', 
                               justify='left',
                               bg=common.aiassist_tab.AI_TEXT_BG_COLOR,
-                              fg=common.aiassist_tab.DARK_FG_COLOR,
+                              fg=common.aiassist_tab.LIGHT_FG_COLOR,
                               highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
                               highlightbackground = common.aiassist_tab.AI_TEXT_BORDER_COLOR,
                               highlightcolor= common.aiassist_tab.AI_TEXT_BORDER_COLOR,
