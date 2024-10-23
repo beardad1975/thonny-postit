@@ -15,6 +15,8 @@ from pytgpt.exceptions import FailedToGenerateResponseError
 from requests.exceptions import ConnectionError
 import cjkwrap
 
+from thonny import get_workbench
+
 from . import common
 from .common import AnswerNTuple
 
@@ -113,11 +115,21 @@ class AiassistThread(threading.Thread):
 
 
 class AiassistChatPostit(ttk.Frame):
-    def __init__(self, parent, message, wrap_length, widget_type):
+    def __init__(self, parent, message:str, wrap_length, widget_type):
         self.parent = parent
         ttk.Frame.__init__(self, self.parent)
 
         self.original_message = message
+
+        # get message's biggest length
+        self.conext_biggest_line_length = 0
+        for li in message.split('\n'):
+            line_length = len(li)
+            if self.conext_biggest_line_length < line_length:
+                self.conext_biggest_line_length = line_length
+        print('----get message s biggest length--------', self.conext_biggest_line_length)
+        
+
         self.widget_type = widget_type
 
         
@@ -150,17 +162,31 @@ class AiassistChatPostit(ttk.Frame):
                                         )
             self.avatar_button.pack(anchor=position, padx=5, pady=5)
 
-            self.label = tk.Label(self.main_frame,
-                              font=common.postit_para_font,
-                              text='', 
-                              justify='left',
-                              bg=common.aiassist_tab.ME_BG_COLOR,
-                              fg=common.aiassist_tab.DARK_FG_COLOR,
-                              highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
-                              highlightbackground = common.aiassist_tab.ME_BORDER_COLOR,
-                              highlightcolor= common.aiassist_tab.ME_BORDER_COLOR,
-                              relief="flat")
-            self.label.pack( anchor=position, ipadx=5, ipady=5)     
+            # self.label = tk.Label(self.main_frame,
+            #                   font=common.postit_para_font,
+            #                   text='', 
+            #                   justify='left',
+            #                   bg=common.aiassist_tab.ME_BG_COLOR,
+            #                   fg=common.aiassist_tab.DARK_FG_COLOR,
+            #                   highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+            #                   highlightbackground = common.aiassist_tab.ME_BORDER_COLOR,
+            #                   highlightcolor= common.aiassist_tab.ME_BORDER_COLOR,
+            #                   relief="flat")
+            # self.label.pack( anchor=position, ipadx=5, ipady=5)     
+            self.chat_text = tk.Text(self.main_frame, 
+                                     font=common.postit_para_font,
+                                     bg=common.aiassist_tab.ME_BG_COLOR, 
+                                     fg=common.aiassist_tab.DARK_FG_COLOR,
+                                     wrap='word',
+                                     #width=wrap_length,
+                                     highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                                     highlightbackground=common.aiassist_tab.ME_BORDER_COLOR,
+                                     highlightcolor=common.aiassist_tab.ME_BORDER_COLOR,
+                                     relief="flat",          
+                                     padx=10,
+                                     pady=10)
+            self.chat_text.pack( anchor=position, ipadx=5, ipady=5)
+
         elif widget_type == common.aiassist_tab.WIDGET_TYPE_AI_TEXT:
             position = 'w'
             name = 'AI'
@@ -176,38 +202,70 @@ class AiassistChatPostit(ttk.Frame):
                                         )
             self.avatar_button.pack(anchor=position, padx=5, pady=5)
 
-            self.label = tk.Label(self.main_frame,
-                              font=common.postit_para_font,
-                              text='', 
-                              justify='left',
-                              bg=common.aiassist_tab.AI_TEXT_BG_COLOR,
-                              fg=common.aiassist_tab.LIGHT_FG_COLOR,
-                              highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
-                              highlightbackground = common.aiassist_tab.AI_TEXT_BORDER_COLOR,
-                              highlightcolor= common.aiassist_tab.AI_TEXT_BORDER_COLOR,
-                              relief="flat")
-            self.label.pack( anchor=position, ipadx=5, ipady=5)
+            # self.label = tk.Label(self.main_frame,
+            #                   font=common.postit_para_font,
+            #                   text='', 
+            #                   justify='left',
+            #                   bg=common.aiassist_tab.AI_TEXT_BG_COLOR,
+            #                   fg=common.aiassist_tab.LIGHT_FG_COLOR,
+            #                   highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+            #                   highlightbackground = common.aiassist_tab.AI_TEXT_BORDER_COLOR,
+            #                   highlightcolor= common.aiassist_tab.AI_TEXT_BORDER_COLOR,
+            #                   relief="flat")
+            # self.label.pack( anchor=position, ipadx=5, ipady=5)
+
+            self.chat_text = tk.Text(self.main_frame, 
+                                     font=common.postit_para_font,
+                                     bg=common.aiassist_tab.AI_TEXT_BG_COLOR, 
+                                     fg=common.aiassist_tab.LIGHT_FG_COLOR,
+                                     wrap='word',
+                                     #width=wrap_length,
+                                     highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                                     highlightbackground = common.aiassist_tab.AI_TEXT_BORDER_COLOR,
+                                     highlightcolor= common.aiassist_tab.AI_TEXT_BORDER_COLOR,  
+                                     relief="flat",         
+                                     padx=10,
+                                     pady=10)
+            self.chat_text.pack( anchor=position, ipadx=5, ipady=5)
                   
         elif widget_type == common.aiassist_tab.WIDGET_TYPE_ABNORMAL:
             # no avatar
             position = 'w'
-            self.label = tk.Label(self.main_frame,
-                              font=common.postit_para_font,
-                              text='', 
-                              justify='left',
-                              bg=common.aiassist_tab.ABNORMAL_BG_COLOR,
-                              fg=common.aiassist_tab.LIGHT_FG_COLOR,
-                              highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
-                              highlightbackground = common.aiassist_tab.ABNORMAL_BORDER_COLOR,
-                              highlightcolor= common.aiassist_tab.ABNORMAL_BORDER_COLOR,
-                              relief="flat")
-            self.label.pack( anchor=position, ipadx=5, ipady=5)
+            # self.label = tk.Label(self.main_frame,
+            #                   font=common.postit_para_font,
+            #                   text='', 
+            #                   justify='left',
+            #                   bg=common.aiassist_tab.ABNORMAL_BG_COLOR,
+            #                   fg=common.aiassist_tab.LIGHT_FG_COLOR,
+            #                   highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+            #                   highlightbackground = common.aiassist_tab.ABNORMAL_BORDER_COLOR,
+            #                   highlightcolor= common.aiassist_tab.ABNORMAL_BORDER_COLOR,
+            #                   relief="flat")
+            # self.label.pack( anchor=position, ipadx=5, ipady=5)
+
+            self.chat_text = tk.Text(self.main_frame, 
+                                     font=common.postit_para_font,
+                                     bg=common.aiassist_tab.ABNORMAL_BG_COLOR, 
+                                     fg=common.aiassist_tab.LIGHT_FG_COLOR,
+                                     wrap='word',
+                                     #width=wrap_length,
+                                     highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                                     highlightbackground = common.aiassist_tab.ABNORMAL_BORDER_COLOR,
+                                     highlightcolor= common.aiassist_tab.ABNORMAL_BORDER_COLOR,  
+                                     relief="flat",         
+                                     padx=10,
+                                     pady=10)
+            self.chat_text.pack( anchor=position, ipadx=5, ipady=5)
+
 
         else:
             print('wrong widget type')
             raise Exception
+        
 
         self.set_wordwrap(wrap_length)
+
+        self.chat_text.bind('<Button-3>', lambda event : ChatTextRightClicker(self.chat_text, event))
 
     def get_message(self):
         return self.original_message
@@ -221,6 +279,7 @@ class AiassistChatPostit(ttk.Frame):
         """
         
         result_lines = []
+        context_max_line_length = 0
 
         text = self.original_message
         lines = text.split('\n')
@@ -228,15 +287,58 @@ class AiassistChatPostit(ttk.Frame):
             line_length = cjkwrap.cjklen(line)
             if line_length <= wrap_length:
                 result_lines.append(line)
+                # record max line length 
+                if context_max_line_length < line_length:
+                    context_max_line_length = line_length
             else:
                 result_lines += cjkwrap.wrap(line, wrap_length)
+                context_max_line_length = wrap_length
 
-        # for r in result_lines:
-        #     print(cjkwrap.cjklen(r))
-            
-        self.label['text'] =  '\n'.join(result_lines)
-        common.aiassist_tab.tab_frame.update_idletasks()
         
+        line_count = len(result_lines)
+        value = '\n'.join(result_lines)
+        self.chat_text.config(height=line_count)
+        self.chat_text.config(width=context_max_line_length)
+        print('context max line length ----', context_max_line_length, '   ', ' -- wrap length ', wrap_length )
+        
+
+        # change text widget cotent , remain read only.
+        self.chat_text.config(state=tk.NORMAL)            
+        self.chat_text.delete(1.0, "end")
+        self.chat_text.insert("end", value)
+        self.chat_text.config(state=tk.DISABLED)
+        
+        common.aiassist_tab.tab_frame.update_idletasks()
+
+class ChatTextRightClicker:
+    def __init__(self, chat_text, event):
+        self.chat_text = chat_text
+        right_click_menu = tk.Menu(None, tearoff=0, takefocus=0)
+        
+        self.selection_tuple = self.chat_text.tag_ranges("sel")
+        if len(self.selection_tuple) == 2: # got selection area
+            right_click_menu.add_command(label='複製所選文字', command=self.copy_selection)
+        else: # no selection
+            right_click_menu.add_command(label='複製全部', command=self.copy_all)
+
+        right_click_menu.tk_popup(event.x_root, event.y_root)
+
+
+    def copy_selection(self):
+        sel_start, sel_end = self.selection_tuple
+        if sel_start and sel_end:
+            selected_text = self.chat_text.get(sel_start, sel_end)
+            get_workbench().clipboard_clear()
+            get_workbench().clipboard_append(selected_text)
+        else:
+            print('no selection on chat text')
+            
+    def copy_all(self):
+        text = self.chat_text.get("1.0", "end-1c")
+        get_workbench().clipboard_clear()
+        get_workbench().clipboard_append(text)
+        #print(text)        
+
 
 class WaitAnswerPostit(ttk.Frame):
     def __init__(self, parent):

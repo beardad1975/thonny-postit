@@ -541,6 +541,7 @@ class AiassistTab:
                                    font=common.postit_para_font)        
         self.asking_text.pack(side='right', fill='x', expand=1,padx=5)
         self.asking_text.bind("<Return>", self.on_asking_btn, True)
+        self.asking_text.bind('<Button-3>', lambda event : AskTextRightClicker(self.asking_text, event))
         
         self.wait_answer = WaitAnswerPostit(self.chat_frame.interior)
 
@@ -717,6 +718,8 @@ class AiassistTab:
         asking_text_postit.pack(side='top', fill='x', expand=1, padx=10, pady=10)
         self.chat_widget_list.append(asking_text_postit)
 
+        
+
         if len(self.chat_widget_list) > self.CHAT_WIDGET_MAX:
                 # keep chat widget below max 
                 item = self.chat_widget_list.pop(0) 
@@ -823,6 +826,18 @@ class AiassistTab:
         #if self.tool_name != 'variable_get':
         self.popup_menu.tk_popup(event.x_root, event.y_root)
 
+class AskTextRightClicker:
+    def __init__(self, ask_text, event):
+        self.ask_text = ask_text
+        right_click_menu = tk.Menu(None, tearoff=0, takefocus=0)
+    
+        right_click_menu.add_command(label='貼上', command=self.paste)
+        right_click_menu.tk_popup(event.x_root, event.y_root)
+
+
+    def paste(self):
+        cliptext = get_workbench().clipboard_get()
+        self.ask_text.insert("insert", cliptext)
 
 
 

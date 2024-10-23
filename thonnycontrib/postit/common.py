@@ -119,6 +119,6 @@ tab_label = font.Font(size=12, weight=font.NORMAL, family='Consolas')
 
 aiassist_tab = False
 
-aiassist_intro = '以下為python相關,以繁體中文回答,對象為青少年'
+aiassist_intro = '以下為python相關,以繁體中文回答,對象為青少年,簡短回答'
 
 AnswerNTuple = namedtuple('AnswerNTuple', 'success answer')
