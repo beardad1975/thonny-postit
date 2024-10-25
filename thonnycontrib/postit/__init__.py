@@ -25,7 +25,7 @@ from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
-from .aiassist import AiassistThread, AiassistChatPostit, WaitAnswerPostit
+from .aiassist import AiassistThread, AiassistChatPostit, WaitAnswerPostit, ChatCodePostit
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH, AnswerNTuple
                      )
 from . import common
@@ -364,6 +364,7 @@ class AiassistTab:
         self.LINEWRAP_MIN = 20
         self.LINEWRAP_MAX = 80
         self.size_changed = False
+        self.is_successive_ans = False
 
         
 
@@ -714,7 +715,8 @@ class AiassistTab:
         asking_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=question, 
                                             wrap_length = length,
-                                            widget_type=self.WIDGET_TYPE_ME_TEXT )
+                                            widget_type=self.WIDGET_TYPE_ME_TEXT,
+                                            omit_avatar=False)
         asking_text_postit.pack(side='top', fill='x', expand=1, padx=10, pady=10)
         self.chat_widget_list.append(asking_text_postit)
 
@@ -747,20 +749,32 @@ class AiassistTab:
             self.wait_answer.pack_forget()
 
             ans_ntuple = self.answer_queue.get()
-            if ans_ntuple.success:
+            if ans_ntuple.type == common.ANS_TYPE_TEXT:
                 answer = ans_ntuple.answer
                 length = get_workbench().get_option(self.LINEWRAP_OPTION)
                 answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=answer, 
                                             wrap_length = length,
-                                            widget_type=self.WIDGET_TYPE_AI_TEXT )
-            else:
+                                            widget_type=self.WIDGET_TYPE_AI_TEXT,
+                                            omit_avatar=self.is_successive_ans )
+            elif ans_ntuple.type == common.ANS_TYPE_CODE:
+                answer = ans_ntuple.answer
+                answer_text_postit = ChatCodePostit(self.chat_frame.interior,
+                                            code=answer, 
+                                            omit_avatar=self.is_successive_ans
+                                            )
+            elif ans_ntuple.type == common.ANS_TYPE_ERROR:
                 answer = '服務異常，請於網頁提問!'
                 length = get_workbench().get_option(self.LINEWRAP_OPTION)
                 answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
                                             message=answer, 
                                             wrap_length = length,
-                                            widget_type=self.WIDGET_TYPE_ABNORMAL )
+                                            widget_type=self.WIDGET_TYPE_ABNORMAL,
+                                            omit_avatar=False)
+            else:
+                print('unknown answer type')
+                raise TypeError
+            
             answer_text_postit.pack(side='top', fill='x', expand=1, padx=10, pady=10)
             self.chat_widget_list.append(answer_text_postit)
 
@@ -775,6 +789,15 @@ class AiassistTab:
             self.asking_btn['state'] = 'normal'
             self.asking_text['state'] = 'normal'
             self.chat_frame_update()
+
+            self.is_successive_ans = True
+
+            # handle next answer if exists
+            if self.answer_queue.qsize() > 0:
+                get_workbench().after(300, self.checking_answer)
+            else: # all answers are handled
+                self.is_successive_ans = False
+                return
 
         else:
             # wait answer effect

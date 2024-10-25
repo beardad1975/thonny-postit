@@ -3,6 +3,7 @@ import time
 import tkinter as tk
 import tkinter.font as font
 from tkinter import ttk
+import re
 
 import pytgpt.auto as auto
 import pytgpt.phind as phind
@@ -81,15 +82,38 @@ class AiassistThread(threading.Thread):
                 print('got question ...')
                 question = self.aiassist_tab.asking_queue.get()
 
+                ans_ntuple_list = []
+
                 try:
                     answer = bot.chat(question)
-                    ans_ntuple = AnswerNTuple(success=True, answer=answer)
-                except (AllProvidersFailure, FailedToGenerateResponseError, ConnectionError) as e:
-                    print('Got exception when chat :', e)
-                    ans_ntuple = AnswerNTuple(success=False, answer=None)
+            
+                    # split answer into text and code
+                    sections = re.split(r"```[^\S\r\n]*[a-z]*\n", answer)
 
+                        
+                    
+                    for idx, section in enumerate(sections):
+                        if not section.strip() :
+                            continue
+
+                        if idx % 2 == 1 : # code
+                            ans_ntuple_list.append(
+                                    AnswerNTuple(type=common.ANS_TYPE_CODE, answer=section))
+                        else: # text
+                            ans_ntuple_list.append(
+                                    AnswerNTuple(type=common.ANS_TYPE_TEXT, answer=section))
                 
-                self.aiassist_tab.answer_queue.put(ans_ntuple)
+                except (AllProvidersFailure, FailedToGenerateResponseError, ConnectionError) as e:
+                    print('Got exception when chating :', e)
+                    ans_ntuple_list.append(
+                            AnswerNTuple(type=common.ANS_TYPE_ERROR, answer=None))
+                except TypeError:
+                    print('Split string type error. Ignore.')
+                    continue
+
+                for ans_tuple in ans_ntuple_list:
+                    self.aiassist_tab.answer_queue.put(ans_tuple)
+
                 # self.aiassist_tab.chat_round_num += 1
 
                 # if self.service_name == 'AUTO' and \
@@ -97,6 +121,7 @@ class AiassistThread(threading.Thread):
                 #         self.aiassist_tab.provider_name = f'AUTO ({bot.provider_name})'
                 #         self.aiassist_tab.status_label.config(
                 #             text=f"使用 {self.aiassist_tab.provider_name} 服務")
+
                 if self.service_name == 'AUTO' :
                     if bot.provider_name != self.aiassist_tab.provider_name:
                         self.aiassist_tab.provider_name = f'AUTO ({bot.provider_name})'
@@ -115,7 +140,7 @@ class AiassistThread(threading.Thread):
 
 
 class AiassistChatPostit(ttk.Frame):
-    def __init__(self, parent, message:str, wrap_length, widget_type):
+    def __init__(self, parent, message:str, wrap_length, widget_type, omit_avatar):
         self.parent = parent
         ttk.Frame.__init__(self, self.parent)
 
@@ -127,7 +152,7 @@ class AiassistChatPostit(ttk.Frame):
             line_length = len(li)
             if self.conext_biggest_line_length < line_length:
                 self.conext_biggest_line_length = line_length
-        print('----get message s biggest length--------', self.conext_biggest_line_length)
+        #print('----get message s biggest length--------', self.conext_biggest_line_length)
         
 
         self.widget_type = widget_type
@@ -150,17 +175,18 @@ class AiassistChatPostit(ttk.Frame):
             #                           borderwidth=2, 
             #                           #relief="groove",
             #                           ) 
-            avatar_me_image = common.common_images['avatar_me']   
-            self.avatar_button = tk.Button(self.avatar_frame,  
-                                        relief='groove',
-                                        borderwidth=0,
-                                        compound='right',
-                                        image=avatar_me_image,
-                                        bg=common.aiassist_tab.BG_COLOR,
-                                        padx=0,
-                                        pady=0, 
-                                        )
-            self.avatar_button.pack(anchor=position, padx=5, pady=5)
+            if not omit_avatar:
+                avatar_me_image = common.common_images['avatar_me']   
+                self.avatar_button = tk.Button(self.avatar_frame,  
+                                            relief='groove',
+                                            borderwidth=0,
+                                            compound='right',
+                                            image=avatar_me_image,
+                                            bg=common.aiassist_tab.BG_COLOR,
+                                            padx=0,
+                                            pady=0, 
+                                            )
+                self.avatar_button.pack(anchor=position, padx=5, pady=5)
 
             # self.label = tk.Label(self.main_frame,
             #                   font=common.postit_para_font,
@@ -190,17 +216,18 @@ class AiassistChatPostit(ttk.Frame):
         elif widget_type == common.aiassist_tab.WIDGET_TYPE_AI_TEXT:
             position = 'w'
             name = 'AI'
-            avatar_ai_image = common.common_images['avatar_ai']   
-            self.avatar_button = tk.Button(self.avatar_frame,  
-                                        relief='groove',
-                                        borderwidth=0,
-                                        compound='right',
-                                        image=avatar_ai_image,
-                                        bg=common.aiassist_tab.BG_COLOR,
-                                        padx=0,
-                                        pady=0, 
-                                        )
-            self.avatar_button.pack(anchor=position, padx=5, pady=5)
+            if not omit_avatar:
+                avatar_ai_image = common.common_images['avatar_ai']   
+                self.avatar_button = tk.Button(self.avatar_frame,  
+                                            relief='groove',
+                                            borderwidth=0,
+                                            compound='right',
+                                            image=avatar_ai_image,
+                                            bg=common.aiassist_tab.BG_COLOR,
+                                            padx=0,
+                                            pady=0, 
+                                            )
+                self.avatar_button.pack(anchor=position, padx=5, pady=5)
 
             # self.label = tk.Label(self.main_frame,
             #                   font=common.postit_para_font,
@@ -299,7 +326,7 @@ class AiassistChatPostit(ttk.Frame):
         value = '\n'.join(result_lines)
         self.chat_text.config(height=line_count)
         self.chat_text.config(width=context_max_line_length)
-        print('context max line length ----', context_max_line_length, '   ', ' -- wrap length ', wrap_length )
+        #print('context max line length ----', context_max_line_length, '   ', ' -- wrap length ', wrap_length )
         
 
         # change text widget cotent , remain read only.
@@ -374,9 +401,15 @@ class WaitAnswerPostit(ttk.Frame):
                     
 
 
-class ChatCodePostit(ttk.Frame):
-    def __init__(self, parent, code):        
-        pass
+class ChatCodePostit(AiassistChatPostit):
+    def __init__(self, parent, code, omit_avatar):        
+        AiassistChatPostit.__init__(self, 
+                                    parent=parent, 
+                                    message=code, 
+                                    wrap_length=40, 
+                                    widget_type=common.aiassist_tab.WIDGET_TYPE_AI_TEXT,
+                                    omit_avatar=omit_avatar,
+                                    )
 
 try_counter = 0
 

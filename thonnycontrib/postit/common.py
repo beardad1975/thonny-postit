@@ -121,4 +121,8 @@ aiassist_tab = False
 
 aiassist_intro = '以下為python相關,以繁體中文回答,對象為青少年,簡短回答'
 
-AnswerNTuple = namedtuple('AnswerNTuple', 'success answer')
+# type: text code error
+AnswerNTuple = namedtuple('AnswerNTuple', 'type answer')
+ANS_TYPE_TEXT = 'text'
+ANS_TYPE_CODE = 'code'
+ANS_TYPE_ERROR = 'error'
