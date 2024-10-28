@@ -25,7 +25,8 @@ from .enclosed_postit import EnclosedPostit
 from .dropdown_postit import DropdownPostit
 from .block_enclosed_postit import BlockEnclosedPostit
 from .asset_copy import AssetCopyBtn, AssetGroup
-from .aiassist import AiassistThread, AiassistChatPostit, WaitAnswerPostit, ChatCodePostit
+from .aiassist import (AiassistThread, AiassistChatText, WaitingAnswerImage, 
+                        ChatCodePostit)
 from .common import ( CodeNTuple, common_images, TAB_DATA_PATH, AnswerNTuple
                      )
 from . import common
@@ -414,7 +415,7 @@ class AiassistTab:
         self.WIDGET_TYPE_ABNORMAL = 6
 
         self.BG_COLOR = '#1d1f21'
-        self.LIGHT_FG_COLOR = '#ffffff'
+        self.LIGHT_FG_COLOR = '#eeeeee'
         self.DARK_FG_COLOR = '#000000'
         #self.ME_BG_COLOR = '#fffd9a'
         # self.ME_BG_COLOR = '#40d517'
@@ -544,7 +545,7 @@ class AiassistTab:
         self.asking_text.bind("<Return>", self.on_asking_btn, True)
         self.asking_text.bind('<Button-3>', lambda event : AskTextRightClicker(self.asking_text, event))
         
-        self.wait_answer = WaitAnswerPostit(self.chat_frame.interior)
+        self.wait_answer = WaitingAnswerImage(self.chat_frame.interior)
 
         # on close  , stop thread
         get_workbench().bind("WorkbenchClose", self.on_aiassist_close, True)
@@ -602,7 +603,8 @@ class AiassistTab:
                 length = get_workbench().get_option(self.LINEWRAP_OPTION)
                 for w in self.chat_widget_list:
                     w.pack_forget()
-                    w.set_wordwrap(length)
+                    if not isinstance(w, ChatCodePostit):
+                        w.set_wordwrap(length)
 
                 for w in self.chat_widget_list:
                     w.pack(side='top', fill='x', expand=1, padx=5, pady=5)
@@ -712,7 +714,7 @@ class AiassistTab:
         # question = '\n'.join(lines)
         
         length = get_workbench().get_option(self.LINEWRAP_OPTION)
-        asking_text_postit = AiassistChatPostit(self.chat_frame.interior,
+        asking_text_postit = AiassistChatText(self.chat_frame.interior,
                                             message=question, 
                                             wrap_length = length,
                                             widget_type=self.WIDGET_TYPE_ME_TEXT,
@@ -752,7 +754,7 @@ class AiassistTab:
             if ans_ntuple.type == common.ANS_TYPE_TEXT:
                 answer = ans_ntuple.answer
                 length = get_workbench().get_option(self.LINEWRAP_OPTION)
-                answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
+                answer_text_postit = AiassistChatText(self.chat_frame.interior,
                                             message=answer, 
                                             wrap_length = length,
                                             widget_type=self.WIDGET_TYPE_AI_TEXT,
@@ -766,7 +768,7 @@ class AiassistTab:
             elif ans_ntuple.type == common.ANS_TYPE_ERROR:
                 answer = '服務異常，請於網頁提問!'
                 length = get_workbench().get_option(self.LINEWRAP_OPTION)
-                answer_text_postit = AiassistChatPostit(self.chat_frame.interior,
+                answer_text_postit = AiassistChatText(self.chat_frame.interior,
                                             message=answer, 
                                             wrap_length = length,
                                             widget_type=self.WIDGET_TYPE_ABNORMAL,
@@ -775,7 +777,7 @@ class AiassistTab:
                 print('unknown answer type')
                 raise TypeError
             
-            answer_text_postit.pack(side='top', fill='x', expand=1, padx=10, pady=10)
+            answer_text_postit.pack(side='top', fill='x', expand=1, padx=5, pady=5)
             self.chat_widget_list.append(answer_text_postit)
 
             if len(self.chat_widget_list) > self.CHAT_WIDGET_MAX:

@@ -19,7 +19,9 @@ import cjkwrap
 from thonny import get_workbench
 
 from . import common
+from .common import common_images
 from .common import AnswerNTuple
+from .base_postit import BaseWidget,BaseCode, BasePost, BasePopup
 
 
 class AiassistThread(threading.Thread):
@@ -111,8 +113,10 @@ class AiassistThread(threading.Thread):
                     print('Split string type error. Ignore.')
                     continue
 
+                
                 for ans_tuple in ans_ntuple_list:
                     self.aiassist_tab.answer_queue.put(ans_tuple)
+                    # print('---------  ', ans_tuple.type)
 
                 # self.aiassist_tab.chat_round_num += 1
 
@@ -139,7 +143,7 @@ class AiassistThread(threading.Thread):
 
 
 
-class AiassistChatPostit(ttk.Frame):
+class AiassistChatText(ttk.Frame):
     def __init__(self, parent, message:str, wrap_length, widget_type, omit_avatar):
         self.parent = parent
         ttk.Frame.__init__(self, self.parent)
@@ -158,9 +162,10 @@ class AiassistChatPostit(ttk.Frame):
         self.widget_type = widget_type
 
         
-
-        self.avatar_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
-        self.avatar_frame.pack(fill='x', expand=1)
+        if not omit_avatar:
+            self.avatar_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
+            self.avatar_frame.pack(fill='x', expand=1)
+        
         self.main_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
         self.main_frame.pack(fill='x', expand=1)
 
@@ -247,9 +252,11 @@ class AiassistChatPostit(ttk.Frame):
                                      fg=common.aiassist_tab.LIGHT_FG_COLOR,
                                      wrap='word',
                                      #width=wrap_length,
-                                     highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
-                                     highlightbackground = common.aiassist_tab.AI_TEXT_BORDER_COLOR,
-                                     highlightcolor= common.aiassist_tab.AI_TEXT_BORDER_COLOR,  
+                                     border=0,
+                                    #  highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                                    #  highlightbackground = common.aiassist_tab.AI_TEXT_BORDER_COLOR,
+                                    #  highlightcolor= common.aiassist_tab.AI_TEXT_BORDER_COLOR, 
+                                     selectbackground='#08a325' , 
                                      relief="flat",         
                                      padx=10,
                                      pady=10)
@@ -280,8 +287,8 @@ class AiassistChatPostit(ttk.Frame):
                                      highlightbackground = common.aiassist_tab.ABNORMAL_BORDER_COLOR,
                                      highlightcolor= common.aiassist_tab.ABNORMAL_BORDER_COLOR,  
                                      relief="flat",         
-                                     padx=10,
-                                     pady=10)
+                                     padx=5,
+                                     pady=5)
             self.chat_text.pack( anchor=position, ipadx=5, ipady=5)
 
 
@@ -294,11 +301,11 @@ class AiassistChatPostit(ttk.Frame):
 
         self.chat_text.bind('<Button-3>', lambda event : ChatTextRightClicker(self.chat_text, event))
 
-    def get_message(self):
-        return self.original_message
+    # def get_message(self):
+    #     return self.original_message
 
-    def set_message(self, new_message):
-        self.label['text'] = new_message
+    # def set_message(self, new_message):
+    #     self.label['text'] = new_message
 
     def set_wordwrap(self, wrap_length):
         """
@@ -367,7 +374,7 @@ class ChatTextRightClicker:
         #print(text)        
 
 
-class WaitAnswerPostit(ttk.Frame):
+class WaitingAnswerImage(ttk.Frame):
     def __init__(self, parent):
         self.parent = parent
         ttk.Frame.__init__(self, self.parent)
@@ -401,52 +408,188 @@ class WaitAnswerPostit(ttk.Frame):
                     
 
 
-class ChatCodePostit(AiassistChatPostit):
-    def __init__(self, parent, code, omit_avatar):        
-        AiassistChatPostit.__init__(self, 
-                                    parent=parent, 
-                                    message=code, 
-                                    wrap_length=40, 
-                                    widget_type=common.aiassist_tab.WIDGET_TYPE_AI_TEXT,
-                                    omit_avatar=omit_avatar,
-                                    )
+# class ChatCodeText(AiassistChatText):
+#     def __init__(self, parent, code, omit_avatar):        
+#         AiassistChatText.__init__(self, 
+#                                     parent=parent, 
+#                                     message=code, 
+#                                     wrap_length=40, 
+#                                     widget_type=common.aiassist_tab.WIDGET_TYPE_AI_TEXT,
+#                                     omit_avatar=omit_avatar,
+#                                     )
 
-try_counter = 0
 
-class TryAiassistPostit(ttk.Frame):
-    def __init__(self, parent):
-        self.parent = parent
-        ttk.Frame.__init__(self, self.parent)
 
-        global try_counter
-        try_counter += 1
 
-        if try_counter % 2 :
-            position = 'e'
-            name = '我'
-        else:
-            position = 'w'
-            name = 'AI'
 
-        self.avatar_frame = ttk.Frame(self)
-        self.avatar_frame.pack(fill='x', expand=1)
-        self.main_frame = ttk.Frame(self)
+
+class ChatCodeWidget(tk.Frame):
+
+    def widget_init(self, parent, omit_avatar):
+        """ 
+            frame structure(2 row sub-frame)
+
+            main_frame (postit_button + main_note)
+            bottom_frame(bottom_note)
+
+            either main_note or bottom_note according to long_note flag  
+        """
+        # store tab
+        self.tab_name = common.aiassist_tab.tab_name
+        self.tab = common.aiassist_tab
+        
+
+        # image
+        # self.enter_image = common_images['enter_small']
+
+        # frame init
+        tk.Frame.__init__(self, parent)
+
+        # main and bottom sub-frame
+        if not omit_avatar:
+            self.avatar_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
+            self.avatar_frame.pack(fill='x', expand=1)
+
+        self.main_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
         self.main_frame.pack(fill='x', expand=1)
+        # self.bottom_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
+        # self.bottom_frame.pack(fill='x', expand=1)
+        
 
-        self.avatar_label = ttk.Label(self.avatar_frame, text=name, borderwidth=2, relief="groove")
-        
-        
-        
-        self.avatar_label.pack(anchor=position)
+        if not omit_avatar:
+                avatar_ai_image = common.common_images['avatar_ai']   
+                self.avatar_button = tk.Button(self.avatar_frame,  
+                                            relief='groove',
+                                            borderwidth=0,
+                                            compound='right',
+                                            image=avatar_ai_image,
+                                            bg=common.aiassist_tab.BG_COLOR,
+                                            padx=0,
+                                            pady=0, 
+                                            )
+                self.avatar_button.pack(anchor='w', padx=5, pady=5)
 
-        #self.dialog_text = tk.Text(self.main_frame, height=7)
-        #self.dialog_text.pack()
+
+        # button and label
+        f = font.Font(size=11, weight=font.NORMAL, family='Consolas')
+        self.postit_button = tk.Button(self.main_frame,  
+                                        relief='flat',
+                                        borderwidth=0,
+                                        text='***' , 
+                                        fg=common.aiassist_tab.LIGHT_FG_COLOR, 
+                                        bg=common.aiassist_tab.AI_CODE_BG_COLOR,
+                                        justify='left', 
+                                        font=f,
+                                        # compound='right',
+                                        #image=self.enter_image,
+                                        padx=0,
+                                        pady=0, 
+                                        state='normal',
+                                        )
+
+        # self.main_note_label = ttk.Label(self.main_frame, text='' ) 
+        # self.bottom_note_label = ttk.Label(self.bottom_frame, text='')
+
+        # 1st row sub-frame
+        self.postit_button.pack(anchor='w', padx=5, pady=5)
+        # self.main_note_label.pack(anchor='w', padx=5, pady=5)
+        # 2nd row sub-frame
+        
+        # self.bottom_note_label.pack(anchor='w', padx=5, pady=5)
+
+
+class ChatCodeCode:
+    def code_init(self, code, code_display=None, ):
+        # tk var
+        self.var_postfix_enter = tk.BooleanVar()
+        self.var_postfix_enter.set(False)
+
+        if code_display is None:
+            code_display = code
+        self.code = code
+        self.code_display = code_display 
+        
+        self.update_postit_code()
+        
+    def set_code_display(self, text):
+        self.postit_button.config(text=text)
+
+    def set_code(self, text):
+        pass
+
+    def update_postit_code(self):
+        #self.set_code(self.code)
+        self.set_code_display(self.code_display)
+
+class ChatCodePopup:
+    def popup_init(self):
+        self.postit_button.bind('<Button-3>', lambda event : ChatCodeRightClicker(self, event))
+
+
+class ChatCodeRightClicker:
+    def __init__(self, chat_code_postit, event):
+        self.chat_code_postit = chat_code_postit
+        right_click_menu = tk.Menu(None, tearoff=0, takefocus=0)
+        right_click_menu.add_command(label='複製全部', command=self.copy_all)
+
+        right_click_menu.tk_popup(event.x_root, event.y_root)
+
+    def copy_all(self):
+        text = self.chat_code_postit.original_message
+        get_workbench().clipboard_clear()
+        get_workbench().clipboard_append(text)
+
+class ChatCodePostit( ChatCodeWidget, 
+                      ChatCodeCode, 
+                      BasePost, 
+                      ChatCodePopup):
+    """   """
+    def __init__(self, parent, code, omit_avatar, code_display=None):
+        code_display = code
+        self.parent = parent
+        self.original_message = code
+        self.widget_init(parent,omit_avatar)
+        self.code_init(code, code_display)
+        self.post_init()
+        self.popup_init()
+
+
+# try_counter = 0
+
+# class TryAiassistPostit(ttk.Frame):
+#     def __init__(self, parent):
+#         self.parent = parent
+#         ttk.Frame.__init__(self, self.parent)
+
+#         global try_counter
+#         try_counter += 1
+
+#         if try_counter % 2 :
+#             position = 'e'
+#             name = '我'
+#         else:
+#             position = 'w'
+#             name = 'AI'
+
+#         self.avatar_frame = ttk.Frame(self)
+#         self.avatar_frame.pack(fill='x', expand=1)
+#         self.main_frame = ttk.Frame(self)
+#         self.main_frame.pack(fill='x', expand=1)
+
+#         self.avatar_label = ttk.Label(self.avatar_frame, text=name, borderwidth=2, relief="groove")
+        
+        
+        
+#         self.avatar_label.pack(anchor=position)
+
+#         #self.dialog_text = tk.Text(self.main_frame, height=7)
+#         #self.dialog_text.pack()
 
         
-        try_str = str(try_counter) * 15 + '\n'
-        try_str = try_str * 4
-        self.label = tk.Label(self.main_frame, text=try_str, borderwidth=2, relief="groove")
-        self.label.pack( anchor=position)
+#         try_str = str(try_counter) * 15 + '\n'
+#         try_str = try_str * 4
+#         self.label = tk.Label(self.main_frame, text=try_str, borderwidth=2, relief="groove")
+#         self.label.pack( anchor=position)
         
         
         #self.dialog_text.insert('0.0', str(try_counter))
