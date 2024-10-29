@@ -405,7 +405,7 @@ class AiassistTab:
 
         # chat widget
         self.chat_widget_list = []
-        self.CHAT_WIDGET_MAX = 30
+        self.CHAT_WIDGET_MAX = 100
 
         self.WIDGET_TYPE_ME_TEXT = 1
         self.WIDGET_TYPE_AI_TEXT = 2

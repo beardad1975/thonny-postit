@@ -88,7 +88,14 @@ class AiassistThread(threading.Thread):
 
                 try:
                     answer = bot.chat(question)
-            
+
+                    # handle web results when using Perplexity
+                    if self.service_name == 'Perplexity' or \
+                             self.aiassist_tab.provider_name == 'Perplexity':
+                        ans_list = answer.split('# WEB-RESULTS')
+                        if len(ans_list) == 2:
+                            web_result = ans_list[1].encode().decode('unicode-escape')
+                            answer = ans_list[0] + '# WEB-RESULTS' + web_result
                     # split answer into text and code
                     sections = re.split(r"```[^\S\r\n]*[a-z]*\n", answer)
 
@@ -287,8 +294,8 @@ class AiassistChatText(ttk.Frame):
                                      highlightbackground = common.aiassist_tab.ABNORMAL_BORDER_COLOR,
                                      highlightcolor= common.aiassist_tab.ABNORMAL_BORDER_COLOR,  
                                      relief="flat",         
-                                     padx=5,
-                                     pady=5)
+                                     padx=10,
+                                     pady=10)
             self.chat_text.pack( anchor=position, ipadx=5, ipady=5)
 
 
@@ -526,6 +533,33 @@ class ChatCodePopup:
         self.postit_button.bind('<Button-3>', lambda event : ChatCodeRightClicker(self, event))
 
 
+class ChatCodePost:
+    def insert_into_editor(self, editor_text, 
+                           pressing=False, dragging=False,
+                           selecting=False, hovering=False):
+
+            widget = get_workbench().focus_get()
+            if widget:
+                text = self.original_message
+                get_workbench().clipboard_clear()
+                get_workbench().clipboard_append(text)
+                return widget.event_generate("<<Paste>>")
+
+            return None
+
+    def insert_into_shell(self, shell_text, 
+                           pressing=False, dragging=False,
+                           selecting=False, hovering=False):
+
+            widget = get_workbench().focus_get()
+            if widget:
+                text = self.original_message
+                get_workbench().clipboard_clear()
+                get_workbench().clipboard_append(text)
+                return widget.event_generate("<<Paste>>")
+
+            return None 
+
 class ChatCodeRightClicker:
     def __init__(self, chat_code_postit, event):
         self.chat_code_postit = chat_code_postit
@@ -541,7 +575,7 @@ class ChatCodeRightClicker:
 
 class ChatCodePostit( ChatCodeWidget, 
                       ChatCodeCode, 
-                      BasePost, 
+                      ChatCodePost, BasePost, 
                       ChatCodePopup):
     """   """
     def __init__(self, parent, code, omit_avatar, code_display=None):
