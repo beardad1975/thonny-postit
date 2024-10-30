@@ -15,7 +15,8 @@ from PIL import Image, ImageTk
 
 from thonny import get_workbench, get_shell, get_runner 
 from thonny.ui_utils import show_dialog, CommonDialog, create_tooltip, QueryDialog
-from thonny.codeview import CodeView
+from thonny.codeview import CodeView, CodeViewText
+from thonny.shell import ShellText
 
 
 from thonny.common import ToplevelCommand, InlineCommand
@@ -375,7 +376,7 @@ class AiassistTab:
         #                        command=_cmd_in_shell_ask_aiassist,
         #                        tester=_cmd_ask_aiassist_tester,
         #                        ) 
-        shell.menu.insert_command(index=0, label='提問AI程式助理', 
+        shell.menu.insert_command(index=0, label='向AI助理提問', 
                                command=_cmd_in_shell_ask_aiassist,
                                
                                ) 
@@ -384,7 +385,7 @@ class AiassistTab:
         itemdata = shell.menu.entryconfigure(0)
         labeldata = itemdata.get("label")
         if labeldata:
-            shell.menu._testers[labeldata] = _cmd_ask_aiassist_tester
+            shell.menu._testers[labeldata] = _cmd_in_shell_ask_aiassist_tester
 
 
         
@@ -485,7 +486,7 @@ class AiassistTab:
 
         self.connect_btn = tk.Button(self.connect_frame, 
                                      font=common.postit_para_font,
-                                     text='使用AI助理 >>',
+                                     text='開始使用 >>',
                                      bg=self.BG_COLOR,
                                      fg=self.LIGHT_FG_COLOR,
                                      command=self.on_connect_btn)
@@ -1898,6 +1899,41 @@ class MicrobitCommProjectDialog(CommonDialog):
         self.destroy()  
         
 
+class AiassistSelectionAskDialog(CommonDialog):
+    def __init__(self, master, selection):
+        super().__init__(master)
+
+        main_frame = ttk.Frame(self)
+        main_frame.grid(sticky=tk.NSEW, ipadx=15, ipady=15)
+        main_frame.rowconfigure(0, weight=1)
+        main_frame.columnconfigure(0, weight=1)
+
+        self.title('關於Py4t')
+        self.resizable(height=tk.FALSE, width=tk.FALSE)
+        self.protocol("WM_DELETE_WINDOW", self._ok)
+
+
+        heading_font = tk.font.nametofont("TkHeadingFont").copy()
+        heading_font.configure(size=19, weight="bold")
+        heading_label = ttk.Label(
+            main_frame, text="label", font=heading_font
+        )
+        heading_label.grid()
+
+        
+
+
+        
+
+        ok_button = ttk.Button(main_frame, text="OK", command=self._ok, default="active")
+        ok_button.grid(pady=(0, 15))
+        ok_button.focus_set()
+
+        self.bind("<Return>", self._ok, True)
+        self.bind("<Escape>", self._ok, True)
+
+    def _ok(self, event=None):
+        self.destroy()
 
 
 def get_version():
@@ -1921,6 +1957,8 @@ def load_plugin():
     def open_microbit_comm_projcet(*args):
         show_dialog(MicrobitCommProjectDialog(get_workbench()))
 
+    
+
     get_workbench().add_command("aboutPy4t", "help", '關於Py4t', open_about, group=62)
 
     get_workbench().add_command("microbit_comm_project", "Py4t", 
@@ -1929,6 +1967,16 @@ def load_plugin():
                                 group=29)
     get_workbench().add_command("aboutPy4t", "Py4t", '關於Py4t (版本與網站連結)', open_about, group=30)
 
+
+
+    get_workbench().add_command(command_id="ask_aiassist",
+                                menu_name="edit",
+                                command_label="向AI助理提問",
+                                handler=_cmd_in_edit_ask_aiassist,
+                                tester=_cmd_in_edit_ask_aiassist_tester,
+                                group=4,
+                                #default_sequence="<F2>"
+                                )
 
     get_workbench().add_command(command_id="share_var_get",
                                 menu_name="edit",
@@ -1945,14 +1993,7 @@ def load_plugin():
                                 group=5,
                                 #default_sequence="<F2>"
                                 )
-    get_workbench().add_command(command_id="ask_aiassist",
-                                menu_name="edit",
-                                command_label="提問AI程式助理",
-                                handler=_cmd_in_edit_ask_aiassist,
-                                tester=_cmd_ask_aiassist_tester,
-                                group=4,
-                                #default_sequence="<F2>"
-                                )
+    
     
         
 
@@ -2001,24 +2042,66 @@ def _cmd_share_var_add():
         #print(self.postit_button.cget('state'))
         pass    
 
+def open_aiassist_selection_ask(selection):
+        show_dialog(AiassistSelectionAskDialog(get_workbench(), selection))
+
+def _cmd_in_edit_ask_aiassist_tester():
+    # print('in edit tester ................')
+    mode = common.postit_view.current_mode
+    tab = common.postit_view.py4t_mode_current_tab
+
+    if mode == 'py4t' and tab is common.aiassist_tab \
+                and common.aiassist_tab.is_chatting is True  :
+        # check if codeview text has selection 
+        focus_widget = get_workbench().focus_get()
+        if isinstance(focus_widget, CodeViewText):
+            # cursor in editor
+            editor_text = focus_widget 
+            # has selection ?
+            if editor_text.tag_ranges(tk.SEL):
+                # make sure not select white space
+                if editor_text.selection_get().strip():
+                    common.editor_text = editor_text
+                    return True
+    else:
+        return False
+
 
 def _cmd_in_edit_ask_aiassist():
+    selection = common.editor_text.selection_get()
+    print('---------------------------')
     print('[in edit] 提問AI程式助理...')
+    print(selection)
+    open_aiassist_selection_ask(selection)
 
-def _cmd_ask_aiassist_tester():
-    print('in tester ................')
+
+def _cmd_in_shell_ask_aiassist_tester():
+    # print('in shell tester ................')
     mode = common.postit_view.current_mode
     tab = common.postit_view.py4t_mode_current_tab
         
     if mode == 'py4t' and tab is common.aiassist_tab \
                 and common.aiassist_tab.is_chatting is True  :
-        return True
+        # check if codeview text has selection 
+        focus_widget = get_workbench().focus_get()
+        if isinstance(focus_widget, ShellText):
+            # cursor in shell
+            shell_text = focus_widget 
+            # has selection ?
+            if shell_text.tag_ranges(tk.SEL)  :
+                # make sure not select white space
+                if shell_text.selection_get().strip():
+                    common.shell_text = shell_text
+                    return True
     else:
         return False
 
-
 def _cmd_in_shell_ask_aiassist():
+    selection = common.shell_text.selection_get()
+    print('---------------------------')
     print('[in shell] 提問AI程式助理...')
+    print(selection)
+    open_aiassist_selection_ask(selection)
 
 
 # def try_runner():
