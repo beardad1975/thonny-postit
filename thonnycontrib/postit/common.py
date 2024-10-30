@@ -126,3 +126,6 @@ AnswerNTuple = namedtuple('AnswerNTuple', 'type answer')
 ANS_TYPE_TEXT = 'text'
 ANS_TYPE_CODE = 'code'
 ANS_TYPE_ERROR = 'error'
+
+editor_text = None
+shell_text = None
