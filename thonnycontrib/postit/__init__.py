@@ -367,6 +367,26 @@ class AiassistTab:
         self.size_changed = False
         self.is_successive_ans = False
 
+    
+        # add menu command in shell view
+        shell = get_shell()
+        # shell.menu.add_separator()
+        # shell.menu.add_command(label='提問AI程式助理', 
+        #                        command=_cmd_in_shell_ask_aiassist,
+        #                        tester=_cmd_ask_aiassist_tester,
+        #                        ) 
+        shell.menu.insert_command(index=0, label='提問AI程式助理', 
+                               command=_cmd_in_shell_ask_aiassist,
+                               
+                               ) 
+        shell.menu.insert_separator(index=1)
+
+        itemdata = shell.menu.entryconfigure(0)
+        labeldata = itemdata.get("label")
+        if labeldata:
+            shell.menu._testers[labeldata] = _cmd_ask_aiassist_tester
+
+
         
 
         
@@ -1421,7 +1441,7 @@ class PythonPostitView(ttk.Frame):
 
         common.share_var_add_postit = VariableAddToolPostit(self.code_toolbar)
         common.share_var_add_postit.pack(side=tk.LEFT,padx=0, pady=3)
-        create_tooltip(common.share_var_add_postit, '把選取文字加到變數')
+        create_tooltip(common.share_var_add_postit, '把選取文字加到變數清單')
 
         share_var = common.share_vars_postit
         share_var.pack(side=tk.LEFT,padx=0, pady=3)
@@ -1920,11 +1940,21 @@ def load_plugin():
 
     get_workbench().add_command(command_id="share_var_add",
                                 menu_name="edit",
-                                command_label="把選取文字加到變數",
+                                command_label="把選取文字加到變數清單",
                                 handler=_cmd_share_var_add,
                                 group=5,
                                 #default_sequence="<F2>"
                                 )
+    get_workbench().add_command(command_id="ask_aiassist",
+                                menu_name="edit",
+                                command_label="提問AI程式助理",
+                                handler=_cmd_in_edit_ask_aiassist,
+                                tester=_cmd_ask_aiassist_tester,
+                                group=4,
+                                #default_sequence="<F2>"
+                                )
+    
+        
 
     #print(get_shell().menu) # error. could be exec order
 
@@ -1970,6 +2000,26 @@ def _cmd_share_var_add():
         #print('else')
         #print(self.postit_button.cget('state'))
         pass    
+
+
+def _cmd_in_edit_ask_aiassist():
+    print('[in edit] 提問AI程式助理...')
+
+def _cmd_ask_aiassist_tester():
+    print('in tester ................')
+    mode = common.postit_view.current_mode
+    tab = common.postit_view.py4t_mode_current_tab
+        
+    if mode == 'py4t' and tab is common.aiassist_tab \
+                and common.aiassist_tab.is_chatting is True  :
+        return True
+    else:
+        return False
+
+
+def _cmd_in_shell_ask_aiassist():
+    print('[in shell] 提問AI程式助理...')
+
 
 # def try_runner():
 #     #s = get_runner().get_state()
