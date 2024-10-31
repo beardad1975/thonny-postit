@@ -9,6 +9,7 @@ from collections import OrderedDict, namedtuple
 import tkinter as tk
 import tkinter.font as font
 from tkinter import messagebox
+import tkinter.scrolledtext as scrolledtext
 from tkinter import ttk
 from pathlib import Path
 from PIL import Image, ImageTk
@@ -714,19 +715,23 @@ class AiassistTab:
         else:
             get_workbench().after(200, self.delay_disconnect)
 
-    def on_asking_btn(self, event=None):
+    def on_asking_btn(self, event=None, ask_content_from_editor_or_shell=None):
         # build ai assist postit
 
         # todo : check text content , 要不要詢問按鈕？
         # aiassist_postit = TryAiassistPostit(self.chat_frame.interior)
 
         
+        if ask_content_from_editor_or_shell:
+            # ask from editor or shell
+            question = ask_content_from_editor_or_shell
 
-        question = self.asking_text.get("1.0",tk.END)
-        self.asking_text.delete('1.0', tk.END)
-        question = question.strip()
-        if not question :
-            return
+        else: # ask from asking text
+            question = self.asking_text.get("1.0",tk.END)
+            self.asking_text.delete('1.0', tk.END)
+            question = question.strip()
+            if not question :
+                return
         
         # split question if too long
         
@@ -1903,36 +1908,85 @@ class AiassistSelectionAskDialog(CommonDialog):
     def __init__(self, master, selection):
         super().__init__(master)
 
-        main_frame = ttk.Frame(self)
+        #main_frame = tk.Frame(self, bg=common.aiassist_tab.BG_COLOR)
+        main_frame = tk.Frame(self)
         main_frame.grid(sticky=tk.NSEW, ipadx=15, ipady=15)
         main_frame.rowconfigure(0, weight=1)
         main_frame.columnconfigure(0, weight=1)
 
-        self.title('關於Py4t')
+        self.title('提問內容確認')
         self.resizable(height=tk.FALSE, width=tk.FALSE)
-        self.protocol("WM_DELETE_WINDOW", self._ok)
+        self.protocol("WM_DELETE_WINDOW", self._esc)
 
 
-        heading_font = tk.font.nametofont("TkHeadingFont").copy()
-        heading_font.configure(size=19, weight="bold")
-        heading_label = ttk.Label(
-            main_frame, text="label", font=heading_font
-        )
-        heading_label.grid()
+        # heading_font = tk.font.nametofont("TkHeadingFont").copy()
+        # heading_font.configure(size=19, weight="bold")
+        # heading_label = ttk.Label(
+        #     main_frame, text="label", font=heading_font
+        # )
+        # heading_label.grid()
 
+        # ask_chat_text = tk.Text(main_frame, 
+
+        self.ask_chat_text = scrolledtext.ScrolledText(main_frame,                         
+                                     font=common.postit_para_font,
+                                     bg=common.aiassist_tab.ME_BG_COLOR, 
+                                     fg=common.aiassist_tab.DARK_FG_COLOR,
+                                     wrap=tk.NONE,
+                                     width=50,
+                                     height=10, 
+                                     highlightthickness=common.aiassist_tab.BORDER_THICKNESS,
+                                     highlightbackground=common.aiassist_tab.ME_BORDER_COLOR,
+                                     highlightcolor=common.aiassist_tab.ME_BORDER_COLOR,
+                                     relief="flat",          
+                                     padx=10,
+                                     pady=10)
+        self.ask_chat_text.grid(ipadx=5, ipady=5, padx=10)
+          
+        self.ask_chat_text.delete(1.0, "end")
+        self.ask_chat_text.insert("end", selection)
+        self.ask_chat_text.config(state=tk.DISABLED)
+
+        appendix_frame = tk.Frame(main_frame)
+        appendix_frame.grid()
+
+        appendix_label = tk.Label(appendix_frame, text='補充：')
+        appendix_label.pack(side=tk.LEFT)
+
+        self.ask_append_combo = ttk.Combobox(
+                appendix_frame,
+                width=30,
+                #state="readonly",
+                takefocus=0,
+                font=common.postit_para_font, 
+                justify=tk.CENTER,
+                values=common.ask_append_list)
+        self.ask_append_combo.current(0)
+        self.ask_append_combo.pack(side=tk.LEFT, pady=12)
         
 
-
-        
-
-        ok_button = ttk.Button(main_frame, text="OK", command=self._ok, default="active")
+        ok_button = tk.Button(main_frame, text="送出提問 >>", command=self._send, default="active")
         ok_button.grid(pady=(0, 15))
         ok_button.focus_set()
 
-        self.bind("<Return>", self._ok, True)
-        self.bind("<Escape>", self._ok, True)
+        self.bind("<Return>", self._send, True)
+        self.bind("<Escape>", self._esc, True)
 
-    def _ok(self, event=None):
+    def _esc(self, event=None):
+        self.destroy()
+
+
+    def _send(self, event=None):
+        ask_text_content = self.ask_chat_text.get("1.0", "end-1c")
+
+        ask_append_content = self.ask_append_combo.get()
+        if ask_append_content:
+            ask_text_content = ask_text_content + '\n' + ask_append_content
+
+        print('-----------------')
+        print(ask_text_content)
+
+        common.aiassist_tab.on_asking_btn(ask_content_from_editor_or_shell=ask_text_content)
         self.destroy()
 
 
@@ -2051,6 +2105,7 @@ def _cmd_in_edit_ask_aiassist_tester():
     tab = common.postit_view.py4t_mode_current_tab
 
     if mode == 'py4t' and tab is common.aiassist_tab \
+                and common.aiassist_tab.answer_queue.qsize() == 0 \
                 and common.aiassist_tab.is_chatting is True  :
         # check if codeview text has selection 
         focus_widget = get_workbench().focus_get()
@@ -2081,6 +2136,7 @@ def _cmd_in_shell_ask_aiassist_tester():
     tab = common.postit_view.py4t_mode_current_tab
         
     if mode == 'py4t' and tab is common.aiassist_tab \
+                and common.aiassist_tab.answer_queue.qsize() == 0 \
                 and common.aiassist_tab.is_chatting is True  :
         # check if codeview text has selection 
         focus_widget = get_workbench().focus_get()

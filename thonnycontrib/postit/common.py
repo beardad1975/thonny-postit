@@ -129,3 +129,12 @@ ANS_TYPE_ERROR = 'error'
 
 editor_text = None
 shell_text = None
+
+ask_append_list = [
+    '',
+    '將以上英文翻譯成中文',
+    '請解釋以上的程式碼',
+    '請將以上的程式改寫',
+    '以上的程式哪裡有錯誤，請修正',
+    '以上的提問請簡單回答',
+]
