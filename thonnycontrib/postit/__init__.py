@@ -45,7 +45,7 @@ from .tools.variables_tool_postit import ( VariableMenuPostit,
 from .tools.copy_tool_postit import ( CopyToolPostit, PasteToolPostit,
         CutToolPostit )     
 from .tools.symbol_tool_postit import SymbolToolPostit
-from .tools.keyin_display_tool_postit import KeyinDisplayToolPostit
+#from .tools.keyin_display_tool_postit import KeyinDisplayToolPostit
 
 
 
@@ -1983,8 +1983,8 @@ class AiassistSelectionAskDialog(CommonDialog):
         if ask_append_content:
             ask_text_content = ask_text_content + '\n' + ask_append_content
 
-        print('-----------------')
-        print(ask_text_content)
+        #print('-----------------')
+        #print(ask_text_content)
 
         common.aiassist_tab.on_asking_btn(ask_content_from_editor_or_shell=ask_text_content)
         self.destroy()
